@@ -148,8 +148,9 @@ def main():
     if pj.exists():
         vistos = {n["numero"] for n in normas}
         for p in json.loads(pj.read_text(encoding="utf-8"))["proyectos"]:
-            ln = (p.get("ley_numero") or "").strip()
-            if re.fullmatch(r"\d{2}\.\d{3}", ln) and ln not in vistos and p.get("diario_oficial"):
+            mln = re.fullmatch(r"(?:Ley\s*(?:N[º°o]?\s*)?)?(\d{2}\.\d{3})", (p.get("ley_numero") or "").strip())
+            ln = mln.group(1) if mln else ""
+            if ln and ln not in vistos and p.get("diario_oficial"):
                 vistos.add(ln)
                 normas.append({"id": f"ley_{ln.replace('.', '')}", "tipo": "ley", "numero": ln, "titulo": p["titulo"],
                                "organismo_emisor": None, "fecha_publicacion": p["diario_oficial"], "quorum": None,

@@ -1,0 +1,1682 @@
+{
+ "fecha_corte": "2026-11-23",
+ "aviso": "Hechos públicos, sin alias ni opinión: el juego aplica alias satíricos después. verificado=true sólo con fuente primaria.",
+ "huecos": [
+  "IPC, dólar, cobre y TPM: mindicador.cl y las APIs del Banco Central no son accesibles desde el entorno; sin series no se inventan eventos económicos.",
+  "Resultados de primera vuelta por región: no hay fuente primaria transcrita (la tabla secundaria no cuadra).",
+  "Conflictos sociales y desastres naturales 2025-2026: sin fuente consultada."
+ ],
+ "eventos": [
+  {
+   "fecha": "2022-04-29",
+   "categoria": "institucional",
+   "regiones": [
+    "nacional"
+   ],
+   "descripcion": "Se publica la ley de reforma constitucional N° 21.448 (consta en las notas del texto oficial de la Constitución).",
+   "fuentes": [
+    {
+     "titulo": "Constitución, texto actualizado al 7-oct-2025 (BCN)",
+     "url": "https://www.bcn.cl/leychile/navegar?idNorma=242302"
+    }
+   ],
+   "nivel_verificacion": "primaria",
+   "verificado": true,
+   "id": "real_20220429_001"
+  },
+  {
+   "fecha": "2022-08-23",
+   "categoria": "institucional",
+   "regiones": [
+    "nacional"
+   ],
+   "descripcion": "Se publica la ley de reforma constitucional N° 21.481 (consta en las notas del texto oficial de la Constitución).",
+   "fuentes": [
+    {
+     "titulo": "Constitución, texto actualizado al 7-oct-2025 (BCN)",
+     "url": "https://www.bcn.cl/leychile/navegar?idNorma=242302"
+    }
+   ],
+   "nivel_verificacion": "primaria",
+   "verificado": true,
+   "id": "real_20220823_002"
+  },
+  {
+   "fecha": "2022-09-04",
+   "descripcion": "Plebiscito de salida sobre la propuesta de la Convención Constitucional: Rechazo 61,89 % (7.891.415 votos) y Apruebo 38,11 % (4.859.103) sobre 12.750.518 votos válidos.",
+   "categoria": "electoral",
+   "regiones": [
+    "nacional"
+   ],
+   "fuentes": [
+    {
+     "titulo": "Plebiscito constitucional de Chile de 2022",
+     "url": "https://es.wikipedia.org/wiki/Plebiscito_constitucional_de_Chile_de_2022"
+    }
+   ],
+   "nivel_verificacion": "secundaria_coherente",
+   "verificado": false,
+   "id": "real_20220904_003"
+  },
+  {
+   "fecha": "2023-01-27",
+   "categoria": "institucional",
+   "regiones": [
+    "nacional"
+   ],
+   "descripcion": "Se publica la ley de reforma constitucional N° 21.535 (consta en las notas del texto oficial de la Constitución).",
+   "fuentes": [
+    {
+     "titulo": "Constitución, texto actualizado al 7-oct-2025 (BCN)",
+     "url": "https://www.bcn.cl/leychile/navegar?idNorma=242302"
+    }
+   ],
+   "nivel_verificacion": "primaria",
+   "verificado": true,
+   "id": "real_20230127_004"
+  },
+  {
+   "fecha": "2023-02-03",
+   "categoria": "institucional",
+   "regiones": [
+    "nacional"
+   ],
+   "descripcion": "Se publica la ley de reforma constitucional N° 21.542 (consta en las notas del texto oficial de la Constitución).",
+   "fuentes": [
+    {
+     "titulo": "Constitución, texto actualizado al 7-oct-2025 (BCN)",
+     "url": "https://www.bcn.cl/leychile/navegar?idNorma=242302"
+    }
+   ],
+   "nivel_verificacion": "primaria",
+   "verificado": true,
+   "id": "real_20230203_005"
+  },
+  {
+   "fecha": "2023-05-03",
+   "categoria": "institucional",
+   "regiones": [
+    "nacional"
+   ],
+   "descripcion": "Se publica la ley de reforma constitucional N° 21.568 (consta en las notas del texto oficial de la Constitución).",
+   "fuentes": [
+    {
+     "titulo": "Constitución, texto actualizado al 7-oct-2025 (BCN)",
+     "url": "https://www.bcn.cl/leychile/navegar?idNorma=242302"
+    }
+   ],
+   "nivel_verificacion": "primaria",
+   "verificado": true,
+   "id": "real_20230503_006"
+  },
+  {
+   "fecha": "2023-05-04",
+   "categoria": "institucional",
+   "regiones": [
+    "nacional"
+   ],
+   "descripcion": "Se publica la ley de reforma constitucional N° 21.574 (consta en las notas del texto oficial de la Constitución).",
+   "fuentes": [
+    {
+     "titulo": "Constitución, texto actualizado al 7-oct-2025 (BCN)",
+     "url": "https://www.bcn.cl/leychile/navegar?idNorma=242302"
+    }
+   ],
+   "nivel_verificacion": "primaria",
+   "verificado": true,
+   "id": "real_20230504_007"
+  },
+  {
+   "fecha": "2023-11-07",
+   "categoria": "institucional",
+   "regiones": [
+    "nacional"
+   ],
+   "descripcion": "Se publica la ley de reforma constitucional N° 21.626 (consta en las notas del texto oficial de la Constitución).",
+   "fuentes": [
+    {
+     "titulo": "Constitución, texto actualizado al 7-oct-2025 (BCN)",
+     "url": "https://www.bcn.cl/leychile/navegar?idNorma=242302"
+    }
+   ],
+   "nivel_verificacion": "primaria",
+   "verificado": true,
+   "id": "real_20231107_008"
+  },
+  {
+   "fecha": "2023-12-17",
+   "descripcion": "Plebiscito de salida sobre la propuesta del Consejo Constitucional: En contra 55,76 % (6.894.287 votos) y A favor 44,24 % (5.470.025) sobre 12.364.312 votos válidos.",
+   "categoria": "electoral",
+   "regiones": [
+    "nacional"
+   ],
+   "fuentes": [
+    {
+     "titulo": "Plebiscito constitucional de Chile de 2023",
+     "url": "https://es.wikipedia.org/wiki/Plebiscito_constitucional_de_Chile_de_2023"
+    }
+   ],
+   "nivel_verificacion": "secundaria_coherente",
+   "verificado": false,
+   "id": "real_20231217_009"
+  },
+  {
+   "fecha": "2024-01-19",
+   "categoria": "institucional",
+   "regiones": [
+    "nacional"
+   ],
+   "descripcion": "Se publica la ley de reforma constitucional N° 21.654 (consta en las notas del texto oficial de la Constitución).",
+   "fuentes": [
+    {
+     "titulo": "Constitución, texto actualizado al 7-oct-2025 (BCN)",
+     "url": "https://www.bcn.cl/leychile/navegar?idNorma=242302"
+    }
+   ],
+   "nivel_verificacion": "primaria",
+   "verificado": true,
+   "id": "real_20240119_010"
+  },
+  {
+   "fecha": "2024-02-02",
+   "descripcion": "Incendios forestales en la Región de Valparaíso (febrero de 2024), descritos como el segundo incendio más letal del siglo XXI en Chile. Fecha exacta de inicio sin contrastar.",
+   "categoria": "desastre_natural",
+   "regiones": [
+    "valparaiso"
+   ],
+   "fuentes": [
+    {
+     "titulo": "Gobierno de Gabriel Boric (sección incendios)",
+     "url": "https://es.wikipedia.org/wiki/Gobierno_de_Gabriel_Boric"
+    }
+   ],
+   "nivel_verificacion": "secundaria_fecha_aproximada",
+   "verificado": false,
+   "id": "real_20240202_011"
+  },
+  {
+   "fecha": "2024-02-02",
+   "categoria": "institucional",
+   "regiones": [
+    "nacional"
+   ],
+   "descripcion": "Se publica la ley de reforma constitucional N° 21.644 (consta en las notas del texto oficial de la Constitución).",
+   "fuentes": [
+    {
+     "titulo": "Constitución, texto actualizado al 7-oct-2025 (BCN)",
+     "url": "https://www.bcn.cl/leychile/navegar?idNorma=242302"
+    }
+   ],
+   "nivel_verificacion": "primaria",
+   "verificado": true,
+   "id": "real_20240202_012"
+  },
+  {
+   "fecha": "2024-02-09",
+   "descripcion": "Funeral de Estado del expresidente Sebastián Piñera, fallecido en un accidente de helicóptero en el lago Ranco.",
+   "categoria": "politica",
+   "regiones": [
+    "nacional",
+    "losrios"
+   ],
+   "fuentes": [
+    {
+     "titulo": "Gobierno de Gabriel Boric",
+     "url": "https://es.wikipedia.org/wiki/Gobierno_de_Gabriel_Boric"
+    }
+   ],
+   "nivel_verificacion": "secundaria",
+   "verificado": false,
+   "id": "real_20240209_013"
+  },
+  {
+   "fecha": "2025-01-03",
+   "categoria": "legislativo",
+   "regiones": [
+    "nacional"
+   ],
+   "descripcion": "Se publica la Ley N° 21.724: Otorga reajuste general de remuneraciones a las y los trabajadores del sector público, concede aguinaldos que señala, concede otros beneficios que indica, y modifica diversos cuerpos legales (boletín 17286-05).",
+   "fuentes": [
+    {
+     "titulo": "Tramitación Senado, boletín 17286-05",
+     "url": "https://tramitacion.senado.cl/appsenado/templates/tramitacion/index.php?boletin_ini=17286-05"
+    }
+   ],
+   "nivel_verificacion": "primaria",
+   "verificado": true,
+   "id": "real_20250103_014"
+  },
+  {
+   "fecha": "2025-01-29",
+   "descripcion": "La Cámara de Diputados vota el proyecto de reforma de pensiones (boletín 15480-13): 142 a favor, 0 en contra, 5 abstenciones.",
+   "categoria": "legislativo",
+   "regiones": [
+    "nacional"
+   ],
+   "fuentes": [
+    {
+     "titulo": "WS Cámara: proyecto 15480-13",
+     "url": "https://opendata.camara.cl/camaradiputados/WServices/WSLegislativo.asmx/retornarProyectoLey?prmNumeroBoletin=15480-13"
+    }
+   ],
+   "nivel_verificacion": "primaria",
+   "verificado": true,
+   "id": "real_20250129_015"
+  },
+  {
+   "fecha": "2025-01-31",
+   "categoria": "legislativo",
+   "regiones": [
+    "nacional"
+   ],
+   "descripcion": "Se publica la Ley N° 21.723: Otorga una nueva asignación de estímulo para el servicio militar a los soldados conscriptos (boletín 17217-02).",
+   "fuentes": [
+    {
+     "titulo": "Tramitación Senado, boletín 17217-02",
+     "url": "https://tramitacion.senado.cl/appsenado/templates/tramitacion/index.php?boletin_ini=17217-02"
+    }
+   ],
+   "nivel_verificacion": "primaria",
+   "verificado": true,
+   "id": "real_20250131_016"
+  },
+  {
+   "fecha": "2025-02-06",
+   "categoria": "legislativo",
+   "regiones": [
+    "nacional"
+   ],
+   "descripcion": "Se publica la Ley N° 21.728: Otorga un aporte único a los profesionales de la educación que indica (boletín 17269-04).",
+   "fuentes": [
+    {
+     "titulo": "Tramitación Senado, boletín 17269-04",
+     "url": "https://tramitacion.senado.cl/appsenado/templates/tramitacion/index.php?boletin_ini=17269-04"
+    }
+   ],
+   "nivel_verificacion": "primaria",
+   "verificado": true,
+   "id": "real_20250206_017"
+  },
+  {
+   "fecha": "2025-02-12",
+   "categoria": "legislativo",
+   "regiones": [
+    "nacional"
+   ],
+   "descripcion": "Se publica la Ley N° 21.732: Determina conductas terroristas, fija su penalidad y actualiza la legislación vigente en la materia (boletín 16210-25).",
+   "fuentes": [
+    {
+     "titulo": "Tramitación Senado, boletín 16210-25",
+     "url": "https://tramitacion.senado.cl/appsenado/templates/tramitacion/index.php?boletin_ini=16210-25"
+    }
+   ],
+   "nivel_verificacion": "primaria",
+   "verificado": true,
+   "id": "real_20250212_018"
+  },
+  {
+   "fecha": "2025-03-07",
+   "categoria": "legislativo",
+   "regiones": [
+    "nacional"
+   ],
+   "descripcion": "Se publica la Ley N° 21.726: Otorga una asignación especial técnica del área de la salud, a funcionarios que indica (boletín 17075-11).",
+   "fuentes": [
+    {
+     "titulo": "Tramitación Senado, boletín 17075-11",
+     "url": "https://tramitacion.senado.cl/appsenado/templates/tramitacion/index.php?boletin_ini=17075-11"
+    }
+   ],
+   "nivel_verificacion": "primaria",
+   "verificado": true,
+   "id": "real_20250307_019"
+  },
+  {
+   "fecha": "2025-03-11",
+   "categoria": "legislativo",
+   "regiones": [
+    "nacional"
+   ],
+   "descripcion": "Se publica la Ley N° 21.731: Modifica diversos cuerpos legales, con el objeto de modernizar el escalafón de los agentes policiales de la Policía de Investigaciones de Chile y su Estatuto del Personal (boletín 17195-25).",
+   "fuentes": [
+    {
+     "titulo": "Tramitación Senado, boletín 17195-25",
+     "url": "https://tramitacion.senado.cl/appsenado/templates/tramitacion/index.php?boletin_ini=17195-25"
+    }
+   ],
+   "nivel_verificacion": "primaria",
+   "verificado": true,
+   "id": "real_20250311_020"
+  },
+  {
+   "fecha": "2025-03-26",
+   "categoria": "legislativo",
+   "regiones": [
+    "nacional"
+   ],
+   "descripcion": "Se publica la Ley N° 21.735: Crea un nuevo Sistema Mixto de Pensiones y un Seguro Social en el pilar contributivo, mejora la Pensión Garantizada Universal y establece beneficios y modificaciones regulatorias que indica (boletín 15480-13).",
+   "fuentes": [
+    {
+     "titulo": "Tramitación Senado, boletín 15480-13",
+     "url": "https://tramitacion.senado.cl/appsenado/templates/tramitacion/index.php?boletin_ini=15480-13"
+    }
+   ],
+   "nivel_verificacion": "primaria",
+   "verificado": true,
+   "id": "real_20250326_021"
+  },
+  {
+   "fecha": "2025-04-23",
+   "categoria": "legislativo",
+   "regiones": [
+    "nacional"
+   ],
+   "descripcion": "Se publica la Ley N° 21.740: Modifica el Código de Aguas en lo relativo al procedimiento de fiscalización y vigilancia por parte de la Dirección General de Aguas (boletín 16504-33).",
+   "fuentes": [
+    {
+     "titulo": "Tramitación Senado, boletín 16504-33",
+     "url": "https://tramitacion.senado.cl/appsenado/templates/tramitacion/index.php?boletin_ini=16504-33"
+    }
+   ],
+   "nivel_verificacion": "primaria",
+   "verificado": true,
+   "id": "real_20250423_022"
+  },
+  {
+   "fecha": "2025-04-26",
+   "categoria": "legislativo",
+   "regiones": [
+    "nacional"
+   ],
+   "descripcion": "Se publica la Ley N° 21.741: Modifica diversos cuerpos legales con el objeto de atender fenómenos urbanos consolidados en el territorio, urgentes, que afectan a la población (boletín 16772-14).",
+   "fuentes": [
+    {
+     "titulo": "Tramitación Senado, boletín 16772-14",
+     "url": "https://tramitacion.senado.cl/appsenado/templates/tramitacion/index.php?boletin_ini=16772-14"
+    }
+   ],
+   "nivel_verificacion": "primaria",
+   "verificado": true,
+   "id": "real_20250426_023"
+  },
+  {
+   "fecha": "2025-05-22",
+   "categoria": "legislativo",
+   "regiones": [
+    "nacional"
+   ],
+   "descripcion": "Se publica la Ley N° 21.745: Modifica el decreto ley N° 825, de 1974, sobre Impuesto a las Ventas y Servicios, para establecer un régimen tributario especial para comerciantes de ferias libres (boletín 17040-05).",
+   "fuentes": [
+    {
+     "titulo": "Tramitación Senado, boletín 17040-05",
+     "url": "https://tramitacion.senado.cl/appsenado/templates/tramitacion/index.php?boletin_ini=17040-05"
+    }
+   ],
+   "nivel_verificacion": "primaria",
+   "verificado": true,
+   "id": "real_20250522_024"
+  },
+  {
+   "fecha": "2025-05-24",
+   "categoria": "legislativo",
+   "regiones": [
+    "nacional"
+   ],
+   "descripcion": "Se publica la Ley N° 21.746: Modifica la ley N° 20.585, sobre otorgamiento y uso de licencias médicas, con el objeto de fortalecer las facultades de los organismos reguladores y fiscalizadores y establecer las sanciones administrativas y penales que indica (boletín 14845-11).",
+   "fuentes": [
+    {
+     "titulo": "Tramitación Senado, boletín 14845-11",
+     "url": "https://tramitacion.senado.cl/appsenado/templates/tramitacion/index.php?boletin_ini=14845-11"
+    }
+   ],
+   "nivel_verificacion": "primaria",
+   "verificado": true,
+   "id": "real_20250524_025"
+  },
+  {
+   "fecha": "2025-05-29",
+   "categoria": "legislativo",
+   "regiones": [
+    "nacional"
+   ],
+   "descripcion": "Se publica la Ley N° 21.748: Establece subsidio a la tasa de interés hipotecaria para la adquisición de viviendas nuevas y modifica normas que indica (boletín 17368-05).",
+   "fuentes": [
+    {
+     "titulo": "Tramitación Senado, boletín 17368-05",
+     "url": "https://tramitacion.senado.cl/appsenado/templates/tramitacion/index.php?boletin_ini=17368-05"
+    }
+   ],
+   "nivel_verificacion": "primaria",
+   "verificado": true,
+   "id": "real_20250529_026"
+  },
+  {
+   "fecha": "2025-06-11",
+   "categoria": "legislativo",
+   "regiones": [
+    "nacional"
+   ],
+   "descripcion": "Se publica la Ley N° 21.747: Introduce modificaciones a la ley N° 19.169, que establece normas sobre otorgamiento de premios nacionales, para otorgar anualmente el Premio Nacional de Literatura (boletín 16491-37).",
+   "fuentes": [
+    {
+     "titulo": "Tramitación Senado, boletín 16491-37",
+     "url": "https://tramitacion.senado.cl/appsenado/templates/tramitacion/index.php?boletin_ini=16491-37"
+    }
+   ],
+   "nivel_verificacion": "primaria",
+   "verificado": true,
+   "id": "real_20250611_027"
+  },
+  {
+   "fecha": "2025-06-25",
+   "categoria": "legislativo",
+   "regiones": [
+    "nacional"
+   ],
+   "descripcion": "Se publica la Ley N° 21.752: Fija un nuevo fraccionamiento entre el sector pesquero artesanal e industrial (boletín 17096-21).",
+   "fuentes": [
+    {
+     "titulo": "Tramitación Senado, boletín 17096-21",
+     "url": "https://tramitacion.senado.cl/appsenado/templates/tramitacion/index.php?boletin_ini=17096-21"
+    }
+   ],
+   "nivel_verificacion": "primaria",
+   "verificado": true,
+   "id": "real_20250625_028"
+  },
+  {
+   "fecha": "2025-06-28",
+   "categoria": "legislativo",
+   "regiones": [
+    "nacional"
+   ],
+   "descripcion": "Se publica la Ley N° 21.751: Reajusta el monto del ingreso mínimo mensual, la asignación familiar y maternal, el subsidio único familiar, y modifica otras leyes que indica (boletín 17508-05).",
+   "fuentes": [
+    {
+     "titulo": "Tramitación Senado, boletín 17508-05",
+     "url": "https://tramitacion.senado.cl/appsenado/templates/tramitacion/index.php?boletin_ini=17508-05"
+    }
+   ],
+   "nivel_verificacion": "primaria",
+   "verificado": true,
+   "id": "real_20250628_029"
+  },
+  {
+   "fecha": "2025-06-29",
+   "descripcion": "Primarias presidenciales: Jeannette Jara se impone con cerca de 60 % de los votos válidos (más de 822 mil) en la primaria oficialista.",
+   "categoria": "electoral",
+   "regiones": [
+    "nacional"
+   ],
+   "fuentes": [
+    {
+     "titulo": "Elección presidencial de Chile de 2025",
+     "url": "https://es.wikipedia.org/wiki/Elección_presidencial_de_Chile_de_2025"
+    }
+   ],
+   "nivel_verificacion": "secundaria",
+   "verificado": false,
+   "id": "real_20250629_030"
+  },
+  {
+   "fecha": "2025-07-11",
+   "categoria": "legislativo",
+   "regiones": [
+    "nacional"
+   ],
+   "descripcion": "Se publica la Ley N° 21.755: Modifica cuerpos legales que indica, en materia de simplificación regulatoria y promoción de la actividad económica (boletín 17322-03).",
+   "fuentes": [
+    {
+     "titulo": "Tramitación Senado, boletín 17322-03",
+     "url": "https://tramitacion.senado.cl/appsenado/templates/tramitacion/index.php?boletin_ini=17322-03"
+    }
+   ],
+   "nivel_verificacion": "primaria",
+   "verificado": true,
+   "id": "real_20250711_031"
+  },
+  {
+   "fecha": "2025-07-18",
+   "categoria": "legislativo",
+   "regiones": [
+    "nacional"
+   ],
+   "descripcion": "Se publica la Ley N° 21.753: Moderniza la oferta en la educación parvularia (boletín 16811-04).",
+   "fuentes": [
+    {
+     "titulo": "Tramitación Senado, boletín 16811-04",
+     "url": "https://tramitacion.senado.cl/appsenado/templates/tramitacion/index.php?boletin_ini=16811-04"
+    }
+   ],
+   "nivel_verificacion": "primaria",
+   "verificado": true,
+   "id": "real_20250718_032"
+  },
+  {
+   "fecha": "2025-07-19",
+   "categoria": "legislativo",
+   "regiones": [
+    "nacional"
+   ],
+   "descripcion": "Se publica la Ley N° 21.749: Establece un bono transitorio para la Policía de Investigaciones de Chile (boletín 17374-05).",
+   "fuentes": [
+    {
+     "titulo": "Tramitación Senado, boletín 17374-05",
+     "url": "https://tramitacion.senado.cl/appsenado/templates/tramitacion/index.php?boletin_ini=17374-05"
+    }
+   ],
+   "nivel_verificacion": "primaria",
+   "verificado": true,
+   "id": "real_20250719_033"
+  },
+  {
+   "fecha": "2025-08-09",
+   "categoria": "legislativo",
+   "regiones": [
+    "nacional"
+   ],
+   "descripcion": "Se publica la Ley N° 21.758: Modifica la ley Nº 18.450, que aprueba normas para el fomento de la inversión privada de obras de riego y drenaje, para facilitar su aplicación en casos de catástrofes y emergencias que se indican (boletín 16932-01).",
+   "fuentes": [
+    {
+     "titulo": "Tramitación Senado, boletín 16932-01",
+     "url": "https://tramitacion.senado.cl/appsenado/templates/tramitacion/index.php?boletin_ini=16932-01"
+    }
+   ],
+   "nivel_verificacion": "primaria",
+   "verificado": true,
+   "id": "real_20250809_034"
+  },
+  {
+   "fecha": "2025-08-19",
+   "categoria": "legislativo",
+   "regiones": [
+    "nacional"
+   ],
+   "descripcion": "Se publica la Ley N° 21.757: Establece un mecanismo para aumentar la participación de mujeres en los directorios de las sociedades anónimas abiertas y sociedades anónimas especiales (boletín 15516-34).",
+   "fuentes": [
+    {
+     "titulo": "Tramitación Senado, boletín 15516-34",
+     "url": "https://tramitacion.senado.cl/appsenado/templates/tramitacion/index.php?boletin_ini=15516-34"
+    }
+   ],
+   "nivel_verificacion": "primaria",
+   "verificado": true,
+   "id": "real_20250819_035"
+  },
+  {
+   "fecha": "2025-08-28",
+   "categoria": "legislativo",
+   "regiones": [
+    "nacional"
+   ],
+   "descripcion": "Se publica la Ley N° 21.756: Modifica la ley N° 14.908, sobre abandono de familia y pago de pensiones alimenticias, estableciendo la imposibilidad de adjudicación de programas o instrumentos financiados por la agencia nacional de investigación y desarrollo, en el caso que indica (boletín 16762-34).",
+   "fuentes": [
+    {
+     "titulo": "Tramitación Senado, boletín 16762-34",
+     "url": "https://tramitacion.senado.cl/appsenado/templates/tramitacion/index.php?boletin_ini=16762-34"
+    }
+   ],
+   "nivel_verificacion": "primaria",
+   "verificado": true,
+   "id": "real_20250828_036"
+  },
+  {
+   "fecha": "2025-09-29",
+   "categoria": "legislativo",
+   "regiones": [
+    "nacional"
+   ],
+   "descripcion": "Se publica la Ley N° 21.770: Establece una Ley Marco de Autorizaciones Sectoriales e introduce modificaciones en cuerpos legales que indica (boletín 16566-03).",
+   "fuentes": [
+    {
+     "titulo": "Tramitación Senado, boletín 16566-03",
+     "url": "https://tramitacion.senado.cl/appsenado/templates/tramitacion/index.php?boletin_ini=16566-03"
+    }
+   ],
+   "nivel_verificacion": "primaria",
+   "verificado": true,
+   "id": "real_20250929_037"
+  },
+  {
+   "fecha": "2025-10-01",
+   "categoria": "legislativo",
+   "regiones": [
+    "nacional"
+   ],
+   "descripcion": "Se publica la Ley N° 21.771: Incorpora la Fiscalía Supraterritorial en la ley N° 19.640, orgánica constitucional del Ministerio Público, y modifica otros cuerpos legales que regulan actuaciones de los fiscales y de las fiscalías regionales (boletín 16850-07).",
+   "fuentes": [
+    {
+     "titulo": "Tramitación Senado, boletín 16850-07",
+     "url": "https://tramitacion.senado.cl/appsenado/templates/tramitacion/index.php?boletin_ini=16850-07"
+    }
+   ],
+   "nivel_verificacion": "primaria",
+   "verificado": true,
+   "id": "real_20251001_038"
+  },
+  {
+   "fecha": "2025-10-07",
+   "categoria": "legislativo",
+   "regiones": [
+    "nacional"
+   ],
+   "descripcion": "Se publica la Ley N° 21.773: Modifica la Carta Fundamental, en materia de derecho de sufragio de personas extranjeras (boletín 17823-07).",
+   "fuentes": [
+    {
+     "titulo": "Tramitación Senado, boletín 17823-07",
+     "url": "https://tramitacion.senado.cl/appsenado/templates/tramitacion/index.php?boletin_ini=17823-07"
+    }
+   ],
+   "nivel_verificacion": "primaria",
+   "verificado": true,
+   "id": "real_20251007_039"
+  },
+  {
+   "fecha": "2025-10-07",
+   "categoria": "institucional",
+   "regiones": [
+    "nacional"
+   ],
+   "descripcion": "Se publica la ley de reforma constitucional N° 21.773 (consta en las notas del texto oficial de la Constitución).",
+   "fuentes": [
+    {
+     "titulo": "Constitución, texto actualizado al 7-oct-2025 (BCN)",
+     "url": "https://www.bcn.cl/leychile/navegar?idNorma=242302"
+    }
+   ],
+   "nivel_verificacion": "primaria",
+   "verificado": true,
+   "id": "real_20251007_040"
+  },
+  {
+   "fecha": "2025-10-17",
+   "categoria": "legislativo",
+   "regiones": [
+    "nacional"
+   ],
+   "descripcion": "Se publica la Ley N° 21.769: Crea el Servicio de Auditoría Interna de Gobierno (boletín 16316-05).",
+   "fuentes": [
+    {
+     "titulo": "Tramitación Senado, boletín 16316-05",
+     "url": "https://tramitacion.senado.cl/appsenado/templates/tramitacion/index.php?boletin_ini=16316-05"
+    }
+   ],
+   "nivel_verificacion": "primaria",
+   "verificado": true,
+   "id": "real_20251017_041"
+  },
+  {
+   "fecha": "2025-10-30",
+   "categoria": "legislativo",
+   "regiones": [
+    "nacional"
+   ],
+   "descripcion": "Se publica la Ley N° 21.776: Reconoce la función de las y los recolectores de residuos domiciliarios y establece obligaciones para la protección de su salud y seguridad en el trabajo (boletín 16846-13).",
+   "fuentes": [
+    {
+     "titulo": "Tramitación Senado, boletín 16846-13",
+     "url": "https://tramitacion.senado.cl/appsenado/templates/tramitacion/index.php?boletin_ini=16846-13"
+    }
+   ],
+   "nivel_verificacion": "primaria",
+   "verificado": true,
+   "id": "real_20251030_042"
+  },
+  {
+   "fecha": "2025-11-16",
+   "descripcion": "Elecciones presidencial y parlamentarias. Primera vuelta: Jara 26,85 %, Kast 23,93 %, Parisi 19,71 %, Kaiser 13,94 %, Matthei 12,47 %; ninguna candidatura supera el 50 %. Se eligen 23 senadores y 155 diputados. Habilitados: 15.779.102 (cifra que también consta en la sentencia del Tricel).",
+   "categoria": "electoral",
+   "regiones": [
+    "nacional"
+   ],
+   "fuentes": [
+    {
+     "titulo": "Elección presidencial de Chile de 2025",
+     "url": "https://es.wikipedia.org/wiki/Elección_presidencial_de_Chile_de_2025"
+    },
+    {
+     "titulo": "Elecciones parlamentarias de Chile de 2025",
+     "url": "https://es.wikipedia.org/wiki/Elecciones_parlamentarias_de_Chile_de_2025"
+    },
+    {
+     "titulo": "Sentencia de proclamación del Tricel (habilitados)",
+     "url": "https://tribunalcalificador.cl/wp-content/uploads/2026/01/Sent-de-proclamacion.pdf"
+    }
+   ],
+   "nivel_verificacion": "secundaria_coherente",
+   "verificado": false,
+   "id": "real_20251116_043"
+  },
+  {
+   "fecha": "2025-11-26",
+   "categoria": "legislativo",
+   "regiones": [
+    "nacional"
+   ],
+   "descripcion": "Se publica la Ley N° 21.786: Establece una bonificación por retiro anticipado a los funcionarios pertenecientes a la planta II de Suboficiales y Gendarmes de Gendarmería de Chile (boletín 17642-05).",
+   "fuentes": [
+    {
+     "titulo": "Tramitación Senado, boletín 17642-05",
+     "url": "https://tramitacion.senado.cl/appsenado/templates/tramitacion/index.php?boletin_ini=17642-05"
+    }
+   ],
+   "nivel_verificacion": "primaria",
+   "verificado": true,
+   "id": "real_20251126_044"
+  },
+  {
+   "fecha": "2025-12-11",
+   "categoria": "legislativo",
+   "regiones": [
+    "nacional"
+   ],
+   "descripcion": "Se publica la Ley N° 21.783: Exime de trámites y reduce plazos para la ampliación y construcción de nuevos establecimientos penitenciarios (boletín 17312-07).",
+   "fuentes": [
+    {
+     "titulo": "Tramitación Senado, boletín 17312-07",
+     "url": "https://tramitacion.senado.cl/appsenado/templates/tramitacion/index.php?boletin_ini=17312-07"
+    }
+   ],
+   "nivel_verificacion": "primaria",
+   "verificado": true,
+   "id": "real_20251211_045"
+  },
+  {
+   "fecha": "2025-12-12",
+   "categoria": "legislativo",
+   "regiones": [
+    "nacional"
+   ],
+   "descripcion": "Se publica la Ley N° 21.788: Dicta normas sobre protección y fomento de la artesanía (boletín 16371-24).",
+   "fuentes": [
+    {
+     "titulo": "Tramitación Senado, boletín 16371-24",
+     "url": "https://tramitacion.senado.cl/appsenado/templates/tramitacion/index.php?boletin_ini=16371-24"
+    }
+   ],
+   "nivel_verificacion": "primaria",
+   "verificado": true,
+   "id": "real_20251212_046"
+  },
+  {
+   "fecha": "2025-12-12",
+   "categoria": "legislativo",
+   "regiones": [
+    "nacional"
+   ],
+   "descripcion": "Se publica la Ley N° 21.796: Ley de Presupuestos del Sector Público correspondiente al año 2026 (boletín 17870-05).",
+   "fuentes": [
+    {
+     "titulo": "Tramitación Senado, boletín 17870-05",
+     "url": "https://tramitacion.senado.cl/appsenado/templates/tramitacion/index.php?boletin_ini=17870-05"
+    }
+   ],
+   "nivel_verificacion": "primaria",
+   "verificado": true,
+   "id": "real_20251212_047"
+  },
+  {
+   "fecha": "2025-12-14",
+   "descripcion": "Segunda votación presidencial: José Antonio Kast 58,17 % (7.263.236 votos) y Jeannette Jara 41,83 % (5.222.558) sobre 12.485.794 votos válidos; votantes 13.434.954. Resultados por región en data/bcn/resultados_2da_vuelta_2025.json.",
+   "categoria": "electoral",
+   "regiones": [
+    "nacional"
+   ],
+   "fuentes": [
+    {
+     "titulo": "Sentencia de proclamación del Tricel",
+     "url": "https://tribunalcalificador.cl/wp-content/uploads/2026/01/Sent-de-proclamacion.pdf"
+    }
+   ],
+   "nivel_verificacion": "primaria",
+   "verificado": true,
+   "id": "real_20251214_048"
+  },
+  {
+   "fecha": "2025-12-15",
+   "descripcion": "El presidente electo José Antonio Kast se reúne en La Moneda con el presidente Gabriel Boric.",
+   "categoria": "politica",
+   "regiones": [
+    "metropolitana"
+   ],
+   "fuentes": [
+    {
+     "titulo": "Gobierno de José Antonio Kast",
+     "url": "https://es.wikipedia.org/wiki/Gobierno_de_José_Antonio_Kast"
+    }
+   ],
+   "nivel_verificacion": "secundaria",
+   "verificado": false,
+   "id": "real_20251215_049"
+  },
+  {
+   "fecha": "2025-12-20",
+   "categoria": "legislativo",
+   "regiones": [
+    "nacional"
+   ],
+   "descripcion": "Se publica la Ley N° 21.787: Fortalece las facultades de fiscalización y sanción del Ministerio de Transportes y Telecomunicaciones en materia de transporte ilegal de pasajeros (boletín 17553-15).",
+   "fuentes": [
+    {
+     "titulo": "Tramitación Senado, boletín 17553-15",
+     "url": "https://tramitacion.senado.cl/appsenado/templates/tramitacion/index.php?boletin_ini=17553-15"
+    }
+   ],
+   "nivel_verificacion": "primaria",
+   "verificado": true,
+   "id": "real_20251220_050"
+  },
+  {
+   "fecha": "2025-12-30",
+   "categoria": "legislativo",
+   "regiones": [
+    "nacional"
+   ],
+   "descripcion": "Se publica la Ley N° 21.799: Modifica la ley N° 20.129, con el objeto de regular nuevas exigencias para ingresar a las carreras y programas de pedagogía (boletín 17442-04).",
+   "fuentes": [
+    {
+     "titulo": "Tramitación Senado, boletín 17442-04",
+     "url": "https://tramitacion.senado.cl/appsenado/templates/tramitacion/index.php?boletin_ini=17442-04"
+    }
+   ],
+   "nivel_verificacion": "primaria",
+   "verificado": true,
+   "id": "real_20251230_051"
+  },
+  {
+   "fecha": "2026-01-05",
+   "descripcion": "El Tribunal Calificador de Elecciones proclama oficialmente a José Antonio Kast como presidente electo.",
+   "categoria": "electoral",
+   "regiones": [
+    "nacional"
+   ],
+   "fuentes": [
+    {
+     "titulo": "Gobierno de José Antonio Kast",
+     "url": "https://es.wikipedia.org/wiki/Gobierno_de_José_Antonio_Kast"
+    },
+    {
+     "titulo": "Sentencia de proclamación del Tricel",
+     "url": "https://tribunalcalificador.cl/wp-content/uploads/2026/01/Sent-de-proclamacion.pdf"
+    }
+   ],
+   "nivel_verificacion": "secundaria_coherente",
+   "verificado": false,
+   "id": "real_20260105_052"
+  },
+  {
+   "fecha": "2026-01-14",
+   "categoria": "legislativo",
+   "regiones": [
+    "nacional"
+   ],
+   "descripcion": "Se publica la Ley N° 21.793: Modifica la ley N° 18.290, de Tránsito, con el objeto de facultar al Ministerio de Transportes y Telecomunicaciones para autorizar establecimientos o talleres que realicen transformación de sistemas de propulsión de combustión interna a eléctricos, y otras adaptaciones, a vehículos motorizados en uso (boletín 17242-15).",
+   "fuentes": [
+    {
+     "titulo": "Tramitación Senado, boletín 17242-15",
+     "url": "https://tramitacion.senado.cl/appsenado/templates/tramitacion/index.php?boletin_ini=17242-15"
+    }
+   ],
+   "nivel_verificacion": "primaria",
+   "verificado": true,
+   "id": "real_20260114_053"
+  },
+  {
+   "fecha": "2026-01-20",
+   "categoria": "legislativo",
+   "regiones": [
+    "nacional"
+   ],
+   "descripcion": "Se publica la Ley N° 21.789: Crea el contrato de buceo y actividades conexas (boletín 17005-13).",
+   "fuentes": [
+    {
+     "titulo": "Tramitación Senado, boletín 17005-13",
+     "url": "https://tramitacion.senado.cl/appsenado/templates/tramitacion/index.php?boletin_ini=17005-13"
+    }
+   ],
+   "nivel_verificacion": "primaria",
+   "verificado": true,
+   "id": "real_20260120_054"
+  },
+  {
+   "fecha": "2026-01-26",
+   "categoria": "legislativo",
+   "regiones": [
+    "nacional"
+   ],
+   "descripcion": "Se publica la Ley N° 21.795: Condona la deuda originada en pagos en exceso, realizados erróneamente por las municipalidades, a funcionarios y exfuncionarios (boletín 16620-06).",
+   "fuentes": [
+    {
+     "titulo": "Tramitación Senado, boletín 16620-06",
+     "url": "https://tramitacion.senado.cl/appsenado/templates/tramitacion/index.php?boletin_ini=16620-06"
+    }
+   ],
+   "nivel_verificacion": "primaria",
+   "verificado": true,
+   "id": "real_20260126_055"
+  },
+  {
+   "fecha": "2026-02-05",
+   "categoria": "legislativo",
+   "regiones": [
+    "nacional"
+   ],
+   "descripcion": "Se publica la Ley N° 21.806: Otorga reajuste general de remuneraciones a las y los trabajadores del sector público, concede aguinaldos que señala, concede otros beneficios que indica y modifica diversos cuerpos legales (boletín 18036-05).",
+   "fuentes": [
+    {
+     "titulo": "Tramitación Senado, boletín 18036-05",
+     "url": "https://tramitacion.senado.cl/appsenado/templates/tramitacion/index.php?boletin_ini=18036-05"
+    }
+   ],
+   "nivel_verificacion": "primaria",
+   "verificado": true,
+   "id": "real_20260205_056"
+  },
+  {
+   "fecha": "2026-02-13",
+   "categoria": "legislativo",
+   "regiones": [
+    "nacional"
+   ],
+   "descripcion": "Se publica la Ley N° 21.804: Perfecciona los sistemas medianos en la Ley General de Servicios Eléctricos (boletín 16627-08).",
+   "fuentes": [
+    {
+     "titulo": "Tramitación Senado, boletín 16627-08",
+     "url": "https://tramitacion.senado.cl/appsenado/templates/tramitacion/index.php?boletin_ini=16627-08"
+    }
+   ],
+   "nivel_verificacion": "primaria",
+   "verificado": true,
+   "id": "real_20260213_057"
+  },
+  {
+   "fecha": "2026-02-16",
+   "categoria": "legislativo",
+   "regiones": [
+    "nacional"
+   ],
+   "descripcion": "Se publica la Ley N° 21.805: Reconoce el derecho al cuidado y crea el Sistema Nacional de Apoyos y Cuidados (boletín 16905-31).",
+   "fuentes": [
+    {
+     "titulo": "Tramitación Senado, boletín 16905-31",
+     "url": "https://tramitacion.senado.cl/appsenado/templates/tramitacion/index.php?boletin_ini=16905-31"
+    }
+   ],
+   "nivel_verificacion": "primaria",
+   "verificado": true,
+   "id": "real_20260216_058"
+  },
+  {
+   "fecha": "2026-02-16",
+   "categoria": "legislativo",
+   "regiones": [
+    "nacional"
+   ],
+   "descripcion": "Se publica la Ley N° 21.807: Modifica diversos cuerpos legales con el objeto de fortalecer y modernizar el sistema de planificación territorial del país (boletín 17251-14).",
+   "fuentes": [
+    {
+     "titulo": "Tramitación Senado, boletín 17251-14",
+     "url": "https://tramitacion.senado.cl/appsenado/templates/tramitacion/index.php?boletin_ini=17251-14"
+    }
+   ],
+   "nivel_verificacion": "primaria",
+   "verificado": true,
+   "id": "real_20260216_059"
+  },
+  {
+   "fecha": "2026-03-09",
+   "descripcion": "El ministro de Hacienda Jorge Quiroz anuncia un recorte de 3 % al presupuesto de todos los ministerios, con meta de reducir en USD 6.000 millones el gasto fiscal.",
+   "categoria": "economia",
+   "regiones": [
+    "nacional"
+   ],
+   "fuentes": [
+    {
+     "titulo": "Gobierno de José Antonio Kast",
+     "url": "https://es.wikipedia.org/wiki/Gobierno_de_José_Antonio_Kast"
+    }
+   ],
+   "nivel_verificacion": "secundaria",
+   "verificado": false,
+   "id": "real_20260309_060"
+  },
+  {
+   "fecha": "2026-03-11",
+   "descripcion": "Cambio de mando: José Antonio Kast asume la Presidencia en el Salón de Honor del Congreso Nacional (Valparaíso); termina el mandato de Gabriel Boric (2022-2026).",
+   "categoria": "politica",
+   "regiones": [
+    "valparaiso",
+    "nacional"
+   ],
+   "fuentes": [
+    {
+     "titulo": "Gobierno de José Antonio Kast",
+     "url": "https://es.wikipedia.org/wiki/Gobierno_de_José_Antonio_Kast"
+    },
+    {
+     "titulo": "Elección presidencial de Chile de 2025",
+     "url": "https://es.wikipedia.org/wiki/Elección_presidencial_de_Chile_de_2025"
+    },
+    {
+     "titulo": "Gobierno de Gabriel Boric",
+     "url": "https://es.wikipedia.org/wiki/Gobierno_de_Gabriel_Boric"
+    }
+   ],
+   "nivel_verificacion": "secundaria_multiple",
+   "verificado": false,
+   "id": "real_20260311_061"
+  },
+  {
+   "fecha": "2026-03-13",
+   "categoria": "legislativo",
+   "regiones": [
+    "nacional"
+   ],
+   "descripcion": "Se publica la Ley N° 21.808: Crea un nuevo sistema de subsidio unificado al empleo (boletín 17641-13).",
+   "fuentes": [
+    {
+     "titulo": "Tramitación Senado, boletín 17641-13",
+     "url": "https://tramitacion.senado.cl/appsenado/templates/tramitacion/index.php?boletin_ini=17641-13"
+    }
+   ],
+   "nivel_verificacion": "primaria",
+   "verificado": true,
+   "id": "real_20260313_062"
+  },
+  {
+   "fecha": "2026-03-23",
+   "descripcion": "Se publica en el Diario Oficial un decreto de Hacienda que modifica el MEPCO (ventana de cálculo del precio de paridad de dos a cuatro semanas), con efecto en precios desde el 26 de marzo; los medios lo llamaron «Bencinazo».",
+   "categoria": "economia",
+   "regiones": [
+    "nacional"
+   ],
+   "fuentes": [
+    {
+     "titulo": "Gobierno de José Antonio Kast",
+     "url": "https://es.wikipedia.org/wiki/Gobierno_de_José_Antonio_Kast"
+    }
+   ],
+   "nivel_verificacion": "secundaria",
+   "verificado": false,
+   "id": "real_20260323_063"
+  },
+  {
+   "fecha": "2026-03-26",
+   "categoria": "legislativo",
+   "regiones": [
+    "nacional"
+   ],
+   "descripcion": "Se publica la Ley N° 21.811: Adopta medidas transitorias para contener el precio del kerosene doméstico en el contexto de la emergencia energética internacional, y otras medidas que indica (boletín 18137-05).",
+   "fuentes": [
+    {
+     "titulo": "Tramitación Senado, boletín 18137-05",
+     "url": "https://tramitacion.senado.cl/appsenado/templates/tramitacion/index.php?boletin_ini=18137-05"
+    }
+   ],
+   "nivel_verificacion": "primaria",
+   "verificado": true,
+   "id": "real_20260326_064"
+  },
+  {
+   "fecha": "2026-04-01",
+   "categoria": "legislativo",
+   "regiones": [
+    "nacional"
+   ],
+   "descripcion": "Se publica la Ley N° 21.809: Establece normas sobre convivencia, buen trato y bienestar de los equipos educativos, con el objeto de prevenir y erradicar el acoso escolar, la discriminación y todo tipo de violencia en los establecimientos educacionales (boletín 16901-04).",
+   "fuentes": [
+    {
+     "titulo": "Tramitación Senado, boletín 16901-04",
+     "url": "https://tramitacion.senado.cl/appsenado/templates/tramitacion/index.php?boletin_ini=16901-04"
+    }
+   ],
+   "nivel_verificacion": "primaria",
+   "verificado": true,
+   "id": "real_20260401_065"
+  },
+  {
+   "fecha": "2026-04-01",
+   "categoria": "legislativo",
+   "regiones": [
+    "nacional"
+   ],
+   "descripcion": "Se publica la Ley N° 21.812: Modifica diversos cuerpos legales, en materia de fortalecimiento del Ministerio Público (boletín 16374-07).",
+   "fuentes": [
+    {
+     "titulo": "Tramitación Senado, boletín 16374-07",
+     "url": "https://tramitacion.senado.cl/appsenado/templates/tramitacion/index.php?boletin_ini=16374-07"
+    }
+   ],
+   "nivel_verificacion": "primaria",
+   "verificado": true,
+   "id": "real_20260401_066"
+  },
+  {
+   "fecha": "2026-04-16",
+   "categoria": "legislativo",
+   "regiones": [
+    "nacional"
+   ],
+   "descripcion": "Se publica la Ley N° 21.810: Modifica la Carta Fundamental para incorporar a Gendarmería de Chile dentro de las Fuerzas de Orden y Seguridad Pública (boletín 18032-07).",
+   "fuentes": [
+    {
+     "titulo": "Tramitación Senado, boletín 18032-07",
+     "url": "https://tramitacion.senado.cl/appsenado/templates/tramitacion/index.php?boletin_ini=18032-07"
+    }
+   ],
+   "nivel_verificacion": "primaria",
+   "verificado": true,
+   "id": "real_20260416_067"
+  },
+  {
+   "fecha": "2026-04-17",
+   "descripcion": "El gobierno presenta las principales medidas del «Plan de Reconstrucción Nacional y Desarrollo Económico y Social» (~40 medidas; incluye reducción gradual del impuesto corporativo de 27 % a 23 %). Fecha = día de la referencia citada.",
+   "categoria": "legislativo",
+   "regiones": [
+    "nacional"
+   ],
+   "fuentes": [
+    {
+     "titulo": "Gobierno de José Antonio Kast",
+     "url": "https://es.wikipedia.org/wiki/Gobierno_de_José_Antonio_Kast"
+    }
+   ],
+   "nivel_verificacion": "secundaria_fecha_aproximada",
+   "verificado": false,
+   "id": "real_20260417_068"
+  },
+  {
+   "fecha": "2026-04-23",
+   "descripcion": "El Registro Civil precisa el criterio de inscripción de nacimientos de hijos de extranjeros transeúntes o sin residencia legal.",
+   "categoria": "institucional",
+   "regiones": [
+    "nacional"
+   ],
+   "fuentes": [
+    {
+     "titulo": "Gobierno de José Antonio Kast",
+     "url": "https://es.wikipedia.org/wiki/Gobierno_de_José_Antonio_Kast"
+    }
+   ],
+   "nivel_verificacion": "secundaria",
+   "verificado": false,
+   "id": "real_20260423_069"
+  },
+  {
+   "fecha": "2026-05-25",
+   "categoria": "legislativo",
+   "regiones": [
+    "nacional"
+   ],
+   "descripcion": "Se publica la Ley N° 21.819: Modifica la ley Nº 21.040 y otros cuerpos legales, fortaleciendo la gestión educativa y mejorando las normas sobre administración e instalación del Sistema de Educación Pública. (boletín 16705-04).",
+   "fuentes": [
+    {
+     "titulo": "Tramitación Senado, boletín 16705-04",
+     "url": "https://tramitacion.senado.cl/appsenado/templates/tramitacion/index.php?boletin_ini=16705-04"
+    }
+   ],
+   "nivel_verificacion": "primaria",
+   "verificado": true,
+   "id": "real_20260525_070"
+  },
+  {
+   "fecha": "2026-05-28",
+   "categoria": "legislativo",
+   "regiones": [
+    "nacional"
+   ],
+   "descripcion": "Se publica la Ley N° 21.825: Modifica la ley N° 21.659, sobre seguridad privada, para aumentar el plazo de presentación y pronunciamiento sobre los estudios de seguridad que dispone, y extiende la prórroga de vigencia de la última autorización del personal de seguridad privada que indica (boletín 18232-25).",
+   "fuentes": [
+    {
+     "titulo": "Tramitación Senado, boletín 18232-25",
+     "url": "https://tramitacion.senado.cl/appsenado/templates/tramitacion/index.php?boletin_ini=18232-25"
+    }
+   ],
+   "nivel_verificacion": "primaria",
+   "verificado": true,
+   "id": "real_20260528_071"
+  },
+  {
+   "fecha": "2026-06-02",
+   "categoria": "legislativo",
+   "regiones": [
+    "nacional"
+   ],
+   "descripcion": "Se publica la Ley N° 21.816: Establece medidas y nuevos mecanismos para enfrentar la evasión del pago de tarifa en los sistemas de transporte público del país (boletín 17441-15).",
+   "fuentes": [
+    {
+     "titulo": "Tramitación Senado, boletín 17441-15",
+     "url": "https://tramitacion.senado.cl/appsenado/templates/tramitacion/index.php?boletin_ini=17441-15"
+    }
+   ],
+   "nivel_verificacion": "primaria",
+   "verificado": true,
+   "id": "real_20260602_072"
+  },
+  {
+   "fecha": "2026-06-05",
+   "categoria": "legislativo",
+   "regiones": [
+    "nacional"
+   ],
+   "descripcion": "Se publica la Ley N° 21.823: Establece, para el personal de Gendarmería de Chile, la obligación de efectuar declaraciones de intereses y patrimonio, en conformidad con lo dispuesto en la ley N° 20.880, sobre probidad en la función pública y prevención de los conflictos de intereses (boletín 16985-06).",
+   "fuentes": [
+    {
+     "titulo": "Tramitación Senado, boletín 16985-06",
+     "url": "https://tramitacion.senado.cl/appsenado/templates/tramitacion/index.php?boletin_ini=16985-06"
+    }
+   ],
+   "nivel_verificacion": "primaria",
+   "verificado": true,
+   "id": "real_20260605_073"
+  },
+  {
+   "fecha": "2026-06-17",
+   "categoria": "legislativo",
+   "regiones": [
+    "nacional"
+   ],
+   "descripcion": "Se publica la Ley N° 21.815: Reconoce y fortalece a las ferias libres como pilar de la alimentación y el desarrollo local, otorgando un marco jurídico integral para ellas (boletín 17117-03).",
+   "fuentes": [
+    {
+     "titulo": "Tramitación Senado, boletín 17117-03",
+     "url": "https://tramitacion.senado.cl/appsenado/templates/tramitacion/index.php?boletin_ini=17117-03"
+    }
+   ],
+   "nivel_verificacion": "primaria",
+   "verificado": true,
+   "id": "real_20260617_074"
+  },
+  {
+   "fecha": "2026-06-17",
+   "categoria": "legislativo",
+   "regiones": [
+    "nacional"
+   ],
+   "descripcion": "Se publica la Ley N° 21.818: Reemplaza el artículo 5 bis del decreto ley N° 3.500, de 1980 (boletín 17724-34).",
+   "fuentes": [
+    {
+     "titulo": "Tramitación Senado, boletín 17724-34",
+     "url": "https://tramitacion.senado.cl/appsenado/templates/tramitacion/index.php?boletin_ini=17724-34"
+    }
+   ],
+   "nivel_verificacion": "primaria",
+   "verificado": true,
+   "id": "real_20260617_075"
+  },
+  {
+   "fecha": "2026-06-22",
+   "categoria": "legislativo",
+   "regiones": [
+    "nacional"
+   ],
+   "descripcion": "Se publica la Ley N° 21.830: Reajusta el monto del ingreso mínimo mensual, así como de la asignación familiar y maternal y del subsidio familiar (boletín 18230-13).",
+   "fuentes": [
+    {
+     "titulo": "Tramitación Senado, boletín 18230-13",
+     "url": "https://tramitacion.senado.cl/appsenado/templates/tramitacion/index.php?boletin_ini=18230-13"
+    }
+   ],
+   "nivel_verificacion": "primaria",
+   "verificado": true,
+   "id": "real_20260622_076"
+  },
+  {
+   "fecha": "2026-07-10",
+   "categoria": "legislativo",
+   "regiones": [
+    "nacional"
+   ],
+   "descripcion": "Se publica la Ley N° 21.831: Autoriza mayor endeudamiento del gobierno central durante el año 2026 (boletín 18296-05).",
+   "fuentes": [
+    {
+     "titulo": "Tramitación Senado, boletín 18296-05",
+     "url": "https://tramitacion.senado.cl/appsenado/templates/tramitacion/index.php?boletin_ini=18296-05"
+    }
+   ],
+   "nivel_verificacion": "primaria",
+   "verificado": true,
+   "id": "real_20260710_077"
+  },
+  {
+   "fecha": "2026-07-31",
+   "categoria": "legislativo",
+   "regiones": [
+    "nacional"
+   ],
+   "descripcion": "Se publica la Ley N° 21.833: Ley de protección tarifaria eléctrica (boletín 18384-08).",
+   "fuentes": [
+    {
+     "titulo": "Tramitación Senado, boletín 18384-08",
+     "url": "https://tramitacion.senado.cl/appsenado/templates/tramitacion/index.php?boletin_ini=18384-08"
+    }
+   ],
+   "nivel_verificacion": "primaria",
+   "verificado": true,
+   "id": "real_20260731_078"
+  },
+  {
+   "fecha": "2026-08-12",
+   "categoria": "legislativo",
+   "regiones": [
+    "nacional"
+   ],
+   "descripcion": "Se publica la Ley N° 21.827: Establece medidas de seguridad, orden y respeto para la comunidad educativa (boletín 18156-04).",
+   "fuentes": [
+    {
+     "titulo": "Tramitación Senado, boletín 18156-04",
+     "url": "https://tramitacion.senado.cl/appsenado/templates/tramitacion/index.php?boletin_ini=18156-04"
+    }
+   ],
+   "nivel_verificacion": "primaria",
+   "verificado": true,
+   "id": "real_20260812_079"
+  },
+  {
+   "fecha": "2026-08-14",
+   "categoria": "legislativo",
+   "regiones": [
+    "nacional"
+   ],
+   "descripcion": "Se publica la Ley N° 21.835: Modifica la ley N° 21.805, que reconoce el derecho al cuidado y crea el Sistema Nacional de Apoyos y Cuidados, y otros cuerpos normativos que indica (boletín 18431-31).",
+   "fuentes": [
+    {
+     "titulo": "Tramitación Senado, boletín 18431-31",
+     "url": "https://tramitacion.senado.cl/appsenado/templates/tramitacion/index.php?boletin_ini=18431-31"
+    }
+   ],
+   "nivel_verificacion": "primaria",
+   "verificado": true,
+   "id": "real_20260814_080"
+  },
+  {
+   "fecha": "2026-08-17",
+   "categoria": "legislativo",
+   "regiones": [
+    "nacional"
+   ],
+   "descripcion": "Se publica la Ley N° 21.836: Extiende vigencia y aumenta cobertura de la ley N° 21.748 y modifica normas que indica (boletín 18524-05).",
+   "fuentes": [
+    {
+     "titulo": "Tramitación Senado, boletín 18524-05",
+     "url": "https://tramitacion.senado.cl/appsenado/templates/tramitacion/index.php?boletin_ini=18524-05"
+    }
+   ],
+   "nivel_verificacion": "primaria",
+   "verificado": true,
+   "id": "real_20260817_081"
+  },
+  {
+   "fecha": "2026-08-20",
+   "categoria": "legislativo",
+   "regiones": [
+    "nacional"
+   ],
+   "descripcion": "Se publica la Ley N° 21.834: Amplía la penalización dispuesta en el artículo 304 bis del Código Penal, para fortalecer la seguridad perimetral de los recintos penales (boletín 16984-25).",
+   "fuentes": [
+    {
+     "titulo": "Tramitación Senado, boletín 16984-25",
+     "url": "https://tramitacion.senado.cl/appsenado/templates/tramitacion/index.php?boletin_ini=16984-25"
+    }
+   ],
+   "nivel_verificacion": "primaria",
+   "verificado": true,
+   "id": "real_20260820_082"
+  },
+  {
+   "fecha": "2026-09-04",
+   "categoria": "legislativo",
+   "regiones": [
+    "nacional"
+   ],
+   "descripcion": "Se publica la Ley N° 21.840: Entrega un bono extraordinario de apoyo a la niñez (boletín 18401-31).",
+   "fuentes": [
+    {
+     "titulo": "Tramitación Senado, boletín 18401-31",
+     "url": "https://tramitacion.senado.cl/appsenado/templates/tramitacion/index.php?boletin_ini=18401-31"
+    }
+   ],
+   "nivel_verificacion": "primaria",
+   "verificado": true,
+   "id": "real_20260904_083"
+  },
+  {
+   "fecha": "2026-09-14",
+   "categoria": "legislativo",
+   "regiones": [
+    "nacional"
+   ],
+   "descripcion": "Se publica la Ley N° 21.839: Crea un nuevo Juzgado de Letras del Trabajo en Santiago y fortalece los juzgados de letras del trabajo que indica (boletín 17880-13).",
+   "fuentes": [
+    {
+     "titulo": "Tramitación Senado, boletín 17880-13",
+     "url": "https://tramitacion.senado.cl/appsenado/templates/tramitacion/index.php?boletin_ini=17880-13"
+    }
+   ],
+   "nivel_verificacion": "primaria",
+   "verificado": true,
+   "id": "real_20260914_084"
+  },
+  {
+   "fecha": "2026-09-17",
+   "categoria": "legislativo",
+   "regiones": [
+    "nacional"
+   ],
+   "descripcion": "Se publica la Ley N° 21.838: Dicta normas sobre transferencia de tecnología y conocimiento (boletín 16686-19).",
+   "fuentes": [
+    {
+     "titulo": "Tramitación Senado, boletín 16686-19",
+     "url": "https://tramitacion.senado.cl/appsenado/templates/tramitacion/index.php?boletin_ini=16686-19"
+    }
+   ],
+   "nivel_verificacion": "primaria",
+   "verificado": true,
+   "id": "real_20260917_085"
+  },
+  {
+   "fecha": "2026-09-23",
+   "categoria": "legislativo",
+   "regiones": [
+    "nacional"
+   ],
+   "descripcion": "Se publica la Ley N° 21.842: Modifica la ley N° 21.442, que aprueba Nueva Ley de Copropiedad Inmobiliaria, con el objeto de garantizar el derecho de los copropietarios a implementar medidas de seguridad en sus unidades de dominio exclusivo (boletín 18037-14).",
+   "fuentes": [
+    {
+     "titulo": "Tramitación Senado, boletín 18037-14",
+     "url": "https://tramitacion.senado.cl/appsenado/templates/tramitacion/index.php?boletin_ini=18037-14"
+    }
+   ],
+   "nivel_verificacion": "primaria",
+   "verificado": true,
+   "id": "real_20260923_086"
+  },
+  {
+   "fecha": "2026-10-09",
+   "categoria": "legislativo",
+   "regiones": [
+    "nacional"
+   ],
+   "descripcion": "Se publica la Ley N° 21.841: Prorroga el plazo establecido en el artículo segundo transitorio de la ley N° 21.435, que reforma el Código de Aguas (boletín 18237-33).",
+   "fuentes": [
+    {
+     "titulo": "Tramitación Senado, boletín 18237-33",
+     "url": "https://tramitacion.senado.cl/appsenado/templates/tramitacion/index.php?boletin_ini=18237-33"
+    }
+   ],
+   "nivel_verificacion": "primaria",
+   "verificado": true,
+   "id": "real_20261009_087"
+  },
+  {
+   "fecha": "2026-10-09",
+   "categoria": "legislativo",
+   "regiones": [
+    "nacional"
+   ],
+   "descripcion": "Se publica la Ley N° 21.841: Prorroga el plazo para la regularización e inscripción de derechos de aprovechamiento de aguas hasta el año 2030 (boletín 18157-33).",
+   "fuentes": [
+    {
+     "titulo": "Tramitación Senado, boletín 18157-33",
+     "url": "https://tramitacion.senado.cl/appsenado/templates/tramitacion/index.php?boletin_ini=18157-33"
+    }
+   ],
+   "nivel_verificacion": "primaria",
+   "verificado": true,
+   "id": "real_20261009_088"
+  },
+  {
+   "fecha": "2026-10-16",
+   "descripcion": "El presidente Kast realiza visita oficial a Bolivia y se reúne con su homólogo Rodrigo Paz, el primer viaje oficial de un mandatario chileno a ese país desde 1955.",
+   "categoria": "internacional",
+   "regiones": [
+    "nacional"
+   ],
+   "fuentes": [
+    {
+     "titulo": "Gobierno de José Antonio Kast",
+     "url": "https://es.wikipedia.org/wiki/Gobierno_de_José_Antonio_Kast"
+    }
+   ],
+   "nivel_verificacion": "secundaria",
+   "verificado": false,
+   "id": "real_20261016_089"
+  },
+  {
+   "fecha": "2026-10-17",
+   "categoria": "legislativo",
+   "regiones": [
+    "nacional"
+   ],
+   "descripcion": "Se publica la Ley N° 21.848: Extiende la vigencia de los bonos establecidos en la ley N° 21.811, concede bono a pescadores artesanales y modifica el plazo para realizar aportes al Fondo de Garantías para Pequeños Empresarios (FOGAPE) (boletín 18684-05).",
+   "fuentes": [
+    {
+     "titulo": "Tramitación Senado, boletín 18684-05",
+     "url": "https://tramitacion.senado.cl/appsenado/templates/tramitacion/index.php?boletin_ini=18684-05"
+    }
+   ],
+   "nivel_verificacion": "primaria",
+   "verificado": true,
+   "id": "real_20261017_090"
+  },
+  {
+   "fecha": "2026-10-17",
+   "categoria": "legislativo",
+   "regiones": [
+    "nacional"
+   ],
+   "descripcion": "Se publica la Ley N° 21.850: Para la reconstrucción nacional y el desarrollo económico y social (boletín 18216-05).",
+   "fuentes": [
+    {
+     "titulo": "Tramitación Senado, boletín 18216-05",
+     "url": "https://tramitacion.senado.cl/appsenado/templates/tramitacion/index.php?boletin_ini=18216-05"
+    }
+   ],
+   "nivel_verificacion": "primaria",
+   "verificado": true,
+   "id": "real_20261017_091"
+  },
+  {
+   "fecha": "2026-11-05",
+   "categoria": "legislativo",
+   "regiones": [
+    "nacional"
+   ],
+   "descripcion": "Se publica la Ley N° 21.846: Establece el Día Nacional de la Teletón y el Día Nacional del Encuentro Familiar (boletín 18231-35).",
+   "fuentes": [
+    {
+     "titulo": "Tramitación Senado, boletín 18231-35",
+     "url": "https://tramitacion.senado.cl/appsenado/templates/tramitacion/index.php?boletin_ini=18231-35"
+    }
+   ],
+   "nivel_verificacion": "primaria",
+   "verificado": true,
+   "id": "real_20261105_092"
+  },
+  {
+   "fecha": "2026-11-05",
+   "categoria": "legislativo",
+   "regiones": [
+    "nacional"
+   ],
+   "descripcion": "Se publica la Ley N° 21.853: Modifica el Código de Minería y las leyes números 21.420 y 21.649, en materia de amparo minero y otras materias que indica (boletín 18259-08).",
+   "fuentes": [
+    {
+     "titulo": "Tramitación Senado, boletín 18259-08",
+     "url": "https://tramitacion.senado.cl/appsenado/templates/tramitacion/index.php?boletin_ini=18259-08"
+    }
+   ],
+   "nivel_verificacion": "primaria",
+   "verificado": true,
+   "id": "real_20261105_093"
+  },
+  {
+   "fecha": "2026-11-09",
+   "categoria": "legislativo",
+   "regiones": [
+    "nacional"
+   ],
+   "descripcion": "Se publica la Ley N° 21.847: Modifica la ley N° 21.368, con el objeto de prorrogar la entrada en vigencia de su reglamento y flexibilizar la aplicación de las disposiciones que indica (boletín 18337-12).",
+   "fuentes": [
+    {
+     "titulo": "Tramitación Senado, boletín 18337-12",
+     "url": "https://tramitacion.senado.cl/appsenado/templates/tramitacion/index.php?boletin_ini=18337-12"
+    }
+   ],
+   "nivel_verificacion": "primaria",
+   "verificado": true,
+   "id": "real_20261109_094"
+  },
+  {
+   "fecha": "2026-11-13",
+   "categoria": "legislativo",
+   "regiones": [
+    "nacional"
+   ],
+   "descripcion": "Se publica la Ley N° 21.854: Modifica la ley N° 21.780, que crea el Servicio Nacional de Acceso a la Justicia y la Defensoría de Víctimas, con el objeto de otorgar mayor eficiencia al proceso de implementación del servicio (boletín 18709-07).",
+   "fuentes": [
+    {
+     "titulo": "Tramitación Senado, boletín 18709-07",
+     "url": "https://tramitacion.senado.cl/appsenado/templates/tramitacion/index.php?boletin_ini=18709-07"
+    }
+   ],
+   "nivel_verificacion": "primaria",
+   "verificado": true,
+   "id": "real_20261113_095"
+  },
+  {
+   "fecha": "2026-11-17",
+   "categoria": "legislativo",
+   "regiones": [
+    "nacional"
+   ],
+   "descripcion": "Se publica la Ley N° 21.857: Establece medidas para contener las alzas de los precios de la gasolina automotriz y el petróleo diesel, y aliviar la carga financiera de las empresas de transporte de carga (boletín 18885-05).",
+   "fuentes": [
+    {
+     "titulo": "Tramitación Senado, boletín 18885-05",
+     "url": "https://tramitacion.senado.cl/appsenado/templates/tramitacion/index.php?boletin_ini=18885-05"
+    }
+   ],
+   "nivel_verificacion": "primaria",
+   "verificado": true,
+   "id": "real_20261117_096"
+  },
+  {
+   "fecha": "2026-11-23",
+   "categoria": "legislativo",
+   "regiones": [
+    "nacional"
+   ],
+   "descripcion": "Se publica la Ley N° 21.855: Modifica la ley N° 21.719, que regula la protección y el tratamiento de los datos personales y crea la Agencia de Protección de Datos Personales, en el sentido que indica (boletín 18623-07).",
+   "fuentes": [
+    {
+     "titulo": "Tramitación Senado, boletín 18623-07",
+     "url": "https://tramitacion.senado.cl/appsenado/templates/tramitacion/index.php?boletin_ini=18623-07"
+    }
+   ],
+   "nivel_verificacion": "primaria",
+   "verificado": true,
+   "id": "real_20261123_097"
+  }
+ ]
+}
