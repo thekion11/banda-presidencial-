@@ -57,7 +57,7 @@ func _mostrar_creditos() -> void:
 	_creditos.add_child(v)
 	v.add_child(Tema.etiqueta("Créditos y atribuciones", 18, Tema.ORO, true))
 	var txt := "Mapa de regiones: GeoJSON público simplificado (ver docs/DATOS.md).\n" \
-		+ "Calles y relieve (fases futuras): © colaboradores de OpenStreetMap (ODbL) y Copernicus DEM GLO-30.\n" \
+		+ "Calles, Metro, río y parques de Gran Santiago: © colaboradores de OpenStreetMap (ODbL), extracto de BBBike. Relieve: teselas públicas de elevación (Terrarium).\n" \
 		+ "Ilustraciones de cartas generadas con IA (Figma) para este proyecto.\n" \
 		+ "Tipografías: Space Grotesk e Inter (SIL OFL 1.1).\n" \
 		+ "Motor: Godot Engine (MIT).\n" \

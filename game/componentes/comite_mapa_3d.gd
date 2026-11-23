@@ -13,7 +13,7 @@ var _cam: Camera3D
 var _trazado_nodo: Node3D
 var _angulo: float = 0.7
 var _elevacion: float = 0.72
-var _distancia: float = 19.0
+var _distancia: float = 21.0
 var _arrastrando: bool = false
 var _auto: bool = true
 
@@ -50,8 +50,12 @@ func _init() -> void:
 	_actualizar_camara()
 
 
-func _h(i: int, j: int) -> int:
-	return absi(hash("%d:%d:%d" % [semilla, i, j])) % 100
+func _ancho() -> float:
+	return LADO * UrbanoBase.aspecto()
+
+
+func _mundo(p: Array, y: float = 0.0) -> Vector3:
+	return Vector3((float(p[0]) - 0.5) * _ancho(), y, (float(p[1]) - 0.5) * LADO)
 
 
 func _material(color: Color, emision: float = 0.0) -> StandardMaterial3D:
@@ -67,58 +71,123 @@ func _material(color: Color, emision: float = 0.0) -> StandardMaterial3D:
 	return m
 
 
-func _construir_ciudad() -> void:
-	var suelo := MeshInstance3D.new()
-	var pm := PlaneMesh.new()
-	pm.size = Vector2(LADO * 1.25, LADO * 1.25)
-	suelo.mesh = pm
-	suelo.material_override = _material(Color("#2F8A5E"))
-	suelo.position = Vector3(0, -0.02, 0)
-	_raiz.add_child(suelo)
-	var rio := MeshInstance3D.new()
-	var rm := PlaneMesh.new()
-	rm.size = Vector2(LADO * 1.25, LADO * 0.09)
-	rio.mesh = rm
-	rio.material_override = _material(Color("#8CC4E8"))
-	rio.position = Vector3(0, 0.0, (0.625 - 0.5) * LADO)
-	_raiz.add_child(rio)
+func _multi(transformaciones: Array[Transform3D], material: Material, colores: Array[Color] = []) -> MultiMeshInstance3D:
 	var mm := MultiMesh.new()
 	mm.transform_format = MultiMesh.TRANSFORM_3D
-	mm.use_colors = true
+	mm.use_colors = not colores.is_empty()
 	var caja := BoxMesh.new()
-	caja.size = Vector3(1, 1, 1)
+	caja.size = Vector3.ONE
 	mm.mesh = caja
-	var transformaciones: Array[Transform3D] = []
-	var colores: Array[Color] = []
-	var c := LADO / float(CELDAS)
-	for j in range(CELDAS):
-		for i in range(CELDAS):
-			var cz := (float(j) + 0.5) * c - LADO * 0.5
-			if absf(cz - (0.625 - 0.5) * LADO) < LADO * 0.07:
-				continue  # el río corta la trama
-			var dist := Vector2(float(i) - 4.0, float(j) - 4.0).length()
-			var alto := (0.18 + float(_h(i, j)) * 0.010) * clampf(1.5 - dist * 0.16, 0.25, 1.5)
-			var color := Color("#F2EEE4") if _h(i, j) % 3 != 0 else Color("#E8D9A8")
-			if dist > 4.2:
-				color = Color("#C9E4D2")
-				alto *= 0.4
-			var t := Transform3D(Basis().scaled(Vector3(c * 0.76, alto, c * 0.76)), Vector3((float(i) + 0.5) * c - LADO * 0.5, alto * 0.5, cz))
-			transformaciones.append(t)
-			colores.append(color)
 	mm.instance_count = transformaciones.size()
 	for k in range(transformaciones.size()):
 		mm.set_instance_transform(k, transformaciones[k])
-		mm.set_instance_color(k, colores[k])
+		if not colores.is_empty():
+			mm.set_instance_color(k, colores[k])
 	var mi := MultiMeshInstance3D.new()
 	mi.multimesh = mm
-	var mat := _material(Color.WHITE)
-	mat.vertex_color_use_as_albedo = true
-	mi.material_override = mat
-	_raiz.add_child(mi)
+	mi.material_override = material
+	return mi
 
 
-func _mundo(p: Array, y: float = 0.0) -> Vector3:
-	return Vector3((float(p[0]) - 0.5) * LADO, y, (float(p[1]) - 0.5) * LADO)
+func _tramo(a: Vector3, b: Vector3, ancho: float, alto: float) -> Transform3D:
+	var dir := b - a
+	if dir.length() < 0.0005:
+		return Transform3D(Basis().scaled(Vector3(0.0001, 0.0001, 0.0001)), a)  # tramo degenerado: invisible
+	var basis := Basis.looking_at(dir.normalized(), Vector3.UP).scaled(Vector3(ancho, alto, dir.length()))
+	return Transform3D(basis, (a + b) * 0.5)
+
+
+func _construir_ciudad() -> void:
+	var d := UrbanoBase.datos()
+	var w := _ancho()
+	var suelo := MeshInstance3D.new()
+	var pm := PlaneMesh.new()
+	pm.size = Vector2(w * 1.15, LADO * 1.15)
+	suelo.mesh = pm
+	suelo.material_override = _material(Color("#E7E0CF"))
+	suelo.position = Vector3(0, -0.02, 0)
+	_raiz.add_child(suelo)
+	if d.is_empty():
+		return
+	var ocupado: Dictionary = {}  # celdas de edificio bloqueadas por calles, río o parques
+	var nx := 150  # rejilla fina de ocupación por calles; los edificios usan celdas de 2×2
+	var nz := 122
+	var marcar := func(a: Array, b: Array) -> void:
+		var n := int(maxf(absf(float(b[0]) - float(a[0])) * nx, absf(float(b[1]) - float(a[1])) * nz)) + 1
+		for k in range(n + 1):
+			var t := float(k) / float(n)
+			var cx := int((float(a[0]) + (float(b[0]) - float(a[0])) * t) * nx)
+			var cz := int((float(a[1]) + (float(b[1]) - float(a[1])) * t) * nz)
+			ocupado[Vector2i(cx, cz)] = true
+	var calles: Array[Transform3D] = []
+	var col_calles: Array[Color] = []
+	var ancho_cl: Array[float] = [0.09, 0.09, 0.065, 0.04, 0.0]
+	var color_cl: Array[Color] = [Color("#9C927C"), Color("#9C927C"), Color("#B3A98F"), Color("#C4BBA3"), Color("#D4CCB8")]
+	for k in d["calles"]:
+		var cl := int(k["c"])
+		var pl: Array = k["p"]
+		for i in range(pl.size() - 1):
+			if cl <= 3:
+				marcar.call(pl[i], pl[i + 1])
+			if cl <= 3:
+				calles.append(_tramo(_mundo(pl[i], 0.01), _mundo(pl[i + 1], 0.01), ancho_cl[cl], 0.02))
+				col_calles.append(color_cl[cl])
+	var mat_c := _material(Color.WHITE)
+	mat_c.vertex_color_use_as_albedo = true
+	_raiz.add_child(_multi(calles, mat_c, col_calles))
+	var rio_t: Array[Transform3D] = []
+	for pl in d["rio"]:
+		for i in range(pl.size() - 1):
+			marcar.call(pl[i], pl[i + 1])
+			rio_t.append(_tramo(_mundo(pl[i], 0.015), _mundo(pl[i + 1], 0.015), 0.16, 0.03))
+	_raiz.add_child(_multi(rio_t, _material(Color("#8CC4E8"))))
+	var parques_t: Array[Transform3D] = []
+	var parques_poly: Array[PackedVector2Array] = []
+	for pk in d["parques"]:
+		var poly := PackedVector2Array()
+		var minp := Vector2(1, 1)
+		var maxp := Vector2.ZERO
+		for q in pk:
+			poly.append(Vector2(q[0], q[1]))
+			minp = minp.min(Vector2(q[0], q[1]))
+			maxp = maxp.max(Vector2(q[0], q[1]))
+		parques_poly.append(poly)
+		var cc := (minp + maxp) * 0.5
+		var tam := (maxp - minp) * Vector2(w, LADO)
+		parques_t.append(Transform3D(Basis().scaled(Vector3(tam.x * 0.85, 0.03, tam.y * 0.85)), _mundo([cc.x, cc.y], 0.012)))
+	_raiz.add_child(_multi(parques_t, _material(Color("#A9CF9A"))))
+	# edificios: solo en celdas libres, más altos y densos hacia el centro
+	var centro := Vector2(0.52, 0.43)
+	var blds: Array[Transform3D] = []
+	var col_b: Array[Color] = []
+	for cz in range(0, nz - 1, 2):
+		for cx in range(0, nx - 1, 2):
+			var libres := 0
+			for dz in range(2):
+				for dx in range(2):
+					if not ocupado.has(Vector2i(cx + dx, cz + dz)):
+						libres += 1
+			if libres < 3:
+				continue
+			var p := Vector2((float(cx) + 1.0) / nx, (float(cz) + 1.0) / nz)
+			var dist := p.distance_to(centro)
+			var h := absi(hash("%d:%d:%d" % [semilla, cx, cz])) % 100
+			if float(h) / 100.0 > clampf(0.85 - dist * 1.1, 0.12, 0.85):
+				continue
+			var en_parque := false
+			for poly in parques_poly:
+				if Geometry2D.is_point_in_polygon(p, poly):
+					en_parque = true
+					break
+			if en_parque:
+				continue
+			var alto := (0.10 + float(h % 13) * 0.025) * clampf(1.6 - dist * 2.2, 0.35, 1.6)
+			var lado := w / float(nx) * 2.0 * 0.8
+			blds.append(Transform3D(Basis().scaled(Vector3(lado, alto, lado * 1.05)), _mundo([p.x, p.y], alto * 0.5)))
+			col_b.append(Color("#F2EEE4") if h % 3 != 0 else Color("#E8D9A8"))
+	var mat_b := _material(Color.WHITE)
+	mat_b.vertex_color_use_as_albedo = true
+	_raiz.add_child(_multi(blds, mat_b, col_b))
 
 
 func poner_trazado(trazado: Array, elevada: bool) -> void:
@@ -126,39 +195,17 @@ func poner_trazado(trazado: Array, elevada: bool) -> void:
 		h.queue_free()
 	if trazado.size() < 2:
 		return
-	var alto := 0.9 if elevada else 0.12
-	var rojo := _material(Tema.ROJO, 0.35)
+	var alto := 0.7 if elevada else 0.08
+	var tramos: Array[Transform3D] = []
 	for k in range(trazado.size() - 1):
-		var a := _mundo(trazado[k], alto)
-		var b := _mundo(trazado[k + 1], alto)
-		var seg := MeshInstance3D.new()
-		var bm := BoxMesh.new()
-		bm.size = Vector3(0.22, 0.12, a.distance_to(b) + 0.22)
-		seg.mesh = bm
-		seg.material_override = rojo
-		_trazado_nodo.add_child(seg)
-		seg.position = (a + b) * 0.5
-		seg.look_at_from_position((a + b) * 0.5, b, Vector3.UP)
-	var blanco := _material(Color("#FBF7EC"))
-	for k in range(trazado.size()):
-		var e := _mundo(trazado[k], alto)
-		var cil := MeshInstance3D.new()
-		var cm := CylinderMesh.new()
-		cm.top_radius = 0.24
-		cm.bottom_radius = 0.24
-		cm.height = 0.2
-		cil.mesh = cm
-		cil.material_override = blanco
-		_trazado_nodo.add_child(cil)
-		cil.position = e + Vector3(0, 0.08, 0)
-		if elevada:
-			var pilar := MeshInstance3D.new()
-			var pm := BoxMesh.new()
-			pm.size = Vector3(0.14, alto, 0.14)
-			pilar.mesh = pm
-			pilar.material_override = _material(Color("#8C99A6"))
-			_trazado_nodo.add_child(pilar)
-			pilar.position = Vector3(e.x, alto * 0.5, e.z)
+		tramos.append(_tramo(_mundo(trazado[k], alto), _mundo(trazado[k + 1], alto), 0.16, 0.1))
+	_trazado_nodo.add_child(_multi(tramos, _material(Tema.ROJO, 0.35)))
+	if elevada:
+		var pilares: Array[Transform3D] = []
+		for k in range(0, trazado.size(), 3):
+			var e := _mundo(trazado[k], 0.0)
+			pilares.append(Transform3D(Basis().scaled(Vector3(0.1, alto, 0.1)), e + Vector3(0, alto * 0.5, 0)))
+		_trazado_nodo.add_child(_multi(pilares, _material(Color("#8C99A6"))))
 	_trazado_nodo.scale = Vector3(1, 0.01, 1)  # crece desde el suelo
 	create_tween().tween_property(_trazado_nodo, "scale", Vector3.ONE, 0.6).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
 

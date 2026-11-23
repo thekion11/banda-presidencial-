@@ -444,6 +444,4 @@ func _abrir_hito(obra: Dictionary) -> void:
 
 
 func _abrir_urbano() -> void:
-	var urbano: Variant = Datos.leer_json("res://data/geo/urbano_santiago.json")
-	if urbano != null:
-		_capa.add_child(PantallaUrbano.crear(motor, urbano, func() -> void: pass, _abrir_hito))
+	_capa.add_child(PantallaUrbano.crear(motor, UrbanoBase.datos(), func() -> void: pass, _abrir_hito))

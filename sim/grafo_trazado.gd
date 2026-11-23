@@ -22,9 +22,12 @@ func cargar(d: Dictionary) -> void:
 	var pe := float(params.get("peso_expropiacion", 0.15))
 	for a in d.get("aristas", []):
 		var peso := float(a["longitud"]) * float(a["costo_mult"]) + pe * float(a["expropiaciones"])
-		for par in [[a["a"], a["b"]], [a["b"], a["a"]]]:
+		var poly: Array = a.get("poly", [])
+		var inversa: Array = poly.duplicate()
+		inversa.reverse()
+		for par in [[a["a"], a["b"], poly], [a["b"], a["a"], inversa]]:
 			ady[String(par[0])].append({"a": String(par[1]), "peso": peso, "longitud": float(a["longitud"]),
-					"costo_mult": float(a["costo_mult"]), "expropiaciones": int(a["expropiaciones"]), "rio": bool(a["rio"])})
+					"costo_mult": float(a["costo_mult"]), "expropiaciones": int(a["expropiaciones"]), "rio": bool(a["rio"]), "poly": par[2]})
 
 
 func listo() -> bool:
@@ -42,33 +45,74 @@ func nodo_cercano(p: Vector2) -> String:
 	return mejor
 
 
+func _menor(x: Array, y: Array) -> bool:
+	return float(x[0]) < float(y[0]) or (float(x[0]) == float(y[0]) and int(x[1]) < int(y[1]))
+
+
+func _push(h: Array, item: Array) -> void:
+	h.append(item)
+	var i := h.size() - 1
+	while i > 0:
+		var p := (i - 1) / 2
+		if _menor(h[i], h[p]):
+			var t: Array = h[i]
+			h[i] = h[p]
+			h[p] = t
+			i = p
+		else:
+			break
+
+
+func _pop(h: Array) -> Array:
+	var top: Array = h[0]
+	var ultimo: Array = h.pop_back()
+	if not h.is_empty():
+		h[0] = ultimo
+		var i := 0
+		while true:
+			var l := 2 * i + 1
+			var r := l + 1
+			var m := i
+			if l < h.size() and _menor(h[l], h[m]):
+				m = l
+			if r < h.size() and _menor(h[r], h[m]):
+				m = r
+			if m == i:
+				break
+			var t: Array = h[i]
+			h[i] = h[m]
+			h[m] = t
+			i = m
+	return top
+
+
 func ruta(origen: String, destino: String) -> Array[String]:
-	## Camino de menor peso (longitud × costo + expropiaciones). Dijkstra O(V²), suficiente para ~64 nodos.
-	var dist: Dictionary = {}
+	## Camino de menor peso (longitud × costo + expropiaciones). Dijkstra con montículo binario; desempate determinista por orden de inserción.
+	var camino: Array[String] = []
+	if not pos.has(origen) or not pos.has(destino):
+		return camino
+	var dist: Dictionary = {origen: 0.0}
 	var prev: Dictionary = {}
 	var hecho: Dictionary = {}
-	for id in orden:
-		dist[id] = INF
-	if not pos.has(origen) or not pos.has(destino):
-		return []
-	dist[origen] = 0.0
-	while true:
-		var u := ""
-		var mejor := INF
-		for id in orden:  # desempate por orden de los datos
-			if not hecho.has(id) and float(dist[id]) < mejor:
-				mejor = float(dist[id])
-				u = id
-		if u == "" or u == destino:
-			break
+	var cola: Array = []
+	var seq := 0
+	_push(cola, [0.0, seq, origen])
+	while not cola.is_empty():
+		var it := _pop(cola)
+		var u: String = it[2]
+		if hecho.has(u):
+			continue
 		hecho[u] = true
+		if u == destino:
+			break
 		for e in ady[u]:
 			var v: String = e["a"]
 			var alt := float(dist[u]) + float(e["peso"])
-			if alt < float(dist[v]):
+			if alt < float(dist.get(v, INF)):
 				dist[v] = alt
 				prev[v] = u
-	var camino: Array[String] = []
+				seq += 1
+				_push(cola, [alt, seq, v])
 	if destino != origen and not prev.has(destino):
 		return camino
 	var cur := destino
@@ -94,6 +138,7 @@ func evaluar(estaciones: Array) -> Dictionary:
 	var indice := 0.0
 	var expro := 0
 	var rios := 0
+	var puntos: Array = []
 	for k in range(estaciones.size() - 1):
 		var tramo := ruta(String(estaciones[k]), String(estaciones[k + 1]))
 		for i in range(tramo.size()):
@@ -102,11 +147,19 @@ func evaluar(estaciones: Array) -> Dictionary:
 			nodos.append(tramo[i])
 		for i in range(tramo.size() - 1):
 			var e := _arista(tramo[i], tramo[i + 1])
+			var pl: Array = e.get("poly", [])
+			puntos.append_array(pl if puntos.is_empty() else pl.slice(1))
 			longitud += float(e["longitud"])
 			indice += float(e["longitud"]) * float(e["costo_mult"])
 			expro += int(e["expropiaciones"])
 			rios += 1 if bool(e["rio"]) else 0
-	return {"nodos": nodos, "longitud": longitud, "indice": indice, "expropiaciones": expro, "rios": rios}
+	return {"nodos": nodos, "puntos": puntos, "longitud": longitud, "indice": indice, "expropiaciones": expro, "rios": rios}
+
+
+func estaciones_base(variante: Dictionary) -> Array:
+	if variante.has("estaciones"):
+		return variante["estaciones"]
+	return estaciones_de(variante.get("trazado", []))
 
 
 func estaciones_de(trazado: Array) -> Array[String]:
@@ -137,12 +190,13 @@ func variante_modificada(base: Dictionary, estaciones: Array, ritmo: float, cobe
 	var sl: Dictionary = params.get("sliders", {})
 	ritmo = clampf(ritmo, 0.0, 1.0)
 	cobertura = clampf(cobertura, 0.0, 1.0)
-	var eb := evaluar(estaciones_de(base["trazado"]))
+	var est_base := estaciones_base(base)
+	var eb := evaluar(est_base)
 	var en := evaluar(estaciones)
 	var r_costo := float(en["indice"]) / maxf(0.001, float(eb["indice"]))
 	var r_expro := float(en["expropiaciones"] + 1) / maxf(1.0, float(eb["expropiaciones"] + 1))
 	var r_long := float(en["longitud"]) / maxf(0.001, float(eb["longitud"]))
-	var extra := float(estaciones.size() - estaciones_de(base["trazado"]).size())
+	var extra := float(estaciones.size() - est_base.size())
 	var ex: Dictionary = sl.get("estacion_extra", {})
 	var costo := float(base["costo_musd"]) * r_costo * (1.0 + float(sl["ritmo"]["costo_max"]) * ritmo) * (1.0 + float(ex.get("costo", 0.0)) * extra)
 	var plazo := float(base["plazo_anios"]) * r_long * (1.0 + float(sl["ritmo"]["plazo_max"]) * ritmo)
@@ -161,10 +215,7 @@ func variante_modificada(base: Dictionary, estaciones: Array, ritmo: float, cobe
 			"riesgo_ejecucion":
 				f = expro / maxf(1.0, float(base["expropiaciones"]))
 		efectos.append({"ind": ef["ind"], "delta": snappedf(float(ef["delta"]) * f, 0.1)})
-	var tz: Array = []
-	var nodos: Array = en["nodos"]
-	for id in nodos:
-		tz.append([pos[id].x, pos[id].y])
+	var tz: Array = en["puntos"]
 	return {"id": "M", "nombre": "Trazado propio", "costo_musd": snappedf(costo, 10.0), "plazo_anios": snappedf(plazo, 0.1),
 			"poblacion_miles": roundi(pobl), "expropiaciones": roundi(expro), "rechazo_vecinal": rechazo, "efectos": efectos,
 			"trazado": tz, "estaciones": estaciones.duplicate(), "elevada": bool(base.get("elevada", false)),

@@ -180,6 +180,8 @@ def validar_propuestas(props: list, ids_fuentes: set, regiones: set) -> None:
             tz = v.get("trazado", [])
             if len(tz) < 2 or any(not (0.0 <= x <= 1.0 and 0.0 <= y <= 1.0) for x, y in tz):
                 raise ValueError(f"variante {p['id']}/{v['id']}: trazado inválido")
+            if not 3 <= len(v.get("estaciones", [])) <= 7:
+                raise ValueError(f"variante {p['id']}/{v['id']}: debe tener 3 a 7 estaciones")
 
 
 def validar_grafo() -> None:
@@ -193,6 +195,11 @@ def validar_grafo() -> None:
     for a in g["aristas"]:
         if a["a"] not in ids or a["b"] not in ids or a["longitud"] <= 0 or a["costo_mult"] < 1.0:
             raise ValueError(f"grafo: arista inválida {a}")
+    ids_nodos = ids
+    for p in json.loads((DATA_DIR / "propuestas.json").read_text(encoding="utf-8")):
+        for v in p["variantes"]:
+            if any(e not in ids_nodos for e in v.get("estaciones", [])):
+                raise ValueError(f"propuesta {p['id']}: estación fuera del grafo")
     # conectividad (BFS)
     ady = {i: [] for i in ids}
     for a in g["aristas"]:

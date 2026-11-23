@@ -75,7 +75,6 @@ func _correr() -> void:
 	await _guardar("cmp_comite_3d")
 	var b2d: Array = dia._zona_panel.find_children("*", "Button", true, false).filter(func(b: Node) -> bool: return b.text == "2D")
 	b2d[0].pressed.emit()
-	mc.modo_3d(false)
 	await create_timer(0.7).timeout
 	var btns: Array = dia._zona_panel.find_children("*", "Button", true, false).filter(func(b: Node) -> bool: return b.text == "Modificar trazado")
 	btns[0].pressed.emit()

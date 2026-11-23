@@ -14,7 +14,7 @@ Regla del proyecto: la maqueta manda. Esta lista deja explícito dónde el juego
 |---|---|---|---|
 | Ilustración de cartas | Escenas planas, estilo vectorial | Escenas pintadas generadas con IA (14 categorías) | Más riqueza visual; hay que declarar el uso de IA en Play. Respaldo: dibujo procedural. |
 | Mapa nacional | Regiones coloreadas con textura de relieve ilustrada | Relieve real sombreado (teselas públicas de elevación) y Chile ensanchado ×2,3 | Datos reales y legibilidad en pantalla vertical. |
-| Mapa urbano | Calles de Gran Santiago | Plano esquemático | Las calles reales llegan con el pipeline OSM (Fase 3); está rotulado en el propio mapa. |
+| Mapa urbano | Plano esquemático de manzanas | Cartografía real de Gran Santiago (calles, río, parques y las líneas de Metro con sus colores oficiales) | Datos reales de OpenStreetMap (ODbL) con el pipeline de la Fase 3. Es más denso que la maqueta; se prioriza la fidelidad al territorio. |
 | Botones y chips | Colores planos | Degradados y marcos metálicos | Profundidad, manteniendo la paleta congelada. |
 | Comité y hito de obra | Isométricas ilustradas | Escenas 3D reales de Godot (cámara orbitable, trazado elevado, 5 fases animables) | Cumple la Fase 2 del plan; presupuesto móvil con una sola MultiMesh y sin sombras. |
 | Animaciones | (estático) | Reparto de cartas, hemiciclo que se llena, sello que cae, barcos, Comité 2D/3D, reproducción de obra | Superar la maqueta sin cambiar su estructura. |
@@ -25,6 +25,6 @@ Regla del proyecto: la maqueta manda. Esta lista deja explícito dónde el juego
 - **Pantallas sin maqueta**: menú, test ideológico, fundación del partido y fin de partida. Son necesarias para el Modo Único de la Enmienda; se construyeron con los mismos componentes congelados (paleta, tipografías, zonas táctiles ≥ 44 px). No existe referencia en Figma para ellas.
 
 ## Pendiente
-- Trazado propio (estaciones sobre grafo + sliders): extensión de la Fase 3 del Documento Maestro (niveles 2 y 3), sobre un grafo esquemático.
+- Trazado propio (estaciones sobre grafo + sliders): extensión de la Fase 3 del Documento Maestro (niveles 2 y 3), sobre el grafo real de calles principales de Gran Santiago (2.459 nodos). Costos y expropiaciones son ilustrativos.
 - Reflejar estas mejoras en la maqueta de Figma (no se hizo: requiere gastar créditos de IA del plan y decisión del usuario).
 - Medir rendimiento (30 fps, ≤ 800 MB) en un teléfono real.

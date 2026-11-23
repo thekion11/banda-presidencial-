@@ -32,7 +32,7 @@ static func _propuesta(col: VBoxContainer, motor: MotorTurno, pid: String, al_ap
 	var mapa := ComiteMapa.new()
 	mapa.semilla = hash(pid) % 1000
 	var pila := Control.new()
-	pila.custom_minimum_size = Vector2(0, 220)
+	pila.custom_minimum_size = Vector2(0, 270)
 	mapa.set_anchors_preset(Control.PRESET_FULL_RECT)
 	pila.add_child(mapa)
 	var m3d := ComiteMapa3D.new()
@@ -74,7 +74,7 @@ static func _propuesta(col: VBoxContainer, motor: MotorTurno, pid: String, al_ap
 			edicion.visible = false
 			estado["v"] = v
 			estado["custom"] = {}
-			mapa.poner_variante(v["trazado"], bool(v["elevada"]))
+			mapa.poner_variante(v["trazado"], bool(v["elevada"]), _pos_estaciones(motor, v))
 			if m3d.visible:
 				m3d.poner_trazado(v["trazado"], bool(v["elevada"]))
 			_ficha(detalle, pid, v, prop, motor, al_aprobar, {}, func() -> void: _activar_edicion(mapa, edicion, detalle, pid, estado, prop, motor, al_aprobar)))
@@ -85,14 +85,23 @@ static func _propuesta(col: VBoxContainer, motor: MotorTurno, pid: String, al_ap
 	var v0: Dictionary = prop["variantes"][0]
 	mapa.trazado = v0["trazado"]
 	mapa.elevada = bool(v0["elevada"])
+	mapa.estaciones_pos = _pos_estaciones(motor, v0)
 	_ficha(detalle, pid, v0, prop, motor, al_aprobar, {}, func() -> void: _activar_edicion(mapa, edicion, detalle, pid, estado, prop, motor, al_aprobar))
+
+
+static func _pos_estaciones(motor: MotorTurno, v: Dictionary) -> Array:
+	var res: Array = []
+	for id in motor.grafo.estaciones_base(v):
+		if motor.grafo.pos.has(id):
+			res.append([motor.grafo.pos[id].x, motor.grafo.pos[id].y])
+	return res
 
 
 static func _activar_edicion(mapa: ComiteMapa, edicion: VBoxContainer, detalle: VBoxContainer, pid: String, estado: Dictionary, prop: Dictionary, motor: MotorTurno, al_aprobar: Callable) -> void:
 	if not motor.grafo.listo():
 		return
 	var base: Dictionary = estado["v"]
-	var ests := motor.grafo.estaciones_de(base["trazado"])
+	var ests := motor.grafo.estaciones_base(base)
 	var ctrl := {"ritmo": 0.0, "cobertura": 0.0}
 	for h in edicion.get_children():
 		h.queue_free()
