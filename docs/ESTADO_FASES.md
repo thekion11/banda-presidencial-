@@ -218,3 +218,6 @@ De los 14 eventos sin verificar, se verificó 1 con fuentes primarias: **cambio 
 | Cartas v2 | `session_015HWWmmDD92h4LoTGNLMnFk` | `datos/cartas-1040` | Regenerar cartas con datos nuevos, tabla de `arte` por tema, informe de arte pendiente |
 | Revisor | `session_015HWWmkvtNEf8jtTSAK1Cjv` | `revision/auditoria` | Auditoría 3 y revisión de las seis ramas anteriores |
 Sesión de monitoreo (`session_015HWWmk4UVthE3U1iKnZXQ8`): no es hija de esta; solo envía revisiones. Esta sesión integra en `ccr-ec102a3c-giitie` con la suite completa y revisión del CI.
+
+### Resultado de CI de `723f03c` (merge de `datos/cartas-1040`)
+CI (workflow "CI", corrida 101, push 23-nov-2026 21:00 UTC): **success** — incluye validate_data, check_limits y todos los `test_*.gd` listados en `.github/workflows/ci.yml` (test_ui_humo con 6 semillas, en headless). También en verde localmente (suite completa, headless y xvfb). El commit anterior `1d0566e` (corrida 96) también en verde.
