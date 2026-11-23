@@ -1,3 +1,23 @@
+# Incidente: PR #6 fusionado con CI en rojo
+
+**Hechos verificados en GitHub (API del PR #6):**
+- **Rama destino:** `ccr-ec102a3c-giitie` (la rama de integración), **no `main`**. Rama origen: `revision/auditoria`, cabeza `6cdded3`.
+- **Fusionado por:** la cuenta `thekion11` (`merged_by`), a las 19:31:52 UTC del 23‑nov‑2026, **1 min 26 s después** de que terminaran las dos corridas del CI (19:30:18 y 19:30:26). Desde los datos de GitHub **no puedo saber si la acción fue de una persona o de una sesión** que usa esa cuenta; es la misma cuenta que abrió el PR.
+- **Revisiones:** ninguna (`get_reviews` vacío). El PR era borrador (`draft: true`) al fusionarse.
+- **CI:** las dos corridas del job `pruebas` terminaron en **failure** (`runs/45249277565` y `runs/45249264625`). La prueba en rojo fue **`tests/test_ui_humo.gd`**, en las 6 semillas: `el botón principal del gabinete debe estar donde el de la fundación ([P: (16, 739)] vs [P: (16, 722)])`. Los pasos anteriores del job (validador, límites y el resto de pruebas, que corren con `bash -e`) no fallaron antes. Las demás pruebas de `ci.yml` no se ejecutaron en ese job tras el fallo si estaban después en la lista; `test_ui_humo` es la última.
+- **Origen del fallo:** no es del PR. La rama base (`3112e0c`) falla igual: lo reproduje en local con Godot 4.3 sobre la base sin cambios. La prueba la introdujo `a6f8a71` (sesión de desarrollo) sin dejar la pantalla de gabinete alineada. El PR solo cambiaba `docs/REVISION.md` y los rótulos del mapa (9 → 10 pt, `urbano_base.gd`).
+- Lo avisé en el PR (comentario 7111723323) y a la sesión de desarrollo **antes** del merge (19:2x–19:31 UTC); el merge ocurrió minutos después.
+
+**Consecuencia:** la rama de integración quedó con `test_ui_humo` en rojo, como ya lo estaba antes del merge; el merge no la empeoró, pero **tampoco la arregló** y dejó fusionado un PR con CI fallido sin revisión. Hay una regla de CLAUDE.md §1 («ninguna tarea cierra sin pruebas en verde») que este merge no cumple.
+
+**Recomendaciones:**
+1. Proteger `ccr-ec102a3c-giitie` (y `main`) con regla de rama: CI `pruebas` obligatorio y al menos 1 revisión; impide fusionar en rojo aunque sea la cuenta propietaria.
+2. Corregir el botón del gabinete en `game/` (sesión de desarrollo) hasta que `test_ui_humo` pase en la base.
+3. Regla de proceso: quien fusiona deja constancia del estado del CI en el PR; los PR de revisión no se fusionan mientras la base esté roja sin una nota explícita.
+4. Este bloque se añadió **después** del merge, en `revision/auditoria`; no está en la rama de integración hasta que se abra un PR nuevo.
+
+---
+
 # Revisión del PR #6 contra la Enmienda de Cierre y CLAUDE.md
 
 Fuente: `docs/enmienda_de_cierre.pdf` (leída completa, 9 págs.) y `CLAUDE.md` vigente, contrastados con `ccr-ec102a3c-giitie` + este PR. El PR solo toca `docs/REVISION.md` y 8 líneas de `game/componentes/urbano_base.gd` (rótulos del mapa 9 → 10 pt, que **cumple** CLAUDE.md §5 «mínimo 10 pt»); no hay cambios de `sim/` ni `data/`. Pruebas ejecutadas con Godot 4.3: `test_enmienda`, oro completa, guardado, UI humo, balance en verde.
