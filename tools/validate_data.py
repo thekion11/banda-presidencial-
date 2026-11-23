@@ -156,83 +156,6 @@ def validar_cartas(cartas: list, ids_fuentes: set, tipos: set, props: set) -> No
             raise ValueError(f"{ctx}: meta del corrector debe ser positiva")
 
 
-def validar_metas(metas: list, cartas: list, ids_fuentes: set) -> None:
-    unicos(metas, "metas")
-    ids_cartas = {c["id"] for c in cartas}
-    cats = {c["categoria"] for c in cartas}
-    ids = {m["id"] for m in metas}
-    for m in metas:
-        ctx = f"meta {m['id']}"
-        verificar_ref_fuente(m, ids_fuentes, ctx)
-        validar_efectos(m["efectos"], ctx)
-        if not m.get("cifras_ilustrativas"):
-            raise ValueError(f"{ctx}: debe rotular cifras_ilustrativas")
-        if m["sector"] not in cats:
-            raise ValueError(f"{ctx}: sector '{m['sector']}' sin cartas")
-        if m["requiere"] is not None and m["requiere"] not in ids:
-            raise ValueError(f"{ctx}: requiere una meta inexistente")
-        for cid in m["desbloquea"]:
-            if cid not in ids_cartas:
-                raise ValueError(f"{ctx}: desbloquea una carta inexistente '{cid}'")
-    for cat in cats:
-        for i in (1, 2, 3):
-            if f"meta_{cat}_{i}" not in ids:
-                raise ValueError(f"falta la meta meta_{cat}_{i}")
-    for c in cartas:
-        d = c.get("disponibilidad") or {}
-        if d.get("meta") and d["meta"] not in ids:
-            raise ValueError(f"carta {c['id']}: disponibilidad.meta inexistente '{d['meta']}'")
-
-
-def validar_asesores(asesores: list, cartas: list, ids_fuentes: set) -> None:
-    unicos(asesores, "asesores")
-    cats = {c["categoria"] for c in cartas}
-    for a in asesores:
-        ctx = f"asesor {a['id']}"
-        verificar_ref_fuente(a, ids_fuentes, ctx)
-        pos, neg = a["efecto_positivo"], a["efecto_negativo"]
-        for ef, signo in ((pos, 1), (neg, -1)):
-            if ef["tipo"] == "indicador":
-                validar_efectos([ef], ctx)
-                val = -ef["delta"] if ef["ind"] == "riesgo_ejecucion" else ef["delta"]  # menos riesgo = bueno
-            elif ef["tipo"] == "categoria":
-                if ef["categoria"] not in cats:
-                    raise ValueError(f"{ctx}: categoría sin cartas '{ef['categoria']}'")
-                val = ef["mult"]
-            else:
-                raise ValueError(f"{ctx}: tipo de efecto desconocido")
-            if val * signo <= 0:
-                raise ValueError(f"{ctx}: el efecto {'positivo' if signo > 0 else 'negativo'} tiene el signo contrario")
-
-
-def validar_coalicion(partidos: list, cartas: list, leyes: dict, ids_fuentes: set) -> None:
-    unicos(partidos, "coalicion")
-    cats = {c["categoria"] for c in cartas}
-    mx = leyes["coalicion"]["max_aliados"]
-    if not 1 <= mx <= len(partidos):
-        raise ValueError("coalicion: max_aliados fuera de rango")
-    for p in partidos:
-        ctx = f"partido aliado {p['id']}"
-        verificar_ref_fuente(p, ids_fuentes, ctx)
-        if p["peticion"]["categoria_carta"] not in cats:
-            raise ValueError(f"{ctx}: categoria_carta sin cartas")
-        if p["peticion"]["ministerios"] < 0 or p["peticion"]["asesores"] < 0:
-            raise ValueError(f"{ctx}: petición negativa")
-    ministros = {m["id"] for m in cargar_json("ministros.json")}
-    for p in partidos:
-        ctx = f"partido aliado {p['id']}"
-        if p["escanos_senado"] > leyes["hemiciclo"]["total_senadores"] or p["escanos_camara"] > leyes["hemiciclo"]["total_diputados"]:
-            raise ValueError(f"{ctx}: más escaños que la cámara")
-        for c in p["categorias_pedidas"] + p["categorias_rechazadas"]:
-            if c not in cats:
-                raise ValueError(f"{ctx}: categoría sin cartas '{c}'")
-        for mid in p["ministerios_pedidos"]:
-            if mid not in ministros:
-                raise ValueError(f"{ctx}: ministerio inexistente '{mid}'")
-        if not p.get("cifras_ilustrativas") or not p.get("nota_escanos"):
-            raise ValueError(f"{ctx}: escaños deben rotularse como ilustrativos")
-
-
 def validar_eventos(eventos: list, ids_fuentes: set, tipos: set, dias_mandato: int) -> None:
     unicos(eventos, "eventos")
     for e in eventos:
@@ -403,18 +326,20 @@ def main() -> int:
             raise ValueError(f"carta real {c['id']}: debe rotular cifras_ilustrativas")
         if c["requisitos"]["ley"] and not c["meta"].get("quorum_verificado") and not c["meta"].get("nota_quorum"):
             raise ValueError(f"carta real {c['id']}: quórum sin verificar debe llevar nota_quorum")
+        if not 1 <= c["costo_pa"] <= 3:
+            raise ValueError(f"carta real {c['id']}: costo 1-3 movimientos")
+        if len(c["titulo"]) > 60 or not c.get("disponibilidad"):
+            raise ValueError(f"carta real {c['id']}: título ≤ 60 y `disponibilidad` obligatoria")
+        if c["meta"]["tipo"] in ("proyecto_de_ley", "reforma_constitucional") and not (c["meta"].get("fecha_corte") and c["meta"].get("titulo_completo") and isinstance(c["meta"].get("verificado"), bool)):
+            raise ValueError(f"carta real {c['id']}: proyecto de ley sin fecha_corte/titulo_completo/verificado")
+    validar_schema("cartas.json", reales)
     datos["cartas"] = datos["cartas"] + reales
     validar_cartas(datos["cartas"], ids_fuentes, tipos, props)
-    datos["metas"] = cargar_json("metas.json")
-    validar_schema("metas.json", datos["metas"])
-    validar_metas(datos["metas"], datos["cartas"], ids_fuentes)
-    datos["asesores"] = cargar_json("asesores.json")
-    validar_schema("asesores.json", datos["asesores"])
-    validar_asesores(datos["asesores"], datos["cartas"], ids_fuentes)
-    datos["coalicion"] = cargar_json("coalicion.json")
-    validar_schema("coalicion.json", datos["coalicion"])
-    validar_coalicion(datos["coalicion"], datos["cartas"], datos["leyes"], ids_fuentes)
+    from validate_v2 import validar_v2
+    validar_v2(datos, ids_fuentes)
     datos["eventos"] = datos["eventos"] + json.loads((DATA_DIR / "juego_eventos_reales.json").read_text(encoding="utf-8"))
+    from validate_v2 import validar_disponibilidad_cartas
+    validar_disponibilidad_cartas(datos["cartas"], {e["id"] for e in datos["eventos"]}, {c["categoria"] for c in datos["cartas"]})
     validar_eventos(datos["eventos"], ids_fuentes, tipos, datos["leyes"]["hemiciclo"]["duracion_mandato_dias"])
     validar_ideologia(datos["ideologia"])
     validar_ministros(datos["ministros"], datos["cartas"])

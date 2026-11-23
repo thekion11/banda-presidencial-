@@ -152,7 +152,8 @@
             "type": [
               "string",
               "null"
-            ]
+            ],
+            "pattern": "^meta_[a-z]+_[1-3]$"
           }
         }
       }
