@@ -1,0 +1,92 @@
+[
+  {
+    "id": "par_horizonte",
+    "nombre": "Partido Horizonte Cívico",
+    "sigla": "HC",
+    "ideologia": {
+      "eco": -0.3,
+      "inst": 0.4
+    },
+    "escanos_senado": 6,
+    "escanos_camara": 22,
+    "peticion": {
+      "ministerios": 1,
+      "asesores": 0,
+      "categoria_carta": "educacion"
+    },
+    "fuente": "fuentes.json#ficticio_2026",
+    "cifras_ilustrativas": true
+  },
+  {
+    "id": "par_regionalista",
+    "nombre": "Unión Regionalista Austral",
+    "sigla": "URA",
+    "ideologia": {
+      "eco": 0.1,
+      "inst": -0.3
+    },
+    "escanos_senado": 4,
+    "escanos_camara": 14,
+    "peticion": {
+      "ministerios": 1,
+      "asesores": 1,
+      "categoria_carta": "descentralizacion"
+    },
+    "fuente": "fuentes.json#ficticio_2026",
+    "cifras_ilustrativas": true
+  },
+  {
+    "id": "par_laborista",
+    "nombre": "Movimiento Laborista Popular",
+    "sigla": "MLP",
+    "ideologia": {
+      "eco": -0.7,
+      "inst": -0.2
+    },
+    "escanos_senado": 5,
+    "escanos_camara": 18,
+    "peticion": {
+      "ministerios": 2,
+      "asesores": 0,
+      "categoria_carta": "social"
+    },
+    "fuente": "fuentes.json#ficticio_2026",
+    "cifras_ilustrativas": true
+  },
+  {
+    "id": "par_liberal",
+    "nombre": "Círculo Liberal del Centro",
+    "sigla": "CLC",
+    "ideologia": {
+      "eco": 0.6,
+      "inst": 0.2
+    },
+    "escanos_senado": 5,
+    "escanos_camara": 16,
+    "peticion": {
+      "ministerios": 1,
+      "asesores": 1,
+      "categoria_carta": "economia"
+    },
+    "fuente": "fuentes.json#ficticio_2026",
+    "cifras_ilustrativas": true
+  },
+  {
+    "id": "par_agrario",
+    "nombre": "Partido Agrario del Valle",
+    "sigla": "PAV",
+    "ideologia": {
+      "eco": 0.3,
+      "inst": 0.5
+    },
+    "escanos_senado": 3,
+    "escanos_camara": 10,
+    "peticion": {
+      "ministerios": 1,
+      "asesores": 0,
+      "categoria_carta": "obras"
+    },
+    "fuente": "fuentes.json#ficticio_2026",
+    "cifras_ilustrativas": true
+  }
+]

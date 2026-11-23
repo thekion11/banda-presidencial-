@@ -31,6 +31,8 @@ var metas_cumplidas: Dictionary = {}  # id de meta interna -> turno (data/metas.
 var indices_sector: Dictionary = {}  # categoría -> índice sectorial 0..100 (movimiento interno ajustar_sector)
 var asesores: Array[String] = []  # ids de asesores contratados (data/asesores.json)
 var bono_mov: Dictionary = {"aprobacion": 0, "asesores": 0}  # movimientos extra del turno por aprobación y asesores
+var coalicion: Dictionary = {}  # id de partido aliado -> {satisfaccion, ministros[], asesores[]} (data/coalicion.json)
+var apoyo_coalicion: Dictionary = {"senado": 0, "camara": 0}  # escaños aliados que votan con el gobierno
 var delegadas_turno: int = 0  # cartas delegadas en el turno (máximo en leyes.json › delegacion)
 var internos_actual: int = 0  # movimientos internos disponibles en el turno (solo gobierno)
 
@@ -75,6 +77,8 @@ func configurar(p_semilla: int, p_dias_turno: int = 7, p_leyes: Dictionary = {})
 	indices_sector.clear()
 	asesores.clear()
 	bono_mov = {"aprobacion": 0, "asesores": 0}
+	coalicion.clear()
+	apoyo_coalicion = {"senado": 0, "camara": 0}
 	delegadas_turno = 0
 	internos_actual = 0
 	aprobacion_regional.clear()
@@ -156,6 +160,8 @@ func exportar_resumen() -> Dictionary:
 		"indices_sector": indices_sector.duplicate(),
 		"asesores": asesores.duplicate(),
 		"bono_mov": bono_mov.duplicate(),
+		"coalicion": coalicion.duplicate(true),
+		"apoyo_coalicion": apoyo_coalicion.duplicate(),
 		"delegadas_turno": delegadas_turno,
 		"internos_actual": internos_actual,
 		"indicadores": indicadores.duplicate(true),

@@ -51,6 +51,7 @@ func fijar_movimientos() -> void:
 	e.pa_actual = e.pa_maximo + int(e.bono_mov["aprobacion"]) + int(e.bono_mov["asesores"])
 	if e.etapa == "gobierno":
 		m.equipo.efectos_amanecer()
+		m.coalicion.amanecer()
 
 
 func _cobrar(costo: int) -> Dictionary:

@@ -20,6 +20,7 @@ var cartas := MotorCartas.new(self)
 var gabinete := MotorGabinete.new(self)
 var mazo := MotorMazo.new(self)
 var equipo := MotorEquipo.new(self)
+var coalicion := MotorCoalicion.new(self)
 var movimientos := MotorMovimientos.new(self)
 var eventos := MotorEventos.new(self)
 var ultimos_eventos: Array[Dictionary] = []
@@ -52,6 +53,7 @@ func inicializar(p_estado: EstadoSimulacion, p_cartas: Array, p_eventos: Array, 
 	sectra.cargar(p_extra.get("sectra", {}))
 	movimientos.cargar(p_extra.get("metas", []))
 	equipo.cargar(p_extra.get("asesores", []))
+	coalicion.cargar(p_extra.get("coalicion", []))
 	if estado.gabinete.is_empty():
 		estado.gabinete = gabinete.por_defecto()
 	if estado.indicadores.is_empty():
@@ -208,3 +210,7 @@ func contratar_asesor(id: String) -> Dictionary: return equipo.contratar(id)
 
 
 func despedir_asesor(id: String) -> Dictionary: return equipo.despedir(id)
+func unirse_coalicion(id: String) -> Dictionary: return coalicion.unirse(id)
+func salir_coalicion(id: String) -> Dictionary: return coalicion.salir(id)
+func asignar_cuota(id: String, tipo: String, valor: String) -> Dictionary: return coalicion.asignar_cuota(id, tipo, valor)
+func quitar_cuota(id: String, tipo: String, valor: String) -> Dictionary: return coalicion.asignar_cuota(id, tipo, valor, true)

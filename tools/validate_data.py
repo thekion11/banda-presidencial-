@@ -205,6 +205,23 @@ def validar_asesores(asesores: list, cartas: list, ids_fuentes: set) -> None:
                 raise ValueError(f"{ctx}: el efecto {'positivo' if signo > 0 else 'negativo'} tiene el signo contrario")
 
 
+def validar_coalicion(partidos: list, cartas: list, leyes: dict, ids_fuentes: set) -> None:
+    unicos(partidos, "coalicion")
+    cats = {c["categoria"] for c in cartas}
+    mx = leyes["coalicion"]["max_aliados"]
+    if not 1 <= mx <= len(partidos):
+        raise ValueError("coalicion: max_aliados fuera de rango")
+    for p in partidos:
+        ctx = f"partido aliado {p['id']}"
+        verificar_ref_fuente(p, ids_fuentes, ctx)
+        if p["peticion"]["categoria_carta"] not in cats:
+            raise ValueError(f"{ctx}: categoria_carta sin cartas")
+        if p["peticion"]["ministerios"] < 0 or p["peticion"]["asesores"] < 0:
+            raise ValueError(f"{ctx}: petición negativa")
+    if sum(p["escanos_senado"] for p in partidos) > leyes["hemiciclo"]["total_senadores"] // 2:
+        raise ValueError("coalicion: los aliados suman demasiados senadores")
+
+
 def validar_eventos(eventos: list, ids_fuentes: set, tipos: set, dias_mandato: int) -> None:
     unicos(eventos, "eventos")
     for e in eventos:
@@ -383,6 +400,9 @@ def main() -> int:
     datos["asesores"] = cargar_json("asesores.json")
     validar_schema("asesores.json", datos["asesores"])
     validar_asesores(datos["asesores"], datos["cartas"], ids_fuentes)
+    datos["coalicion"] = cargar_json("coalicion.json")
+    validar_schema("coalicion.json", datos["coalicion"])
+    validar_coalicion(datos["coalicion"], datos["cartas"], datos["leyes"], ids_fuentes)
     datos["eventos"] = datos["eventos"] + json.loads((DATA_DIR / "juego_eventos_reales.json").read_text(encoding="utf-8"))
     validar_eventos(datos["eventos"], ids_fuentes, tipos, datos["leyes"]["hemiciclo"]["duracion_mandato_dias"])
     validar_ideologia(datos["ideologia"])
