@@ -9,7 +9,7 @@ Al integrar la rama principal comprobé qué de la Auditoría 2 ya estaba correg
 | N2 títulos truncados/duplicados | **Resuelto** | 0 de 1.276 con «…» y 0 duplicados (generador con `recortar` y `unico`). |
 | N7 réplicas de partidos | **Mitigado** | `data/partidos` excluido del paquete; coalición mínima sin `real_ref`. Falta revisión legal. |
 | N9 CLAUDE.md | **Resuelto** | §4 describe movimientos, gabinete de 8 y los tests v2. |
-| M2 targets táctiles | **Corregido aquí** | `panel_comite.gd`: botones 2D/3D de 36 → `Tema.TACTIL` (44) de alto; sliders de ritmo/cobertura de 32 → 44. Insignia (36) y badge (32) son decorativos, no botones: se dejan. |
+| M2 targets táctiles | **Corregido** (la rama principal lo hizo en paralelo, d241d9e, con prueba que lo exige) | Botones 2D/3D y sliders del Comité a 44 px. Insignia (36) y badge (32) son decorativos, no botones: se dejan. |
 | Fuente de 9 pt | **Corregido aquí** | `urbano_base.gd:165-177`: rótulos de lugares del mapa a 10 pt (mínimo de CLAUDE.md) y caja de colisión 12 → 13 px. |
 | N3 cartas con efectos genéricos | **Abierto** | Requiere decisión de diseño (curar efectos por materia o reducir el número de cartas): no se cambia balance sin acuerdo. |
 | N4 anacronismo de estado | **Abierto** | Requiere decidir si se congela el estado a la fecha de inicio. |
