@@ -6999,7 +6999,7 @@
    "sector": "vial",
    "region_id": "antofagasta",
    "estado_real": "licitacion",
-   "inversion_musd": null,
+   "inversion_musd": 70.5,
    "mandante": "MOP / Gobierno Regional de Antofagasta",
    "verificado_hecho": false,
    "verificado": false,
@@ -7023,12 +7023,12 @@
    },
    {
     "ind": "fiscal",
-    "delta": -1.0
+    "delta": -0.5
    }
   ],
   "obra": {
    "nombre": "Mejoramiento Ruta 23-CH sector Calama - San Pedro de Atacama (dos tramos",
-   "dias_totales": 100
+   "dias_totales": 104
   },
   "arte": "obras_vial"
  },
@@ -7146,7 +7146,7 @@
    "sector": "edificacion",
    "region_id": "antofagasta",
    "estado_real": "licitacion",
-   "inversion_musd": null,
+   "inversion_musd": 43.2,
    "mandante": "Municipalidad de Calama / Gobierno Regional de Antofagasta",
    "verificado_hecho": false,
    "verificado": false,
@@ -7170,12 +7170,12 @@
    },
    {
     "ind": "fiscal",
-    "delta": -1.0
+    "delta": -0.5
    }
   ],
   "obra": {
    "nombre": "Reposición con Relocalización Edificio Consistorial, Calama",
-   "dias_totales": 100
+   "dias_totales": 98
   },
   "arte": "obras_edificacion"
  },
@@ -7243,7 +7243,7 @@
    "sector": "agua",
    "region_id": "araucania",
    "estado_real": "ejecucion",
-   "inversion_musd": null,
+   "inversion_musd": 2.7,
    "mandante": "MOP Dirección de Obras Hidráulicas",
    "verificado_hecho": false,
    "verificado": false,
@@ -7267,7 +7267,7 @@
    },
    {
     "ind": "fiscal",
-    "delta": -1.0
+    "delta": -0.5
    }
   ],
   "obra": {
@@ -7337,7 +7337,7 @@
    "sector": "puertos",
    "region_id": "araucania",
    "estado_real": "ejecucion",
-   "inversion_musd": null,
+   "inversion_musd": 10.5,
    "mandante": "MOP Dirección de Obras Portuarias",
    "verificado_hecho": false,
    "verificado": false,
@@ -7361,7 +7361,7 @@
    },
    {
     "ind": "fiscal",
-    "delta": -1.0
+    "delta": -0.5
    }
   ],
   "obra": {
@@ -7386,7 +7386,7 @@
    "sector": "salud",
    "region_id": "araucania",
    "estado_real": "ejecucion",
-   "inversion_musd": null,
+   "inversion_musd": 2.7,
    "mandante": "Servicio de Salud Araucanía Norte",
    "verificado_hecho": false,
    "verificado": false,
@@ -7410,7 +7410,7 @@
    },
    {
     "ind": "fiscal",
-    "delta": -1.0
+    "delta": -0.5
    }
   ],
   "obra": {
@@ -7435,7 +7435,7 @@
    "sector": "salud",
    "region_id": "araucania",
    "estado_real": "licitacion",
-   "inversion_musd": null,
+   "inversion_musd": 5.3,
    "mandante": "Servicio de Salud Araucanía Sur / Municipalidad de Temuco",
    "verificado_hecho": false,
    "verificado": false,
@@ -7459,12 +7459,12 @@
    },
    {
     "ind": "fiscal",
-    "delta": -1.0
+    "delta": -0.5
    }
   ],
   "obra": {
    "nombre": "Nuevo Cesfam Amanecer, Temuco",
-   "dias_totales": 100
+   "dias_totales": 91
   },
   "arte": "salud_hospitales"
  },
@@ -7484,7 +7484,7 @@
    "sector": "vial",
    "region_id": "araucania",
    "estado_real": "ejecucion",
-   "inversion_musd": null,
+   "inversion_musd": 10.5,
    "mandante": "MOP Dirección de Vialidad",
    "verificado_hecho": false,
    "verificado": false,
@@ -7508,7 +7508,7 @@
    },
    {
     "ind": "fiscal",
-    "delta": -1.0
+    "delta": -0.5
    }
   ],
   "obra": {
@@ -7533,7 +7533,7 @@
    "sector": "agua",
    "region_id": "araucania",
    "estado_real": "ejecucion",
-   "inversion_musd": null,
+   "inversion_musd": 4.2,
    "mandante": "MOP Dirección de Obras Hidráulicas",
    "verificado_hecho": false,
    "verificado": false,
@@ -7557,7 +7557,7 @@
    },
    {
     "ind": "fiscal",
-    "delta": -1.0
+    "delta": -0.5
    }
   ],
   "obra": {
@@ -7631,7 +7631,7 @@
    "sector": "vial",
    "region_id": "araucania",
    "estado_real": "licitacion",
-   "inversion_musd": null,
+   "inversion_musd": 13.0,
    "mandante": "MOP Dirección de Vialidad",
    "verificado_hecho": false,
    "verificado": false,
@@ -7655,12 +7655,12 @@
    },
    {
     "ind": "fiscal",
-    "delta": -1.0
+    "delta": -0.5
    }
   ],
   "obra": {
    "nombre": "Reposición Puente Malleco y accesos (Ruta R-152)",
-   "dias_totales": 100
+   "dias_totales": 92
   },
   "arte": "obras_vial"
  },
@@ -7680,7 +7680,7 @@
    "sector": "agua",
    "region_id": "araucania",
    "estado_real": "diseno",
-   "inversion_musd": null,
+   "inversion_musd": 42.1,
    "mandante": "MOP Dirección de Obras Hidráulicas",
    "verificado_hecho": false,
    "verificado": false,
@@ -7704,12 +7704,12 @@
    },
    {
     "ind": "fiscal",
-    "delta": -1.0
+    "delta": -0.5
    }
   ],
   "obra": {
    "nombre": "Sistema integral APR Boyeco, Panco, Collimallin, Mañiuco y Pajal",
-   "dias_totales": 100
+   "dias_totales": 98
   },
   "arte": "medioambiente_agua"
  },
@@ -8410,7 +8410,7 @@
    "sector": "salud",
    "region_id": "atacama",
    "estado_real": "terminado",
-   "inversion_musd": null,
+   "inversion_musd": 10.5,
    "mandante": "Gobierno Regional de Atacama",
    "verificado_hecho": false,
    "verificado": false,
@@ -8455,7 +8455,7 @@
    "sector": "puertos",
    "region_id": "atacama",
    "estado_real": "ejecucion",
-   "inversion_musd": null,
+   "inversion_musd": 2.4,
    "mandante": "MOP Dirección de Obras Portuarias (convenio con GORE Atacama)",
    "verificado_hecho": false,
    "verificado": false,
@@ -8479,7 +8479,7 @@
    },
    {
     "ind": "fiscal",
-    "delta": -1.0
+    "delta": -0.5
    }
   ],
   "obra": {
@@ -8504,7 +8504,7 @@
    "sector": "seguridad",
    "region_id": "atacama",
    "estado_real": "ejecucion",
-   "inversion_musd": null,
+   "inversion_musd": 2.3,
    "mandante": "Gobierno Regional de Atacama",
    "verificado_hecho": false,
    "verificado": false,
@@ -8528,7 +8528,7 @@
    },
    {
     "ind": "fiscal",
-    "delta": -1.0
+    "delta": -0.5
    }
   ],
   "obra": {
@@ -8553,7 +8553,7 @@
    "sector": "vivienda_urbana",
    "region_id": "atacama",
    "estado_real": "terminado",
-   "inversion_musd": null,
+   "inversion_musd": 0.8,
    "mandante": "Gobierno Regional de Atacama (unidad técnica SERVIU)",
    "verificado_hecho": false,
    "verificado": false,
@@ -8695,7 +8695,7 @@
    "sector": "transporte",
    "region_id": "atacama",
    "estado_real": "perfil",
-   "inversion_musd": null,
+   "inversion_musd": 12.5,
    "mandante": "Gobierno Regional de Atacama / Municipalidad de Tierra Amarilla",
    "verificado_hecho": false,
    "verificado": false,
@@ -8719,12 +8719,12 @@
    },
    {
     "ind": "fiscal",
-    "delta": -1.0
+    "delta": -0.5
    }
   ],
   "obra": {
    "nombre": "Programa Subsidio de Conectividad al Transporte Público Rural en Tierra Amarilla",
-   "dias_totales": 100
+   "dias_totales": 92
   }
  },
  {
@@ -8743,7 +8743,7 @@
    "sector": "transporte",
    "region_id": "atacama",
    "estado_real": "diseno",
-   "inversion_musd": null,
+   "inversion_musd": 19.1,
    "mandante": "Gobierno Regional de Atacama / Subsecretaría de Transportes",
    "verificado_hecho": false,
    "verificado": false,
@@ -8767,12 +8767,12 @@
    },
    {
     "ind": "fiscal",
-    "delta": -1.0
+    "delta": -0.5
    }
   ],
   "obra": {
    "nombre": "Proyecto de 17 buses eléctricos estándar RED para Caldera",
-   "dias_totales": 100
+   "dias_totales": 93
   }
  },
  {
@@ -8791,7 +8791,7 @@
    "sector": "agua",
    "region_id": "atacama",
    "estado_real": "ejecucion",
-   "inversion_musd": null,
+   "inversion_musd": 0.6,
    "mandante": "Gobierno Regional de Atacama / Nueva Atacama",
    "verificado_hecho": false,
    "verificado": false,
@@ -8815,7 +8815,7 @@
    },
    {
     "ind": "fiscal",
-    "delta": -1.0
+    "delta": -0.5
    }
   ],
   "obra": {
@@ -8840,7 +8840,7 @@
    "sector": "salud",
    "region_id": "atacama",
    "estado_real": "licitacion",
-   "inversion_musd": null,
+   "inversion_musd": 26.3,
    "mandante": "Servicio de Salud Atacama (financia Gobierno Regional)",
    "verificado_hecho": false,
    "verificado": false,
@@ -8864,12 +8864,12 @@
    },
    {
     "ind": "fiscal",
-    "delta": -1.0
+    "delta": -0.5
    }
   ],
   "obra": {
    "nombre": "Reposición CESFAM Dr. Bernardo Mellibovsky, Copiapó",
-   "dias_totales": 100
+   "dias_totales": 95
   },
   "arte": "salud_hospitales"
  },
@@ -8938,7 +8938,7 @@
    "sector": "aeropuertos",
    "region_id": "aysen",
    "estado_real": "ejecucion",
-   "inversion_musd": null,
+   "inversion_musd": 1.9,
    "mandante": "MOP Dirección de Aeropuertos",
    "verificado_hecho": false,
    "verificado": false,
@@ -8962,7 +8962,7 @@
    },
    {
     "ind": "fiscal",
-    "delta": -1.0
+    "delta": -0.5
    }
   ],
   "obra": {
@@ -9036,7 +9036,7 @@
    "sector": "salud",
    "region_id": "aysen",
    "estado_real": "terminado",
-   "inversion_musd": null,
+   "inversion_musd": 41.1,
    "mandante": "Ministerio de Salud / MOP",
    "verificado_hecho": false,
    "verificado": false,
@@ -9081,7 +9081,7 @@
    "sector": "seguridad",
    "region_id": "aysen",
    "estado_real": "ejecucion",
-   "inversion_musd": null,
+   "inversion_musd": 4.4,
    "mandante": "Gobierno Regional de Aysén / MOP Dirección de Arquitectura",
    "verificado_hecho": false,
    "verificado": false,
@@ -9105,7 +9105,7 @@
    },
    {
     "ind": "fiscal",
-    "delta": -1.0
+    "delta": -0.5
    }
   ],
   "obra": {
@@ -9130,7 +9130,7 @@
    "sector": "transporte",
    "region_id": "aysen",
    "estado_real": "ejecucion",
-   "inversion_musd": null,
+   "inversion_musd": 4.2,
    "mandante": "MOP Dirección de Arquitectura / Gobierno Regional de Aysén",
    "verificado_hecho": false,
    "verificado": false,
@@ -9154,7 +9154,7 @@
    },
    {
     "ind": "fiscal",
-    "delta": -1.0
+    "delta": -0.5
    }
   ],
   "obra": {
@@ -9178,7 +9178,7 @@
    "sector": "vial",
    "region_id": "aysen",
    "estado_real": "ejecucion",
-   "inversion_musd": null,
+   "inversion_musd": 73.7,
    "mandante": "MOP Dirección de Vialidad",
    "verificado_hecho": false,
    "verificado": false,
@@ -9202,7 +9202,7 @@
    },
    {
     "ind": "fiscal",
-    "delta": -1.0
+    "delta": -0.5
    }
   ],
   "obra": {
@@ -9227,7 +9227,7 @@
    "sector": "vial",
    "region_id": "aysen",
    "estado_real": "ejecucion",
-   "inversion_musd": null,
+   "inversion_musd": 842.1,
    "mandante": "MOP / Gobierno Regional de Aysén",
    "verificado_hecho": false,
    "verificado": false,
@@ -9239,7 +9239,7 @@
    "anio_desde": 1,
    "anio_hasta": 4,
    "evento": null,
-   "fiscal_min": null,
+   "fiscal_min": 55,
    "meta": null
   },
   "costo_pa": 2,
@@ -9251,7 +9251,7 @@
    },
    {
     "ind": "fiscal",
-    "delta": -1.0
+    "delta": -1.4
    }
   ],
   "obra": {
@@ -9276,7 +9276,7 @@
    "sector": "vial",
    "region_id": "aysen",
    "estado_real": "ejecucion",
-   "inversion_musd": null,
+   "inversion_musd": 42.1,
    "mandante": "MOP Dirección de Vialidad",
    "verificado_hecho": false,
    "verificado": false,
@@ -9300,7 +9300,7 @@
    },
    {
     "ind": "fiscal",
-    "delta": -1.0
+    "delta": -0.5
    }
   ],
   "obra": {
@@ -9325,7 +9325,7 @@
    "sector": "agua",
    "region_id": "aysen",
    "estado_real": "ejecucion",
-   "inversion_musd": null,
+   "inversion_musd": 7.0,
    "mandante": "MOP Dirección de Obras Hidráulicas",
    "verificado_hecho": false,
    "verificado": false,
@@ -9349,7 +9349,7 @@
    },
    {
     "ind": "fiscal",
-    "delta": -1.0
+    "delta": -0.5
    }
   ],
   "obra": {
@@ -9374,7 +9374,7 @@
    "sector": "energia",
    "region_id": "biobio",
    "estado_real": "ejecucion",
-   "inversion_musd": null,
+   "inversion_musd": 0.7,
    "mandante": "Gobierno Regional del Biobío",
    "verificado_hecho": false,
    "verificado": false,
@@ -9398,7 +9398,7 @@
    },
    {
     "ind": "fiscal",
-    "delta": -1.0
+    "delta": -0.5
    }
   ],
   "obra": {
@@ -9422,7 +9422,7 @@
    "sector": "edificacion",
    "region_id": "biobio",
    "estado_real": "ejecucion",
-   "inversion_musd": null,
+   "inversion_musd": 23.2,
    "mandante": "MOP Dirección de Arquitectura",
    "verificado_hecho": false,
    "verificado": false,
@@ -9446,7 +9446,7 @@
    },
    {
     "ind": "fiscal",
-    "delta": -1.0
+    "delta": -0.5
    }
   ],
   "obra": {
@@ -9471,7 +9471,7 @@
    "sector": "salud",
    "region_id": "biobio",
    "estado_real": "diseno",
-   "inversion_musd": null,
+   "inversion_musd": 8.4,
    "mandante": "Gobierno Regional del Biobío / Municipalidad de Los Ángeles / Servicio de Salud Biobío",
    "verificado_hecho": false,
    "verificado": false,
@@ -9495,12 +9495,12 @@
    },
    {
     "ind": "fiscal",
-    "delta": -1.0
+    "delta": -0.5
    }
   ],
   "obra": {
    "nombre": "Construcción Cesfam y red de alcantarillado sector Chacayal",
-   "dias_totales": 100
+   "dias_totales": 91
   },
   "arte": "salud_hospitales"
  },
@@ -9520,7 +9520,7 @@
    "sector": "salud",
    "region_id": "biobio",
    "estado_real": "idea",
-   "inversion_musd": null,
+   "inversion_musd": 1.1,
    "mandante": "Servicio de Salud Biobío / Gobierno Regional del Biobío",
    "verificado_hecho": false,
    "verificado": false,
@@ -9544,12 +9544,12 @@
    },
    {
     "ind": "fiscal",
-    "delta": -1.0
+    "delta": -0.5
    }
   ],
   "obra": {
    "nombre": "Hospital de Mulchén (estudio de prefactibilidad y terreno)",
-   "dias_totales": 100
+   "dias_totales": 90
   },
   "arte": "salud_hospitales"
  },
@@ -9569,7 +9569,7 @@
    "sector": "vial",
    "region_id": "biobio",
    "estado_real": "licitacion",
-   "inversion_musd": null,
+   "inversion_musd": 7.9,
    "mandante": "MOP Vialidad / Gobierno Regional del Biobío",
    "verificado_hecho": false,
    "verificado": false,
@@ -9593,12 +9593,12 @@
    },
    {
     "ind": "fiscal",
-    "delta": -1.0
+    "delta": -0.5
    }
   ],
   "obra": {
    "nombre": "Mejoramiento de la Gestión del Tránsito en la Ruta 160 (Tramo Manuel Rodríguez",
-   "dias_totales": 100
+   "dias_totales": 91
   },
   "arte": "obras_vial"
  },
@@ -9618,7 +9618,7 @@
    "sector": "edificacion",
    "region_id": "biobio",
    "estado_real": "ejecucion",
-   "inversion_musd": null,
+   "inversion_musd": 2.6,
    "mandante": "Municipalidad de Arauco / Gobierno Regional del Biobío",
    "verificado_hecho": false,
    "verificado": false,
@@ -9642,7 +9642,7 @@
    },
    {
     "ind": "fiscal",
-    "delta": -1.0
+    "delta": -0.5
    }
   ],
   "obra": {
@@ -9667,7 +9667,7 @@
    "sector": "edificacion",
    "region_id": "biobio",
    "estado_real": "licitacion",
-   "inversion_musd": null,
+   "inversion_musd": 1.3,
    "mandante": "Municipalidad de Laja / Gobierno Regional del Biobío",
    "verificado_hecho": false,
    "verificado": false,
@@ -9691,12 +9691,12 @@
    },
    {
     "ind": "fiscal",
-    "delta": -1.0
+    "delta": -0.5
    }
   ],
   "obra": {
    "nombre": "Modernización Mercado Municipal de Laja",
-   "dias_totales": 100
+   "dias_totales": 90
   },
   "arte": "obras_edificacion"
  },
@@ -9716,7 +9716,7 @@
    "sector": "salud",
    "region_id": "biobio",
    "estado_real": "prefactibilidad",
-   "inversion_musd": null,
+   "inversion_musd": 2.2,
    "mandante": "Servicio de Salud Talcahuano / Gobierno Regional del Biobío",
    "verificado_hecho": false,
    "verificado": false,
@@ -9740,12 +9740,12 @@
    },
    {
     "ind": "fiscal",
-    "delta": -1.0
+    "delta": -0.5
    }
   ],
   "obra": {
    "nombre": "Nuevo Hospital de Tomé",
-   "dias_totales": 100
+   "dias_totales": 90
   },
   "arte": "salud_hospitales"
  },
@@ -9765,7 +9765,7 @@
    "sector": "educacion",
    "region_id": "biobio",
    "estado_real": "diseno",
-   "inversion_musd": null,
+   "inversion_musd": 6.3,
    "mandante": "Gobierno Regional del Biobío / Municipalidad de Tucapel",
    "verificado_hecho": false,
    "verificado": false,
@@ -9789,12 +9789,12 @@
    },
    {
     "ind": "fiscal",
-    "delta": -1.0
+    "delta": -0.5
    }
   ],
   "obra": {
    "nombre": "Reconstrucción Liceo Manuel Alcázar de Tucapel",
-   "dias_totales": 100
+   "dias_totales": 91
   }
  },
  {
@@ -9813,7 +9813,7 @@
    "sector": "educacion",
    "region_id": "biobio",
    "estado_real": "ejecucion",
-   "inversion_musd": null,
+   "inversion_musd": 3.0,
    "mandante": "Municipalidad de Laja / Gobierno Regional del Biobío",
    "verificado_hecho": false,
    "verificado": false,
@@ -9837,7 +9837,7 @@
    },
    {
     "ind": "fiscal",
-    "delta": -1.0
+    "delta": -0.5
    }
   ],
   "obra": {
@@ -9861,7 +9861,7 @@
    "sector": "edificacion",
    "region_id": "biobio",
    "estado_real": "licitacion",
-   "inversion_musd": null,
+   "inversion_musd": 17.0,
    "mandante": "Gobierno Regional del Biobío",
    "verificado_hecho": false,
    "verificado": false,
@@ -9885,12 +9885,12 @@
    },
    {
     "ind": "fiscal",
-    "delta": -1.0
+    "delta": -0.5
    }
   ],
   "obra": {
    "nombre": "Reposición Mercado Central de Talcahuano",
-   "dias_totales": 100
+   "dias_totales": 93
   },
   "arte": "obras_edificacion"
  },
@@ -9910,7 +9910,7 @@
    "sector": "seguridad",
    "region_id": "biobio",
    "estado_real": "licitacion",
-   "inversion_musd": null,
+   "inversion_musd": 2.6,
    "mandante": "Gobierno Regional del Biobío / Municipalidad de San Pedro de la Paz",
    "verificado_hecho": false,
    "verificado": false,
@@ -9934,12 +9934,12 @@
    },
    {
     "ind": "fiscal",
-    "delta": -1.0
+    "delta": -0.5
    }
   ],
   "obra": {
    "nombre": "Reposición Primera Compañía de Bomberos de San Pedro de la Paz",
-   "dias_totales": 100
+   "dias_totales": 90
   },
   "arte": "seguridad_carceles"
  },
@@ -9959,7 +9959,7 @@
    "sector": "agua",
    "region_id": "biobio",
    "estado_real": "ejecucion",
-   "inversion_musd": null,
+   "inversion_musd": 1.2,
    "mandante": "Gobierno Regional del Biobío / Municipalidad de Mulchén",
    "verificado_hecho": false,
    "verificado": false,
@@ -9983,7 +9983,7 @@
    },
    {
     "ind": "fiscal",
-    "delta": -1.0
+    "delta": -0.5
    }
   ],
   "obra": {
@@ -10250,7 +10250,7 @@
    "sector": "salud",
    "region_id": "coquimbo",
    "estado_real": "ejecucion",
-   "inversion_musd": null,
+   "inversion_musd": 168.4,
    "mandante": "Ministerio de Salud / Servicio de Salud Coquimbo",
    "verificado_hecho": false,
    "verificado": false,
@@ -10274,7 +10274,7 @@
    },
    {
     "ind": "fiscal",
-    "delta": -1.0
+    "delta": -0.5
    }
   ],
   "obra": {
@@ -10542,7 +10542,7 @@
    "sector": "vial",
    "region_id": "loslagos",
    "estado_real": "ejecucion",
-   "inversion_musd": null,
+   "inversion_musd": 63.2,
    "mandante": "MOP Dirección de Vialidad",
    "verificado_hecho": false,
    "verificado": false,
@@ -10566,7 +10566,7 @@
    },
    {
     "ind": "fiscal",
-    "delta": -1.0
+    "delta": -0.5
    }
   ],
   "obra": {
@@ -10591,7 +10591,7 @@
    "sector": "vivienda_urbana",
    "region_id": "loslagos",
    "estado_real": "ejecucion",
-   "inversion_musd": null,
+   "inversion_musd": 10.3,
    "mandante": "MOP Dirección de Obras Portuarias",
    "verificado_hecho": false,
    "verificado": false,
@@ -10615,7 +10615,7 @@
    },
    {
     "ind": "fiscal",
-    "delta": -1.0
+    "delta": -0.5
    }
   ],
   "obra": {
@@ -10639,7 +10639,7 @@
    "sector": "puertos",
    "region_id": "loslagos",
    "estado_real": "terminado",
-   "inversion_musd": null,
+   "inversion_musd": 8.8,
    "mandante": "MOP Dirección de Obras Portuarias",
    "verificado_hecho": false,
    "verificado": false,
@@ -10684,7 +10684,7 @@
    "sector": "aeropuertos",
    "region_id": "loslagos",
    "estado_real": "licitacion",
-   "inversion_musd": null,
+   "inversion_musd": 1.6,
    "mandante": "MOP Dirección de Aeropuertos",
    "verificado_hecho": false,
    "verificado": false,
@@ -10708,12 +10708,12 @@
    },
    {
     "ind": "fiscal",
-    "delta": -1.0
+    "delta": -0.5
    }
   ],
   "obra": {
    "nombre": "Conservación global de pequeños aeródromos de Chiloé 2026-2027",
-   "dias_totales": 100
+   "dias_totales": 90
   },
   "arte": "transportes_aeropuertos"
  },
@@ -10733,7 +10733,7 @@
    "sector": "transporte",
    "region_id": "loslagos",
    "estado_real": "diseno",
-   "inversion_musd": null,
+   "inversion_musd": 11.8,
    "mandante": "Gobierno Regional de Los Lagos / SERVIU",
    "verificado_hecho": false,
    "verificado": false,
@@ -10757,12 +10757,12 @@
    },
    {
     "ind": "fiscal",
-    "delta": -1.0
+    "delta": -0.5
    }
   ],
   "obra": {
    "nombre": "Construcción ascensores interterrazas de Puerto Montt",
-   "dias_totales": 100
+   "dias_totales": 92
   }
  },
  {
@@ -10829,7 +10829,7 @@
    "sector": "vial",
    "region_id": "loslagos",
    "estado_real": "terminado",
-   "inversion_musd": null,
+   "inversion_musd": 4.0,
    "mandante": "MOP Dirección de Vialidad (financia Gobierno Regional)",
    "verificado_hecho": false,
    "verificado": false,
@@ -10874,7 +10874,7 @@
    "sector": "transporte",
    "region_id": "losrios",
    "estado_real": "ejecucion",
-   "inversion_musd": null,
+   "inversion_musd": 7.1,
    "mandante": "MOP Dirección de Obras Portuarias",
    "verificado_hecho": false,
    "verificado": false,
@@ -10898,7 +10898,7 @@
    },
    {
     "ind": "fiscal",
-    "delta": -1.0
+    "delta": -0.5
    }
   ],
   "obra": {
@@ -10922,7 +10922,7 @@
    "sector": "vial",
    "region_id": "losrios",
    "estado_real": "ejecucion",
-   "inversion_musd": null,
+   "inversion_musd": 13.6,
    "mandante": "MOP Dirección de Vialidad / Gobierno Regional de Los Ríos",
    "verificado_hecho": false,
    "verificado": false,
@@ -10946,7 +10946,7 @@
    },
    {
     "ind": "fiscal",
-    "delta": -1.0
+    "delta": -0.5
    }
   ],
   "obra": {
@@ -10971,7 +10971,7 @@
    "sector": "vial",
    "region_id": "losrios",
    "estado_real": "ejecucion",
-   "inversion_musd": null,
+   "inversion_musd": 17.2,
    "mandante": "MOP Dirección de Vialidad",
    "verificado_hecho": false,
    "verificado": false,
@@ -10995,7 +10995,7 @@
    },
    {
     "ind": "fiscal",
-    "delta": -1.0
+    "delta": -0.5
    }
   ],
   "obra": {
@@ -11020,7 +11020,7 @@
    "sector": "vial",
    "region_id": "losrios",
    "estado_real": "ejecucion",
-   "inversion_musd": null,
+   "inversion_musd": 34.7,
    "mandante": "MOP Dirección de Vialidad",
    "verificado_hecho": false,
    "verificado": false,
@@ -11044,7 +11044,7 @@
    },
    {
     "ind": "fiscal",
-    "delta": -1.0
+    "delta": -0.5
    }
   ],
   "obra": {
@@ -11069,7 +11069,7 @@
    "sector": "vial",
    "region_id": "losrios",
    "estado_real": "licitacion",
-   "inversion_musd": null,
+   "inversion_musd": 33.7,
    "mandante": "MOP Dirección de Vialidad",
    "verificado_hecho": false,
    "verificado": false,
@@ -11093,12 +11093,12 @@
    },
    {
     "ind": "fiscal",
-    "delta": -1.0
+    "delta": -0.5
    }
   ],
   "obra": {
    "nombre": "Mejoramiento y pavimentación Ruta T-60 Camino Viejo a La Unión, tramo 2",
-   "dias_totales": 100
+   "dias_totales": 96
   },
   "arte": "obras_vial"
  },
@@ -11118,7 +11118,7 @@
    "sector": "vivienda_urbana",
    "region_id": "losrios",
    "estado_real": "ejecucion",
-   "inversion_musd": null,
+   "inversion_musd": 5.8,
    "mandante": "MOP Dirección de Obras Portuarias",
    "verificado_hecho": false,
    "verificado": false,
@@ -11142,7 +11142,7 @@
    },
    {
     "ind": "fiscal",
-    "delta": -1.0
+    "delta": -0.5
    }
   ],
   "obra": {
@@ -11166,7 +11166,7 @@
    "sector": "seguridad",
    "region_id": "losrios",
    "estado_real": "perfil",
-   "inversion_musd": null,
+   "inversion_musd": 8.9,
    "mandante": "Gobierno Regional de Los Ríos / MOP Dirección de Arquitectura",
    "verificado_hecho": false,
    "verificado": false,
@@ -11190,12 +11190,12 @@
    },
    {
     "ind": "fiscal",
-    "delta": -1.0
+    "delta": -0.5
    }
   ],
   "obra": {
    "nombre": "Nuevo cuartel de la PDI en La Unión",
-   "dias_totales": 100
+   "dias_totales": 91
   },
   "arte": "seguridad_carceles"
  },
@@ -11215,7 +11215,7 @@
    "sector": "vial",
    "region_id": "losrios",
    "estado_real": "ejecucion",
-   "inversion_musd": null,
+   "inversion_musd": 21.0,
    "mandante": "MOP Dirección de Vialidad",
    "verificado_hecho": false,
    "verificado": false,
@@ -11239,7 +11239,7 @@
    },
    {
     "ind": "fiscal",
-    "delta": -1.0
+    "delta": -0.5
    }
   ],
   "obra": {
@@ -11264,7 +11264,7 @@
    "sector": "educacion",
    "region_id": "magallanes",
    "estado_real": "licitacion",
-   "inversion_musd": null,
+   "inversion_musd": 0.6,
    "mandante": "Gobierno Regional de Magallanes",
    "verificado_hecho": false,
    "verificado": false,
@@ -11288,12 +11288,12 @@
    },
    {
     "ind": "fiscal",
-    "delta": -1.0
+    "delta": -0.5
    }
   ],
   "obra": {
    "nombre": "Conservación Escuela España, Punta Arenas",
-   "dias_totales": 100
+   "dias_totales": 90
   }
  },
  {
@@ -11312,7 +11312,7 @@
    "sector": "vial",
    "region_id": "magallanes",
    "estado_real": "licitacion",
-   "inversion_musd": null,
+   "inversion_musd": 26.5,
    "mandante": "Gobierno Regional de Magallanes",
    "verificado_hecho": false,
    "verificado": false,
@@ -11336,12 +11336,12 @@
    },
    {
     "ind": "fiscal",
-    "delta": -1.0
+    "delta": -0.5
    }
   ],
   "obra": {
    "nombre": "Construcción Avda. Circunvalación, Tramo Pedro Bórquez – Gral. del Canto",
-   "dias_totales": 100
+   "dias_totales": 95
   },
   "arte": "obras_vial"
  },
@@ -11410,7 +11410,7 @@
    "sector": "agua",
    "region_id": "magallanes",
    "estado_real": "ejecucion",
-   "inversion_musd": null,
+   "inversion_musd": 6.1,
    "mandante": "Dirección de Obras Hidráulicas (MOP) / Gobierno Regional",
    "verificado_hecho": false,
    "verificado": false,
@@ -11434,7 +11434,7 @@
    },
    {
     "ind": "fiscal",
-    "delta": -1.0
+    "delta": -0.5
    }
   ],
   "obra": {
@@ -11508,7 +11508,7 @@
    "sector": "agua",
    "region_id": "magallanes",
    "estado_real": "licitacion",
-   "inversion_musd": null,
+   "inversion_musd": 2.5,
    "mandante": "Gobierno Regional de Magallanes",
    "verificado_hecho": false,
    "verificado": false,
@@ -11532,12 +11532,12 @@
    },
    {
     "ind": "fiscal",
-    "delta": -1.0
+    "delta": -0.5
    }
   ],
   "obra": {
    "nombre": "Mejoramiento Red de Agua Potable, Puerto Williams",
-   "dias_totales": 100
+   "dias_totales": 90
   },
   "arte": "medioambiente_agua"
  },
@@ -11557,7 +11557,7 @@
    "sector": "vial",
    "region_id": "magallanes",
    "estado_real": "ejecucion",
-   "inversion_musd": null,
+   "inversion_musd": 22.3,
    "mandante": "MOP Dirección de Vialidad",
    "verificado_hecho": false,
    "verificado": false,
@@ -11581,7 +11581,7 @@
    },
    {
     "ind": "fiscal",
-    "delta": -1.0
+    "delta": -0.5
    }
   ],
   "obra": {
@@ -11655,7 +11655,7 @@
    "sector": "agua",
    "region_id": "magallanes",
    "estado_real": "diseno",
-   "inversion_musd": null,
+   "inversion_musd": 0.4,
    "mandante": "Gobierno Regional de Magallanes",
    "verificado_hecho": false,
    "verificado": false,
@@ -11679,12 +11679,12 @@
    },
    {
     "ind": "fiscal",
-    "delta": -1.0
+    "delta": -0.5
    }
   ],
   "obra": {
    "nombre": "Reposición y Actualización Red de Alcantarillado y PTAS, Villa Punta Delgada",
-   "dias_totales": 100
+   "dias_totales": 90
   },
   "arte": "medioambiente_agua"
  },
@@ -11704,7 +11704,7 @@
    "sector": "agua",
    "region_id": "maule",
    "estado_real": "diseno",
-   "inversion_musd": null,
+   "inversion_musd": 1.4,
    "mandante": "MOP, Programa Agua Potable Rural",
    "verificado_hecho": false,
    "verificado": false,
@@ -11728,12 +11728,12 @@
    },
    {
     "ind": "fiscal",
-    "delta": -1.0
+    "delta": -0.5
    }
   ],
   "obra": {
    "nombre": "APR Molino-Ventana del Alto a Santa Laura de Teno",
-   "dias_totales": 100
+   "dias_totales": 90
   },
   "arte": "medioambiente_agua"
  },
@@ -11753,7 +11753,7 @@
    "sector": "agua",
    "region_id": "maule",
    "estado_real": "diseno",
-   "inversion_musd": null,
+   "inversion_musd": 2.7,
    "mandante": "MOP, Programa Agua Potable Rural",
    "verificado_hecho": false,
    "verificado": false,
@@ -11777,12 +11777,12 @@
    },
    {
     "ind": "fiscal",
-    "delta": -1.0
+    "delta": -0.5
    }
   ],
   "obra": {
    "nombre": "APR Pejerrey-Los Hualles",
-   "dias_totales": 100
+   "dias_totales": 90
   },
   "arte": "medioambiente_agua"
  },
@@ -11802,7 +11802,7 @@
    "sector": "aeropuertos",
    "region_id": "maule",
    "estado_real": "prefactibilidad",
-   "inversion_musd": null,
+   "inversion_musd": 0.5,
    "mandante": "MOP / GORE Maule",
    "verificado_hecho": false,
    "verificado": false,
@@ -11826,12 +11826,12 @@
    },
    {
     "ind": "fiscal",
-    "delta": -1.0
+    "delta": -0.5
    }
   ],
   "obra": {
    "nombre": "Estudio Aeropuerto internacional de carga del Maule",
-   "dias_totales": 100
+   "dias_totales": 90
   },
   "arte": "transportes_aeropuertos"
  },
@@ -11851,7 +11851,7 @@
    "sector": "puertos",
    "region_id": "maule",
    "estado_real": "diseno",
-   "inversion_musd": null,
+   "inversion_musd": 108.2,
    "mandante": "MOP Dirección de Obras Portuarias / GORE Maule",
    "verificado_hecho": false,
    "verificado": false,
@@ -11875,12 +11875,12 @@
    },
    {
     "ind": "fiscal",
-    "delta": -1.0
+    "delta": -0.5
    }
   ],
   "obra": {
    "nombre": "Master Plan de Bordes Costeros y Caletas 2026-2035",
-   "dias_totales": 100
+   "dias_totales": 111
   },
   "arte": "economia_puertos"
  },
@@ -11900,7 +11900,7 @@
    "sector": "salud",
    "region_id": "maule",
    "estado_real": "diseno",
-   "inversion_musd": null,
+   "inversion_musd": 22.1,
    "mandante": "MOP (mandatado) / Servicio de Salud del Maule",
    "verificado_hecho": false,
    "verificado": false,
@@ -11924,12 +11924,12 @@
    },
    {
     "ind": "fiscal",
-    "delta": -1.0
+    "delta": -0.5
    }
   ],
   "obra": {
    "nombre": "Nuevo Hospital de Licantén",
-   "dias_totales": 100
+   "dias_totales": 94
   },
   "arte": "salud_hospitales"
  },
@@ -12288,7 +12288,7 @@
    "sector": "salud",
    "region_id": "metropolitana",
    "estado_real": "terminado",
-   "inversion_musd": null,
+   "inversion_musd": 8.2,
    "mandante": "Servicio de Salud Metropolitano Sur / Minsal",
    "verificado_hecho": false,
    "verificado": false,
@@ -12427,7 +12427,7 @@
    "sector": "seguridad",
    "region_id": "metropolitana",
    "estado_real": "terminado",
-   "inversion_musd": null,
+   "inversion_musd": 15.8,
    "mandante": "Gobierno Regional / MOP / Carabineros",
    "verificado_hecho": false,
    "verificado": false,
@@ -12472,7 +12472,7 @@
    "sector": "vial",
    "region_id": "metropolitana",
    "estado_real": "ejecucion",
-   "inversion_musd": null,
+   "inversion_musd": 0.9,
    "mandante": "Gobierno Regional Metropolitano / Municipalidad de Santiago",
    "verificado_hecho": false,
    "verificado": false,
@@ -12496,7 +12496,7 @@
    },
    {
     "ind": "fiscal",
-    "delta": -1.0
+    "delta": -0.5
    }
   ],
   "obra": {
@@ -13792,7 +13792,7 @@
    "sector": "agua",
    "region_id": "metropolitana",
    "estado_real": "diseno",
-   "inversion_musd": null,
+   "inversion_musd": 18.5,
    "mandante": "MOP / SERVIU RM / Gobierno Regional Metropolitano",
    "verificado_hecho": false,
    "verificado": false,
@@ -13816,12 +13816,12 @@
    },
    {
     "ind": "fiscal",
-    "delta": -1.0
+    "delta": -0.5
    }
   ],
   "obra": {
    "nombre": "Convenio Aceleración de Infraestructura de Aguas Lluvias RM 2025-2030",
-   "dias_totales": 100
+   "dias_totales": 93
   },
   "arte": "medioambiente_agua"
  },
@@ -13841,7 +13841,7 @@
    "sector": "seguridad",
    "region_id": "metropolitana",
    "estado_real": "terminado",
-   "inversion_musd": null,
+   "inversion_musd": 10.5,
    "mandante": "Gobierno Regional Metropolitano / MOP",
    "verificado_hecho": false,
    "verificado": false,
@@ -13886,7 +13886,7 @@
    "sector": "seguridad",
    "region_id": "metropolitana",
    "estado_real": "terminado",
-   "inversion_musd": null,
+   "inversion_musd": 5.7,
    "mandante": "Gobierno Regional Metropolitano / MOP Arquitectura",
    "verificado_hecho": false,
    "verificado": false,
@@ -13979,7 +13979,7 @@
    "sector": "transporte",
    "region_id": "metropolitana",
    "estado_real": "terminado",
-   "inversion_musd": null,
+   "inversion_musd": 1.6,
    "mandante": "Gobierno Regional Metropolitano / Municipalidad de Pirque",
    "verificado_hecho": false,
    "verificado": false,
@@ -14023,7 +14023,7 @@
    "sector": "edificacion",
    "region_id": "metropolitana",
    "estado_real": "terminado",
-   "inversion_musd": null,
+   "inversion_musd": 8.6,
    "mandante": "Gobierno Regional Metropolitano",
    "verificado_hecho": false,
    "verificado": false,
@@ -14068,7 +14068,7 @@
    "sector": "edificacion",
    "region_id": "metropolitana",
    "estado_real": "ejecucion",
-   "inversion_musd": null,
+   "inversion_musd": 10.5,
    "mandante": "Gobierno Regional Metropolitano / Municipalidad de Melipilla",
    "verificado_hecho": false,
    "verificado": false,
@@ -14092,7 +14092,7 @@
    },
    {
     "ind": "fiscal",
-    "delta": -1.0
+    "delta": -0.5
    }
   ],
   "obra": {
@@ -14117,7 +14117,7 @@
    "sector": "salud",
    "region_id": "metropolitana",
    "estado_real": "diseno",
-   "inversion_musd": null,
+   "inversion_musd": 5.7,
    "mandante": "Gobierno Regional Metropolitano",
    "verificado_hecho": false,
    "verificado": false,
@@ -14141,12 +14141,12 @@
    },
    {
     "ind": "fiscal",
-    "delta": -1.0
+    "delta": -0.5
    }
   ],
   "obra": {
    "nombre": "Hospital Clínico Público Veterinario Regional",
-   "dias_totales": 100
+   "dias_totales": 91
   },
   "arte": "salud_hospitales"
  },
@@ -14166,7 +14166,7 @@
    "sector": "educacion",
    "region_id": "metropolitana",
    "estado_real": "terminado",
-   "inversion_musd": null,
+   "inversion_musd": 1.3,
    "mandante": "JUNJI",
    "verificado_hecho": false,
    "verificado": false,
@@ -14355,7 +14355,7 @@
    "sector": "vivienda_urbana",
    "region_id": "metropolitana",
    "estado_real": "ejecucion",
-   "inversion_musd": null,
+   "inversion_musd": 4.8,
    "mandante": "SUBDERE / Municipalidad de Santiago",
    "verificado_hecho": false,
    "verificado": false,
@@ -14379,7 +14379,7 @@
    },
    {
     "ind": "fiscal",
-    "delta": -1.0
+    "delta": -0.5
    }
   ],
   "obra": {
@@ -14499,7 +14499,7 @@
    "sector": "vivienda_urbana",
    "region_id": "metropolitana",
    "estado_real": "licitacion",
-   "inversion_musd": null,
+   "inversion_musd": 16.7,
    "mandante": "Gobierno Regional Metropolitano / Municipalidad de Renca",
    "verificado_hecho": false,
    "verificado": false,
@@ -14523,12 +14523,12 @@
    },
    {
     "ind": "fiscal",
-    "delta": -1.0
+    "delta": -0.5
    }
   ],
   "obra": {
    "nombre": "Mirador y Sendero Cerros de Renca",
-   "dias_totales": 100
+   "dias_totales": 93
   }
  },
  {
@@ -14694,7 +14694,7 @@
    "sector": "salud",
    "region_id": "metropolitana",
    "estado_real": "terminado",
-   "inversion_musd": null,
+   "inversion_musd": 10.2,
    "mandante": "Gobierno Regional Metropolitano / Municipalidad de Renca",
    "verificado_hecho": false,
    "verificado": false,
@@ -14788,7 +14788,7 @@
    "sector": "vivienda_urbana",
    "region_id": "metropolitana",
    "estado_real": "terminado",
-   "inversion_musd": null,
+   "inversion_musd": 7.5,
    "mandante": "Gobierno Regional Metropolitano",
    "verificado_hecho": false,
    "verificado": false,
@@ -14832,7 +14832,7 @@
    "sector": "vivienda_urbana",
    "region_id": "metropolitana",
    "estado_real": "ejecucion",
-   "inversion_musd": null,
+   "inversion_musd": 0.3,
    "mandante": "Gobierno Regional Metropolitano",
    "verificado_hecho": false,
    "verificado": false,
@@ -14856,7 +14856,7 @@
    },
    {
     "ind": "fiscal",
-    "delta": -1.0
+    "delta": -0.5
    }
   ],
   "obra": {
@@ -14880,7 +14880,7 @@
    "sector": "vivienda_urbana",
    "region_id": "metropolitana",
    "estado_real": "ejecucion",
-   "inversion_musd": null,
+   "inversion_musd": 22.1,
    "mandante": "SERVIU Metropolitano",
    "verificado_hecho": false,
    "verificado": false,
@@ -14904,7 +14904,7 @@
    },
    {
     "ind": "fiscal",
-    "delta": -1.0
+    "delta": -0.5
    }
   ],
   "obra": {
@@ -14928,7 +14928,7 @@
    "sector": "vivienda_urbana",
    "region_id": "metropolitana",
    "estado_real": "ejecucion",
-   "inversion_musd": null,
+   "inversion_musd": 43.1,
    "mandante": "Gobierno Regional Metropolitano",
    "verificado_hecho": false,
    "verificado": false,
@@ -14952,7 +14952,7 @@
    },
    {
     "ind": "fiscal",
-    "delta": -1.0
+    "delta": -0.5
    }
   ],
   "obra": {
@@ -14976,7 +14976,7 @@
    "sector": "vivienda_urbana",
    "region_id": "metropolitana",
    "estado_real": "licitacion",
-   "inversion_musd": null,
+   "inversion_musd": 23.5,
    "mandante": "Gobierno Regional Metropolitano",
    "verificado_hecho": false,
    "verificado": false,
@@ -15000,12 +15000,12 @@
    },
    {
     "ind": "fiscal",
-    "delta": -1.0
+    "delta": -0.5
    }
   ],
   "obra": {
    "nombre": "Paseo Fluvial Río Mapocho",
-   "dias_totales": 100
+   "dias_totales": 94
   }
  },
  {
@@ -15072,7 +15072,7 @@
    "sector": "edificacion",
    "region_id": "metropolitana",
    "estado_real": "licitacion",
-   "inversion_musd": null,
+   "inversion_musd": 0.2,
    "mandante": "Gobierno Regional Metropolitano / GAM",
    "verificado_hecho": false,
    "verificado": false,
@@ -15096,12 +15096,12 @@
    },
    {
     "ind": "fiscal",
-    "delta": -1.0
+    "delta": -0.5
    }
   ],
   "obra": {
    "nombre": "Remodelación Plaza Poniente del Centro Cultural GAM",
-   "dias_totales": 100
+   "dias_totales": 90
   },
   "arte": "obras_edificacion"
  },
@@ -15121,7 +15121,7 @@
    "sector": "vivienda_urbana",
    "region_id": "metropolitana",
    "estado_real": "ejecucion",
-   "inversion_musd": null,
+   "inversion_musd": 1.1,
    "mandante": "Gobierno Regional Metropolitano",
    "verificado_hecho": false,
    "verificado": false,
@@ -15145,7 +15145,7 @@
    },
    {
     "ind": "fiscal",
-    "delta": -1.0
+    "delta": -0.5
    }
   ],
   "obra": {
@@ -15169,7 +15169,7 @@
    "sector": "educacion",
    "region_id": "metropolitana",
    "estado_real": "ejecucion",
-   "inversion_musd": null,
+   "inversion_musd": 1.0,
    "mandante": "Facultad de Odontología, Universidad de Chile",
    "verificado_hecho": false,
    "verificado": false,
@@ -15193,7 +15193,7 @@
    },
    {
     "ind": "fiscal",
-    "delta": -1.0
+    "delta": -0.5
    }
   ],
   "obra": {
@@ -16436,7 +16436,7 @@
    "sector": "educacion",
    "region_id": "metropolitana",
    "estado_real": "terminado",
-   "inversion_musd": null,
+   "inversion_musd": 1.3,
    "mandante": "JUNJI",
    "verificado_hecho": false,
    "verificado": false,
@@ -16577,7 +16577,7 @@
    "sector": "transporte",
    "region_id": "metropolitana",
    "estado_real": "diseno",
-   "inversion_musd": null,
+   "inversion_musd": 7.6,
    "mandante": "Gobierno Regional Metropolitano",
    "verificado_hecho": false,
    "verificado": false,
@@ -16601,12 +16601,12 @@
    },
    {
     "ind": "fiscal",
-    "delta": -1.0
+    "delta": -0.5
    }
   ],
   "obra": {
    "nombre": "Tercer tramo de la Ciclovía Nueva Alameda",
-   "dias_totales": 100
+   "dias_totales": 91
   }
  },
  {
@@ -16870,7 +16870,7 @@
    "sector": "salud",
    "region_id": "nuble",
    "estado_real": "ejecucion",
-   "inversion_musd": null,
+   "inversion_musd": 263.2,
    "mandante": "Ministerio de Salud / Servicio de Salud Ñuble",
    "verificado_hecho": false,
    "verificado": false,
@@ -16894,7 +16894,7 @@
    },
    {
     "ind": "fiscal",
-    "delta": -1.0
+    "delta": -0.5
    }
   ],
   "obra": {
@@ -16919,7 +16919,7 @@
    "sector": "educacion",
    "region_id": "nuble",
    "estado_real": "ejecucion",
-   "inversion_musd": null,
+   "inversion_musd": 16.8,
    "mandante": "Gobierno Regional de Ñuble",
    "verificado_hecho": false,
    "verificado": false,
@@ -16943,7 +16943,7 @@
    },
    {
     "ind": "fiscal",
-    "delta": -1.0
+    "delta": -0.5
    }
   ],
   "obra": {
@@ -16967,7 +16967,7 @@
    "sector": "vial",
    "region_id": "nuble",
    "estado_real": "diseno",
-   "inversion_musd": null,
+   "inversion_musd": 4.2,
    "mandante": "MOP, Dirección de Vialidad",
    "verificado_hecho": false,
    "verificado": false,
@@ -16991,12 +16991,12 @@
    },
    {
     "ind": "fiscal",
-    "delta": -1.0
+    "delta": -0.5
    }
   ],
   "obra": {
    "nombre": "Puente Quillón-Bulnes sobre el río Itata (sector Cerro Negro)",
-   "dias_totales": 100
+   "dias_totales": 90
   },
   "arte": "obras_vial"
  },
@@ -17016,7 +17016,7 @@
    "sector": "vivienda_urbana",
    "region_id": "nuble",
    "estado_real": "diseno",
-   "inversion_musd": null,
+   "inversion_musd": 0.3,
    "mandante": "Gobierno Regional de Ñuble / Municipalidad de Quillón",
    "verificado_hecho": false,
    "verificado": false,
@@ -17040,12 +17040,12 @@
    },
    {
     "ind": "fiscal",
-    "delta": -1.0
+    "delta": -0.5
    }
   ],
   "obra": {
    "nombre": "Remodelación eje comercial de Quillón (calles El Roble, San Martín",
-   "dias_totales": 100
+   "dias_totales": 90
   }
  },
  {
@@ -17064,7 +17064,7 @@
    "sector": "vial",
    "region_id": "nuble",
    "estado_real": "ejecucion",
-   "inversion_musd": null,
+   "inversion_musd": 20.5,
    "mandante": "MOP, Dirección de Vialidad",
    "verificado_hecho": false,
    "verificado": false,
@@ -17088,7 +17088,7 @@
    },
    {
     "ind": "fiscal",
-    "delta": -1.0
+    "delta": -0.5
    }
   ],
   "obra": {
@@ -17161,7 +17161,7 @@
    "sector": "agua",
    "region_id": "nuble",
    "estado_real": "licitacion",
-   "inversion_musd": null,
+   "inversion_musd": 5.5,
    "mandante": "MOP, Dirección de Obras Hidráulicas",
    "verificado_hecho": false,
    "verificado": false,
@@ -17185,12 +17185,12 @@
    },
    {
     "ind": "fiscal",
-    "delta": -1.0
+    "delta": -0.5
    }
   ],
   "obra": {
    "nombre": "Servicio Sanitario Rural Las Cabras (nuevo)",
-   "dias_totales": 100
+   "dias_totales": 91
   },
   "arte": "medioambiente_agua"
  },
@@ -17210,7 +17210,7 @@
    "sector": "agua",
    "region_id": "nuble",
    "estado_real": "licitacion",
-   "inversion_musd": null,
+   "inversion_musd": 0.2,
    "mandante": "MOP, Dirección de Obras Hidráulicas",
    "verificado_hecho": false,
    "verificado": false,
@@ -17234,12 +17234,12 @@
    },
    {
     "ind": "fiscal",
-    "delta": -1.0
+    "delta": -0.5
    }
   ],
   "obra": {
    "nombre": "Sondaje para SSR Copihual",
-   "dias_totales": 100
+   "dias_totales": 90
   },
   "arte": "medioambiente_agua"
  },
@@ -17347,7 +17347,7 @@
    "sector": "edificacion",
    "region_id": "ohiggins",
    "estado_real": "licitacion",
-   "inversion_musd": null,
+   "inversion_musd": 12.2,
    "mandante": "MOP, Dirección de Arquitectura",
    "verificado_hecho": false,
    "verificado": false,
@@ -17371,12 +17371,12 @@
    },
    {
     "ind": "fiscal",
-    "delta": -1.0
+    "delta": -0.5
    }
   ],
   "obra": {
    "nombre": "Construcción Hogar de Adultos Mayores de Malloa",
-   "dias_totales": 100
+   "dias_totales": 92
   },
   "arte": "obras_edificacion"
  },
@@ -17396,7 +17396,7 @@
    "sector": "salud",
    "region_id": "ohiggins",
    "estado_real": "terminado",
-   "inversion_musd": null,
+   "inversion_musd": 15.5,
    "mandante": "Gobierno Regional de O'Higgins",
    "verificado_hecho": false,
    "verificado": false,
@@ -17441,7 +17441,7 @@
    "sector": "vial",
    "region_id": "ohiggins",
    "estado_real": "licitacion",
-   "inversion_musd": null,
+   "inversion_musd": 1.9,
    "mandante": "MOP, Dirección de Vialidad",
    "verificado_hecho": false,
    "verificado": false,
@@ -17465,12 +17465,12 @@
    },
    {
     "ind": "fiscal",
-    "delta": -1.0
+    "delta": -0.5
    }
   ],
   "obra": {
    "nombre": "Mejoramiento del camino H-634",
-   "dias_totales": 100
+   "dias_totales": 90
   },
   "arte": "obras_vial"
  },
@@ -17490,7 +17490,7 @@
    "sector": "vial",
    "region_id": "ohiggins",
    "estado_real": "licitacion",
-   "inversion_musd": null,
+   "inversion_musd": 14.7,
    "mandante": null,
    "verificado_hecho": false,
    "verificado": false,
@@ -17514,12 +17514,12 @@
    },
    {
     "ind": "fiscal",
-    "delta": -1.0
+    "delta": -0.5
    }
   ],
   "obra": {
    "nombre": "Mejoramiento y ampliación Avenida Baquedano, segunda etapa",
-   "dias_totales": 100
+   "dias_totales": 92
   },
   "arte": "obras_vial"
  },
@@ -17732,7 +17732,7 @@
    "sector": "vial",
    "region_id": "ohiggins",
    "estado_real": "licitacion",
-   "inversion_musd": null,
+   "inversion_musd": 4.7,
    "mandante": "MOP, Dirección de Vialidad",
    "verificado_hecho": false,
    "verificado": false,
@@ -17756,12 +17756,12 @@
    },
    {
     "ind": "fiscal",
-    "delta": -1.0
+    "delta": -0.5
    }
   ],
   "obra": {
    "nombre": "Reposición del Puente La Candelaria",
-   "dias_totales": 100
+   "dias_totales": 90
   },
   "arte": "obras_vial"
  },
@@ -17781,7 +17781,7 @@
    "sector": "educacion",
    "region_id": "ohiggins",
    "estado_real": "licitacion",
-   "inversion_musd": null,
+   "inversion_musd": 15.5,
    "mandante": "MOP, Dirección de Arquitectura",
    "verificado_hecho": false,
    "verificado": false,
@@ -17805,12 +17805,12 @@
    },
    {
     "ind": "fiscal",
-    "delta": -1.0
+    "delta": -0.5
    }
   ],
   "obra": {
    "nombre": "Reposición Liceo Claudio Arrau León",
-   "dias_totales": 100
+   "dias_totales": 93
   }
  },
  {
@@ -17829,7 +17829,7 @@
    "sector": "educacion",
    "region_id": "ohiggins",
    "estado_real": "licitacion",
-   "inversion_musd": null,
+   "inversion_musd": 13.4,
    "mandante": "MOP, Dirección de Arquitectura",
    "verificado_hecho": false,
    "verificado": false,
@@ -17853,12 +17853,12 @@
    },
    {
     "ind": "fiscal",
-    "delta": -1.0
+    "delta": -0.5
    }
   ],
   "obra": {
    "nombre": "Reposición Liceo San José del Carmen",
-   "dias_totales": 100
+   "dias_totales": 92
   }
  },
  {
@@ -17877,7 +17877,7 @@
    "sector": "edificacion",
    "region_id": "ohiggins",
    "estado_real": "licitacion",
-   "inversion_musd": null,
+   "inversion_musd": 1.7,
    "mandante": "MOP, Dirección de Arquitectura",
    "verificado_hecho": false,
    "verificado": false,
@@ -17901,12 +17901,12 @@
    },
    {
     "ind": "fiscal",
-    "delta": -1.0
+    "delta": -0.5
    }
   ],
   "obra": {
    "nombre": "Reposición Primera Compañía de Bomberos de Malloa",
-   "dias_totales": 100
+   "dias_totales": 90
   },
   "arte": "obras_edificacion"
  },
@@ -17926,7 +17926,7 @@
    "sector": "seguridad",
    "region_id": "ohiggins",
    "estado_real": "licitacion",
-   "inversion_musd": null,
+   "inversion_musd": 2.5,
    "mandante": "MOP, Dirección de Arquitectura",
    "verificado_hecho": false,
    "verificado": false,
@@ -17950,12 +17950,12 @@
    },
    {
     "ind": "fiscal",
-    "delta": -1.0
+    "delta": -0.5
    }
   ],
   "obra": {
    "nombre": "Reposición Retén de Carabineros de Los Lirios",
-   "dias_totales": 100
+   "dias_totales": 90
   },
   "arte": "seguridad_carceles"
  },
@@ -17975,7 +17975,7 @@
    "sector": "agua",
    "region_id": "ohiggins",
    "estado_real": "licitacion",
-   "inversion_musd": null,
+   "inversion_musd": 8.1,
    "mandante": "MOP, Servicios Sanitarios Rurales",
    "verificado_hecho": false,
    "verificado": false,
@@ -17999,12 +17999,12 @@
    },
    {
     "ind": "fiscal",
-    "delta": -1.0
+    "delta": -0.5
    }
   ],
   "obra": {
    "nombre": "SSR Codegua - Chimbarongo",
-   "dias_totales": 100
+   "dias_totales": 91
   },
   "arte": "medioambiente_agua"
  },
@@ -18024,7 +18024,7 @@
    "sector": "agua",
    "region_id": "ohiggins",
    "estado_real": "licitacion",
-   "inversion_musd": null,
+   "inversion_musd": 7.4,
    "mandante": "MOP, Servicios Sanitarios Rurales",
    "verificado_hecho": false,
    "verificado": false,
@@ -18048,12 +18048,12 @@
    },
    {
     "ind": "fiscal",
-    "delta": -1.0
+    "delta": -0.5
    }
   ],
   "obra": {
    "nombre": "SSR El Caleuche - San Roberto - San Luis",
-   "dias_totales": 100
+   "dias_totales": 91
   },
   "arte": "medioambiente_agua"
  },
@@ -18166,7 +18166,7 @@
    "sector": "seguridad",
    "region_id": "tarapaca",
    "estado_real": "diseno",
-   "inversion_musd": null,
+   "inversion_musd": 30.7,
    "mandante": "Servicio Nacional de Aduanas (financia Gobierno Regional de Tarapacá)",
    "verificado_hecho": false,
    "verificado": false,
@@ -18190,12 +18190,12 @@
    },
    {
     "ind": "fiscal",
-    "delta": -1.0
+    "delta": -0.5
    }
   ],
   "obra": {
    "nombre": "Construcción nueva avanzada aduanera cerca del Río Loa",
-   "dias_totales": 100
+   "dias_totales": 96
   },
   "arte": "seguridad_carceles"
  },
@@ -18749,7 +18749,7 @@
    "sector": "educacion",
    "region_id": "valparaiso",
    "estado_real": "terminado",
-   "inversion_musd": null,
+   "inversion_musd": 1.1,
    "mandante": "SLEP Valparaíso",
    "verificado_hecho": false,
    "verificado": false,
@@ -18842,7 +18842,7 @@
    "sector": "salud",
    "region_id": "valparaiso",
    "estado_real": "terminado",
-   "inversion_musd": null,
+   "inversion_musd": 157.9,
    "mandante": null,
    "verificado_hecho": false,
    "verificado": false,
@@ -18932,7 +18932,7 @@
    "sector": "salud",
    "region_id": "valparaiso",
    "estado_real": "licitacion",
-   "inversion_musd": null,
+   "inversion_musd": 19.7,
    "mandante": "MOP, Dirección de Arquitectura",
    "verificado_hecho": false,
    "verificado": false,
@@ -18956,12 +18956,12 @@
    },
    {
     "ind": "fiscal",
-    "delta": -1.0
+    "delta": -0.5
    }
   ],
   "obra": {
    "nombre": "Nuevo Instituto Teletón Valparaíso",
-   "dias_totales": 100
+   "dias_totales": 93
   },
   "arte": "salud_hospitales"
  },
@@ -19275,7 +19275,7 @@
    "sector": "seguridad",
    "region_id": "valparaiso",
    "estado_real": "ejecucion",
-   "inversion_musd": null,
+   "inversion_musd": 7.4,
    "mandante": "MOP, Dirección de Arquitectura",
    "verificado_hecho": false,
    "verificado": false,
@@ -19299,7 +19299,7 @@
    },
    {
     "ind": "fiscal",
-    "delta": -1.0
+    "delta": -0.5
    }
   ],
   "obra": {
@@ -19372,7 +19372,7 @@
    "sector": "seguridad",
    "region_id": "valparaiso",
    "estado_real": "ejecucion",
-   "inversion_musd": null,
+   "inversion_musd": 5.2,
    "mandante": "MOP, Dirección de Arquitectura",
    "verificado_hecho": false,
    "verificado": false,
@@ -19396,7 +19396,7 @@
    },
    {
     "ind": "fiscal",
-    "delta": -1.0
+    "delta": -0.5
    }
   ],
   "obra": {
@@ -21863,7 +21863,7 @@
    "sector": "edificacion",
    "region_id": "ohiggins",
    "estado_real": "ejecucion",
-   "inversion_musd": null,
+   "inversion_musd": 10.9,
    "mandante": "Dirección de Arquitectura",
    "verificado_hecho": false,
    "verificado": false,
@@ -21887,7 +21887,7 @@
    },
    {
     "ind": "fiscal",
-    "delta": -1.0
+    "delta": -0.5
    }
   ],
   "obra": {
@@ -21912,7 +21912,7 @@
    "sector": "edificacion",
    "region_id": "arica",
    "estado_real": "ejecucion",
-   "inversion_musd": null,
+   "inversion_musd": 9.8,
    "mandante": "Dirección de Arquitectura",
    "verificado_hecho": false,
    "verificado": false,
@@ -21936,7 +21936,7 @@
    },
    {
     "ind": "fiscal",
-    "delta": -1.0
+    "delta": -0.5
    }
   ],
   "obra": {
@@ -21961,7 +21961,7 @@
    "sector": "puertos",
    "region_id": "magallanes",
    "estado_real": "ejecucion",
-   "inversion_musd": null,
+   "inversion_musd": 13.2,
    "mandante": "Dirección de Obras Portuarias",
    "verificado_hecho": false,
    "verificado": false,
@@ -21985,7 +21985,7 @@
    },
    {
     "ind": "fiscal",
-    "delta": -1.0
+    "delta": -0.5
    }
   ],
   "obra": {
@@ -22010,7 +22010,7 @@
    "sector": "puertos",
    "region_id": "arica",
    "estado_real": "ejecucion",
-   "inversion_musd": null,
+   "inversion_musd": 3.9,
    "mandante": "Dirección de Obras Portuarias",
    "verificado_hecho": false,
    "verificado": false,
@@ -22034,7 +22034,7 @@
    },
    {
     "ind": "fiscal",
-    "delta": -1.0
+    "delta": -0.5
    }
   ],
   "obra": {
@@ -22059,7 +22059,7 @@
    "sector": "agua",
    "region_id": "antofagasta",
    "estado_real": "ejecucion",
-   "inversion_musd": null,
+   "inversion_musd": 3.0,
    "mandante": "Dirección de Obras Hidráulicas",
    "verificado_hecho": false,
    "verificado": false,
@@ -22083,7 +22083,7 @@
    },
    {
     "ind": "fiscal",
-    "delta": -1.0
+    "delta": -0.5
    }
   ],
   "obra": {
@@ -22108,7 +22108,7 @@
    "sector": "vial",
    "region_id": "atacama",
    "estado_real": "ejecucion",
-   "inversion_musd": null,
+   "inversion_musd": 7.1,
    "mandante": "Dirección de Vialidad",
    "verificado_hecho": false,
    "verificado": false,
@@ -22132,7 +22132,7 @@
    },
    {
     "ind": "fiscal",
-    "delta": -1.0
+    "delta": -0.5
    }
   ],
   "obra": {
@@ -22157,7 +22157,7 @@
    "sector": "agua",
    "region_id": "coquimbo",
    "estado_real": "ejecucion",
-   "inversion_musd": null,
+   "inversion_musd": 3.3,
    "mandante": "Dirección de Obras Hidráulicas",
    "verificado_hecho": false,
    "verificado": false,
@@ -22181,7 +22181,7 @@
    },
    {
     "ind": "fiscal",
-    "delta": -1.0
+    "delta": -0.5
    }
   ],
   "obra": {
@@ -22206,7 +22206,7 @@
    "sector": "vial",
    "region_id": "magallanes",
    "estado_real": "ejecucion",
-   "inversion_musd": null,
+   "inversion_musd": 15.6,
    "mandante": "Dirección de Vialidad",
    "verificado_hecho": false,
    "verificado": false,
@@ -22230,7 +22230,7 @@
    },
    {
     "ind": "fiscal",
-    "delta": -1.0
+    "delta": -0.5
    }
   ],
   "obra": {
@@ -22255,7 +22255,7 @@
    "sector": "edificacion",
    "region_id": "coquimbo",
    "estado_real": "ejecucion",
-   "inversion_musd": null,
+   "inversion_musd": 2.8,
    "mandante": "Dirección de Arquitectura",
    "verificado_hecho": false,
    "verificado": false,
@@ -22279,7 +22279,7 @@
    },
    {
     "ind": "fiscal",
-    "delta": -1.0
+    "delta": -0.5
    }
   ],
   "obra": {
@@ -22304,7 +22304,7 @@
    "sector": "agua",
    "region_id": "atacama",
    "estado_real": "ejecucion",
-   "inversion_musd": null,
+   "inversion_musd": 1.3,
    "mandante": "Dirección de Obras Hidráulicas",
    "verificado_hecho": false,
    "verificado": false,
@@ -22328,7 +22328,7 @@
    },
    {
     "ind": "fiscal",
-    "delta": -1.0
+    "delta": -0.5
    }
   ],
   "obra": {
@@ -22353,7 +22353,7 @@
    "sector": "aeropuertos",
    "region_id": "loslagos",
    "estado_real": "ejecucion",
-   "inversion_musd": null,
+   "inversion_musd": 8.7,
    "mandante": "Dirección de Aeropuertos",
    "verificado_hecho": false,
    "verificado": false,
@@ -22377,7 +22377,7 @@
    },
    {
     "ind": "fiscal",
-    "delta": -1.0
+    "delta": -0.5
    }
   ],
   "obra": {
@@ -22402,7 +22402,7 @@
    "sector": "vial",
    "region_id": "ohiggins",
    "estado_real": "ejecucion",
-   "inversion_musd": null,
+   "inversion_musd": 7.8,
    "mandante": "Dirección de Vialidad",
    "verificado_hecho": false,
    "verificado": false,
@@ -22426,7 +22426,7 @@
    },
    {
     "ind": "fiscal",
-    "delta": -1.0
+    "delta": -0.5
    }
   ],
   "obra": {
@@ -22451,7 +22451,7 @@
    "sector": "vial",
    "region_id": "loslagos",
    "estado_real": "ejecucion",
-   "inversion_musd": null,
+   "inversion_musd": 211.1,
    "mandante": "Dirección de Vialidad",
    "verificado_hecho": false,
    "verificado": false,
@@ -22475,7 +22475,7 @@
    },
    {
     "ind": "fiscal",
-    "delta": -1.0
+    "delta": -0.5
    }
   ],
   "obra": {
@@ -22500,7 +22500,7 @@
    "sector": "vial",
    "region_id": "maule",
    "estado_real": "ejecucion",
-   "inversion_musd": null,
+   "inversion_musd": 10.5,
    "mandante": "Dirección de Vialidad",
    "verificado_hecho": false,
    "verificado": false,
@@ -22524,7 +22524,7 @@
    },
    {
     "ind": "fiscal",
-    "delta": -1.0
+    "delta": -0.5
    }
   ],
   "obra": {
@@ -22598,7 +22598,7 @@
    "sector": "vial",
    "region_id": "aysen",
    "estado_real": "ejecucion",
-   "inversion_musd": null,
+   "inversion_musd": 12.9,
    "mandante": "Dirección de Vialidad",
    "verificado_hecho": false,
    "verificado": false,
@@ -22622,7 +22622,7 @@
    },
    {
     "ind": "fiscal",
-    "delta": -1.0
+    "delta": -0.5
    }
   ],
   "obra": {
@@ -22647,7 +22647,7 @@
    "sector": "aeropuertos",
    "region_id": "araucania",
    "estado_real": "diseno",
-   "inversion_musd": null,
+   "inversion_musd": 0.3,
    "mandante": "Dirección de Aeropuertos",
    "verificado_hecho": false,
    "verificado": false,
@@ -22671,12 +22671,12 @@
    },
    {
     "ind": "fiscal",
-    "delta": -1.0
+    "delta": -0.5
    }
   ],
   "obra": {
    "nombre": "Mejoramiento Integral Aeródromo de Victoria",
-   "dias_totales": 100
+   "dias_totales": 90
   },
   "arte": "transportes_aeropuertos"
  },
@@ -22696,7 +22696,7 @@
    "sector": "puertos",
    "region_id": "losrios",
    "estado_real": "ejecucion",
-   "inversion_musd": null,
+   "inversion_musd": 1.4,
    "mandante": "Dirección de Obras Portuarias",
    "verificado_hecho": false,
    "verificado": false,
@@ -22720,7 +22720,7 @@
    },
    {
     "ind": "fiscal",
-    "delta": -1.0
+    "delta": -0.5
    }
   ],
   "obra": {
@@ -22745,7 +22745,7 @@
    "sector": "aeropuertos",
    "region_id": "losrios",
    "estado_real": "ejecucion",
-   "inversion_musd": null,
+   "inversion_musd": 13.8,
    "mandante": "Dirección de Aeropuertos",
    "verificado_hecho": false,
    "verificado": false,
@@ -22769,7 +22769,7 @@
    },
    {
     "ind": "fiscal",
-    "delta": -1.0
+    "delta": -0.5
    }
   ],
   "obra": {
@@ -22794,7 +22794,7 @@
    "sector": "puertos",
    "region_id": "aysen",
    "estado_real": "ejecucion",
-   "inversion_musd": null,
+   "inversion_musd": 6.7,
    "mandante": "Dirección de Obras Portuarias",
    "verificado_hecho": false,
    "verificado": false,
@@ -22818,7 +22818,7 @@
    },
    {
     "ind": "fiscal",
-    "delta": -1.0
+    "delta": -0.5
    }
   ],
   "obra": {
@@ -22843,7 +22843,7 @@
    "sector": "vial",
    "region_id": "valparaiso",
    "estado_real": "ejecucion",
-   "inversion_musd": null,
+   "inversion_musd": 7.1,
    "mandante": "Direción de Vialdiad",
    "verificado_hecho": false,
    "verificado": false,
@@ -22867,7 +22867,7 @@
    },
    {
     "ind": "fiscal",
-    "delta": -1.0
+    "delta": -0.5
    }
   ],
   "obra": {
@@ -22892,7 +22892,7 @@
    "sector": "vial",
    "region_id": "metropolitana",
    "estado_real": "diseno",
-   "inversion_musd": null,
+   "inversion_musd": 0.8,
    "mandante": "Dirección de Vialidad",
    "verificado_hecho": false,
    "verificado": false,
@@ -22916,12 +22916,12 @@
    },
    {
     "ind": "fiscal",
-    "delta": -1.0
+    "delta": -0.5
    }
   ],
   "obra": {
    "nombre": "Mejoramiento Conectividad Segundo Acceso a Pirque",
-   "dias_totales": 100
+   "dias_totales": 90
   },
   "arte": "obras_vial"
  },
@@ -22941,7 +22941,7 @@
    "sector": "agua",
    "region_id": "valparaiso",
    "estado_real": "ejecucion",
-   "inversion_musd": null,
+   "inversion_musd": 2.8,
    "mandante": "Dirección de Obras Hidráulicas",
    "verificado_hecho": false,
    "verificado": false,
@@ -22965,7 +22965,7 @@
    },
    {
     "ind": "fiscal",
-    "delta": -1.0
+    "delta": -0.5
    }
   ],
   "obra": {
@@ -22990,7 +22990,7 @@
    "sector": "puertos",
    "region_id": "nuble",
    "estado_real": "ejecucion",
-   "inversion_musd": null,
+   "inversion_musd": 1.7,
    "mandante": "Dirección de Obras Portuarias",
    "verificado_hecho": false,
    "verificado": false,
@@ -23014,7 +23014,7 @@
    },
    {
     "ind": "fiscal",
-    "delta": -1.0
+    "delta": -0.5
    }
   ],
   "obra": {
@@ -23039,7 +23039,7 @@
    "sector": "edificacion",
    "region_id": "araucania",
    "estado_real": "ejecucion",
-   "inversion_musd": null,
+   "inversion_musd": 11.4,
    "mandante": "Dirección de Arquitectura",
    "verificado_hecho": false,
    "verificado": false,
@@ -23063,7 +23063,7 @@
    },
    {
     "ind": "fiscal",
-    "delta": -1.0
+    "delta": -0.5
    }
   ],
   "obra": {
@@ -23088,7 +23088,7 @@
    "sector": "edificacion",
    "region_id": "metropolitana",
    "estado_real": "ejecucion",
-   "inversion_musd": null,
+   "inversion_musd": 0.0,
    "mandante": "Dirección de Arquitectura",
    "verificado_hecho": false,
    "verificado": false,
@@ -23112,7 +23112,7 @@
    },
    {
     "ind": "fiscal",
-    "delta": -1.0
+    "delta": -0.5
    }
   ],
   "obra": {
@@ -23378,7 +23378,7 @@
    "sector": "vivienda_urbana",
    "region_id": "metropolitana",
    "estado_real": "terminado",
-   "inversion_musd": null,
+   "inversion_musd": 121.1,
    "mandante": "MINVU",
    "verificado_hecho": false,
    "verificado": false,
@@ -23422,7 +23422,7 @@
    "sector": "vivienda_urbana",
    "region_id": "loslagos",
    "estado_real": "diseno",
-   "inversion_musd": null,
+   "inversion_musd": 21.4,
    "mandante": "MINVU / GORE Los Lagos",
    "verificado_hecho": false,
    "verificado": false,
@@ -23446,12 +23446,12 @@
    },
    {
     "ind": "fiscal",
-    "delta": -1.0
+    "delta": -0.5
    }
   ],
   "obra": {
    "nombre": "Parque Metropolitano de Puerto Montt",
-   "dias_totales": 100
+   "dias_totales": 94
   }
  },
  {
@@ -23567,7 +23567,7 @@
    "sector": "plan_nacional",
    "region_id": null,
    "estado_real": "ejecucion",
-   "inversion_musd": null,
+   "inversion_musd": 385263.2,
    "mandante": "MOP",
    "verificado_hecho": false,
    "verificado": false,
@@ -23579,7 +23579,7 @@
    "anio_desde": 2,
    "anio_hasta": 4,
    "evento": null,
-   "fiscal_min": null,
+   "fiscal_min": 65,
    "meta": null
   },
   "costo_pa": 2,
@@ -23591,7 +23591,7 @@
    },
    {
     "ind": "fiscal",
-    "delta": -1.0
+    "delta": -2.0
    }
   ],
   "obra": {
@@ -23663,7 +23663,7 @@
    "sector": "plan_nacional",
    "region_id": "metropolitana",
    "estado_real": "idea",
-   "inversion_musd": null,
+   "inversion_musd": 43631.6,
    "mandante": "MOP",
    "verificado_hecho": false,
    "verificado": false,
@@ -23675,24 +23675,28 @@
    "anio_desde": 4,
    "anio_hasta": 4,
    "evento": null,
-   "fiscal_min": null,
+   "fiscal_min": 65,
    "meta": null
   },
-  "costo_pa": 2,
+  "costo_pa": 3,
   "titulo": "PNIP 2055: cartera Región Metropolitana",
   "efectos": [
    {
     "ind": "aprobacion",
-    "delta": 3
+    "delta": 4
    },
    {
     "ind": "fiscal",
-    "delta": -1.0
+    "delta": -2.0
+   },
+   {
+    "ind": "riesgo_ejecucion",
+    "delta": 1
    }
   ],
   "obra": {
    "nombre": "PNIP 2055: cartera Región Metropolitana",
-   "dias_totales": 100
+   "dias_totales": 240
   }
  },
  {

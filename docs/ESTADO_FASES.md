@@ -226,3 +226,10 @@ CI (workflow "CI", corrida 101, push 23-nov-2026 21:00 UTC): **success** — inc
 - `datos/proyectos-publicos` integrada: **494 proyectos públicos** (+264; 341 con `verificado:true` solo con dominio estatal); fuentes nuevas `curados_oficiales_2026` y `curados_prensa_2026`. Cartas regeneradas: **1.540** (494 proyectos públicos + 935 proyectos de ley + 109 reformas + 2 plebiscitos), `data/cartas_reales.json` 2,2 MB. Se ajustó `tools/cartas_util.py` (`recortar` ya no añade "…" y corta en límite de palabra) porque 10 títulos nuevos quedaban truncados.
 - Balance tras la integración (`test_balance`, n=60): codicioso 75 % gana elección, 0 % crisis; azar 15 %; pasivo 0 %. Suite completa y CI de este commit: ver más abajo.
 - Huecos que reporta la sesión de datos: educación débil (22; ninguna en 4 regiones del sur), energía y transporte pocos, vivienda SERVIU fuera de la RM, Maule; fechas de inicio/fin casi siempre null; mineduc.cl, subdere y camara.cl bloqueados.
+
+### Respuestas a la auditoría 3 (23-nov-2026, noche)
+- **N13 (arte sin archivo):** `validate_data.py` ahora avisa `[AVISO] Arte sin archivo…` con las claves de `arte` cuyo JPG no existe (hoy 22; las cartas usan el de su categoría). Tamaños: `estado.jpg` 1024×820 por decisión del usuario; las otras 14 son 512×410 hasta regenerarlas.
+- **N14 (inversión solo en CLP):** `tools/generar_cartas.py` convierte `inversion_clp` a US$ con `leyes.json › sectra.clp_por_usd` (950, ilustrativo y rotulado) igual que la UF; antes 142 proyectos se trataban como "sin inversión". 208 proyectos siguen sin ninguna inversión y usan los valores por defecto.
+- **N6:** `tools/informe_alcanzabilidad.py` se ejecuta ahora en el CI (falla si hay cartas inalcanzables).
+- **Cartas con ventana vencida:** al iniciar cada turno se refiltra la mano (`MotorMazo.refiltrar_mano`): las cartas cuya ventana (año, evento, dinero) terminó vuelven al descarte. Lo detectó `test_gabinete` al cambiar los datos.
+- Pendientes de otras sesiones: N15 (verificado_contra_texto de dato Servel provisorio) y N16 (interruptor `mano.continua` leído de datos), enviados a sus sesiones.

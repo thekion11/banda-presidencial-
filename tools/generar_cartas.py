@@ -28,11 +28,16 @@ def cargar_proyectos() -> list:
     return sorted(res, key=lambda p: p["id"])
 
 
+_CONV = json.load(open(D / "leyes.json", encoding="utf-8"))["sectra"]  # tipos de cambio ilustrativos (leyes.json › sectra)
+
+
 def musd(p: dict):
     if p.get("inversion_musd") is not None:
         return float(p["inversion_musd"])
     if p.get("inversion_uf") is not None:
-        return float(p["inversion_uf"]) * 41.0 / 1e6  # UF aproximada (leyes.json › sectra.uf_en_usd)
+        return float(p["inversion_uf"]) * float(_CONV["uf_en_usd"]) / 1e6
+    if p.get("inversion_clp") is not None:
+        return float(p["inversion_clp"]) / float(_CONV["clp_por_usd"]) / 1e6  # CLP aproximado: solo dimensiona el costo de la carta
     return None
 
 
