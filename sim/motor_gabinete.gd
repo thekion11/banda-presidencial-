@@ -116,12 +116,13 @@ func resolver_delegacion(carta: Dictionary, ministro_id: String) -> Dictionary:
 	var d: Dictionary = m.catalogo_leyes["delegacion"]
 	var mi: Dictionary = m.catalogo_ministros[ministro_id]
 	var p := prob_fallo(carta, ministro_id)
-	var res := {"fallo": false, "escandalo": false, "prob_fallo": p, "escala": 1.0}
+	var res := {"fallo": false, "escandalo": false, "anulada": false, "prob_fallo": p, "escala": 1.0}
 	if mi["categoria_afin"] == carta["categoria"]:
 		res["escala"] = 1.0 + float(mi["bono_ejecucion"])
 	if m.rng.randf() < p:
 		res["fallo"] = true
 		res["escala"] = float(res["escala"]) * float(d["escala_si_falla"])
+		res["anulada"] = m.rng.randf() < float(d["prob_anula_si_falla"])  # el ministro la deja sin hacer: la carta se pierde
 		if m.rng.randf() < float(d["prob_escandalo_si_falla"]):
 			res["escandalo"] = true
 			var esc: Dictionary = m.catalogo_leyes["escandalo"]

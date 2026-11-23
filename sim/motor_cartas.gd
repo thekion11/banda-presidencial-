@@ -132,6 +132,10 @@ func _jugar_en_gobierno(carta: Dictionary, ministro_id: String, region_id: Strin
 		res["fallo"] = d["fallo"]
 		res["escandalo"] = d["escandalo"]
 		res["prob_fallo"] = d["prob_fallo"]
+		res["anulada"] = d["anulada"]
+		if bool(d["anulada"]):
+			m.estado.registrar_accion("delegacion_anulada", {"carta": carta["id"], "ministro": ministro_id})
+			return res
 	elif ministro_id != "":
 		var mi: Dictionary = m.catalogo_ministros[ministro_id]
 		if mi["categoria_afin"] == carta["categoria"]:
