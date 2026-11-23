@@ -20,3 +20,12 @@ static func cargar_todo(base: String = "res://data/") -> Dictionary:
 	d["grafo"] = leer_json(base + "geo/grafo_urbano.json")
 	d["sectra"] = leer_json(base + "sectra_planes.json")
 	return d
+
+
+static func huella(d: Dictionary) -> String:
+	## SHA-256 de los datos que afectan al resultado de la simulación. Un guardado solo es reproducible con la misma huella.
+	var hc := HashingContext.new()
+	hc.start(HashingContext.HASH_SHA256)
+	for n in ["cartas", "eventos", "leyes", "ministros", "ideologia", "regiones", "propuestas", "sectra", "grafo"]:
+		hc.update(JSON.stringify(d.get(n, {}), "", true).to_utf8_buffer())
+	return hc.finish().hex_encode()

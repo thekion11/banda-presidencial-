@@ -64,7 +64,8 @@ func _iniciar_campana(partido: Dictionary) -> void:
 
 func continuar_guardado() -> void:
 	var g: Variant = Datos.leer_json(RUTA_GUARDADO)
-	if g == null:
+	if g == null or String(g.get("huella_datos", "")) != Datos.huella(datos):
+		push_warning("Guardado incompatible con esta versión de los datos: se descarta.")
 		mostrar_menu()
 		return
 	motor = Partida.reproducir(datos, g)
@@ -99,4 +100,4 @@ func guardar() -> void:
 		return
 	var f := FileAccess.open(RUTA_GUARDADO, FileAccess.WRITE)
 	if f != null:
-		f.store_string(JSON.stringify(motor.estado.exportar_guardado()))
+		f.store_string(JSON.stringify(motor.estado.exportar_guardado(Datos.huella(datos))))

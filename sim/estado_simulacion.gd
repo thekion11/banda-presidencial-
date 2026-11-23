@@ -143,9 +143,9 @@ func calcular_huella() -> String:
 	return JSON.stringify(exportar_resumen(), "", true, true).sha256_text()
 
 
-func exportar_guardado() -> Dictionary:
-	## Guardado por eventos: solo semilla, datos del partido e historial de entradas.
-	return {"version": 1, "semilla": semilla, "partido": partido.duplicate(true), "entradas": entradas.duplicate(true)}
+func exportar_guardado(huella_datos: String = "") -> Dictionary:
+	## Guardado por eventos: semilla, partido, historial de entradas y huella de los datos con que se jugó.
+	return {"version": 2, "huella_datos": huella_datos, "semilla": semilla, "partido": partido.duplicate(true), "entradas": entradas.duplicate(true)}
 
 
 func _ids_mano() -> Array:
