@@ -9,7 +9,8 @@ import re
 from collections import Counter, defaultdict
 from pathlib import Path
 
-from cartas_util import CATEGORIAS, anonimizar, categoria_proyecto_ley, disp_ley, disp_obra, h, recortar, resumir_titulo
+from cartas_efectos import efectos_y_costo
+from cartas_util import CATEGORIAS, anonimizar, categoria_proyecto_ley, disp_ley, disp_obra, h, recortar, resumir_titulo, unico
 
 ROOT = Path(__file__).resolve().parents[1]
 D = ROOT / "data"
@@ -41,19 +42,20 @@ def carta_obra(p: dict) -> dict:
     grande = inv is not None and inv >= 500
     est = p["estado"]
     fiscal = -1.0 if inv is None else -round(min(2.0, max(0.5, inv / 600.0)), 1)
+    hecho = bool(p.get("verificado")) and FUENTES.get(p["fuente"].split("#")[-1], {}).get("verificado_contra_texto") is not False
     meta = {"tipo": "proyecto_publico", "proyecto_id": p["id"], "region_id": p.get("region_id"), "estado_real": est,
             "inversion_musd": None if inv is None else round(inv, 1), "mandante": p.get("mandante"),
-            "verificado": bool(p.get("verificado")), "fuente_url": p.get("fuente_url"), "cifras_ilustrativas": True}
+            "verificado_hecho": hecho, "verificado": hecho, "fuente_url": p.get("fuente_url"), "cifras_ilustrativas": True}
     base = {"id": "real_obra_" + p["id"].replace("-", "_").replace(".", "_"), "categoria": SECTOR_CAT.get(p["sector"], "obras"),
             "requisitos": {"ley": None, "quorum": None}, "corrector": None, "abre_propuesta_comite": None, "fuente": p["fuente"], "meta": meta, "disponibilidad": None}
     if est == "terminado":
         meta["modo"] = "inauguracion"
         base["disponibilidad"] = disp_obra(p, inv, "inauguracion")
-        return dict(base, costo_pa=1, titulo=recortar("Inaugurar: " + p["nombre"]), efectos=[{"ind": "aprobacion", "delta": 1.5}, {"ind": "capital", "delta": 0.5}])
+        return dict(base, costo_pa=1, titulo="Inaugurar: " + recortar(p["nombre"], 49), efectos=[{"ind": "aprobacion", "delta": 1.5}, {"ind": "capital", "delta": 0.5}])
     if est == "ejecucion":
         meta["modo"] = "acelerar"
         base["disponibilidad"] = disp_obra(p, inv, "acelerar")
-        return dict(base, costo_pa=2, titulo=recortar("Acelerar: " + p["nombre"]), efectos=[{"ind": "aprobacion", "delta": 2.5}, {"ind": "fiscal", "delta": fiscal}],
+        return dict(base, costo_pa=2, titulo="Acelerar: " + recortar(p["nombre"], 50), efectos=[{"ind": "aprobacion", "delta": 2.5}, {"ind": "fiscal", "delta": fiscal}],
                     obra={"nombre": recortar(p["nombre"], 80), "dias_totales": 90})
     meta["modo"] = "obra"
     base["disponibilidad"] = disp_obra(p, inv, "obra")
@@ -68,47 +70,29 @@ def seleccionar_obras(proys: list) -> list:
     return [carta_obra(p) for p in proys]  # TODAS: el mazo limita cuántas circulan a la vez (leyes.json › mano.reales_en_mazo)
 
 
-# Efectos ilustrativos por ministerio (aprobación, capital político, cohesión, fiscal); se escalan por urgencia y tipo.
-FX_CAT = {"seguridad": (("aprobacion", 2.5), ("cohesion", -0.5)), "hacienda": (("fiscal", 1.0), ("aprobacion", 1.0)),
-          "social": (("aprobacion", 2.5), ("fiscal", -1.0)), "salud": (("aprobacion", 3.0), ("fiscal", -1.0)),
-          "educacion": (("aprobacion", 2.5), ("fiscal", -1.0)), "vivienda": (("aprobacion", 3.0), ("fiscal", -1.0)),
-          "energia": (("aprobacion", 1.5), ("fiscal", -0.5)), "economia": (("aprobacion", 1.5), ("capital", 0.5)),
-          "transportes": (("aprobacion", 2.0), ("fiscal", -0.5)), "medioambiente": (("aprobacion", 2.0), ("cohesion", 0.5)),
-          "descentralizacion": (("cohesion", 1.5), ("aprobacion", 1.0)), "politica": (("capital", 1.0), ("cohesion", 0.5)),
-          "obras": (("aprobacion", 2.0), ("fiscal", -0.5))}
 TIPO_LOC = "ley_organica_constitucional"
-
-
-def efectos_ley(cat: str, urg: bool, tipo: str, clave: str) -> list:
-    esc = 1.5 if urg else 1.0 + (h(clave) % 3) * 0.25  # 1.0 / 1.25 / 1.5
-    fx = [{"ind": i, "delta": round(d * esc * 2) / 2 if abs(d * esc) >= 1 else round(d * esc, 1)} for i, d in FX_CAT.get(cat, FX_CAT["politica"])]
-    fx.append({"ind": "capital", "delta": -1 if tipo == "ley_simple" else -2})
-    vistos, res = set(), []
-    for e in fx:  # un indicador no se repite
-        if e["ind"] not in vistos:
-            vistos.add(e["ind"])
-            res.append(e)
-    return res
+_TC = D / "bcn" / "titulos_cortos.json"  # resúmenes editoriales (≤ 55 car.) de los títulos legales; insumo curado
+TITULOS = json.load(open(_TC, encoding="utf-8"))["titulos"] if _TC.exists() else {}
+FUENTES = {f["id"]: f for f in json.load(open(D / "fuentes.json", encoding="utf-8"))}
 
 
 def carta_ley(b: dict, tipo: str, cat: str, fecha_corte: str, q: float, art=None) -> dict:
-    urg = b.get("urgencia_actual", "Sin urgencia") != "Sin urgencia"
     reforma = tipo == "reforma_constitucional"
-    costo = 3 if tipo != "ley_simple" else (1 if urg else 2)
+    efectos, costo = efectos_y_costo(b, tipo, cat)
     if reforma:
         nota = "4/7 de los miembros en ejercicio de cada Cámara (CPR art. 127, verificado contra el texto oficial)."
     else:
         nota = ("Quórum ilustrativo (mayoría absoluta de los miembros en ejercicio, CPR art. 66, sin verificar el contenido del boletín)." if tipo == TIPO_LOC
                 else "Quórum ilustrativo (mayoría simple): el quórum real depende del contenido del proyecto y no se verificó contra el texto oficial.")
     return {"id": "real_ley_" + b["boletin"].replace("-", "_"), "categoria": cat, "costo_pa": costo,
-            "titulo": resumir_titulo(b["titulo"]), "efectos": efectos_ley(cat, urg, tipo, b["boletin"]),
+            "titulo": TITULOS.get(b["boletin"]) or resumir_titulo(b["titulo"]), "efectos": efectos,
             "requisitos": {"ley": tipo, "quorum": tipo}, "corrector": None, "abre_propuesta_comite": None,
             "camara_origen": "senado" if "Senado" in b.get("camara_origen", "") else "camara",
             "fuente": "fuentes.json#senado_tramitacion", "disponibilidad": disp_ley(b, tipo, q),
             "meta": {"tipo": "reforma_constitucional" if reforma else "proyecto_de_ley", "boletin": b["boletin"],
                      "titulo_completo": anonimizar(b["titulo"]), "iniciativa": b.get("iniciativa"), "fecha_ingreso": b.get("fecha_ingreso"),
                      "estado_real": b["estado"], "etapa": b.get("etapa"), "urgencia": b.get("urgencia_actual"), "url": b.get("url_senado"),
-                     "articulo_afectado": art, "fecha_corte": fecha_corte, "verificado": bool(b.get("verificado")),
+                     "articulo_afectado": art, "fecha_corte": fecha_corte, "verificado_hecho": bool(b.get("verificado")), "verificado": bool(b.get("verificado")),
                      "quorum_verificado": reforma, "nota_quorum": nota, "cifras_ilustrativas": True}}
 
 
@@ -137,7 +121,7 @@ def cartas_plebiscitos(rp: dict) -> list:
                     "fuente": pr["fuente"] if pr["fuente"].startswith("fuentes.json#") else "fuentes.json#cpr_chile_2026",
                     "disponibilidad": {"anio_desde": 2, "anio_hasta": 4, "evento": None, "fiscal_min": None, "meta": None},
                     "meta": {"tipo": "propuesta_constitucional", "resultado": pr["resultado"], "url": pr.get("url"),
-                             "quorum_verificado": True, "cifras_ilustrativas": True}})
+                             "quorum_verificado": True, "verificado_hecho": False, "cifras_ilustrativas": True}})
     return res
 
 
@@ -168,6 +152,10 @@ def main() -> None:
     rp = json.load(open(D / "bcn" / "reformas_propuestas.json", encoding="utf-8"))
     cartas = seleccionar_obras(cargar_proyectos()) + cartas_leyes(bills, rp) + cartas_plebiscitos(rp)
     asignar_eventos_y_metas(cartas)
+    usados = set()
+    for c in cartas:
+        suf = c["meta"].get("boletin", "").split("-")[0] or (c["meta"].get("region_id") or c["id"][-6:])
+        c["titulo"] = unico(c["titulo"], usados, suf)
     ids = [c["id"] for c in cartas]
     assert len(ids) == len(set(ids)), "ids duplicados"
     assert all(len(c["titulo"]) <= 60 for c in cartas), "título > 60"

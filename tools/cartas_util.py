@@ -43,16 +43,48 @@ def h(clave: str) -> int:
     return zlib.crc32(clave.encode("utf-8"))
 
 
-def recortar(texto: str, n: int = 60) -> str:
+_FUERTES = [", ", " y ", " e ", " que ", " para ", " con el objeto", " con el fin", " a fin de", " en materia", " respecto", " cuando ", " sin "]
+_DEBILES = [" de la ", " del ", " de los ", " de las ", " de ", " en la ", " en el ", " en ", " con ", " por ", " sobre ", " a la ", " al ", " a "]
+
+
+def recortar(texto: str, n: int = 60, minimo: int = 24) -> str:
+    """Recorta a ≤ n caracteres en el último límite de frase (coma, 'y', 'que', 'para'…) o de sintagma ('de', 'en'…); no añade '…' salvo
+    como último recurso (sin ningún límite posible). Nunca corta a mitad de palabra ni termina en artículo/preposición."""
     texto = " ".join(texto.split())
     if len(texto) <= n:
         return texto
+    ventana = texto[: n + 1]
+    for delims in (_FUERTES, _DEBILES):
+        pos = max((ventana.rfind(d, minimo) for d in delims), default=-1)
+        if pos >= minimo:
+            corte = texto[:pos].rstrip(" ,.;:()-")
+            palabras = corte.split(" ")
+            while len(palabras) > 1 and palabras[-1].lower() in _VACIAS:
+                palabras.pop()
+            corte = " ".join(palabras)
+            if len(corte) >= minimo:
+                return corte
     palabras = texto[: n - 1].split(" ")
     if not texto[n - 1].isspace():
-        palabras = palabras[:-1]  # corta en palabra completa
+        palabras = palabras[:-1]
     while len(palabras) > 1 and palabras[-1].lower().strip(",.;:") in _VACIAS:
-        palabras.pop()  # no termina en artículo/preposición
+        palabras.pop()
     return " ".join(palabras).rstrip(" ,.;:()-") + "…"
+
+
+def unico(titulo: str, usados: set, sufijo: str, n: int = 60) -> str:
+    """Garantiza títulos únicos: si ya existe, recorta el original para dejar sitio a ' (sufijo)' (boletín corto o comuna)."""
+    if titulo not in usados:
+        usados.add(titulo)
+        return titulo
+    suf = f" ({sufijo})"
+    nuevo = recortar(titulo, n - len(suf)) + suf
+    k = 2
+    while nuevo in usados:
+        nuevo = recortar(titulo, n - len(suf) - 2) + f" {k}" + suf
+        k += 1
+    usados.add(nuevo)
+    return nuevo
 
 
 _PERSONA = re.compile(r"(?:\b(?:a la|al|a)\s+)?\b(?:señora|señor|señorita|doña|don)\s+[A-ZÁÉÍÓÚÑ].*$", re.U)
