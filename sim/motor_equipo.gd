@@ -57,7 +57,7 @@ func afinidad(id: String) -> float:
 
 func _factor(id: String, ef: Dictionary, positivo: bool) -> float:
 	## El efecto negativo se atenúa con la afinidad ideológica.
-	return 1.0 if positivo else 1.0 - float(_cfg()["mitigacion_afin"]) * afinidad(id)
+	return 1.0 if positivo else (1.0 - float(_cfg()["mitigacion_afin"]) * afinidad(id)) * float(_cfg()["escala_efecto_negativo"])
 
 
 func movimientos_extra() -> int:

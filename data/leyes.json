@@ -361,7 +361,8 @@
     "movimientos_extra": 1,
     "distancia_max": 2.0,
     "mitigacion_afin": 0.5,
-    "nota": "DISENO_V2 §9. Cada asesor da +movimientos_extra por turno (desde el siguiente amanecer) y un efecto positivo y uno negativo. La afinidad ideológica con el partido (distancia en ejes eco/inst) atenúa el efecto negativo hasta en mitigacion_afin. Cifras ilustrativas."
+    "nota": "DISENO_V2 §9. Cada asesor da +movimientos_extra por turno (desde el siguiente amanecer) y un efecto positivo y uno negativo. La afinidad ideológica con el partido (distancia en ejes eco/inst) atenúa el efecto negativo hasta en mitigacion_afin. Cifras ilustrativas.",
+    "escala_efecto_negativo": 1.0
   },
   "coalicion": {
     "max_aliados": 3,
