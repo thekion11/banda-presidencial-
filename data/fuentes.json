@@ -90,5 +90,72 @@
     "fecha_corte": "2026-11-23",
     "vigencia_dias": 365,
     "es_ilustrativa": true
+  },
+  {
+    "id": "cpr_texto_bcn_2025_10_07",
+    "institucion": "Biblioteca del Congreso Nacional (BCN Ley Chile)",
+    "titulo": "Constitución Política de la República - texto actualizado al 7 de octubre de 2025 (PDF oficial entregado por el equipo)",
+    "url": "https://www.bcn.cl/leychile/navegar?idNorma=242302",
+    "fecha_corte": "2025-10-07",
+    "vigencia_dias": 730,
+    "es_ilustrativa": false,
+    "verificado_contra_texto": true
+  },
+  {
+    "id": "bcn_leychile_pdf",
+    "institucion": "Biblioteca del Congreso Nacional (BCN Ley Chile)",
+    "titulo": "PDF oficiales de normas (Ley 20.955, DFL 1 Justicia 2000 Código Civil) entregados por el equipo",
+    "url": "https://www.bcn.cl/leychile/",
+    "fecha_corte": "2026-11-23",
+    "vigencia_dias": 365,
+    "es_ilustrativa": false,
+    "verificado_contra_texto": true
+  },
+  {
+    "id": "camara_opendata",
+    "institucion": "Cámara de Diputadas y Diputados - Open Data",
+    "titulo": "WSLegislativo: mensajes y mociones por año, proyectos por boletín",
+    "url": "https://opendata.camara.cl/camaradiputados/WServices/WSLegislativo.asmx",
+    "fecha_corte": "2026-11-23",
+    "vigencia_dias": 90,
+    "es_ilustrativa": false
+  },
+  {
+    "id": "senado_tramitacion",
+    "institucion": "Senado de la República - Tramitación",
+    "titulo": "Web service de tramitación de proyectos por boletín (estado, urgencia, ley, Diario Oficial)",
+    "url": "https://tramitacion.senado.cl/wspublico/tramitacion.php",
+    "fecha_corte": "2026-11-23",
+    "vigencia_dias": 90,
+    "es_ilustrativa": false
+  },
+  {
+    "id": "wikipedia_es",
+    "institucion": "Wikipedia en español (fuente secundaria)",
+    "titulo": "Artículos sobre elecciones, plebiscitos y cronologías; remiten a Servel y prensa. Usar sólo para contrastar",
+    "url": "https://es.wikipedia.org/",
+    "fecha_corte": "2026-11-23",
+    "vigencia_dias": 90,
+    "es_ilustrativa": false,
+    "verificado_contra_texto": false
+  },
+  {
+    "id": "servel",
+    "institucion": "Servicio Electoral de Chile (Servel)",
+    "titulo": "Resultados electorales oficiales (presidencial 2025, plebiscitos 2022 y 2023)",
+    "url": "https://www.servel.cl/",
+    "fecha_corte": "2026-11-23",
+    "vigencia_dias": 365,
+    "es_ilustrativa": false
+  },
+  {
+    "id": "tricel_proclamacion_2025",
+    "institucion": "Tribunal Calificador de Elecciones (Tricel)",
+    "titulo": "Sentencia de proclamación del Presidente electo, segunda votación 14-dic-2025 (escrutinio general por región)",
+    "url": "https://tribunalcalificador.cl/wp-content/uploads/2026/01/Sent-de-proclamacion.pdf",
+    "fecha_corte": "2026-11-23",
+    "vigencia_dias": 3650,
+    "es_ilustrativa": false,
+    "verificado_contra_texto": true
   }
 ]

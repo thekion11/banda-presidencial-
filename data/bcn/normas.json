@@ -1,0 +1,480 @@
+{
+ "fecha_corte": "2026-11-23",
+ "total": 12,
+ "normas": [
+  {
+   "id": "cpr",
+   "tipo": "constitucion",
+   "numero": null,
+   "titulo": "Constitución Política de la República de Chile",
+   "organismo_emisor": "Congreso / Poder Constituyente (texto de 1980, última reforma vigente Ley 21.773)",
+   "fecha_publicacion": null,
+   "version": "Texto actualizado al 7 de octubre de 2025 (portada del PDF oficial)",
+   "quorum": "ver articulos_clave",
+   "organo_competente": "Congreso Nacional",
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idNorma=242302",
+   "fuente": "fuentes.json#cpr_chile_2026",
+   "verificado": true,
+   "articulos_clave": [
+    {
+     "articulo": 24,
+     "tema": "poderes",
+     "organo_competente": "Presidente de la República",
+     "regla_quorum": "Gobierno y administración del Estado; cuenta pública el 1 de junio ante el Congreso Pleno",
+     "cita_literal": "El Gobierno y la administración del Estado corresponden al Presidente de la República",
+     "verificado_contra_texto": true
+    },
+    {
+     "articulo": 26,
+     "tema": "elecciones",
+     "organo_competente": "Servel / Tribunal Calificador",
+     "regla_quorum": "Elección directa por mayoría absoluta de los sufragios válidamente emitidos",
+     "cita_literal": "mayoría absoluta de los sufragios válidamente emitidos",
+     "verificado_contra_texto": true
+    },
+    {
+     "articulo": 32,
+     "tema": "atribuciones_presidente",
+     "organo_competente": "Presidente de la República",
+     "regla_quorum": "Atribuciones especiales: sancionar y promulgar leyes, DFL con delegación, convocar plebiscito, urgencias, etc.",
+     "cita_literal": "Son atribuciones especiales del Presidente de la República",
+     "verificado_contra_texto": true
+    },
+    {
+     "articulo": 40,
+     "tema": "excepcion",
+     "organo_competente": "Presidente + Congreso Nacional",
+     "regla_quorum": "Estado de asamblea y de sitio: declara el Presidente con acuerdo del Congreso; el Congreso se pronuncia en 5 días o se entiende aprobado; sitio máx. 15 días prorrogables",
+     "cita_literal": "con acuerdo del Congreso Nacional",
+     "verificado_contra_texto": true
+    },
+    {
+     "articulo": 41,
+     "tema": "excepcion",
+     "organo_competente": "Presidente de la República",
+     "regla_quorum": "Estado de catástrofe: lo declara el Presidente; el Congreso puede dejarlo sin efecto tras 180 días si cesaron las razones; más de un año requiere acuerdo del Congreso",
+     "cita_literal": "El estado de catástrofe, en caso de calamidad pública, lo declarará el Presidente de la República",
+     "verificado_contra_texto": true
+    },
+    {
+     "articulo": 42,
+     "tema": "excepcion",
+     "organo_competente": "Presidente + Congreso (prórrogas)",
+     "regla_quorum": "Estado de emergencia: 15 días prorrogables por igual período; prórrogas sucesivas requieren acuerdo del Congreso; desde la sexta prórroga, períodos de 30 días",
+     "cita_literal": "El estado de emergencia, en caso de grave alteración del orden público",
+     "verificado_contra_texto": true
+    },
+    {
+     "articulo": 52,
+     "tema": "congreso",
+     "organo_competente": "Cámara de Diputados",
+     "regla_quorum": "Fiscaliza al Gobierno (acuerdos por mayoría de presentes; antecedentes con un tercio de los presentes); acusaciones constitucionales",
+     "cita_literal": "Son atribuciones exclusivas de la Cámara de Diputados",
+     "verificado_contra_texto": true
+    },
+    {
+     "articulo": 53,
+     "tema": "congreso",
+     "organo_competente": "Senado",
+     "regla_quorum": "Acusación constitucional: culpabilidad por 2/3 de los senadores en ejercicio si es contra el Presidente o un gobernador regional; mayoría de los en ejercicio en los demás casos",
+     "cita_literal": "dos tercios de los senadores en ejercicio cuando se trate de una acusación en contra del Presidente de la República",
+     "verificado_contra_texto": true
+    },
+    {
+     "articulo": 63,
+     "tema": "materias_ley",
+     "organo_competente": "Congreso Nacional",
+     "regla_quorum": "Listado de materias de ley; empréstitos que excedan el período presidencial requieren ley de quórum calificado",
+     "cita_literal": "Sólo son materias de ley",
+     "verificado_contra_texto": true
+    },
+    {
+     "articulo": 64,
+     "tema": "delegacion",
+     "organo_competente": "Congreso Nacional",
+     "regla_quorum": "Delegación de facultades legislativas (DFL) hasta un año; excluye nacionalidad, elecciones, garantías constitucionales, LOC y quórum calificado",
+     "cita_literal": "no superior a un año",
+     "verificado_contra_texto": true
+    },
+    {
+     "articulo": 65,
+     "tema": "iniciativa",
+     "organo_competente": "Presidente / Congreso",
+     "regla_quorum": "Iniciativa exclusiva del Presidente en división político-administrativa, administración financiera, tributos, servicios públicos y empleos, endeudamiento; tributos y presupuestos nacen en la Cámara; mociones máx. 10 diputados o 5 senadores",
+     "cita_literal": "Corresponderá al Presidente de la República la iniciativa exclusiva",
+     "verificado_contra_texto": true
+    },
+    {
+     "articulo": 66,
+     "tema": "quorum",
+     "organo_competente": "Cámara de Diputados y Senado",
+     "regla_quorum": "Interpretativas de la Constitución: 4/7 de los en ejercicio; LOC y quórum calificado: mayoría absoluta de los en ejercicio; demás normas: mayoría de los presentes",
+     "cita_literal": "cuatro séptimas partes",
+     "verificado_contra_texto": true
+    },
+    {
+     "articulo": 67,
+     "tema": "presupuesto",
+     "organo_competente": "Presidente + Congreso",
+     "regla_quorum": "Ley de Presupuestos presentada con 3 meses de antelación; si el Congreso no despacha en 60 días rige el proyecto del Presidente; el Congreso sólo puede reducir gastos",
+     "cita_literal": "regirá el proyecto presentado por el Presidente de la República",
+     "verificado_contra_texto": true
+    },
+    {
+     "articulo": 70,
+     "tema": "tramitacion",
+     "organo_competente": "Comisión mixta",
+     "regla_quorum": "Proyecto desechado en su totalidad por la revisora va a comisión mixta; se aprueba por mayoría de presentes",
+     "cita_literal": "mayoría de los miembros presentes en cada una de ellas",
+     "verificado_contra_texto": true
+    },
+    {
+     "articulo": 73,
+     "tema": "veto",
+     "organo_competente": "Presidente + Congreso",
+     "regla_quorum": "Veto en 30 días; insistencia por 2/3 de los miembros presentes de ambas Cámaras",
+     "cita_literal": "dos tercios de sus miembros presentes",
+     "verificado_contra_texto": true
+    },
+    {
+     "articulo": 74,
+     "tema": "urgencia",
+     "organo_competente": "Presidente de la República",
+     "regla_quorum": "Urgencia: la Cámara debe pronunciarse en máximo 30 días (calificación según LOC del Congreso)",
+     "cita_literal": "deberá pronunciarse dentro del plazo máximo de treinta días",
+     "verificado_contra_texto": true
+    },
+    {
+     "articulo": 92,
+     "tema": "tc",
+     "organo_competente": "Tribunal Constitucional",
+     "regla_quorum": "10 miembros: 3 Presidente, 4 Congreso (2/3 en ejercicio), 3 Corte Suprema",
+     "cita_literal": "Habrá un Tribunal Constitucional integrado por diez miembros",
+     "verificado_contra_texto": true
+    },
+    {
+     "articulo": 93,
+     "tema": "tc",
+     "organo_competente": "Tribunal Constitucional",
+     "regla_quorum": "Control preventivo de LOC/interpretativas; inaplicabilidad por mayoría de miembros en ejercicio; inconstitucionalidad por 4/5",
+     "cita_literal": "cuatro quintos de sus integrantes en ejercicio",
+     "verificado_contra_texto": true
+    },
+    {
+     "articulo": 98,
+     "tema": "contraloria",
+     "organo_competente": "Contraloría General de la República",
+     "regla_quorum": "Control de legalidad de los actos de la Administración; toma de razón",
+     "cita_literal": "ejercerá el control de la legalidad de los actos de la Administración",
+     "verificado_contra_texto": true
+    },
+    {
+     "articulo": 99,
+     "tema": "contraloria",
+     "organo_competente": "Contraloría General de la República",
+     "regla_quorum": "Representa ilegalidad; el Presidente puede insistir con la firma de todos sus Ministros (decreto de insistencia)",
+     "cita_literal": "el Presidente de la República insista con la firma de todos sus Ministros",
+     "verificado_contra_texto": true
+    },
+    {
+     "articulo": 108,
+     "tema": "banco_central",
+     "organo_competente": "Banco Central",
+     "regla_quorum": "Órgano autónomo; su organización se regula por LOC",
+     "cita_literal": "denominado Banco Central",
+     "verificado_contra_texto": true
+    },
+    {
+     "articulo": 111,
+     "tema": "regiones",
+     "organo_competente": "Gobierno regional",
+     "regla_quorum": "Administración superior de la región en un gobierno regional (gobernador regional y consejo regional)",
+     "cita_literal": "La administración superior de cada región reside en un gobierno regional",
+     "verificado_contra_texto": true
+    },
+    {
+     "articulo": 113,
+     "tema": "regiones",
+     "organo_competente": "Consejo regional",
+     "regla_quorum": "Consejo regional normativo, resolutivo y fiscalizador; consejeros elegidos por sufragio universal, 4 años",
+     "cita_literal": "El consejo regional será un órgano de carácter normativo, resolutivo y fiscalizador",
+     "verificado_contra_texto": true
+    },
+    {
+     "articulo": 114,
+     "tema": "regiones",
+     "organo_competente": "Presidente + LOC",
+     "regla_quorum": "Transferencia de competencias a gobiernos regionales según LOC",
+     "cita_literal": "transferirá a uno o más gobiernos regionales",
+     "verificado_contra_texto": true
+    },
+    {
+     "articulo": 118,
+     "tema": "municipios",
+     "organo_competente": "Municipalidad",
+     "regla_quorum": "Administración local en municipalidades (alcalde y concejo); alcaldes 4 años, reelegibles hasta por dos períodos",
+     "cita_literal": "reside en una municipalidad",
+     "verificado_contra_texto": true
+    },
+    {
+     "articulo": 121,
+     "tema": "municipios",
+     "organo_competente": "Municipalidades + Presidente (iniciativa)",
+     "regla_quorum": "Crear o suprimir empleos y fijar remuneraciones dentro de límites fijados por LOC a iniciativa exclusiva del Presidente",
+     "cita_literal": "a iniciativa exclusiva del Presidente de la República",
+     "verificado_contra_texto": true
+    },
+    {
+     "articulo": 127,
+     "tema": "reforma_constitucional",
+     "organo_competente": "Congreso Nacional",
+     "regla_quorum": "Reforma constitucional: 4/7 de los diputados y senadores en ejercicio en cada Cámara (Ley 21.481)",
+     "cita_literal": "las cuatro séptimas partes de los diputados y senadores en ejercicio",
+     "verificado_contra_texto": true
+    },
+    {
+     "articulo": 128,
+     "tema": "reforma_constitucional",
+     "organo_competente": "Presidente + Congreso",
+     "regla_quorum": "Veto total: si ambas Cámaras insisten por 2/3 de los en ejercicio, se promulga salvo plebiscito; veto parcial: observaciones con 4/7",
+     "cita_literal": "dos terceras partes de los miembros en ejercicio de cada Cámara",
+     "verificado_contra_texto": true
+    },
+    {
+     "articulo": 129,
+     "tema": "reforma_constitucional",
+     "organo_competente": "Presidente + Servel/TRICEL",
+     "regla_quorum": "Plebiscito en 120 días tras decreto de convocatoria (domingo)",
+     "cita_literal": "ciento veinte días",
+     "verificado_contra_texto": true
+    }
+   ]
+  },
+  {
+   "id": "loc_congreso",
+   "tipo": "LOC",
+   "numero": "18.918",
+   "titulo": "Orgánica Constitucional del Congreso Nacional",
+   "organismo_emisor": null,
+   "fecha_publicacion": null,
+   "quorum": "mayoría absoluta de diputados y senadores en ejercicio (CPR art. 66 inc. 2)",
+   "organo_competente": "Congreso Nacional",
+   "fundamento_cpr": [
+    55,
+    74
+   ],
+   "fundamento_verificado": {
+    "55": true,
+    "74": true
+   },
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=18918",
+   "fuente": "fuentes.json#cpr_chile_2026",
+   "verificado": false,
+   "nota": "Fecha y texto pendientes: LeyChile bloquea descargas automáticas; contrastar con el PDF oficial."
+  },
+  {
+   "id": "loc_municipalidades",
+   "tipo": "LOC",
+   "numero": "18.695",
+   "titulo": "Orgánica Constitucional de Municipalidades",
+   "organismo_emisor": null,
+   "fecha_publicacion": null,
+   "quorum": "mayoría absoluta de diputados y senadores en ejercicio (CPR art. 66 inc. 2)",
+   "organo_competente": "Municipalidades",
+   "fundamento_cpr": [
+    118,
+    121
+   ],
+   "fundamento_verificado": {
+    "118": true,
+    "121": true
+   },
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=18695",
+   "fuente": "fuentes.json#cpr_chile_2026",
+   "verificado": false,
+   "nota": "Fecha y texto pendientes: LeyChile bloquea descargas automáticas; contrastar con el PDF oficial."
+  },
+  {
+   "id": "loc_gore",
+   "tipo": "LOC",
+   "numero": "19.175",
+   "titulo": "Orgánica Constitucional sobre Gobierno y Administración Regional",
+   "organismo_emisor": null,
+   "fecha_publicacion": null,
+   "quorum": "mayoría absoluta de diputados y senadores en ejercicio (CPR art. 66 inc. 2)",
+   "organo_competente": "Gobiernos regionales",
+   "fundamento_cpr": [
+    111,
+    113,
+    114
+   ],
+   "fundamento_verificado": {
+    "111": true,
+    "113": true,
+    "114": true
+   },
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=19175",
+   "fuente": "fuentes.json#cpr_chile_2026",
+   "verificado": false,
+   "nota": "Fecha y texto pendientes: LeyChile bloquea descargas automáticas; contrastar con el PDF oficial."
+  },
+  {
+   "id": "loc_bases_administracion",
+   "tipo": "LOC",
+   "numero": "18.575",
+   "titulo": "Orgánica Constitucional de Bases Generales de la Administración del Estado",
+   "organismo_emisor": null,
+   "fecha_publicacion": null,
+   "quorum": "mayoría absoluta de diputados y senadores en ejercicio (CPR art. 66 inc. 2)",
+   "organo_competente": "Administración del Estado",
+   "fundamento_cpr": [
+    38
+   ],
+   "fundamento_verificado": {
+    "38": true
+   },
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=18575",
+   "fuente": "fuentes.json#cpr_chile_2026",
+   "verificado": false,
+   "nota": "Fecha y texto pendientes: LeyChile bloquea descargas automáticas; contrastar con el PDF oficial."
+  },
+  {
+   "id": "loc_tc",
+   "tipo": "LOC",
+   "numero": "17.997",
+   "titulo": "Orgánica Constitucional del Tribunal Constitucional",
+   "organismo_emisor": null,
+   "fecha_publicacion": null,
+   "quorum": "mayoría absoluta de diputados y senadores en ejercicio (CPR art. 66 inc. 2)",
+   "organo_competente": "Tribunal Constitucional",
+   "fundamento_cpr": [
+    92,
+    93
+   ],
+   "fundamento_verificado": {
+    "92": true,
+    "93": true
+   },
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=17997",
+   "fuente": "fuentes.json#cpr_chile_2026",
+   "verificado": false,
+   "nota": "Fecha y texto pendientes: LeyChile bloquea descargas automáticas; contrastar con el PDF oficial."
+  },
+  {
+   "id": "loc_contraloria",
+   "tipo": "LOC",
+   "numero": "10.336",
+   "titulo": "Orgánica de la Contraloría General de la República",
+   "organismo_emisor": null,
+   "fecha_publicacion": null,
+   "quorum": "mayoría absoluta de diputados y senadores en ejercicio (CPR art. 66 inc. 2)",
+   "organo_competente": "Contraloría",
+   "fundamento_cpr": [
+    98,
+    99
+   ],
+   "fundamento_verificado": {
+    "98": true,
+    "99": true
+   },
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=10336",
+   "fuente": "fuentes.json#cpr_chile_2026",
+   "verificado": false,
+   "nota": "Fecha y texto pendientes: LeyChile bloquea descargas automáticas; contrastar con el PDF oficial."
+  },
+  {
+   "id": "loc_banco_central",
+   "tipo": "LOC",
+   "numero": "18.840",
+   "titulo": "Orgánica Constitucional del Banco Central de Chile",
+   "organismo_emisor": null,
+   "fecha_publicacion": null,
+   "quorum": "mayoría absoluta de diputados y senadores en ejercicio (CPR art. 66 inc. 2)",
+   "organo_competente": "Banco Central",
+   "fundamento_cpr": [
+    108
+   ],
+   "fundamento_verificado": {
+    "108": true
+   },
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=18840",
+   "fuente": "fuentes.json#cpr_chile_2026",
+   "verificado": false,
+   "nota": "Fecha y texto pendientes: LeyChile bloquea descargas automáticas; contrastar con el PDF oficial."
+  },
+  {
+   "id": "loc_estados_excepcion",
+   "tipo": "LOC",
+   "numero": "18.415",
+   "titulo": "Orgánica Constitucional de los Estados de Excepción",
+   "organismo_emisor": null,
+   "fecha_publicacion": null,
+   "quorum": "mayoría absoluta de diputados y senadores en ejercicio (CPR art. 66 inc. 2)",
+   "organo_competente": "Presidente + Congreso",
+   "fundamento_cpr": [
+    39
+   ],
+   "fundamento_verificado": {
+    "39": true
+   },
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=18415",
+   "fuente": "fuentes.json#cpr_chile_2026",
+   "verificado": false,
+   "nota": "Fecha y texto pendientes: LeyChile bloquea descargas automáticas; contrastar con el PDF oficial."
+  },
+  {
+   "id": "dl_1263",
+   "tipo": "DL",
+   "numero": "1.263",
+   "titulo": "Orgánico de la Administración Financiera del Estado (DL 1263 de 1975)",
+   "organismo_emisor": null,
+   "fecha_publicacion": null,
+   "quorum": null,
+   "organo_competente": "DIPRES / Hacienda",
+   "fundamento_cpr": [
+    67
+   ],
+   "fundamento_verificado": {
+    "67": true
+   },
+   "url_leychile": null,
+   "fuente": "fuentes.json#cpr_chile_2026",
+   "verificado": false,
+   "nota": "Fecha y texto pendientes: LeyChile bloquea descargas automáticas; contrastar con el PDF oficial."
+  },
+  {
+   "id": "ley_20955",
+   "tipo": "ley",
+   "numero": "20.955",
+   "titulo": "Ley 20955 Perfecciona El Sistema De Alta Dirección Pública Y Fortalece La Dirección Nacional Del Servicio Civil",
+   "organismo_emisor": "Ministerio de Hacienda",
+   "fecha_publicacion": "2016-10-20",
+   "fecha_promulgacion": "2016-10-03",
+   "url_corta": "https://bcn.cl/3hqcg",
+   "version": "Única De : 20-OCT-2016",
+   "quorum": null,
+   "organo_competente": null,
+   "url_leychile": null,
+   "fuente": "fuentes.json#bcn_leychile_pdf",
+   "verificado": true,
+   "nota": "metadatos leídos de la cabecera del PDF oficial entregado por el equipo (LeyChile/BCN)"
+  },
+  {
+   "id": "dfl_1_justicia_2000_codigo_civil",
+   "tipo": "dfl",
+   "numero": "DFL 1 (2000)",
+   "titulo": "FIJA TEXTO REFUNDIDO, COORDINADO Y SISTEMATIZADO DEL CODIGO CIVIL; DE LA LEY Nº4.808, SOBRE REGISTRO CIVIL, DE LA LEY Nº17.344, QUE AUTORIZA CAMBIO DE NOMBRES Y APELLIDOS, DE LA LEY Nº 16.618, LEY DE MENORES, DE LA LEY Nº 14.908, SOBRE ABANDONO DE FAMILIA Y PAGO DE PENSIONES ALIMENTICIAS, Y DE LA LEY Nº16.271, DE IMPUESTO A LAS HERENCIAS, ASIGNACIONES Y DONACIONES",
+   "organismo_emisor": "Ministerio de Justicia",
+   "fecha_publicacion": "2000-05-30",
+   "fecha_promulgacion": "2000-05-16",
+   "url_corta": "https://bcn.cl/3cepu",
+   "version": "Última Versión De : 20-MAY-2023",
+   "quorum": null,
+   "organo_competente": null,
+   "url_leychile": null,
+   "fuente": "fuentes.json#bcn_leychile_pdf",
+   "verificado": true,
+   "nota": "metadatos leídos de la cabecera del PDF oficial entregado por el equipo (LeyChile/BCN)"
+  }
+ ]
+}

@@ -253,6 +253,8 @@ def main() -> int:
     validar_propuestas(datos["propuestas"], ids_fuentes, {r["id"] for r in datos["regiones"]})
     validar_grafo()
     validar_sectra({r["id"] for r in datos["regiones"]}, datos["leyes"])
+    from validate_bcn import validar_bcn
+    validar_bcn(ids_fuentes, {r["id"] for r in datos["regiones"]})
     print("OK: Todos los JSON de Fase 0 superaron la validación")
     return 0
 
