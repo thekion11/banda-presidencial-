@@ -130,5 +130,25 @@
     "vigencia_dias": 180,
     "es_ilustrativa": false,
     "verificado_contra_texto": false
+  },
+  {
+    "id": "minsal_inversiones",
+    "institucion": "Ministerio de Salud (MINSAL)",
+    "titulo": "Plan de Inversiones Oncológicas 2026-2030 y cartera de inversión hospitalaria",
+    "url": "https://www.minsal.cl/",
+    "fecha_corte": "2026-11-23",
+    "vigencia_dias": 180,
+    "es_ilustrativa": false,
+    "verificado_contra_texto": false
+  },
+  {
+    "id": "planes_prensa_2026",
+    "institucion": "Prensa chilena (Radio UChile, BioBioChile, La Tercera, El Desconcierto, The Clinic)",
+    "titulo": "Planes nacionales y anuncios del gobierno 2026 (PNIP 2055, plan carcelario, transporte)",
+    "url": "https://www.mop.gob.cl/",
+    "fecha_corte": "2026-11-23",
+    "vigencia_dias": 180,
+    "es_ilustrativa": false,
+    "verificado_contra_texto": false
   }
 ]
