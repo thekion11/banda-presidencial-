@@ -38,7 +38,8 @@
     "reales_en_mazo": 15,
     "costo_min": 1,
     "costo_max": 3,
-    "reposicion_cartas": 3
+    "reposicion_cartas": 3,
+    "continua": true
   },
   "dinamica": {
     "riesgo_umbral": 60.0,
@@ -157,6 +158,28 @@
       "cita_regla": "CPR Art. 66 (texto en data/bcn/normas.json): LOC = mayoría absoluta de los en ejercicio. Mismo umbral de votos que el quórum calificado; difiere en el control preventivo obligatorio del TC.",
       "fuente_texto": "data/bcn/normas.json#cpr.articulos_clave[66]",
       "nota_verificacion": "Regla tomada de la cita en normas.json (texto actualizado de la CPR al 7-oct-2025, BCN); no se declara verificada contra el texto consolidado completo."
+    },
+    {
+      "id": "ley_interpretativa",
+      "nombre": "Ley interpretativa de la Constitución (4/7 de los en ejercicio)",
+      "articulo_constitucional": "Art. 66 CPR (4/7 de los en ejercicio, según la cita de normas.json)",
+      "requiere_votacion": true,
+      "dias_tramitacion_base": 63,
+      "puede_ir_tc": true,
+      "prob_recurso_tc": 0.4,
+      "prob_exito_tc": 0.6,
+      "fuente": "fuentes.json#cpr_chile_2026",
+      "control_preventivo_tc": true,
+      "verificado": false,
+      "base_quorum": "en_ejercicio",
+      "regla": "fraccion",
+      "fraccion": {
+        "num": 4,
+        "den": 7
+      },
+      "cita_regla": "CPR Art. 66 (texto en data/bcn/normas.json): interpretativas de la Constitución: 4/7 de los diputados y senadores en ejercicio.",
+      "fuente_texto": "data/bcn/normas.json#cpr.articulos_clave[66]",
+      "nota_verificacion": "Regla tomada de la cita en normas.json (texto actualizado de la CPR al 7-oct-2025, BCN); no se declara verificada contra el texto consolidado completo. Probabilidades de TC ilustrativas, iguales a la reforma."
     },
     {
       "id": "reforma_constitucional",

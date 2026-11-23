@@ -38,13 +38,14 @@ func _init() -> void:
 	var asist := float(datos["leyes"]["congreso"]["asistencia_presentes"])
 	var esperado := {
 		"ley_simple": [ceili(50.0 * asist - 0.000001) / 2 + 1, ceili(155.0 * asist - 0.000001) / 2 + 1],
-		"quorum_calificado": [26, 78], "ley_organica_constitucional": [26, 78], "reforma_constitucional": [29, 89], "decreto_supremo": [1, 1]}
+		"quorum_calificado": [26, 78], "ley_organica_constitucional": [26, 78], "reforma_constitucional": [29, 89], "ley_interpretativa": [29, 89], "decreto_supremo": [1, 1]}
 	for id in esperado.keys():
 		var t := motor.legal.tipo(id)
 		_check(int(t["votos_minimos"]) == int(esperado[id][0]) and int(t["votos_minimos_camara"]) == int(esperado[id][1]), "umbral de %s: %d/%d (esperado %s)" % [id, int(t["votos_minimos"]), int(t["votos_minimos_camara"]), esperado[id]])
 		_check(String(t["cita_regla"]) != "", "%s cita su artículo" % id)
 	_check(int(motor.legal.tipo("ley_simple")["votos_minimos"]) < int(motor.legal.tipo("quorum_calificado")["votos_minimos"]), "ley simple (presentes) exige menos que quórum calificado (en ejercicio)")
 	_check(int(motor.legal.tipo("reforma_constitucional")["votos_minimos"]) > int(motor.legal.tipo("quorum_calificado")["votos_minimos"]), "la reforma (4/7) exige más que el quórum calificado")
+	_check(datos["cartas"].any(func(c: Dictionary) -> bool: return c["requisitos"]["ley"] == "ley_interpretativa"), "existe una carta que exige la ley interpretativa")
 	var alterno: Dictionary = Datos.cargar_todo()["leyes"].duplicate(true)
 	alterno["congreso"]["asistencia_presentes"] = 1.0
 	var legal2 := MotorLegal.new()

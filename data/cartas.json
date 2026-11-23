@@ -1859,5 +1859,37 @@
       "subtipo": "expropiacion",
       "cifras_ilustrativas": true
     }
+  },
+  {
+    "id": "pol_ley_interpretativa",
+    "categoria": "politica",
+    "costo_pa": 3,
+    "titulo": "Ley interpretativa de la Constitución",
+    "efectos": [
+      {
+        "ind": "cohesion",
+        "delta": 2
+      },
+      {
+        "ind": "capital",
+        "delta": -3
+      },
+      {
+        "ind": "riesgo_ejecucion",
+        "delta": 1
+      }
+    ],
+    "requisitos": {
+      "ley": "ley_interpretativa",
+      "quorum": "ley_interpretativa"
+    },
+    "corrector": null,
+    "abre_propuesta_comite": null,
+    "fuente": "fuentes.json#cpr_chile_2026",
+    "meta": {
+      "tipo": "ilustrativa",
+      "cifras_ilustrativas": true,
+      "nota": "Carta de diseño (ninguna carta real exige este tipo). Quórum 4/7 de los en ejercicio según la cita de normas.json; sin verificar contra el texto consolidado."
+    }
   }
 ]

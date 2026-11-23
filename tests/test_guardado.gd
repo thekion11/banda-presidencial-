@@ -55,5 +55,22 @@ func _init() -> void:
 	_check(mc.estado.etapa != "derrota_electoral" and tipos.has("meta"), "la partida de prueba llegó a gobernar con movimientos internos")
 	_check(gc["entradas"].any(func(e: Dictionary) -> bool: return e["tipo"] == "jugar" and bool(e.get("delegada", false))), "hay delegaciones en el historial")
 	_check(Partida.reproducir(datos, gc).estado.calcular_huella() == mc.estado.calcular_huella(), "replay idéntico de una partida completa v2")
+	# v2 completo: asesores + coalición + delegación + movimientos internos, todo reproducible desde el JSON del guardado
+	var mf := Bots.partida_completa(datos, 5000, "completo")
+	for sem in range(5001, 5020):
+		if mf.estado.etapa != "derrota_electoral":
+			break
+		mf = Bots.partida_completa(datos, sem, "completo")
+	var gf: Dictionary = JSON.parse_string(JSON.stringify(mf.estado.exportar_guardado(h)))
+	var tf := {}
+	for e in gf["entradas"]:
+		tf[e["tipo"]] = true
+	for tipo in ["asesor", "coalicion", "meta", "jugar", "cerrar"]:
+		_check(tf.has(tipo), "el guardado de la partida completa registra entradas '%s'" % tipo)
+	var rf := Partida.reproducir(datos, gf)
+	_check(rf.estado.asesores == mf.estado.asesores and rf.estado.coalicion.keys() == mf.estado.coalicion.keys(), "replay: mismos asesores y aliados")
+	_check(rf.estado.calcular_huella() == mf.estado.calcular_huella(), "replay idéntico de la partida completa con todas las mecánicas v2")
+	# el JSON del guardado no depende de estado de la UI: dos reproducciones dan lo mismo
+	_check(Partida.reproducir(datos, gf).estado.calcular_huella() == rf.estado.calcular_huella(), "reproducir dos veces da el mismo resultado")
 	print("GUARDADO OK" if _fallos == 0 else "GUARDADO FALLÓ")
 	quit(1 if _fallos > 0 else 0)
