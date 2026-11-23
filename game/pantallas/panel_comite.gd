@@ -50,8 +50,8 @@ static func _propuesta(col: VBoxContainer, motor: MotorTurno, pid: String, al_ap
 	tog.offset_top = 8.0
 	var b2 := Tema.boton("2D", Tema.CREMA, Tema.TINTA, 12, 36)
 	var b3 := Tema.boton("3D", Tema.OCEANO, Tema.TEXTO, 12, 36)
-	b2.custom_minimum_size = Vector2(44, 36)
-	b3.custom_minimum_size = Vector2(44, 36)
+	b2.custom_minimum_size = Vector2(44, Tema.TACTIL)
+	b3.custom_minimum_size = Vector2(44, Tema.TACTIL)
 	b2.pressed.connect(func() -> void:
 		m3d.visible = false
 		mapa.visible = true)
@@ -134,7 +134,7 @@ static func _activar_edicion(mapa: ComiteMapa, edicion: VBoxContainer, detalle: 
 		sl.min_value = 0.0
 		sl.max_value = 1.0
 		sl.step = 0.05
-		sl.custom_minimum_size = Vector2(0, 32)
+		sl.custom_minimum_size = Vector2(0, Tema.TACTIL)
 		sl.add_theme_stylebox_override("slider", Tema.caja(Color("#274A66"), 4))
 		sl.add_theme_stylebox_override("grabber_area", Tema.caja(Tema.ORO, 4))
 		sl.add_theme_stylebox_override("grabber_area_highlight", Tema.caja(Tema.ORO.lightened(0.2), 4))

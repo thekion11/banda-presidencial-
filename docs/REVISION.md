@@ -1,3 +1,26 @@
+# Revisión externa — Seguimiento 3 (rama `revision/auditoria`, integrada con `ccr-ec102a3c-giitie` @ d109fe9)
+
+Al integrar la rama principal comprobé qué de la Auditoría 2 ya estaba corregido por otras sesiones y corregí lo que faltaba (solo cambios pequeños en `game/`; pruebas ejecutadas con Godot 4.3 tras los cambios: UI humo, grafo, oro completa, guardado y balance en verde; `check_limits` OK).
+
+| Hallazgo | Estado | Evidencia |
+|---|---|---|
+| C1 quórums | **Resuelto** por la rama principal | `leyes.json › tipos_ley` ahora tiene `regla` (`mayoria` / `fraccion` 4/7 / `ninguna`) con base presentes/en ejercicio. Corrección a mi propia Auditoría 1: que ley simple, QC y LOC compartan 26/78 con asistencia plena **no era un error por sí mismo** (la diferencia real es «presentes» vs «en ejercicio»); el defecto era no modelar esa base. Sigue `verificado:false` en LOC y reforma: confirmar contra BCN. |
+| N1 huella por guardado | **Resuelto** | `game/main.gd:17` la calcula una vez (`_huella_datos`). |
+| N2 títulos truncados/duplicados | **Resuelto** | 0 de 1.276 con «…» y 0 duplicados (generador con `recortar` y `unico`). |
+| N7 réplicas de partidos | **Mitigado** | `data/partidos` excluido del paquete; coalición mínima sin `real_ref`. Falta revisión legal. |
+| N9 CLAUDE.md | **Resuelto** | §4 describe movimientos, gabinete de 8 y los tests v2. |
+| M2 targets táctiles | **Corregido aquí** | `panel_comite.gd`: botones 2D/3D de 36 → `Tema.TACTIL` (44) de alto; sliders de ritmo/cobertura de 32 → 44. Insignia (36) y badge (32) son decorativos, no botones: se dejan. |
+| Fuente de 9 pt | **Corregido aquí** | `urbano_base.gd:165-177`: rótulos de lugares del mapa a 10 pt (mínimo de CLAUDE.md) y caja de colisión 12 → 13 px. |
+| N3 cartas con efectos genéricos | **Abierto** | Requiere decisión de diseño (curar efectos por materia o reducir el número de cartas): no se cambia balance sin acuerdo. |
+| N4 anacronismo de estado | **Abierto** | Requiere decidir si se congela el estado a la fecha de inicio. |
+| N5 `verificado` vs `cifras_ilustrativas` | **Abierto** | Un validador estricto fallaría hoy con 1.206 cartas; hay que redefinir el campo antes. |
+| N8 14 eventos sin verificar | **Abierto** | Servel/BCN/Senado no accesibles desde mi entorno (401/403). |
+| N11 capturas v2 | **Abierto** | Regenerar con `captura_comparar.gd` bajo xvfb (no disponible aquí). |
+| A1 AAB/Godot 4.3 | **Abierto** | `export_presets.cfg:21` `use_gradle_build=false`; subir a Godot ≥ 4.5 exige plantilla Gradle y probar la exportación: no se toca sin poder compilar el APK. |
+| A4–A6 licencias | **Abierto** | Son decisiones/solicitudes a terceros (ODbL, Figma/Canva IA, SECTRA). |
+
+---
+
 # Revisión externa — Auditoría 2 (rama `ccr-ec102a3c-giitie` @ 366f162)
 
 Alcance: integra `datos/*`, `feat/mecanicas-v2`, `feat/ui-v2`, 1.276 cartas por proyecto, eventos reales, 2ª vuelta, guardado versionado.

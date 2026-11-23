@@ -162,9 +162,9 @@ static func dibujar(ci: CanvasItem, tam: Vector2, margen: Vector2 = Vector2(8, 8
 			var p := a_px(l["p"], tam, margen)
 			ci.draw_circle(p, 3.0, Tema.ROJO)
 			var txt := String(l["n"]).replace("Parque Metropolitano de Santiago", "Parque Metropolitano")
-			var ancho_txt := f.get_string_size(txt, HORIZONTAL_ALIGNMENT_LEFT, -1, 9).x
+			var ancho_txt := f.get_string_size(txt, HORIZONTAL_ALIGNMENT_LEFT, -1, 10).x
 			var x := minf(p.x + 5.0, tam.x - ancho_txt - 4.0)
-			var caja := Rect2(x - 2.0, p.y - 7.0, ancho_txt + 4.0, 12.0)
+			var caja := Rect2(x - 2.0, p.y - 7.0, ancho_txt + 4.0, 13.0)
 			var choca := false
 			for r in ocupados:
 				if r.intersects(caja):
@@ -173,5 +173,5 @@ static func dibujar(ci: CanvasItem, tam: Vector2, margen: Vector2 = Vector2(8, 8
 			if choca:
 				continue  # evita nombres encimados: los lugares se priorizan en el orden de los datos
 			ocupados.append(caja)
-			ci.draw_string_outline(f, Vector2(x, p.y + 3.0), txt, HORIZONTAL_ALIGNMENT_LEFT, -1, 9, 4, Color(0.94, 0.92, 0.87, 0.95))
-			ci.draw_string(f, Vector2(x, p.y + 3.0), txt, HORIZONTAL_ALIGNMENT_LEFT, -1, 9, Tema.TINTA)
+			ci.draw_string_outline(f, Vector2(x, p.y + 3.0), txt, HORIZONTAL_ALIGNMENT_LEFT, -1, 10, 4, Color(0.94, 0.92, 0.87, 0.95))
+			ci.draw_string(f, Vector2(x, p.y + 3.0), txt, HORIZONTAL_ALIGNMENT_LEFT, -1, 10, Tema.TINTA)
