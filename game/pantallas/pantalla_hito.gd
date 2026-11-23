@@ -41,7 +41,7 @@ static func crear(obra: Dictionary, fases: Array, al_cerrar: Callable, al_ver_ma
 	var tarjeta := PanelContainer.new()
 	tarjeta.add_theme_stylebox_override("panel", Tema.caja(Color("#D6E6EF"), 18, Tema.BORDE_CLARO, 2))
 	tarjeta.custom_minimum_size = Vector2(0, 250)
-	var iso := ObraIso.new()
+	var iso := Obra3D.new()
 	iso.fase = float(MotorObras.fase_de(obra))
 	tarjeta.add_child(iso)
 	var pila := Control.new()

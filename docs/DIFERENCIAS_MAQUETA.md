@@ -16,6 +16,7 @@ Regla del proyecto: la maqueta manda. Esta lista deja explícito dónde el juego
 | Mapa nacional | Regiones coloreadas con textura de relieve ilustrada | Relieve real sombreado (teselas públicas de elevación) y Chile ensanchado ×2,3 | Datos reales y legibilidad en pantalla vertical. |
 | Mapa urbano | Calles de Gran Santiago | Plano esquemático | Las calles reales llegan con el pipeline OSM (Fase 3); está rotulado en el propio mapa. |
 | Botones y chips | Colores planos | Degradados y marcos metálicos | Profundidad, manteniendo la paleta congelada. |
+| Comité y hito de obra | Isométricas ilustradas | Escenas 3D reales de Godot (cámara orbitable, trazado elevado, 5 fases animables) | Cumple la Fase 2 del plan; presupuesto móvil con una sola MultiMesh y sin sombras. |
 | Animaciones | (estático) | Reparto de cartas, hemiciclo que se llena, sello que cae, barcos, Comité 2D/3D, reproducción de obra | Superar la maqueta sin cambiar su estructura. |
 
 ## Estructura (extensiones coherentes con la Enmienda y con Chile real)
@@ -24,5 +25,6 @@ Regla del proyecto: la maqueta manda. Esta lista deja explícito dónde el juego
 - **Pantallas sin maqueta**: menú, test ideológico, fundación del partido y fin de partida. Son necesarias para el Modo Único de la Enmienda; se construyeron con los mismos componentes congelados (paleta, tipografías, zonas táctiles ≥ 44 px). No existe referencia en Figma para ellas.
 
 ## Pendiente
+- Trazado propio (estaciones sobre grafo + sliders): extensión de la Fase 3 del Documento Maestro (niveles 2 y 3), sobre un grafo esquemático.
 - Reflejar estas mejoras en la maqueta de Figma (no se hizo: requiere gastar créditos de IA del plan y decisión del usuario).
 - Medir rendimiento (30 fps, ≤ 800 MB) en un teléfono real.
