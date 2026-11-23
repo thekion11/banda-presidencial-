@@ -1,3 +1,46 @@
+# Revisión externa — Auditoría 3 (`ccr-ec102a3c-giitie` @ 105bd78, 23‑nov‑2026 ~21:10 UTC)
+
+**Método.** Fusioné la rama de integración en `revision/auditoria` y ejecuté todo con Godot 4.3 en local: `validate_data`, `check_limits`, las 16 pruebas de `CLAUDE.md §7` (oro ×3, enmienda, congreso, grafo, sectra, guardado, gabinete, delegación, movimientos, equipo, coalición, presupuesto, balance, UI humo) y Monte Carlo n=120. **Todo en verde**, incluida `test_ui_humo` (el rojo del incidente del PR #6 está corregido: `5de3b24`). El CI de GitHub también: corridas 93–101 en `success` (la 104 seguía en curso al escribir esto). Además revisé en worktrees aparte las tres ramas con trabajo aún no integrado. No toqué `sim/`, `game/` ni `data/`. Sigo sin poder leer BCN/LeyChile/Servel/Senado desde este entorno (401/403): lo legal y los eventos siguen sin verificarse por mí contra fuente primaria.
+
+## Resultados medidos
+| Medición | Resultado |
+|---|---|
+| Monte Carlo n=120 | pasivo 3,3 % gana / 0 % completa; azar 21,7 % / 16,7 %; codicioso 76,7 % / 76,7 % (aprob. final 36,5, 0 % crisis); codicioso>pasivo 76,7 % cae en crisis; codicioso>azar 46,7 % completa; **codicioso>completo 76,7 % / 76,7 %, aprob. 51,4, puntaje mediano 3.359** (coincide con `docs/INFORME_BALANCE.md`) |
+| Cobertura de cartas (40 partidas, bot codicioso, 30 llegan al gobierno) | 1.077 de 1.343 cartas distintas vistas (80 %); **sin cambio respecto de la Auditoría 2 (79 %)** |
+| Determinismo/guardado | `test_guardado` OK; la huella se calcula una vez; `semanas_balotaje` vive en el estado (`estado_simulacion.gd:11,72`) y no en una constante |
+| Paquete | datos empaquetados 5,9 MB (tras excluir `bcn/`, `proyectos/`, `schemas/`, `partidos/`, `eventos_reales.json`: `export_presets.cfg:10`), `game/arte` 1,2 MB (15 JPG; ≈ 14 MB de RAM sin comprimir), fuentes 1 MB; APK de depuración ≈ 30 MB ≪ 150 MB. RAM estática medida en escritorio 47–62 MB ≪ 800 MB |
+| Líneas por archivo | máximo 431 (`pantalla_dia.gd`) < 450; `check_limits` OK |
+| Toque/fuente | `test_ui_humo` ahora exige ≥ 44 px a todo `BaseButton` visible (`:222-227`). Quedan solo elementos decorativos de 32–36 px (`barras.gd:20,39`, `pantalla_urbano.gd:126`, `pantalla_partido.gd:126`) |
+
+## Estado de mis hallazgos anteriores
+**Resueltos desde la Auditoría 1/2:** C1 quórums (regla `mayoria`/`fraccion` con base presentes/en ejercicio; sigue `verificado:false` en LOC y reforma), C2 guardado versionado, C3 calendario y 2ª vuelta, M1 (431 líneas), M2 zonas táctiles (con prueba que las exige), N1 huella una vez, N2 títulos (0 truncados, 0 duplicados, ≤ 60 car.), N7 en lo empaquetado (`data/partidos` excluido; `coalicion.json` sin `real_ref` ni nombres reales), N9/D1/D4 (CLAUDE.md con la ampliación autorizada y `semanas_balotaje` desde datos), incidente del CI rojo.
+**Mejorados pero abiertos:** N3 (1.044 cartas de leyes ahora con 299 plantillas de efectos distintas en vez de ~10; la más repetida, `−0,5 capital`, en 41 cartas), N8 (se verificó 1 de 14 eventos: el cambio de mando; **quedan 13 sin verificar**, entre ellos los dos plebiscitos, el resultado de la 1ª vuelta del 16‑nov‑2025, la proclamación de 5‑ene‑2026 y 5 hechos de gobierno 2026).
+**Siguen abiertos sin cambios:**
+- **A1** `export_presets.cfg:21` `use_gradle_build=false` (sin AAB) y Godot 4.3 en `ci.yml`/`android.yml`: la ficha de Play no se puede subir.
+- **A2/A3** Rendimiento en teléfono real sin medir (30 fps y RAM ≤ 800 MB solo estimados); `Continuar` re‑simula toda la partida.
+- **A4** No existe archivo de licencia ODbL para `data/geo/*` (solo la atribución en pantalla/ficha). **A5** Licencias del arte: 14 ilustraciones de Figma AI y 1 de Canva; falta confirmar derechos comerciales y declarar IA en Play. **A6** SECTRA sin autorización de reutilización.
+- **N4** Anacronismo: las 1.044 cartas de leyes dicen `estado_real: En tramitación` con `fecha_corte` 2026‑11‑23, en un juego que parte en 2025.
+- **N5** `verificado:true` y `verificado_hecho:true` en las 1.044 cartas de leyes, con `cifras_ilustrativas:true` en las 1.276: el campo no distingue «el hecho existe» de «la cifra es real».
+- **N6** ~20 % del catálogo sin aparecer (falta informe de alcanzabilidad por carta en CI).
+- **M3** La ablación de mecánicas v2 (`tests/ablacion.gd`, rama `feat/mecanicas-v2`) con n=40 × 8 variantes no terminó en 400 s: correrla en segundo plano/CI nocturno. **M5** población: Censo 2017 (hay Censo 2024). **M7** Ley de Presupuestos modelada como `ley_simple` sin el plazo de 60 días. **M9** proyectos SECTRA sin id propio. **N11** capturas v2 anteriores al merge de partidos (no regeneradas).
+
+## Hallazgos nuevos
+**N13 (medio) — Arte faltante cae silenciosamente al respaldo.** 136 cartas (111 `politica_reforma`, 25 `politica_tratados`) declaran un `arte` cuyo JPG **no existe** (`game/arte/cartas` tiene 15 imágenes; las dos nuevas solo existen como miniaturas de 200×150 en `docs/comparacion/`). `carta_ui.gd` usa la categoría como respaldo, así que no falla, pero hoy esas 136 se ven igual que `politica`. Además la resolución es inconsistente: `estado.jpg` 1024×820 y las otras 14 a 512×410 (se estiran distinto en pantalla). Propuesta: `validate_data` debe avisar de `arte` sin archivo y fijar una sola resolución objetivo antes del arte final.
+**N14 (medio) — Rama `datos/proyectos-publicos` (+56 proyectos, no integrada).** Valida (286 registros, sin ids/nombres duplicados, `region_id` correctas), y está bien rotulada: 46 `verificado:false` (prensa), 10 oficiales, `fecha_consulta` en todos. Reparos: (a) la fuente `curados_prensa_2026` declara institución «Prensa regional y nacional» pero su `url` es `https://www.gob.cl/`: la URL de la fuente no corresponde; (b) 8 notas son de 2018–2024 («Nota de junio 2018; estado actual no verificado») y entrarían como estado 2026; (c) 28 proyectos traen solo `inversion_clp` y 13 ninguna inversión: confirmar cómo los trata `tools/generar_cartas.py` (que usa `inversion_musd`) antes de generar cartas, o quedarán con tamaño de obra arbitrario; (d) cubre solo 4 regiones (Valparaíso, O’Higgins, Ñuble, Maule): el catálogo quedaría sesgado al centro del país. No integrar sin (a) y (c).
+**N15 (medio) — Rama `datos/partidos` (+1 commit, no integrada).** Valida. Añade escaños 2025 contrastados con el CSV provisorio de Servel (`servel_elecciones_2025_zip`) y totales de votaciones del Senado. Reparos: (a) `fuentes.json` marca `verificado_contra_texto:true` un resultado que el propio texto describe como «provisorio… no es el escrutinio del Tricel»; (b) `partidos_juego.json` (réplicas «ficticias») ahora **nombra a una persona real** en una justificación (presidente del PNL) y cita hechos reales: sigue fuera del paquete (`exclude_filter`), pero es un archivo del repositorio público que une cada réplica con un partido y una persona reales: mantenerlo excluido y fuera de cualquier carga en runtime (hoy no hay ninguna) y pasarlo por revisión legal (`docs/PARTIDOS.md`).
+**N16 (bajo) — Rama `feat/mecanicas-v2` (WIP, +1 commit, no integrada).** Valida y pasa guardado, congreso, gabinete, movimientos, balance y oro completa. Añade `ley_interpretativa` (4/7 de los en ejercicio, `verificado:false`) con una carta ilustrativa, el interruptor `mano.continua` (en `motor_cartas.gd` el valor por defecto `true` está en el código: debería leerse siempre de datos) y el runner de ablación. Coherente con lo que encontré sobre la Ley 21.481 (el 4/7 del art. 66 inc. 1 se aplica a las leyes interpretativas de la Constitución y el 127 a las reformas), pero sin texto primario. Añadir la carta cambia la huella de datos: las partidas guardadas se descartarán (esperado).
+**N17 (bajo) — Un enlace con apellido de político en datos empaquetados.** `cartas_reales.json` incluye una URL de prensa (`…plan-carcelario-kast…`) en `meta.url`; no se muestra, pero viaja en el APK. `eventos_reales.json` (que sí nombra políticos) está excluido del paquete: correcto. Sin nombres de políticos en `coalicion.json` ni en `juego_eventos_reales.json`.
+**N18 (nota) — Afirmación no verificable.** `ESTADO_FASES.md` dice que se entregó un APK de depuración al usuario; no está en el repositorio (ignorado por git) y no tengo acceso a él: no puedo confirmar su contenido, tamaño ni firma.
+
+## Prioridad sugerida (de aquí a la prueba cerrada)
+1. A1 (AAB + Godot ≥ 4.5 + target SDK/16 KB) y medición real en un teléfono gama baja (A2/A3).
+2. Licencias: archivo ODbL de `data/geo`, derechos del arte (Figma/Canva) y SECTRA (A4–A6).
+3. Decidir N4/N5 (semántica de `verificado`, fecha de estado) y verificar los 13 eventos con acceso a Servel/BCN (N8).
+4. Integrar las ramas de datos solo tras N14 (a)(c) y N15 (a)(b).
+5. N6 y N13 como pruebas automáticas en CI (alcanzabilidad de cartas y arte existente).
+
+---
+
 # Incidente: PR #6 fusionado con CI en rojo
 
 **Hechos verificados en GitHub (API del PR #6):**
