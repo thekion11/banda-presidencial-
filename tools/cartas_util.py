@@ -43,7 +43,7 @@ def h(clave: str) -> int:
     return zlib.crc32(clave.encode("utf-8"))
 
 
-_FUERTES = [", ", " y ", " e ", " que ", " para ", " con el objeto", " con el fin", " a fin de", " en materia", " respecto", " cuando ", " sin "]
+_FUERTES = [" – ", " - ", " (", " Tramo ", ", ", " y ", " e ", " que ", " para ", " con el objeto", " con el fin", " a fin de", " en materia", " respecto", " cuando ", " sin "]
 _DEBILES = [" de la ", " del ", " de los ", " de las ", " de ", " en la ", " en el ", " en ", " con ", " por ", " sobre ", " a la ", " al ", " a "]
 
 

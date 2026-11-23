@@ -35,6 +35,19 @@ def musd(p: dict):
     return None
 
 
+ABREV = [(r"^Concesi[óo]n ", ""), (r"Primera Concesi[óo]n", "1.ª Concesión"), (r"Segunda Concesi[óo]n", "2.ª Concesión"), (r"Arturo Merino Benítez", "AMB"),
+         (r"^Plan de Inversiones Oncol[óo]gicas 2026-2030: centro o unidad oncol[óo]gica ", "Centro oncológico "),
+         (r"^Plan de Inversiones Oncol[óo]gicas 2026-2030: habilitaci[óo]n/equipamiento ", "Equipamiento oncológico "),
+         (r"Terminal Intermodal ", ""), (r"Obras Mar[íi]timas Infraestructura Portuaria ", "Obras marítimas, puerto "),
+         (r"Ampliaci[óo]n y Mejoramiento ", "Mejoramiento "), (r"Trenes de refuerzo servicio ", "Trenes de refuerzo "), (r"Interconexi[óo]n Vial Santiago.*", "Interconexión Santiago-Valparaíso")]
+
+
+def corto(nombre: str, n: int) -> str:
+    for rx, rep in ABREV:
+        nombre = re.sub(rx, rep, nombre)
+    return recortar(nombre, n, 12)
+
+
 def carta_obra(p: dict) -> dict:
     """Una carta por proyecto, según su estado real al arrancar el juego: idea/perfil/diseño/licitación = obra completa;
     en ejecución = acelerar (tramo final); terminado = inauguración (efecto inmediato, sin obra)."""
@@ -51,11 +64,11 @@ def carta_obra(p: dict) -> dict:
     if est == "terminado":
         meta["modo"] = "inauguracion"
         base["disponibilidad"] = disp_obra(p, inv, "inauguracion")
-        return dict(base, costo_pa=1, titulo="Inaugurar: " + recortar(p["nombre"], 49), efectos=[{"ind": "aprobacion", "delta": 1.5}, {"ind": "capital", "delta": 0.5}])
+        return dict(base, costo_pa=1, titulo="Inaugurar: " + corto(p["nombre"], 49), efectos=[{"ind": "aprobacion", "delta": 1.5}, {"ind": "capital", "delta": 0.5}])
     if est == "ejecucion":
         meta["modo"] = "acelerar"
         base["disponibilidad"] = disp_obra(p, inv, "acelerar")
-        return dict(base, costo_pa=2, titulo="Acelerar: " + recortar(p["nombre"], 50), efectos=[{"ind": "aprobacion", "delta": 2.5}, {"ind": "fiscal", "delta": fiscal}],
+        return dict(base, costo_pa=2, titulo="Acelerar: " + corto(p["nombre"], 50), efectos=[{"ind": "aprobacion", "delta": 2.5}, {"ind": "fiscal", "delta": fiscal}],
                     obra={"nombre": recortar(p["nombre"], 80), "dias_totales": 90})
     meta["modo"] = "obra"
     base["disponibilidad"] = disp_obra(p, inv, "obra")
@@ -63,7 +76,7 @@ def carta_obra(p: dict) -> dict:
     efectos = [{"ind": "aprobacion", "delta": 4 if grande else 3}, {"ind": "fiscal", "delta": fiscal}]
     if grande:
         efectos.append({"ind": "riesgo_ejecucion", "delta": 1})
-    return dict(base, costo_pa=3 if grande else 2, titulo=recortar(p["nombre"]), efectos=efectos, obra={"nombre": recortar(p["nombre"], 80), "dias_totales": dias})
+    return dict(base, costo_pa=3 if grande else 2, titulo=corto(p["nombre"], 60), efectos=efectos, obra={"nombre": recortar(p["nombre"], 80), "dias_totales": dias})
 
 
 def seleccionar_obras(proys: list) -> list:
