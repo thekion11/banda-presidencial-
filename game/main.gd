@@ -58,8 +58,17 @@ func mostrar_partido() -> void:
 func _iniciar_campana(partido: Dictionary) -> void:
 	var semilla := int(Time.get_unix_time_from_system()) % 2000000000
 	motor = Partida.crear(datos, semilla, partido)
-	guardar()
-	mostrar_dia()
+	mostrar_gabinete()
+
+
+func mostrar_gabinete() -> void:
+	## Etapa de configuración: elección del gabinete antes de la campaña.
+	var g := PantallaGabinete.new()
+	g.motor = motor
+	g.listo.connect(func() -> void:
+		guardar()
+		mostrar_dia())
+	_cambiar(g)
 
 
 func continuar_guardado() -> void:
