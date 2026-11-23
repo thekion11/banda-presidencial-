@@ -131,15 +131,15 @@ func _draw() -> void:
 			draw_set_transform(origen, 0.0, Vector2(h * estirar_x, h))
 			draw_mesh(_mallas[id], null, Transform2D.IDENTITY, col)
 			if _relieve != null:
-				draw_mesh(_mallas[id], _relieve, Transform2D.IDENTITY, Color.WHITE)
+				draw_mesh(_mallas[id], _relieve, Transform2D.IDENTITY, Color(1, 1, 1, 0.7))
 			draw_set_transform(Vector2.ZERO, 0.0, Vector2.ONE)
 		for pieza in _piezas[id]:
 			var pts := PackedVector2Array()
 			for p in pieza:
 				pts.append(_transformar(p))
-			var borde := Tema.ORO if id == seleccion else Color(1, 0.97, 0.9, 0.55)
+			var borde := Tema.ORO if id == seleccion else Color(1, 0.97, 0.9, 0.5)
 			pts.append(pts[0])
-			draw_polyline(pts, borde, 2.0 if id == seleccion else 1.0, true)
+			draw_polyline(pts, borde, 2.5 if id == seleccion else 0.9, true)
 	for i in range(0, _este.size(), 2):
 		var q := _transformar(_este[i] + Vector2(0.004, 0.0))
 		var h := 5.0 + float((i * 7) % 4)

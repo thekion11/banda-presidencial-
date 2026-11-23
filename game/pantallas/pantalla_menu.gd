@@ -9,11 +9,12 @@ var _creditos: PanelContainer
 
 
 func _ready() -> void:
+	add_child(Tema.fondo_hero("politica"))
 	var col := VBoxContainer.new()
 	col.set_anchors_preset(Control.PRESET_FULL_RECT)
 	col.offset_left = 24
 	col.offset_right = -24
-	col.offset_top = 120
+	col.offset_top = 90
 	col.offset_bottom = -40
 	col.add_theme_constant_override("separation", 14)
 	add_child(col)
@@ -25,9 +26,11 @@ func _ready() -> void:
 	col.add_child(esp)
 	if hay_guardado:
 		var c := Tema.boton("Continuar partida", Tema.PANEL)
+		c.add_theme_stylebox_override("normal", Tema.caja_degradada(Color("#1B4F78"), Color("#0F2F4A"), 18, Color("#4C84AE"), 2))
 		c.pressed.connect(func() -> void: continuar.emit())
 		col.add_child(c)
-	var n := Tema.boton("Nueva partida", Tema.ROJO)
+	var n := Barras.boton_jugar()
+	n.text = "Nueva partida"
 	n.pressed.connect(func() -> void: nueva.emit())
 	col.add_child(n)
 	var cr := Tema.boton("Créditos", Tema.OCEANO.lightened(0.1), Tema.TEXTO_SUAVE, 13, 44)

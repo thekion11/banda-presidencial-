@@ -87,15 +87,48 @@ func _mostrar_pregunta() -> void:
 	_barra.anchor_right = float(_paso) / float(total + 1)
 	_actualizar_franja()
 	var p: Dictionary = _preguntas()[_paso]
+	var img := Tema.imagen(String(p.get("arte", "politica")), 150.0, 16.0)
+	_contenido.add_child(img)
 	var tarjeta := PanelContainer.new()
-	tarjeta.add_theme_stylebox_override("panel", Tema.caja(Tema.PANEL, 16))
+	tarjeta.add_theme_stylebox_override("panel", Tema.caja_degradada(Color("#1A4C73"), Color("#133C5C"), 16, Color("#2E6490"), 1))
 	tarjeta.add_child(Tema.etiqueta(String(p["texto"]), 17, Tema.TEXTO, true))
 	_contenido.add_child(tarjeta)
+	var i := 0
 	for op in p["opciones"]:
-		var b := Tema.boton(String(op["etiqueta"]), Tema.OCEANO.lightened(0.14), Tema.TEXTO, 14, 60)
-		b.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+		var b := _boton_opcion(["A", "B", "C"][i], String(op["etiqueta"]))
 		b.pressed.connect(_responder.bind(op))
 		_contenido.add_child(b)
+		b.modulate.a = 0.0
+		b.create_tween().tween_property(b, "modulate:a", 1.0, 0.25).set_delay(0.08 * float(i))
+		i += 1
+
+
+func _boton_opcion(letra: String, texto: String) -> Button:
+	var b := Button.new()
+	b.custom_minimum_size = Vector2(0, 62)
+	b.add_theme_stylebox_override("normal", Tema.caja_degradada(Color("#1B4F78"), Color("#0F2F4A"), 18, Color("#3A6E98"), 2))
+	b.add_theme_stylebox_override("hover", Tema.caja_degradada(Color("#246190"), Color("#143A5C"), 18, Color("#F2C14E"), 2))
+	b.add_theme_stylebox_override("pressed", Tema.caja_degradada(Color("#0F2F4A"), Color("#1B4F78"), 18, Color("#F2C14E"), 2))
+	b.add_theme_stylebox_override("focus", StyleBoxEmpty.new())
+	var h := HBoxContainer.new()
+	h.set_anchors_preset(Control.PRESET_FULL_RECT)
+	h.offset_left = 12
+	h.offset_right = -12
+	h.add_theme_constant_override("separation", 12)
+	h.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	var badge := Tema.etiqueta_corta(letra, 15, Tema.TINTA, true)
+	badge.add_theme_stylebox_override("normal", Tema.caja_degradada(Color("#FFD76A"), Color("#E3A92A"), 16))
+	badge.custom_minimum_size = Vector2(32, 32)
+	badge.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	badge.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	badge.size_flags_vertical = Control.SIZE_SHRINK_CENTER
+	h.add_child(badge)
+	var t := Tema.etiqueta(texto, 13, Tema.TEXTO, false, 600)
+	t.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	t.size_flags_vertical = Control.SIZE_SHRINK_CENTER
+	h.add_child(t)
+	b.add_child(h)
+	return b
 
 
 func _responder(op: Dictionary) -> void:
@@ -112,6 +145,26 @@ func _mostrar_fundacion() -> void:
 	_titulo.text = "Fundación de Partido · Identidad"
 	_barra.anchor_right = float(_preguntas().size()) / float(_preguntas().size() + 1)
 	_actualizar_franja()
+	var ficha := PanelContainer.new()
+	ficha.add_theme_stylebox_override("panel", Tema.caja_degradada(Color("#1A4C73"), Color("#133C5C"), 18, Color("#2E6490"), 1))
+	var fh := HBoxContainer.new()
+	fh.add_theme_constant_override("separation", 14)
+	var emblema := Tema.etiqueta_corta("MCA", 17, Tema.TINTA, true)
+	emblema.add_theme_stylebox_override("normal", Tema.caja_degradada(Color("#FFD76A"), Color("#E3A92A"), 36, Color("#FFF0B8"), 3))
+	emblema.custom_minimum_size = Vector2(72, 72)
+	emblema.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	emblema.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	fh.add_child(emblema)
+	var fv := VBoxContainer.new()
+	fv.size_flags_vertical = Control.SIZE_SHRINK_CENTER
+	fv.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	var ejes := GeneradorPartido.calcular_ejes(_respuestas)
+	var nombre_prev := Tema.etiqueta("", 16, Tema.TEXTO, true)
+	fv.add_child(nombre_prev)
+	fv.add_child(Tema.etiqueta(GeneradorPartido.perfil_para(ejes.x, ejes.y, datos["ideologia"]), 12, Tema.ORO, false, 700))
+	fh.add_child(fv)
+	ficha.add_child(fh)
+	_contenido.add_child(ficha)
 	_contenido.add_child(Tema.etiqueta("Nombre del partido", 12, Tema.TEXTO_SUAVE))
 	_nombre = LineEdit.new()
 	_nombre.text = "Movimiento Cívico Austral"
@@ -124,6 +177,9 @@ func _mostrar_fundacion() -> void:
 	_sigla.max_length = 5
 	_sigla.custom_minimum_size = Vector2(0, 48)
 	_contenido.add_child(_sigla)
+	nombre_prev.text = _nombre.text
+	_nombre.text_changed.connect(func(t: String) -> void: nombre_prev.text = t)
+	_sigla.text_changed.connect(func(t: String) -> void: emblema.text = t.to_upper())
 	_contenido.add_child(Tema.etiqueta("Región bastión (+ aprobación inicial)", 12, Tema.TEXTO_SUAVE))
 	_region = OptionButton.new()
 	_region.custom_minimum_size = Vector2(0, 48)

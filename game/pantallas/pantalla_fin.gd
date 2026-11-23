@@ -9,11 +9,12 @@ var motor: MotorTurno
 func _ready() -> void:
 	var est := motor.estado
 	var r := est.resultado_final
+	add_child(Tema.fondo_hero("politica" if est.etapa == "fin_mandato" else "seguridad", 0.5, 0.0 if est.etapa == "fin_mandato" else 0.35))
 	var col := VBoxContainer.new()
 	col.set_anchors_preset(Control.PRESET_FULL_RECT)
 	col.offset_left = 24
 	col.offset_right = -24
-	col.offset_top = 90
+	col.offset_top = 330
 	col.offset_bottom = -40
 	col.add_theme_constant_override("separation", 14)
 	add_child(col)
@@ -35,6 +36,7 @@ func _ready() -> void:
 	var esp := Control.new()
 	esp.size_flags_vertical = Control.SIZE_EXPAND_FILL
 	col.add_child(esp)
-	var b := Tema.boton("Volver al inicio", Tema.ROJO)
+	var b := Barras.boton_jugar()
+	b.text = "Volver al inicio"
 	b.pressed.connect(func() -> void: otra_vez.emit())
 	col.add_child(b)

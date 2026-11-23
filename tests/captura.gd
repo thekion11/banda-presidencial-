@@ -34,32 +34,10 @@ func _correr() -> void:
 	for i in range(2, 8):
 		pp._responder(main.datos["ideologia"]["preguntas"][i]["opciones"][1])
 	await _guardar("04_fundacion")
-	pp._fundar()
-	await process_frame
-	await _guardar("05_dia_campana")
-	var dia: Node = main._pantalla
-	dia._on_region("valparaiso")
-	dia._jugar()
-	await _guardar("06_dia_campana_jugada")
-	for s in range(8):
-		while not main.motor.estado.mano.is_empty() and main.motor.costo_carta(main.motor.estado.mano[0]) <= main.motor.estado.pa_actual:
-			main.motor.jugar_carta(0, "", "metropolitana")
-		main.motor.terminar_turno()
-	main.motor.resolver_eleccion_presidencial()
-	main.motor.iniciar_turno()
-	main.mostrar_dia()
-	await _guardar("07_dia_gobierno")
-	main._pantalla._cola_eventos.clear()
-	for c in main._pantalla._capa.get_children():
-		if c is ColorRect:
-			c.queue_free()
-	await _guardar("08_dia_gobierno_limpio")
-	main._pantalla._abrir_panel("comite")
-	main.motor.estado.propuestas_abiertas.append("prop_metro_suroriente")
-	main._pantalla._abrir_panel("comite")
-	await _guardar("09_comite")
-	main._pantalla._abrir_panel("congreso")
-	await _guardar("10_congreso")
-	main._pantalla._abrir_panel("gabinete")
-	await _guardar("11_gabinete")
+	var est_dummy: Dictionary = {}
+	main.motor = Partida.crear(main.datos, 7, GeneradorPartido.construir_partido("Movimiento Cívico Austral", "MCA", "metropolitana", [main.datos["ideologia"]["preguntas"][0]["opciones"][1]], main.datos["ideologia"]))
+	main.motor.estado.etapa = "fin_mandato"
+	main.motor.estado.resultado_final = {"motivo": "fin_mandato", "puntaje": 812, "aprobacion": 47.3, "obras": 6, "promesas_pendientes": 2}
+	main.mostrar_fin()
+	await _guardar("05_fin")
 	quit(0)

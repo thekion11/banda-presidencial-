@@ -89,6 +89,80 @@ static func caja_degradada(arriba: Color, abajo: Color, radio: int = 27, borde: 
 	return sb
 
 
+const SHADER_IMAGEN := """
+shader_type canvas_item;
+uniform vec2 tam = vec2(100.0, 80.0);
+uniform float radio = 12.0;
+uniform float oscurecer = 0.0;
+void fragment() {
+	vec2 p = UV * tam;
+	vec2 q = abs(p - tam * 0.5) - (tam * 0.5 - vec2(radio));
+	float d = length(max(q, 0.0)) + min(max(q.x, q.y), 0.0) - radio;
+	vec4 c = texture(TEXTURE, UV);
+	c.rgb *= (1.0 - oscurecer);
+	float v = distance(UV, vec2(0.5)) * 0.55;
+	c.rgb *= 1.0 - v * v;
+	COLOR = vec4(c.rgb, c.a * clamp(0.5 - d, 0.0, 1.0));
+}
+"""
+
+
+static func imagen(categoria: String, alto: float, radio: float = 14.0, oscurecer: float = 0.0) -> Control:
+	## Ilustración de res://game/arte/cartas con esquinas redondeadas y viñeta. Devuelve un Control vacío si falta la imagen.
+	var ruta := "res://game/arte/cartas/%s.jpg" % categoria
+	var tr := TextureRect.new()
+	tr.custom_minimum_size = Vector2(0, alto)
+	tr.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	if not ResourceLoader.exists(ruta):
+		return tr
+	tr.texture = load(ruta)
+	tr.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	tr.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_COVERED
+	var sh := Shader.new()
+	sh.code = SHADER_IMAGEN
+	var mat := ShaderMaterial.new()
+	mat.shader = sh
+	mat.set_shader_parameter("radio", radio)
+	mat.set_shader_parameter("oscurecer", oscurecer)
+	tr.material = mat
+	tr.resized.connect(func() -> void: mat.set_shader_parameter("tam", tr.size))
+	return tr
+
+
+static func fondo_hero(categoria: String, fraccion: float = 0.62, oscurecer: float = 0.0) -> Control:
+	## Fondo de pantalla completa: ilustración arriba que se funde con el océano hacia abajo.
+	var raiz := Control.new()
+	raiz.set_anchors_preset(Control.PRESET_FULL_RECT)
+	raiz.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	var ruta := "res://game/arte/cartas/%s.jpg" % categoria
+	if ResourceLoader.exists(ruta):
+		var hero := TextureRect.new()
+		hero.texture = load(ruta)
+		hero.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+		hero.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_COVERED
+		hero.set_anchors_preset(Control.PRESET_FULL_RECT)
+		hero.anchor_bottom = fraccion
+		hero.modulate = Color(1.0 - oscurecer, 1.0 - oscurecer, 1.0 - oscurecer)
+		hero.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		raiz.add_child(hero)
+	var g := Gradient.new()
+	g.colors = PackedColorArray([Color(0.04, 0.13, 0.21, 0.30), Color(0.04, 0.13, 0.21, 0.78), Color("#0B2236"), Color("#07182A")])
+	g.offsets = PackedFloat32Array([0.0, fraccion * 0.62, fraccion, 1.0])
+	var gt := GradientTexture2D.new()
+	gt.gradient = g
+	gt.fill_from = Vector2(0.5, 0.0)
+	gt.fill_to = Vector2(0.5, 1.0)
+	gt.width = 8
+	gt.height = 844
+	var vel := TextureRect.new()
+	vel.texture = gt
+	vel.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	vel.set_anchors_preset(Control.PRESET_FULL_RECT)
+	vel.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	raiz.add_child(vel)
+	return raiz
+
+
 static func caja(color: Color, radio: int = 14, borde: Color = Color(0, 0, 0, 0), grosor: int = 0) -> StyleBoxFlat:
 	var s := StyleBoxFlat.new()
 	s.bg_color = color
