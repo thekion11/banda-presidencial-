@@ -8,6 +8,7 @@ from datetime import date, timedelta
 import json
 import math
 import os
+import re
 from pathlib import Path
 import sys
 
@@ -237,6 +238,44 @@ def validar_sectra(regiones: set, leyes: dict) -> None:
         raise ValueError("leyes.sectra inválida")
 
 
+def validar_proyectos(regiones: set, ids_fuentes: set) -> None:
+    """data/proyectos/*.json: esquema de registro, regiones, fuentes y ausencia de cifras inventadas."""
+    estados = {"idea", "perfil", "prefactibilidad", "diseno", "licitacion", "ejecucion", "terminado", "abandonado"}
+    claves = {"id", "nombre", "sector", "region_id", "region_ids", "comuna", "estado", "estado_2026_03_11", "inversion_musd",
+              "inversion_uf", "inversion_clp", "fecha_inicio", "fecha_fin", "mandante", "descripcion", "fuente_url", "fuente", "fecha_consulta",
+              "verificado", "notas"}
+    patron_fecha = re.compile(r"^\d{4}(-\d{2}(-\d{2})?|-(Q[1-4]|S[12]))?$")
+    vistos = set()
+    for ruta in sorted((DATA_DIR / "proyectos").glob("*.json")):
+        d = json.loads(ruta.read_text(encoding="utf-8"))
+        for p in d["proyectos"]:
+            ctx = f"{ruta.name}/{p.get('id')}"
+            if set(p) != claves:
+                raise ValueError(f"{ctx}: claves distintas del esquema: {set(p) ^ claves}")
+            if p["id"] in vistos:
+                raise ValueError(f"{ctx}: id duplicado entre archivos")
+            vistos.add(p["id"])
+            if p["estado"] not in estados or (p["estado_2026_03_11"] not in estados and p["estado_2026_03_11"] is not None):
+                raise ValueError(f"{ctx}: estado inválido")
+            if not p["nombre"] or not p["sector"] or not p["fuente_url"].startswith("https://"):
+                raise ValueError(f"{ctx}: nombre, sector o fuente_url inválidos")
+            if p["region_id"] is not None and p["region_id"] not in regiones:
+                raise ValueError(f"{ctx}: región desconocida {p['region_id']}")
+            if any(r not in regiones for r in p["region_ids"]):
+                raise ValueError(f"{ctx}: region_ids desconocida")
+            verificar_ref_fuente(p, ids_fuentes, ctx)
+            for k in ("inversion_musd", "inversion_uf", "inversion_clp"):
+                if p[k] is not None and (not isinstance(p[k], (int, float)) or p[k] < 0):
+                    raise ValueError(f"{ctx}: {k} inválido")
+            for k in ("fecha_inicio", "fecha_fin"):
+                if p[k] is not None and not patron_fecha.match(p[k]):
+                    raise ValueError(f"{ctx}: {k} con formato inválido '{p[k]}'")
+            date.fromisoformat(p["fecha_consulta"])
+            if not isinstance(p["verificado"], bool):
+                raise ValueError(f"{ctx}: verificado debe ser booleano")
+    print(f"[INFO] Proyectos públicos: {len(vistos)} registros válidos")
+
+
 def main() -> int:
     nombres = ("fuentes", "leyes", "ministros", "cartas", "eventos", "ideologia", "regiones", "propuestas")
     datos = {n: cargar_json(f"{n}.json") for n in nombres}
@@ -253,6 +292,7 @@ def main() -> int:
     validar_propuestas(datos["propuestas"], ids_fuentes, {r["id"] for r in datos["regiones"]})
     validar_grafo()
     validar_sectra({r["id"] for r in datos["regiones"]}, datos["leyes"])
+    validar_proyectos({r["id"] for r in datos["regiones"]}, ids_fuentes)
     print("OK: Todos los JSON de Fase 0 superaron la validación")
     return 0
 

@@ -99,5 +99,65 @@
     "fecha_corte": "2026-11-23",
     "vigencia_dias": 365,
     "es_ilustrativa": false
+  },
+  {
+    "id": "mop_concesiones",
+    "institucion": "MOP - Dirección General de Concesiones",
+    "titulo": "Fichas de proyectos de concesiones (cartera 2026-2030, licitación, construcción, operación, finalizadas)",
+    "url": "https://concesiones.mop.gob.cl/cartera-de-proyectos/",
+    "fecha_corte": "2026-11-23",
+    "vigencia_dias": 180,
+    "es_ilustrativa": false,
+    "verificado_contra_texto": false
+  },
+  {
+    "id": "mop_obras",
+    "institucion": "Ministerio de Obras Públicas (MOP) y sus direcciones",
+    "titulo": "Fichas de obras: Vialidad, DOH, DOP, Arquitectura, Aeropuertos",
+    "url": "https://www.mop.gob.cl/",
+    "fecha_corte": "2026-11-23",
+    "vigencia_dias": 365,
+    "es_ilustrativa": false,
+    "verificado_contra_texto": false
+  },
+  {
+    "id": "efe_proyectos",
+    "institucion": "Empresa de los Ferrocarriles del Estado (EFE Trenes de Chile)",
+    "titulo": "Proyectos del Plan Trenes para Chile y otros desarrollos",
+    "url": "https://www.efe.cl/proyectos/",
+    "fecha_corte": "2026-11-23",
+    "vigencia_dias": 180,
+    "es_ilustrativa": false,
+    "verificado_contra_texto": false
+  },
+  {
+    "id": "metro_santiago",
+    "institucion": "Metro de Santiago y prensa (Meganoticias, El Dínamo, Radio Agricultura)",
+    "titulo": "Nuevas líneas 7, 8, 9 y A: fichas oficiales y cifras de prensa",
+    "url": "https://www.metro.cl/nuevos-proyectos/linea-7",
+    "fecha_corte": "2026-11-23",
+    "vigencia_dias": 180,
+    "es_ilustrativa": false,
+    "verificado_contra_texto": false
+  },
+  {
+    "id": "minsal_inversiones",
+    "institucion": "Ministerio de Salud (MINSAL)",
+    "titulo": "Plan de Inversiones Oncológicas 2026-2030 y cartera de inversión hospitalaria",
+    "url": "https://www.minsal.cl/",
+    "fecha_corte": "2026-11-23",
+    "vigencia_dias": 180,
+    "es_ilustrativa": false,
+    "verificado_contra_texto": false
+  },
+  {
+    "id": "planes_prensa_2026",
+    "institucion": "Prensa chilena (Radio UChile, BioBioChile, La Tercera, El Desconcierto, The Clinic)",
+    "titulo": "Planes nacionales y anuncios del gobierno 2026 (PNIP 2055, plan carcelario, transporte)",
+    "url": "https://www.mop.gob.cl/",
+    "fecha_corte": "2026-11-23",
+    "vigencia_dias": 180,
+    "es_ilustrativa": false,
+    "verificado_contra_texto": false
   }
 ]

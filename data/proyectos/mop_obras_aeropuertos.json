@@ -1,0 +1,82 @@
+{
+ "meta": {
+  "fuente": "mop_obras",
+  "scraper": "tools/proyectos/mop_obras.py",
+  "fecha_consulta": "2026-11-23",
+  "nota": "Fichas de obras destacadas; muchas con fechas de 2021-2024 (el estado puede estar desactualizado)."
+ },
+ "proyectos": [
+  {
+   "id": "mop-www-14440-ampliacion-aerodromo-canal-bajo",
+   "nombre": "Ampliación Aeródromo Cañal Bajo",
+   "sector": "aeropuertos",
+   "region_id": "loslagos",
+   "region_ids": [
+    "loslagos"
+   ],
+   "comuna": "Osorno",
+   "estado": "ejecucion",
+   "estado_2026_03_11": null,
+   "inversion_musd": null,
+   "inversion_uf": null,
+   "inversion_clp": 8236373000.0,
+   "fecha_inicio": "2021-11-05",
+   "fecha_fin": "2023-02-28",
+   "mandante": "Dirección de Aeropuertos",
+   "descripcion": "Ampliación Aeródromo Cañal Bajo Región: Los Lagos Ubicación: Osorno Servicio: Dirección de Aeropuertos Estado: Ejecución Monto: 8.236.373.000 Fecha de Inicio: 05/11/2021 Fecha de Término: 28/02/2023 Código Bip: 30465788-0 Descripción del Proyecto El proyecto considera principalmente la ampliación del Edificio Terminal de pasajeros, una Nueva Torre de Control, ampliación del Cuartel SSEI, nueva áre",
+   "fuente_url": "https://www.mop.gob.cl/project/ampliacion-aerodromo-canal-bajo/",
+   "fuente": "fuentes.json#mop_obras",
+   "fecha_consulta": "2026-11-23",
+   "verificado": true,
+   "notas": "estado según la ficha (fecha de consulta); código BIP: 30465788-0 Descripción del Proyecto El proyecto considera principalmente la ampliación del Edificio Terminal de pasajeros, una Nueva Torre de Control, ampliación del Cuartel SSEI, nueva área estacionamientos y vialidad, nueva planta de combustible, ampliación de todas las instalaciones de apoyo cuando sea necesario por aumento de capacidad, entre otras obras. El proyecto debió ser dividido en dos fases para una correcta ejecución del proyecto en su totalidad. Documentos Observaciones El objetivo de este proyecto es atender adecuadamente tanto las operaciones de aeronaves proyectadas en un horizonte de 10 años, como el flujo de pasajeros que se ha estimado que harán uso de sus instalaciones hasta el año 2030. Financiamiento MOP. Proyectos Relacionados Teleférico Bicentenario Edificación Pública , Metropolitana Habilitación espacio público Nudo Baquedano Arquitectura , Edificación Pública , Metropolitana Construcción Biblioteca Regional de La Araucanía Arquitectura , Edificación Pública , La Araucanía Mejoramiento Borde Costero Buchupureo Cobquecura Bordes Costeros , Ñuble , Obras Portuarias ← Proyecto anterior Proyecto siguiente →; monto en CLP salvo que indique UF/USD"
+  },
+  {
+   "id": "mop-www-14488-mejoramiento-integral-aerodromo-de-victoria",
+   "nombre": "Mejoramiento Integral Aeródromo de Victoria",
+   "sector": "aeropuertos",
+   "region_id": "araucania",
+   "region_ids": [
+    "araucania"
+   ],
+   "comuna": "Victoria",
+   "estado": "diseno",
+   "estado_2026_03_11": null,
+   "inversion_musd": null,
+   "inversion_uf": null,
+   "inversion_clp": 319402000.0,
+   "fecha_inicio": "2019-11-12",
+   "fecha_fin": "2021-02-24",
+   "mandante": "Dirección de Aeropuertos",
+   "descripcion": "Mejoramiento Integral Aeródromo de Victoria Región: La Araucanía Ubicación: Victoria Servicio: Dirección de Aeropuertos Estado: Diseño Monto: 319.402.000 Fecha de Inicio: 12/11/2019 Fecha de Término: 24/02/2021 Código Bip: 30485932-0 Descripción del Proyecto El proyecto considera las siguientes obras: - Ampliación de pista (alargue y ensanche) - Construcción de resa, franja de seguridad y superfic",
+   "fuente_url": "https://www.mop.gob.cl/project/mejoramiento-integral-aerodromo-de-victoria/",
+   "fuente": "fuentes.json#mop_obras",
+   "fecha_consulta": "2026-11-23",
+   "verificado": true,
+   "notas": "estado según la ficha (fecha de consulta); código BIP: 30485932-0 Descripción del Proyecto El proyecto considera las siguientes obras: - Ampliación de pista (alargue y ensanche) - Construcción de resa, franja de seguridad y superficie de proyección al chorro - Ayudas visuales de pista y desahogos - Normalización de cercos perimetrales y obras de saneamiento con drenaje - Construcción de un rodaje paralelo a pista completo - Mejoramiento de 2 piscinas y surtidores para carga rápida. - Construcción de refugio de pilotos y control aeronáutico - Construcción de helipuerto - Construcción de galpón de mantenimiento de aeronaves - Regularización de instalaciones sanitarias y eléctricas - Construcción de vialidad exterior - Mejora para depósitos de agua y retardantes Documentos Observaciones La superficie de rodadura de la pista está compuesta por dos tipos de materialidad. Por una parte, cuenta con un doble tratamiento asfáltico en una extensión de 900 m y, por otra parte, en el cabezal norte, cuenta con 160 m correspondiente a pavimento de hormigón. Las calles de desahogo (2) son perpendiculares a la pista y plataforma, y son de hormigón. El estudio tiene por objetivo definir a nivel de detalle las obras de mejoramiento, tanto del área de movimiento como de sus instalaciones, las cuales deberán dar cumplimiento a la normativa nacional o internacional que corresponda, contribuyendo adicionalmente con ello a mejorar la calidad de servicio y las condiciones de seguridad del recinto aeroportuario. Financiamiento MOP. Proyectos Relacionados Teleférico Bicentenario Edificación Pública , Metropolitana Habilitación espacio público Nudo Baquedano Arquitectura , Edificación Pública , Metropolitana Construcción Biblioteca Regional de La Araucanía Arquitectura , Edificación Pública , La Araucanía Mejoramiento Borde Costero Buchupureo Cobquecura Bordes Costeros , Ñuble , Obras Portuarias ← Proyecto anterior Proyecto siguiente →; monto en CLP salvo que indique UF/USD"
+  },
+  {
+   "id": "mop-www-14517-ampliacion-y-mejoramiento-area-terminal-aerodromo",
+   "nombre": "Ampliación y Mejoramiento Área Terminal Aeródromo Pichoy",
+   "sector": "aeropuertos",
+   "region_id": "losrios",
+   "region_ids": [
+    "losrios"
+   ],
+   "comuna": "Valdivia",
+   "estado": "ejecucion",
+   "estado_2026_03_11": null,
+   "inversion_musd": null,
+   "inversion_uf": null,
+   "inversion_clp": 13115088000.0,
+   "fecha_inicio": "2021-11-17",
+   "fecha_fin": "2023-05-11",
+   "mandante": "Dirección de Aeropuertos",
+   "descripcion": "Ampliación y Mejoramiento Área Terminal Aeródromo Pichoy Región: Los Ríos Ubicación: Valdivia Servicio: Dirección de Aeropuertos Estado: Ejecución Monto: 13.115.088.000 Fecha de Inicio: 17/11/2021 Fecha de Término: 11/05/2023 Código Bip: 40009164-0 Descripción del Proyecto El proyecto corresponde al mejoramiento integral del edificio terminal de pasajeros del aeródromo de Pichoy, ampliando su supe",
+   "fuente_url": "https://www.mop.gob.cl/project/ampliacion-y-mejoramiento-area-terminal-aerodromo-pichoy/",
+   "fuente": "fuentes.json#mop_obras",
+   "fecha_consulta": "2026-11-23",
+   "verificado": true,
+   "notas": "estado según la ficha (fecha de consulta); código BIP: 40009164-0 Descripción del Proyecto El proyecto corresponde al mejoramiento integral del edificio terminal de pasajeros del aeródromo de Pichoy, ampliando su superficie desde los 1.654 m2 originales (remodelados en 2010) hasta totalizar 4.562 m2, además de la generación de 134 puestos de estacionamiento. Documentos Buscador de Proyectos Observaciones Dado el crecimiento de la demanda del aeródromo Pichoy, principal terminal aeroportuario de la Región de Los Ríos, localizado en la comuna de Mariquina, se hace necesario adecuar y estandarizar el edificio terminal y sus estacionamientos acorde a un óptimo nivel de servicio, equivalente a la operación de dos vuelos simultáneos de un avión tipo Airbus A320. Proyectos Relacionados Teleférico Bicentenario Edificación Pública , Metropolitana Habilitación espacio público Nudo Baquedano Arquitectura , Edificación Pública , Metropolitana Construcción Biblioteca Regional de La Araucanía Arquitectura , Edificación Pública , La Araucanía Mejoramiento Borde Costero Buchupureo Cobquecura Bordes Costeros , Ñuble , Obras Portuarias ← Proyecto anterior Proyecto siguiente →; monto en CLP salvo que indique UF/USD"
+  }
+ ]
+}
