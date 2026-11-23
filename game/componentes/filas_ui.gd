@@ -71,3 +71,29 @@ static func fila_h(izq: Control, der: Control) -> HBoxContainer:
 	h.add_child(izq)
 	h.add_child(der)
 	return h
+
+
+static func capa_opaca() -> Control:
+	## Raíz de pantalla completa con fondo océano (cubre la pantalla de día).
+	var raiz := Control.new()
+	raiz.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	var fondo := ColorRect.new()
+	fondo.color = Tema.OCEANO
+	fondo.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	raiz.add_child(fondo)
+	return raiz
+
+
+static func boton_pie(texto: String) -> Button:
+	## Botón principal de las pantallas a pantalla completa: mismo rectángulo que el de fundación y gabinete (16, 739, 358 × 52).
+	var b := Barras.boton_jugar()
+	b.text = texto
+	b.custom_minimum_size = Vector2(0, 52)
+	b.anchor_top = 1.0
+	b.anchor_bottom = 1.0
+	b.anchor_right = 1.0
+	b.offset_left = 16.0
+	b.offset_right = -16.0
+	b.offset_top = -105.0
+	b.offset_bottom = -53.0
+	return b

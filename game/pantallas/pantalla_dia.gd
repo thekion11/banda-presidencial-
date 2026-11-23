@@ -54,6 +54,10 @@ func _ready() -> void:
 	_cola_eventos = motor.ultimos_eventos.duplicate()
 	_refrescar()
 	_siguiente_evento()
+	if Tutorial.debe_mostrar() and motor.estado.etapa == "campana" and motor.estado.turno_actual == 1:
+		var tut := Tutorial.new()
+		tut.objetivos = [_mano, _r["pa"], _btn_deleg, _nav, _btn_fin]
+		_capa.add_child(tut)
 
 
 # ------------------------------------------------------------------ construcción
@@ -340,20 +344,18 @@ func _terminar_turno() -> void:
 
 
 func _resolver_eleccion() -> void:
+	var regional := motor.estado.aprobacion_regional.duplicate()  # el desglose es el de la jornada, antes del amanecer de gobierno
 	var res := motor.resolver_eleccion_presidencial()
 	if res["electo"] or res["balotaje"]:
 		motor.iniciar_turno()  # mismo orden que la reproducción desde guardado
 	accion_hecha.emit()
-	var ev := {"titulo": "Elección presidencial", "hora": "20:00", "votacion": null,
-		"descripcion": "Obtuviste %.1f %% de los votos con un umbral de %.0f %%. %s" % [float(res["voto_final"]), float(res["umbral"]),
-			"¡Eres el nuevo Presidente de Chile! Asumes el gobierno con tus promesas como metas de legado." if res["electo"] else ("Pasas a segunda vuelta: tienes %d semanas más de campaña." % motor.estado.semanas_balotaje if res["balotaje"] else "No alcanzaste la presidencia.")]}
-	_capa.add_child(OverlaysDia.evento(ev, func() -> void:
+	_capa.add_child(PantallaEleccion.crear(motor, datos["regiones"], regional, res, func() -> void:
 		if res["electo"] or res["balotaje"]:
 			_cola_eventos = motor.ultimos_eventos.duplicate()
 			_refrescar()
 			_siguiente_evento()
 		else:
-			terminado.emit(), motor.catalogo_leyes["congreso"]["nombres"]))
+			terminado.emit()))
 
 
 func _siguiente_evento() -> void:
@@ -395,7 +397,7 @@ func _abrir_panel(cual: String) -> void:
 						_abrir_panel("mapa")
 						_terminar_turno())
 		"congreso":
-			contenido = PanelesDia.congreso(motor, _abrir_hito)
+			contenido = PanelesDia.congreso(motor, _abrir_hito, _abrir_cartera)
 		_:
 			contenido = PanelGestion.crear(motor, _avisar, func() -> void:
 					accion_hecha.emit()
@@ -421,6 +423,10 @@ func _aprobar(pid: String, variante: String, custom: Dictionary = {}) -> void:
 		_abrir_panel("congreso")
 	else:
 		_avisar("No se pudo aprobar la propuesta.")
+
+
+func _abrir_cartera() -> void:
+	_capa.add_child(PantallaCartera.crear(datos, motor))
 
 
 func _abrir_hito(obra: Dictionary) -> void:

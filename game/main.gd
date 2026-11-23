@@ -47,6 +47,7 @@ func _cambiar(p: Control) -> void:
 func mostrar_menu() -> void:
 	var m := PantallaMenu.new()
 	m.hay_guardado = FileAccess.file_exists(RUTA_GUARDADO)
+	m.datos = datos
 	m.nueva.connect(mostrar_partido)
 	m.continuar.connect(continuar_guardado)
 	_cambiar(m)
@@ -102,6 +103,7 @@ func mostrar_fin() -> void:
 	guardar()
 	var f := PantallaFin.new()
 	f.motor = motor
+	f.datos = datos
 	f.otra_vez.connect(func() -> void:
 		DirAccess.remove_absolute(ProjectSettings.globalize_path(RUTA_GUARDADO))
 		mostrar_menu())
