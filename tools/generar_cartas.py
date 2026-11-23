@@ -9,6 +9,7 @@ import re
 from collections import Counter, defaultdict
 from pathlib import Path
 
+from cartas_arte import asignar_arte
 from cartas_efectos import efectos_y_costo
 from cartas_util import CATEGORIAS, anonimizar, categoria_proyecto_ley, disp_ley, disp_obra, h, recortar, resumir_titulo, unico
 
@@ -56,7 +57,7 @@ def carta_obra(p: dict) -> dict:
     est = p["estado"]
     fiscal = -1.0 if inv is None else -round(min(2.0, max(0.5, inv / 600.0)), 1)
     hecho = bool(p.get("verificado")) and FUENTES.get(p["fuente"].split("#")[-1], {}).get("verificado_contra_texto") is not False
-    meta = {"tipo": "proyecto_publico", "proyecto_id": p["id"], "region_id": p.get("region_id"), "estado_real": est,
+    meta = {"tipo": "proyecto_publico", "proyecto_id": p["id"], "sector": p["sector"], "region_id": p.get("region_id"), "estado_real": est,
             "inversion_musd": None if inv is None else round(inv, 1), "mandante": p.get("mandante"),
             "verificado_hecho": hecho, "verificado": hecho, "fuente_url": p.get("fuente_url"), "cifras_ilustrativas": True}
     base = {"id": "real_obra_" + p["id"].replace("-", "_").replace(".", "_"), "categoria": SECTOR_CAT.get(p["sector"], "obras"),
@@ -169,12 +170,10 @@ def main() -> None:
     for c in cartas:
         suf = c["meta"].get("boletin", "").split("-")[0] or (c["meta"].get("region_id") or c["id"][-6:])
         c["titulo"] = unico(c["titulo"], usados, suf)
-    for c in cartas:  # arte específico (game/arte/cartas/<arte>.jpg); si falta el archivo la carta usa el de su categoría
-        t = (c["meta"].get("titulo_completo") or c["titulo"]).lower()
-        if c["meta"]["tipo"] in ("reforma_constitucional", "propuesta_constitucional"):
-            c["arte"] = "politica_reforma"
-        elif c["meta"]["tipo"] == "proyecto_de_ley" and any(k in t for k in ("tratado", "convenio", "acuerdo entre", "protocolo")):
-            c["arte"] = "politica_tratados"
+    for c in cartas:  # arte específico (tabla en tools/cartas_arte.py); si falta el archivo la carta usa el de su categoría
+        arte = asignar_arte(c)
+        if arte:
+            c["arte"] = arte
     ids = [c["id"] for c in cartas]
     assert len(ids) == len(set(ids)), "ids duplicados"
     assert all(len(c["titulo"]) <= 60 for c in cartas), "título > 60"
