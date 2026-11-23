@@ -308,26 +308,6 @@
     "verificado_contra_texto": true
   },
   {
-    "id": "curados_oficiales_2026",
-    "institucion": "Sitios oficiales del Estado (gobiernos regionales, ministerios, servicios, municipalidades .gob.cl/.gov.cl)",
-    "titulo": "Proyectos regionales y sectoriales leídos de páginas institucionales (2026)",
-    "url": "https://www.gob.cl/",
-    "fecha_corte": "2026-11-23",
-    "vigencia_dias": 180,
-    "es_ilustrativa": false,
-    "verificado_contra_texto": false
-  },
-  {
-    "id": "curados_prensa_2026",
-    "institucion": "Prensa regional y nacional",
-    "titulo": "Proyectos regionales y sectoriales reportados por prensa (2026), no oficiales",
-    "url": "https://www.gob.cl/",
-    "fecha_corte": "2026-11-23",
-    "vigencia_dias": 180,
-    "es_ilustrativa": false,
-    "verificado_contra_texto": false
-  },
-  {
     "id": "servel_elecciones_2025_zip",
     "institucion": "Servicio Electoral de Chile (Servel)",
     "titulo": "Resultados PROVISORIOS elecciones 2025 (visor elecciones.servel.cl, total_votacion_5/6.zip; iteración 2025-11-17, no es el escrutinio definitivo del Tricel)",
@@ -346,5 +326,615 @@
     "vigencia_dias": 180,
     "es_ilustrativa": false,
     "verificado_contra_texto": true
+  },
+  {
+    "id": "curados_aeropuertos_mop_gob_cl",
+    "institucion": "aeropuertos.mop.gob.cl",
+    "titulo": "Sitio institucional del Estado aeropuertos.mop.gob.cl: páginas de proyectos consultadas en 2026",
+    "url": "https://aeropuertos.mop.gob.cl/",
+    "fecha_corte": "2026-11-23",
+    "vigencia_dias": 180,
+    "es_ilustrativa": false,
+    "verificado_contra_texto": false
+  },
+  {
+    "id": "curados_araucania_mop_gob_cl",
+    "institucion": "araucania.mop.gob.cl",
+    "titulo": "Sitio institucional del Estado araucania.mop.gob.cl: páginas de proyectos consultadas en 2026",
+    "url": "https://araucania.mop.gob.cl/",
+    "fecha_corte": "2026-11-23",
+    "vigencia_dias": 180,
+    "es_ilustrativa": false,
+    "verificado_contra_texto": false
+  },
+  {
+    "id": "curados_aysen_mop_gob_cl",
+    "institucion": "aysen.mop.gob.cl",
+    "titulo": "Sitio institucional del Estado aysen.mop.gob.cl: páginas de proyectos consultadas en 2026",
+    "url": "https://aysen.mop.gob.cl/",
+    "fecha_corte": "2026-11-23",
+    "vigencia_dias": 180,
+    "es_ilustrativa": false,
+    "verificado_contra_texto": false
+  },
+  {
+    "id": "curados_doh_mop_gob_cl",
+    "institucion": "doh.mop.gob.cl",
+    "titulo": "Sitio institucional del Estado doh.mop.gob.cl: páginas de proyectos consultadas en 2026",
+    "url": "https://doh.mop.gob.cl/",
+    "fecha_corte": "2026-11-23",
+    "vigencia_dias": 180,
+    "es_ilustrativa": false,
+    "verificado_contra_texto": false
+  },
+  {
+    "id": "curados_goreatacama_gob_cl",
+    "institucion": "goreatacama.gob.cl",
+    "titulo": "Sitio institucional del Estado goreatacama.gob.cl: páginas de proyectos consultadas en 2026",
+    "url": "https://goreatacama.gob.cl/",
+    "fecha_corte": "2026-11-23",
+    "vigencia_dias": 180,
+    "es_ilustrativa": false,
+    "verificado_contra_texto": false
+  },
+  {
+    "id": "curados_gorebiobio_cl",
+    "institucion": "gorebiobio.cl",
+    "titulo": "Sitio institucional del Estado gorebiobio.cl: páginas de proyectos consultadas en 2026",
+    "url": "https://gorebiobio.cl/",
+    "fecha_corte": "2026-11-23",
+    "vigencia_dias": 180,
+    "es_ilustrativa": false,
+    "verificado_contra_texto": false
+  },
+  {
+    "id": "curados_goredenuble_cl",
+    "institucion": "goredenuble.cl",
+    "titulo": "Sitio institucional del Estado goredenuble.cl: páginas de proyectos consultadas en 2026",
+    "url": "https://goredenuble.cl/",
+    "fecha_corte": "2026-11-23",
+    "vigencia_dias": 180,
+    "es_ilustrativa": false,
+    "verificado_contra_texto": false
+  },
+  {
+    "id": "curados_goremagallanes_cl",
+    "institucion": "www.goremagallanes.cl",
+    "titulo": "Sitio institucional del Estado www.goremagallanes.cl: páginas de proyectos consultadas en 2026",
+    "url": "https://www.goremagallanes.cl/",
+    "fecha_corte": "2026-11-23",
+    "vigencia_dias": 180,
+    "es_ilustrativa": false,
+    "verificado_contra_texto": false
+  },
+  {
+    "id": "curados_interior_gob_cl",
+    "institucion": "www.interior.gob.cl",
+    "titulo": "Sitio institucional del Estado www.interior.gob.cl: páginas de proyectos consultadas en 2026",
+    "url": "https://www.interior.gob.cl/",
+    "fecha_corte": "2026-11-23",
+    "vigencia_dias": 180,
+    "es_ilustrativa": false,
+    "verificado_contra_texto": false
+  },
+  {
+    "id": "curados_losrios_mop_gob_cl",
+    "institucion": "losrios.mop.gob.cl",
+    "titulo": "Sitio institucional del Estado losrios.mop.gob.cl: páginas de proyectos consultadas en 2026",
+    "url": "https://losrios.mop.gob.cl/",
+    "fecha_corte": "2026-11-23",
+    "vigencia_dias": 180,
+    "es_ilustrativa": false,
+    "verificado_contra_texto": false
+  },
+  {
+    "id": "curados_minsal_cl",
+    "institucion": "www.minsal.cl",
+    "titulo": "Sitio institucional del Estado www.minsal.cl: páginas de proyectos consultadas en 2026",
+    "url": "https://www.minsal.cl/",
+    "fecha_corte": "2026-11-23",
+    "vigencia_dias": 180,
+    "es_ilustrativa": false,
+    "verificado_contra_texto": false
+  },
+  {
+    "id": "curados_minvu_gob_cl",
+    "institucion": "www.minvu.gob.cl",
+    "titulo": "Sitio institucional del Estado www.minvu.gob.cl: páginas de proyectos consultadas en 2026",
+    "url": "https://www.minvu.gob.cl/",
+    "fecha_corte": "2026-11-23",
+    "vigencia_dias": 180,
+    "es_ilustrativa": false,
+    "verificado_contra_texto": false
+  },
+  {
+    "id": "curados_mop_gob_cl",
+    "institucion": "www.mop.gob.cl",
+    "titulo": "Sitio institucional del Estado www.mop.gob.cl: páginas de proyectos consultadas en 2026",
+    "url": "https://www.mop.gob.cl/",
+    "fecha_corte": "2026-11-23",
+    "vigencia_dias": 180,
+    "es_ilustrativa": false,
+    "verificado_contra_texto": false
+  },
+  {
+    "id": "curados_parvularia_mineduc_cl",
+    "institucion": "parvularia.mineduc.cl",
+    "titulo": "Sitio institucional del Estado parvularia.mineduc.cl: páginas de proyectos consultadas en 2026",
+    "url": "https://parvularia.mineduc.cl/",
+    "fecha_corte": "2026-11-23",
+    "vigencia_dias": 180,
+    "es_ilustrativa": false,
+    "verificado_contra_texto": false
+  },
+  {
+    "id": "curados_sea_gob_cl",
+    "institucion": "www.sea.gob.cl",
+    "titulo": "Sitio institucional del Estado www.sea.gob.cl: páginas de proyectos consultadas en 2026",
+    "url": "https://www.sea.gob.cl/",
+    "fecha_corte": "2026-11-23",
+    "vigencia_dias": 180,
+    "es_ilustrativa": false,
+    "verificado_contra_texto": false
+  },
+  {
+    "id": "curados_ssan_redsalud_gob_cl",
+    "institucion": "ssan.redsalud.gob.cl",
+    "titulo": "Sitio institucional del Estado ssan.redsalud.gob.cl: páginas de proyectos consultadas en 2026",
+    "url": "https://ssan.redsalud.gob.cl/",
+    "fecha_corte": "2026-11-23",
+    "vigencia_dias": 180,
+    "es_ilustrativa": false,
+    "verificado_contra_texto": false
+  },
+  {
+    "id": "curados_subtrans_gob_cl",
+    "institucion": "www.subtrans.gob.cl",
+    "titulo": "Sitio institucional del Estado www.subtrans.gob.cl: páginas de proyectos consultadas en 2026",
+    "url": "https://www.subtrans.gob.cl/",
+    "fecha_corte": "2026-11-23",
+    "vigencia_dias": 180,
+    "es_ilustrativa": false,
+    "verificado_contra_texto": false
+  },
+  {
+    "id": "curados_vialidad_mop_gob_cl",
+    "institucion": "vialidad.mop.gob.cl",
+    "titulo": "Sitio institucional del Estado vialidad.mop.gob.cl: páginas de proyectos consultadas en 2026",
+    "url": "https://vialidad.mop.gob.cl/",
+    "fecha_corte": "2026-11-23",
+    "vigencia_dias": 180,
+    "es_ilustrativa": false,
+    "verificado_contra_texto": false
+  },
+  {
+    "id": "dipres_siap_411705",
+    "institucion": "Dirección de Presupuestos (Dipres)",
+    "titulo": "Informe de identificación y ejecución de inversión pública (SIAP 2.0) a Marzo de 2026, doc. 411705: 030301 CORPORACIÓN ADMINISTRATIVA DEL PODER JUDICIAL",
+    "url": "https://www.dipres.gob.cl/597/articles-411705_doc_pdf.pdf",
+    "fecha_corte": "2026-04-22",
+    "vigencia_dias": 365,
+    "es_ilustrativa": false,
+    "verificado_contra_texto": false
+  },
+  {
+    "id": "dipres_siap_411709",
+    "institucion": "Dirección de Presupuestos (Dipres)",
+    "titulo": "Informe de identificación y ejecución de inversión pública (SIAP 2.0) a Marzo de 2026, doc. 411709: 091101 JUNTA NACIONAL DE JARDINES INFANTILES",
+    "url": "https://www.dipres.gob.cl/597/articles-411709_doc_pdf.pdf",
+    "fecha_corte": "2026-04-22",
+    "vigencia_dias": 365,
+    "es_ilustrativa": false,
+    "verificado_contra_texto": false
+  },
+  {
+    "id": "dipres_siap_411732",
+    "institucion": "Dirección de Presupuestos (Dipres)",
+    "titulo": "Informe de identificación y ejecución de inversión pública (SIAP 2.0) a Marzo de 2026, doc. 411732: 120202 DIRECCIÓN DE ARQUITECTURA",
+    "url": "https://www.dipres.gob.cl/597/articles-411732_doc_pdf.pdf",
+    "fecha_corte": "2026-04-22",
+    "vigencia_dias": 365,
+    "es_ilustrativa": false,
+    "verificado_contra_texto": false
+  },
+  {
+    "id": "dipres_siap_411733",
+    "institucion": "Dirección de Presupuestos (Dipres)",
+    "titulo": "Informe de identificación y ejecución de inversión pública (SIAP 2.0) a Marzo de 2026, doc. 411733: 120203 DIRECCIÓN DE OBRAS HIDRÁULICAS",
+    "url": "https://www.dipres.gob.cl/597/articles-411733_doc_pdf.pdf",
+    "fecha_corte": "2026-04-22",
+    "vigencia_dias": 365,
+    "es_ilustrativa": false,
+    "verificado_contra_texto": false
+  },
+  {
+    "id": "dipres_siap_411734",
+    "institucion": "Dirección de Presupuestos (Dipres)",
+    "titulo": "Informe de identificación y ejecución de inversión pública (SIAP 2.0) a Marzo de 2026, doc. 411734: 120204 DIRECCIÓN DE VIALIDAD",
+    "url": "https://www.dipres.gob.cl/597/articles-411734_doc_pdf.pdf",
+    "fecha_corte": "2026-04-22",
+    "vigencia_dias": 365,
+    "es_ilustrativa": false,
+    "verificado_contra_texto": false
+  },
+  {
+    "id": "dipres_siap_411739",
+    "institucion": "Dirección de Presupuestos (Dipres)",
+    "titulo": "Informe de identificación y ejecución de inversión pública (SIAP 2.0) a Marzo de 2026, doc. 411739: 120222 MANDATOS MINISTERIO DE LAS CULTURAS, LAS ARTES Y EL PATRIMONIO",
+    "url": "https://www.dipres.gob.cl/597/articles-411739_doc_pdf.pdf",
+    "fecha_corte": "2026-04-22",
+    "vigencia_dias": 365,
+    "es_ilustrativa": false,
+    "verificado_contra_texto": false
+  },
+  {
+    "id": "dipres_siap_411770",
+    "institucion": "Dirección de Presupuestos (Dipres)",
+    "titulo": "Informe de identificación y ejecución de inversión pública (SIAP 2.0) a Marzo de 2026, doc. 411770: 164201 SERVICIO DE SALUD METROPOLITANO ORIENTE",
+    "url": "https://www.dipres.gob.cl/597/articles-411770_doc_pdf.pdf",
+    "fecha_corte": "2026-04-22",
+    "vigencia_dias": 365,
+    "es_ilustrativa": false,
+    "verificado_contra_texto": false
+  },
+  {
+    "id": "dipres_siap_411771",
+    "institucion": "Dirección de Presupuestos (Dipres)",
+    "titulo": "Informe de identificación y ejecución de inversión pública (SIAP 2.0) a Marzo de 2026, doc. 411771: 164301 SERVICIO DE SALUD METROPOLITANO CENTRAL",
+    "url": "https://www.dipres.gob.cl/597/articles-411771_doc_pdf.pdf",
+    "fecha_corte": "2026-04-22",
+    "vigencia_dias": 365,
+    "es_ilustrativa": false,
+    "verificado_contra_texto": false
+  },
+  {
+    "id": "dipres_siap_411772",
+    "institucion": "Dirección de Presupuestos (Dipres)",
+    "titulo": "Informe de identificación y ejecución de inversión pública (SIAP 2.0) a Marzo de 2026, doc. 411772: 164401 SERVICIO DE SALUD METROPOLITANO SUR",
+    "url": "https://www.dipres.gob.cl/597/articles-411772_doc_pdf.pdf",
+    "fecha_corte": "2026-04-22",
+    "vigencia_dias": 365,
+    "es_ilustrativa": false,
+    "verificado_contra_texto": false
+  },
+  {
+    "id": "dipres_siap_411773",
+    "institucion": "Dirección de Presupuestos (Dipres)",
+    "titulo": "Informe de identificación y ejecución de inversión pública (SIAP 2.0) a Marzo de 2026, doc. 411773: 164501 SERVICIO DE SALUD METROPOLITANO NORTE",
+    "url": "https://www.dipres.gob.cl/597/articles-411773_doc_pdf.pdf",
+    "fecha_corte": "2026-04-22",
+    "vigencia_dias": 365,
+    "es_ilustrativa": false,
+    "verificado_contra_texto": false
+  },
+  {
+    "id": "dipres_siap_411774",
+    "institucion": "Dirección de Presupuestos (Dipres)",
+    "titulo": "Informe de identificación y ejecución de inversión pública (SIAP 2.0) a Marzo de 2026, doc. 411774: 164601 SERVICIO DE SALUD METROPOLITANO OCCIDENTE",
+    "url": "https://www.dipres.gob.cl/597/articles-411774_doc_pdf.pdf",
+    "fecha_corte": "2026-04-22",
+    "vigencia_dias": 365,
+    "es_ilustrativa": false,
+    "verificado_contra_texto": false
+  },
+  {
+    "id": "dipres_siap_411775",
+    "institucion": "Dirección de Presupuestos (Dipres)",
+    "titulo": "Informe de identificación y ejecución de inversión pública (SIAP 2.0) a Marzo de 2026, doc. 411775: 164701 SERVICIO DE SALUD METROPOLITANO SUR-ORIENTE",
+    "url": "https://www.dipres.gob.cl/597/articles-411775_doc_pdf.pdf",
+    "fecha_corte": "2026-04-22",
+    "vigencia_dias": 365,
+    "es_ilustrativa": false,
+    "verificado_contra_texto": false
+  },
+  {
+    "id": "dipres_siap_411792",
+    "institucion": "Dirección de Presupuestos (Dipres)",
+    "titulo": "Informe de identificación y ejecución de inversión pública (SIAP 2.0) a Marzo de 2026, doc. 411792: 183301 SERVIU REGIÓN METROPOLITANA DE SANTIAGO",
+    "url": "https://www.dipres.gob.cl/597/articles-411792_doc_pdf.pdf",
+    "fecha_corte": "2026-04-22",
+    "vigencia_dias": 365,
+    "es_ilustrativa": false,
+    "verificado_contra_texto": false
+  },
+  {
+    "id": "dipres_siap_411797",
+    "institucion": "Dirección de Presupuestos (Dipres)",
+    "titulo": "Informe de identificación y ejecución de inversión pública (SIAP 2.0) a Marzo de 2026, doc. 411797: 190103 RED MOVILIDAD",
+    "url": "https://www.dipres.gob.cl/597/articles-411797_doc_pdf.pdf",
+    "fecha_corte": "2026-04-22",
+    "vigencia_dias": 365,
+    "es_ilustrativa": false,
+    "verificado_contra_texto": false
+  },
+  {
+    "id": "dipres_siap_411803",
+    "institucion": "Dirección de Presupuestos (Dipres)",
+    "titulo": "Informe de identificación y ejecución de inversión pública (SIAP 2.0) a Marzo de 2026, doc. 411803: 260201 INSTITUTO NACIONAL DE DEPORTES",
+    "url": "https://www.dipres.gob.cl/597/articles-411803_doc_pdf.pdf",
+    "fecha_corte": "2026-04-22",
+    "vigencia_dias": 365,
+    "es_ilustrativa": false,
+    "verificado_contra_texto": false
+  },
+  {
+    "id": "dipres_siap_411805",
+    "institucion": "Dirección de Presupuestos (Dipres)",
+    "titulo": "Informe de identificación y ejecución de inversión pública (SIAP 2.0) a Marzo de 2026, doc. 411805: 320301 CARABINEROS DE CHILE",
+    "url": "https://www.dipres.gob.cl/597/articles-411805_doc_pdf.pdf",
+    "fecha_corte": "2026-04-22",
+    "vigencia_dias": 365,
+    "es_ilustrativa": false,
+    "verificado_contra_texto": false
+  },
+  {
+    "id": "dipres_siap_411806",
+    "institucion": "Dirección de Presupuestos (Dipres)",
+    "titulo": "Informe de identificación y ejecución de inversión pública (SIAP 2.0) a Marzo de 2026, doc. 411806: 320501 POLICÍA DE INVESTIGACIONES",
+    "url": "https://www.dipres.gob.cl/597/articles-411806_doc_pdf.pdf",
+    "fecha_corte": "2026-04-22",
+    "vigencia_dias": 365,
+    "es_ilustrativa": false,
+    "verificado_contra_texto": false
+  },
+  {
+    "id": "dipres_siap_429199",
+    "institucion": "Dirección de Presupuestos (Dipres)",
+    "titulo": "Informe de identificación y ejecución de inversión pública (SIAP 2.0) a Agosto de 2026, doc. 429199: ",
+    "url": "https://www.dipres.gob.cl/597/articles-429199_doc_pdf.pdf",
+    "fecha_corte": "2026-09-22",
+    "vigencia_dias": 365,
+    "es_ilustrativa": false,
+    "verificado_contra_texto": false
+  },
+  {
+    "id": "dipres_siap_429200",
+    "institucion": "Dirección de Presupuestos (Dipres)",
+    "titulo": "Informe de identificación y ejecución de inversión pública (SIAP 2.0) a Agosto de 2026, doc. 429200: ",
+    "url": "https://www.dipres.gob.cl/597/articles-429200_doc_pdf.pdf",
+    "fecha_corte": "2026-09-22",
+    "vigencia_dias": 365,
+    "es_ilustrativa": false,
+    "verificado_contra_texto": false
+  },
+  {
+    "id": "dipres_siap_429201",
+    "institucion": "Dirección de Presupuestos (Dipres)",
+    "titulo": "Informe de identificación y ejecución de inversión pública (SIAP 2.0) a Agosto de 2026, doc. 429201: ",
+    "url": "https://www.dipres.gob.cl/597/articles-429201_doc_pdf.pdf",
+    "fecha_corte": "2026-09-22",
+    "vigencia_dias": 365,
+    "es_ilustrativa": false,
+    "verificado_contra_texto": false
+  },
+  {
+    "id": "dipres_siap_429202",
+    "institucion": "Dirección de Presupuestos (Dipres)",
+    "titulo": "Informe de identificación y ejecución de inversión pública (SIAP 2.0) a Agosto de 2026, doc. 429202: ",
+    "url": "https://www.dipres.gob.cl/597/articles-429202_doc_pdf.pdf",
+    "fecha_corte": "2026-09-22",
+    "vigencia_dias": 365,
+    "es_ilustrativa": false,
+    "verificado_contra_texto": false
+  },
+  {
+    "id": "dipres_siap_429213",
+    "institucion": "Dirección de Presupuestos (Dipres)",
+    "titulo": "Informe de identificación y ejecución de inversión pública (SIAP 2.0) a Agosto de 2026, doc. 429213: ",
+    "url": "https://www.dipres.gob.cl/597/articles-429213_doc_pdf.pdf",
+    "fecha_corte": "2026-09-22",
+    "vigencia_dias": 365,
+    "es_ilustrativa": false,
+    "verificado_contra_texto": false
+  },
+  {
+    "id": "prensa_24horas_cl",
+    "institucion": "Prensa: www.24horas.cl",
+    "titulo": "Medio de prensa www.24horas.cl: páginas de proyectos consultadas en 2026",
+    "url": "https://www.24horas.cl/",
+    "fecha_corte": "2026-11-23",
+    "vigencia_dias": 180,
+    "es_ilustrativa": false,
+    "verificado_contra_texto": false
+  },
+  {
+    "id": "prensa_aduana_cl",
+    "institucion": "Prensa: www.aduana.cl",
+    "titulo": "Medio de prensa www.aduana.cl: páginas de proyectos consultadas en 2026",
+    "url": "https://www.aduana.cl/",
+    "fecha_corte": "2026-11-23",
+    "vigencia_dias": 180,
+    "es_ilustrativa": false,
+    "verificado_contra_texto": false
+  },
+  {
+    "id": "prensa_biobiochile_cl",
+    "institucion": "Prensa: www.biobiochile.cl",
+    "titulo": "Medio de prensa www.biobiochile.cl: páginas de proyectos consultadas en 2026",
+    "url": "https://www.biobiochile.cl/",
+    "fecha_corte": "2026-11-23",
+    "vigencia_dias": 180,
+    "es_ilustrativa": false,
+    "verificado_contra_texto": false
+  },
+  {
+    "id": "prensa_cooperativa_cl",
+    "institucion": "Prensa: www.cooperativa.cl",
+    "titulo": "Medio de prensa www.cooperativa.cl: páginas de proyectos consultadas en 2026",
+    "url": "https://www.cooperativa.cl/",
+    "fecha_corte": "2026-11-23",
+    "vigencia_dias": 180,
+    "es_ilustrativa": false,
+    "verificado_contra_texto": false
+  },
+  {
+    "id": "prensa_cpichile_org",
+    "institucion": "Prensa: cpichile.org",
+    "titulo": "Medio de prensa cpichile.org: páginas de proyectos consultadas en 2026",
+    "url": "https://cpichile.org/",
+    "fecha_corte": "2026-11-23",
+    "vigencia_dias": 180,
+    "es_ilustrativa": false,
+    "verificado_contra_texto": false
+  },
+  {
+    "id": "prensa_df_cl",
+    "institucion": "Prensa: www.df.cl",
+    "titulo": "Medio de prensa www.df.cl: páginas de proyectos consultadas en 2026",
+    "url": "https://www.df.cl/",
+    "fecha_corte": "2026-11-23",
+    "vigencia_dias": 180,
+    "es_ilustrativa": false,
+    "verificado_contra_texto": false
+  },
+  {
+    "id": "prensa_diarioestrategia_cl",
+    "institucion": "Prensa: www.diarioestrategia.cl",
+    "titulo": "Medio de prensa www.diarioestrategia.cl: páginas de proyectos consultadas en 2026",
+    "url": "https://www.diarioestrategia.cl/",
+    "fecha_corte": "2026-11-23",
+    "vigencia_dias": 180,
+    "es_ilustrativa": false,
+    "verificado_contra_texto": false
+  },
+  {
+    "id": "prensa_elmostrador_cl",
+    "institucion": "Prensa: www.elmostrador.cl",
+    "titulo": "Medio de prensa www.elmostrador.cl: páginas de proyectos consultadas en 2026",
+    "url": "https://www.elmostrador.cl/",
+    "fecha_corte": "2026-11-23",
+    "vigencia_dias": 180,
+    "es_ilustrativa": false,
+    "verificado_contra_texto": false
+  },
+  {
+    "id": "prensa_elrancaguino_cl",
+    "institucion": "Prensa: www.elrancaguino.cl",
+    "titulo": "Medio de prensa www.elrancaguino.cl: páginas de proyectos consultadas en 2026",
+    "url": "https://www.elrancaguino.cl/",
+    "fecha_corte": "2026-11-23",
+    "vigencia_dias": 180,
+    "es_ilustrativa": false,
+    "verificado_contra_texto": false
+  },
+  {
+    "id": "prensa_encancha_cl",
+    "institucion": "Prensa: www.encancha.cl",
+    "titulo": "Medio de prensa www.encancha.cl: páginas de proyectos consultadas en 2026",
+    "url": "https://www.encancha.cl/",
+    "fecha_corte": "2026-11-23",
+    "vigencia_dias": 180,
+    "es_ilustrativa": false,
+    "verificado_contra_texto": false
+  },
+  {
+    "id": "prensa_g5noticias_cl",
+    "institucion": "Prensa: g5noticias.cl",
+    "titulo": "Medio de prensa g5noticias.cl: páginas de proyectos consultadas en 2026",
+    "url": "https://g5noticias.cl/",
+    "fecha_corte": "2026-11-23",
+    "vigencia_dias": 180,
+    "es_ilustrativa": false,
+    "verificado_contra_texto": false
+  },
+  {
+    "id": "prensa_gobiernosantiago_cl",
+    "institucion": "Prensa: www.gobiernosantiago.cl",
+    "titulo": "Medio de prensa www.gobiernosantiago.cl: páginas de proyectos consultadas en 2026",
+    "url": "https://www.gobiernosantiago.cl/",
+    "fecha_corte": "2026-11-23",
+    "vigencia_dias": 180,
+    "es_ilustrativa": false,
+    "verificado_contra_texto": false
+  },
+  {
+    "id": "prensa_infraestructurapublica_cl",
+    "institucion": "Prensa: www.infraestructurapublica.cl",
+    "titulo": "Medio de prensa www.infraestructurapublica.cl: páginas de proyectos consultadas en 2026",
+    "url": "https://www.infraestructurapublica.cl/",
+    "fecha_corte": "2026-11-23",
+    "vigencia_dias": 180,
+    "es_ilustrativa": false,
+    "verificado_contra_texto": false
+  },
+  {
+    "id": "prensa_latercera_com",
+    "institucion": "Prensa: www.latercera.com",
+    "titulo": "Medio de prensa www.latercera.com: páginas de proyectos consultadas en 2026",
+    "url": "https://www.latercera.com/",
+    "fecha_corte": "2026-11-23",
+    "vigencia_dias": 180,
+    "es_ilustrativa": false,
+    "verificado_contra_texto": false
+  },
+  {
+    "id": "prensa_meganoticias_cl",
+    "institucion": "Prensa: www.meganoticias.cl",
+    "titulo": "Medio de prensa www.meganoticias.cl: páginas de proyectos consultadas en 2026",
+    "url": "https://www.meganoticias.cl/",
+    "fecha_corte": "2026-11-23",
+    "vigencia_dias": 180,
+    "es_ilustrativa": false,
+    "verificado_contra_texto": false
+  },
+  {
+    "id": "prensa_portalminero_com",
+    "institucion": "Prensa: www.portalminero.com",
+    "titulo": "Medio de prensa www.portalminero.com: páginas de proyectos consultadas en 2026",
+    "url": "https://www.portalminero.com/",
+    "fecha_corte": "2026-11-23",
+    "vigencia_dias": 180,
+    "es_ilustrativa": false,
+    "verificado_contra_texto": false
+  },
+  {
+    "id": "prensa_radio_uchile_cl",
+    "institucion": "Prensa: radio.uchile.cl",
+    "titulo": "Medio de prensa radio.uchile.cl: páginas de proyectos consultadas en 2026",
+    "url": "https://radio.uchile.cl/",
+    "fecha_corte": "2026-11-23",
+    "vigencia_dias": 180,
+    "es_ilustrativa": false,
+    "verificado_contra_texto": false
+  },
+  {
+    "id": "prensa_radioagricultura_cl",
+    "institucion": "Prensa: www.radioagricultura.cl",
+    "titulo": "Medio de prensa www.radioagricultura.cl: páginas de proyectos consultadas en 2026",
+    "url": "https://www.radioagricultura.cl/",
+    "fecha_corte": "2026-11-23",
+    "vigencia_dias": 180,
+    "es_ilustrativa": false,
+    "verificado_contra_texto": false
+  },
+  {
+    "id": "prensa_reporteminero_cl",
+    "institucion": "Prensa: www.reporteminero.cl",
+    "titulo": "Medio de prensa www.reporteminero.cl: páginas de proyectos consultadas en 2026",
+    "url": "https://www.reporteminero.cl/",
+    "fecha_corte": "2026-11-23",
+    "vigencia_dias": 180,
+    "es_ilustrativa": false,
+    "verificado_contra_texto": false
+  },
+  {
+    "id": "prensa_serviutarapaca_minvu_cl",
+    "institucion": "Prensa: serviutarapaca.minvu.cl",
+    "titulo": "Medio de prensa serviutarapaca.minvu.cl: páginas de proyectos consultadas en 2026",
+    "url": "https://serviutarapaca.minvu.cl/",
+    "fecha_corte": "2026-11-23",
+    "vigencia_dias": 180,
+    "es_ilustrativa": false,
+    "verificado_contra_texto": false
+  },
+  {
+    "id": "prensa_theclinic_cl",
+    "institucion": "Prensa: www.theclinic.cl",
+    "titulo": "Medio de prensa www.theclinic.cl: páginas de proyectos consultadas en 2026",
+    "url": "https://www.theclinic.cl/",
+    "fecha_corte": "2026-11-23",
+    "vigencia_dias": 180,
+    "es_ilustrativa": false,
+    "verificado_contra_texto": false
   }
 ]

@@ -155,11 +155,11 @@ def guardar(nombre, registros, meta):
     print(f"{ruta.relative_to(ROOT)}: {len(registros)} proyectos")
 
 
-def registrar_fuente(fid, institucion, titulo, url, vigencia_dias=180):
+def registrar_fuente(fid, institucion, titulo, url, vigencia_dias=180, fecha_corte=None):
     """Inserta o actualiza una fuente en data/fuentes.json (formato existente)."""
     ruta = ROOT / "data" / "fuentes.json"
     fuentes = json.loads(ruta.read_text(encoding="utf-8"))
-    nueva = {"id": fid, "institucion": institucion, "titulo": titulo, "url": url, "fecha_corte": HOY,
+    nueva = {"id": fid, "institucion": institucion, "titulo": titulo, "url": url, "fecha_corte": fecha_corte or HOY,
              "vigencia_dias": vigencia_dias, "es_ilustrativa": False, "verificado_contra_texto": False}
     for i, f in enumerate(fuentes):
         if f["id"] == fid:
