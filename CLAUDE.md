@@ -28,7 +28,7 @@ Ninguna tarea cierra sin pruebas en verde y captura comparada (`tests/captura.gd
 - `tools/`: validador de datos (`validate_data.py`), pipeline geoespacial offline (`tools/geo/`), verificador de límites.
 - `tests/`: pruebas de oro, bots Monte Carlo y regresión de balance.
 - Guardado por eventos: misma semilla + mismas entradas = mismo resultado exacto. Solo se guarda semilla, partido e historial.
-- Máximo 450 líneas por archivo (`python3 tools/check_limits.py`).
+- Máximo 450 líneas por archivo; `sim/estado_simulacion.gd` y `sim/motor_turno.gd` bajo 220 (Guía Técnica Fase 0). Verificado con `python3 tools/check_limits.py`.
 
 ## 4. Ciclo Fijo del Turno Semanal (8 pasos)
 1. Amanecer: actualiza indicadores (aprobación, capital, cohesión, fiscal, riesgo de ejecución) y regenera PA.
@@ -60,6 +60,7 @@ python3 tools/validate_data.py
 python3 tools/check_limits.py
 godot --headless --import --path .
 godot --headless --path . -s tests/test_prueba_oro_4_semanas.gd
+godot --headless --path . -s tests/test_prueba_oro_30_dias.gd
 godot --headless --path . -s tests/test_prueba_oro_completa.gd
 godot --headless --path . -s tests/test_congreso.gd
 godot --headless --path . -s tests/test_balance.gd

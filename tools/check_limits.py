@@ -6,6 +6,7 @@ import sys
 
 ROOT = Path(__file__).resolve().parents[1]
 LIMITE = 450
+LIMITE_GUIA = {"sim/estado_simulacion.gd": 220, "sim/motor_turno.gd": 220}  # Guía Técnica Fase 0, sección 7
 PROHIBIDOS_SIM = re.compile(r"\b(extends\s+(Node|Control|Node2D|Node3D|SceneTree|Resource)\b|get_tree\(|add_child\()")
 
 
@@ -17,7 +18,7 @@ def main() -> int:
                 continue
             lineas = f.read_text(encoding="utf-8").splitlines()
             if len(lineas) > LIMITE:
-                errores.append(f"{f.relative_to(ROOT)}: {len(lineas)} líneas (máx {LIMITE})")
+                errores.append(f"{f.relative_to(ROOT)}: {len(lineas)} líneas (máx {limite})")
             if carpeta == "sim" and PROHIBIDOS_SIM.search("\n".join(lineas)):
                 errores.append(f"{f.relative_to(ROOT)}: sim/ no puede depender de nodos de Godot")
     for e in errores:
