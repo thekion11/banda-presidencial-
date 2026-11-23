@@ -5,7 +5,7 @@ extends SceneTree
 func _init() -> void:
 	var args := OS.get_cmdline_user_args()
 	var n := int(args[0]) if args.size() > 0 else 200
-	var politicas: Array = [args[1]] if args.size() > 1 else ["pasivo", "azar", "codicioso", "codicioso>pasivo", "codicioso>azar"]
+	var politicas: Array = [args[1]] if args.size() > 1 else ["pasivo", "azar", "codicioso", "codicioso>pasivo", "codicioso>azar", "codicioso>completo"]
 	var datos := Datos.cargar_todo()
 	for pol in politicas:
 		var electos := 0

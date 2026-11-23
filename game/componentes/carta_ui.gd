@@ -72,7 +72,9 @@ func _ajustar_arte() -> void:
 
 
 func _preparar_arte() -> void:
-	var tex := _textura(String(carta["categoria"]))
+	var tex := _textura(String(carta.get("arte", carta["categoria"])))
+	if tex == null:
+		tex = _textura(String(carta["categoria"]))
 	if tex == null or _arte != null:
 		return
 	_arte = TextureRect.new()

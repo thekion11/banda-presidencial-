@@ -58,8 +58,45 @@ static func _internos(motor: MotorTurno) -> void:
 		motor.reducir_errores()
 
 
+static func _extras(motor: MotorTurno) -> void:
+	## Política "completo": además de jugar cartas como el codicioso usa asesores, coalición, delegación y movimientos internos.
+	var est := motor.estado
+	if est.turno_actual == 1:
+		var ids: Array = motor.equipo.asesores.keys()
+		ids.sort()
+		for id in ids.slice(0, 3):
+			motor.contratar_asesor(String(id))
+		var pids: Array = motor.coalicion.partidos.keys()
+		pids.sort_custom(func(a: String, b: String) -> bool: return motor.coalicion.afinidad(a) > motor.coalicion.afinidad(b))
+		for id in pids.slice(0, 2):
+			motor.unirse_coalicion(String(id))
+	for _d in range(2):  # delegar las cartas más baratas en el ministro con menor probabilidad de fallo
+		if est.mano.is_empty() or est.gabinete.is_empty():
+			break
+		var mejor_m := ""
+		var mejor_p := 2.0
+		for mid in est.gabinete:
+			var pf := motor.prob_fallo_delegacion(0, String(mid))
+			if pf < mejor_p:
+				mejor_p = pf
+				mejor_m = String(mid)
+		if not bool(motor.delegar_carta(0, mejor_m)["ok"]):
+			break
+	if est.ind("riesgo_ejecucion") > 25.0:
+		motor.reducir_errores()
+	if not est.obras_en_curso.is_empty():
+		motor.acelerar_proyecto(0)
+	var metas := motor.movimientos.metas_disponibles()
+	if not metas.is_empty():
+		motor.buscar_meta(String(metas[0]["id"]))
+
+
 static func jugar_turno(motor: MotorTurno, politica: String, rng: RandomNumberGenerator) -> void:
 	var est := motor.estado
+	if politica == "completo":
+		politica = "codicioso"
+		if est.etapa == "gobierno":
+			_extras(motor)
 	if est.etapa == "gobierno" and politica != "azar" and politica != "pasivo":
 		_internos(motor)
 		_delegar(motor)
