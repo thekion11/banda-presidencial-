@@ -99,6 +99,7 @@ func _correr() -> void:
 		if h != dia._toast:
 			h.queue_free()
 	await _v2(main, dia, d, partido)
+	await _v3(main, d, partido)
 	quit(0)
 
 
@@ -145,3 +146,53 @@ func _v2(main: Node, dia: Node, d: Dictionary, partido: Dictionary) -> void:
 	main.motor = Partida.crear(d, 20260415, partido)
 	main.mostrar_gabinete()
 	await _guardar("v2_gabinete_config", 0.5)
+
+
+func _v3(main: Node, d: Dictionary, partido: Dictionary) -> void:
+	## Pantallas de primeras pruebas: tutorial, resultado de elección, cartera de proyectos, fin de partida y menú.
+	Tutorial.ruta = "user://preferencias_captura.json"
+	DirAccess.remove_absolute(ProjectSettings.globalize_path(Tutorial.ruta))
+	main.motor = Partida.crear(d, 20260415, partido)
+	main.mostrar_dia()
+	await _guardar("v3_tutorial_1", 0.6)
+	var dia: Node = main._pantalla
+	var t: Node = dia._capa.find_children("*", "Tutorial", true, false)[0]
+	for _i in range(3):
+		t._avanzar()
+	await _guardar("v3_tutorial_4", 0.4)
+	t._cerrar()
+	var m: MotorTurno = main.motor
+	m.estado.mano.clear()
+	m.robar_mano(5)
+	for _i in range(3):
+		m.jugar_carta(0, "", "metropolitana")
+	var regional: Dictionary = m.estado.aprobacion_regional.duplicate()
+	var casos := [
+		["v3_eleccion_victoria", {"electo": true, "balotaje": false, "ronda": 1, "voto_final": 57.4, "umbral": 51.0}],
+		["v3_eleccion_balotaje", {"electo": false, "balotaje": true, "ronda": 1, "voto_final": 44.2, "umbral": 51.0}],
+		["v3_eleccion_derrota", {"electo": false, "balotaje": false, "ronda": 2, "voto_final": 40.1, "umbral": 51.0}],
+	]
+	for c in casos:
+		var pant: Control = PantallaEleccion.crear(m, d["regiones"], regional, c[1], func() -> void: pass)
+		dia._capa.add_child(pant)
+		await _guardar(c[0], 0.3)
+		pant.queue_free()
+	var cart: PantallaCartera = PantallaCartera.crear(d, m)
+	dia._capa.add_child(cart)
+	await _guardar("v3_cartera", 0.8)
+	cart.f_tipo = "proyecto_de_ley"
+	cart.f_sector = "salud"
+	cart.aplicar_filtros()
+	await _guardar("v3_cartera_filtrada", 0.5)
+	cart.queue_free()
+	var n := 0
+	for e in m.catalogo_eventos:
+		if e.get("meta", {}).has("fecha_real") and n < 6:
+			m.estado.eventos_ocurridos[String(e["id"])] = 2
+			n += 1
+	m.mandato.finalizar("fin_mandato")
+	main.mostrar_fin()
+	await _guardar("v3_fin", 0.6)
+	main.mostrar_menu()
+	await _guardar("v3_menu", 0.6)
+	DirAccess.remove_absolute(ProjectSettings.globalize_path(Tutorial.ruta))
