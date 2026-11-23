@@ -128,3 +128,9 @@ Las comparaciones fotograma a fotograma contra el PDF están en `docs/comparacio
 ### Ilustraciones con Canva (23-nov-2026)
 - `game/arte/cartas/estado.jpg`: ilustración de la categoría `estado` (empresas públicas, privatización, expropiación), generada con Canva (`generate-image`, media id `MAHbwnvLDqo`, original 2336×1760 en Canva). **Provisoria:** la herramienta solo entrega una miniatura de 200×150, ampliada a 512×410 (algo blanda). Para resolución completa hay que exportarla desde Canva (crear diseño con la imagen y exportar) o descargarla manualmente desde el enlace de Canva.
 - Las otras 13 categorías ya tenían arte (Figma, antes de que se agotara la cuota). Derechos del arte generado con IA: pendiente de confirmar.
+
+### Respuestas al chequeo de monitoreo (23-nov-2026, tarde)
+- **Ilustración Canva (`game/arte/cartas/estado.jpg`):** licencia de uso de las imágenes generadas con Canva (IA) **no confirmada** por mí; queda **PROVISORIA** y no debe usarse en material público ni en una ficha de tienda hasta revisar los términos de Canva y sus derechos de uso comercial. Fuente: Canva `generate-image`, media id `MAHbwnvLDqo`.
+- **APK de prueba:** se entregó solo al usuario (único destinatario) mediante el canal de archivos de esta sesión el 23-nov-2026; no hay correo ni enlace público. Es un APK de depuración (`build/presidente-debug.apk`, ignorado por git), sin firma de publicación.
+- **Evidencia del botón principal y captura 390×844:** `docs/DIFERENCIAS_MAQUETA.md` (sección "Evidencia del botón principal fijo", 6 semillas con rectángulo idéntico) y `docs/comparacion/v2_dia_maqueta_vs_juego.png` (captura lado a lado con la maqueta del día del PDF; fecha 23-nov-2026).
+- **1.276 vs 1.040 y citas CPR 66/127:** ver "Cierre verificado" más arriba en este archivo.
