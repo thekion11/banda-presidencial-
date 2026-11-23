@@ -40,10 +40,10 @@ func _correr(datos: Dictionary, semilla: int) -> MotorTurno:
 	for _s in range(int(datos["leyes"]["hemiciclo"]["semanas_campana"])):
 		_jugar_todo(motor)
 		motor.terminar_turno()
-	var res := motor.resolver_eleccion_presidencial()
-	if not bool(res["electo"]):
+	var rng := RandomNumberGenerator.new()
+	rng.seed = semilla
+	if not Bots.elegir(motor, datos, "azar", rng):
 		return motor
-	motor.iniciar_turno()
 	while est.etapa == "gobierno":
 		_jugar_todo(motor)
 		motor.terminar_turno()

@@ -90,5 +90,14 @@
     "fecha_corte": "2026-11-23",
     "vigencia_dias": 365,
     "es_ilustrativa": true
+  },
+  {
+    "id": "servel_calendario_2025",
+    "institucion": "Servicio Electoral de Chile (Servel)",
+    "titulo": "Calendario de elecciones presidenciales 2025 (1ª vuelta 16-nov-2025, 2ª vuelta 14-dic-2025) y cambio de mando 11-mar-2026",
+    "url": "https://www.servel.cl/",
+    "fecha_corte": "2026-11-23",
+    "vigencia_dias": 365,
+    "es_ilustrativa": false
   }
 ]

@@ -6,7 +6,9 @@
     "duracion_mandato_dias": 1460,
     "semanas_campana": 8,
     "umbral_victoria_presidencial": 50.0,
-    "bono_aprobacion_promesa": 1.5
+    "bono_aprobacion_promesa": 1.5,
+    "semanas_balotaje": 4,
+    "umbral_pasa_balotaje": 28.0
   },
   "campana": {
     "aprobacion_base_por_carta": 0.2,
@@ -163,8 +165,12 @@
   },
   "repeticion_promesa": 0.5,
   "calendario": {
-    "fecha_inicio_campana": "2029-09-17",
-    "fecha_inicio_mandato": "2030-03-11"
+    "fecha_inicio_campana": "2025-09-21",
+    "fecha_primera_vuelta": "2025-11-16",
+    "fecha_segunda_vuelta": "2025-12-14",
+    "fecha_inicio_mandato": "2026-03-11",
+    "fuente": "fuentes.json#servel_calendario_2025",
+    "nota": "La transición dic-2025 a mar-2026 no se juega por turnos; el mandato arranca el 11-mar-2026."
   },
   "fases_obra": [
     {

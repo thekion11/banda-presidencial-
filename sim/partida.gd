@@ -28,6 +28,7 @@ static func reproducir(datos: Dictionary, guardado: Dictionary) -> MotorTurno:
 			"cerrar":
 				motor.terminar_turno()
 			"eleccion":
-				if bool(motor.resolver_eleccion_presidencial()["electo"]):
+				var r := motor.resolver_eleccion_presidencial()
+				if bool(r["electo"]) or bool(r["balotaje"]):
 					motor.iniciar_turno()
 	return motor

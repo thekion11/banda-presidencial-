@@ -68,7 +68,6 @@ func _hasta_gobierno(datos: Dictionary, partido: Dictionary) -> MotorTurno:
 		for _i in range(8):
 			Bots.jugar_turno(m, "codicioso", rng)
 			m.terminar_turno()
-		if bool(m.resolver_eleccion_presidencial()["electo"]):
-			m.iniciar_turno()
+		if Bots.elegir(m, datos, "codicioso", rng):
 			return m
 	return null

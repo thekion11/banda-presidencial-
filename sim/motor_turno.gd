@@ -82,7 +82,7 @@ func iniciar_turno() -> Array[Dictionary]:
 func terminar_turno() -> Array[Dictionary]:
 	## Cierra el turno y, si la partida sigue y no toca elección, inicia el siguiente.
 	cerrar_turno()
-	if estado.eleccion_pendiente(int(_h("semanas_campana"))):
+	if estado.eleccion_pendiente(int(_h("semanas_campana")), int(_h("semanas_balotaje"))):
 		return []
 	if estado.etapa == "campana" or estado.etapa == "gobierno":
 		return iniciar_turno()
@@ -168,25 +168,7 @@ func cerrar_turno() -> void:
 		mandato.finalizar("fin_mandato")
 
 
-func resolver_eleccion_presidencial() -> Dictionary:
-	var umbral := float(_h("umbral_victoria_presidencial"))
-	var ruido := float(catalogo_leyes["campana"]["ruido_eleccion"])
-	var voto_final := clampf(estado.ind("aprobacion") + rng.randf_range(-ruido, ruido), 0.0, 100.0)
-	var electo := voto_final >= umbral
-	estado.registrar_accion("eleccion_presidencial", {
-		"voto_final": voto_final, "umbral": umbral, "electo": electo,
-		"promesas_registradas": estado.promesas_campana.size()
-	})
-	estado.registrar_entrada("eleccion", {})
-	if electo:
-		estado.etapa = "gobierno"
-		estado.turno_actual = 1
-		estado.dia_actual = 1
-		estado.pa_actual = estado.pa_maximo
-	else:
-		estado.etapa = "derrota_electoral"
-		estado.resultado_final = {"motivo": "derrota_electoral", "voto_final": voto_final, "puntaje": 0}
-	return {"electo": electo, "voto_final": voto_final, "umbral": umbral}
+func resolver_eleccion_presidencial() -> Dictionary: return mandato.resolver_eleccion()
 
 
 # ---------------------------------------------------------------- Utilidades de efectos

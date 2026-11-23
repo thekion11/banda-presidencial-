@@ -76,9 +76,22 @@ static func partida_completa(datos: Dictionary, semilla: int, politica: String) 
 	for _s in range(int(datos["leyes"]["hemiciclo"]["semanas_campana"])):
 		jugar_turno(motor, pol_camp, rng)
 		motor.terminar_turno()
-	if bool(motor.resolver_eleccion_presidencial()["electo"]):
-		motor.iniciar_turno()
+	if elegir(motor, datos, pol_camp, rng):
 		while est.etapa == "gobierno":
 			jugar_turno(motor, pol_gob, rng)
 			motor.terminar_turno()
 	return motor
+
+
+static func elegir(motor: MotorTurno, datos: Dictionary, politica: String, rng: RandomNumberGenerator) -> bool:
+	## Resuelve la elección con su posible segunda vuelta (4 semanas más de campaña). true si llega al gobierno.
+	var r := motor.resolver_eleccion_presidencial()
+	if bool(r["balotaje"]):
+		motor.iniciar_turno()
+		for _s in range(int(datos["leyes"]["hemiciclo"]["semanas_balotaje"])):
+			jugar_turno(motor, politica, rng)
+			motor.terminar_turno()
+		r = motor.resolver_eleccion_presidencial()
+	if bool(r["electo"]):
+		motor.iniciar_turno()
+	return bool(r["electo"])

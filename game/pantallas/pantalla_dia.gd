@@ -357,14 +357,14 @@ func _terminar_turno() -> void:
 
 func _resolver_eleccion() -> void:
 	var res := motor.resolver_eleccion_presidencial()
-	if res["electo"]:
+	if res["electo"] or res["balotaje"]:
 		motor.iniciar_turno()  # mismo orden que la reproducción desde guardado
 	accion_hecha.emit()
 	var ev := {"titulo": "Elección presidencial", "hora": "20:00", "votacion": null,
 		"descripcion": "Obtuviste %.1f %% de los votos con un umbral de %.0f %%. %s" % [float(res["voto_final"]), float(res["umbral"]),
-			"¡Eres el nuevo Presidente de Chile! Asumes el gobierno con tus promesas como metas de legado." if res["electo"] else "No alcanzaste la presidencia."]}
+			"¡Eres el nuevo Presidente de Chile! Asumes el gobierno con tus promesas como metas de legado." if res["electo"] else ("Pasas a segunda vuelta: tienes 4 semanas más de campaña." if res["balotaje"] else "No alcanzaste la presidencia.")]}
 	_capa.add_child(OverlaysDia.evento(ev, func() -> void:
-		if res["electo"]:
+		if res["electo"] or res["balotaje"]:
 			_cola_eventos = motor.ultimos_eventos.duplicate()
 			_refrescar()
 			_siguiente_evento()

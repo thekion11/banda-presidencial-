@@ -26,6 +26,11 @@ func _elegir(datos: Dictionary, umbral: float) -> Dictionary:
 			break
 	var aprob := m.estado.ind("aprobacion")
 	var r := m.resolver_eleccion_presidencial()
+	if bool(r["balotaje"]):  # segunda vuelta: 4 semanas más de campaña y nueva votación
+		m.iniciar_turno()
+		for _s in range(int(d["leyes"]["hemiciclo"]["semanas_balotaje"])):
+			m.terminar_turno()
+		r = m.resolver_eleccion_presidencial()
 	return {"turnos": turnos_campana, "res": r, "aprob": aprob, "etapa": m.estado.etapa}
 
 

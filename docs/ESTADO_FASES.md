@@ -27,3 +27,7 @@ Las comparaciones fotograma a fotograma contra el PDF están en `docs/comparacio
 - Alcance: base masiva de proyectos públicos reales, leyes BCN como límites legales, proyectos de ley, reformas constitucionales (plebiscitos 2022/2023), eventos reales, cartas y pantallas nuevas. Inicio del juego: domingo 16-nov-2025; 2ª vuelta 14-dic-2025; cambio de gobierno miércoles 11-mar-2026.
 - Sesiones: A `datos/proyectos-publicos`, B `datos/leyes-eventos`, Revisor `revision/auditoria`. Cada mecánica o pantalla nueva debe documentar su fuente.
 - Pendiente: subir los datos a `main` (la rama no existe aún; se crea tras la revisión), cartera de la RM (sin cartera oficial publicada por SECTRA; se busca en fuentes oficiales alternativas, citadas), tope de ilustraciones Figma.
+
+### C3 resuelto (calendario real y segunda vuelta)
+- Campaña desde el 21-sep-2025 (8 semanas) hasta la 1ª vuelta del 16-nov-2025; si no se supera el umbral pero sí `umbral_pasa_balotaje`, 4 semanas más hasta la 2ª vuelta del 14-dic-2025; el mandato arranca el 11-mar-2026 (la transición no se juega por turnos). Parámetros en `data/leyes.json` (`calendario`, `hemiciclo.semanas_balotaje`, `umbral_pasa_balotaje` — este último ilustrativo).
+- `sim/motor_mandato.gd#resolver_eleccion`; `estado.ronda_electoral`; replay y pruebas actualizados (`Bots.elegir`). Mecánica nueva: segunda vuelta. Fuente: Servel (`fuentes.json#servel_calendario_2025`).

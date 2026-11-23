@@ -8,6 +8,7 @@ const IND_DEFECTO := {
 }
 
 var semilla: int = 20260415
+var ronda_electoral: int = 1  # 1 = primera vuelta, 2 = segunda vuelta (balotaje)
 var etapa: String = "campana"  # campana | gobierno | derrota_electoral | fin_mandato | crisis
 var turno_actual: int = 1
 var dia_actual: int = 1
@@ -48,6 +49,7 @@ func configurar(p_semilla: int, p_dias_turno: int = 7, p_leyes: Dictionary = {})
 	turno_actual = 1
 	dia_actual = 1
 	etapa = "campana"
+	ronda_electoral = 1
 	partido = {}
 	var ini: Dictionary = IND_DEFECTO.duplicate()
 	if p_leyes.has("indicadores_iniciales"):
@@ -106,8 +108,8 @@ func promesas_pendientes() -> Array[Dictionary]:
 	return res
 
 
-func eleccion_pendiente(semanas_campana: int) -> bool:
-	return etapa == "campana" and turno_actual > semanas_campana
+func eleccion_pendiente(semanas_campana: int, semanas_balotaje: int = 4) -> bool:
+	return etapa == "campana" and turno_actual > semanas_campana + (semanas_balotaje if ronda_electoral == 2 else 0)
 
 
 func exportar_resumen() -> Dictionary:
@@ -128,6 +130,7 @@ func exportar_resumen() -> Dictionary:
 		"proyectos_ley": proyectos_ley.duplicate(true),
 		"cartas_ejecutadas": cartas_ejecutadas.keys(),
 		"sectra": sectra.duplicate(true),
+		"ronda_electoral": ronda_electoral,
 		"propuestas_abiertas": propuestas_abiertas.duplicate(),
 		"propuestas_aprobadas": propuestas_aprobadas.duplicate(),
 		"total_acciones": registro_acciones.size(),
