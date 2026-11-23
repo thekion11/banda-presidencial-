@@ -126,7 +126,7 @@ Las comparaciones fotograma a fotograma contra el PDF están en `docs/comparacio
 - Pendiente: maqueta real (Figma) para la comparación; verificación de los 14 eventos reales sin fuente primaria; quórum real por boletín.
 
 ### Ilustraciones con Canva (23-nov-2026)
-- `game/arte/cartas/estado.jpg`: ilustración de la categoría `estado` (empresas públicas, privatización, expropiación), generada con Canva (`generate-image`, media id `MAHbwnvLDqo`, original 2336×1760 en Canva). **Provisoria:** la herramienta solo entrega una miniatura de 200×150, ampliada a 512×410 (algo blanda). Para resolución completa hay que exportarla desde Canva (crear diseño con la imagen y exportar) o descargarla manualmente desde el enlace de Canva.
+- `game/arte/cartas/estado.jpg`: ilustración de la categoría `estado` (empresas públicas, privatización, expropiación), generada con Canva (`generate-image`, media id `MAHbwnvLDqo`, original 2336×1760 en Canva). Resolución completa: se creó un diseño de una página con la imagen (`DAHbww6wb9g`) y se exportó a 1024×768 (`docs/comparacion/arte_estado.jpg`); en el juego está recortada a 512×410. La licencia de uso sigue sin confirmar (ver abajo).
 - Las otras 13 categorías ya tenían arte (Figma, antes de que se agotara la cuota). Derechos del arte generado con IA: pendiente de confirmar.
 
 ### Respuestas al chequeo de monitoreo (23-nov-2026, tarde)
