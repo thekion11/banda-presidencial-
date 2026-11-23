@@ -112,6 +112,54 @@
       "fuente": {
         "type": "string",
         "pattern": "^fuentes\\.json#[a-z0-9_]+$"
+      },
+      "disponibilidad": {
+        "type": [
+          "object",
+          "null"
+        ],
+        "description": "Ventana de aparición de la carta (docs/DISENO_V2.md, regla 2): años de gobierno 1-4, evento que la activa, indicador fiscal mínimo (0-100) y meta interna que la desbloquea.",
+        "required": [
+          "anio_desde",
+          "anio_hasta",
+          "evento",
+          "fiscal_min",
+          "meta"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "anio_desde": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 4
+          },
+          "anio_hasta": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 4
+          },
+          "evento": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "fiscal_min": {
+            "type": [
+              "number",
+              "null"
+            ],
+            "minimum": 0,
+            "maximum": 100
+          },
+          "meta": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "pattern": "^meta_[a-z]+_[1-3]$"
+          }
+        }
       }
     }
   }

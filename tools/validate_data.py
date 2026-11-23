@@ -120,6 +120,30 @@ def validar_cartas(cartas: list, ids_fuentes: set, tipos: set, props: set) -> No
             raise ValueError(f"{ctx}: meta del corrector debe ser positiva")
 
 
+def validar_disponibilidad(cartas: list, ids_eventos: set, categorias: set) -> None:
+    """Campo opcional `disponibilidad` (docs/DISENO_V2.md): ventana de años 1-4, evento, fiscal_min (indicador 0-100) y meta interna."""
+    n = 0
+    for c in cartas:
+        d = c.get("disponibilidad")
+        if d is None:
+            continue
+        n += 1
+        ctx = f"carta {c['id']}"
+        if set(d) != {"anio_desde", "anio_hasta", "evento", "fiscal_min", "meta"}:
+            raise ValueError(f"{ctx}: disponibilidad con claves incorrectas")
+        if not (1 <= d["anio_desde"] <= d["anio_hasta"] <= 4):
+            raise ValueError(f"{ctx}: años de disponibilidad fuera de 1-4 o desde > hasta")
+        if d["evento"] is not None and d["evento"] not in ids_eventos:
+            raise ValueError(f"{ctx}: evento inexistente '{d['evento']}'")
+        if d["fiscal_min"] is not None and not 0 <= d["fiscal_min"] <= 100:
+            raise ValueError(f"{ctx}: fiscal_min fuera de 0-100")
+        if d["meta"] is not None:
+            m = re.fullmatch(r"meta_([a-z]+)_([1-3])", d["meta"])
+            if not m or m.group(1) not in categorias:
+                raise ValueError(f"{ctx}: meta '{d['meta']}' inválida (meta_<categoria>_<1..3>)")
+    print(f"[INFO] Cartas con disponibilidad: {n}")
+
+
 def validar_eventos(eventos: list, ids_fuentes: set, tipos: set, dias_mandato: int) -> None:
     unicos(eventos, "eventos")
     for e in eventos:
@@ -290,9 +314,17 @@ def main() -> int:
             raise ValueError(f"carta real {c['id']}: debe rotular cifras_ilustrativas")
         if c["requisitos"]["ley"] and not c["meta"].get("quorum_verificado") and not c["meta"].get("nota_quorum"):
             raise ValueError(f"carta real {c['id']}: quórum sin verificar debe llevar nota_quorum")
+        if not 1 <= c["costo_pa"] <= 3:
+            raise ValueError(f"carta real {c['id']}: costo 1-3 movimientos")
+        if len(c["titulo"]) > 60 or not c.get("disponibilidad"):
+            raise ValueError(f"carta real {c['id']}: título ≤ 60 y `disponibilidad` obligatoria")
+        if c["meta"]["tipo"] in ("proyecto_de_ley", "reforma_constitucional") and not (c["meta"].get("fecha_corte") and c["meta"].get("titulo_completo") and isinstance(c["meta"].get("verificado"), bool)):
+            raise ValueError(f"carta real {c['id']}: proyecto de ley sin fecha_corte/titulo_completo/verificado")
+    validar_schema("cartas.json", reales)
     datos["cartas"] = datos["cartas"] + reales
     validar_cartas(datos["cartas"], ids_fuentes, tipos, props)
     datos["eventos"] = datos["eventos"] + json.loads((DATA_DIR / "juego_eventos_reales.json").read_text(encoding="utf-8"))
+    validar_disponibilidad(datos["cartas"], {e["id"] for e in datos["eventos"]}, {c["categoria"] for c in datos["cartas"]})
     validar_eventos(datos["eventos"], ids_fuentes, tipos, datos["leyes"]["hemiciclo"]["duracion_mandato_dias"])
     validar_ideologia(datos["ideologia"])
     validar_ministros(datos["ministros"], datos["cartas"])
