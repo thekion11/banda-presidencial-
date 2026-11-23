@@ -1,0 +1,19 @@
+# Diseño v2 — Gabinete, mano continua, movimientos y proyectos (especificación del usuario, 23-nov-2026)
+
+Alcance autorizado por el usuario (ampliación sobre la Enmienda de Cierre). Todo número de balance vive en `data/leyes.json`; `sim/` sigue determinista (misma semilla + mismas entradas = mismo resultado) y cada archivo ≤ 450 líneas (`sim/estado_simulacion.gd` y `sim/motor_turno.gd` < 220).
+
+## Reglas pedidas
+1. **Disponibilidad por gabinete.** Una carta solo está disponible si el jugador tiene en su gabinete un ministro cuya `categoria_afin` coincide con la `categoria` de la carta (las categorías `politica` y `comite` siempre están disponibles). El jugador escoge el gabinete (nuevo estado `gabinete`, tamaño en leyes.json).
+2. **Ventanas y desbloqueos.** Cada carta puede traer `disponibilidad`: `anio_desde`/`anio_hasta` (año de gobierno 1–4; algunas solo existen un año, otras otro), `evento` (id de evento que la activa), `fiscal_min` (se activa al superar cierta cantidad de dinero/indicador fiscal) y `meta` (id de meta/objetivo interno que la desbloquea).
+3. **Mano continua.** Por cada carta jugada entra otra nueva al instante: la mano nunca se queda sin cartas. La partida comienza con **5 cartas** y **5 movimientos** (antes PA).
+4. **Costo.** Cada carta cuesta **1 a 3 movimientos**.
+5. **Delegación.** Hasta **2 cartas por turno** se pueden delegar en un ministro y se usan **sin gastar movimientos**, pero **pueden salir mal** (probabilidad según competencia del ministro y riesgo de ejecución; efecto reducido o escándalo).
+6. **Movimientos internos.** **3 por turno**, solo dentro de la coalición: buscar objetivos o metas (desbloquean cartas); subir o bajar índices dentro de un sector; disminuir errores de ejecución (riesgo); acelerar proyectos (obras).
+7. **Estado empresario.** Opciones de crear empresas públicas, privatizar y expropiar (cartas de categoría `estado`, con sus costos fiscales, de cohesión, de capital político y de riesgo).
+8. **1.040 proyectos.** Una carta por cada proyecto: los ~1.044 proyectos de ley en tramitación (`data/bcn/proyectos_ley.json`) más los proyectos públicos (`data/proyectos/`). Cada carta lleva `categoria` (ministerio) y `disponibilidad`.
+
+## Esquema nuevo de carta (campos opcionales; las cartas actuales siguen siendo válidas)
+```json
+"disponibilidad": {"anio_desde": 1, "anio_hasta": 4, "evento": null, "fiscal_min": null, "meta": null}
+```
+Metas internas: `data/metas.json` (id, nombre, sector, descripcion, costo_mov, desbloquea[], efectos[]), cada una citando fuente.
