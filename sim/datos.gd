@@ -17,4 +17,5 @@ static func cargar_todo(base: String = "res://data/") -> Dictionary:
 	var d := {}
 	for n in ARCHIVOS:
 		d[n] = leer_json("%s%s.json" % [base, n])
+	d["grafo"] = leer_json(base + "geo/grafo_urbano.json")
 	return d

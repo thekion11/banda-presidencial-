@@ -182,6 +182,32 @@ def validar_propuestas(props: list, ids_fuentes: set, regiones: set) -> None:
                 raise ValueError(f"variante {p['id']}/{v['id']}: trazado inválido")
 
 
+def validar_grafo() -> None:
+    ruta = DATA_DIR / "geo" / "grafo_urbano.json"
+    if not ruta.exists():
+        raise FileNotFoundError(f"Archivo faltante: {ruta}")
+    g = json.loads(ruta.read_text(encoding="utf-8"))
+    ids = {n["id"] for n in g["nodos"]}
+    if len(ids) != len(g["nodos"]):
+        raise ValueError("grafo: ids de nodo duplicados")
+    for a in g["aristas"]:
+        if a["a"] not in ids or a["b"] not in ids or a["longitud"] <= 0 or a["costo_mult"] < 1.0:
+            raise ValueError(f"grafo: arista inválida {a}")
+    # conectividad (BFS)
+    ady = {i: [] for i in ids}
+    for a in g["aristas"]:
+        ady[a["a"]].append(a["b"])
+        ady[a["b"]].append(a["a"])
+    visto, pila = set(), [g["nodos"][0]["id"]]
+    while pila:
+        n = pila.pop()
+        if n not in visto:
+            visto.add(n)
+            pila.extend(ady[n])
+    if visto != ids:
+        raise ValueError("grafo: no es conexo")
+
+
 def main() -> int:
     nombres = ("fuentes", "leyes", "ministros", "cartas", "eventos", "ideologia", "regiones", "propuestas")
     datos = {n: cargar_json(f"{n}.json") for n in nombres}
@@ -196,6 +222,7 @@ def main() -> int:
     validar_ministros(datos["ministros"], datos["cartas"])
     validar_regiones(datos["regiones"], ids_fuentes)
     validar_propuestas(datos["propuestas"], ids_fuentes, {r["id"] for r in datos["regiones"]})
+    validar_grafo()
     print("OK: Todos los JSON de Fase 0 superaron la validación")
     return 0
 

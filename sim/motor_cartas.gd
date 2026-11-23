@@ -132,7 +132,7 @@ func _ejecutar_carta(carta: Dictionary, escala: float, region_id: String) -> voi
 		m.fx.marcar_cumplida(String(carta["id"]))
 
 
-func aprobar_propuesta(prop_id: String, variante_id: String, region_id: String = "") -> Dictionary:
+func aprobar_propuesta(prop_id: String, variante_id: String, region_id: String = "", custom: Dictionary = {}) -> Dictionary:
 	if m.estado.etapa != "gobierno" or not m.estado.propuestas_abiertas.has(prop_id):
 		return {"ok": false, "razon": "propuesta_no_disponible"}
 	var prop: Dictionary = m.catalogo_propuestas[prop_id]
@@ -141,11 +141,16 @@ func aprobar_propuesta(prop_id: String, variante_id: String, region_id: String =
 		return {"ok": false, "razon": "pa_insuficiente", "costo": costo}
 	var variante: Dictionary = {}
 	for v in prop["variantes"]:
-		if v["id"] == variante_id:
+		if v["id"] == variante_id or (not custom.is_empty() and v["id"] == String(custom.get("base", ""))):
 			variante = v
 	if variante.is_empty():
 		return {"ok": false, "razon": "variante_invalida"}
-	m.estado.registrar_entrada("aprobar_propuesta", {"prop": prop_id, "variante": variante_id, "region": region_id})
+	if not custom.is_empty():  # trazado propio: estaciones sobre el grafo + sliders
+		if not m.grafo.listo() or not m.grafo.estaciones_validas(custom.get("estaciones", [])):
+			return {"ok": false, "razon": "trazado_invalido"}
+		variante = m.grafo.variante_modificada(variante, custom["estaciones"], float(custom.get("ritmo", 0.0)), float(custom.get("cobertura", 0.0)))
+		variante_id = "M"
+	m.estado.registrar_entrada("aprobar_propuesta", {"prop": prop_id, "variante": variante_id, "region": region_id, "custom": custom})
 	m.estado.pa_actual -= costo
 	var ratio := clampf(float(prop["capacidad_musd"]) / float(variante["costo_musd"]), 0.1, 1.0)
 	var region := region_id if region_id != "" else String(prop.get("region", ""))

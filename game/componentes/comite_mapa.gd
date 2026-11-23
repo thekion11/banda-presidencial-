@@ -15,10 +15,89 @@ var trazo: float = 1.0:
 		trazo = v
 		queue_redraw()
 var semilla: int = 7
+signal estaciones_cambiadas(estaciones: Array)
+var grafo: GrafoTrazado
+var editando: bool = false
+var estaciones: Array = []  # ids de nodo
+var seleccion: int = -1
+var _arrastre: int = -1
+var _ruta_edicion: Array = []  # puntos [x, y] del camino Dijkstra entre estaciones
 
 
 func _init() -> void:
 	clip_contents = true
+
+
+func iniciar_edicion(p_grafo: GrafoTrazado, p_estaciones: Array) -> void:
+	grafo = p_grafo
+	estaciones = p_estaciones.duplicate()
+	editando = true
+	seleccion = -1
+	create_tween().tween_property(self, "t3d", 0.0, 0.3)
+	_recalcular_ruta()
+
+
+func terminar_edicion() -> void:
+	editando = false
+	queue_redraw()
+
+
+func _recalcular_ruta() -> void:
+	var ev := grafo.evaluar(estaciones)
+	_ruta_edicion = []
+	for id in ev["nodos"]:
+		_ruta_edicion.append([grafo.pos[id].x, grafo.pos[id].y])
+	queue_redraw()
+	estaciones_cambiadas.emit(estaciones)
+
+
+func agregar_estacion() -> void:
+	if estaciones.size() < 2 or estaciones.size() >= int(grafo.params.get("max_estaciones", 7)):
+		return
+	var i := seleccion if seleccion >= 0 and seleccion < estaciones.size() - 1 else estaciones.size() - 2
+	var medio: Vector2 = (grafo.pos[estaciones[i]] + grafo.pos[estaciones[i + 1]]) * 0.5
+	var id := grafo.nodo_cercano(medio)
+	if estaciones.has(id):
+		return
+	estaciones.insert(i + 1, id)
+	seleccion = i + 1
+	_recalcular_ruta()
+
+
+func quitar_estacion() -> void:
+	if estaciones.size() <= int(grafo.params.get("min_estaciones", 3)) or seleccion < 0:
+		return
+	estaciones.remove_at(seleccion)
+	seleccion = -1
+	_recalcular_ruta()
+
+
+func _plano(p: Vector2) -> Vector2:
+	return Vector2(size.x * 0.06 + p.x * size.x * 0.88, size.y * 0.06 + p.y * size.y * 0.88)
+
+
+func _gui_input(event: InputEvent) -> void:
+	if not editando or grafo == null:
+		return
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
+		if event.pressed:
+			_arrastre = -1
+			var mejor := 28.0
+			for i in range(estaciones.size()):
+				var d := _plano(grafo.pos[estaciones[i]]).distance_to(event.position)
+				if d < mejor:
+					mejor = d
+					_arrastre = i
+			seleccion = _arrastre
+			queue_redraw()
+		else:
+			_arrastre = -1
+	elif event is InputEventMouseMotion and _arrastre >= 0:
+		var q: Vector2 = (event.position - Vector2(size.x * 0.06, size.y * 0.06)) / Vector2(size.x * 0.88, size.y * 0.88)
+		var id := grafo.nodo_cercano(q)
+		if id != String(estaciones[_arrastre]) and not estaciones.has(id):
+			estaciones[_arrastre] = id
+			_recalcular_ruta()
 
 
 func poner_variante(p_trazado: Array, p_elevada: bool) -> void:
@@ -79,6 +158,9 @@ func _draw() -> void:
 			_poly([_proj(x0, y1, 0), _proj(x1, y1, 0), _proj(x1, y1, alto), _proj(x0, y1, alto)], cima.darkened(0.22))
 			_poly([_proj(x1, y0, 0), _proj(x1, y1, 0), _proj(x1, y1, alto), _proj(x1, y0, alto)], cima.darkened(0.36))
 			_poly([_proj(x0, y0, alto), _proj(x1, y0, alto), _proj(x1, y1, alto), _proj(x0, y1, alto)], cima)
+	if editando and grafo != null:
+		_dibujar_edicion()
+		return
 	if trazado.size() < 2:
 		return
 	var elev := 20.0 if elevada else 0.0
@@ -116,3 +198,20 @@ func _draw() -> void:
 		draw_circle(pts[k], 7.0, Tema.ROJO)
 		draw_circle(pts[k], 4.8, Tema.CREMA)
 	draw_string(Tema.fuente_texto(500), Vector2(10, size.y - 8), "Trazado ilustrativo · © colaboradores de OpenStreetMap (fase 3)", HORIZONTAL_ALIGNMENT_LEFT, size.x - 20, 9, Color(1, 1, 1, 0.75))
+
+
+func _dibujar_edicion() -> void:
+	for id in grafo.orden:
+		draw_circle(_plano(grafo.pos[id]), 2.2, Color(1, 1, 1, 0.35))
+	if _ruta_edicion.size() >= 2:
+		var pts := PackedVector2Array()
+		for q in _ruta_edicion:
+			pts.append(_plano(Vector2(q[0], q[1])))
+		draw_polyline(pts, Tema.CREMA, 9.0, true)
+		draw_polyline(pts, Tema.ROJO, 5.5, true)
+	for i in range(estaciones.size()):
+		var c := _plano(grafo.pos[estaciones[i]])
+		var sel := i == seleccion
+		draw_circle(c, 13.0 if sel else 10.0, Tema.ORO if sel else Tema.TINTA)
+		draw_circle(c, 9.5 if sel else 7.0, Tema.CREMA)
+		draw_string(Tema.fuente_titulo(), c + Vector2(-6, 4.5), str(i + 1), HORIZONTAL_ALIGNMENT_CENTER, 12.0, 11, Tema.TINTA)

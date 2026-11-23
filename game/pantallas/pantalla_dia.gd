@@ -400,7 +400,7 @@ func _abrir_panel(cual: String) -> void:
 	var contenido: Control
 	match cual:
 		"comite":
-			contenido = PanelesDia.comite(motor, _aprobar)
+			contenido = PanelComite.crear(motor, _aprobar)
 		"nacion":
 			contenido = PanelNacionCompleto.crear(motor, geo, datos["regiones"], "%s · %s" % [_r["ev_hora"].text.replace("● ", ""), _r["ev_titulo"].text],
 					func() -> void:
@@ -422,8 +422,8 @@ func _abrir_panel(cual: String) -> void:
 	_zona_panel.add_child(m)
 
 
-func _aprobar(pid: String, variante: String) -> void:
-	var r := motor.aprobar_propuesta(pid, variante, _region)
+func _aprobar(pid: String, variante: String, custom: Dictionary = {}) -> void:
+	var r := motor.aprobar_propuesta(pid, variante, _region, custom)
 	if bool(r["ok"]):
 		_avisar("Obra aprobada: %d días de construcción." % int(r["dias"]))
 		accion_hecha.emit()

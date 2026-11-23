@@ -72,6 +72,16 @@ func _correr() -> void:
 	mc.modo_3d(true)
 	await create_timer(0.9).timeout
 	await _guardar("cmp_comite_3d")
+	mc.modo_3d(false)
+	await create_timer(0.7).timeout
+	var btns: Array = dia._zona_panel.find_children("*", "Button", true, false).filter(func(b: Node) -> bool: return b.text == "Modificar trazado")
+	btns[0].pressed.emit()
+	await process_frame
+	mc.agregar_estacion()
+	await _guardar("cmp_comite_edicion", 0.6)
+	var sc: Array = dia._zona_panel.find_children("*", "ScrollContainer", true, false)
+	sc[0].scroll_vertical = 420
+	await _guardar("cmp_comite_edicion2", 0.4)
 	dia._abrir_panel("mapa")
 	var obra := {"nombre": "Estación terminal, nueva línea de Metro", "variante": "A", "dias_totales": 960, "dias_avanzados": 760, "retrasos": 0, "carta_id": "", "propuesta": "prop_metro_suroriente", "region": "metropolitana", "efectos_final": [{"ind": "aprobacion", "delta": 4}]}
 	m.estado.obras_en_curso.append(obra)
