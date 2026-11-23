@@ -7131,6 +7131,54 @@
   "arte": "salud_hospitales"
  },
  {
+  "id": "real_obra_cur_antofagasta_nueva_linea_2x500_kv_nueva_chuquicamata_miraje_energizada_en_220_kv",
+  "categoria": "energia",
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#curados_cne_cl",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "cur-antofagasta-nueva-linea-2x500-kv-nueva-chuquicamata-miraje-energizada-en-220-kv",
+   "sector": "energia",
+   "region_id": "antofagasta",
+   "estado_real": "licitacion",
+   "inversion_musd": 90.5,
+   "mandante": "Ministerio de Energía (decreto); adjudicación por licitación pública de la transmisión",
+   "verificado_hecho": false,
+   "verificado": false,
+   "fuente_url": "https://www.cne.cl/wp-content/uploads/2026/08/Decreto-Excento-N°-354-de-2025.pdf",
+   "cifras_ilustrativas": true,
+   "modo": "obra"
+  },
+  "disponibilidad": {
+   "anio_desde": 1,
+   "anio_hasta": 2,
+   "evento": null,
+   "fiscal_min": null,
+   "meta": null
+  },
+  "costo_pa": 2,
+  "titulo": "Nueva línea 2x500 kV Nueva Chuquicamata – Miraje",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 3
+   },
+   {
+    "ind": "fiscal",
+    "delta": -0.5
+   }
+  ],
+  "obra": {
+   "nombre": "Nueva línea 2x500 kV Nueva Chuquicamata – Miraje (energizada en 220 kV)",
+   "dias_totales": 108
+  }
+ },
+ {
   "id": "real_obra_cur_antofagasta_reposicion_con_relocalizacion_edificio_consistorial_calama_nueva_munic",
   "categoria": "obras",
   "requisitos": {
@@ -7225,6 +7273,194 @@
   "obra": {
    "nombre": "Reposición Liceo Politécnico C-20, Comuna de Taltal",
    "dias_totales": 90
+  }
+ },
+ {
+  "id": "real_obra_cur_antofagasta_servicio_e01_de_buses_electricos_de_antofagasta_altos_de_la_chimba_cam",
+  "categoria": "transportes",
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#curados_dtpr_gob_cl",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "cur-antofagasta-servicio-e01-de-buses-electricos-de-antofagasta-altos-de-la-chimba-cam",
+   "sector": "transporte",
+   "region_id": "antofagasta",
+   "estado_real": "terminado",
+   "inversion_musd": null,
+   "mandante": "MTT (División de Transporte Público Regional)",
+   "verificado_hecho": false,
+   "verificado": false,
+   "fuente_url": "https://dtpr.gob.cl/wp-content/uploads/2026/11/Ficha-Antofagasta-2026v4.pdf",
+   "cifras_ilustrativas": true,
+   "modo": "inauguracion"
+  },
+  "disponibilidad": {
+   "anio_desde": 1,
+   "anio_hasta": 2,
+   "evento": null,
+   "fiscal_min": null,
+   "meta": null
+  },
+  "costo_pa": 1,
+  "titulo": "Inaugurar: Servicio E01 de buses eléctricos de Antofagasta",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 1.5
+   },
+   {
+    "ind": "capital",
+    "delta": 0.5
+   }
+  ]
+ },
+ {
+  "id": "real_obra_cur_antofagasta_sistema_de_almacenamiento_de_energia_aguila_mora",
+  "categoria": "energia",
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#prensa_df_cl",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "cur-antofagasta-sistema-de-almacenamiento-de-energia-aguila-mora",
+   "sector": "energia",
+   "region_id": "antofagasta",
+   "estado_real": "diseno",
+   "inversion_musd": 336.0,
+   "mandante": "No indicado en la fuente",
+   "verificado_hecho": false,
+   "verificado": false,
+   "fuente_url": "https://www.df.cl/regiones/antofagasta/maria-elena-suma-megaproyecto-de-baterias-por-us-336-millones-para",
+   "cifras_ilustrativas": true,
+   "modo": "obra"
+  },
+  "disponibilidad": {
+   "anio_desde": 1,
+   "anio_hasta": 3,
+   "evento": null,
+   "fiscal_min": null,
+   "meta": null
+  },
+  "costo_pa": 2,
+  "titulo": "Sistema de Almacenamiento de Energía Águila Mora",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 3
+   },
+   {
+    "ind": "fiscal",
+    "delta": -0.6
+   }
+  ],
+  "obra": {
+   "nombre": "Sistema de Almacenamiento de Energía Águila Mora",
+   "dias_totales": 157
+  }
+ },
+ {
+  "id": "real_obra_cur_araucania_ampliacion_en_s_e_temuco_220_kv_bps_bt_y_nuevo_patio_66_kv",
+  "categoria": "energia",
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#curados_cne_cl",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "cur-araucania-ampliacion-en-s-e-temuco-220-kv-bps-bt-y-nuevo-patio-66-kv",
+   "sector": "energia",
+   "region_id": "araucania",
+   "estado_real": "perfil",
+   "inversion_musd": 4.9,
+   "mandante": "Transelec S.A. (propietario; obra de ampliación obligatoria)",
+   "verificado_hecho": false,
+   "verificado": false,
+   "fuente_url": "https://www.cne.cl/wp-content/uploads/2025/12/Informe-Tecnico-ONyU-2025.pdf",
+   "cifras_ilustrativas": true,
+   "modo": "obra"
+  },
+  "disponibilidad": {
+   "anio_desde": 1,
+   "anio_hasta": 3,
+   "evento": "evt_real_20261105_093",
+   "fiscal_min": null,
+   "meta": null
+  },
+  "costo_pa": 2,
+  "titulo": "Ampliación en S/E Temuco 220 kV (BPS+BT) y nuevo patio 66 kV",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 3
+   },
+   {
+    "ind": "fiscal",
+    "delta": -0.5
+   }
+  ],
+  "obra": {
+   "nombre": "Ampliación en S/E Temuco 220 kV (BPS+BT) y nuevo patio 66 kV",
+   "dias_totales": 90
+  }
+ },
+ {
+  "id": "real_obra_cur_araucania_ampliacion_en_s_e_temuco_ntr_atat",
+  "categoria": "energia",
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#curados_cne_cl",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "cur-araucania-ampliacion-en-s-e-temuco-ntr-atat",
+   "sector": "energia",
+   "region_id": "araucania",
+   "estado_real": "perfil",
+   "inversion_musd": 5.5,
+   "mandante": "Transelec S.A. (propietario; obra de ampliación obligatoria)",
+   "verificado_hecho": false,
+   "verificado": false,
+   "fuente_url": "https://www.cne.cl/wp-content/uploads/2025/12/Informe-Tecnico-ONyU-2025.pdf",
+   "cifras_ilustrativas": true,
+   "modo": "obra"
+  },
+  "disponibilidad": {
+   "anio_desde": 3,
+   "anio_hasta": 4,
+   "evento": null,
+   "fiscal_min": null,
+   "meta": null
+  },
+  "costo_pa": 2,
+  "titulo": "Ampliación en S/E Temuco (NTR ATAT)",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 3
+   },
+   {
+    "ind": "fiscal",
+    "delta": -0.5
+   }
+  ],
+  "obra": {
+   "nombre": "Ampliación en S/E Temuco (NTR ATAT)",
+   "dias_totales": 91
   }
  },
  {
@@ -7612,6 +7848,54 @@
   }
  },
  {
+  "id": "real_obra_cur_araucania_nueva_s_e_raluncoyan_y_nueva_linea_2x66_kv_raluncoyan_temuco",
+  "categoria": "energia",
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#curados_cne_cl",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "cur-araucania-nueva-s-e-raluncoyan-y-nueva-linea-2x66-kv-raluncoyan-temuco",
+   "sector": "energia",
+   "region_id": "araucania",
+   "estado_real": "perfil",
+   "inversion_musd": 20.0,
+   "mandante": "Por licitar (obra nueva obligatoria, Sistema Zonal E)",
+   "verificado_hecho": false,
+   "verificado": false,
+   "fuente_url": "https://www.cne.cl/wp-content/uploads/2025/12/Informe-Tecnico-ONyU-2025.pdf",
+   "cifras_ilustrativas": true,
+   "modo": "obra"
+  },
+  "disponibilidad": {
+   "anio_desde": 3,
+   "anio_hasta": 4,
+   "evento": null,
+   "fiscal_min": null,
+   "meta": null
+  },
+  "costo_pa": 2,
+  "titulo": "Nueva S/E Raluncoyán y nueva línea 2x66 kV Raluncoyán",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 3
+   },
+   {
+    "ind": "fiscal",
+    "delta": -0.5
+   }
+  ],
+  "obra": {
+   "nombre": "Nueva S/E Raluncoyán y nueva línea 2x66 kV Raluncoyán – Temuco",
+   "dias_totales": 94
+  }
+ },
+ {
   "id": "real_obra_cur_araucania_nuevo_cesfam_amanecer_temuco",
   "categoria": "salud",
   "requisitos": {
@@ -7708,6 +7992,50 @@
    "dias_totales": 90
   },
   "arte": "obras_vial"
+ },
+ {
+  "id": "real_obra_cur_araucania_recaudo_electronico_y_sistema_de_buses_de_temuco_y_padre_las_casas",
+  "categoria": "transportes",
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#curados_dtpr_gob_cl",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "cur-araucania-recaudo-electronico-y-sistema-de-buses-de-temuco-y-padre-las-casas",
+   "sector": "transporte",
+   "region_id": "araucania",
+   "estado_real": "terminado",
+   "inversion_musd": null,
+   "mandante": "MTT (División de Transporte Público Regional)",
+   "verificado_hecho": false,
+   "verificado": false,
+   "fuente_url": "https://dtpr.gob.cl/wp-content/uploads/2026/11/Ficha-Araucania-2026v3-octubre-2026-1-2-1.pdf",
+   "cifras_ilustrativas": true,
+   "modo": "inauguracion"
+  },
+  "disponibilidad": {
+   "anio_desde": 1,
+   "anio_hasta": 2,
+   "evento": null,
+   "fiscal_min": null,
+   "meta": null
+  },
+  "costo_pa": 1,
+  "titulo": "Inaugurar: Recaudo electrónico",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 1.5
+   },
+   {
+    "ind": "capital",
+    "delta": 0.5
+   }
+  ]
  },
  {
   "id": "real_obra_cur_araucania_reposicion_apr_hualpin_y_ampliacion_a_isla_lican_mejoramiento_apr_teod",
@@ -8679,6 +9007,102 @@
   "arte": "seguridad_carceles"
  },
  {
+  "id": "real_obra_cur_arica_linea_de_transmision_y_central_de_almacenamiento_black_bess",
+  "categoria": "energia",
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#curados_firma_sea_gob_cl",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "cur-arica-linea-de-transmision-y-central-de-almacenamiento-black-bess",
+   "sector": "energia",
+   "region_id": "arica",
+   "estado_real": "diseno",
+   "inversion_musd": 220.0,
+   "mandante": "Inversiones Black Solar SpA",
+   "verificado_hecho": false,
+   "verificado": false,
+   "fuente_url": "https://firma.sea.gob.cl/publicaciones/2026/04/21/1776795160_2168302859",
+   "cifras_ilustrativas": true,
+   "modo": "obra"
+  },
+  "disponibilidad": {
+   "anio_desde": 1,
+   "anio_hasta": 4,
+   "evento": null,
+   "fiscal_min": null,
+   "meta": null
+  },
+  "costo_pa": 2,
+  "titulo": "Línea de Transmisión y Central de Almacenamiento Black BESS",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 3
+   },
+   {
+    "ind": "fiscal",
+    "delta": -0.5
+   }
+  ],
+  "obra": {
+   "nombre": "Línea de Transmisión y Central de Almacenamiento Black BESS",
+   "dias_totales": 134
+  }
+ },
+ {
+  "id": "real_obra_cur_arica_nueva_s_e_palca_seccionamiento_linea_1x110_kv_arica_pozo_almonte",
+  "categoria": "energia",
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#curados_cne_cl",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "cur-arica-nueva-s-e-palca-seccionamiento-linea-1x110-kv-arica-pozo-almonte",
+   "sector": "energia",
+   "region_id": "arica",
+   "estado_real": "licitacion",
+   "inversion_musd": 7.1,
+   "mandante": "Ministerio de Energía (decreto); adjudicación por licitación pública de la transmisión",
+   "verificado_hecho": false,
+   "verificado": false,
+   "fuente_url": "https://www.cne.cl/wp-content/uploads/2026/08/Decreto-Excento-N°-354-de-2025.pdf",
+   "cifras_ilustrativas": true,
+   "modo": "obra"
+  },
+  "disponibilidad": {
+   "anio_desde": 1,
+   "anio_hasta": 3,
+   "evento": null,
+   "fiscal_min": null,
+   "meta": null
+  },
+  "costo_pa": 2,
+  "titulo": "Nueva S/E Palca (seccionamiento línea 1x110 kV Arica",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 3
+   },
+   {
+    "ind": "fiscal",
+    "delta": -0.5
+   }
+  ],
+  "obra": {
+   "nombre": "Nueva S/E Palca (seccionamiento línea 1x110 kV Arica – Pozo Almonte)",
+   "dias_totales": 91
+  }
+ },
+ {
   "id": "real_obra_cur_arica_nuevo_hospital_de_alta_complejidad_de_arica",
   "categoria": "salud",
   "requisitos": {
@@ -9400,6 +9824,50 @@
   }
  },
  {
+  "id": "real_obra_cur_atacama_red_copiapo_de_movilidad_sistema_de_buses_100_electrico",
+  "categoria": "transportes",
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#curados_dtpr_gob_cl",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "cur-atacama-red-copiapo-de-movilidad-sistema-de-buses-100-electrico",
+   "sector": "transporte",
+   "region_id": "atacama",
+   "estado_real": "terminado",
+   "inversion_musd": null,
+   "mandante": "MTT (División de Transporte Público Regional)",
+   "verificado_hecho": false,
+   "verificado": false,
+   "fuente_url": "https://dtpr.gob.cl/wp-content/uploads/2026/11/Ficha_Atacama_2026V4.pdf",
+   "cifras_ilustrativas": true,
+   "modo": "inauguracion"
+  },
+  "disponibilidad": {
+   "anio_desde": 1,
+   "anio_hasta": 2,
+   "evento": null,
+   "fiscal_min": null,
+   "meta": "meta_transportes_3"
+  },
+  "costo_pa": 1,
+  "titulo": "Inaugurar: Red Copiapó de Movilidad: sistema",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 1.5
+   },
+   {
+    "ind": "capital",
+    "delta": 0.5
+   }
+  ]
+ },
+ {
   "id": "real_obra_cur_atacama_reparacion_redes_de_agua_potable_condominio_social_renacer_copiapo",
   "categoria": "medioambiente",
   "requisitos": {
@@ -9545,6 +10013,54 @@
    "dias_totales": 90
   },
   "arte": "salud_hospitales"
+ },
+ {
+  "id": "real_obra_cur_atacama_sistema_de_almacenamiento_de_energia_y_linea_de_transmision_bess_puebl",
+  "categoria": "energia",
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#curados_firma_sea_gob_cl",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "cur-atacama-sistema-de-almacenamiento-de-energia-y-linea-de-transmision-bess-puebl",
+   "sector": "energia",
+   "region_id": "atacama",
+   "estado_real": "diseno",
+   "inversion_musd": null,
+   "mandante": "BESS Pueblo Hundido SpA",
+   "verificado_hecho": false,
+   "verificado": false,
+   "fuente_url": "https://firma.sea.gob.cl/publicaciones/2026/04/28/1777418409_2168375603",
+   "cifras_ilustrativas": true,
+   "modo": "obra"
+  },
+  "disponibilidad": {
+   "anio_desde": 2,
+   "anio_hasta": 3,
+   "evento": null,
+   "fiscal_min": null,
+   "meta": null
+  },
+  "costo_pa": 2,
+  "titulo": "Sistema de almacenamiento de energía",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 3
+   },
+   {
+    "ind": "fiscal",
+    "delta": -1.0
+   }
+  ],
+  "obra": {
+   "nombre": "Sistema de almacenamiento de energía y línea de transmisión BESS Pueblo Hundido",
+   "dias_totales": 100
+  }
  },
  {
   "id": "real_obra_cur_aysen_conservacion_mayor_aerodromo_villa_o_higgins",
@@ -10271,6 +10787,54 @@
   "arte": "medioambiente_agua"
  },
  {
+  "id": "real_obra_cur_biobio_ampliacion_en_s_e_guindo_ntr_atmt",
+  "categoria": "energia",
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#curados_cne_cl",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "cur-biobio-ampliacion-en-s-e-guindo-ntr-atmt",
+   "sector": "energia",
+   "region_id": "biobio",
+   "estado_real": "perfil",
+   "inversion_musd": 7.3,
+   "mandante": "Besalco Transmisión SpA (propietario; obra de ampliación obligatoria)",
+   "verificado_hecho": false,
+   "verificado": false,
+   "fuente_url": "https://www.cne.cl/wp-content/uploads/2025/12/Informe-Tecnico-ONyU-2025.pdf",
+   "cifras_ilustrativas": true,
+   "modo": "obra"
+  },
+  "disponibilidad": {
+   "anio_desde": 2,
+   "anio_hasta": 3,
+   "evento": null,
+   "fiscal_min": null,
+   "meta": null
+  },
+  "costo_pa": 2,
+  "titulo": "Ampliación en S/E Guindo (NTR ATMT)",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 3
+   },
+   {
+    "ind": "fiscal",
+    "delta": -0.5
+   }
+  ],
+  "obra": {
+   "nombre": "Ampliación en S/E Guindo (NTR ATMT)",
+   "dias_totales": 91
+  }
+ },
+ {
   "id": "real_obra_cur_biobio_autogeneracion_electrica_isla_mocha_operacion_2026",
   "categoria": "energia",
   "requisitos": {
@@ -10949,6 +11513,54 @@
   "arte": "obras_edificacion"
  },
  {
+  "id": "real_obra_cur_biobio_nueva_s_e_la_calle_seccionamiento_lineas_hualqui_charrua_y_santa_maria",
+  "categoria": "energia",
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#curados_cne_cl",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "cur-biobio-nueva-s-e-la-calle-seccionamiento-lineas-hualqui-charrua-y-santa-maria",
+   "sector": "energia",
+   "region_id": "biobio",
+   "estado_real": "licitacion",
+   "inversion_musd": 33.3,
+   "mandante": "Ministerio de Energía (decreto); adjudicación por licitación pública de la transmisión",
+   "verificado_hecho": false,
+   "verificado": false,
+   "fuente_url": "https://www.cne.cl/wp-content/uploads/2026/08/Decreto-Excento-N°-354-de-2025.pdf",
+   "cifras_ilustrativas": true,
+   "modo": "obra"
+  },
+  "disponibilidad": {
+   "anio_desde": 1,
+   "anio_hasta": 2,
+   "evento": null,
+   "fiscal_min": null,
+   "meta": null
+  },
+  "costo_pa": 2,
+  "titulo": "Nueva S/E La Calle (seccionamiento líneas Hualqui",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 3
+   },
+   {
+    "ind": "fiscal",
+    "delta": -0.5
+   }
+  ],
+  "obra": {
+   "nombre": "Nueva S/E La Calle (seccionamiento líneas Hualqui – Charrúa y Santa María",
+   "dias_totales": 96
+  }
+ },
+ {
   "id": "real_obra_cur_biobio_nuevo_hospital_de_tome",
   "categoria": "salud",
   "requisitos": {
@@ -11139,6 +11751,54 @@
   "obra": {
    "nombre": "Plan maestro de Nacimiento: 700 viviendas y obras urbanas",
    "dias_totales": 102
+  }
+ },
+ {
+  "id": "real_obra_cur_biobio_recaudo_electronico_del_transporte_publico_del_gran_concepcion",
+  "categoria": "transportes",
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#curados_dtpr_gob_cl",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "cur-biobio-recaudo-electronico-del-transporte-publico-del-gran-concepcion",
+   "sector": "transporte",
+   "region_id": "biobio",
+   "estado_real": "licitacion",
+   "inversion_musd": null,
+   "mandante": "MTT (División de Transporte Público Regional)",
+   "verificado_hecho": false,
+   "verificado": false,
+   "fuente_url": "https://dtpr.gob.cl/wp-content/uploads/2026/03/Ficha-Biobio-2026v2.pdf",
+   "cifras_ilustrativas": true,
+   "modo": "obra"
+  },
+  "disponibilidad": {
+   "anio_desde": 1,
+   "anio_hasta": 2,
+   "evento": null,
+   "fiscal_min": null,
+   "meta": null
+  },
+  "costo_pa": 2,
+  "titulo": "Recaudo electrónico del transporte público",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 3
+   },
+   {
+    "ind": "fiscal",
+    "delta": -1.0
+   }
+  ],
+  "obra": {
+   "nombre": "Recaudo electrónico del transporte público del Gran Concepción",
+   "dias_totales": 100
   }
  },
  {
@@ -11383,6 +12043,54 @@
    "dias_totales": 90
   },
   "arte": "medioambiente_agua"
+ },
+ {
+  "id": "real_obra_cur_coquimbo_buses_electricos_coquimbo_la_serena_42_buses",
+  "categoria": "transportes",
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#curados_dtpr_gob_cl",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "cur-coquimbo-buses-electricos-coquimbo-la-serena-42-buses",
+   "sector": "transporte",
+   "region_id": "coquimbo",
+   "estado_real": "ejecucion",
+   "inversion_musd": null,
+   "mandante": "MTT (División de Transporte Público Regional)",
+   "verificado_hecho": false,
+   "verificado": false,
+   "fuente_url": "https://dtpr.gob.cl/wp-content/uploads/2026/06/Ficha-Coquimbo-2026V4.pdf",
+   "cifras_ilustrativas": true,
+   "modo": "acelerar"
+  },
+  "disponibilidad": {
+   "anio_desde": 1,
+   "anio_hasta": 2,
+   "evento": null,
+   "fiscal_min": null,
+   "meta": null
+  },
+  "costo_pa": 2,
+  "titulo": "Acelerar: Buses eléctricos Coquimbo – La Serena (42 buses)",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 2.5
+   },
+   {
+    "ind": "fiscal",
+    "delta": -1.0
+   }
+  ],
+  "obra": {
+   "nombre": "Buses eléctricos Coquimbo – La Serena (42 buses)",
+   "dias_totales": 90
+  }
  },
  {
   "id": "real_obra_cur_coquimbo_ciudad_justa_maestranza_puh_maestranza_coquimbo",
@@ -11723,6 +12431,150 @@
   }
  },
  {
+  "id": "real_obra_cur_coquimbo_nueva_s_e_el_palqui_y_nueva_linea_2x66_kv_el_palqui_las_juntas",
+  "categoria": "energia",
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#curados_cne_cl",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "cur-coquimbo-nueva-s-e-el-palqui-y-nueva-linea-2x66-kv-el-palqui-las-juntas",
+   "sector": "energia",
+   "region_id": "coquimbo",
+   "estado_real": "licitacion",
+   "inversion_musd": 27.2,
+   "mandante": "Ministerio de Energía (decreto); adjudicación por licitación pública de la transmisión",
+   "verificado_hecho": false,
+   "verificado": false,
+   "fuente_url": "https://www.cne.cl/wp-content/uploads/2026/08/Decreto-Excento-N°-354-de-2025.pdf",
+   "cifras_ilustrativas": true,
+   "modo": "obra"
+  },
+  "disponibilidad": {
+   "anio_desde": 1,
+   "anio_hasta": 2,
+   "evento": null,
+   "fiscal_min": null,
+   "meta": null
+  },
+  "costo_pa": 2,
+  "titulo": "Nueva S/E El Palqui y nueva línea 2x66 kV El Palqui",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 3
+   },
+   {
+    "ind": "fiscal",
+    "delta": -0.5
+   }
+  ],
+  "obra": {
+   "nombre": "Nueva S/E El Palqui y nueva línea 2x66 kV El Palqui – Las Juntas",
+   "dias_totales": 95
+  }
+ },
+ {
+  "id": "real_obra_cur_coquimbo_nueva_s_e_las_juntas_sistema_zonal_b",
+  "categoria": "energia",
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#curados_cne_cl",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "cur-coquimbo-nueva-s-e-las-juntas-sistema-zonal-b",
+   "sector": "energia",
+   "region_id": "coquimbo",
+   "estado_real": "licitacion",
+   "inversion_musd": 11.7,
+   "mandante": "Ministerio de Energía (decreto); adjudicación por licitación pública de la transmisión",
+   "verificado_hecho": false,
+   "verificado": false,
+   "fuente_url": "https://www.cne.cl/wp-content/uploads/2026/08/Decreto-Excento-N°-354-de-2025.pdf",
+   "cifras_ilustrativas": true,
+   "modo": "obra"
+  },
+  "disponibilidad": {
+   "anio_desde": 1,
+   "anio_hasta": 3,
+   "evento": null,
+   "fiscal_min": null,
+   "meta": null
+  },
+  "costo_pa": 2,
+  "titulo": "Nueva S/E Las Juntas (Sistema Zonal B)",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 3
+   },
+   {
+    "ind": "fiscal",
+    "delta": -0.5
+   }
+  ],
+  "obra": {
+   "nombre": "Nueva S/E Las Juntas (Sistema Zonal B)",
+   "dias_totales": 92
+  }
+ },
+ {
+  "id": "real_obra_cur_coquimbo_nueva_s_e_panul_y_nueva_linea_2x110_kv_panul_los_boldos",
+  "categoria": "energia",
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#curados_cne_cl",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "cur-coquimbo-nueva-s-e-panul-y-nueva-linea-2x110-kv-panul-los-boldos",
+   "sector": "energia",
+   "region_id": "coquimbo",
+   "estado_real": "licitacion",
+   "inversion_musd": 27.4,
+   "mandante": "Ministerio de Energía (decreto); adjudicación por licitación pública de la transmisión",
+   "verificado_hecho": false,
+   "verificado": false,
+   "fuente_url": "https://www.cne.cl/wp-content/uploads/2026/08/Decreto-Excento-N°-354-de-2025.pdf",
+   "cifras_ilustrativas": true,
+   "modo": "obra"
+  },
+  "disponibilidad": {
+   "anio_desde": 1,
+   "anio_hasta": 3,
+   "evento": null,
+   "fiscal_min": null,
+   "meta": null
+  },
+  "costo_pa": 2,
+  "titulo": "Nueva S/E Panul y nueva línea 2x110 kV Panul – Los Boldos",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 3
+   },
+   {
+    "ind": "fiscal",
+    "delta": -0.5
+   }
+  ],
+  "obra": {
+   "nombre": "Nueva S/E Panul y nueva línea 2x110 kV Panul – Los Boldos",
+   "dias_totales": 95
+  }
+ },
+ {
   "id": "real_obra_cur_coquimbo_nuevo_hospital_provincial_dr_humberto_elorza_cortes_de_illapel",
   "categoria": "salud",
   "requisitos": {
@@ -11770,6 +12622,54 @@
    "dias_totales": 90
   },
   "arte": "salud_hospitales"
+ },
+ {
+  "id": "real_obra_cur_coquimbo_planta_de_almacenamiento_de_energia_bess_huanil",
+  "categoria": "energia",
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#curados_firma_sea_gob_cl",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "cur-coquimbo-planta-de-almacenamiento-de-energia-bess-huanil",
+   "sector": "energia",
+   "region_id": "coquimbo",
+   "estado_real": "diseno",
+   "inversion_musd": 188.0,
+   "mandante": "BESS Huañil SpA",
+   "verificado_hecho": false,
+   "verificado": false,
+   "fuente_url": "https://firma.sea.gob.cl/publicaciones/2026/01/14/1768398246_2167572092",
+   "cifras_ilustrativas": true,
+   "modo": "obra"
+  },
+  "disponibilidad": {
+   "anio_desde": 2,
+   "anio_hasta": 3,
+   "evento": null,
+   "fiscal_min": null,
+   "meta": null
+  },
+  "costo_pa": 2,
+  "titulo": "Planta de almacenamiento de energía BESS Huañil",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 3
+   },
+   {
+    "ind": "fiscal",
+    "delta": -0.5
+   }
+  ],
+  "obra": {
+   "nombre": "Planta de almacenamiento de energía BESS Huañil",
+   "dias_totales": 127
+  }
  },
  {
   "id": "real_obra_cur_coquimbo_proyecto_habitacional_adonay_el_palqui_monte_patria",
@@ -12303,6 +13203,102 @@
   "arte": "seguridad_carceles"
  },
  {
+  "id": "real_obra_cur_coquimbo_sistema_de_almacenamiento_de_energia_por_baterias_bess_las_canas",
+  "categoria": "energia",
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#curados_firma_sea_gob_cl",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "cur-coquimbo-sistema-de-almacenamiento-de-energia-por-baterias-bess-las-canas",
+   "sector": "energia",
+   "region_id": "coquimbo",
+   "estado_real": "diseno",
+   "inversion_musd": 300.0,
+   "mandante": "Atlas Development Chile SpA",
+   "verificado_hecho": false,
+   "verificado": false,
+   "fuente_url": "https://firma.sea.gob.cl/publicaciones/2025/12/03/1764789106_2166940923",
+   "cifras_ilustrativas": true,
+   "modo": "obra"
+  },
+  "disponibilidad": {
+   "anio_desde": 1,
+   "anio_hasta": 3,
+   "evento": null,
+   "fiscal_min": null,
+   "meta": null
+  },
+  "costo_pa": 2,
+  "titulo": "Sistema de almacenamiento de energía (coquimbo)",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 3
+   },
+   {
+    "ind": "fiscal",
+    "delta": -0.5
+   }
+  ],
+  "obra": {
+   "nombre": "Sistema de almacenamiento de energía por baterías BESS Las Cañas",
+   "dias_totales": 150
+  }
+ },
+ {
+  "id": "real_obra_cur_coquimbo_sistema_de_buses_electricos_de_ovalle_41_maquinas",
+  "categoria": "transportes",
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#curados_dtpr_gob_cl",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "cur-coquimbo-sistema-de-buses-electricos-de-ovalle-41-maquinas",
+   "sector": "transporte",
+   "region_id": "coquimbo",
+   "estado_real": "ejecucion",
+   "inversion_musd": null,
+   "mandante": "MTT (División de Transporte Público Regional)",
+   "verificado_hecho": false,
+   "verificado": false,
+   "fuente_url": "https://dtpr.gob.cl/wp-content/uploads/2026/06/Ficha-Coquimbo-2026V4.pdf",
+   "cifras_ilustrativas": true,
+   "modo": "acelerar"
+  },
+  "disponibilidad": {
+   "anio_desde": 1,
+   "anio_hasta": 1,
+   "evento": null,
+   "fiscal_min": null,
+   "meta": null
+  },
+  "costo_pa": 2,
+  "titulo": "Acelerar: Sistema de buses eléctricos de Ovalle",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 2.5
+   },
+   {
+    "ind": "fiscal",
+    "delta": -1.0
+   }
+  ],
+  "obra": {
+   "nombre": "Sistema de buses eléctricos de Ovalle (41 máquinas)",
+   "dias_totales": 90
+  }
+ },
+ {
   "id": "real_obra_cur_loslagos_acceso_norte_a_osorno_ampliacion_ruta_u_500_sector_pilauco_y_nuevo_pue",
   "categoria": "obras",
   "requisitos": {
@@ -12782,6 +13778,54 @@
   }
  },
  {
+  "id": "real_obra_cur_loslagos_nueva_s_e_puerto_octay_y_nueva_linea_2x66_kv_puerto_octay_frutillar_no",
+  "categoria": "energia",
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#curados_cne_cl",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "cur-loslagos-nueva-s-e-puerto-octay-y-nueva-linea-2x66-kv-puerto-octay-frutillar-no",
+   "sector": "energia",
+   "region_id": "loslagos",
+   "estado_real": "licitacion",
+   "inversion_musd": 32.0,
+   "mandante": "Ministerio de Energía (decreto); adjudicación por licitación pública de la transmisión",
+   "verificado_hecho": false,
+   "verificado": false,
+   "fuente_url": "https://www.cne.cl/wp-content/uploads/2026/08/Decreto-Excento-N°-354-de-2025.pdf",
+   "cifras_ilustrativas": true,
+   "modo": "obra"
+  },
+  "disponibilidad": {
+   "anio_desde": 1,
+   "anio_hasta": 3,
+   "evento": null,
+   "fiscal_min": null,
+   "meta": null
+  },
+  "costo_pa": 2,
+  "titulo": "Nueva S/E Puerto Octay y nueva línea 2x66 kV Puerto Octay",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 3
+   },
+   {
+    "ind": "fiscal",
+    "delta": -0.5
+   }
+  ],
+  "obra": {
+   "nombre": "Nueva S/E Puerto Octay y nueva línea 2x66 kV Puerto Octay – Frutillar Norte",
+   "dias_totales": 96
+  }
+ },
+ {
   "id": "real_obra_cur_loslagos_parque_mirador_tercera_terraza_puerto_montt",
   "categoria": "vivienda",
   "requisitos": {
@@ -12875,6 +13919,54 @@
   "obra": {
    "nombre": "Predio Baquedano: 540 viviendas y parque, Osorno",
    "dias_totales": 100
+  }
+ },
+ {
+  "id": "real_obra_cur_loslagos_programa_de_renovacion_de_buses_gore_los_lagos_convocatoria_2024_88_bu",
+  "categoria": "transportes",
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#curados_dtpr_gob_cl",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "cur-loslagos-programa-de-renovacion-de-buses-gore-los-lagos-convocatoria-2024-88-bu",
+   "sector": "transporte",
+   "region_id": "loslagos",
+   "estado_real": "ejecucion",
+   "inversion_musd": 1.0,
+   "mandante": "Gobierno Regional de Los Lagos con MTT",
+   "verificado_hecho": false,
+   "verificado": false,
+   "fuente_url": "https://dtpr.gob.cl/wp-content/uploads/2026/06/Ficha-Los-Lagos-2026-con-porcentaje.pdf",
+   "cifras_ilustrativas": true,
+   "modo": "acelerar"
+  },
+  "disponibilidad": {
+   "anio_desde": 1,
+   "anio_hasta": 3,
+   "evento": null,
+   "fiscal_min": null,
+   "meta": null
+  },
+  "costo_pa": 2,
+  "titulo": "Acelerar: Programa de renovación de buses GORE Los Lagos",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 2.5
+   },
+   {
+    "ind": "fiscal",
+    "delta": -0.5
+   }
+  ],
+  "obra": {
+   "nombre": "Programa de renovación de buses GORE Los Lagos, convocatoria 2024 (88 buses",
+   "dias_totales": 90
   }
  },
  {
@@ -13256,6 +14348,54 @@
   "obra": {
    "nombre": "Reposición parcial Liceo Politécnico de Calbuco",
    "dias_totales": 90
+  }
+ },
+ {
+  "id": "real_obra_cur_loslagos_sistema_de_almacenamiento_de_energia_por_baterias_bess_el_molino",
+  "categoria": "energia",
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#curados_firma_sea_gob_cl",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "cur-loslagos-sistema-de-almacenamiento-de-energia-por-baterias-bess-el-molino",
+   "sector": "energia",
+   "region_id": "loslagos",
+   "estado_real": "diseno",
+   "inversion_musd": null,
+   "mandante": "Atlas Development Chile SpA",
+   "verificado_hecho": false,
+   "verificado": false,
+   "fuente_url": "https://firma.sea.gob.cl/publicaciones/2026/05/28/1780004643_2168580055",
+   "cifras_ilustrativas": true,
+   "modo": "obra"
+  },
+  "disponibilidad": {
+   "anio_desde": 1,
+   "anio_hasta": 3,
+   "evento": null,
+   "fiscal_min": null,
+   "meta": "meta_energia_1"
+  },
+  "costo_pa": 2,
+  "titulo": "Sistema de almacenamiento de energía (loslagos)",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 3
+   },
+   {
+    "ind": "fiscal",
+    "delta": -1.0
+   }
+  ],
+  "obra": {
+   "nombre": "Sistema de almacenamiento de energía por baterías BESS El Molino",
+   "dias_totales": 100
   }
  },
  {
@@ -13695,6 +14835,54 @@
   }
  },
  {
+  "id": "real_obra_cur_losrios_nueva_linea_2x66_kv_la_union_los_tambores",
+  "categoria": "energia",
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#curados_cne_cl",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "cur-losrios-nueva-linea-2x66-kv-la-union-los-tambores",
+   "sector": "energia",
+   "region_id": "losrios",
+   "estado_real": "licitacion",
+   "inversion_musd": 13.6,
+   "mandante": "Ministerio de Energía (decreto); adjudicación por licitación pública de la transmisión",
+   "verificado_hecho": false,
+   "verificado": false,
+   "fuente_url": "https://www.cne.cl/wp-content/uploads/2026/08/Decreto-Excento-N°-354-de-2025.pdf",
+   "cifras_ilustrativas": true,
+   "modo": "obra"
+  },
+  "disponibilidad": {
+   "anio_desde": 1,
+   "anio_hasta": 3,
+   "evento": null,
+   "fiscal_min": null,
+   "meta": null
+  },
+  "costo_pa": 2,
+  "titulo": "Nueva línea 2x66 kV La Unión – Los Tambores",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 3
+   },
+   {
+    "ind": "fiscal",
+    "delta": -0.5
+   }
+  ],
+  "obra": {
+   "nombre": "Nueva línea 2x66 kV La Unión – Los Tambores",
+   "dias_totales": 92
+  }
+ },
+ {
   "id": "real_obra_cur_losrios_nuevo_cuartel_de_la_pdi_en_la_union",
   "categoria": "seguridad",
   "requisitos": {
@@ -13791,6 +14979,54 @@
    "dias_totales": 90
   },
   "arte": "obras_vial"
+ },
+ {
+  "id": "real_obra_cur_losrios_recaudo_electronico_del_sistema_de_buses_de_valdivia",
+  "categoria": "transportes",
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#curados_dtpr_gob_cl",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "cur-losrios-recaudo-electronico-del-sistema-de-buses-de-valdivia",
+   "sector": "transporte",
+   "region_id": "losrios",
+   "estado_real": "ejecucion",
+   "inversion_musd": null,
+   "mandante": "MTT (División de Transporte Público Regional)",
+   "verificado_hecho": false,
+   "verificado": false,
+   "fuente_url": "https://dtpr.gob.cl/wp-content/uploads/2026/04/Ficha-Los-Rios-2026-v2.pdf",
+   "cifras_ilustrativas": true,
+   "modo": "acelerar"
+  },
+  "disponibilidad": {
+   "anio_desde": 1,
+   "anio_hasta": 3,
+   "evento": null,
+   "fiscal_min": null,
+   "meta": null
+  },
+  "costo_pa": 2,
+  "titulo": "Acelerar: Recaudo electrónico del sistema de buses",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 2.5
+   },
+   {
+    "ind": "fiscal",
+    "delta": -1.0
+   }
+  ],
+  "obra": {
+   "nombre": "Recaudo electrónico del sistema de buses de Valdivia",
+   "dias_totales": 90
+  }
  },
  {
   "id": "real_obra_cur_losrios_reposicion_colegio_jose_manuel_balmaceda_futrono",
@@ -14082,6 +15318,54 @@
    "dias_totales": 90
   },
   "arte": "medioambiente_agua"
+ },
+ {
+  "id": "real_obra_cur_magallanes_convenio_de_programacion_de_al_menos_100_buses_electricos_para_punta_a",
+  "categoria": "transportes",
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#curados_dtpr_gob_cl",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "cur-magallanes-convenio-de-programacion-de-al-menos-100-buses-electricos-para-punta-a",
+   "sector": "transporte",
+   "region_id": "magallanes",
+   "estado_real": "perfil",
+   "inversion_musd": null,
+   "mandante": "MTT y Gobierno Regional de Magallanes",
+   "verificado_hecho": false,
+   "verificado": false,
+   "fuente_url": "https://dtpr.gob.cl/wp-content/uploads/2026/09/Ficha-Magallanes-2026SEPTIEMBRE.pdf",
+   "cifras_ilustrativas": true,
+   "modo": "obra"
+  },
+  "disponibilidad": {
+   "anio_desde": 2,
+   "anio_hasta": 3,
+   "evento": null,
+   "fiscal_min": null,
+   "meta": null
+  },
+  "costo_pa": 2,
+  "titulo": "Convenio de programación",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 3
+   },
+   {
+    "ind": "fiscal",
+    "delta": -1.0
+   }
+  ],
+  "obra": {
+   "nombre": "Convenio de programación de al menos 100 buses eléctricos para Punta Arenas",
+   "dias_totales": 100
+  }
  },
  {
   "id": "real_obra_cur_magallanes_escuela_de_carabineros_de_magallanes",
@@ -14472,6 +15756,58 @@
   }
  },
  {
+  "id": "real_obra_cur_magallanes_proyecto_de_amoniaco_verde_de_hnh_energy_parque_eolico_1_4_gw",
+  "categoria": "energia",
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#prensa_cnnchile_com",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "cur-magallanes-proyecto-de-amoniaco-verde-de-hnh-energy-parque-eolico-1-4-gw",
+   "sector": "energia",
+   "region_id": "magallanes",
+   "estado_real": "diseno",
+   "inversion_musd": 11000.0,
+   "mandante": "HNH Energy",
+   "verificado_hecho": false,
+   "verificado": false,
+   "fuente_url": "https://www.cnnchile.com/negocios/aprueban-megaproyecto-de-amoniaco-verde-por-us11-000-millones-en-magallanes/",
+   "cifras_ilustrativas": true,
+   "modo": "obra"
+  },
+  "disponibilidad": {
+   "anio_desde": 1,
+   "anio_hasta": 3,
+   "evento": null,
+   "fiscal_min": 65,
+   "meta": null
+  },
+  "costo_pa": 3,
+  "titulo": "Proyecto de amoníaco verde de HNH Energy",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 4
+   },
+   {
+    "ind": "fiscal",
+    "delta": -2.0
+   },
+   {
+    "ind": "riesgo_ejecucion",
+    "delta": 1
+   }
+  ],
+  "obra": {
+   "nombre": "Proyecto de amoníaco verde de HNH Energy (parque eólico 1,4 GW)",
+   "dias_totales": 240
+  }
+ },
+ {
   "id": "real_obra_cur_magallanes_reposicion_y_actualizacion_red_de_alcantarillado_y_ptas_villa_punta_de",
   "categoria": "medioambiente",
   "requisitos": {
@@ -14519,6 +15855,54 @@
    "dias_totales": 90
   },
   "arte": "medioambiente_agua"
+ },
+ {
+  "id": "real_obra_cur_maule_ampliacion_en_s_e_ranguili_ntr_atmt_y_nuevo_sistema_de_almacenamiento",
+  "categoria": "energia",
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#curados_cne_cl",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "cur-maule-ampliacion-en-s-e-ranguili-ntr-atmt-y-nuevo-sistema-de-almacenamiento",
+   "sector": "energia",
+   "region_id": "maule",
+   "estado_real": "perfil",
+   "inversion_musd": 18.3,
+   "mandante": "CGE Transmisión S.A. (propietario; obra de ampliación obligatoria)",
+   "verificado_hecho": false,
+   "verificado": false,
+   "fuente_url": "https://www.cne.cl/wp-content/uploads/2025/12/Informe-Tecnico-ONyU-2025.pdf",
+   "cifras_ilustrativas": true,
+   "modo": "obra"
+  },
+  "disponibilidad": {
+   "anio_desde": 2,
+   "anio_hasta": 3,
+   "evento": null,
+   "fiscal_min": null,
+   "meta": null
+  },
+  "costo_pa": 2,
+  "titulo": "Ampliación en S/E Ranguilí (NTR ATMT",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 3
+   },
+   {
+    "ind": "fiscal",
+    "delta": -0.5
+   }
+  ],
+  "obra": {
+   "nombre": "Ampliación en S/E Ranguilí (NTR ATMT) y nuevo sistema de almacenamiento",
+   "dias_totales": 93
+  }
  },
  {
   "id": "real_obra_cur_maule_apr_molino_ventana_del_alto_a_santa_laura_de_teno",
@@ -14619,6 +16003,152 @@
   "arte": "medioambiente_agua"
  },
  {
+  "id": "real_obra_cur_maule_aumento_de_capacidad_de_linea_1x66_kv_curico_rauquen",
+  "categoria": "energia",
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#curados_cne_cl",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "cur-maule-aumento-de-capacidad-de-linea-1x66-kv-curico-rauquen",
+   "sector": "energia",
+   "region_id": "maule",
+   "estado_real": "perfil",
+   "inversion_musd": 5.5,
+   "mandante": "CGE Transmisión S.A. (propietario; obra de ampliación obligatoria)",
+   "verificado_hecho": false,
+   "verificado": false,
+   "fuente_url": "https://www.cne.cl/wp-content/uploads/2025/12/Informe-Tecnico-ONyU-2025.pdf",
+   "cifras_ilustrativas": true,
+   "modo": "obra"
+  },
+  "disponibilidad": {
+   "anio_desde": 1,
+   "anio_hasta": 3,
+   "evento": "evt_real_20260731_078",
+   "fiscal_min": null,
+   "meta": null
+  },
+  "costo_pa": 2,
+  "titulo": "Aumento de capacidad de línea 1x66 kV Curicó – Rauquén",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 3
+   },
+   {
+    "ind": "fiscal",
+    "delta": -0.5
+   }
+  ],
+  "obra": {
+   "nombre": "Aumento de capacidad de línea 1x66 kV Curicó – Rauquén",
+   "dias_totales": 91
+  }
+ },
+ {
+  "id": "real_obra_cur_maule_conservacion_caminos_basicos_k_260_sector_km_21_6_al_km_46_8_curepto",
+  "categoria": "obras",
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#dipres_siap_429205",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "cur-maule-conservacion-caminos-basicos-k-260-sector-km-21-6-al-km-46-8-curepto",
+   "sector": "vial",
+   "region_id": "maule",
+   "estado_real": "ejecucion",
+   "inversion_musd": null,
+   "mandante": "Gobierno Regional del Maule",
+   "verificado_hecho": false,
+   "verificado": false,
+   "fuente_url": "https://www.dipres.gob.cl/597/articles-429205_doc_pdf.pdf",
+   "cifras_ilustrativas": true,
+   "modo": "acelerar"
+  },
+  "disponibilidad": {
+   "anio_desde": 2,
+   "anio_hasta": 4,
+   "evento": null,
+   "fiscal_min": null,
+   "meta": null
+  },
+  "costo_pa": 2,
+  "titulo": "Acelerar: Conservación caminos básicos K-260",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 2.5
+   },
+   {
+    "ind": "fiscal",
+    "delta": -1.0
+   }
+  ],
+  "obra": {
+   "nombre": "Conservación caminos básicos K-260, sector km 21,6 al km 46,8, Curepto",
+   "dias_totales": 90
+  },
+  "arte": "obras_vial"
+ },
+ {
+  "id": "real_obra_cur_maule_conservacion_defensas_fluviales_rio_teno_sectores_los_guindos_y_durazn",
+  "categoria": "medioambiente",
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#curados_planeamiento_mop_gob_cl",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "cur-maule-conservacion-defensas-fluviales-rio-teno-sectores-los-guindos-y-durazn",
+   "sector": "agua",
+   "region_id": "maule",
+   "estado_real": "ejecucion",
+   "inversion_musd": null,
+   "mandante": "Dirección de Obras Hidráulicas, MOP",
+   "verificado_hecho": false,
+   "verificado": false,
+   "fuente_url": "https://planeamiento.mop.gob.cl/uploads/sites/12/2026/01/09-Maule-Memoria-2025.pdf",
+   "cifras_ilustrativas": true,
+   "modo": "acelerar"
+  },
+  "disponibilidad": {
+   "anio_desde": 1,
+   "anio_hasta": 1,
+   "evento": null,
+   "fiscal_min": null,
+   "meta": null
+  },
+  "costo_pa": 2,
+  "titulo": "Acelerar: Conservación Defensas Fluviales Río Teno",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 2.5
+   },
+   {
+    "ind": "fiscal",
+    "delta": -1.0
+   }
+  ],
+  "obra": {
+   "nombre": "Conservación Defensas Fluviales Río Teno, sectores Los Guindos y Duraznito",
+   "dias_totales": 90
+  },
+  "arte": "medioambiente_agua"
+ },
+ {
   "id": "real_obra_cur_maule_construccion_20_viviendas_tuteladas_para_adulto_mayor_licanten",
   "categoria": "vivienda",
   "requisitos": {
@@ -14665,6 +16195,55 @@
    "nombre": "Construcción 20 Viviendas Tuteladas para Adulto Mayor, Licantén",
    "dias_totales": 100
   }
+ },
+ {
+  "id": "real_obra_cur_maule_construccion_cesfam_maule_norte_comuna_de_maule",
+  "categoria": "salud",
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#dipres_siap_429205",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "cur-maule-construccion-cesfam-maule-norte-comuna-de-maule",
+   "sector": "salud",
+   "region_id": "maule",
+   "estado_real": "ejecucion",
+   "inversion_musd": null,
+   "mandante": "Gobierno Regional del Maule",
+   "verificado_hecho": false,
+   "verificado": false,
+   "fuente_url": "https://www.dipres.gob.cl/597/articles-429205_doc_pdf.pdf",
+   "cifras_ilustrativas": true,
+   "modo": "acelerar"
+  },
+  "disponibilidad": {
+   "anio_desde": 1,
+   "anio_hasta": 2,
+   "evento": null,
+   "fiscal_min": null,
+   "meta": null
+  },
+  "costo_pa": 2,
+  "titulo": "Acelerar: Construcción CESFAM Maule Norte, comuna de Maule",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 2.5
+   },
+   {
+    "ind": "fiscal",
+    "delta": -1.0
+   }
+  ],
+  "obra": {
+   "nombre": "Construcción CESFAM Maule Norte, comuna de Maule",
+   "dias_totales": 90
+  },
+  "arte": "salud_hospitales"
  },
  {
   "id": "real_obra_cur_maule_construccion_parque_borde_fluvial_ciudad_de_constitucion",
@@ -14761,6 +16340,202 @@
    "nombre": "Construcción Parque Cívico de Maule",
    "dias_totales": 100
   }
+ },
+ {
+  "id": "real_obra_cur_maule_construccion_polideportivo_comuna_de_yerbas_buenas",
+  "categoria": "obras",
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#curados_planeamiento_mop_gob_cl",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "cur-maule-construccion-polideportivo-comuna-de-yerbas-buenas",
+   "sector": "edificacion",
+   "region_id": "maule",
+   "estado_real": "ejecucion",
+   "inversion_musd": 4.0,
+   "mandante": "MOP (Dirección de Arquitectura) con Gobierno Regional del Maule",
+   "verificado_hecho": false,
+   "verificado": false,
+   "fuente_url": "https://planeamiento.mop.gob.cl/uploads/sites/12/2026/01/09-Maule-Memoria-2025.pdf",
+   "cifras_ilustrativas": true,
+   "modo": "acelerar"
+  },
+  "disponibilidad": {
+   "anio_desde": 1,
+   "anio_hasta": 1,
+   "evento": null,
+   "fiscal_min": null,
+   "meta": null
+  },
+  "costo_pa": 2,
+  "titulo": "Acelerar: Construcción Polideportivo comuna de Yerbas Buenas",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 2.5
+   },
+   {
+    "ind": "fiscal",
+    "delta": -0.5
+   }
+  ],
+  "obra": {
+   "nombre": "Construcción Polideportivo comuna de Yerbas Buenas",
+   "dias_totales": 90
+  },
+  "arte": "obras_edificacion"
+ },
+ {
+  "id": "real_obra_cur_maule_construccion_red_de_riego_embalse_empedrado_ejecucion_de_obras_inconcl",
+  "categoria": "medioambiente",
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#curados_planeamiento_mop_gob_cl",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "cur-maule-construccion-red-de-riego-embalse-empedrado-ejecucion-de-obras-inconcl",
+   "sector": "agua",
+   "region_id": "maule",
+   "estado_real": "ejecucion",
+   "inversion_musd": null,
+   "mandante": "Dirección de Obras Hidráulicas, MOP",
+   "verificado_hecho": false,
+   "verificado": false,
+   "fuente_url": "https://planeamiento.mop.gob.cl/uploads/sites/12/2026/01/09-Maule-Memoria-2025.pdf",
+   "cifras_ilustrativas": true,
+   "modo": "acelerar"
+  },
+  "disponibilidad": {
+   "anio_desde": 1,
+   "anio_hasta": 2,
+   "evento": null,
+   "fiscal_min": null,
+   "meta": null
+  },
+  "costo_pa": 2,
+  "titulo": "Acelerar: Construcción red de riego embalse Empedrado",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 2.5
+   },
+   {
+    "ind": "fiscal",
+    "delta": -1.0
+   }
+  ],
+  "obra": {
+   "nombre": "Construcción red de riego embalse Empedrado (ejecución de obras inconclusas)",
+   "dias_totales": 90
+  },
+  "arte": "medioambiente_agua"
+ },
+ {
+  "id": "real_obra_cur_maule_construccion_soluciones_sanitarias_sector_catillo_parral",
+  "categoria": "medioambiente",
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#dipres_siap_429205",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "cur-maule-construccion-soluciones-sanitarias-sector-catillo-parral",
+   "sector": "agua",
+   "region_id": "maule",
+   "estado_real": "diseno",
+   "inversion_musd": null,
+   "mandante": "Gobierno Regional del Maule",
+   "verificado_hecho": false,
+   "verificado": false,
+   "fuente_url": "https://www.dipres.gob.cl/597/articles-429205_doc_pdf.pdf",
+   "cifras_ilustrativas": true,
+   "modo": "obra"
+  },
+  "disponibilidad": {
+   "anio_desde": 1,
+   "anio_hasta": 3,
+   "evento": "evt_real_20261009_088",
+   "fiscal_min": null,
+   "meta": null
+  },
+  "costo_pa": 2,
+  "titulo": "Construcción soluciones sanitarias sector Catillo, Parral",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 3
+   },
+   {
+    "ind": "fiscal",
+    "delta": -1.0
+   }
+  ],
+  "obra": {
+   "nombre": "Construcción soluciones sanitarias sector Catillo, Parral",
+   "dias_totales": 100
+  },
+  "arte": "medioambiente_agua"
+ },
+ {
+  "id": "real_obra_cur_maule_construccion_subcomisaria_de_carabineros_maule_norte_comuna_de_maule",
+  "categoria": "seguridad",
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#dipres_siap_429205",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "cur-maule-construccion-subcomisaria-de-carabineros-maule-norte-comuna-de-maule",
+   "sector": "seguridad",
+   "region_id": "maule",
+   "estado_real": "ejecucion",
+   "inversion_musd": null,
+   "mandante": "Gobierno Regional del Maule",
+   "verificado_hecho": false,
+   "verificado": false,
+   "fuente_url": "https://www.dipres.gob.cl/597/articles-429205_doc_pdf.pdf",
+   "cifras_ilustrativas": true,
+   "modo": "acelerar"
+  },
+  "disponibilidad": {
+   "anio_desde": 2,
+   "anio_hasta": 4,
+   "evento": null,
+   "fiscal_min": null,
+   "meta": "meta_seguridad_3"
+  },
+  "costo_pa": 2,
+  "titulo": "Acelerar: Construcción Subcomisaría",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 2.5
+   },
+   {
+    "ind": "fiscal",
+    "delta": -1.0
+   }
+  ],
+  "obra": {
+   "nombre": "Construcción Subcomisaría de Carabineros Maule Norte, comuna de Maule",
+   "dias_totales": 90
+  },
+  "arte": "seguridad_carceles"
  },
  {
   "id": "real_obra_cur_maule_construccion_viviendas_tuteladas_adulto_mayor_san_javier",
@@ -14957,6 +16732,194 @@
   "arte": "economia_puertos"
  },
  {
+  "id": "real_obra_cur_maule_mejoramiento_borde_costero_llico_comuna_de_vichuquen",
+  "categoria": "economia",
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#curados_planeamiento_mop_gob_cl",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "cur-maule-mejoramiento-borde-costero-llico-comuna-de-vichuquen",
+   "sector": "puertos",
+   "region_id": "maule",
+   "estado_real": "terminado",
+   "inversion_musd": 5.3,
+   "mandante": "Dirección de Obras Portuarias, MOP",
+   "verificado_hecho": false,
+   "verificado": false,
+   "fuente_url": "https://planeamiento.mop.gob.cl/uploads/sites/12/2026/01/09-Maule-Memoria-2025.pdf",
+   "cifras_ilustrativas": true,
+   "modo": "inauguracion"
+  },
+  "disponibilidad": {
+   "anio_desde": 2,
+   "anio_hasta": 3,
+   "evento": null,
+   "fiscal_min": null,
+   "meta": null
+  },
+  "costo_pa": 1,
+  "titulo": "Inaugurar: Mejoramiento Borde Costero Llico",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 1.5
+   },
+   {
+    "ind": "capital",
+    "delta": 0.5
+   }
+  ],
+  "arte": "economia_puertos"
+ },
+ {
+  "id": "real_obra_cur_maule_mejoramiento_camino_basico_intermedio_ruta_k_20_sector_gualleco_carriz",
+  "categoria": "obras",
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#curados_planeamiento_mop_gob_cl",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "cur-maule-mejoramiento-camino-basico-intermedio-ruta-k-20-sector-gualleco-carriz",
+   "sector": "vial",
+   "region_id": "maule",
+   "estado_real": "ejecucion",
+   "inversion_musd": 12.6,
+   "mandante": "Dirección de Vialidad, MOP",
+   "verificado_hecho": false,
+   "verificado": false,
+   "fuente_url": "https://planeamiento.mop.gob.cl/uploads/sites/12/2026/01/09-Maule-Memoria-2025.pdf",
+   "cifras_ilustrativas": true,
+   "modo": "acelerar"
+  },
+  "disponibilidad": {
+   "anio_desde": 2,
+   "anio_hasta": 4,
+   "evento": null,
+   "fiscal_min": null,
+   "meta": null
+  },
+  "costo_pa": 2,
+  "titulo": "Acelerar: Mejoramiento Camino Básico Intermedio Ruta K-20",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 2.5
+   },
+   {
+    "ind": "fiscal",
+    "delta": -0.5
+   }
+  ],
+  "obra": {
+   "nombre": "Mejoramiento Camino Básico Intermedio Ruta K-20, sector Gualleco – Carrizal",
+   "dias_totales": 90
+  },
+  "arte": "obras_vial"
+ },
+ {
+  "id": "real_obra_cur_maule_mejoramiento_eje_maipu_j_espinoza_y_carmen_de_linares",
+  "categoria": "obras",
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#dipres_siap_429205",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "cur-maule-mejoramiento-eje-maipu-j-espinoza-y-carmen-de-linares",
+   "sector": "vial",
+   "region_id": "maule",
+   "estado_real": "ejecucion",
+   "inversion_musd": null,
+   "mandante": "Gobierno Regional del Maule",
+   "verificado_hecho": false,
+   "verificado": false,
+   "fuente_url": "https://www.dipres.gob.cl/597/articles-429205_doc_pdf.pdf",
+   "cifras_ilustrativas": true,
+   "modo": "acelerar"
+  },
+  "disponibilidad": {
+   "anio_desde": 1,
+   "anio_hasta": 3,
+   "evento": null,
+   "fiscal_min": null,
+   "meta": null
+  },
+  "costo_pa": 2,
+  "titulo": "Acelerar: Mejoramiento Eje Maipú, J. Espinoza",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 2.5
+   },
+   {
+    "ind": "fiscal",
+    "delta": -1.0
+   }
+  ],
+  "obra": {
+   "nombre": "Mejoramiento Eje Maipú, J. Espinoza y Carmen de Linares",
+   "dias_totales": 90
+  },
+  "arte": "obras_vial"
+ },
+ {
+  "id": "real_obra_cur_maule_mejoramiento_integral_aerodromo_el_boldo_de_cauquenes_etapa_2",
+  "categoria": "transportes",
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#curados_planeamiento_mop_gob_cl",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "cur-maule-mejoramiento-integral-aerodromo-el-boldo-de-cauquenes-etapa-2",
+   "sector": "aeropuertos",
+   "region_id": "maule",
+   "estado_real": "terminado",
+   "inversion_musd": null,
+   "mandante": "Dirección de Aeropuertos, MOP",
+   "verificado_hecho": false,
+   "verificado": false,
+   "fuente_url": "https://planeamiento.mop.gob.cl/uploads/sites/12/2026/01/09-Maule-Memoria-2025.pdf",
+   "cifras_ilustrativas": true,
+   "modo": "inauguracion"
+  },
+  "disponibilidad": {
+   "anio_desde": 2,
+   "anio_hasta": 3,
+   "evento": null,
+   "fiscal_min": null,
+   "meta": null
+  },
+  "costo_pa": 1,
+  "titulo": "Inaugurar: Mejoramiento Integral Aeródromo El Boldo",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 1.5
+   },
+   {
+    "ind": "capital",
+    "delta": 0.5
+   }
+  ],
+  "arte": "transportes_aeropuertos"
+ },
+ {
   "id": "real_obra_cur_maule_mejoramiento_parque_agustin_quintana_empedrado",
   "categoria": "vivienda",
   "requisitos": {
@@ -15053,6 +17016,442 @@
   }
  },
  {
+  "id": "real_obra_cur_maule_mejoramiento_ruta_j_80_sector_cruce_j_60_hualane_cruce_ruta_costera",
+  "categoria": "obras",
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#curados_planeamiento_mop_gob_cl",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "cur-maule-mejoramiento-ruta-j-80-sector-cruce-j-60-hualane-cruce-ruta-costera",
+   "sector": "vial",
+   "region_id": "maule",
+   "estado_real": "ejecucion",
+   "inversion_musd": 35.2,
+   "mandante": "Dirección de Vialidad, MOP",
+   "verificado_hecho": false,
+   "verificado": false,
+   "fuente_url": "https://planeamiento.mop.gob.cl/uploads/sites/12/2026/01/09-Maule-Memoria-2025.pdf",
+   "cifras_ilustrativas": true,
+   "modo": "acelerar"
+  },
+  "disponibilidad": {
+   "anio_desde": 1,
+   "anio_hasta": 2,
+   "evento": null,
+   "fiscal_min": null,
+   "meta": null
+  },
+  "costo_pa": 2,
+  "titulo": "Acelerar: Mejoramiento Ruta J-80, sector cruce J-60",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 2.5
+   },
+   {
+    "ind": "fiscal",
+    "delta": -0.5
+   }
+  ],
+  "obra": {
+   "nombre": "Mejoramiento Ruta J-80, sector cruce J-60 (Hualañé) – cruce Ruta Costera",
+   "dias_totales": 90
+  },
+  "arte": "obras_vial"
+ },
+ {
+  "id": "real_obra_cur_maule_mejoramiento_ruta_l_32_sector_puente_marimaura_cruce_ruta_126",
+  "categoria": "obras",
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#curados_planeamiento_mop_gob_cl",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "cur-maule-mejoramiento-ruta-l-32-sector-puente-marimaura-cruce-ruta-126",
+   "sector": "vial",
+   "region_id": "maule",
+   "estado_real": "ejecucion",
+   "inversion_musd": null,
+   "mandante": "Dirección de Vialidad, MOP",
+   "verificado_hecho": false,
+   "verificado": false,
+   "fuente_url": "https://planeamiento.mop.gob.cl/uploads/sites/12/2026/01/09-Maule-Memoria-2025.pdf",
+   "cifras_ilustrativas": true,
+   "modo": "acelerar"
+  },
+  "disponibilidad": {
+   "anio_desde": 1,
+   "anio_hasta": 1,
+   "evento": null,
+   "fiscal_min": null,
+   "meta": null
+  },
+  "costo_pa": 2,
+  "titulo": "Acelerar: Mejoramiento Ruta L-32, sector Puente Marimaura",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 2.5
+   },
+   {
+    "ind": "fiscal",
+    "delta": -1.0
+   }
+  ],
+  "obra": {
+   "nombre": "Mejoramiento Ruta L-32, sector Puente Marimaura – cruce Ruta 126",
+   "dias_totales": 90
+  },
+  "arte": "obras_vial"
+ },
+ {
+  "id": "real_obra_cur_maule_mejoramiento_y_ampliacion_sistema_apr_llano_blanco_yerbas_buenas",
+  "categoria": "medioambiente",
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#curados_planeamiento_mop_gob_cl",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "cur-maule-mejoramiento-y-ampliacion-sistema-apr-llano-blanco-yerbas-buenas",
+   "sector": "agua",
+   "region_id": "maule",
+   "estado_real": "diseno",
+   "inversion_musd": null,
+   "mandante": "Subdirección de Servicios Sanitarios Rurales, DOH-MOP",
+   "verificado_hecho": false,
+   "verificado": false,
+   "fuente_url": "https://planeamiento.mop.gob.cl/uploads/sites/12/2026/01/09-Maule-Memoria-2025.pdf",
+   "cifras_ilustrativas": true,
+   "modo": "obra"
+  },
+  "disponibilidad": {
+   "anio_desde": 2,
+   "anio_hasta": 4,
+   "evento": null,
+   "fiscal_min": null,
+   "meta": null
+  },
+  "costo_pa": 2,
+  "titulo": "Mejoramiento y ampliación sistema APR Llano Blanco",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 3
+   },
+   {
+    "ind": "fiscal",
+    "delta": -1.0
+   }
+  ],
+  "obra": {
+   "nombre": "Mejoramiento y ampliación sistema APR Llano Blanco, Yerbas Buenas",
+   "dias_totales": 100
+  },
+  "arte": "medioambiente_agua"
+ },
+ {
+  "id": "real_obra_cur_maule_mejoramiento_y_ampliacion_sistema_apr_los_cristales_longavi",
+  "categoria": "medioambiente",
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#curados_planeamiento_mop_gob_cl",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "cur-maule-mejoramiento-y-ampliacion-sistema-apr-los-cristales-longavi",
+   "sector": "agua",
+   "region_id": "maule",
+   "estado_real": "diseno",
+   "inversion_musd": null,
+   "mandante": "Subdirección de Servicios Sanitarios Rurales, DOH-MOP",
+   "verificado_hecho": false,
+   "verificado": false,
+   "fuente_url": "https://planeamiento.mop.gob.cl/uploads/sites/12/2026/01/09-Maule-Memoria-2025.pdf",
+   "cifras_ilustrativas": true,
+   "modo": "obra"
+  },
+  "disponibilidad": {
+   "anio_desde": 1,
+   "anio_hasta": 3,
+   "evento": null,
+   "fiscal_min": null,
+   "meta": null
+  },
+  "costo_pa": 2,
+  "titulo": "Mejoramiento y ampliación sistema APR Los Cristales, Longaví",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 3
+   },
+   {
+    "ind": "fiscal",
+    "delta": -1.0
+   }
+  ],
+  "obra": {
+   "nombre": "Mejoramiento y ampliación sistema APR Los Cristales, Longaví",
+   "dias_totales": 100
+  },
+  "arte": "medioambiente_agua"
+ },
+ {
+  "id": "real_obra_cur_maule_nueva_s_e_chequen_y_nuevas_lineas_1x220_kv_chequen_santa_isabel_y_2x66",
+  "categoria": "energia",
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#curados_cne_cl",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "cur-maule-nueva-s-e-chequen-y-nuevas-lineas-1x220-kv-chequen-santa-isabel-y-2x66",
+   "sector": "energia",
+   "region_id": "maule",
+   "estado_real": "licitacion",
+   "inversion_musd": 52.1,
+   "mandante": "Ministerio de Energía (decreto); adjudicación por licitación pública de la transmisión",
+   "verificado_hecho": false,
+   "verificado": false,
+   "fuente_url": "https://www.cne.cl/wp-content/uploads/2026/08/Decreto-Excento-N°-354-de-2025.pdf",
+   "cifras_ilustrativas": true,
+   "modo": "obra"
+  },
+  "disponibilidad": {
+   "anio_desde": 1,
+   "anio_hasta": 3,
+   "evento": null,
+   "fiscal_min": null,
+   "meta": null
+  },
+  "costo_pa": 2,
+  "titulo": "Nueva S/E Chequén y nuevas líneas 1x220 kV Chequén",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 3
+   },
+   {
+    "ind": "fiscal",
+    "delta": -0.5
+   }
+  ],
+  "obra": {
+   "nombre": "Nueva S/E Chequén y nuevas líneas 1x220 kV Chequén – Santa Isabel",
+   "dias_totales": 100
+  }
+ },
+ {
+  "id": "real_obra_cur_maule_nueva_s_e_pelarco_sistema_zonal_e",
+  "categoria": "energia",
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#curados_cne_cl",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "cur-maule-nueva-s-e-pelarco-sistema-zonal-e",
+   "sector": "energia",
+   "region_id": "maule",
+   "estado_real": "licitacion",
+   "inversion_musd": 20.1,
+   "mandante": "Ministerio de Energía (decreto); adjudicación por licitación pública de la transmisión",
+   "verificado_hecho": false,
+   "verificado": false,
+   "fuente_url": "https://www.cne.cl/wp-content/uploads/2026/08/Decreto-Excento-N°-354-de-2025.pdf",
+   "cifras_ilustrativas": true,
+   "modo": "obra"
+  },
+  "disponibilidad": {
+   "anio_desde": 1,
+   "anio_hasta": 2,
+   "evento": null,
+   "fiscal_min": null,
+   "meta": null
+  },
+  "costo_pa": 2,
+  "titulo": "Nueva S/E Pelarco (Sistema Zonal E)",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 3
+   },
+   {
+    "ind": "fiscal",
+    "delta": -0.5
+   }
+  ],
+  "obra": {
+   "nombre": "Nueva S/E Pelarco (Sistema Zonal E)",
+   "dias_totales": 94
+  }
+ },
+ {
+  "id": "real_obra_cur_maule_nueva_s_e_sagrada_familia_y_nueva_linea_2x66_kv_sagrada_familia_itahue",
+  "categoria": "energia",
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#curados_cne_cl",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "cur-maule-nueva-s-e-sagrada-familia-y-nueva-linea-2x66-kv-sagrada-familia-itahue",
+   "sector": "energia",
+   "region_id": "maule",
+   "estado_real": "licitacion",
+   "inversion_musd": 30.3,
+   "mandante": "Ministerio de Energía (decreto); adjudicación por licitación pública de la transmisión",
+   "verificado_hecho": false,
+   "verificado": false,
+   "fuente_url": "https://www.cne.cl/wp-content/uploads/2026/08/Decreto-Excento-N°-354-de-2025.pdf",
+   "cifras_ilustrativas": true,
+   "modo": "obra"
+  },
+  "disponibilidad": {
+   "anio_desde": 1,
+   "anio_hasta": 3,
+   "evento": null,
+   "fiscal_min": null,
+   "meta": null
+  },
+  "costo_pa": 2,
+  "titulo": "Nueva S/E Sagrada Familia",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 3
+   },
+   {
+    "ind": "fiscal",
+    "delta": -0.5
+   }
+  ],
+  "obra": {
+   "nombre": "Nueva S/E Sagrada Familia y nueva línea 2x66 kV Sagrada Familia – Itahue",
+   "dias_totales": 96
+  }
+ },
+ {
+  "id": "real_obra_cur_maule_nueva_s_e_tiquel_y_nueva_linea_2x500_kv_tiquel_tiuquilemu",
+  "categoria": "energia",
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#curados_cne_cl",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "cur-maule-nueva-s-e-tiquel-y-nueva-linea-2x500-kv-tiquel-tiuquilemu",
+   "sector": "energia",
+   "region_id": "maule",
+   "estado_real": "licitacion",
+   "inversion_musd": 125.1,
+   "mandante": "Ministerio de Energía (decreto); adjudicación por licitación pública de la transmisión",
+   "verificado_hecho": false,
+   "verificado": false,
+   "fuente_url": "https://www.cne.cl/wp-content/uploads/2026/08/Decreto-Excento-N°-354-de-2025.pdf",
+   "cifras_ilustrativas": true,
+   "modo": "obra"
+  },
+  "disponibilidad": {
+   "anio_desde": 1,
+   "anio_hasta": 3,
+   "evento": null,
+   "fiscal_min": null,
+   "meta": null
+  },
+  "costo_pa": 2,
+  "titulo": "Nueva S/E Tiquel y nueva línea 2x500 kV Tiquel – Tiuquilemu",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 3
+   },
+   {
+    "ind": "fiscal",
+    "delta": -0.5
+   }
+  ],
+  "obra": {
+   "nombre": "Nueva S/E Tiquel y nueva línea 2x500 kV Tiquel – Tiuquilemu",
+   "dias_totales": 115
+  }
+ },
+ {
+  "id": "real_obra_cur_maule_nueva_s_e_trueno_y_nueva_linea_2x66_kv_trueno_pelarco",
+  "categoria": "energia",
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#curados_cne_cl",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "cur-maule-nueva-s-e-trueno-y-nueva-linea-2x66-kv-trueno-pelarco",
+   "sector": "energia",
+   "region_id": "maule",
+   "estado_real": "licitacion",
+   "inversion_musd": 33.4,
+   "mandante": "Ministerio de Energía (decreto); adjudicación por licitación pública de la transmisión",
+   "verificado_hecho": false,
+   "verificado": false,
+   "fuente_url": "https://www.cne.cl/wp-content/uploads/2026/08/Decreto-Excento-N°-354-de-2025.pdf",
+   "cifras_ilustrativas": true,
+   "modo": "obra"
+  },
+  "disponibilidad": {
+   "anio_desde": 1,
+   "anio_hasta": 2,
+   "evento": null,
+   "fiscal_min": null,
+   "meta": null
+  },
+  "costo_pa": 2,
+  "titulo": "Nueva S/E Trueno y nueva línea 2x66 kV Trueno – Pelarco",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 3
+   },
+   {
+    "ind": "fiscal",
+    "delta": -0.5
+   }
+  ],
+  "obra": {
+   "nombre": "Nueva S/E Trueno y nueva línea 2x66 kV Trueno – Pelarco",
+   "dias_totales": 96
+  }
+ },
+ {
   "id": "real_obra_cur_maule_nuevo_hospital_de_licanten",
   "categoria": "salud",
   "requisitos": {
@@ -15100,6 +17499,55 @@
    "dias_totales": 94
   },
   "arte": "salud_hospitales"
+ },
+ {
+  "id": "real_obra_cur_maule_obras_de_conservacion_sistema_de_riego_canal_melado",
+  "categoria": "medioambiente",
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#curados_planeamiento_mop_gob_cl",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "cur-maule-obras-de-conservacion-sistema-de-riego-canal-melado",
+   "sector": "agua",
+   "region_id": "maule",
+   "estado_real": "ejecucion",
+   "inversion_musd": null,
+   "mandante": "Dirección de Obras Hidráulicas, MOP",
+   "verificado_hecho": false,
+   "verificado": false,
+   "fuente_url": "https://planeamiento.mop.gob.cl/uploads/sites/12/2026/01/09-Maule-Memoria-2025.pdf",
+   "cifras_ilustrativas": true,
+   "modo": "acelerar"
+  },
+  "disponibilidad": {
+   "anio_desde": 1,
+   "anio_hasta": 2,
+   "evento": null,
+   "fiscal_min": null,
+   "meta": null
+  },
+  "costo_pa": 2,
+  "titulo": "Acelerar: Obras de conservación Sistema",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 2.5
+   },
+   {
+    "ind": "fiscal",
+    "delta": -1.0
+   }
+  ],
+  "obra": {
+   "nombre": "Obras de conservación Sistema de Riego Canal Melado",
+   "dias_totales": 90
+  },
+  "arte": "medioambiente_agua"
  },
  {
   "id": "real_obra_cur_maule_parque_eolico_el_parron",
@@ -15294,6 +17742,250 @@
   }
  },
  {
+  "id": "real_obra_cur_maule_parque_solar_bess_cuyumillaco",
+  "categoria": "energia",
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#curados_firma_sea_gob_cl",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "cur-maule-parque-solar-bess-cuyumillaco",
+   "sector": "energia",
+   "region_id": "maule",
+   "estado_real": "diseno",
+   "inversion_musd": null,
+   "mandante": "Chucao Solar SpA",
+   "verificado_hecho": false,
+   "verificado": false,
+   "fuente_url": "https://firma.sea.gob.cl/publicaciones/2026/04/24/1777069923_2168349601",
+   "cifras_ilustrativas": true,
+   "modo": "obra"
+  },
+  "disponibilidad": {
+   "anio_desde": 2,
+   "anio_hasta": 3,
+   "evento": null,
+   "fiscal_min": null,
+   "meta": "meta_energia_3"
+  },
+  "costo_pa": 2,
+  "titulo": "Parque Solar BESS Cuyumillaco",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 3
+   },
+   {
+    "ind": "fiscal",
+    "delta": -1.0
+   }
+  ],
+  "obra": {
+   "nombre": "Parque Solar BESS Cuyumillaco",
+   "dias_totales": 100
+  }
+ },
+ {
+  "id": "real_obra_cur_maule_reposicion_complejo_policial_pdi_curico",
+  "categoria": "seguridad",
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#dipres_siap_429205",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "cur-maule-reposicion-complejo-policial-pdi-curico",
+   "sector": "seguridad",
+   "region_id": "maule",
+   "estado_real": "ejecucion",
+   "inversion_musd": null,
+   "mandante": "Gobierno Regional del Maule",
+   "verificado_hecho": false,
+   "verificado": false,
+   "fuente_url": "https://www.dipres.gob.cl/597/articles-429205_doc_pdf.pdf",
+   "cifras_ilustrativas": true,
+   "modo": "acelerar"
+  },
+  "disponibilidad": {
+   "anio_desde": 1,
+   "anio_hasta": 2,
+   "evento": null,
+   "fiscal_min": null,
+   "meta": null
+  },
+  "costo_pa": 2,
+  "titulo": "Acelerar: Reposición Complejo Policial PDI Curicó",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 2.5
+   },
+   {
+    "ind": "fiscal",
+    "delta": -1.0
+   }
+  ],
+  "obra": {
+   "nombre": "Reposición Complejo Policial PDI Curicó",
+   "dias_totales": 90
+  },
+  "arte": "seguridad_carceles"
+ },
+ {
+  "id": "real_obra_cur_maule_reposicion_con_relocalizacion_cesfam_comuna_de_vichuquen",
+  "categoria": "salud",
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#dipres_siap_429205",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "cur-maule-reposicion-con-relocalizacion-cesfam-comuna-de-vichuquen",
+   "sector": "salud",
+   "region_id": "maule",
+   "estado_real": "ejecucion",
+   "inversion_musd": null,
+   "mandante": "Gobierno Regional del Maule",
+   "verificado_hecho": false,
+   "verificado": false,
+   "fuente_url": "https://www.dipres.gob.cl/597/articles-429205_doc_pdf.pdf",
+   "cifras_ilustrativas": true,
+   "modo": "acelerar"
+  },
+  "disponibilidad": {
+   "anio_desde": 1,
+   "anio_hasta": 3,
+   "evento": null,
+   "fiscal_min": null,
+   "meta": null
+  },
+  "costo_pa": 2,
+  "titulo": "Acelerar: Reposición con relocalización CESFAM comuna",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 2.5
+   },
+   {
+    "ind": "fiscal",
+    "delta": -1.0
+   }
+  ],
+  "obra": {
+   "nombre": "Reposición con relocalización CESFAM comuna de Vichuquén",
+   "dias_totales": 90
+  },
+  "arte": "salud_hospitales"
+ },
+ {
+  "id": "real_obra_cur_maule_reposicion_con_relocalizacion_cesfam_oscar_bonilla_linares",
+  "categoria": "salud",
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#dipres_siap_429205",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "cur-maule-reposicion-con-relocalizacion-cesfam-oscar-bonilla-linares",
+   "sector": "salud",
+   "region_id": "maule",
+   "estado_real": "ejecucion",
+   "inversion_musd": null,
+   "mandante": "Gobierno Regional del Maule",
+   "verificado_hecho": false,
+   "verificado": false,
+   "fuente_url": "https://www.dipres.gob.cl/597/articles-429205_doc_pdf.pdf",
+   "cifras_ilustrativas": true,
+   "modo": "acelerar"
+  },
+  "disponibilidad": {
+   "anio_desde": 1,
+   "anio_hasta": 4,
+   "evento": null,
+   "fiscal_min": null,
+   "meta": null
+  },
+  "costo_pa": 2,
+  "titulo": "Acelerar: Reposición con relocalización CESFAM Oscar",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 2.5
+   },
+   {
+    "ind": "fiscal",
+    "delta": -1.0
+   }
+  ],
+  "obra": {
+   "nombre": "Reposición con relocalización CESFAM Oscar Bonilla, Linares",
+   "dias_totales": 90
+  },
+  "arte": "salud_hospitales"
+ },
+ {
+  "id": "real_obra_cur_maule_reposicion_consultorio_general_rural_curanipe_comuna_de_pelluhue",
+  "categoria": "salud",
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#dipres_siap_429205",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "cur-maule-reposicion-consultorio-general-rural-curanipe-comuna-de-pelluhue",
+   "sector": "salud",
+   "region_id": "maule",
+   "estado_real": "ejecucion",
+   "inversion_musd": null,
+   "mandante": "Gobierno Regional del Maule",
+   "verificado_hecho": false,
+   "verificado": false,
+   "fuente_url": "https://www.dipres.gob.cl/597/articles-429205_doc_pdf.pdf",
+   "cifras_ilustrativas": true,
+   "modo": "acelerar"
+  },
+  "disponibilidad": {
+   "anio_desde": 2,
+   "anio_hasta": 4,
+   "evento": null,
+   "fiscal_min": null,
+   "meta": null
+  },
+  "costo_pa": 2,
+  "titulo": "Acelerar: Reposición Consultorio General Rural Curanipe",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 2.5
+   },
+   {
+    "ind": "fiscal",
+    "delta": -1.0
+   }
+  ],
+  "obra": {
+   "nombre": "Reposición Consultorio General Rural Curanipe, comuna de Pelluhue",
+   "dias_totales": 90
+  },
+  "arte": "salud_hospitales"
+ },
+ {
   "id": "real_obra_cur_maule_reposicion_parcial_de_aulas_y_prebasica_escuela_el_colorado_san_clemen",
   "categoria": "educacion",
   "requisitos": {
@@ -15302,7 +17994,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#dipres_siap_425968",
+  "fuente": "fuentes.json#dipres_siap_429205",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-maule-reposicion-parcial-de-aulas-y-prebasica-escuela-el-colorado-san-clemen",
@@ -15340,6 +18032,104 @@
    "nombre": "Reposición parcial de aulas y prebásica Escuela El Colorado, San Clemente",
    "dias_totales": 90
   }
+ },
+ {
+  "id": "real_obra_cur_maule_reposicion_posta_de_salud_rural_los_quillayes_comuna_de_sagrada_famili",
+  "categoria": "salud",
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#dipres_siap_429205",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "cur-maule-reposicion-posta-de-salud-rural-los-quillayes-comuna-de-sagrada-famili",
+   "sector": "salud",
+   "region_id": "maule",
+   "estado_real": "ejecucion",
+   "inversion_musd": null,
+   "mandante": "Gobierno Regional del Maule",
+   "verificado_hecho": false,
+   "verificado": false,
+   "fuente_url": "https://www.dipres.gob.cl/597/articles-429205_doc_pdf.pdf",
+   "cifras_ilustrativas": true,
+   "modo": "acelerar"
+  },
+  "disponibilidad": {
+   "anio_desde": 1,
+   "anio_hasta": 3,
+   "evento": "evt_real_20260416_067",
+   "fiscal_min": null,
+   "meta": null
+  },
+  "costo_pa": 2,
+  "titulo": "Acelerar: Reposición Posta de Salud Rural Los Quillayes",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 2.5
+   },
+   {
+    "ind": "fiscal",
+    "delta": -1.0
+   }
+  ],
+  "obra": {
+   "nombre": "Reposición Posta de Salud Rural Los Quillayes, comuna de Sagrada Familia",
+   "dias_totales": 90
+  },
+  "arte": "salud_hospitales"
+ },
+ {
+  "id": "real_obra_cur_maule_reposicion_puente_trinidad_comuna_de_sagrada_familia",
+  "categoria": "obras",
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#dipres_siap_429205",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "cur-maule-reposicion-puente-trinidad-comuna-de-sagrada-familia",
+   "sector": "vial",
+   "region_id": "maule",
+   "estado_real": "ejecucion",
+   "inversion_musd": null,
+   "mandante": "Gobierno Regional del Maule",
+   "verificado_hecho": false,
+   "verificado": false,
+   "fuente_url": "https://www.dipres.gob.cl/597/articles-429205_doc_pdf.pdf",
+   "cifras_ilustrativas": true,
+   "modo": "acelerar"
+  },
+  "disponibilidad": {
+   "anio_desde": 1,
+   "anio_hasta": 4,
+   "evento": null,
+   "fiscal_min": null,
+   "meta": null
+  },
+  "costo_pa": 2,
+  "titulo": "Acelerar: Reposición Puente Trinidad",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 2.5
+   },
+   {
+    "ind": "fiscal",
+    "delta": -1.0
+   }
+  ],
+  "obra": {
+   "nombre": "Reposición Puente Trinidad, comuna de Sagrada Familia",
+   "dias_totales": 90
+  },
+  "arte": "obras_vial"
  },
  {
   "id": "real_obra_cur_maule_restauracion_escuela_presidente_jose_manuel_balmaceda_curico",
@@ -15484,6 +18274,147 @@
    "nombre": "Sistema de Almacenamiento de Energía (BESS) en Subestación Panguilemo",
    "dias_totales": 101
   }
+ },
+ {
+  "id": "real_obra_cur_maule_sistema_de_buses_de_linares_concurso_para_4_rutas_y_al_menos_40_buses",
+  "categoria": "transportes",
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#curados_dtpr_gob_cl",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "cur-maule-sistema-de-buses-de-linares-concurso-para-4-rutas-y-al-menos-40-buses",
+   "sector": "transporte",
+   "region_id": "maule",
+   "estado_real": "licitacion",
+   "inversion_musd": null,
+   "mandante": "MTT (División de Transporte Público Regional)",
+   "verificado_hecho": false,
+   "verificado": false,
+   "fuente_url": "https://dtpr.gob.cl/wp-content/uploads/2026/09/Ficha-Maule-agosto.pdf",
+   "cifras_ilustrativas": true,
+   "modo": "obra"
+  },
+  "disponibilidad": {
+   "anio_desde": 1,
+   "anio_hasta": 2,
+   "evento": null,
+   "fiscal_min": null,
+   "meta": null
+  },
+  "costo_pa": 2,
+  "titulo": "Sistema de buses de Linares (concurso para 4 rutas",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 3
+   },
+   {
+    "ind": "fiscal",
+    "delta": -1.0
+   }
+  ],
+  "obra": {
+   "nombre": "Sistema de buses de Linares (concurso para 4 rutas y al menos 40 buses)",
+   "dias_totales": 100
+  }
+ },
+ {
+  "id": "real_obra_cur_maule_sistema_regulado_de_buses_de_talca_238_maquinas",
+  "categoria": "transportes",
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#curados_dtpr_gob_cl",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "cur-maule-sistema-regulado-de-buses-de-talca-238-maquinas",
+   "sector": "transporte",
+   "region_id": "maule",
+   "estado_real": "terminado",
+   "inversion_musd": null,
+   "mandante": "MTT (División de Transporte Público Regional)",
+   "verificado_hecho": false,
+   "verificado": false,
+   "fuente_url": "https://dtpr.gob.cl/wp-content/uploads/2026/09/Ficha-Maule-agosto.pdf",
+   "cifras_ilustrativas": true,
+   "modo": "inauguracion"
+  },
+  "disponibilidad": {
+   "anio_desde": 1,
+   "anio_hasta": 2,
+   "evento": null,
+   "fiscal_min": null,
+   "meta": null
+  },
+  "costo_pa": 1,
+  "titulo": "Inaugurar: Sistema regulado de buses de Talca (238 máquinas)",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 1.5
+   },
+   {
+    "ind": "capital",
+    "delta": 0.5
+   }
+  ]
+ },
+ {
+  "id": "real_obra_cur_maule_tercera_etapa_de_la_normalizacion_del_estadio_la_granja_curico",
+  "categoria": "obras",
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#curados_planeamiento_mop_gob_cl",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "cur-maule-tercera-etapa-de-la-normalizacion-del-estadio-la-granja-curico",
+   "sector": "edificacion",
+   "region_id": "maule",
+   "estado_real": "ejecucion",
+   "inversion_musd": 10.1,
+   "mandante": "MOP (Dirección de Arquitectura)",
+   "verificado_hecho": false,
+   "verificado": false,
+   "fuente_url": "https://planeamiento.mop.gob.cl/uploads/sites/12/2026/01/09-Maule-Memoria-2025.pdf",
+   "cifras_ilustrativas": true,
+   "modo": "acelerar"
+  },
+  "disponibilidad": {
+   "anio_desde": 1,
+   "anio_hasta": 1,
+   "evento": null,
+   "fiscal_min": null,
+   "meta": null
+  },
+  "costo_pa": 2,
+  "titulo": "Acelerar: Tercera etapa de la normalización",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 2.5
+   },
+   {
+    "ind": "fiscal",
+    "delta": -0.5
+   }
+  ],
+  "obra": {
+   "nombre": "Tercera etapa de la normalización del Estadio La Granja, Curicó",
+   "dias_totales": 90
+  },
+  "arte": "obras_edificacion"
  },
  {
   "id": "real_obra_cur_maule_villa_las_americas_de_talca_plan_maestro_nueva_las_americas",
@@ -17070,7 +20001,7 @@
    "meta": null
   },
   "costo_pa": 2,
-  "titulo": "Acelerar: Construcción Subcomisaría",
+  "titulo": "Acelerar: Construcción Subcomisaría (metropolitana)",
   "efectos": [
    {
     "ind": "aprobacion",
@@ -20359,6 +23290,150 @@
   }
  },
  {
+  "id": "real_obra_cur_nuble_nueva_s_e_guanguali_y_nueva_linea_2x66_kv_guanguali_rio_viejo",
+  "categoria": "energia",
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#curados_cne_cl",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "cur-nuble-nueva-s-e-guanguali-y-nueva-linea-2x66-kv-guanguali-rio-viejo",
+   "sector": "energia",
+   "region_id": "nuble",
+   "estado_real": "licitacion",
+   "inversion_musd": 21.4,
+   "mandante": "Ministerio de Energía (decreto); adjudicación por licitación pública de la transmisión",
+   "verificado_hecho": false,
+   "verificado": false,
+   "fuente_url": "https://www.cne.cl/wp-content/uploads/2026/08/Decreto-Excento-N°-354-de-2025.pdf",
+   "cifras_ilustrativas": true,
+   "modo": "obra"
+  },
+  "disponibilidad": {
+   "anio_desde": 1,
+   "anio_hasta": 2,
+   "evento": null,
+   "fiscal_min": null,
+   "meta": null
+  },
+  "costo_pa": 2,
+  "titulo": "Nueva S/E Guangualí y nueva línea 2x66 kV Guangualí",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 3
+   },
+   {
+    "ind": "fiscal",
+    "delta": -0.5
+   }
+  ],
+  "obra": {
+   "nombre": "Nueva S/E Guangualí y nueva línea 2x66 kV Guangualí – Río Viejo",
+   "dias_totales": 94
+  }
+ },
+ {
+  "id": "real_obra_cur_nuble_nueva_s_e_punilla_seccionamiento_linea_1x154_kv_monterrico_buli",
+  "categoria": "energia",
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#curados_cne_cl",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "cur-nuble-nueva-s-e-punilla-seccionamiento-linea-1x154-kv-monterrico-buli",
+   "sector": "energia",
+   "region_id": "nuble",
+   "estado_real": "perfil",
+   "inversion_musd": 17.4,
+   "mandante": "Por licitar (obra nueva obligatoria, Sistema Zonal E)",
+   "verificado_hecho": false,
+   "verificado": false,
+   "fuente_url": "https://www.cne.cl/wp-content/uploads/2025/12/Informe-Tecnico-ONyU-2025.pdf",
+   "cifras_ilustrativas": true,
+   "modo": "obra"
+  },
+  "disponibilidad": {
+   "anio_desde": 2,
+   "anio_hasta": 4,
+   "evento": null,
+   "fiscal_min": null,
+   "meta": null
+  },
+  "costo_pa": 2,
+  "titulo": "Nueva S/E Punilla",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 3
+   },
+   {
+    "ind": "fiscal",
+    "delta": -0.5
+   }
+  ],
+  "obra": {
+   "nombre": "Nueva S/E Punilla (seccionamiento línea 1x154 kV Monterrico – Buli)",
+   "dias_totales": 93
+  }
+ },
+ {
+  "id": "real_obra_cur_nuble_nueva_s_e_quinchamali_seccionamiento_linea_1x66_kv_santa_elvira_nueva",
+  "categoria": "energia",
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#curados_cne_cl",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "cur-nuble-nueva-s-e-quinchamali-seccionamiento-linea-1x66-kv-santa-elvira-nueva",
+   "sector": "energia",
+   "region_id": "nuble",
+   "estado_real": "perfil",
+   "inversion_musd": 11.2,
+   "mandante": "Por licitar (obra nueva obligatoria, Sistema Zonal E)",
+   "verificado_hecho": false,
+   "verificado": false,
+   "fuente_url": "https://www.cne.cl/wp-content/uploads/2025/12/Informe-Tecnico-ONyU-2025.pdf",
+   "cifras_ilustrativas": true,
+   "modo": "obra"
+  },
+  "disponibilidad": {
+   "anio_desde": 1,
+   "anio_hasta": 3,
+   "evento": "evt_senado_energia_d36",
+   "fiscal_min": null,
+   "meta": null
+  },
+  "costo_pa": 2,
+  "titulo": "Nueva S/E Quinchamalí",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 3
+   },
+   {
+    "ind": "fiscal",
+    "delta": -0.5
+   }
+  ],
+  "obra": {
+   "nombre": "Nueva S/E Quinchamalí (seccionamiento línea 1x66 kV Santa Elvira – Nueva Aldea)",
+   "dias_totales": 92
+  }
+ },
+ {
   "id": "real_obra_cur_nuble_nuevo_hospital_regional_de_nuble",
   "categoria": "salud",
   "requisitos": {
@@ -20699,6 +23774,54 @@
   "arte": "medioambiente_agua"
  },
  {
+  "id": "real_obra_cur_nuble_sistema_de_almacenamiento_de_energia_bess_y_linea_de_transmision_el_de",
+  "categoria": "energia",
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#curados_firma_sea_gob_cl",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "cur-nuble-sistema-de-almacenamiento-de-energia-bess-y-linea-de-transmision-el-de",
+   "sector": "energia",
+   "region_id": "nuble",
+   "estado_real": "diseno",
+   "inversion_musd": 20.0,
+   "mandante": "Icafal Lancuyén SpA",
+   "verificado_hecho": false,
+   "verificado": false,
+   "fuente_url": "https://firma.sea.gob.cl/publicaciones/2026/03/10/1773168301_2167979720",
+   "cifras_ilustrativas": true,
+   "modo": "obra"
+  },
+  "disponibilidad": {
+   "anio_desde": 2,
+   "anio_hasta": 3,
+   "evento": null,
+   "fiscal_min": null,
+   "meta": null
+  },
+  "costo_pa": 2,
+  "titulo": "Sistema de Almacenamiento de Energía BESS",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 3
+   },
+   {
+    "ind": "fiscal",
+    "delta": -0.5
+   }
+  ],
+  "obra": {
+   "nombre": "Sistema de Almacenamiento de Energía BESS y Línea de Transmisión El Destello",
+   "dias_totales": 94
+  }
+ },
+ {
   "id": "real_obra_cur_nuble_sondaje_para_ssr_copihual",
   "categoria": "medioambiente",
   "requisitos": {
@@ -20910,8 +24033,8 @@
   },
   "disponibilidad": {
    "anio_desde": 1,
-   "anio_hasta": 2,
-   "evento": "evt_real_20260416_067",
+   "anio_hasta": 1,
+   "evento": null,
    "fiscal_min": null,
    "meta": null
   },
@@ -21026,6 +24149,102 @@
    "dias_totales": 92
   },
   "arte": "obras_vial"
+ },
+ {
+  "id": "real_obra_cur_ohiggins_nueva_s_e_navidad_y_nueva_linea_2x66_kv_navidad_longovilo",
+  "categoria": "energia",
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#curados_cne_cl",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "cur-ohiggins-nueva-s-e-navidad-y-nueva-linea-2x66-kv-navidad-longovilo",
+   "sector": "energia",
+   "region_id": "ohiggins",
+   "estado_real": "licitacion",
+   "inversion_musd": 42.6,
+   "mandante": "Ministerio de Energía (decreto); adjudicación por licitación pública de la transmisión",
+   "verificado_hecho": false,
+   "verificado": false,
+   "fuente_url": "https://www.cne.cl/wp-content/uploads/2026/08/Decreto-Excento-N°-354-de-2025.pdf",
+   "cifras_ilustrativas": true,
+   "modo": "obra"
+  },
+  "disponibilidad": {
+   "anio_desde": 1,
+   "anio_hasta": 2,
+   "evento": null,
+   "fiscal_min": null,
+   "meta": null
+  },
+  "costo_pa": 2,
+  "titulo": "Nueva S/E Navidad y nueva línea 2x66 kV Navidad – Longovilo",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 3
+   },
+   {
+    "ind": "fiscal",
+    "delta": -0.5
+   }
+  ],
+  "obra": {
+   "nombre": "Nueva S/E Navidad y nueva línea 2x66 kV Navidad – Longovilo",
+   "dias_totales": 98
+  }
+ },
+ {
+  "id": "real_obra_cur_ohiggins_nueva_s_e_pichilemu_y_nueva_linea_2x110_kv_pichilemu_portezuelo",
+  "categoria": "energia",
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#curados_cne_cl",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "cur-ohiggins-nueva-s-e-pichilemu-y-nueva-linea-2x110-kv-pichilemu-portezuelo",
+   "sector": "energia",
+   "region_id": "ohiggins",
+   "estado_real": "licitacion",
+   "inversion_musd": 44.3,
+   "mandante": "Ministerio de Energía (decreto); adjudicación por licitación pública de la transmisión",
+   "verificado_hecho": false,
+   "verificado": false,
+   "fuente_url": "https://www.cne.cl/wp-content/uploads/2026/08/Decreto-Excento-N°-354-de-2025.pdf",
+   "cifras_ilustrativas": true,
+   "modo": "obra"
+  },
+  "disponibilidad": {
+   "anio_desde": 1,
+   "anio_hasta": 2,
+   "evento": null,
+   "fiscal_min": null,
+   "meta": null
+  },
+  "costo_pa": 2,
+  "titulo": "Nueva S/E Pichilemu y nueva línea 2x110 kV Pichilemu",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 3
+   },
+   {
+    "ind": "fiscal",
+    "delta": -0.5
+   }
+  ],
+  "obra": {
+   "nombre": "Nueva S/E Pichilemu y nueva línea 2x110 kV Pichilemu – Portezuelo",
+   "dias_totales": 98
+  }
  },
  {
   "id": "real_obra_cur_ohiggins_nuevo_hospital_de_san_vicente",
@@ -22285,6 +25504,54 @@
   "arte": "obras_edificacion"
  },
  {
+  "id": "real_obra_cur_tarapaca_sistema_de_almacenamiento_de_energia_y_linea_de_transmision_bess_tambi",
+  "categoria": "energia",
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#curados_firma_sea_gob_cl",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "cur-tarapaca-sistema-de-almacenamiento-de-energia-y-linea-de-transmision-bess-tambi",
+   "sector": "energia",
+   "region_id": "tarapaca",
+   "estado_real": "diseno",
+   "inversion_musd": null,
+   "mandante": "BESS El Salado SpA",
+   "verificado_hecho": false,
+   "verificado": false,
+   "fuente_url": "https://firma.sea.gob.cl/publicaciones/2026/02/12/1770921968_2167819441",
+   "cifras_ilustrativas": true,
+   "modo": "obra"
+  },
+  "disponibilidad": {
+   "anio_desde": 1,
+   "anio_hasta": 3,
+   "evento": null,
+   "fiscal_min": null,
+   "meta": null
+  },
+  "costo_pa": 2,
+  "titulo": "Sistema de almacenamiento de energía (tarapaca)",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 3
+   },
+   {
+    "ind": "fiscal",
+    "delta": -1.0
+   }
+  ],
+  "obra": {
+   "nombre": "Sistema de almacenamiento de energía y línea de transmisión BESS Tambillo",
+   "dias_totales": 100
+  }
+ },
+ {
   "id": "real_obra_cur_valparaiso_ampliacion_y_mejoramiento_del_aerodromo_vina_del_mar_concon",
   "categoria": "transportes",
   "requisitos": {
@@ -22517,6 +25784,54 @@
   "arte": "salud_hospitales"
  },
  {
+  "id": "real_obra_cur_valparaiso_licitacion_del_transporte_publico_del_gran_valparaiso_600_buses_de_alt",
+  "categoria": "transportes",
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#curados_interior_gob_cl",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "cur-valparaiso-licitacion-del-transporte-publico-del-gran-valparaiso-600-buses-de-alt",
+   "sector": "transporte",
+   "region_id": "valparaiso",
+   "estado_real": "licitacion",
+   "inversion_musd": null,
+   "mandante": "MTT",
+   "verificado_hecho": false,
+   "verificado": false,
+   "fuente_url": "https://interior.gob.cl/noticias/2025/07/01/gobierno-lanza-historica-licitacion-para-transformar-el-transporte-publico-del-gran-valparaiso/",
+   "cifras_ilustrativas": true,
+   "modo": "obra"
+  },
+  "disponibilidad": {
+   "anio_desde": 1,
+   "anio_hasta": 2,
+   "evento": null,
+   "fiscal_min": null,
+   "meta": null
+  },
+  "costo_pa": 2,
+  "titulo": "Licitación del transporte público",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 3
+   },
+   {
+    "ind": "fiscal",
+    "delta": -1.0
+   }
+  ],
+  "obra": {
+   "nombre": "Licitación del transporte público del Gran Valparaíso: 600 buses",
+   "dias_totales": 100
+  }
+ },
+ {
   "id": "real_obra_cur_valparaiso_nuevo_instituto_teleton_valparaiso",
   "categoria": "salud",
   "requisitos": {
@@ -22688,7 +26003,7 @@
   "disponibilidad": {
    "anio_desde": 1,
    "anio_hasta": 3,
-   "evento": "evt_real_20261105_093",
+   "evento": null,
    "fiscal_min": null,
    "meta": null
   },
@@ -22907,6 +26222,50 @@
    "dias_totales": 90
   },
   "arte": "seguridad_carceles"
+ },
+ {
+  "id": "real_obra_cur_valparaiso_subsidio_a_la_operacion_de_44_buses_electricos_de_alto_estandar_gran_v",
+  "categoria": "transportes",
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#curados_dtpr_gob_cl",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "cur-valparaiso-subsidio-a-la-operacion-de-44-buses-electricos-de-alto-estandar-gran-v",
+   "sector": "transporte",
+   "region_id": "valparaiso",
+   "estado_real": "terminado",
+   "inversion_musd": null,
+   "mandante": "MTT (División de Transporte Público Regional)",
+   "verificado_hecho": false,
+   "verificado": false,
+   "fuente_url": "https://dtpr.gob.cl/wp-content/uploads/2026/06/Ficha-Valparaiso-2026V2.pdf",
+   "cifras_ilustrativas": true,
+   "modo": "inauguracion"
+  },
+  "disponibilidad": {
+   "anio_desde": 2,
+   "anio_hasta": 3,
+   "evento": null,
+   "fiscal_min": null,
+   "meta": "meta_transportes_2"
+  },
+  "costo_pa": 1,
+  "titulo": "Inaugurar: Subsidio a la operación de 44 buses eléctricos",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 1.5
+   },
+   {
+    "ind": "capital",
+    "delta": 0.5
+   }
+  ]
  },
  {
   "id": "real_obra_cur_valparaiso_teleferico_de_valparaiso",
@@ -38180,9 +41539,9 @@
   "camara_origen": "senado",
   "fuente": "fuentes.json#senado_tramitacion",
   "disponibilidad": {
-   "anio_desde": 1,
+   "anio_desde": 2,
    "anio_hasta": 4,
-   "evento": "evt_senado_energia_d36",
+   "evento": null,
    "fiscal_min": null,
    "meta": null
   },
@@ -46870,9 +50229,9 @@
   "camara_origen": "camara",
   "fuente": "fuentes.json#senado_tramitacion",
   "disponibilidad": {
-   "anio_desde": 1,
+   "anio_desde": 2,
    "anio_hasta": 4,
-   "evento": "evt_real_20261009_088",
+   "evento": null,
    "fiscal_min": null,
    "meta": null
   },
@@ -53663,7 +57022,7 @@
   "disponibilidad": {
    "anio_desde": 1,
    "anio_hasta": 2,
-   "evento": "evt_senado_energia_d36",
+   "evento": null,
    "fiscal_min": null,
    "meta": null
   },
@@ -75331,7 +78690,7 @@
   "disponibilidad": {
    "anio_desde": 1,
    "anio_hasta": 3,
-   "evento": "evt_real_20260731_078",
+   "evento": "evt_real_20261105_093",
    "fiscal_min": null,
    "meta": null
   },
@@ -78392,7 +81751,7 @@
   "disponibilidad": {
    "anio_desde": 1,
    "anio_hasta": 2,
-   "evento": "evt_real_20261105_093",
+   "evento": "evt_senado_energia_d36",
    "fiscal_min": null,
    "meta": null
   },

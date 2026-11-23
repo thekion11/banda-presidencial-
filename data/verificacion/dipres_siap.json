@@ -260,6 +260,13 @@
    "programas": [],
    "url": "https://www.dipres.gob.cl/597/articles-429202_doc_pdf.pdf"
   },
+  "429205": {
+   "titulo": "Informe de identificación y ejecución de inversión pública (SIAP 2.0)",
+   "periodo": "Agosto de 2026",
+   "fecha_informe": "2026-09-22",
+   "programas": [],
+   "url": "https://www.dipres.gob.cl/597/articles-429205_doc_pdf.pdf"
+  },
   "429207": {
    "titulo": "Informe de identificación y ejecución de inversión pública (SIAP 2.0)",
    "periodo": "Agosto de 2026",
@@ -564,7 +571,7 @@
    "estado_coincide": true
   },
   "cur-maule-reposicion-parcial-de-aulas-y-prebasica-escuela-el-colorado-san-clemen": {
-   "articulo": "425968",
+   "articulo": "429205",
    "encontrado": true,
    "similitud": 0.81,
    "bip": "40025919-0",
@@ -811,6 +818,116 @@
    "etapa_pdf": "ejecucion",
    "nombre_pdf": "MEJORAMIENTO PARQUE SARITA GAJARDO, CHILLAN",
    "identificado_miles_clp": 3067103,
+   "estado_coincide": true
+  },
+  "cur-maule-mejoramiento-eje-maipu-j-espinoza-y-carmen-de-linares": {
+   "articulo": "429205",
+   "encontrado": true,
+   "similitud": 0.99,
+   "bip": "30071574-0",
+   "etapa_pdf": "ejecucion",
+   "nombre_pdf": "MEJORAMIENTO EJE MAIPU , J. ESPINOZA Y CARMEN DE LINARES",
+   "identificado_miles_clp": 3529975,
+   "estado_coincide": true
+  },
+  "cur-maule-construccion-cesfam-maule-norte-comuna-de-maule": {
+   "articulo": "429205",
+   "encontrado": true,
+   "similitud": 1.0,
+   "bip": "30364272-0",
+   "etapa_pdf": "ejecucion",
+   "nombre_pdf": "CONSTRUCCION CESFAM MAULE NORTE, COMUNA DE MAULE",
+   "identificado_miles_clp": 3275364,
+   "estado_coincide": true
+  },
+  "cur-maule-reposicion-con-relocalizacion-cesfam-comuna-de-vichuquen": {
+   "articulo": "429205",
+   "encontrado": true,
+   "similitud": 0.9,
+   "bip": "30364322-0",
+   "etapa_pdf": "ejecucion",
+   "nombre_pdf": "REPOSICION CON RELOCALIZACION CESFAM COMUNA DE",
+   "identificado_miles_clp": 3017368,
+   "estado_coincide": true
+  },
+  "cur-maule-reposicion-con-relocalizacion-cesfam-oscar-bonilla-linares": {
+   "articulo": "429205",
+   "encontrado": true,
+   "similitud": 0.92,
+   "bip": "30432987-0",
+   "etapa_pdf": "ejecucion",
+   "nombre_pdf": "REPOSICION CON RELOCALIZACION CESFAM OSCAR BONILLA,",
+   "identificado_miles_clp": 410486,
+   "estado_coincide": true
+  },
+  "cur-maule-reposicion-consultorio-general-rural-curanipe-comuna-de-pelluhue": {
+   "articulo": "429205",
+   "encontrado": true,
+   "similitud": 0.9,
+   "bip": "30486453-0",
+   "etapa_pdf": "ejecucion",
+   "nombre_pdf": "REPOSICION CONSULTORIO GENERAL RURAL CURANIPE, COMUNA",
+   "identificado_miles_clp": 4916041,
+   "estado_coincide": true
+  },
+  "cur-maule-reposicion-complejo-policial-pdi-curico": {
+   "articulo": "429205",
+   "encontrado": true,
+   "similitud": 1.0,
+   "bip": "30487269-0",
+   "etapa_pdf": "ejecucion",
+   "nombre_pdf": "REPOSICION COMPLEJO POLICIAL PDI CURICO",
+   "identificado_miles_clp": 665982,
+   "estado_coincide": true
+  },
+  "cur-maule-reposicion-puente-trinidad-comuna-de-sagrada-familia": {
+   "articulo": "429205",
+   "encontrado": true,
+   "similitud": 0.99,
+   "bip": "40009653-0",
+   "etapa_pdf": "ejecucion",
+   "nombre_pdf": "REPOSICION PUENTE TRINIDAD COMUNA DE SAGRADA FAMILIA",
+   "identificado_miles_clp": 245892,
+   "estado_coincide": true
+  },
+  "cur-maule-construccion-subcomisaria-de-carabineros-maule-norte-comuna-de-maule": {
+   "articulo": "429205",
+   "encontrado": true,
+   "similitud": 0.86,
+   "bip": "40043020-0",
+   "etapa_pdf": "ejecucion",
+   "nombre_pdf": "CONSTRUCCION SUBCOMISARÍA DE CARABINEROS MAULE NORTE,",
+   "identificado_miles_clp": 135254,
+   "estado_coincide": true
+  },
+  "cur-maule-conservacion-caminos-basicos-k-260-sector-km-21-6-al-km-46-8-curepto": {
+   "articulo": "429205",
+   "encontrado": false,
+   "similitud": 0.76,
+   "bip": null,
+   "etapa_pdf": null,
+   "nombre_pdf": null,
+   "identificado_miles_clp": null,
+   "estado_coincide": null
+  },
+  "cur-maule-construccion-soluciones-sanitarias-sector-catillo-parral": {
+   "articulo": "429205",
+   "encontrado": true,
+   "similitud": 1.0,
+   "bip": "40024260-0",
+   "etapa_pdf": "diseno",
+   "nombre_pdf": "CONSTRUCCION SOLUCIONES SANITARIAS SECTOR CATILLO, PARRAL",
+   "identificado_miles_clp": 88010,
+   "estado_coincide": true
+  },
+  "cur-maule-reposicion-posta-de-salud-rural-los-quillayes-comuna-de-sagrada-famili": {
+   "articulo": "429205",
+   "encontrado": true,
+   "similitud": 0.85,
+   "bip": "40024911-0",
+   "etapa_pdf": "ejecucion",
+   "nombre_pdf": "REPOSICION POSTA DE SALUD RURAL LOS QUILLAYES, COMUNA",
+   "identificado_miles_clp": 1039358,
    "estado_coincide": true
   },
   "cur-atacama-reposicion-hospital-comunitario-diego-de-almagro": {

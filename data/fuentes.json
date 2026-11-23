@@ -1106,5 +1106,65 @@
     "vigencia_dias": 365,
     "es_ilustrativa": false,
     "verificado_contra_texto": false
+  },
+  {
+    "id": "curados_cne_cl",
+    "institucion": "www.cne.cl",
+    "titulo": "Sitio institucional del Estado www.cne.cl: páginas de proyectos consultadas en 2026",
+    "url": "https://www.cne.cl/",
+    "fecha_corte": "2026-11-23",
+    "vigencia_dias": 180,
+    "es_ilustrativa": false,
+    "verificado_contra_texto": false
+  },
+  {
+    "id": "curados_dtpr_gob_cl",
+    "institucion": "dtpr.gob.cl",
+    "titulo": "Sitio institucional del Estado dtpr.gob.cl: páginas de proyectos consultadas en 2026",
+    "url": "https://dtpr.gob.cl/",
+    "fecha_corte": "2026-11-23",
+    "vigencia_dias": 180,
+    "es_ilustrativa": false,
+    "verificado_contra_texto": false
+  },
+  {
+    "id": "curados_firma_sea_gob_cl",
+    "institucion": "firma.sea.gob.cl",
+    "titulo": "Sitio institucional del Estado firma.sea.gob.cl: páginas de proyectos consultadas en 2026",
+    "url": "https://firma.sea.gob.cl/",
+    "fecha_corte": "2026-11-23",
+    "vigencia_dias": 180,
+    "es_ilustrativa": false,
+    "verificado_contra_texto": false
+  },
+  {
+    "id": "curados_planeamiento_mop_gob_cl",
+    "institucion": "planeamiento.mop.gob.cl",
+    "titulo": "Sitio institucional del Estado planeamiento.mop.gob.cl: páginas de proyectos consultadas en 2026",
+    "url": "https://planeamiento.mop.gob.cl/",
+    "fecha_corte": "2026-11-23",
+    "vigencia_dias": 180,
+    "es_ilustrativa": false,
+    "verificado_contra_texto": false
+  },
+  {
+    "id": "dipres_siap_429205",
+    "institucion": "Dirección de Presupuestos (Dipres)",
+    "titulo": "Informe de identificación y ejecución de inversión pública (SIAP 2.0) a Agosto de 2026, doc. 429205: ",
+    "url": "https://www.dipres.gob.cl/597/articles-429205_doc_pdf.pdf",
+    "fecha_corte": "2026-09-22",
+    "vigencia_dias": 365,
+    "es_ilustrativa": false,
+    "verificado_contra_texto": false
+  },
+  {
+    "id": "prensa_cnnchile_com",
+    "institucion": "Prensa: www.cnnchile.com",
+    "titulo": "Medio de prensa www.cnnchile.com: páginas de proyectos consultadas en 2026",
+    "url": "https://www.cnnchile.com/",
+    "fecha_corte": "2026-11-23",
+    "vigencia_dias": 180,
+    "es_ilustrativa": false,
+    "verificado_contra_texto": false
   }
 ]

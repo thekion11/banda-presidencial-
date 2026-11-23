@@ -1633,10 +1633,10 @@
    "mandante": "Gobierno Regional del Maule",
    "descripcion": "Reposición parcial de aulas y nivel prebásico de la Escuela El Colorado de San Clemente.",
    "fuente_url": "https://www.dipres.gob.cl/597/articles-425968_doc_pdf.pdf",
-   "fuente": "fuentes.json#dipres_siap_425968",
+   "fuente": "fuentes.json#dipres_siap_429205",
    "fecha_consulta": "2026-11-23",
    "verificado": true,
-   "notas": "Informe SIAP Dipres a agosto de 2026 (emitido 24-08-2026), M$: identificado 464.651, ejecutado 0 (0,0%). Asignación anual, no costo total. | Dipres Julio de 2026: BIP 40025919-0. etapa ejecucion. presupuesto 2026 identificado $464.651 miles"
+   "notas": "Informe SIAP Dipres a agosto de 2026 (emitido 24-08-2026), M$: identificado 464.651, ejecutado 0 (0,0%). Asignación anual, no costo total. | Dipres Agosto de 2026: BIP 40025919-0. etapa ejecucion. presupuesto 2026 identificado $464.651 miles"
   },
   {
    "id": "cur-maule-restauracion-escuela-presidente-jose-manuel-balmaceda-curico",
