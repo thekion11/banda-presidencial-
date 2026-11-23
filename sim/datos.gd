@@ -2,7 +2,7 @@ class_name Datos
 extends RefCounted
 ## Carga de los JSON de data/ (única fuente de números del juego).
 
-const ARCHIVOS: Array[String] = ["cartas", "eventos", "leyes", "ministros", "ideologia", "regiones", "propuestas", "fuentes"]
+const ARCHIVOS: Array[String] = ["cartas", "eventos", "leyes", "ministros", "ideologia", "regiones", "propuestas", "fuentes", "metas"]
 
 
 static func leer_json(ruta: String) -> Variant:
@@ -32,6 +32,6 @@ static func huella(d: Dictionary) -> String:
 	## SHA-256 de los datos que afectan al resultado de la simulación. Un guardado solo es reproducible con la misma huella.
 	var hc := HashingContext.new()
 	hc.start(HashingContext.HASH_SHA256)
-	for n in ["cartas", "eventos", "leyes", "ministros", "ideologia", "regiones", "propuestas", "sectra", "grafo"]:
+	for n in ["cartas", "eventos", "leyes", "ministros", "ideologia", "regiones", "propuestas", "sectra", "grafo", "metas"]:
 		hc.update(JSON.stringify(d.get(n, {}), "", true).to_utf8_buffer())
 	return hc.finish().hex_encode()

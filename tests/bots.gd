@@ -22,8 +22,47 @@ static func _valor(carta: Dictionary, estado: EstadoSimulacion) -> float:
 	return v
 
 
+static func _delegar(motor: MotorTurno) -> void:
+	## Delega las mejores cartas en el ministro afín del gabinete (sin gastar movimientos; puede salir mal).
+	var est := motor.estado
+	for _n in range(int(motor.catalogo_leyes["delegacion"]["max_por_turno"])):
+		var mejor := -1
+		var ministro := ""
+		var mejor_v := 0.0
+		for i in range(est.mano.size()):
+			var c: Dictionary = est.mano[i]
+			if motor.es_unica(c) and est.cartas_ejecutadas.has(String(c["id"])) or c.has("obra"):
+				continue
+			for id in est.gabinete:
+				if motor.catalogo_ministros[id]["categoria_afin"] == c["categoria"] and _valor(c, est) > mejor_v:
+					mejor_v = _valor(c, est)
+					mejor = i
+					ministro = String(id)
+		if mejor < 0:
+			return
+		motor.delegar_carta(mejor, ministro)
+
+
+static func _internos(motor: MotorTurno) -> void:
+	## Movimientos internos: bajar errores si el riesgo es alto, cumplir la meta más barata y acelerar la obra más avanzada.
+	var est := motor.estado
+	if est.ind("riesgo_ejecucion") > 30.0:
+		motor.reducir_errores()
+	var metas := motor.movimientos.metas_disponibles()
+	metas.sort_custom(func(a: Dictionary, b: Dictionary) -> bool: return int(a["costo_mov"]) < int(b["costo_mov"]))
+	if not metas.is_empty():
+		motor.buscar_meta(String(metas[0]["id"]))
+	if not est.obras_en_curso.is_empty():
+		motor.acelerar_proyecto(0)
+	if est.ind("riesgo_ejecucion") > 30.0:
+		motor.reducir_errores()
+
+
 static func jugar_turno(motor: MotorTurno, politica: String, rng: RandomNumberGenerator) -> void:
 	var est := motor.estado
+	if est.etapa == "gobierno" and politica != "azar" and politica != "pasivo":
+		_internos(motor)
+		_delegar(motor)
 	var guard := 0
 	while guard < 12 and not est.mano.is_empty():
 		guard += 1
