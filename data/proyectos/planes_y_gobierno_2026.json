@@ -29,6 +29,55 @@
    "notas": "nacional (regiones distintas de la RM); sin monto"
   },
   {
+   "id": "plan-kimal-lo-aguirre-hvdc",
+   "nombre": "Línea de transmisión HVDC Kimal-Lo Aguirre",
+   "sector": "energia",
+   "region_id": "antofagasta",
+   "region_ids": [
+    "antofagasta",
+    "metropolitana"
+   ],
+   "comuna": "Kimal a Lo Aguirre (~1.300-1.500 km)",
+   "estado": "ejecucion",
+   "estado_2026_03_11": null,
+   "inversion_musd": null,
+   "inversion_uf": null,
+   "inversion_clp": null,
+   "fecha_inicio": "2026-02",
+   "fecha_fin": "2027",
+   "mandante": "Conexión Kimal-Lo Aguirre (privado) / Ministerio de Energía",
+   "descripcion": "Construcción iniciada en febrero de 2026; avance constructivo 20,35% en sept-2026; RCA favorable mantenida por el Comité de Ministros (jul-2026).",
+   "fuente_url": "https://www.cne.cl/?p=58802",
+   "fuente": "fuentes.json#planes_prensa_2026",
+   "fecha_consulta": "2026-11-23",
+   "verificado": false,
+   "notas": "inversión inconsistente entre fuentes: US$ 1.480 MM (RCA), 1.500 (gobierno), >2.000 (empresa) -> inversion_musd=null; regiones = extremos; 2027 = últimas concesiones"
+  },
+  {
+   "id": "plan-liceos-emblematicos-santiago",
+   "nombre": "Plan de infraestructura de 7 liceos emblemáticos de Santiago",
+   "sector": "educacion",
+   "region_id": "metropolitana",
+   "region_ids": [
+    "metropolitana"
+   ],
+   "comuna": "Santiago",
+   "estado": "diseno",
+   "estado_2026_03_11": null,
+   "inversion_musd": null,
+   "inversion_uf": null,
+   "inversion_clp": null,
+   "fecha_inicio": "2025-08",
+   "fecha_fin": null,
+   "mandante": "Mineduc / SLEP Santiago Centro",
+   "descripcion": "Mineduc y la Municipalidad de Santiago acuerdan un plan en cuatro ejes; contingencia 2026 a cargo del SLEP Santiago Centro.",
+   "fuente_url": "https://www.biobiochile.cl/noticias/nacional/region-metropolitana/2025/08/20/amp/mineduc-y-municipalidad-de-santiago-acuerdan-plan-para-mejorar-infraestructura-de-liceos-emblematicos.shtml",
+   "fuente": "fuentes.json#planes_prensa_2026",
+   "fecha_consulta": "2026-11-23",
+   "verificado": false,
+   "notas": "sin monto ni cronograma en el extracto consultado"
+  },
+  {
    "id": "plan-nueva-alameda-providencia",
    "nombre": "Nueva Alameda Providencia (recortado por MINVU)",
    "sector": "vivienda_urbana",
@@ -51,6 +100,54 @@
    "fecha_consulta": "2026-11-23",
    "verificado": false,
    "notas": "estado incierto tras el recorte; sin monto verificado"
+  },
+  {
+   "id": "plan-parque-mapocho-rio",
+   "nombre": "Parque Mapocho Río (9 km, 52 ha)",
+   "sector": "vivienda_urbana",
+   "region_id": "metropolitana",
+   "region_ids": [
+    "metropolitana"
+   ],
+   "comuna": "Quinta Normal, Cerro Navia",
+   "estado": "terminado",
+   "estado_2026_03_11": null,
+   "inversion_musd": null,
+   "inversion_uf": null,
+   "inversion_clp": 115000000000.0,
+   "fecha_inicio": "2020",
+   "fecha_fin": "2025-03",
+   "mandante": "MINVU",
+   "descripcion": "Última etapa inaugurada en marzo de 2025; inversión de más de $115 mil millones (MINVU).",
+   "fuente_url": "https://www.minvu.gob.cl/noticia/parque-mapocho-rio-obtiene-premio-como-mejor-proyecto-de-espacio-de-uso-publico/",
+   "fuente": "fuentes.json#planes_prensa_2026",
+   "fecha_consulta": "2026-11-23",
+   "verificado": false,
+   "notas": "monto 'más de 115 mil millones' (piso); resumen de buscador, no se abrió la nota"
+  },
+  {
+   "id": "plan-parque-metropolitano-puerto-montt",
+   "nombre": "Parque Metropolitano de Puerto Montt",
+   "sector": "vivienda_urbana",
+   "region_id": "loslagos",
+   "region_ids": [
+    "loslagos"
+   ],
+   "comuna": "Puerto Montt",
+   "estado": "diseno",
+   "estado_2026_03_11": null,
+   "inversion_musd": null,
+   "inversion_uf": null,
+   "inversion_clp": 20325000000.0,
+   "fecha_inicio": "2026-09",
+   "fecha_fin": null,
+   "mandante": "MINVU / GORE Los Lagos",
+   "descripcion": "MINVU, GORE Los Lagos y municipios acuerdan el financiamiento (sept-2026), inversión de $20.325 millones.",
+   "fuente_url": "https://www.minvu.gob.cl/noticia/minvu-gore-los-lagos-y-municipios-acuerdan-forma-de-financiamiento-para-materializar-parques-metropolitano-de-puerto-montt-y-la-toma-de-rio-negro/",
+   "fuente": "fuentes.json#planes_prensa_2026",
+   "fecha_consulta": "2026-11-23",
+   "verificado": false,
+   "notas": "etapa exacta no publicada; también incluye el parque La Toma de Río Negro (no registrado por separado)"
   },
   {
    "id": "plan-paseo-bandera-corredor",

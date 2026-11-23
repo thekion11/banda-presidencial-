@@ -83,6 +83,21 @@ PLANES = [
      "Proyecto Plaza Italia-Av. Pajaritos; el MINVU anunció un recorte del programa; GORE y municipalidad siguen con obras puntuales (prensa).",
      "https://www.theclinic.cl/2026/04/07/el-antes-y-despues-del-centro-de-santiago-con-el-proyecto-nueva-alameda-gore-metropolitano-muestra-como-se-veran-diferentes-puntos-con-nuevas-obras/",
      "MINVU / GORE Metropolitano", "estado incierto tras el recorte; sin monto verificado"),
+    ("kimal-lo-aguirre-hvdc", "Línea de transmisión HVDC Kimal-Lo Aguirre", "energia", ["antofagasta", "metropolitana"], "Kimal a Lo Aguirre (~1.300-1.500 km)", "ejecucion", None,
+     "2026-02", "2027", "Construcción iniciada en febrero de 2026; avance constructivo 20,35% en sept-2026; RCA favorable mantenida por el Comité de Ministros (jul-2026).",
+     "https://www.cne.cl/?p=58802", "Conexión Kimal-Lo Aguirre (privado) / Ministerio de Energía",
+     "inversión inconsistente entre fuentes: US$ 1.480 MM (RCA), 1.500 (gobierno), >2.000 (empresa) -> inversion_musd=null; regiones = extremos; 2027 = últimas concesiones"),
+    ("parque-mapocho-rio", "Parque Mapocho Río (9 km, 52 ha)", "vivienda_urbana", ["metropolitana"], "Quinta Normal, Cerro Navia", "terminado", 115e9,
+     "2020", "2025-03", "Última etapa inaugurada en marzo de 2025; inversión de más de $115 mil millones (MINVU).",
+     "https://www.minvu.gob.cl/noticia/parque-mapocho-rio-obtiene-premio-como-mejor-proyecto-de-espacio-de-uso-publico/", "MINVU", "monto 'más de 115 mil millones' (piso); resumen de buscador, no se abrió la nota"),
+    ("parque-metropolitano-puerto-montt", "Parque Metropolitano de Puerto Montt", "vivienda_urbana", ["loslagos"], "Puerto Montt", "diseno", 20.325e9,
+     "2026-09", None, "MINVU, GORE Los Lagos y municipios acuerdan el financiamiento (sept-2026), inversión de $20.325 millones.",
+     "https://www.minvu.gob.cl/noticia/minvu-gore-los-lagos-y-municipios-acuerdan-forma-de-financiamiento-para-materializar-parques-metropolitano-de-puerto-montt-y-la-toma-de-rio-negro/",
+     "MINVU / GORE Los Lagos", "etapa exacta no publicada; también incluye el parque La Toma de Río Negro (no registrado por separado)"),
+    ("liceos-emblematicos-santiago", "Plan de infraestructura de 7 liceos emblemáticos de Santiago", "educacion", ["metropolitana"], "Santiago", "diseno", None,
+     "2025-08", None, "Mineduc y la Municipalidad de Santiago acuerdan un plan en cuatro ejes; contingencia 2026 a cargo del SLEP Santiago Centro.",
+     "https://www.biobiochile.cl/noticias/nacional/region-metropolitana/2025/08/20/amp/mineduc-y-municipalidad-de-santiago-acuerdan-plan-para-mejorar-infraestructura-de-liceos-emblematicos.shtml",
+     "Mineduc / SLEP Santiago Centro", "sin monto ni cronograma en el extracto consultado"),
 ]
 
 
