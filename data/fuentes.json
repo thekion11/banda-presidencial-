@@ -226,5 +226,85 @@
     "vigencia_dias": 3650,
     "es_ilustrativa": false,
     "verificado_contra_texto": true
+  },
+  {
+    "id": "servel_partidos_constituidos",
+    "institucion": "Servicio Electoral de Chile (Servel)",
+    "titulo": "Partidos políticos constituidos (nómina y fechas; consulta 2026-11-23)",
+    "url": "https://www.servel.cl/partidos-politicos/partidos-constituidos/",
+    "fecha_corte": "2026-11-23",
+    "vigencia_dias": 180,
+    "es_ilustrativa": false,
+    "verificado_contra_texto": true
+  },
+  {
+    "id": "servel_fecha_constitucion_regiones_2026",
+    "institucion": "Servicio Electoral de Chile (Servel)",
+    "titulo": "Partidos legalmente constituidos: fecha de constitución en cada región (actualización 30-sep-2026)",
+    "url": "https://www.servel.cl/wp-content/uploads/2026/10/FECHA-CONSTITUCION-PARTIDOS-POLITICOS-30-DE-SEPTIEMBRE-DE-2026.pdf",
+    "fecha_corte": "2026-11-23",
+    "vigencia_dias": 180,
+    "es_ilustrativa": false,
+    "verificado_contra_texto": true
+  },
+  {
+    "id": "ley_18603_partidos",
+    "institucion": "Biblioteca del Congreso Nacional (BCN Ley Chile)",
+    "titulo": "Ley 18.603 Orgánica Constitucional de los Partidos Políticos (art. 8: nombres, siglas y símbolos; texto leído en copia de Justia Chile, contrastar con versión vigente BCN)",
+    "url": "https://www.bcn.cl/leychile/navegar?idNorma=1107684",
+    "fecha_corte": "2026-11-23",
+    "vigencia_dias": 180,
+    "es_ilustrativa": false,
+    "verificado_contra_texto": false
+  },
+  {
+    "id": "ley_19039_marcas",
+    "institucion": "Biblioteca del Congreso Nacional (BCN Ley Chile) / INAPI",
+    "titulo": "Ley 19.039 de Propiedad Industrial, art. 20 (marcas no registrables; texto leído en copia de Justia Chile, vigente es el DFL 4 de 2022)",
+    "url": "https://chile.justia.com/nacionales/leyes/ley-n-19-039/gdoc",
+    "fecha_corte": "2026-11-23",
+    "vigencia_dias": 180,
+    "es_ilustrativa": false,
+    "verificado_contra_texto": false
+  },
+  {
+    "id": "wikipedia_parlamentarias_2025",
+    "institucion": "Wikipedia (fuente secundaria)",
+    "titulo": "Elecciones parlamentarias de Chile de 2025 (escaños por partido; contrastar con Servel)",
+    "url": "https://es.wikipedia.org/wiki/Elecciones_parlamentarias_de_Chile_de_2025",
+    "fecha_corte": "2026-11-23",
+    "vigencia_dias": 180,
+    "es_ilustrativa": false,
+    "verificado_contra_texto": false
+  },
+  {
+    "id": "wikipedia_parlamentarias_2021",
+    "institucion": "Wikipedia (fuente secundaria)",
+    "titulo": "Elecciones parlamentarias de Chile de 2021 (escaños por partido; contrastar con Servel)",
+    "url": "https://es.wikipedia.org/wiki/Elecciones_parlamentarias_de_Chile_de_2021",
+    "fecha_corte": "2026-11-23",
+    "vigencia_dias": 180,
+    "es_ilustrativa": false,
+    "verificado_contra_texto": false
+  },
+  {
+    "id": "google_play_suplantacion",
+    "institucion": "Google Play Console",
+    "titulo": "Política de suplantación de identidad (Impersonation)",
+    "url": "https://support.google.com/googleplay/android-developer/answer/9888374",
+    "fecha_corte": "2026-11-23",
+    "vigencia_dias": 180,
+    "es_ilustrativa": false,
+    "verificado_contra_texto": true
+  },
+  {
+    "id": "google_play_conducta_enganosa",
+    "institucion": "Google Play Console",
+    "titulo": "Política de comportamiento engañoso (excepción para sátira/parodia evidente, 4.2)",
+    "url": "https://support.google.com/googleplay/android-developer/answer/9888077",
+    "fecha_corte": "2026-11-23",
+    "vigencia_dias": 180,
+    "es_ilustrativa": false,
+    "verificado_contra_texto": true
   }
 ]

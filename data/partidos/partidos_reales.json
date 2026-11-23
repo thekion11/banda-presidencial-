@@ -1,0 +1,1865 @@
+{
+ "meta": {
+  "fecha_consulta": "2026-11-23",
+  "fuente_primaria": "https://www.servel.cl/partidos-politicos/partidos-constituidos/",
+  "fuente_fechas_regiones": "https://www.servel.cl/wp-content/uploads/2026/10/FECHA-CONSTITUCION-PARTIDOS-POLITICOS-30-DE-SEPTIEMBRE-DE-2026.pdf",
+  "nota": "Lista de partidos legalmente constituidos según la página del Servel (consultada 2026-11-23; fecha de actualización de la tabla regional: 2026-09-30). Principios: citas literales solo donde se indica verificado=true. Congreso: cifras de Wikipedia (secundaria, verificado=false); contrastar con Servel/Cámara. Posiciones: solo hechos con fuente; los huecos están en 'huecos'.",
+  "huecos": [
+   "Texto primario vigente de declaración de principios: obtenido para PS (pschile.cl), PPD (estatutos 2020, art. 1) y PDC (estatutos, art. 1; copia en politicalpartydb.org); NO obtenido para PCCh ni FA (verificado=false).",
+   "Desglose de votos por partido en la Cámara de Diputados (reforma de pensiones 2025, tributaria 2014 y 2023, matrimonio igualitario, aborto tres causales, gobernadores): no recuperado; solo hay totales. Voto por partido solo para el Senado en pensiones.",
+   "Votos del Senado de 2021 de matrimonio igualitario y de 2017 de aborto por partido (incluida la división DC): no recuperados.",
+   "Pensiones 2022-2024 (posiciones previas), tributaria 2020 (Ley 21.210 modernización), seguridad, medioambiente, rol_del_estado y programas oficiales: no investigados por tiempo.",
+   "Citas de PS extraídas con WebFetch (modelo auxiliar), no con copia directa del HTML; verificar contra el original antes de publicar.",
+   "FA: fechas exactas de pertenencia a Apruebo Dignidad como partido fusionado y Unidad por Chile 2025 no confirmadas; PCCh 'Unidad para Chile 2023' proviene de BCN.",
+   "Ley 21.735 no confirmada por número en las fuentes de prensa; las fechas y votos corresponden al proyecto de reforma previsional de enero de 2025.",
+   "UDI y PNL: texto primario de declaración de principios no obtenido (udi.cl 404; sitio PNL inaccesible); verificado=false.",
+   "Republicano: ubicación según Wikipedia no obtenida (rate limit/bloqueo); falta ubicación secundaria explícita.",
+   "Sin desglose de voto por bancada para: reforma tributaria 2014 (Senado), 2020 (Ley 21.210), 2023; elección de gobernadores (Ley 20.990); aborto 3 causales en el Congreso; Cámara pensiones 2025.",
+   "Sin verificar: coaliciones 'Cambiemos' (no se halló evidencia de una coalición chilena con ese nombre; la búsqueda solo arrojó la argentina) y fecha exacta de término de Cambio por Chile; Ley 21.210 (2020) y seguridad (leyes específicas), medioambiente (Ley 21.455) no investigadas.",
+   "Programas oficiales de gobierno 2025 (Kast, Matthei, Kaiser) no recopilados; hay un PDF del programa de Kaiser en https://centrocompetencia.com/wp-content/uploads/2025/09/Programa_Johannes_Kaiser_2025.pdf sin leer.",
+   "Los estatutos de RN son texto refundido 2016; podrían haberse modificado después.",
+   "Textos primarios de declaracion de principios: solo el Manifiesto del Liberal es literal verificado; los demas son extractos de WebFetch o BCN y deben verificarse.",
+   "Radical: sin declaracion vigente, sin fallo Tricel confirmado, sin posiciones por tema.",
+   "Posiciones por tema (pensiones, tributaria, descentralizacion, etc.): casi sin votaciones verificables; pendiente consultar camara.cl/senado.cl.",
+   "Partido Cristiano: sin estatutos ni declaracion oficial hallados; coaliciones no documentadas.",
+   "Fila Servel del 2026-09-30 sin nombre; estado PDG posterior a sep-2026 no revisado."
+  ]
+ },
+ "partidos": [
+  {
+   "id": "ps",
+   "nombre_oficial": "Partido Socialista de Chile",
+   "sigla": "PS",
+   "fecha_constitucion": "1990-12-19",
+   "regiones": {
+    "ambito": "Todas las regiones del país",
+    "lista": []
+   },
+   "declaracion_principios": {
+    "verificado": true,
+    "citas": [
+     {
+      "texto": "El Partido Socialista de Chile es la expresión política de los trabajadores manuales e intelectuales, de la técnica, de la ciencia y de la cultura, y de todos los hombres y mujeres que aspiran a una sociedad socialista, es decir, igualitaria, libertaria y fraternal.",
+      "url": "https://www.pschile.cl/declaracion-de-principios/"
+     },
+     {
+      "texto": "El Partido Socialista de Chile es un partido popular y de izquierda, autónomo, democrático y revolucionario, en tanto persigue un cambio social profundo.",
+      "url": "https://www.pschile.cl/declaracion-de-principios/"
+     }
+    ],
+    "nota": "Extraída vía WebFetch (modelo auxiliar) de la página oficial; texto en tres fragmentos unidos, conviene contrastar con el original.; ídem"
+   },
+   "ubicacion_ideologica": {
+    "autodescripcion": "Se define como 'partido popular y de izquierda' (declaración de principios, url arriba).",
+    "fuente_secundaria": "Wikipedia en español (infobox): posición 'Centroizquierda' a 'izquierda'; ideología listada: progresismo, socialdemocracia, socialismo democrático, allendismo, humanismo socialista.",
+    "url": "https://es.wikipedia.org/wiki/Partido_Socialista_de_Chile"
+   },
+   "historial": {
+    "coaliciones": [
+     {
+      "nombre": "Concertación de Partidos por la Democracia",
+      "desde": "1988",
+      "hasta": "2013",
+      "fuente_url": "https://es.wikipedia.org/wiki/Partido_Socialista_de_Chile"
+     },
+     {
+      "nombre": "Nueva Mayoría",
+      "desde": "2013",
+      "hasta": "2018",
+      "fuente_url": "https://es.wikipedia.org/wiki/Partido_Socialista_de_Chile"
+     },
+     {
+      "nombre": "Convergencia Progresista",
+      "desde": "2018",
+      "hasta": "2020",
+      "fuente_url": "https://es.wikipedia.org/wiki/Partido_Socialista_de_Chile"
+     },
+     {
+      "nombre": "Unidad Constituyente",
+      "desde": "2020",
+      "hasta": "2021",
+      "fuente_url": "https://es.wikipedia.org/wiki/Partido_Socialista_de_Chile"
+     },
+     {
+      "nombre": "Nuevo Pacto Social",
+      "desde": "2021",
+      "hasta": "2021",
+      "fuente_url": "https://es.wikipedia.org/wiki/Partido_Socialista_de_Chile"
+     },
+     {
+      "nombre": "Unidad por Chile (respaldo a la candidatura de Jeannette Jara, 2025)",
+      "desde": "2025",
+      "hasta": null,
+      "fuente_url": "https://es.wikipedia.org/wiki/Partido_Socialista_de_Chile"
+     }
+    ],
+    "posiciones": [
+     {
+      "tema": "pensiones",
+      "hecho": "En la votación del Senado del proyecto de reforma de pensiones (resultado 40 a favor, 7 en contra, sin abstenciones), los 7 senadores PS votaron a favor.",
+      "fecha": "2025-01-28",
+      "fuente_url": "https://www.emol.com/noticias/Nacional/2025/01/28/1155544/como-votaron-senadores-reforma-pensiones.html"
+     },
+     {
+      "tema": "pensiones",
+      "hecho": "La Cámara de Diputados despachó a ley el proyecto de reforma previsional en tercer trámite con 110 votos a favor y 38 en contra. Los resultados consultados no entregan desglose por partido.",
+      "fecha": "2025-01-29",
+      "fuente_url": "https://previsionsocial.gob.cl/congreso-despacho-a-ley-la-reforma-previsional-camara-de-diputados-aprobo-el-proyecto-por-110-votos-a-favor-y-38-en-contra/"
+     },
+     {
+      "tema": "tributaria",
+      "hecho": "La Ley 20.780 (reforma tributaria) fue promulgada el 26-09-2014 y publicada el 29-09-2014. El proyecto fue patrocinado por el Ejecutivo (gobierno de Michelle Bachelet, Nueva Mayoría). En la Cámara se aprobó en general con 72 votos a favor y 48 en contra; en el Senado, en general, 33 a favor y 1 en contra. No se obtuvo desglose por partido.",
+      "fecha": "2014-09-29",
+      "fuente_url": "https://www.sii.cl/normativa_legislacion/ley20780.pdf"
+     },
+     {
+      "tema": "descentralizacion",
+      "hecho": "La reforma constitucional Ley 20.990 estableció la elección popular del órgano ejecutivo del gobierno regional (gobernador regional); promulgada el 29-12-2016 y publicada el 05-01-2017. El informe de la comisión mixta fue aprobado en el Senado con 24 votos a favor, 1 en contra y 9 abstenciones. No se obtuvo desglose por partido.",
+      "fecha": "2017-01-05",
+      "fuente_url": "https://www.cnnchile.com/pais/el-senado-aprobo-la-eleccion-directa-de-gobernadores-regionales/"
+     },
+     {
+      "tema": "derechos",
+      "hecho": "La Cámara aprobó el proyecto de matrimonio igualitario (Ley 21.400) con 101 votos a favor, 30 en contra y 2 abstenciones; la ley se promulgó el 09-12-2021 y se publicó el 10-12-2021. No se obtuvo desglose por partido.",
+      "fecha": "2021-11-23",
+      "fuente_url": "https://es.wikipedia.org/wiki/Matrimonio_entre_personas_del_mismo_sexo_en_Chile"
+     },
+     {
+      "tema": "derechos",
+      "hecho": "Ley 21.030 (despenalización del aborto en tres causales): el Senado aprobó el proyecto 22 a 13 en agosto de 2017 según una fuente, el Tribunal Constitucional rechazó los requerimientos el 21-08-2017 y la ley se publicó el 23-09-2017. No se obtuvo desglose por partido.",
+      "fecha": "2017-09-23",
+      "fuente_url": "https://www.cnnchile.com/pais/camara-baja-aprobo-informe-de-la-comision-mixta-y-proyecto-de-aborto-pasara-al/"
+     }
+    ]
+   },
+   "congreso": {
+    "2022_2026": {
+     "diputados": 13,
+     "senadores": null,
+     "nota": "Diputados electos en noviembre de 2021 (composición inicial; no refleja cambios de militancia). Senadores en ejercicio por partido: no recuperado",
+     "fuente": "https://es.wikipedia.org/wiki/Elecciones_parlamentarias_de_Chile_de_2021",
+     "verificado": false
+    },
+    "2026_2030": {
+     "diputados": 11,
+     "senadores": 7,
+     "nota": "Electos el 16-nov-2025 (diputados 2026-2030; senadores: total de la bancada 2026-2034 incluye los no renovados)",
+     "fuente": "https://es.wikipedia.org/wiki/Elecciones_parlamentarias_de_Chile_de_2025",
+     "verificado": false
+    }
+   },
+   "estado_servel": "constituido",
+   "fuente_url": "https://www.servel.cl/partidos-politicos/partidos-constituidos/",
+   "fuente_resolucion": "https://www.servel.cl/wp-content/uploads/2026/11/PARTIDO-SOCIALISTA-DE-CHILE-5.pdf",
+   "fecha_consulta": "2026-11-23",
+   "verificado": true,
+   "verificado_detalle": {
+    "constitucion_y_regiones": true,
+    "principios": true,
+    "historial": false,
+    "congreso": false
+   }
+  },
+  {
+   "id": "ppd",
+   "nombre_oficial": "Partido Por la Democracia",
+   "sigla": "PPD",
+   "fecha_constitucion": "1988-05-09",
+   "regiones": {
+    "ambito": "Todas las regiones del país",
+    "lista": []
+   },
+   "declaracion_principios": {
+    "verificado": true,
+    "citas": [
+     {
+      "texto": "El Partido Por la Democracia es una organización política de mujeres y hombres que actúan comprometidos con los valores democráticos y los derechos humanos, que trabajan por el respeto y extensión de la libertad y el ejercicio de la solidaridad, para terminar con las discriminaciones y alcanzar una sociedad más justa y equitativa.",
+      "url": "https://ppd.cl/wp-content/uploads/2023/07/Estatutos-2020-PPD.pdf"
+     }
+    ],
+    "nota": "Artículo 1 de los Estatutos (versión 2020 publicada en ppd.cl), leído con pdftotext del PDF descargado. Es el artículo de estatutos, no la 'Declaración de Principios' separada, cuyo texto no se obtuvo."
+   },
+   "ubicacion_ideologica": {
+    "autodescripcion": "Estatutos: organización 'comprometida con los valores democráticos y los derechos humanos'; no usa etiqueta ideológica en el artículo 1.",
+    "fuente_secundaria": "Wikipedia en español (infobox): posición 'Centroizquierda'; ideología: progresismo, socioliberalismo, socialdemocracia, socialismo democrático, tercera vía, feminismo. Fundación 15-12-1987.",
+    "url": "https://es.wikipedia.org/wiki/Partido_por_la_Democracia"
+   },
+   "historial": {
+    "coaliciones": [
+     {
+      "nombre": "Concertación de Partidos por la Democracia",
+      "desde": "1988",
+      "hasta": "2013",
+      "fuente_url": "https://es.wikipedia.org/wiki/Partido_por_la_Democracia"
+     },
+     {
+      "nombre": "Por un Chile justo",
+      "desde": "2012",
+      "hasta": "2012",
+      "fuente_url": "https://es.wikipedia.org/wiki/Partido_por_la_Democracia"
+     },
+     {
+      "nombre": "Nueva Mayoría",
+      "desde": "2013",
+      "hasta": "2018",
+      "fuente_url": "https://es.wikipedia.org/wiki/Partido_por_la_Democracia"
+     },
+     {
+      "nombre": "Convergencia Progresista",
+      "desde": "2018",
+      "hasta": "2020",
+      "fuente_url": "https://es.wikipedia.org/wiki/Partido_por_la_Democracia"
+     },
+     {
+      "nombre": "Unidad Constituyente",
+      "desde": "2020",
+      "hasta": "2021",
+      "fuente_url": "https://es.wikipedia.org/wiki/Partido_por_la_Democracia"
+     },
+     {
+      "nombre": "Nuevo Pacto Social",
+      "desde": "2021",
+      "hasta": "2021",
+      "fuente_url": "https://es.wikipedia.org/wiki/Partido_por_la_Democracia"
+     },
+     {
+      "nombre": "Todo por Chile",
+      "desde": "2023",
+      "hasta": "2023",
+      "fuente_url": "https://es.wikipedia.org/wiki/Partido_por_la_Democracia"
+     },
+     {
+      "nombre": "Unidad por Chile",
+      "desde": "2025",
+      "hasta": null,
+      "fuente_url": "https://es.wikipedia.org/wiki/Partido_por_la_Democracia"
+     }
+    ],
+    "posiciones": [
+     {
+      "tema": "pensiones",
+      "hecho": "En la votación del Senado del proyecto de reforma de pensiones (resultado 40 a favor, 7 en contra, sin abstenciones), los 4 senadores PPD (Loreto Carvajal, Ricardo Lagos, Jaime Quintana, Jorge Soria) y 2 senadores IND-PPD votaron a favor.",
+      "fecha": "2025-01-28",
+      "fuente_url": "https://www.emol.com/noticias/Nacional/2025/01/28/1155544/como-votaron-senadores-reforma-pensiones.html"
+     },
+     {
+      "tema": "pensiones",
+      "hecho": "La Cámara de Diputados despachó a ley el proyecto de reforma previsional en tercer trámite con 110 votos a favor y 38 en contra. Los resultados consultados no entregan desglose por partido.",
+      "fecha": "2025-01-29",
+      "fuente_url": "https://previsionsocial.gob.cl/congreso-despacho-a-ley-la-reforma-previsional-camara-de-diputados-aprobo-el-proyecto-por-110-votos-a-favor-y-38-en-contra/"
+     },
+     {
+      "tema": "tributaria",
+      "hecho": "La Ley 20.780 (reforma tributaria) fue promulgada el 26-09-2014 y publicada el 29-09-2014. El proyecto fue patrocinado por el Ejecutivo (gobierno de Michelle Bachelet, Nueva Mayoría). En la Cámara se aprobó en general con 72 votos a favor y 48 en contra; en el Senado, en general, 33 a favor y 1 en contra. No se obtuvo desglose por partido.",
+      "fecha": "2014-09-29",
+      "fuente_url": "https://www.sii.cl/normativa_legislacion/ley20780.pdf"
+     },
+     {
+      "tema": "descentralizacion",
+      "hecho": "La reforma constitucional Ley 20.990 estableció la elección popular del órgano ejecutivo del gobierno regional (gobernador regional); promulgada el 29-12-2016 y publicada el 05-01-2017. El informe de la comisión mixta fue aprobado en el Senado con 24 votos a favor, 1 en contra y 9 abstenciones. No se obtuvo desglose por partido.",
+      "fecha": "2017-01-05",
+      "fuente_url": "https://www.cnnchile.com/pais/el-senado-aprobo-la-eleccion-directa-de-gobernadores-regionales/"
+     },
+     {
+      "tema": "derechos",
+      "hecho": "La Cámara aprobó el proyecto de matrimonio igualitario (Ley 21.400) con 101 votos a favor, 30 en contra y 2 abstenciones; la ley se promulgó el 09-12-2021 y se publicó el 10-12-2021. No se obtuvo desglose por partido.",
+      "fecha": "2021-11-23",
+      "fuente_url": "https://es.wikipedia.org/wiki/Matrimonio_entre_personas_del_mismo_sexo_en_Chile"
+     },
+     {
+      "tema": "derechos",
+      "hecho": "Ley 21.030 (despenalización del aborto en tres causales): el Senado aprobó el proyecto 22 a 13 en agosto de 2017 según una fuente, el Tribunal Constitucional rechazó los requerimientos el 21-08-2017 y la ley se publicó el 23-09-2017. No se obtuvo desglose por partido.",
+      "fecha": "2017-09-23",
+      "fuente_url": "https://www.cnnchile.com/pais/camara-baja-aprobo-informe-de-la-comision-mixta-y-proyecto-de-aborto-pasara-al/"
+     }
+    ]
+   },
+   "congreso": {
+    "2022_2026": {
+     "diputados": 7,
+     "senadores": null,
+     "nota": "Diputados electos en noviembre de 2021 (composición inicial; no refleja cambios de militancia). Senadores en ejercicio por partido: no recuperado",
+     "fuente": "https://es.wikipedia.org/wiki/Elecciones_parlamentarias_de_Chile_de_2021",
+     "verificado": false
+    },
+    "2026_2030": {
+     "diputados": 9,
+     "senadores": 4,
+     "nota": "Electos el 16-nov-2025 (diputados 2026-2030; senadores: total de la bancada 2026-2034 incluye los no renovados)",
+     "fuente": "https://es.wikipedia.org/wiki/Elecciones_parlamentarias_de_Chile_de_2025",
+     "verificado": false
+    }
+   },
+   "estado_servel": "constituido",
+   "fuente_url": "https://www.servel.cl/partidos-politicos/partidos-constituidos/",
+   "fuente_resolucion": "https://www.servel.cl/wp-content/uploads/2026/11/PARTIDO-POR-LA-DEMOCRACIA-4.pdf",
+   "fecha_consulta": "2026-11-23",
+   "verificado": true,
+   "verificado_detalle": {
+    "constitucion_y_regiones": true,
+    "principios": true,
+    "historial": false,
+    "congreso": false
+   }
+  },
+  {
+   "id": "pdc",
+   "nombre_oficial": "Partido Demócrata Cristiano",
+   "sigla": "PDC",
+   "fecha_constitucion": "1988-05-02",
+   "regiones": {
+    "ambito": "Todas las regiones del país",
+    "lista": []
+   },
+   "declaracion_principios": {
+    "verificado": true,
+    "citas": [
+     {
+      "texto": "Se propone básicamente construir una sociedad libre, justa, participativa, solidaria y comunitaria, donde el poder esté descentralizado, perfeccionando y profundizando la Democracia, de modo que se asegure el respeto integral y la plena vigencia de los Derechos Humanos.",
+      "url": "https://www.politicalpartydb.org/wp-content/uploads/Statutes/Chile/Chile_Partido-Democrata-Cristiano_unknown.pdf"
+     },
+     {
+      "texto": "La Democracia Cristiana, adhiriendo a la tradición de la civilización cultural judeo cristiana, es, consecuentemente, un Partido abierto, tolerante y no confesional",
+      "url": "https://www.politicalpartydb.org/wp-content/uploads/Statutes/Chile/Chile_Partido-Democrata-Cristiano_unknown.pdf"
+     }
+    ],
+    "nota": "Art. 001 de los Estatutos del PDC (PDF alojado en politicalpartydb.org, fecha del documento no indicada; texto leído con pdftotext). No es copia del sitio oficial pdc.cl.; ídem"
+   },
+   "ubicacion_ideologica": {
+    "autodescripcion": "Estatutos: partido 'de raigambre y vocación popular ... fundado en los valores del Humanismo Cristiano'.",
+    "fuente_secundaria": "Wikipedia en español (infobox): posición 'Centro' a 'centroizquierda'; ideología: democracia cristiana, socialcristianismo, humanismo cristiano, economía social de mercado, pensamiento comunitario.",
+    "url": "https://es.wikipedia.org/wiki/Partido_Dem%C3%B3crata_Cristiano_(Chile)"
+   },
+   "historial": {
+    "coaliciones": [
+     {
+      "nombre": "Concertación de Partidos por la Democracia",
+      "desde": "1988",
+      "hasta": "2013",
+      "fuente_url": "https://es.wikipedia.org/wiki/Partido_Dem%C3%B3crata_Cristiano_(Chile)"
+     },
+     {
+      "nombre": "Nueva Mayoría",
+      "desde": "2013",
+      "hasta": "2018",
+      "fuente_url": "https://es.wikipedia.org/wiki/Partido_Dem%C3%B3crata_Cristiano_(Chile)"
+     },
+     {
+      "nombre": "Unidad Constituyente",
+      "desde": "2020",
+      "hasta": "2021",
+      "fuente_url": "https://es.wikipedia.org/wiki/Partido_Dem%C3%B3crata_Cristiano_(Chile)"
+     },
+     {
+      "nombre": "Nuevo Pacto Social",
+      "desde": "2021",
+      "hasta": "2021",
+      "fuente_url": "https://es.wikipedia.org/wiki/Partido_Dem%C3%B3crata_Cristiano_(Chile)"
+     },
+     {
+      "nombre": "Todo por Chile",
+      "desde": "2023",
+      "hasta": "2023",
+      "fuente_url": "https://es.wikipedia.org/wiki/Partido_Dem%C3%B3crata_Cristiano_(Chile)"
+     },
+     {
+      "nombre": "Contigo Chile Mejor",
+      "desde": "2024",
+      "hasta": "2024",
+      "fuente_url": "https://es.wikipedia.org/wiki/Partido_Dem%C3%B3crata_Cristiano_(Chile)"
+     },
+     {
+      "nombre": "Unidad por Chile",
+      "desde": "2025",
+      "hasta": null,
+      "fuente_url": "https://es.wikipedia.org/wiki/Partido_Dem%C3%B3crata_Cristiano_(Chile)"
+     }
+    ],
+    "posiciones": [
+     {
+      "tema": "pensiones",
+      "hecho": "En la votación del Senado del proyecto de reforma de pensiones (resultado 40 a favor, 7 en contra, sin abstenciones), los 3 senadores DC (Iván Flores, Francisco Huenchumilla, Yasna Provoste) votaron a favor.",
+      "fecha": "2025-01-28",
+      "fuente_url": "https://www.emol.com/noticias/Nacional/2025/01/28/1155544/como-votaron-senadores-reforma-pensiones.html"
+     },
+     {
+      "tema": "pensiones",
+      "hecho": "La Cámara de Diputados despachó a ley el proyecto de reforma previsional en tercer trámite con 110 votos a favor y 38 en contra. Los resultados consultados no entregan desglose por partido.",
+      "fecha": "2025-01-29",
+      "fuente_url": "https://previsionsocial.gob.cl/congreso-despacho-a-ley-la-reforma-previsional-camara-de-diputados-aprobo-el-proyecto-por-110-votos-a-favor-y-38-en-contra/"
+     },
+     {
+      "tema": "tributaria",
+      "hecho": "La Ley 20.780 (reforma tributaria) fue promulgada el 26-09-2014 y publicada el 29-09-2014. El proyecto fue patrocinado por el Ejecutivo (gobierno de Michelle Bachelet, Nueva Mayoría). En la Cámara se aprobó en general con 72 votos a favor y 48 en contra; en el Senado, en general, 33 a favor y 1 en contra. No se obtuvo desglose por partido.",
+      "fecha": "2014-09-29",
+      "fuente_url": "https://www.sii.cl/normativa_legislacion/ley20780.pdf"
+     },
+     {
+      "tema": "descentralizacion",
+      "hecho": "La reforma constitucional Ley 20.990 estableció la elección popular del órgano ejecutivo del gobierno regional (gobernador regional); promulgada el 29-12-2016 y publicada el 05-01-2017. El informe de la comisión mixta fue aprobado en el Senado con 24 votos a favor, 1 en contra y 9 abstenciones. No se obtuvo desglose por partido.",
+      "fecha": "2017-01-05",
+      "fuente_url": "https://www.cnnchile.com/pais/el-senado-aprobo-la-eleccion-directa-de-gobernadores-regionales/"
+     },
+     {
+      "tema": "derechos",
+      "hecho": "La Cámara aprobó el proyecto de matrimonio igualitario (Ley 21.400) con 101 votos a favor, 30 en contra y 2 abstenciones; la ley se promulgó el 09-12-2021 y se publicó el 10-12-2021. No se obtuvo desglose por partido.",
+      "fecha": "2021-11-23",
+      "fuente_url": "https://es.wikipedia.org/wiki/Matrimonio_entre_personas_del_mismo_sexo_en_Chile"
+     },
+     {
+      "tema": "derechos",
+      "hecho": "Ley 21.030 (despenalización del aborto en tres causales): el Senado aprobó el proyecto 22 a 13 en agosto de 2017 según una fuente, el Tribunal Constitucional rechazó los requerimientos el 21-08-2017 y la ley se publicó el 23-09-2017. No se obtuvo desglose por partido.",
+      "fecha": "2017-09-23",
+      "fuente_url": "https://www.cnnchile.com/pais/camara-baja-aprobo-informe-de-la-comision-mixta-y-proyecto-de-aborto-pasara-al/"
+     },
+     {
+      "tema": "rol_del_estado",
+      "hecho": "BCN registra que el PDC, el 28-11-2021, apoyó a Gabriel Boric en segunda vuelta y 'no se propone ingresar a su gobierno'.",
+      "fecha": "2021-11-28",
+      "fuente_url": "https://www.bcn.cl/historiapolitica/partidos_politicos/wiki/Partido_Dem%C3%B3crata_Cristiano"
+     }
+    ]
+   },
+   "congreso": {
+    "2022_2026": {
+     "diputados": 8,
+     "senadores": null,
+     "nota": "Diputados electos en noviembre de 2021 (composición inicial; no refleja cambios de militancia). Senadores en ejercicio por partido: no recuperado",
+     "fuente": "https://es.wikipedia.org/wiki/Elecciones_parlamentarias_de_Chile_de_2021",
+     "verificado": false
+    },
+    "2026_2030": {
+     "diputados": 8,
+     "senadores": 3,
+     "nota": "Electos el 16-nov-2025 (diputados 2026-2030; senadores: total de la bancada 2026-2034 incluye los no renovados)",
+     "fuente": "https://es.wikipedia.org/wiki/Elecciones_parlamentarias_de_Chile_de_2025",
+     "verificado": false
+    }
+   },
+   "estado_servel": "constituido",
+   "fuente_url": "https://www.servel.cl/partidos-politicos/partidos-constituidos/",
+   "fuente_resolucion": "https://www.servel.cl/wp-content/uploads/2026/07/PARTIDO-DEMOCRATA-CRISTIANO-2.pdf",
+   "fecha_consulta": "2026-11-23",
+   "verificado": true,
+   "verificado_detalle": {
+    "constitucion_y_regiones": true,
+    "principios": true,
+    "historial": false,
+    "congreso": false
+   }
+  },
+  {
+   "id": "pcch",
+   "nombre_oficial": "Partido Comunista de Chile",
+   "sigla": "PCCh",
+   "fecha_constitucion": "2010-05-28",
+   "regiones": {
+    "ambito": "Todas las regiones del país",
+    "lista": []
+   },
+   "declaracion_principios": {
+    "verificado": false,
+    "citas": [],
+    "nota": "No se pudo obtener el texto primario vigente (pcchile.cl devolvió 404; la búsqueda solo devolvió estatutos históricos de 1946 en marxists.org). Sin citas textuales."
+   },
+   "ubicacion_ideologica": {
+    "autodescripcion": "BCN relata que la declaración de principios de 1922 declaró 'abolido el régimen capitalista en todas sus manifestaciones' (cita de BCN, texto de 1922, no vigente).",
+    "fuente_secundaria": "Wikipedia en español (infobox): posición 'Izquierda'; ideología: comunismo, marxismo-leninismo, socialismo democrático, feminismo de clase, latinoamericanismo, antineoliberalismo.",
+    "url": "https://es.wikipedia.org/wiki/Partido_Comunista_de_Chile"
+   },
+   "historial": {
+    "coaliciones": [
+     {
+      "nombre": "Juntos Podemos Más",
+      "desde": "2003-12-13",
+      "hasta": "2011",
+      "fuente_url": "https://es.wikipedia.org/wiki/Partido_Comunista_de_Chile"
+     },
+     {
+      "nombre": "Nueva Mayoría",
+      "desde": "2013",
+      "hasta": "2018",
+      "fuente_url": "https://es.wikipedia.org/wiki/Partido_Comunista_de_Chile"
+     },
+     {
+      "nombre": "Chile Digno",
+      "desde": "2019",
+      "hasta": "2022",
+      "fuente_url": "https://es.wikipedia.org/wiki/Partido_Comunista_de_Chile"
+     },
+     {
+      "nombre": "Apruebo Dignidad",
+      "desde": "2021",
+      "hasta": "2023",
+      "fuente_url": "https://es.wikipedia.org/wiki/Partido_Comunista_de_Chile"
+     },
+     {
+      "nombre": "Unidad para Chile (Consejo Constitucional 2023)",
+      "desde": "2023",
+      "hasta": "2023",
+      "fuente_url": "https://www.bcn.cl/historiapolitica/partidos_politicos/wiki/Partido_Comunista_de_Chile"
+     },
+     {
+      "nombre": "Unidad por Chile",
+      "desde": "2025",
+      "hasta": null,
+      "fuente_url": "https://es.wikipedia.org/wiki/Partido_Comunista_de_Chile"
+     }
+    ],
+    "posiciones": [
+     {
+      "tema": "pensiones",
+      "hecho": "En la votación del Senado del proyecto de reforma de pensiones (resultado 40 a favor, 7 en contra, sin abstenciones), los 2 senadores PC (Daniel Núñez, Claudia Pascual) votaron a favor.",
+      "fecha": "2025-01-28",
+      "fuente_url": "https://www.emol.com/noticias/Nacional/2025/01/28/1155544/como-votaron-senadores-reforma-pensiones.html"
+     },
+     {
+      "tema": "pensiones",
+      "hecho": "Tras la votación de la Cámara, el diputado PC Luis Cuello declaró que 'podemos comenzar a hablar de seguridad social' (reacción registrada por Biobío).",
+      "fecha": "2025-01-29",
+      "fuente_url": "https://www.biobiochile.cl/noticias/nacional/chile/2025/01/29/camara-de-diputados-aprueba-en-general-la-reforma-de-pensiones-con-amplia-mayoria.shtml"
+     },
+     {
+      "tema": "pensiones",
+      "hecho": "La Cámara de Diputados despachó a ley el proyecto de reforma previsional en tercer trámite con 110 votos a favor y 38 en contra. Los resultados consultados no entregan desglose por partido.",
+      "fecha": "2025-01-29",
+      "fuente_url": "https://previsionsocial.gob.cl/congreso-despacho-a-ley-la-reforma-previsional-camara-de-diputados-aprobo-el-proyecto-por-110-votos-a-favor-y-38-en-contra/"
+     },
+     {
+      "tema": "tributaria",
+      "hecho": "La Ley 20.780 (reforma tributaria) fue promulgada el 26-09-2014 y publicada el 29-09-2014. El proyecto fue patrocinado por el Ejecutivo (gobierno de Michelle Bachelet, Nueva Mayoría). En la Cámara se aprobó en general con 72 votos a favor y 48 en contra; en el Senado, en general, 33 a favor y 1 en contra. No se obtuvo desglose por partido.",
+      "fecha": "2014-09-29",
+      "fuente_url": "https://www.sii.cl/normativa_legislacion/ley20780.pdf"
+     },
+     {
+      "tema": "derechos",
+      "hecho": "La Cámara aprobó el proyecto de matrimonio igualitario (Ley 21.400) con 101 votos a favor, 30 en contra y 2 abstenciones; la ley se promulgó el 09-12-2021 y se publicó el 10-12-2021. No se obtuvo desglose por partido.",
+      "fecha": "2021-11-23",
+      "fuente_url": "https://es.wikipedia.org/wiki/Matrimonio_entre_personas_del_mismo_sexo_en_Chile"
+     }
+    ]
+   },
+   "congreso": {
+    "2022_2026": {
+     "diputados": 12,
+     "senadores": null,
+     "nota": "Diputados electos en noviembre de 2021 (composición inicial; no refleja cambios de militancia). Senadores en ejercicio por partido: no recuperado",
+     "fuente": "https://es.wikipedia.org/wiki/Elecciones_parlamentarias_de_Chile_de_2021",
+     "verificado": false
+    },
+    "2026_2030": {
+     "diputados": 11,
+     "senadores": 3,
+     "nota": "Electos el 16-nov-2025 (diputados 2026-2030; senadores: total de la bancada 2026-2034 incluye los no renovados)",
+     "fuente": "https://es.wikipedia.org/wiki/Elecciones_parlamentarias_de_Chile_de_2025",
+     "verificado": false
+    }
+   },
+   "estado_servel": "constituido",
+   "fuente_url": "https://www.servel.cl/partidos-politicos/partidos-constituidos/",
+   "fuente_resolucion": "https://www.servel.cl/wp-content/uploads/2025/11/PARTIDO-COMUNISTA-DE-CHILE-6.pdf",
+   "fecha_consulta": "2026-11-23",
+   "verificado": true,
+   "verificado_detalle": {
+    "constitucion_y_regiones": true,
+    "principios": false,
+    "historial": false,
+    "congreso": false
+   }
+  },
+  {
+   "id": "fa",
+   "nombre_oficial": "Frente Amplio",
+   "sigla": "FA",
+   "fecha_constitucion": "2024-07-02",
+   "regiones": {
+    "ambito": "Todas las regiones del país",
+    "lista": []
+   },
+   "declaracion_principios": {
+    "verificado": false,
+    "citas": [],
+    "nota": "No se obtuvo el texto primario de la declaración de principios (frenteamplio.cl/Servel no recuperados). Solo hay descripciones de BCN y prensa, no citas textuales del partido."
+   },
+   "ubicacion_ideologica": {
+    "autodescripcion": "Según BCN, el partido 'se declara profundamente democrático y se define socialista, feminista y ecologista' (cita de BCN, no del documento del partido); también 'un proyecto político patriótico, latinoamericanista e internacionalista'.",
+    "fuente_secundaria": "Wikipedia en español (infobox): posición 'Izquierda'; ideología: progresismo, populismo de izquierda, socialismo democrático, feminismo transinclusivo, ecologismo, democracia radical. Fundación 19-04-2024; Servel confirmó la fusión Convergencia Social-Revolución Democrática el 01-07-2024.",
+    "url": "https://es.wikipedia.org/wiki/Frente_Amplio_(partido_pol%C3%ADtico_de_Chile)"
+   },
+   "historial": {
+    "coaliciones": [
+     {
+      "nombre": "Frente Amplio (coalición, antecedente)",
+      "desde": "2017-01-21",
+      "hasta": "2024",
+      "fuente_url": "https://es.wikipedia.org/wiki/Frente_Amplio_(partido_pol%C3%ADtico_de_Chile)"
+     },
+     {
+      "nombre": "Apruebo Dignidad (bloque que respaldó a Gabriel Boric en 2021; fechas no confirmadas para el partido)",
+      "desde": "2021",
+      "hasta": null,
+      "fuente_url": "https://www.bcn.cl/historiapolitica/partidos_politicos/wiki/Partido_Comunista_de_Chile"
+     },
+     {
+      "nombre": "Alianza de Gobierno con Socialismo Democrático (administración Boric 2022-2026)",
+      "desde": "2022",
+      "hasta": "2026",
+      "fuente_url": "https://es.wikipedia.org/wiki/Frente_Amplio_(partido_pol%C3%ADtico_de_Chile)"
+     },
+     {
+      "nombre": "Unidad por Chile",
+      "desde": "2025",
+      "hasta": null,
+      "fuente_url": "https://es.wikipedia.org/wiki/Frente_Amplio_(partido_pol%C3%ADtico_de_Chile)"
+     }
+    ],
+    "posiciones": [
+     {
+      "tema": "pensiones",
+      "hecho": "Tras la votación de la Cámara, el diputado FA Diego Ibáñez declaró que la reforma era 'una victoria del pueblo de Chile' (reacción registrada por Biobío). El FA no tenía senadores en la lista de votación del Senado consultada.",
+      "fecha": "2025-01-29",
+      "fuente_url": "https://www.biobiochile.cl/noticias/nacional/chile/2025/01/29/camara-de-diputados-aprueba-en-general-la-reforma-de-pensiones-con-amplia-mayoria.shtml"
+     },
+     {
+      "tema": "pensiones",
+      "hecho": "La Cámara de Diputados despachó a ley el proyecto de reforma previsional en tercer trámite con 110 votos a favor y 38 en contra. Los resultados consultados no entregan desglose por partido.",
+      "fecha": "2025-01-29",
+      "fuente_url": "https://previsionsocial.gob.cl/congreso-despacho-a-ley-la-reforma-previsional-camara-de-diputados-aprobo-el-proyecto-por-110-votos-a-favor-y-38-en-contra/"
+     },
+     {
+      "tema": "tributaria",
+      "hecho": "El proyecto de reforma tributaria del gobierno de Gabriel Boric, en cuya Alianza de Gobierno participó el FA, fue rechazado en la idea de legislar en la Cámara (73 a favor, 71 en contra, 3 abstenciones).",
+      "fecha": "2023-03-08",
+      "fuente_url": "https://www.radioagricultura.cl/economia/2023/03/08/camara-rechaza-en-general-el-proyecto-de-reforma-tributaria/"
+     }
+    ]
+   },
+   "congreso": {
+    "2022_2026": {
+     "diputados": null,
+     "senadores": null,
+     "nota": "Suma de los partidos fundadores del FA (CS 9, RD 8, Comunes 6) elegidos en 2021; el partido se constituyó en 2024",
+     "fuente": "https://es.wikipedia.org/wiki/Elecciones_parlamentarias_de_Chile_de_2021",
+     "verificado": false
+    },
+    "2026_2030": {
+     "diputados": 17,
+     "senadores": 2,
+     "nota": "Electos el 16-nov-2025 (diputados 2026-2030; senadores: total de la bancada 2026-2034 incluye los no renovados)",
+     "fuente": "https://es.wikipedia.org/wiki/Elecciones_parlamentarias_de_Chile_de_2025",
+     "verificado": false
+    }
+   },
+   "estado_servel": "constituido",
+   "fuente_url": "https://www.servel.cl/partidos-politicos/partidos-constituidos/",
+   "fuente_resolucion": "https://www.servel.cl/wp-content/uploads/2026/11/FRENTE-AMPLIO-232.pdf",
+   "fecha_consulta": "2026-11-23",
+   "verificado": true,
+   "verificado_detalle": {
+    "constitucion_y_regiones": true,
+    "principios": false,
+    "historial": false,
+    "congreso": false
+   }
+  },
+  {
+   "id": "pl",
+   "nombre_oficial": "Partido Liberal de Chile",
+   "sigla": "PL",
+   "fecha_constitucion": "2018-11-13",
+   "regiones": {
+    "ambito": "Regiones indicadas",
+    "lista": [
+     "Arica y Parinacota",
+     "Tarapacá",
+     "Antofagasta",
+     "Atacama",
+     "Coquimbo",
+     "Valparaíso",
+     "Metropolitana de Santiago",
+     "O'Higgins",
+     "Maule",
+     "Ñuble",
+     "Biobío",
+     "La Araucanía",
+     "Los Lagos"
+    ]
+   },
+   "declaracion_principios": {
+    "verificado": true,
+    "citas": [
+     {
+      "texto": "Estamos convencidos que la Libertad y la Igualdad deben entenderse como valores que se funden y que no pueden estar disociados, que son pilares fundamentales para el futuro del país.",
+      "url": "https://liberaleschile.cl/manifiesto/"
+     },
+     {
+      "texto": "Nos identificamos con un proyecto de centro izquierda, reformador, progresista y capaz de distribuir el poder de manera equitativa, a fin de evitar la concentración en élites",
+      "url": "https://liberaleschile.cl/manifiesto/"
+     }
+    ],
+    "nota": null
+   },
+   "ubicacion_ideologica": {
+    "autodescripcion": "Se autodefine de centro izquierda, reformador y progresista (manifiesto del partido); Wikipedia: centro a centroizquierda.",
+    "fuente_secundaria": null,
+    "url": "https://liberaleschile.cl/manifiesto/"
+   },
+   "historial": {
+    "coaliciones": [
+     {
+      "nombre": "Alternativa Democrática (con Humanista y otros)",
+      "desde": "2016-07-23",
+      "hasta": "2016 (municipales)",
+      "fuente_url": "https://www.bcn.cl/historiapolitica/partidos_politicos/wiki/Partido_Liberal_de_Chile"
+     },
+     {
+      "nombre": "Frente Amplio",
+      "desde": "2017-01-21",
+      "hasta": "2020-12-05",
+      "fuente_url": "https://www.bcn.cl/historiapolitica/partidos_politicos/wiki/Partido_Liberal_de_Chile"
+     },
+     {
+      "nombre": "Nuevo Trato",
+      "desde": "2020-12-30",
+      "hasta": "2022",
+      "fuente_url": "https://www.bcn.cl/historiapolitica/partidos_politicos/wiki/Partido_Liberal_de_Chile"
+     },
+     {
+      "nombre": "Unidad Constituyente (Lista del Apruebo)",
+      "desde": "2021-01-11",
+      "hasta": "2021",
+      "fuente_url": "https://www.bcn.cl/historiapolitica/partidos_politicos/wiki/Partido_Liberal_de_Chile"
+     },
+     {
+      "nombre": "Nuevo Pacto Social",
+      "desde": "2021-08-23",
+      "hasta": "2021-11 (elecciones parlamentarias)",
+      "fuente_url": "https://www.bcn.cl/historiapolitica/partidos_politicos/wiki/Partido_Liberal_de_Chile"
+     },
+     {
+      "nombre": "Gobierno de Gabriel Boric (ministro de Obras Publicas Juan Carlos García)",
+      "desde": "2022-03",
+      "hasta": "2023 (segundo cambio de gabinete; fecha exacta no verificada)",
+      "fuente_url": "https://es.wikipedia.org/wiki/Partido_Liberal_de_Chile_(2013)"
+     },
+     {
+      "nombre": "Unidad para Chile (consejeros constitucionales)",
+      "desde": "2023",
+      "hasta": "2023",
+      "fuente_url": "https://es.wikipedia.org/wiki/Partido_Liberal_de_Chile_(2013)"
+     }
+    ],
+    "posiciones": [
+     {
+      "tema": "seguridad",
+      "hecho": "La bancada del partido presentó un proyecto para acelerar la deportación de migrantes que cometan delitos.",
+      "fecha": "2022-10",
+      "fuente_url": "https://es.wikipedia.org/wiki/Partido_Liberal_de_Chile_(2013)"
+     },
+     {
+      "tema": "rol_del_estado",
+      "hecho": "El manifiesto declara 'libertad individual como económica, con un estado robusto que evite la concentración de la riqueza'.",
+      "fecha": "sin fecha en la fuente (manifiesto vigente)",
+      "fuente_url": "https://liberaleschile.cl/manifiesto/"
+     },
+     {
+      "tema": "derechos",
+      "hecho": "El manifiesto incluye laicidad: neutralidad del Estado frente a opciones religiosas (resumen BCN del manifiesto, actualizado oct-dic 2019).",
+      "fecha": "2019",
+      "fuente_url": "https://www.bcn.cl/historiapolitica/partidos_politicos/wiki/Partido_Liberal_de_Chile"
+     }
+    ]
+   },
+   "congreso": {
+    "2022_2026": {
+     "diputados": 4,
+     "senadores": null,
+     "nota": "Diputados electos en noviembre de 2021 (composición inicial; no refleja cambios de militancia). Senadores en ejercicio por partido: no recuperado",
+     "fuente": "https://es.wikipedia.org/wiki/Elecciones_parlamentarias_de_Chile_de_2021",
+     "verificado": false
+    },
+    "2026_2030": {
+     "diputados": 3,
+     "senadores": 1,
+     "nota": "Electos el 16-nov-2025 (diputados 2026-2030; senadores: total de la bancada 2026-2034 incluye los no renovados)",
+     "fuente": "https://es.wikipedia.org/wiki/Elecciones_parlamentarias_de_Chile_de_2025",
+     "verificado": false
+    }
+   },
+   "estado_servel": "constituido",
+   "fuente_url": "https://www.servel.cl/partidos-politicos/partidos-constituidos/",
+   "fuente_resolucion": "https://www.servel.cl/wp-content/uploads/2026/07/PARTIDO-LIBERAL-DE-CHILE-137.pdf",
+   "fecha_consulta": "2026-11-23",
+   "verificado": true,
+   "verificado_detalle": {
+    "constitucion_y_regiones": true,
+    "principios": true,
+    "historial": false,
+    "congreso": false
+   }
+  },
+  {
+   "id": "pr",
+   "nombre_oficial": "Partido Radical de Chile",
+   "sigla": "PR",
+   "fecha_constitucion": "1994-08-18",
+   "regiones": {
+    "ambito": "Todas las regiones del país",
+    "lista": []
+   },
+   "declaracion_principios": {
+    "verificado": false,
+    "citas": [],
+    "nota": null
+   },
+   "ubicacion_ideologica": {
+    "autodescripcion": "Wikipedia: centro y centroizquierda; se declara progresista, laico, socialdemocrata (resumen secundario).",
+    "fuente_secundaria": null,
+    "url": "https://es.wikipedia.org/wiki/Partido_Radical_de_Chile"
+   },
+   "historial": {
+    "coaliciones": [
+     {
+      "nombre": "Concertacion de Partidos por la Democracia",
+      "desde": "1988",
+      "hasta": "2013",
+      "fuente_url": "https://es.wikipedia.org/wiki/Partido_Radical_de_Chile"
+     },
+     {
+      "nombre": "Nueva Mayoria",
+      "desde": "2013",
+      "hasta": "2018",
+      "fuente_url": "https://es.wikipedia.org/wiki/Partido_Radical_de_Chile"
+     },
+     {
+      "nombre": "Convergencia Progresista",
+      "desde": "2018",
+      "hasta": "2020",
+      "fuente_url": "https://es.wikipedia.org/wiki/Partido_Radical_de_Chile"
+     },
+     {
+      "nombre": "Unidad Constituyente",
+      "desde": "2020",
+      "hasta": "2021",
+      "fuente_url": "https://es.wikipedia.org/wiki/Partido_Radical_de_Chile"
+     },
+     {
+      "nombre": "Socialismo Democratico",
+      "desde": "2022",
+      "hasta": "2026 (segun Wikipedia)",
+      "fuente_url": "https://es.wikipedia.org/wiki/Partido_Radical_de_Chile"
+     },
+     {
+      "nombre": "Unidad por Chile",
+      "desde": "2022 (sic; Wikipedia)",
+      "hasta": "2026",
+      "fuente_url": "https://es.wikipedia.org/wiki/Partido_Radical_de_Chile"
+     }
+    ],
+    "posiciones": []
+   },
+   "congreso": {
+    "2022_2026": {
+     "diputados": 4,
+     "senadores": null,
+     "nota": "Diputados electos en noviembre de 2021 (composición inicial; no refleja cambios de militancia). Senadores en ejercicio por partido: no recuperado",
+     "fuente": "https://es.wikipedia.org/wiki/Elecciones_parlamentarias_de_Chile_de_2021",
+     "verificado": false
+    },
+    "2026_2030": {
+     "diputados": 2,
+     "senadores": 0,
+     "nota": "Electos el 16-nov-2025 (diputados 2026-2030; senadores: total de la bancada 2026-2034 incluye los no renovados)",
+     "fuente": "https://es.wikipedia.org/wiki/Elecciones_parlamentarias_de_Chile_de_2025",
+     "verificado": false
+    }
+   },
+   "estado_servel": "constituido",
+   "fuente_url": "https://www.servel.cl/partidos-politicos/partidos-constituidos/",
+   "fuente_resolucion": "https://www.servel.cl/wp-content/uploads/2026/09/PARTIDO-RADICAL-DE-CHILE-7.pdf",
+   "fecha_consulta": "2026-11-23",
+   "verificado": true,
+   "verificado_detalle": {
+    "constitucion_y_regiones": true,
+    "principios": false,
+    "historial": false,
+    "congreso": false
+   }
+  },
+  {
+   "id": "frvs",
+   "nombre_oficial": "Federación Regionalista Verde Social",
+   "sigla": "FRVS",
+   "fecha_constitucion": "2017-04-13",
+   "regiones": {
+    "ambito": "Todas las regiones del país",
+    "lista": []
+   },
+   "declaracion_principios": {
+    "verificado": false,
+    "citas": [
+     {
+      "texto": "El gobierno debe ser de todos y para todas, debe ser un bien público, su ejercicio es un derecho y una responsabilidad social",
+      "url": "https://frevs.cl/transparencia-interna/origen-y-principios/declaracion-de-principios/"
+     },
+     {
+      "texto": "Transitar de la visión antropocéntrica hacia una eco céntrica es parte de nuestro ideario",
+      "url": "https://frevs.cl/transparencia-interna/origen-y-principios/declaracion-de-principios/"
+     },
+     {
+      "texto": "Valora y privilegia la educación pública y de calidad, en todos los niveles",
+      "url": "https://frevs.cl/transparencia-interna/origen-y-principios/declaracion-de-principios/"
+     }
+    ],
+    "nota": null
+   },
+   "ubicacion_ideologica": {
+    "autodescripcion": "Wikipedia: entre centroizquierda e izquierda; documento partidario 2020 indica mayor cercania con la centroizquierda.",
+    "fuente_secundaria": null,
+    "url": "https://es.wikipedia.org/wiki/Federaci%C3%B3n_Regionalista_Verde_Social"
+   },
+   "historial": {
+    "coaliciones": [
+     {
+      "nombre": "Coalicion Regionalista Verde (con DRP)",
+      "desde": "2017-08-16",
+      "hasta": "2017",
+      "fuente_url": "https://www.bcn.cl/historiapolitica/partidos_politicos/wiki/Federaci%C3%B3n_Regionalista_Verde_Social"
+     },
+     {
+      "nombre": "Apoyo a La Fuerza de la Mayoria (Guillier), segunda vuelta",
+      "desde": "2017-12-17",
+      "hasta": "2017-12",
+      "fuente_url": "https://www.bcn.cl/historiapolitica/partidos_politicos/wiki/Federaci%C3%B3n_Regionalista_Verde_Social"
+     },
+     {
+      "nombre": "Chile Digno, Verde y Soberano (con PC)",
+      "desde": "2020-11-22",
+      "hasta": "2021",
+      "fuente_url": "https://www.bcn.cl/historiapolitica/partidos_politicos/wiki/Federaci%C3%B3n_Regionalista_Verde_Social"
+     },
+     {
+      "nombre": "Apruebo Dignidad",
+      "desde": "2021 (BCN: nov 2021)",
+      "hasta": "2023",
+      "fuente_url": "https://es.wikipedia.org/wiki/Federaci%C3%B3n_Regionalista_Verde_Social"
+     },
+     {
+      "nombre": "Unidad por Chile (oficialismo 2025); ademas lista 'Verdes, Regionalistas y Humanistas' con Accion Humanista inscrita en ago-2025",
+      "desde": "2025",
+      "hasta": "2025",
+      "fuente_url": "https://es.wikipedia.org/wiki/Federaci%C3%B3n_Regionalista_Verde_Social"
+     }
+    ],
+    "posiciones": [
+     {
+      "tema": "medioambiente",
+      "hecho": "Su declaracion de principios incluye transitar de una vision antropocentrica a una ecocentrica.",
+      "fecha": "sin fecha (vigente)",
+      "fuente_url": "https://frevs.cl/transparencia-interna/origen-y-principios/declaracion-de-principios/"
+     },
+     {
+      "tema": "descentralizacion",
+      "hecho": "Eslogan registrado: 'Regionalizar para desarrollar'; ideologia declarada regionalismo y descentralizacion (Wikipedia).",
+      "fecha": "sin fecha",
+      "fuente_url": "https://es.wikipedia.org/wiki/Federaci%C3%B3n_Regionalista_Verde_Social"
+     }
+    ]
+   },
+   "congreso": {
+    "2022_2026": {
+     "diputados": 2,
+     "senadores": null,
+     "nota": "Diputados electos en noviembre de 2021 (composición inicial; no refleja cambios de militancia). Senadores en ejercicio por partido: no recuperado",
+     "fuente": "https://es.wikipedia.org/wiki/Elecciones_parlamentarias_de_Chile_de_2021",
+     "verificado": false
+    },
+    "2026_2030": {
+     "diputados": 2,
+     "senadores": 3,
+     "nota": "Electos el 16-nov-2025 (diputados 2026-2030; senadores: total de la bancada 2026-2034 incluye los no renovados)",
+     "fuente": "https://es.wikipedia.org/wiki/Elecciones_parlamentarias_de_Chile_de_2025",
+     "verificado": false
+    }
+   },
+   "estado_servel": "constituido",
+   "fuente_url": "https://www.servel.cl/partidos-politicos/partidos-constituidos/",
+   "fuente_resolucion": "https://www.servel.cl/wp-content/uploads/2025/08/FEDERACION-REGIONALISTA-VERDE-SOCIAL-130.pdf",
+   "fecha_consulta": "2026-11-23",
+   "verificado": true,
+   "verificado_detalle": {
+    "constitucion_y_regiones": true,
+    "principios": false,
+    "historial": false,
+    "congreso": false
+   }
+  },
+  {
+   "id": "rn",
+   "nombre_oficial": "Renovación Nacional",
+   "sigla": "RN",
+   "fecha_constitucion": "1988-02-08",
+   "regiones": {
+    "ambito": "Todas las regiones del país",
+    "lista": []
+   },
+   "declaracion_principios": {
+    "verificado": true,
+    "citas": [
+     {
+      "texto": "Un orden social basado en la libertad, en que el Estado debe estar al servicio de las personas, la familia y la sociedad civil.",
+      "url": "https://www.rn.cl/_files/ugd/b7ddef_02c095cdd16945728c9d7d2500586618.pdf"
+     },
+     {
+      "texto": "El respaldo al proceso de regionalización y el traspaso creciente de atribuciones y recursos desde el gobierno central a los gobiernos locales.",
+      "url": "https://www.rn.cl/_files/ugd/b7ddef_02c095cdd16945728c9d7d2500586618.pdf"
+     },
+     {
+      "texto": "La economía social de mercado, apoyada en los principios de propiedad privada, libertad de emprendimiento e igualdad de oportunidades.",
+      "url": "https://www.rn.cl/_files/ugd/b7ddef_02c095cdd16945728c9d7d2500586618.pdf"
+     }
+    ],
+    "nota": "Estatutos de RN, texto refundido 2016, Título Preliminar 'Principios de Renovación Nacional' (PDF publicado en rn.cl). La página rn.cl/principios-rn lista los títulos de los principios sin el texto desplegado."
+   },
+   "ubicacion_ideologica": {
+    "autodescripcion": "Los estatutos no incluyen un rótulo izquierda-derecha; declaran como principios la economía social de mercado, la subsidiariedad y la solidaridad (ver citas).",
+    "fuente_secundaria": "Wikipedia (es) ficha del partido: posición 'centroderecha' y 'derecha' (cita BCN y otras fuentes); ideología listada: economía social de mercado, conservadurismo, conservadurismo liberal, anticomunismo; facciones listadas incluyen socialcristianismo y liberalismo clásico.",
+    "url": "https://es.wikipedia.org/wiki/Renovación_Nacional"
+   },
+   "historial": {
+    "coaliciones": [
+     {
+      "nombre": "Alianza (por Chile)",
+      "desde": "1989",
+      "hasta": "2015",
+      "fuente_url": "https://es.wikipedia.org/wiki/Renovación_Nacional"
+     },
+     {
+      "nombre": "Coalición por el Cambio",
+      "desde": "2009",
+      "hasta": "2013",
+      "fuente_url": "https://es.wikipedia.org/wiki/Renovación_Nacional"
+     },
+     {
+      "nombre": "Chile Vamos",
+      "desde": "2015",
+      "hasta": "vigente (2025)",
+      "fuente_url": "https://es.wikipedia.org/wiki/Renovación_Nacional"
+     },
+     {
+      "nombre": "Chile Podemos Más (pacto parlamentario 2021)",
+      "desde": "2021-08-22",
+      "hasta": "2021 (elección parlamentaria)",
+      "fuente_url": "https://www.radioagricultura.cl/noticias/politica/chile-vamos-inscribe-en-el-servel-el-pacto-parlamentario-chile-podemos_20210822/"
+     },
+     {
+      "nombre": "Chile Grande y Unido (pacto parlamentario 2025)",
+      "desde": "2025-08",
+      "hasta": "2025 (elección del 16-nov-2025)",
+      "fuente_url": "https://es.wikipedia.org/wiki/Chile_Grande_y_Unido"
+     }
+    ],
+    "posiciones": [
+     {
+      "tema": "pensiones",
+      "hecho": "Senado, 28-ene-2025, votación de la reforma de pensiones: 40 votos a favor y 7 en contra. Votaron en contra los senadores María José Gatica (RN), Carlos Kuschel (RN), Alejandro Kusanovic (IND-RN) y Kenneth Pugh (IND-RN), además de otros tres senadores de otros partidos. La reforma pasó a ser la Ley 21.735.",
+      "fecha": "2025-01-28",
+      "fuente_url": "https://www.emol.com/noticias/Nacional/2025/01/28/1155544/como-votaron-senadores-reforma-pensiones.html"
+     },
+     {
+      "tema": "pensiones",
+      "hecho": "Cámara de Diputados, 29-ene-2025: la reforma se aprobó con amplia mayoría (110 a favor y 38 en contra según Hacienda). La jefa de bancada de RN, Ximena Ossandón, destacó el trabajo realizado en la Cámara; no se obtuvo el desglose de voto de la bancada.",
+      "fecha": "2025-01-29",
+      "fuente_url": "https://www.eldinamo.cl/politica/2025/01/30/la-politica-de-los-acuerdos-2-0-partido-comunista-y-chile-vamos-se-unen-para-celebrar-la-reforma-de-pensiones-con-dardos-a-republicanos/"
+     },
+     {
+      "tema": "tributaria",
+      "hecho": "Cámara, mayo de 2014: según Cooperativa, UDI, RN, Evópoli y Amplitud votaron en contra de la idea de legislar el proyecto de reforma tributaria del gobierno de Bachelet. En julio de 2014, tras el protocolo de acuerdo entre el gobierno y la Alianza (8-jul-2014), el Senado aprobó en general con 33 votos a favor; resultó la Ley 20.780.",
+      "fecha": "2014-05-14",
+      "fuente_url": "https://cooperativa.cl/noticias/economia/impuestos/sectores-votaron-en-bloque-la-reforma-tributaria-en-la-camara-de-diputa/2014-05-14/074503.html"
+     },
+     {
+      "tema": "tributaria",
+      "hecho": "Cámara, 8-mar-2023: se rechazó la idea de legislar el proyecto de reforma tributaria del Ejecutivo (73 a favor, 71 en contra, 3 abstenciones; se requerían 78). La Tercera informa que la derecha había acordado rechazar en bloque; no se obtuvo el desglose por partido.",
+      "fecha": "2023-03-08",
+      "fuente_url": "https://www.camara.cl/cms/noticias/2023/03/08/camara-rechazo-el-primer-proyecto-de-la-reforma-tributaria-impulsada-por-el-ejecutivo/"
+     },
+     {
+      "tema": "derechos",
+      "hecho": "Matrimonio igualitario: Cámara, 23-nov-2021, 101 votos a favor, 30 en contra, 2 abstenciones; entre quienes rechazaron figuran los diputados Miguel Mellado, Leopoldo Pérez y Ximena Ossandón (RN); una abstención fue de Aracely Leuquén (RN). En el Senado, 7-dic-2021, el informe de comisión mixta se aprobó 21 a 8 con 3 abstenciones; votaron en contra los senadores Juan Castro, Francisco Chahuán y Manuel José Ossandón (RN). Nota: Pauta/Chilevisión no coinciden en la bancada de algunos senadores. La fuente no menciona el número de ley.",
+      "fecha": "2021-12-07",
+      "fuente_url": "https://www.pauta.cl/nacional/congreso-aprueba-matrimonio-igualitario-sebastian-pinera-michelle-bacehet"
+     },
+     {
+      "tema": "derechos",
+      "hecho": "Aborto en tres causales: el requerimiento ante el Tribunal Constitucional contra el proyecto fue presentado por parlamentarios de Chile Vamos (incluye RN) en 2017; el TC lo rechazó por 6 votos contra 4 el 21-ago-2017. Resultó la Ley 21.030 (D.O. 23-sep-2017). Nota: el nivel de detalle es de coalición, no de votos individuales de RN.",
+      "fecha": "2017-08-21",
+      "fuente_url": "https://www.elmostrador.cl/noticias/pais/2017/08/21/historico-triunfo-de-la-moneda-tc-da-luz-verde-a-tres-causales-de-aborto-y-rechaza-requerimientos-de-la-derecha"
+     },
+     {
+      "tema": "descentralizacion",
+      "hecho": "Declara en sus estatutos el respaldo al proceso de regionalización y el traspaso de atribuciones y recursos a gobiernos locales (principio 8). Ley 20.990 (elección popular del ejecutivo regional): Senado 24-1-9 (DF) y Cámara 96-0-13 en comisión mixta (SUBDERE); no se obtuvo el voto por partido.",
+      "fecha": "2017-01-05",
+      "fuente_url": "https://www.bcn.cl/leychile/navegar?idNorma=1098725"
+     },
+     {
+      "tema": "rol_del_estado",
+      "hecho": "Estatutos 2016: 'el Estado debe estar al servicio de las personas, la familia y la sociedad civil'; promueve subsidiariedad y solidaridad; economía social de mercado.",
+      "fecha": "2016",
+      "fuente_url": "https://www.rn.cl/_files/ugd/b7ddef_02c095cdd16945728c9d7d2500586618.pdf"
+     },
+     {
+      "tema": "coalicion_gobierno",
+      "hecho": "Wikipedia informa que tras la segunda vuelta de 2025 (Kast, 58% según esa fuente) RN integra el gobierno de José Antonio Kast desde el 11-mar-2026.",
+      "fecha": "2026-03-11",
+      "fuente_url": "https://es.wikipedia.org/wiki/Renovación_Nacional"
+     }
+    ]
+   },
+   "congreso": {
+    "2022_2026": {
+     "diputados": 25,
+     "senadores": null,
+     "nota": "Diputados electos en noviembre de 2021 (composición inicial; no refleja cambios de militancia). Senadores en ejercicio por partido: no recuperado",
+     "fuente": "https://es.wikipedia.org/wiki/Elecciones_parlamentarias_de_Chile_de_2021",
+     "verificado": false
+    },
+    "2026_2030": {
+     "diputados": 13,
+     "senadores": 8,
+     "nota": "Electos el 16-nov-2025 (diputados 2026-2030; senadores: total de la bancada 2026-2034 incluye los no renovados)",
+     "fuente": "https://es.wikipedia.org/wiki/Elecciones_parlamentarias_de_Chile_de_2025",
+     "verificado": false
+    }
+   },
+   "estado_servel": "constituido",
+   "fuente_url": "https://www.servel.cl/partidos-politicos/partidos-constituidos/",
+   "fuente_resolucion": "https://www.servel.cl/wp-content/uploads/2026/06/RENOVACION-NACIONAL-1.pdf",
+   "fecha_consulta": "2026-11-23",
+   "verificado": true,
+   "verificado_detalle": {
+    "constitucion_y_regiones": true,
+    "principios": true,
+    "historial": false,
+    "congreso": false
+   }
+  },
+  {
+   "id": "udi",
+   "nombre_oficial": "Unión Demócrata Independiente",
+   "sigla": "UDI",
+   "fecha_constitucion": "1989-05-03",
+   "regiones": {
+    "ambito": "Todas las regiones del país",
+    "lista": []
+   },
+   "declaracion_principios": {
+    "verificado": false,
+    "citas": [],
+    "nota": "Emol (24-jul-2018) informa que el Consejo General aprobó un cambio a la declaración que incluye mención al respeto a los derechos humanos: https://www.emol.com/noticias/Nacional/2018/07/24/914455/UDI-aprueba-cambio-a-declaracion-de-principios-Incluye-mencion-sobre-el-respeto-a-los-DDHH.html"
+   },
+   "ubicacion_ideologica": {
+    "autodescripcion": "Según BCN, el Congreso Doctrinario de 1991 la definió como partido popular, libertario y con sentido cristiano; no confesional; adscribe a economía de mercado basada en subsidiariedad.",
+    "fuente_secundaria": "Wikipedia (es): posición 'derecha'; ideología 'gremialismo' (entre otras).",
+    "url": "https://es.wikipedia.org/wiki/Unión_Demócrata_Independiente"
+   },
+   "historial": {
+    "coaliciones": [
+     {
+      "nombre": "Alianza (por Chile)",
+      "desde": "1989",
+      "hasta": "2015",
+      "fuente_url": "https://es.wikipedia.org/wiki/Unión_Demócrata_Independiente"
+     },
+     {
+      "nombre": "Coalición por el Cambio",
+      "desde": "2009-05",
+      "hasta": "2013",
+      "fuente_url": "https://www.bcn.cl/historiapolitica/partidos_politicos/wiki/Partido_Unión_Demócrata_Independiente"
+     },
+     {
+      "nombre": "Chile Vamos",
+      "desde": "2015",
+      "hasta": "vigente (2025)",
+      "fuente_url": "https://www.bcn.cl/historiapolitica/partidos_politicos/wiki/Partido_Unión_Demócrata_Independiente"
+     },
+     {
+      "nombre": "Chile Podemos Más (pacto parlamentario 2021)",
+      "desde": "2021-08-22",
+      "hasta": "2021",
+      "fuente_url": "https://www.radioagricultura.cl/noticias/politica/chile-vamos-inscribe-en-el-servel-el-pacto-parlamentario-chile-podemos_20210822/"
+     },
+     {
+      "nombre": "Chile Grande y Unido (pacto parlamentario 2025)",
+      "desde": "2025-08",
+      "hasta": "2025",
+      "fuente_url": "https://es.wikipedia.org/wiki/Chile_Grande_y_Unido"
+     }
+    ],
+    "posiciones": [
+     {
+      "tema": "pensiones",
+      "hecho": "Senado, 28-ene-2025: el senador José Miguel Durana (UDI) votó en contra de la reforma de pensiones (40 a favor, 7 en contra). El presidente de la UDI, diputado Guillermo Ramírez, celebró la aprobación según El Dínamo. Otros senadores UDI no figuran entre los votos en contra.",
+      "fecha": "2025-01-28",
+      "fuente_url": "https://www.emol.com/noticias/Nacional/2025/01/28/1155544/como-votaron-senadores-reforma-pensiones.html"
+     },
+     {
+      "tema": "tributaria",
+      "hecho": "Mayo de 2014: UDI votó en contra de la idea de legislar en la Cámara (Cooperativa). Julio de 2014: el senador Iván Moreira (UDI) se abstuvo en la aprobación en general del Senado (33 votos a favor); el acuerdo con el gobierno se firmó el 8-jul-2014.",
+      "fecha": "2014-07-15",
+      "fuente_url": "https://www.cooperativa.cl/noticias/site/artic/20140715/pags-amp/20140715204936.html"
+     },
+     {
+      "tema": "tributaria",
+      "hecho": "8-mar-2023: la idea de legislar el proyecto tributario del Ejecutivo fue rechazada en la Cámara (73-71-3); sin desglose por partido en la fuente.",
+      "fecha": "2023-03-08",
+      "fuente_url": "https://www.camara.cl/cms/noticias/2023/03/08/camara-rechazo-el-primer-proyecto-de-la-reforma-tributaria-impulsada-por-el-ejecutivo/"
+     },
+     {
+      "tema": "derechos",
+      "hecho": "Matrimonio igualitario: en la Cámara (23-nov-2021) votaron en contra Guillermo Ramírez y Juan Antonio Coloma (UDI según Camara/Chilevisión citada por la búsqueda) y se abstuvo María José Hoffmann (UDI); en el Senado (7-dic-2021) votaron en contra Juan Antonio Coloma, José Miguel Durana y Luz Ebensperger (UDI) y se abstuvieron Claudio Alvarado, Alejandro García-Huidobro y David Sandoval (según Chilevisión). Diputados UDI como Jorge Alessandri apoyaron.",
+      "fecha": "2021-12-07",
+      "fuente_url": "https://www.pauta.cl/nacional/congreso-aprueba-matrimonio-igualitario-sebastian-pinera-michelle-bacehet"
+     },
+     {
+      "tema": "derechos",
+      "hecho": "Aborto en tres causales: requerimiento de parlamentarios de Chile Vamos (incluye UDI) ante el TC, rechazado 6-4 el 21-ago-2017; Ley 21.030.",
+      "fecha": "2017-08-21",
+      "fuente_url": "https://www.elmostrador.cl/noticias/pais/2017/08/21/historico-triunfo-de-la-moneda-tc-da-luz-verde-a-tres-causales-de-aborto-y-rechaza-requerimientos-de-la-derecha"
+     },
+     {
+      "tema": "seguridad",
+      "hecho": "UDI, RN, Republicano, Evópoli, Partido Cristiano de Chile y Demócratas firmaron la declaración conjunta 'Chile sin violencia: un compromiso con la paz' a siete años del 18-O (publicada en udi.cl; fecha de portada oct-2026).",
+      "fecha": "2026-10-16",
+      "fuente_url": "https://udi.cl/actualidad/partidos-oficialistas-firman-declaracion-chile-sin-violencia-un-compromiso-con-la-paz-a-siete-anos-del-18-o/"
+     },
+     {
+      "tema": "rol_del_estado",
+      "hecho": "BCN: la declaración confirma adscripción a una economía de mercado basada en el principio de subsidiariedad.",
+      "fecha": "1991",
+      "fuente_url": "https://www.bcn.cl/historiapolitica/partidos_politicos/wiki/Partido_Unión_Demócrata_Independiente"
+     }
+    ]
+   },
+   "congreso": {
+    "2022_2026": {
+     "diputados": 23,
+     "senadores": null,
+     "nota": "Diputados electos en noviembre de 2021 (composición inicial; no refleja cambios de militancia). Senadores en ejercicio por partido: no recuperado",
+     "fuente": "https://es.wikipedia.org/wiki/Elecciones_parlamentarias_de_Chile_de_2021",
+     "verificado": false
+    },
+    "2026_2030": {
+     "diputados": 18,
+     "senadores": 5,
+     "nota": "Electos el 16-nov-2025 (diputados 2026-2030; senadores: total de la bancada 2026-2034 incluye los no renovados)",
+     "fuente": "https://es.wikipedia.org/wiki/Elecciones_parlamentarias_de_Chile_de_2025",
+     "verificado": false
+    }
+   },
+   "estado_servel": "constituido",
+   "fuente_url": "https://www.servel.cl/partidos-politicos/partidos-constituidos/",
+   "fuente_resolucion": "https://www.servel.cl/wp-content/uploads/2025/02/UNION-DEMOCRATA-INDEPENDIENTE-3.pdf",
+   "fecha_consulta": "2026-11-23",
+   "verificado": true,
+   "verificado_detalle": {
+    "constitucion_y_regiones": true,
+    "principios": false,
+    "historial": false,
+    "congreso": false
+   }
+  },
+  {
+   "id": "evopoli",
+   "nombre_oficial": "Evolución Política",
+   "sigla": "Evópoli",
+   "fecha_constitucion": "2016-04-13",
+   "regiones": {
+    "ambito": "Todas las regiones del país",
+    "lista": []
+   },
+   "declaracion_principios": {
+    "verificado": true,
+    "citas": [
+     {
+      "texto": "El estado siempre está al servicio del ser humano. El orden social desde los individuos y la sociedad civil hasta el Estado, deben regirse por los principios de subsidiaridad activa y solidaridad.",
+      "url": "https://evopoli.cl/conoce-evopoli/principios/"
+     },
+     {
+      "texto": "La democracia liberal es el régimen político que mejor resguarda la libertad al combinar el gobierno efectivo de las mayorías con la protección de derechos de las minorías.",
+      "url": "https://evopoli.cl/conoce-evopoli/principios/"
+     },
+     {
+      "texto": "Debe existir horizontalización en el ejercicio del poder, lo que implica una política decidida de descentralización y empoderamiento regional.",
+      "url": "https://evopoli.cl/conoce-evopoli/principios/"
+     }
+    ],
+    "nota": "Sitio de Evópoli, página Principios (texto del manifiesto de 2012, 15 principios)"
+   },
+   "ubicacion_ideologica": {
+    "autodescripcion": "Principios: libre mercado y subsidiariedad activa del Estado; democracia liberal; sustentabilidad medioambiental; rechazo a la discriminación arbitraria (N° 7, 8, 11, 13).",
+    "fuente_secundaria": "Wikipedia (es): posición 'centroderecha'; ideología listada incluye liberalismo clásico.",
+    "url": "https://es.wikipedia.org/wiki/Evolución_Política"
+   },
+   "historial": {
+    "coaliciones": [
+     {
+      "nombre": "Alianza (como movimiento político)",
+      "desde": "2012-12-12",
+      "hasta": "2015",
+      "fuente_url": "https://es.wikipedia.org/wiki/Evolución_Política"
+     },
+     {
+      "nombre": "Chile Vamos",
+      "desde": "2015",
+      "hasta": "vigente (2025)",
+      "fuente_url": "https://es.wikipedia.org/wiki/Evolución_Política"
+     },
+     {
+      "nombre": "Chile Podemos Más (pacto parlamentario 2021)",
+      "desde": "2021-08-22",
+      "hasta": "2021",
+      "fuente_url": "https://www.radioagricultura.cl/noticias/politica/chile-vamos-inscribe-en-el-servel-el-pacto-parlamentario-chile-podemos_20210822/"
+     },
+     {
+      "nombre": "Chile Grande y Unido (pacto parlamentario 2025)",
+      "desde": "2025-08",
+      "hasta": "2025",
+      "fuente_url": "https://es.wikipedia.org/wiki/Chile_Grande_y_Unido"
+     }
+    ],
+    "posiciones": [
+     {
+      "tema": "pensiones",
+      "hecho": "Senado, 28-ene-2025: ningún senador de Evópoli figura entre los 7 votos en contra de la reforma (Emol). No se obtuvo la lista de votos a favor por partido.",
+      "fecha": "2025-01-28",
+      "fuente_url": "https://www.emol.com/noticias/Nacional/2025/01/28/1155544/como-votaron-senadores-reforma-pensiones.html"
+     },
+     {
+      "tema": "tributaria",
+      "hecho": "Mayo de 2014: según Cooperativa, UDI, RN, Evópoli y Amplitud votaron en contra de la idea de legislar la reforma tributaria en la Cámara.",
+      "fecha": "2014-05-14",
+      "fuente_url": "https://cooperativa.cl/noticias/economia/impuestos/sectores-votaron-en-bloque-la-reforma-tributaria-en-la-camara-de-diputa/2014-05-14/074503.html"
+     },
+     {
+      "tema": "derechos",
+      "hecho": "Matrimonio igualitario: Chilevisión informa que en el debate de la Cámara (nov-2021) hubo opiniones a favor de parte de RN y Evópoli; no se obtuvo desglose nominal de Evópoli.",
+      "fecha": "2021-11-23",
+      "fuente_url": "https://www.camara.cl/cms/noticias/2021/11/23/camara-ratifico-proyecto-que-permite-y-regula-el-matrimonio-igualitario/"
+     },
+     {
+      "tema": "derechos",
+      "hecho": "Aborto en tres causales: Chile Vamos (incluye Evópoli) presentó requerimiento ante el TC, rechazado 6-4 el 21-ago-2017. No se obtuvo el voto de Evópoli en el Congreso.",
+      "fecha": "2017-08-21",
+      "fuente_url": "https://www.elmostrador.cl/noticias/pais/2017/08/21/historico-triunfo-de-la-moneda-tc-da-luz-verde-a-tres-causales-de-aborto-y-rechaza-requerimientos-de-la-derecha"
+     },
+     {
+      "tema": "descentralizacion",
+      "hecho": "Principio N° 12 del manifiesto: política decidida de descentralización y empoderamiento regional.",
+      "fecha": "2012",
+      "fuente_url": "https://evopoli.cl/conoce-evopoli/principios/"
+     },
+     {
+      "tema": "medioambiente",
+      "hecho": "Principio N° 11: 'La sustentabilidad medioambiental es ineludible para una sociedad justa.'",
+      "fecha": "2012",
+      "fuente_url": "https://evopoli.cl/conoce-evopoli/principios/"
+     },
+     {
+      "tema": "rol_del_estado",
+      "hecho": "Principio N° 7: 'El libre mercado y la subsidiariedad activa del Estado son pilares de la libertad y prosperidad material y moral de los pueblos.'",
+      "fecha": "2012",
+      "fuente_url": "https://evopoli.cl/conoce-evopoli/principios/"
+     },
+     {
+      "tema": "derechos",
+      "hecho": "Principio N° 13: 'Se debe rechazar todo tipo de discriminación arbitraria y promover la inclusión, la tolerancia y respeto por la diversidad.'",
+      "fecha": "2012",
+      "fuente_url": "https://evopoli.cl/conoce-evopoli/principios/"
+     }
+    ]
+   },
+   "congreso": {
+    "2022_2026": {
+     "diputados": 4,
+     "senadores": null,
+     "nota": "Diputados electos en noviembre de 2021 (composición inicial; no refleja cambios de militancia). Senadores en ejercicio por partido: no recuperado",
+     "fuente": "https://es.wikipedia.org/wiki/Elecciones_parlamentarias_de_Chile_de_2021",
+     "verificado": false
+    },
+    "2026_2030": {
+     "diputados": 2,
+     "senadores": 2,
+     "nota": "Electos el 16-nov-2025 (diputados 2026-2030; senadores: total de la bancada 2026-2034 incluye los no renovados)",
+     "fuente": "https://es.wikipedia.org/wiki/Elecciones_parlamentarias_de_Chile_de_2025",
+     "verificado": false
+    }
+   },
+   "estado_servel": "constituido",
+   "fuente_url": "https://www.servel.cl/partidos-politicos/partidos-constituidos/",
+   "fuente_resolucion": "https://www.servel.cl/wp-content/uploads/2026/09/EVOLUCION-POLITICA-37.pdf",
+   "fecha_consulta": "2026-11-23",
+   "verificado": true,
+   "verificado_detalle": {
+    "constitucion_y_regiones": true,
+    "principios": true,
+    "historial": false,
+    "congreso": false
+   }
+  },
+  {
+   "id": "republicano",
+   "nombre_oficial": "Partido Republicano de Chile",
+   "sigla": "Republicano",
+   "fecha_constitucion": "2020-01-23",
+   "regiones": {
+    "ambito": "Todas las regiones del país",
+    "lista": []
+   },
+   "declaracion_principios": {
+    "verificado": true,
+    "citas": [
+     {
+      "texto": "Los Republicanos creemos en una Economía Social de Mercado",
+      "url": "https://partidorepublicanodechile.cl/nosotros/principios/"
+     },
+     {
+      "texto": "El Partido Republicano cree y promueve la Descentralización",
+      "url": "https://partidorepublicanodechile.cl/nosotros/principios/"
+     },
+     {
+      "texto": "El Partido Republicano rechaza la Violencia y particularmente, la delincuencia, el terrorismo y el narcotráfico que amenazan gravemente el futuro de la sociedad chilena.",
+      "url": "https://partidorepublicanodechile.cl/nosotros/principios/"
+     }
+    ],
+    "nota": "El principio 1 se titula 'nace desde y para las personas y defiende su vida desde la concepción hasta la muerte natural'; el 2, 'creemos en Dios' (partido no confesional); el 3, familia fundada en el matrimonio entre un hombre y una mujer."
+   },
+   "ubicacion_ideologica": {
+    "autodescripcion": "Se declara partido no confesional, republicano, que rechaza el populismo y adhiere a economía social de mercado, subsidiariedad y descentralización (sitio del partido; BCN).",
+    "fuente_secundaria": "BCN: no entrega rótulo izquierda-derecha en lo obtenido; describe 18 principios en su escritura de constitución. Wikipedia (es) no se pudo obtener (bloqueo/limitación).",
+    "url": "https://www.bcn.cl/historiapolitica/partidos_politicos/wiki/Partido_Republicano_de_Chile"
+   },
+   "historial": {
+    "coaliciones": [
+     {
+      "nombre": "Vamos por Chile (lista con Chile Vamos, convencionales)",
+      "desde": "2021-01-11",
+      "hasta": "2021",
+      "fuente_url": "https://es.wikipedia.org/wiki/Frente_Social_Cristiano"
+     },
+     {
+      "nombre": "Frente Social Cristiano (con Partido Conservador Cristiano)",
+      "desde": "2021-08-06",
+      "hasta": "2021 (elección parlamentaria)",
+      "fuente_url": "https://es.wikipedia.org/wiki/Frente_Social_Cristiano"
+     },
+     {
+      "nombre": "Cambio por Chile (con Partido Social Cristiano y PNL)",
+      "desde": "2025-08-08",
+      "hasta": "2025 (elección del 16-nov-2025)",
+      "fuente_url": "https://es.wikipedia.org/wiki/Cambio_por_Chile"
+     }
+    ],
+    "posiciones": [
+     {
+      "tema": "pensiones",
+      "hecho": "Senado, 28-ene-2025: los senadores Carmen Gloria Aravena (REP) y Rojo Edwards (REP) votaron en contra de la reforma de pensiones (40-7). En la Cámara, El Dínamo informa que Republicanos y PNL votaron en contra; José Antonio Kast criticó la reforma en redes sociales.",
+      "fecha": "2025-01-28",
+      "fuente_url": "https://www.emol.com/noticias/Nacional/2025/01/28/1155544/como-votaron-senadores-reforma-pensiones.html"
+     },
+     {
+      "tema": "tributaria",
+      "hecho": "El Partido Republicano no tenía representación parlamentaria en 2014 (se constituyó en 2019); no hay votos documentados 2014/2020. Para 2023 la fuente solo informa que la derecha acordó rechazar en bloque la idea de legislar (73-71-3); sin desglose.",
+      "fecha": "2023-03-08",
+      "fuente_url": "https://www.latercera.com/pulso/noticia/duro-reves-para-el-gobierno-camara-de-diputados-rechaza-la-idea-de-legislar-la-reforma-tributaria/S2KIFP4MPBBAHPOUTD5HAVWNHM/"
+     },
+     {
+      "tema": "descentralizacion",
+      "hecho": "Principio 12 del partido: 'cree y promueve la Descentralización'.",
+      "fecha": "vigente",
+      "fuente_url": "https://partidorepublicanodechile.cl/nosotros/principios/"
+     },
+     {
+      "tema": "seguridad",
+      "hecho": "Principio 11: rechazo a la violencia, delincuencia, terrorismo y narcotráfico. Firmó la declaración conjunta 'Chile sin violencia' con UDI, RN, Evópoli y otros.",
+      "fecha": "2026-10-16",
+      "fuente_url": "https://partidorepublicanodechile.cl/nosotros/principios/"
+     },
+     {
+      "tema": "medioambiente",
+      "hecho": "Principio 17 (título según Radio Agricultura): 'Promovemos la defensa de un medioambiente sustentable, sostenible y al servicio de la persona humana'.",
+      "fecha": "2019-06-10",
+      "fuente_url": "https://www.radioagricultura.cl/noticias/politica/creemos-en-dios-los-18-estatutos-del-partido-de-jose-antonio-kast_20190610/"
+     },
+     {
+      "tema": "derechos",
+      "hecho": "Principios 1 y 3: defensa de la vida desde la concepción hasta la muerte natural y familia fundada en el matrimonio entre un hombre y una mujer (texto del sitio del partido). No se obtuvo votación individual en Ley 21.400 ni Ley 21.030 (el partido se inscribió en 2019).",
+      "fecha": "vigente",
+      "fuente_url": "https://partidorepublicanodechile.cl/nosotros/principios/"
+     },
+     {
+      "tema": "rol_del_estado",
+      "hecho": "Principio 8: defensa de la libre iniciativa privada y de las garantías constitucionales 'a fin de impedir que el Estado invada el campo de actividad económica y social propio de los particulares'; complementa con solidaridad y subsidiariedad.",
+      "fecha": "vigente",
+      "fuente_url": "https://partidorepublicanodechile.cl/nosotros/principios/"
+     },
+     {
+      "tema": "coalicion",
+      "hecho": "Segunda vuelta 2025: Kast ganó (58% según Wikipedia en ficha de RN); Matthei y Kaiser anunciaron su respaldo.",
+      "fecha": "2025-12-14",
+      "fuente_url": "https://radio.uchile.cl/2025/12/14/kast-agradecio-respaldos-de-matthei-y-kaiser-y-llamo-a-convivencia-democratica/"
+     }
+    ]
+   },
+   "congreso": {
+    "2022_2026": {
+     "diputados": 14,
+     "senadores": null,
+     "nota": "Diputados electos en noviembre de 2021 (composición inicial; no refleja cambios de militancia). Senadores en ejercicio por partido: no recuperado",
+     "fuente": "https://es.wikipedia.org/wiki/Elecciones_parlamentarias_de_Chile_de_2021",
+     "verificado": false
+    },
+    "2026_2030": {
+     "diputados": 31,
+     "senadores": 5,
+     "nota": "Electos el 16-nov-2025 (diputados 2026-2030; senadores: total de la bancada 2026-2034 incluye los no renovados)",
+     "fuente": "https://es.wikipedia.org/wiki/Elecciones_parlamentarias_de_Chile_de_2025",
+     "verificado": false
+    }
+   },
+   "estado_servel": "constituido",
+   "fuente_url": "https://www.servel.cl/partidos-politicos/partidos-constituidos/",
+   "fuente_resolucion": "https://www.servel.cl/wp-content/uploads/2026/03/PARTIDO-REPUBLICANO-DE-CHILE-150.pdf",
+   "fecha_consulta": "2026-11-23",
+   "verificado": true,
+   "verificado_detalle": {
+    "constitucion_y_regiones": true,
+    "principios": true,
+    "historial": false,
+    "congreso": false
+   }
+  },
+  {
+   "id": "pnl",
+   "nombre_oficial": "Partido Nacional Libertario",
+   "sigla": "PNL",
+   "fecha_constitucion": "2025-03-06",
+   "regiones": {
+    "ambito": "Todas las regiones del país",
+    "lista": []
+   },
+   "declaracion_principios": {
+    "verificado": false,
+    "citas": [],
+    "nota": null
+   },
+   "ubicacion_ideologica": {
+    "autodescripcion": "Formulario de compromiso ético de candidatos (2025, The Clinic): 'somos la nueva derecha' (frase según resumen de búsqueda; verificar en el PDF).",
+    "fuente_secundaria": "BCN: doctrinariamente se identifica con minarquismo, libertarismo cristiano, antiglobalismo y oposición a la inmigración masiva; fundado 2024, inscrito en Servel el 6-mar-2025. Wikipedia (es) lo ubica en 'extrema derecha' con una nota aclaratoria (ficha).",
+    "url": "https://www.bcn.cl/historiapolitica/partidos_politicos/wiki/Partido_Nacional_Libertario"
+   },
+   "historial": {
+    "coaliciones": [
+     {
+      "nombre": "Cambio por Chile (con Partido Republicano y Partido Social Cristiano)",
+      "desde": "2025-08-08",
+      "hasta": "2025 (elección del 16-nov-2025); Wikipedia lo lista '2025-presente'",
+      "fuente_url": "https://es.wikipedia.org/wiki/Cambio_por_Chile"
+     }
+    ],
+    "posiciones": [
+     {
+      "tema": "pensiones",
+      "hecho": "Cámara, ene-2025: El Dínamo informa que Republicanos y PNL votaron en contra de la reforma. Wikipedia (ficha PNL) indica que Kaiser descartó participar en primarias de Chile Vamos tras la aprobación de la reforma por esa coalición (La Tercera 29-ene-2025). No hay senadores PNL.",
+      "fecha": "2025-01-30",
+      "fuente_url": "https://www.eldinamo.cl/politica/2025/01/30/la-politica-de-los-acuerdos-2-0-partido-comunista-y-chile-vamos-se-unen-para-celebrar-la-reforma-de-pensiones-con-dardos-a-republicanos/"
+     },
+     {
+      "tema": "coalicion_gobierno",
+      "hecho": "24horas titula que el PNL decidió no ser parte del gobierno de Kast (no se leyó el cuerpo del artículo).",
+      "fecha": "2025-12",
+      "fuente_url": "https://www.24horas.cl/actualidad/politica/partido-nacional-libertario-decide-no-ser-parte-del-gobierno-de-kast"
+     },
+     {
+      "tema": "derechos",
+      "hecho": "Declaración de principios (secundaria): derechos inalienables 'anteriores y superiores al Estado', libertad de pensamiento, expresión y culto.",
+      "fecha": "2024",
+      "fuente_url": "https://www.latercera.com/politica/noticia/los-principios-esenciales-del-partido-nacional-libertario-de-kaiser-que-ya-logro-las-firmas-para-su-constitucion/DI5CLVIAS5FYVIZK2RDWYLG6GA/"
+     }
+    ]
+   },
+   "congreso": {
+    "2022_2026": {
+     "diputados": 0,
+     "senadores": null,
+     "nota": "Diputados electos en noviembre de 2021 (composición inicial; no refleja cambios de militancia). Senadores en ejercicio por partido: no recuperado",
+     "fuente": "https://es.wikipedia.org/wiki/Elecciones_parlamentarias_de_Chile_de_2021",
+     "verificado": false
+    },
+    "2026_2030": {
+     "diputados": 8,
+     "senadores": 1,
+     "nota": "Electos el 16-nov-2025 (diputados 2026-2030; senadores: total de la bancada 2026-2034 incluye los no renovados)",
+     "fuente": "https://es.wikipedia.org/wiki/Elecciones_parlamentarias_de_Chile_de_2025",
+     "verificado": false
+    }
+   },
+   "estado_servel": "constituido",
+   "fuente_url": "https://www.servel.cl/partidos-politicos/partidos-constituidos/",
+   "fuente_resolucion": "https://www.servel.cl/wp-content/uploads/2025/07/PARTIDO-NACIONAL-LIBERTARIO-235.pdf",
+   "fecha_consulta": "2026-11-23",
+   "verificado": true,
+   "verificado_detalle": {
+    "constitucion_y_regiones": true,
+    "principios": false,
+    "historial": false,
+    "congreso": false
+   }
+  },
+  {
+   "id": "pdg",
+   "nombre_oficial": "Partido de la Gente",
+   "sigla": "PDG",
+   "fecha_constitucion": "2021-07-26",
+   "regiones": {
+    "ambito": "Todas las regiones del país",
+    "lista": []
+   },
+   "declaracion_principios": {
+    "verificado": false,
+    "citas": [
+     {
+      "texto": "Nacemos como una propuesta ciudadana, creada y desarrollada por personas comunes",
+      "url": "https://partidodelagente.cl/"
+     },
+     {
+      "texto": "El Partido es una organización independiente que actúa con criterio, coherencia y responsabilidad.",
+      "url": "https://partidodelagente.cl/about-us-2-2-2/"
+     },
+     {
+      "texto": "Rechazamos toda forma de discriminación arbitraria y de incitación al odio.",
+      "url": "https://partidodelagente.cl/about-us-2-2-2/"
+     }
+    ],
+    "nota": null
+   },
+   "ubicacion_ideologica": {
+    "autodescripcion": "El partido se define 'Partido Nacional Ciudadano, independiente, regional, Transversal, sin ideologías políticas' (BCN). Wikipedia lo ubica de centroderecha a derecha; sin consenso.",
+    "fuente_secundaria": null,
+    "url": "https://www.bcn.cl/historiapolitica/partidos_politicos/wiki/Partido_de_la_Gente"
+   },
+   "historial": {
+    "coaliciones": [
+     {
+      "nombre": "Sin pacto formal en 2021 (lista propia); apoyo consultivo a Kast en segunda vuelta 2021",
+      "desde": "2021-12",
+      "hasta": "2021-12",
+      "fuente_url": "https://www.bcn.cl/historiapolitica/partidos_politicos/wiki/Partido_de_la_Gente"
+     },
+     {
+      "nombre": "Pacto con la Gente (consejeros constitucionales)",
+      "desde": "2023",
+      "hasta": "2023",
+      "fuente_url": "https://es.wikipedia.org/wiki/Partido_de_la_Gente_(Chile)"
+     }
+    ],
+    "posiciones": [
+     {
+      "tema": "rol_del_estado",
+      "hecho": "Principio programatico declarado: 'una economía libre como la única vía para alcanzar un crecimiento económico fuerte y sostenido' (BCN, ficha del partido).",
+      "fecha": "sin fecha en la fuente",
+      "fuente_url": "https://www.bcn.cl/historiapolitica/partidos_politicos/wiki/Partido_de_la_Gente"
+     },
+     {
+      "tema": "derechos",
+      "hecho": "Principio programatico declarado: 'fortalecimiento de la democracia, la garantía, promoción y respeto de los derechos humanos' (BCN).",
+      "fecha": "sin fecha",
+      "fuente_url": "https://www.bcn.cl/historiapolitica/partidos_politicos/wiki/Partido_de_la_Gente"
+     },
+     {
+      "tema": "seguridad",
+      "hecho": "Consulta interna de segunda vuelta 2021 (participacion 54,89% de militantes): 61,41% por Kast y 6,58% por Boric.",
+      "fecha": "2021-12",
+      "fuente_url": "https://www.bcn.cl/historiapolitica/partidos_politicos/wiki/Partido_de_la_Gente"
+     },
+     {
+      "tema": "tributaria",
+      "hecho": "Al 19-jul-2026 la bancada mantenía en reserva su voto sobre la 'megarreforma' del Gobierno en la Camara (necesitaba 2 votos para ratificar modificaciones del Senado); el contenido tributario no se detalla en la nota.",
+      "fecha": "2026-07-19",
+      "fuente_url": "https://www.biobiochile.cl/noticias/nacional/chile/2026/07/19/futuro-de-la-megarreforma-del-gobierno-vuelve-a-quedar-en-manos-del-pdg.shtml"
+     }
+    ]
+   },
+   "congreso": {
+    "2022_2026": {
+     "diputados": 6,
+     "senadores": null,
+     "nota": "Diputados electos en noviembre de 2021 (composición inicial; no refleja cambios de militancia). Senadores en ejercicio por partido: no recuperado",
+     "fuente": "https://es.wikipedia.org/wiki/Elecciones_parlamentarias_de_Chile_de_2021",
+     "verificado": false
+    },
+    "2026_2030": {
+     "diputados": 14,
+     "senadores": 0,
+     "nota": "Electos el 16-nov-2025 (diputados 2026-2030; senadores: total de la bancada 2026-2034 incluye los no renovados)",
+     "fuente": "https://es.wikipedia.org/wiki/Elecciones_parlamentarias_de_Chile_de_2025",
+     "verificado": false
+    }
+   },
+   "estado_servel": "constituido",
+   "fuente_url": "https://www.servel.cl/partidos-politicos/partidos-constituidos/",
+   "fuente_resolucion": "https://www.servel.cl/wp-content/uploads/2026/11/PARTIDO-DE-LA-GENTE-157.pdf",
+   "fecha_consulta": "2026-11-23",
+   "verificado": true,
+   "verificado_detalle": {
+    "constitucion_y_regiones": true,
+    "principios": false,
+    "historial": false,
+    "congreso": false
+   }
+  },
+  {
+   "id": "cristiano",
+   "nombre_oficial": "Partido Cristiano de Chile",
+   "sigla": null,
+   "fecha_constitucion": "2026-07-23",
+   "regiones": {
+    "ambito": "Regiones indicadas",
+    "lista": [
+     "Ñuble",
+     "Biobío",
+     "La Araucanía"
+    ]
+   },
+   "declaracion_principios": {
+    "verificado": false,
+    "citas": [],
+    "nota": null
+   },
+   "ubicacion_ideologica": {
+    "autodescripcion": "Se define como 'un partido de derecha, con un profundo compromiso social' (Emol, lanzamiento 2026-06-06).",
+    "fuente_secundaria": null,
+    "url": "https://www.emol.com/noticias/Nacional/2026/06/06/1202075/partido-cristiano-chile-psc-disolucion.html"
+   },
+   "historial": {
+    "coaliciones": [],
+    "posiciones": [
+     {
+      "tema": "derechos",
+      "hecho": "Declara defender la vida, la familia y las libertades, con foco en seguridad, educacion y salud (descripcion Emol, no documento oficial).",
+      "fecha": "2026-06-06",
+      "fuente_url": "https://www.emol.com/noticias/Nacional/2026/06/06/1202075/partido-cristiano-chile-psc-disolucion.html"
+     }
+    ]
+   },
+   "congreso": {
+    "2022_2026": {
+     "diputados": 0,
+     "senadores": null,
+     "nota": "Diputados electos en noviembre de 2021 (composición inicial; no refleja cambios de militancia). Senadores en ejercicio por partido: no recuperado",
+     "fuente": "https://es.wikipedia.org/wiki/Elecciones_parlamentarias_de_Chile_de_2021",
+     "verificado": false
+    },
+    "2026_2030": {
+     "diputados": 0,
+     "senadores": 0,
+     "nota": "Electos el 16-nov-2025 (diputados 2026-2030; senadores: total de la bancada 2026-2034 incluye los no renovados)",
+     "fuente": "https://es.wikipedia.org/wiki/Elecciones_parlamentarias_de_Chile_de_2025",
+     "verificado": false
+    }
+   },
+   "estado_servel": "constituido",
+   "fuente_url": "https://www.servel.cl/partidos-politicos/partidos-constituidos/",
+   "fuente_resolucion": "https://www.servel.cl/wp-content/uploads/2026/07/PARTIDO-CRISTIANO-DE-CHILE-244.pdf",
+   "fecha_consulta": "2026-11-23",
+   "verificado": true,
+   "verificado_detalle": {
+    "constitucion_y_regiones": true,
+    "principios": false,
+    "historial": false,
+    "congreso": false
+   }
+  }
+ ],
+ "disueltos_2026": [
+  {
+   "nombre": "Partido Radical de Chile",
+   "revertida": "probable_no_confirmada",
+   "detalle": "No se hallo nota de prensa del fallo Tricel sobre el Radical. Recurrio a Tricel y presento inaplicabilidad ante el TC (art. 56 N°2; reporte 2026-04-05). La pagina Servel de partidos constituidos (consultada 2026-11-23) lo lista como constituido, lo que es consistente con que siga vigente; la causa del Tricel debe confirmarse.",
+   "fuente_url": "https://www.servel.cl/partidos-politicos/partidos-constituidos/"
+  },
+  {
+   "nombre": "Evolucion Politica (Evopoli)",
+   "revertida": true,
+   "detalle": "Tricel revoco por unanimidad la resolucion del Servel el 2026-04-24: cumple 4 parlamentarios en 2 regiones.",
+   "fuente_url": "https://www.biobiochile.cl/noticias/nacional/chile/2026/04/24/tricel-revoca-disolucion-de-evopoli-y-asegura-su-subsistencia-como-partido-politico.shtml"
+  },
+  {
+   "nombre": "Federacion Regionalista Verde Social",
+   "revertida": true,
+   "detalle": "Tricel revirtio la disolucion el 2026-04-24 (CNN 04-25): minimo de 4 parlamentarios en 2 regiones; se mantiene la inscripcion.",
+   "fuente_url": "https://www.cnnchile.com/pais/frvs-seguira-como-partido-tricel-revoca-decision-del-servel/"
+  },
+  {
+   "nombre": "Igualdad",
+   "revertida": false,
+   "detalle": "No figura en la lista Servel de constituidos; no se hallo reversion.",
+   "fuente_url": "https://www.servel.cl/partidos-politicos/partidos-constituidos/"
+  },
+  {
+   "nombre": "Popular",
+   "revertida": false,
+   "detalle": "No figura entre constituidos; sin reversion hallada.",
+   "fuente_url": "https://www.servel.cl/partidos-politicos/partidos-constituidos/"
+  },
+  {
+   "nombre": "Social Cristiano",
+   "revertida": false,
+   "detalle": "Disuelto; refundado como Partido Cristiano de Chile (lanzado 2026-06-06).",
+   "fuente_url": "https://www.emol.com/noticias/Nacional/2026/06/06/1202073/partidos-disueltos-servel-actualidad.html"
+  },
+  {
+   "nombre": "Trabajadores Revolucionarios",
+   "revertida": false,
+   "detalle": "Se acogio al dictamen (Pauta 2026-02-17).",
+   "fuente_url": "https://www.pauta.cl/actualidad/2026/02/17/luego-de-que-servel-ordeno-su-disolucion-tres-partidos-apelaran-el-dictamen-y-otros-buscaran-reinscribirse.html"
+  },
+  {
+   "nombre": "Humanista",
+   "revertida": false,
+   "detalle": "Se acogio al dictamen; evalua reinscripcion (Pauta 2026-02-17).",
+   "fuente_url": "https://www.pauta.cl/actualidad/2026/02/17/luego-de-que-servel-ordeno-su-disolucion-tres-partidos-apelaran-el-dictamen-y-otros-buscaran-reinscribirse.html"
+  },
+  {
+   "nombre": "Alianza Verde Popular",
+   "revertida": false,
+   "detalle": "Sin reversion hallada; no figura entre constituidos.",
+   "fuente_url": "https://www.servel.cl/partidos-politicos/partidos-constituidos/"
+  },
+  {
+   "nombre": "Demócratas",
+   "revertida": false,
+   "detalle": "Disolucion efectiva 2026-03-04; reorganizado como movimiento; Servel rechazo su legalizacion en Los Rios y Los Lagos (sep-2026).",
+   "fuente_url": "https://www.biobiochile.cl/noticias/nacional/chile/2026/02/17/democratas-anuncia-su-regreso-en-marzo-como-movimiento-politico-tras-disolucion.shtml"
+  },
+  {
+   "nombre": "Amarillos por Chile",
+   "revertida": false,
+   "detalle": "Disolucion efectiva 2026-03-04.",
+   "fuente_url": "https://www.emol.com/noticias/Nacional/2026/06/06/1202073/partidos-disueltos-servel-actualidad.html"
+  },
+  {
+   "nombre": "Ecologista Verde",
+   "revertida": false,
+   "detalle": "No figura entre constituidos; sin reversion hallada.",
+   "fuente_url": "https://www.servel.cl/partidos-politicos/partidos-constituidos/"
+  },
+  {
+   "nombre": "Accion Humanista",
+   "revertida": false,
+   "detalle": "Se acogio al dictamen (Pauta 2026-02-17); en 2025 inscribio lista conjunta con FRVS.",
+   "fuente_url": "https://www.pauta.cl/actualidad/2026/02/17/luego-de-que-servel-ordeno-su-disolucion-tres-partidos-apelaran-el-dictamen-y-otros-buscaran-reinscribirse.html"
+  }
+ ],
+ "disueltos_2026_contexto": "Resolucion Servel de feb-2026 (CNN Chile/Emol: orden 2026-02-05/12; Servel RA N°0051 de 2026-02-06 segun un reporte) disolvio 13 partidos por Ley 18.603 art. 56 N°2 (5% de votos o 4 parlamentarios en 2 regiones) y art. 57."
+}
