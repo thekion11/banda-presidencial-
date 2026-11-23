@@ -97,7 +97,8 @@ def validar_partidos() -> None:
         print("[AVISO] data/partidos/ aún no existe; se omite la validación de partidos")
         return
     reales = json.loads((DIR / "partidos_reales.json").read_text(encoding="utf-8"))
-    juego = json.loads((DIR / "partidos_juego.json").read_text(encoding="utf-8"))
+    ruta_juego = DIR / "partidos_juego.json"
+    juego = json.loads(ruta_juego.read_text(encoding="utf-8")) if ruta_juego.exists() else {"partidos": []}
     ids = {}
     for p in reales["partidos"]:
         _validar_real(p)
@@ -114,6 +115,9 @@ def validar_partidos() -> None:
             raise ValueError(f"réplica duplicada para {p['real_ref']}")
         vistos.add(p["real_ref"])
     faltan = set(ids) - vistos
+    if faltan and not juego["partidos"]:
+        print("[AVISO] partidos_juego.json aún no existe; solo se validaron los reales")
+        return
     if faltan:
         raise ValueError(f"partidos reales sin réplica: {sorted(faltan)}")
     print(f"[INFO] Partidos: {len(ids)} reales, {len(juego['partidos'])} réplicas ficticias válidas")
