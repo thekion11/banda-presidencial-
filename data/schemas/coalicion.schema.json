@@ -95,12 +95,10 @@
       "nota_escanos": {
         "type": "string"
       },
-      "real_ref": {
-        "type": "string"
-      },
       "alias_bloque": {
         "type": "string"
       }
-    }
+    },
+    "additionalProperties": false
   }
 }

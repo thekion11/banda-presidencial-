@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
 """Genera data/coalicion.json a partir de data/partidos/partidos_juego.json (15 réplicas ficticias de los partidos vigentes).
 
-Reproducible: python3 tools/generar_coalicion.py. Campos que usa el sim:
+Reproducible: python3 tools/generar_coalicion.py. Produce el JSON MÍNIMO que viaja en el paquete del juego: solo lo que
+necesita el sim. `real_ref`, `justificacion` y las fuentes (hechos reales) se quedan en data/partidos/ (solo desarrollo,
+excluido de export_presets.cfg) y no se copian aquí. Campos que usa el sim:
   ideologia {eco, inst}  <- eje_eco / eje_inst (mismos ejes que data/ideologia.json)
   escanos_senado/camara  <- escanos.senadores / escanos.diputados (ilustrativos: ver meta del origen)
   peticion               <- nº de ministerios y de asesores que piden + categoría de carta principal
@@ -19,7 +21,6 @@ def construir() -> list:
     for p in origen["partidos"]:
         res.append({
             "id": p["id"], "nombre": p["nombre"], "sigla": p["sigla"], "alias_bloque": p["alias_bloque"],
-            "real_ref": p["real_ref"],
             "ideologia": {"eco": p["eje_eco"], "inst": p["eje_inst"]},
             "escanos_senado": p["escanos"]["senadores"], "escanos_camara": p["escanos"]["diputados"],
             "peticion": {"ministerios": len(p["pide"]["ministerios"]), "asesores": len(p["pide"]["asesores"]),
@@ -27,9 +28,9 @@ def construir() -> list:
             "ministerios_pedidos": p["pide"]["ministerios"],
             "categorias_pedidas": p["pide"]["categorias"],
             "categorias_rechazadas": p["rechaza"]["categorias"],
-            "fuente": "fuentes.json#servel",
+            "fuente": "fuentes.json#ficticio_2026",
             "cifras_ilustrativas": True,
-            "nota_escanos": "Escaños ilustrativos (peso de juego, redondeados a partir de la elección 2025); partido ficticio, réplica de un partido real (docs/PARTIDOS.md).",
+            "nota_escanos": "Partido ficticio; escaños ilustrativos (peso de juego, no datos oficiales).",
         })
     return res
 

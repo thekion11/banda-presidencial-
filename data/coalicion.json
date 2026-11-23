@@ -4,7 +4,6 @@
     "nombre": "Movimiento Laborista Reformista",
     "sigla": "MLR",
     "alias_bloque": "Bloque de la Aurora",
-    "real_ref": "ps",
     "ideologia": {
       "eco": -0.5,
       "inst": 0.2
@@ -28,16 +27,15 @@
     "categorias_rechazadas": [
       "seguridad"
     ],
-    "fuente": "fuentes.json#servel",
+    "fuente": "fuentes.json#ficticio_2026",
     "cifras_ilustrativas": true,
-    "nota_escanos": "Escaños ilustrativos (peso de juego, redondeados a partir de la elección 2025); partido ficticio, réplica de un partido real (docs/PARTIDOS.md)."
+    "nota_escanos": "Partido ficticio; escaños ilustrativos (peso de juego, no datos oficiales)."
   },
   {
     "id": "convergencia_progresista",
     "nombre": "Convergencia Progresista Cívica",
     "sigla": "CPC",
     "alias_bloque": "Bloque de la Aurora",
-    "real_ref": "ppd",
     "ideologia": {
       "eco": -0.2,
       "inst": 0.35
@@ -61,16 +59,15 @@
     "categorias_rechazadas": [
       "hacienda"
     ],
-    "fuente": "fuentes.json#servel",
+    "fuente": "fuentes.json#ficticio_2026",
     "cifras_ilustrativas": true,
-    "nota_escanos": "Escaños ilustrativos (peso de juego, redondeados a partir de la elección 2025); partido ficticio, réplica de un partido real (docs/PARTIDOS.md)."
+    "nota_escanos": "Partido ficticio; escaños ilustrativos (peso de juego, no datos oficiales)."
   },
   {
     "id": "comunidad_solidaria",
     "nombre": "Concordia Comunitaria de Centro",
     "sigla": "CCC",
     "alias_bloque": "Bloque de la Aurora",
-    "real_ref": "pdc",
     "ideologia": {
       "eco": -0.1,
       "inst": 0.45
@@ -94,16 +91,15 @@
     "categorias_rechazadas": [
       "economia"
     ],
-    "fuente": "fuentes.json#servel",
+    "fuente": "fuentes.json#ficticio_2026",
     "cifras_ilustrativas": true,
-    "nota_escanos": "Escaños ilustrativos (peso de juego, redondeados a partir de la elección 2025); partido ficticio, réplica de un partido real (docs/PARTIDOS.md)."
+    "nota_escanos": "Partido ficticio; escaños ilustrativos (peso de juego, no datos oficiales)."
   },
   {
     "id": "frente_obrero_popular",
     "nombre": "Frente Obrero Popular",
     "sigla": "FOP",
     "alias_bloque": "Bloque de la Aurora",
-    "real_ref": "pcch",
     "ideologia": {
       "eco": -0.85,
       "inst": -0.3
@@ -127,16 +123,15 @@
     "categorias_rechazadas": [
       "seguridad"
     ],
-    "fuente": "fuentes.json#servel",
+    "fuente": "fuentes.json#ficticio_2026",
     "cifras_ilustrativas": true,
-    "nota_escanos": "Escaños ilustrativos (peso de juego, redondeados a partir de la elección 2025); partido ficticio, réplica de un partido real (docs/PARTIDOS.md)."
+    "nota_escanos": "Partido ficticio; escaños ilustrativos (peso de juego, no datos oficiales)."
   },
   {
     "id": "horizonte_comun",
     "nombre": "Movimiento Horizonte Común",
     "sigla": "MHC",
     "alias_bloque": "Bloque de la Aurora",
-    "real_ref": "fa",
     "ideologia": {
       "eco": -0.65,
       "inst": -0.35
@@ -160,16 +155,15 @@
     "categorias_rechazadas": [
       "seguridad"
     ],
-    "fuente": "fuentes.json#servel",
+    "fuente": "fuentes.json#ficticio_2026",
     "cifras_ilustrativas": true,
-    "nota_escanos": "Escaños ilustrativos (peso de juego, redondeados a partir de la elección 2025); partido ficticio, réplica de un partido real (docs/PARTIDOS.md)."
+    "nota_escanos": "Partido ficticio; escaños ilustrativos (peso de juego, no datos oficiales)."
   },
   {
     "id": "sociedad_abierta",
     "nombre": "Sociedad Abierta Ciudadana",
     "sigla": "SAC",
     "alias_bloque": "Bloque de la Aurora",
-    "real_ref": "pl",
     "ideologia": {
       "eco": 0.0,
       "inst": 0.0
@@ -192,16 +186,15 @@
     "categorias_rechazadas": [
       "hacienda"
     ],
-    "fuente": "fuentes.json#servel",
+    "fuente": "fuentes.json#ficticio_2026",
     "cifras_ilustrativas": true,
-    "nota_escanos": "Escaños ilustrativos (peso de juego, redondeados a partir de la elección 2025); partido ficticio, réplica de un partido real (docs/PARTIDOS.md)."
+    "nota_escanos": "Partido ficticio; escaños ilustrativos (peso de juego, no datos oficiales)."
   },
   {
     "id": "liga_laica",
     "nombre": "Liga Laica Reformista",
     "sigla": "LLR",
     "alias_bloque": "Bloque de la Aurora",
-    "real_ref": "pr",
     "ideologia": {
       "eco": -0.25,
       "inst": 0.4
@@ -224,16 +217,15 @@
     "categorias_rechazadas": [
       "economia"
     ],
-    "fuente": "fuentes.json#servel",
+    "fuente": "fuentes.json#ficticio_2026",
     "cifras_ilustrativas": true,
-    "nota_escanos": "Escaños ilustrativos (peso de juego, redondeados a partir de la elección 2025); partido ficticio, réplica de un partido real (docs/PARTIDOS.md)."
+    "nota_escanos": "Partido ficticio; escaños ilustrativos (peso de juego, no datos oficiales)."
   },
   {
     "id": "territorios_verdes",
     "nombre": "Confederación Territorial Ecosocial",
     "sigla": "CTE",
     "alias_bloque": "Pacto Costa y Cordillera",
-    "real_ref": "frvs",
     "ideologia": {
       "eco": -0.35,
       "inst": -0.55
@@ -257,16 +249,15 @@
     "categorias_rechazadas": [
       "hacienda"
     ],
-    "fuente": "fuentes.json#servel",
+    "fuente": "fuentes.json#ficticio_2026",
     "cifras_ilustrativas": true,
-    "nota_escanos": "Escaños ilustrativos (peso de juego, redondeados a partir de la elección 2025); partido ficticio, réplica de un partido real (docs/PARTIDOS.md)."
+    "nota_escanos": "Partido ficticio; escaños ilustrativos (peso de juego, no datos oficiales)."
   },
   {
     "id": "compromiso_civico",
     "nombre": "Compromiso Cívico Austral",
     "sigla": "CCA",
     "alias_bloque": "Bloque del Faro",
-    "real_ref": "rn",
     "ideologia": {
       "eco": 0.4,
       "inst": 0.6
@@ -290,16 +281,15 @@
     "categorias_rechazadas": [
       "social"
     ],
-    "fuente": "fuentes.json#servel",
+    "fuente": "fuentes.json#ficticio_2026",
     "cifras_ilustrativas": true,
-    "nota_escanos": "Escaños ilustrativos (peso de juego, redondeados a partir de la elección 2025); partido ficticio, réplica de un partido real (docs/PARTIDOS.md)."
+    "nota_escanos": "Partido ficticio; escaños ilustrativos (peso de juego, no datos oficiales)."
   },
   {
     "id": "gremio_solidario",
     "nombre": "Cuerpo Gremial Solidario",
     "sigla": "CGS",
     "alias_bloque": "Bloque del Faro",
-    "real_ref": "udi",
     "ideologia": {
       "eco": 0.65,
       "inst": 0.65
@@ -323,16 +313,15 @@
     "categorias_rechazadas": [
       "social"
     ],
-    "fuente": "fuentes.json#servel",
+    "fuente": "fuentes.json#ficticio_2026",
     "cifras_ilustrativas": true,
-    "nota_escanos": "Escaños ilustrativos (peso de juego, redondeados a partir de la elección 2025); partido ficticio, réplica de un partido real (docs/PARTIDOS.md)."
+    "nota_escanos": "Partido ficticio; escaños ilustrativos (peso de juego, no datos oficiales)."
   },
   {
     "id": "vanguardia_civica",
     "nombre": "Vanguardia Cívica Moderna",
     "sigla": "VCM",
     "alias_bloque": "Bloque del Faro",
-    "real_ref": "evopoli",
     "ideologia": {
       "eco": 0.55,
       "inst": 0.45
@@ -356,16 +345,15 @@
     "categorias_rechazadas": [
       "social"
     ],
-    "fuente": "fuentes.json#servel",
+    "fuente": "fuentes.json#ficticio_2026",
     "cifras_ilustrativas": true,
-    "nota_escanos": "Escaños ilustrativos (peso de juego, redondeados a partir de la elección 2025); partido ficticio, réplica de un partido real (docs/PARTIDOS.md)."
+    "nota_escanos": "Partido ficticio; escaños ilustrativos (peso de juego, no datos oficiales)."
   },
   {
     "id": "frente_tradicion",
     "nombre": "Frente por la Tradición y el Orden",
     "sigla": "FTO",
     "alias_bloque": "Frente del Roble",
-    "real_ref": "republicano",
     "ideologia": {
       "eco": 0.7,
       "inst": 0.5
@@ -390,16 +378,15 @@
       "social",
       "medioambiente"
     ],
-    "fuente": "fuentes.json#servel",
+    "fuente": "fuentes.json#ficticio_2026",
     "cifras_ilustrativas": true,
-    "nota_escanos": "Escaños ilustrativos (peso de juego, redondeados a partir de la elección 2025); partido ficticio, réplica de un partido real (docs/PARTIDOS.md)."
+    "nota_escanos": "Partido ficticio; escaños ilustrativos (peso de juego, no datos oficiales)."
   },
   {
     "id": "liga_libertad",
     "nombre": "Liga de la Libertad Individual",
     "sigla": "LLI",
     "alias_bloque": "Frente del Roble",
-    "real_ref": "pnl",
     "ideologia": {
       "eco": 0.95,
       "inst": -0.2
@@ -423,16 +410,15 @@
       "social",
       "politica"
     ],
-    "fuente": "fuentes.json#servel",
+    "fuente": "fuentes.json#ficticio_2026",
     "cifras_ilustrativas": true,
-    "nota_escanos": "Escaños ilustrativos (peso de juego, redondeados a partir de la elección 2025); partido ficticio, réplica de un partido real (docs/PARTIDOS.md)."
+    "nota_escanos": "Partido ficticio; escaños ilustrativos (peso de juego, no datos oficiales)."
   },
   {
     "id": "plataforma_voz",
     "nombre": "Plataforma Voz Directa",
     "sigla": "PVD",
     "alias_bloque": "Independiente (sin pacto)",
-    "real_ref": "pdg",
     "ideologia": {
       "eco": 0.15,
       "inst": -0.5
@@ -456,16 +442,15 @@
     "categorias_rechazadas": [
       "hacienda"
     ],
-    "fuente": "fuentes.json#servel",
+    "fuente": "fuentes.json#ficticio_2026",
     "cifras_ilustrativas": true,
-    "nota_escanos": "Escaños ilustrativos (peso de juego, redondeados a partir de la elección 2025); partido ficticio, réplica de un partido real (docs/PARTIDOS.md)."
+    "nota_escanos": "Partido ficticio; escaños ilustrativos (peso de juego, no datos oficiales)."
   },
   {
     "id": "concilio_familia",
     "nombre": "Concilio Cívico por la Familia",
     "sigla": "CCF",
     "alias_bloque": "Frente del Roble",
-    "real_ref": "cristiano",
     "ideologia": {
       "eco": 0.45,
       "inst": 0.4
@@ -489,8 +474,8 @@
     "categorias_rechazadas": [
       "medioambiente"
     ],
-    "fuente": "fuentes.json#servel",
+    "fuente": "fuentes.json#ficticio_2026",
     "cifras_ilustrativas": true,
-    "nota_escanos": "Escaños ilustrativos (peso de juego, redondeados a partir de la elección 2025); partido ficticio, réplica de un partido real (docs/PARTIDOS.md)."
+    "nota_escanos": "Partido ficticio; escaños ilustrativos (peso de juego, no datos oficiales)."
   }
 ]

@@ -116,8 +116,14 @@ def validar_leyes(leyes: dict, ids_fuentes: set) -> set:
     tipos = unicos(leyes["tipos_ley"], "tipos_ley")
     for t in leyes["tipos_ley"]:
         verificar_ref_fuente(t, ids_fuentes, f"tipo_ley {t['id']}")
-        if t["votos_minimos"] > h["total_senadores"]:
-            raise ValueError(f"tipo_ley {t['id']}: votos_minimos excede el Senado")
+        if t["regla"] not in ("ninguna", "mayoria", "fraccion") or t["base_quorum"] not in ("presentes", "en_ejercicio"):
+            raise ValueError(f"tipo_ley {t['id']}: regla o base_quorum inválidas")
+        if t["regla"] == "fraccion" and not (0 < t["fraccion"]["num"] < t["fraccion"]["den"]):
+            raise ValueError(f"tipo_ley {t['id']}: fracción inválida")
+        if not t.get("cita_regla"):
+            raise ValueError(f"tipo_ley {t['id']}: falta cita_regla")
+        if not 0.5 < leyes["congreso"]["asistencia_presentes"] <= 1.0:
+            raise ValueError("congreso.asistencia_presentes fuera de (0.5, 1]")
         for p in ("prob_recurso_tc", "prob_exito_tc"):
             if not 0.0 <= t[p] <= 1.0:
                 raise ValueError(f"tipo_ley {t['id']}: {p} fuera de [0,1]")
