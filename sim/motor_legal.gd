@@ -9,6 +9,25 @@ var rng: RandomNumberGenerator
 func configurar(p_leyes: Dictionary, p_rng: RandomNumberGenerator) -> void:
 	leyes = p_leyes
 	rng = p_rng
+	var h: Dictionary = leyes.get("hemiciclo", {})
+	for t in leyes.get("tipos_ley", []):  # los mínimos se derivan de la regla del tipo (leyes.json), no se fijan a mano
+		t["votos_minimos"] = umbral(t, int(h.get("total_senadores", 50)))
+		t["votos_minimos_camara"] = umbral(t, int(h.get("total_diputados", 155)))
+
+
+func umbral(t: Dictionary, total: int) -> int:
+	## Votos mínimos en una cámara de `total` miembros: base "en_ejercicio" (todos) o "presentes" (asistencia supuesta);
+	## regla "mayoria" (más de la mitad de la base) o "fraccion" (num/den de la base, redondeada hacia arriba).
+	var regla := String(t.get("regla", "mayoria"))
+	if regla == "ninguna":
+		return 1
+	var base := total
+	if String(t.get("base_quorum", "en_ejercicio")) == "presentes":
+		base = ceili(float(total) * float(leyes["congreso"]["asistencia_presentes"]) - 0.000001)
+	if regla == "fraccion":
+		var f: Dictionary = t["fraccion"]
+		return (base * int(f["num"]) + int(f["den"]) - 1) / int(f["den"])
+	return base / 2 + 1
 
 
 func tipo(id: String) -> Dictionary:
