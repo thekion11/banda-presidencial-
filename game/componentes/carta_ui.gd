@@ -32,12 +32,21 @@ func _gui_input(event: InputEvent) -> void:
 
 
 func _cielo(arte: Rect2, base: Color) -> void:
+	## Cielo con degradado en 3 franjas redondeadas y suelo con esquinas inferiores redondeadas.
 	var arriba := base.lightened(0.28)
-	var abajo := base.darkened(0.12).lerp(Color("#F0B27A"), 0.18)
-	draw_polygon(PackedVector2Array([arte.position, Vector2(arte.end.x, arte.position.y), arte.end, Vector2(arte.position.x, arte.end.y)]),
-			PackedColorArray([arriba, arriba, abajo, abajo]))
+	var medio := base.lightened(0.08).lerp(Color("#F0B27A"), 0.10)
+	var abajo := base.darkened(0.10).lerp(Color("#F0B27A"), 0.22)
+	draw_style_box(Tema.caja(arriba, 9), arte)
+	draw_style_box(Tema.caja(medio, 0), Rect2(arte.position.x, arte.position.y + arte.size.y * 0.34, arte.size.x, arte.size.y * 0.33))
+	var bajo := Tema.caja(abajo, 0)
+	bajo.corner_radius_bottom_left = 9
+	bajo.corner_radius_bottom_right = 9
+	draw_style_box(bajo, Rect2(arte.position.x, arte.position.y + arte.size.y * 0.67, arte.size.x, arte.size.y * 0.33))
 	draw_circle(arte.position + Vector2(arte.size.x * 0.8, arte.size.y * 0.27), arte.size.y * 0.15, Color(1, 0.88, 0.55, 0.75))
-	draw_rect(Rect2(arte.position.x, arte.end.y - 10, arte.size.x, 10), base.darkened(0.55))
+	var suelo := Tema.caja(base.darkened(0.55), 0)
+	suelo.corner_radius_bottom_left = 9
+	suelo.corner_radius_bottom_right = 9
+	draw_style_box(suelo, Rect2(arte.position.x, arte.end.y - 10, arte.size.x, 10))
 
 
 func _escena(arte: Rect2, base: Color) -> void:

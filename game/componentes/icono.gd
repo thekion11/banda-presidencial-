@@ -62,6 +62,23 @@ func _draw() -> void:
 			draw_colored_polygon(PackedVector2Array([P.call(12, 4), P.call(20, 14), P.call(14, 14), P.call(14, 20), P.call(10, 20), P.call(10, 14), P.call(4, 14)]), color)
 		"down":
 			draw_colored_polygon(PackedVector2Array([P.call(12, 20), P.call(20, 10), P.call(14, 10), P.call(14, 4), P.call(10, 4), P.call(10, 10), P.call(4, 10)]), color)
+		"train":
+			draw_polyline(PackedVector2Array([P.call(6, 4), P.call(18, 4), P.call(18, 16), P.call(6, 16), P.call(6, 4)]), color, w, true)
+			draw_line(P.call(6, 10), P.call(18, 10), color, w)
+			draw_line(P.call(8, 20), P.call(10, 16), color, w)
+			draw_line(P.call(16, 20), P.call(14, 16), color, w)
+			draw_circle(P.call(9, 13), 1.1 * u, color)
+			draw_circle(P.call(15, 13), 1.1 * u, color)
+		"home":
+			draw_polyline(PackedVector2Array([P.call(3, 12), P.call(12, 4), P.call(21, 12)]), color, w, true)
+			draw_polyline(PackedVector2Array([P.call(6, 11), P.call(6, 20), P.call(18, 20), P.call(18, 11)]), color, w, true)
+			draw_line(P.call(10, 20), P.call(10, 14), color, w)
+			draw_line(P.call(14, 20), P.call(14, 14), color, w)
+			draw_line(P.call(10, 14), P.call(14, 14), color, w)
+		"grid":
+			draw_rect(Rect2(P.call(4, 4), Vector2(16, 16) * u), color, false, w)
+			draw_line(P.call(12, 4), P.call(12, 20), color, w)
+			draw_line(P.call(4, 12), P.call(20, 12), color, w)
 		"dot":
 			draw_circle(P.call(12, 12), 6.0 * u, color)
 		"card":

@@ -18,29 +18,6 @@ static func crear(motor: MotorTurno, geo: Dictionary, regiones: Array, texto_eve
 	mb.add_theme_constant_override("margin_right", 12)
 	mb.add_child(banner)
 	vn.add_child(mb)
-	var avanzar := Button.new()
-	avanzar.custom_minimum_size = Vector2(64, 64)
-	avanzar.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
-	for e in ["normal", "hover", "pressed"]:
-		var sb := Tema.caja(Tema.ROJO, 32, Color("#E8806F"), 3)
-		sb.shadow_color = Color(0.76, 0.23, 0.18, 0.55)
-		sb.shadow_size = 10
-		avanzar.add_theme_stylebox_override(e, sb)
-	avanzar.add_theme_stylebox_override("focus", StyleBoxEmpty.new())
-	var cc := CenterContainer.new()
-	cc.set_anchors_preset(Control.PRESET_FULL_RECT)
-	cc.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	var vc := VBoxContainer.new()
-	vc.add_theme_constant_override("separation", -2)
-	vc.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	var ip := Icono.crear("play", Tema.TEXTO, 20.0)
-	ip.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
-	vc.add_child(ip)
-	vc.add_child(Tema.etiqueta_corta("Día %d" % (motor.estado.dia_actual + motor.estado.dias_por_turno), 10, Tema.TEXTO, true))
-	cc.add_child(vc)
-	avanzar.add_child(cc)
-	avanzar.pressed.connect(al_avanzar)
-	vn.add_child(avanzar)
 	var obras_n: Dictionary = {}
 	for o in motor.estado.obras_en_curso:
 		obras_n[o["region"]] = int(obras_n.get(o["region"], 0)) + 1

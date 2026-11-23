@@ -148,10 +148,43 @@ static func boton_jugar() -> Button:
 	return b
 
 
-static func nav(al_pulsar: Callable) -> Control:
+static func _boton_central(texto: String, al_avanzar: Callable) -> Control:
+	var b := Button.new()
+	b.custom_minimum_size = Vector2(64, 64)
+	b.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
+	for e in ["normal", "hover", "pressed"]:
+		var sb := Tema.caja(Tema.ROJO, 32, Color("#F4F0E4"), 3)
+		sb.shadow_color = Color(0.76, 0.23, 0.18, 0.55)
+		sb.shadow_size = 10
+		b.add_theme_stylebox_override(e, sb)
+	b.add_theme_stylebox_override("focus", StyleBoxEmpty.new())
+	var cc := CenterContainer.new()
+	cc.set_anchors_preset(Control.PRESET_FULL_RECT)
+	cc.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	var vc := VBoxContainer.new()
+	vc.add_theme_constant_override("separation", -2)
+	vc.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	var ip := Icono.crear("play", Tema.TEXTO, 20.0)
+	ip.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
+	vc.add_child(ip)
+	vc.add_child(Tema.etiqueta_corta(texto, 10, Tema.TEXTO, true))
+	cc.add_child(vc)
+	b.add_child(cc)
+	b.pressed.connect(al_avanzar)
+	return b
+
+
+static func nav(al_pulsar: Callable, nacion: bool = false, texto_dia: String = "", al_avanzar: Callable = Callable()) -> Control:
+	## Barra inferior. En "Nación" la maqueta usa Cartas / Comité / [Día N] / Congreso / Gabinete.
 	var fila := HBoxContainer.new()
 	fila.custom_minimum_size = Vector2(0, 58)
-	for par in [["Mapa", "mapa", "map"], ["Comité", "comite", "bars"], ["Congreso", "congreso", "building"], ["Gabinete", "gabinete", "people"]]:
+	var items: Array = [["Mapa", "mapa", "map"], ["Comité", "comite", "bars"], ["Congreso", "congreso", "building"], ["Gabinete", "gabinete", "people"]]
+	if nacion:
+		items = [["Cartas", "mapa", "card"], ["Comité", "comite", "bars"], ["", "", ""], ["Congreso", "congreso", "building"], ["Gabinete", "gabinete", "people"]]
+	for par in items:
+		if par[1] == "":
+			fila.add_child(_boton_central(texto_dia, al_avanzar))
+			continue
 		var b := Button.new()
 		b.flat = true
 		b.size_flags_horizontal = Control.SIZE_EXPAND_FILL

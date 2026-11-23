@@ -55,7 +55,7 @@ func _draw() -> void:
 			var ang := PI + PI * (float(k) + 0.5) / float(cuantos)
 			puntos.append(Vector3(centro.x + cos(ang) * radios[f], centro.y + sin(ang) * radios[f], ang))
 	puntos.sort_custom(func(a: Vector3, b: Vector3) -> bool: return a.z < b.z)
-	var radio_punto := 7.2 if grande else clampf((r_ext - r_int) / float(filas) * 0.40, 2.2, 3.8)
+	var radio_punto := 8.0 if grande else clampf((r_ext - r_int) / float(filas) * 0.40, 2.2, 3.8)
 	var colores: Array[Color] = []
 	for b in bloques:
 		for _k in range(int(b[0])):

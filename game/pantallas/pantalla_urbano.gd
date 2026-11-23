@@ -2,8 +2,8 @@ class_name PantallaUrbano
 extends RefCounted
 ## Mapa urbano de Gran Santiago (tema claro): filtros por tipo, líneas, propuesta punteada y hoja inferior "Obras en curso".
 
-const FILTROS := [["Metro", ["transportes", "comite"], Color("#1F7A5C"), Color("#DDEFE6")], ["Vivienda", ["vivienda"], Color("#B7791F"), Color("#F7E7C4")],
-		["Cárceles", ["seguridad", "justicia"], Color("#3B5BA9"), Color("#DEE5F5")], ["Energía", ["energia"], Color("#C9A100"), Color("#FBF0B8")]]
+const FILTROS := [["Metro", ["transportes", "comite"], Color("#1F7A5C"), Color("#DDEFE6"), "train"], ["Vivienda", ["vivienda"], Color("#B7791F"), Color("#F7E7C4"), "home"],
+		["Cárceles", ["seguridad", "justicia"], Color("#3B5BA9"), Color("#DEE5F5"), "grid"], ["Energía", ["energia"], Color("#C9A100"), Color("#FBF0B8"), "bolt"]]
 
 
 static func _categoria_de(motor: MotorTurno, obra: Dictionary) -> String:
@@ -125,7 +125,7 @@ static func crear(motor: MotorTurno, urbano: Dictionary, al_volver: Callable, al
 			ic.add_theme_stylebox_override("panel", Tema.caja(f[3], 10))
 			ic.custom_minimum_size = Vector2(36, 36)
 			ic.mouse_filter = Control.MOUSE_FILTER_IGNORE
-			ic.add_child(Icono.crear("building", f[2], 18.0))
+			ic.add_child(Icono.crear(String(f[4]), f[2], 18.0))
 			h.add_child(ic)
 			var v := VBoxContainer.new()
 			v.size_flags_horizontal = Control.SIZE_EXPAND_FILL

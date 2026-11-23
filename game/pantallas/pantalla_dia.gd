@@ -10,6 +10,8 @@ var datos: Dictionary = {}
 var geo: Dictionary = {}
 
 var _sel: int = 0
+var _raiz: VBoxContainer
+var _nav: Control
 var _sel_prev: int = -1
 var _firma_mano: String = ""
 var _ministro: String = ""
@@ -34,7 +36,9 @@ func _ready() -> void:
 	add_child(raiz)
 	raiz.add_child(_construir_cabecera())
 	raiz.add_child(_construir_cuerpo())
-	raiz.add_child(_construir_nav())
+	_raiz = raiz
+	_nav = _construir_nav()
+	raiz.add_child(_nav)
 	_capa = Control.new()
 	_capa.set_anchors_preset(Control.PRESET_FULL_RECT)
 	_capa.mouse_filter = Control.MOUSE_FILTER_IGNORE
@@ -375,7 +379,18 @@ func _siguiente_evento() -> void:
 	_capa.add_child(OverlaysDia.evento(ev, _siguiente_evento, motor.catalogo_leyes["congreso"]["nombres"], motor.estado.dia_actual))
 
 
+func _poner_nav(nacion: bool) -> void:
+	var nuevo := Barras.nav(_abrir_panel, nacion, "Día %d" % (motor.estado.dia_actual + motor.estado.dias_por_turno), func() -> void:
+		_abrir_panel("mapa")
+		_terminar_turno())
+	_raiz.add_child(nuevo)
+	_raiz.move_child(nuevo, _nav.get_index())
+	_nav.queue_free()
+	_nav = nuevo
+
+
 func _abrir_panel(cual: String) -> void:
+	_poner_nav(cual == "nacion")
 	for h in _zona_panel.get_children():
 		h.queue_free()
 	if cual == "mapa":
