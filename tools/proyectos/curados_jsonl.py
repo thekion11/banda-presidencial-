@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Convierte los listados curados (tools/proyectos/curados/*.jsonl, una fila por proyecto leída de páginas públicas) en data/proyectos/curados_*.json.
 
-Reglas: verificado=true sólo si la fila se marcó oficial Y la URL es de un dominio del Estado (.gob.cl / .gov.cl); si no, false (prensa).
+Reglas: verificado=true sólo si la fila se marcó oficial Y la URL es de un dominio del Estado (dominio estatal: ver es_estatal); si no, false (prensa).
 Se descartan duplicados (misma región+nombre normalizado, o ya existentes en data/proyectos/) y filas inválidas (se listan en pantalla).
 Uso   : python3 tools/proyectos/curados_jsonl.py
 """
@@ -17,6 +17,15 @@ CUR = Path(__file__).resolve().parent / "curados"
 SECTORES = {"salud", "educacion", "vivienda_urbana", "vial", "agua", "energia", "seguridad", "edificacion", "transporte", "puertos",
             "aeropuertos", "ferrocarriles", "otros"}
 RIDS = {r["id"] for r in json.loads((ROOT / "data" / "regiones.json").read_text(encoding="utf-8"))}
+
+
+OFICIAL_EXTRA = ("minsal.cl", "mineduc.cl", "junji.cl", "integra.cl", "cne.cl")
+
+
+def es_estatal(host):
+    """Dominio del Estado: .gob.cl/.gov.cl, ministerios con dominio propio o sitios de gobiernos regionales (gore*/gobierno*)."""
+    h = host.removeprefix("www.")
+    return h.endswith((".gob.cl", ".gov.cl")) or h.endswith(OFICIAL_EXTRA) or h.startswith(("gore", "gobiernoregional"))
 
 
 def clave(rid, nombre):
@@ -51,7 +60,7 @@ def main():
                 continue
             vistos.add(k)
             host = urlparse(r["fuente_url"]).hostname or ""
-            ofi = bool(r.get("oficial")) and host.endswith((".gob.cl", ".gov.cl"))
+            ofi = bool(r.get("oficial")) and es_estatal(host)
             n_of += ofi
             n_pr += not ofi
             regs.append(registro(

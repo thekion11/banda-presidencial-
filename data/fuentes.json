@@ -306,5 +306,25 @@
     "vigencia_dias": 180,
     "es_ilustrativa": false,
     "verificado_contra_texto": true
+  },
+  {
+    "id": "curados_oficiales_2026",
+    "institucion": "Sitios oficiales del Estado (gobiernos regionales, ministerios, servicios, municipalidades .gob.cl/.gov.cl)",
+    "titulo": "Proyectos regionales y sectoriales leídos de páginas institucionales (2026)",
+    "url": "https://www.gob.cl/",
+    "fecha_corte": "2026-11-23",
+    "vigencia_dias": 180,
+    "es_ilustrativa": false,
+    "verificado_contra_texto": false
+  },
+  {
+    "id": "curados_prensa_2026",
+    "institucion": "Prensa regional y nacional",
+    "titulo": "Proyectos regionales y sectoriales reportados por prensa (2026), no oficiales",
+    "url": "https://www.gob.cl/",
+    "fecha_corte": "2026-11-23",
+    "vigencia_dias": 180,
+    "es_ilustrativa": false,
+    "verificado_contra_texto": false
   }
 ]
