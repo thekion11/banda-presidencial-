@@ -78,6 +78,8 @@ func _una(semilla: int) -> void:
 	for panel in ["comite", "congreso", "gabinete", "mapa"]:
 		dia._abrir_panel(panel)
 		await process_frame
+		await process_frame
+		_check_tactil(dia, "panel " + panel)
 		if panel == "comite":
 			var b3: Array = dia._zona_panel.find_children("*", "Button", true, false).filter(func(b: Node) -> bool: return b.text == "3D")
 			b3[0].pressed.emit()
@@ -131,6 +133,7 @@ func _recorrer_v2(main: Node, dia: Node) -> void:
 		dia._abrir_panel("gabinete")
 		for _k in range(4):
 			await process_frame
+		_check_tactil(dia, "pestaña " + pest)
 		_check(dia._btn_jugar.get_global_rect() == base, "el botón principal debe quedar en el mismo sitio con la pestaña " + pest)
 		_check(dia._zona_panel.get_global_rect().end.y <= base.position.y + 1.0, "el panel no debe tapar el botón principal (" + pest + ")")
 	dia._abrir_panel("mapa")
@@ -204,3 +207,11 @@ func _recorrer_v2(main: Node, dia: Node) -> void:
 	dia._refrescar()
 	await create_timer(0.8).timeout
 	_check(dia._mano.get_child_count() == est.mano.size(), "la mano repuesta debe pintarse")
+
+
+func _check_tactil(raiz: Node, donde: String) -> void:
+	## CLAUDE.md §5: toda zona táctil visible mide al menos 44 px por lado.
+	for b in raiz.find_children("*", "BaseButton", true, false):
+		var c := b as Control
+		if c.is_visible_in_tree() and not (b is BaseButton and (b as BaseButton).disabled) and (c.size.x < 43.5 or c.size.y < 43.5) and c.size.x > 1.0:
+			_check(false, "zona táctil menor de 44 px en %s: %s (%s) %s" % [donde, c.name, (b as Button).text if b is Button else "", c.size])
