@@ -20,6 +20,9 @@ static func cargar_todo(base: String = "res://data/") -> Dictionary:
 	var reales: Variant = leer_json(base + "cartas_reales.json")  # generado por tools/generar_cartas.py desde datos públicos
 	if reales is Array:
 		d["cartas"] = Array(d["cartas"]) + Array(reales)
+	var evs: Variant = leer_json(base + "juego_eventos_reales.json")  # generado por tools/generar_eventos.py
+	if evs is Array:
+		d["eventos"] = Array(d["eventos"]) + Array(evs)
 	d["grafo"] = leer_json(base + "geo/grafo_urbano.json")
 	d["sectra"] = leer_json(base + "sectra_planes.json")
 	return d

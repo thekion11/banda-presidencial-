@@ -292,6 +292,7 @@ def main() -> int:
             raise ValueError(f"carta real {c['id']}: quórum sin verificar debe llevar nota_quorum")
     datos["cartas"] = datos["cartas"] + reales
     validar_cartas(datos["cartas"], ids_fuentes, tipos, props)
+    datos["eventos"] = datos["eventos"] + json.loads((DATA_DIR / "juego_eventos_reales.json").read_text(encoding="utf-8"))
     validar_eventos(datos["eventos"], ids_fuentes, tipos, datos["leyes"]["hemiciclo"]["duracion_mandato_dias"])
     validar_ideologia(datos["ideologia"])
     validar_ministros(datos["ministros"], datos["cartas"])
