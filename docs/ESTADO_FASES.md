@@ -10,10 +10,14 @@
 | 4 · Contenido y prueba cerrada | 12+ testers durante 14 días sin fallos graves | **Contenido listo, prueba cerrada pendiente** (no la puede cumplir un agente) | 58 cartas, 40 eventos, `tests/test_balance.gd`; `docs/GOOGLE_PLAY.md` |
 
 ## Pendientes que requieren a una persona
-Prueba en teléfono real, keystore de release y cuenta de Play, 12+ testers por 14 días, verificación de artículos constitucionales y licencias (`docs/DATOS.md`), y decisión sobre reflejar las mejoras en la maqueta de Figma (consume créditos).
+Prueba en teléfono real, keystore de release y cuenta de Play, 12+ testers por 14 días, y verificación de artículos constitucionales y licencias (`docs/DATOS.md`).
 
 ## Pull requests
 El repositorio no tiene ninguna rama base distinta de `ccr-ec102a3c-giitie`, por lo que no se puede abrir un PR en borrador contra una base. No se creó `main`. Cuando exista una base, abrir el PR desde esta rama con el resumen de `docs/DIFERENCIAS_MAQUETA.md` y de este documento.
 
 ## Maqueta en Figma
-La maqueta de referencia es el PDF del Documento Maestro; no existe una maqueta en Figma (el único archivo de Figma del proyecto contiene las ilustraciones de las cartas). Las comparaciones fotograma a fotograma contra el PDF están en `docs/comparacion/`.
+Las herramientas `mcp__Figma__` están disponibles, así que no es un bloqueo técnico ni humano. El motivo por el que no se comparó contra Figma es que **no existe una maqueta en Figma**: la maqueta de referencia es el PDF del Documento Maestro, y el único archivo de Figma del proyecto ("Presidente de Chile - arte de cartas") contiene solo las ilustraciones de las cartas. No hay clave de maqueta que consultar con `get_design_context` o `get_screenshot`.
+
+Las comparaciones fotograma a fotograma contra el PDF están en `docs/comparacion/` y las diferencias en `docs/DIFERENCIAS_MAQUETA.md`.
+
+**Decisión abierta (cuesta créditos de IA del plan de Figma):** crear una maqueta en Figma a partir del PDF y del juego para poder comparar con esas herramientas. Si se aprueba, se haría con `use_figma` y se compararía pantalla por pantalla.
