@@ -110,5 +110,15 @@
     "vigencia_dias": 365,
     "es_ilustrativa": false,
     "verificado_contra_texto": false
+  },
+  {
+    "id": "efe_proyectos",
+    "institucion": "Empresa de los Ferrocarriles del Estado (EFE Trenes de Chile)",
+    "titulo": "Proyectos del Plan Trenes para Chile y otros desarrollos",
+    "url": "https://www.efe.cl/proyectos/",
+    "fecha_corte": "2026-11-23",
+    "vigencia_dias": 180,
+    "es_ilustrativa": false,
+    "verificado_contra_texto": false
   }
 ]

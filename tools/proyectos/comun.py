@@ -3,7 +3,7 @@
 Esquema de registro (todas las claves siempre presentes; null si no hay dato, nunca se inventan cifras):
 id, nombre, sector, region_id, region_ids, comuna, estado, estado_2026_03_11, inversion_musd, inversion_uf, inversion_clp,
 fecha_inicio, fecha_fin, mandante, descripcion, fuente_url, fuente, fecha_consulta, verificado, notas
-Fechas: 'YYYY-MM-DD', 'YYYY-MM', 'YYYY', 'YYYY-Qn' o null (estimadas o hitos oficiales).
+Fechas: 'YYYY-MM-DD', 'YYYY-MM', 'YYYY', 'YYYY-Qn', 'YYYY-S1/S2' o null (estimadas o hitos oficiales).
 """
 import html
 import json

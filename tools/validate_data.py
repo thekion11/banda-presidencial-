@@ -244,7 +244,7 @@ def validar_proyectos(regiones: set, ids_fuentes: set) -> None:
     claves = {"id", "nombre", "sector", "region_id", "region_ids", "comuna", "estado", "estado_2026_03_11", "inversion_musd",
               "inversion_uf", "inversion_clp", "fecha_inicio", "fecha_fin", "mandante", "descripcion", "fuente_url", "fuente", "fecha_consulta",
               "verificado", "notas"}
-    patron_fecha = re.compile(r"^\d{4}(-\d{2}(-\d{2})?|-Q[1-4])?$")
+    patron_fecha = re.compile(r"^\d{4}(-\d{2}(-\d{2})?|-(Q[1-4]|S[12]))?$")
     vistos = set()
     for ruta in sorted((DATA_DIR / "proyectos").glob("*.json")):
         d = json.loads(ruta.read_text(encoding="utf-8"))
