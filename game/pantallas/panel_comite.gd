@@ -28,12 +28,18 @@ static func _propuesta(col: VBoxContainer, motor: MotorTurno, pid: String, al_ap
 	var prop: Dictionary = motor.catalogo_propuestas[pid]
 	col.add_child(Tema.etiqueta(String(prop["titulo"]), 20, Tema.TEXTO, true))
 	col.add_child(Tema.etiqueta("Presenta la " + String(prop["presenta"]) + " · cifras ilustrativas", 11, Tema.TEXTO_SUAVE))
+	var estado := {"v": prop["variantes"][0], "custom": {}}
 	var mapa := ComiteMapa.new()
 	mapa.semilla = hash(pid) % 1000
 	var pila := Control.new()
 	pila.custom_minimum_size = Vector2(0, 220)
 	mapa.set_anchors_preset(Control.PRESET_FULL_RECT)
 	pila.add_child(mapa)
+	var m3d := ComiteMapa3D.new()
+	m3d.semilla = mapa.semilla
+	m3d.set_anchors_preset(Control.PRESET_FULL_RECT)
+	m3d.visible = false
+	pila.add_child(m3d)
 	var tog := HBoxContainer.new()
 	tog.anchor_left = 1.0
 	tog.anchor_right = 1.0
@@ -44,15 +50,18 @@ static func _propuesta(col: VBoxContainer, motor: MotorTurno, pid: String, al_ap
 	var b3 := Tema.boton("3D", Tema.OCEANO, Tema.TEXTO, 12, 36)
 	b2.custom_minimum_size = Vector2(44, 36)
 	b3.custom_minimum_size = Vector2(44, 36)
-	b2.pressed.connect(func() -> void: mapa.modo_3d(false))
+	b2.pressed.connect(func() -> void:
+		m3d.visible = false
+		mapa.visible = true)
 	b3.pressed.connect(func() -> void:
 		if not mapa.editando:
-			mapa.modo_3d(true))
+			m3d.poner_trazado(estado["v"]["trazado"], bool(estado["v"]["elevada"]))
+			m3d.visible = true
+			mapa.visible = false)
 	tog.add_child(b2)
 	tog.add_child(b3)
 	pila.add_child(tog)
 	col.add_child(pila)
-	var estado := {"v": prop["variantes"][0], "custom": {}}
 	var detalle := VBoxContainer.new()
 	var edicion := VBoxContainer.new()
 	edicion.visible = false
@@ -66,6 +75,8 @@ static func _propuesta(col: VBoxContainer, motor: MotorTurno, pid: String, al_ap
 			estado["v"] = v
 			estado["custom"] = {}
 			mapa.poner_variante(v["trazado"], bool(v["elevada"]))
+			if m3d.visible:
+				m3d.poner_trazado(v["trazado"], bool(v["elevada"]))
 			_ficha(detalle, pid, v, prop, motor, al_aprobar, {}, func() -> void: _activar_edicion(mapa, edicion, detalle, pid, estado, prop, motor, al_aprobar)))
 		fila_v.add_child(b)
 	col.add_child(fila_v)

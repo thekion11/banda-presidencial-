@@ -69,9 +69,12 @@ func _correr() -> void:
 	for h in dia._zona_panel.get_children():
 		pass
 	var mc: Node = dia._zona_panel.find_children("*", "ComiteMapa", true, false)[0]
-	mc.modo_3d(true)
-	await create_timer(0.9).timeout
+	var b3d: Array = dia._zona_panel.find_children("*", "Button", true, false).filter(func(b: Node) -> bool: return b.text == "3D")
+	b3d[0].pressed.emit()
+	await create_timer(1.2).timeout
 	await _guardar("cmp_comite_3d")
+	var b2d: Array = dia._zona_panel.find_children("*", "Button", true, false).filter(func(b: Node) -> bool: return b.text == "2D")
+	b2d[0].pressed.emit()
 	mc.modo_3d(false)
 	await create_timer(0.7).timeout
 	var btns: Array = dia._zona_panel.find_children("*", "Button", true, false).filter(func(b: Node) -> bool: return b.text == "Modificar trazado")

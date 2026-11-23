@@ -39,9 +39,21 @@ func _correr() -> void:
 	_check(main.motor.estado.eleccion_pendiente(8), "debería haber elección pendiente")
 	dia._resolver_eleccion()
 	await process_frame
+	main.motor.estado.propuestas_abiertas.append("prop_metro_suroriente")
 	for panel in ["comite", "congreso", "gabinete", "mapa"]:
 		dia._abrir_panel(panel)
 		await process_frame
+		if panel == "comite":
+			var b3: Array = dia._zona_panel.find_children("*", "Button", true, false).filter(func(b: Node) -> bool: return b.text == "3D")
+			b3[0].pressed.emit()
+			await process_frame
+			var m3: Array = dia._zona_panel.find_children("*", "ComiteMapa3D", true, false)
+			_check(m3.size() == 1 and m3[0].visible, "la vista 3D del Comité debe mostrarse")
+			var bm: Array = dia._zona_panel.find_children("*", "Button", true, false).filter(func(b: Node) -> bool: return b.text == "Modificar trazado")
+			if not bm.is_empty():
+				bm[0].pressed.emit()
+				await process_frame
+	main.motor.estado.propuestas_abiertas.erase("prop_metro_suroriente")  # se inyectó solo para recorrer el panel
 	_check(not main.motor.estado.partido.is_empty(), "partido vacío")
 	var guardado: Dictionary = main.motor.estado.exportar_guardado()
 	var rep: MotorTurno = Partida.reproducir(main.datos, guardado)
