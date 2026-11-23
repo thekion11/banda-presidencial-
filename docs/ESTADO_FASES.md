@@ -66,6 +66,38 @@ Las comparaciones fotograma a fotograma contra el PDF están en `docs/comparacio
 - **N5 veracidad:** `meta.verificado_hecho` = el hecho real (nombre, boletín, estado, inversión) tiene fuente primaria verificada; `cifras_ilustrativas` = efectos de juego inventados. Las 230 obras quedan `verificado_hecho:false` (sus fuentes MOP/EFE/Metro/Minsal/prensa no están verificadas contra el texto) y también los 2 plebiscitos (Wikipedia); `verificado` se mantiene igual a `verificado_hecho`. El validador falla si `verificado_hecho:true` apunta a una fuente con `verificado_contra_texto:false`.
 - **N6 alcanzabilidad:** `python3 tools/informe_alcanzabilidad.py [--detalle]` replica `disponible()` sobre todos los gabinetes posibles, años 1-4, eventos de gobierno que ocurren, metas existentes y fiscal 0-100; devuelve 1 si alguna carta es inalcanzable. Resultado actual: 1.343 de 1.343 alcanzables; con el mejor gabinete de 8 ministros se ven 564/863/728/374 cartas por año (de 638/948/791/411).
 
+### Arte específico por tema y lista de ilustraciones por producir
+- `tools/cartas_arte.py` asigna el campo `arte` con una tabla de reglas (obras por sector del proyecto; proyectos de ley por palabras del título legal; reformas constitucionales y plebiscitos -> `politica_reforma`; tratados -> `politica_tratados`). Gana la primera regla que calce; sin calce la carta usa el arte de su categoría. El juego usa la categoría también cuando el archivo del arte específico no existe (`game/componentes/carta_ui.gd`), así que nada se rompe mientras faltan imágenes. NO se crearon imágenes.
+- `python3 tools/informe_cartas.py` cuenta cuántas cartas usan cada arte y cuáles faltan (`--md` imprime esta tabla). Hoy existen 15 ilustraciones (las 14 categorías + `estado`) y están definidas 22 específicas, ninguna producida aún: 923 de 1.343 cartas las usarían.
+- Lista priorizada por número de cartas (producir con Canva a 1024×820, ver resolución del arte; licencia por confirmar):
+
+| Prioridad | Arte (`game/arte/cartas/<arte>.jpg`) | Cartas | Motivo |
+|---|---|---|---|
+| 1 | `seguridad_justicia` | 199 | justicia penal: tribunales, fiscalía, penas, víctimas |
+| 2 | `politica_reforma` | 111 | reforma constitucional (hemiciclo, texto constitucional) |
+| 3 | `obras_vial` | 75 | carretera/puente en construcción |
+| 4 | `trabajo` | 59 | trabajo y empleo |
+| 5 | `social_familia` | 52 | infancia, familia, mujeres, personas mayores y discapacidad |
+| 6 | `ambiente` | 45 | medio ambiente, fauna y recursos naturales |
+| 7 | `transportes_transito` | 44 | tránsito, conductores y vehículos |
+| 8 | `economia_consumo` | 40 | consumidores, empresas y comercio |
+| 9 | `salud_hospitales` | 39 | hospital / centro oncológico |
+| 10 | `educacion_escuela` | 34 | escuelas, universidades y cultura |
+| 11 | `transportes_aeropuertos` | 33 | terminal de aeropuerto |
+| 12 | `seguridad_defensa` | 29 | Fuerzas Armadas, defensa e inteligencia |
+| 13 | `politica_tratados` | 27 | tratados y acuerdos internacionales |
+| 14 | `obras_edificacion` | 23 | edificio público |
+| 15 | `transportes_trenes` | 23 | tren o metro |
+| 16 | `social_pensiones` | 19 | pensiones y previsión |
+| 17 | `descentralizacion_municipal` | 18 | municipios y gobiernos regionales |
+| 18 | `politica_electoral` | 17 | sistema electoral y partidos |
+| 19 | `hacienda_tributaria` | 11 | impuestos y presupuesto |
+| 20 | `seguridad_carceles` | 10 | recinto penitenciario / seguridad |
+| 21 | `medioambiente_agua` | 10 | obra sanitaria / sistema de agua |
+| 22 | `economia_puertos` | 5 | puerto y logística |
+
+- Orden sugerido: las 10 primeras cubren 658 cartas (71 % de las que llevan arte específico). `politica_tratados` tiene una miniatura de referencia en `docs/comparacion/`; `politica_reforma` también.
+
 ### Eventos reales en el juego
 - `tools/generar_eventos.py` -> `data/juego_eventos_reales.json` (38 eventos): hitos verificados con fuente primaria (leyes publicadas, reformas constitucionales) ubicados por fecha real: 6 en campaña (desde el 21-sep-2025) y 32 en gobierno (desde el 11-mar-2026; día = fecha − 11-mar-2026 + 1). No se juegan los resultados electorales reales (la elección la decide el jugador) ni la transición dic-2025/mar-2026. Sin nombres de políticos (roles). Efectos ilustrativos (`meta.cifras_ilustrativas`).
 - Quórum 4/7 (art. 127 CPR): Ley 21.481 (2022) lo estableció; consta en el texto actualizado de la Constitución (BCN, 7-oct-2025), verificado por la sesión de datos. Pendiente: contraste contra el texto consolidado de LeyChile y la historia de la ley (BCN responde 401 a clientes automáticos): no se declara "verificado contra el texto oficial completo".
