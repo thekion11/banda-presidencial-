@@ -174,3 +174,15 @@ Contenido y mecánicas v2 integrados con pruebas en verde; para cerrar la fase f
 
 ### Verificación de eventos reales por búsqueda web (23-nov-2026)
 De los 14 eventos sin verificar, se verificó 1 con fuentes primarias: **cambio de mando del 11-mar-2026** (senado.cl, gob.cl, bcn.cl; ahora `verificado:true`). Para la 1ª vuelta (16-nov-2025) Servel confirma la fecha y los dos candidatos de la segunda vuelta, pero solo se obtuvo el boletín parcial (62,76 % de mesas), no el escrutinio final: sigue sin verificar y con nota. De la proclamación del Tricel solo se confirma que existió (Diario de Sesiones del Senado), no la fecha del 5-ene-2026. La cifra de la 2ª vuelta tiene dos versiones en la BCN (58,16 % con 7.254.850 votos y 58,17 % con 7.263.236): sin resolver. Quedan 13 eventos sin verificar (plebiscitos 2022/2023, incendios de 2024, funeral de Estado, primarias, reunión Kast-Boric, MEPCO, plan de reconstrucción, Registro Civil, visita a Bolivia, recorte de ministerios); ninguno de ellos entra a los eventos del juego (solo se usan los verificados).
+
+### Sesiones de trabajo y tareas asignadas (23-nov-2026, ~20:50 UTC; asignadas a pedido del usuario: "revisa que todos trabajen")
+| Sesión | Id | Rama | Tarea asignada |
+|---|---|---|---|
+| Investigación B (leyes/eventos) | `session_015HWWmmSHT9FhxQozZAfncT` | `datos/leyes-eventos` | Escrutinio final de la 1ª vuelta por región, 2ª vuelta (reconciliar 58,16 % vs 58,17 %), proclamación del Tricel, series económicas, desastres/conflictos 2026, verificación de los 13 eventos pendientes |
+| Investigación A (proyectos) | `session_015HWWmmx6paLm5vV1K1cr4H` | `datos/proyectos-publicos` | +200 proyectos por región y sector desde fuentes oficiales por búsqueda web |
+| Investigación C (partidos) | `session_015HWWmmpyCcM31T9N5RDAhi` | `datos/partidos` | Principios de 8 partidos, votaciones por partido, escaños (Servel), estado del Partido Radical; recalibrar réplicas |
+| Mecánicas v2 | `session_015HWWmjTekN3ggoDioV8Uc2` | `feat/mecanicas-v2` | Ablación de cada mecánica v2 (montecarlo), ajuste de parámetros en leyes.json, leyes interpretativas, replay |
+| UI v2 | `session_015HWWmkz1Pr8xMDB2UDtvZV` | `feat/ui-v2` | Tutorial, resultado de elección (1ª/2ª vuelta), fin de partida, cartera de proyectos, con pruebas táctiles/botón fijo |
+| Cartas v2 | `session_015HWWmmDD92h4LoTGNLMnFk` | `datos/cartas-1040` | Regenerar cartas con datos nuevos, tabla de `arte` por tema, informe de arte pendiente |
+| Revisor | `session_015HWWmkvtNEf8jtTSAK1Cjv` | `revision/auditoria` | Auditoría 3 y revisión de las seis ramas anteriores |
+Sesión de monitoreo (`session_015HWWmk4UVthE3U1iKnZXQ8`): no es hija de esta; solo envía revisiones. Esta sesión integra en `ccr-ec102a3c-giitie` con la suite completa y revisión del CI.
