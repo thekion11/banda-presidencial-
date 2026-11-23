@@ -68,7 +68,7 @@ func _construir_cuerpo() -> Control:
 	vista.add_theme_constant_override("separation", 0)
 	cuerpo.add_child(vista)
 	_mapa = MapaChile.new()
-	_mapa.custom_minimum_size = Vector2(0, 220)
+	_mapa.custom_minimum_size = Vector2(0, 290)
 	_mapa.size_flags_vertical = Control.SIZE_EXPAND_FILL
 	_mapa.cargar_geo(geo)
 	_mapa.region_tocada.connect(_on_region)
@@ -101,7 +101,7 @@ func _construir_cuerpo() -> Control:
 	cab_mano.add_child(tip)
 	vista.add_child(mm)
 	_mano = Control.new()
-	_mano.custom_minimum_size = Vector2(0, 200)
+	_mano.custom_minimum_size = Vector2(0, 218)
 	_mano.clip_contents = false
 	vista.add_child(_mano)
 	var corr := PanelContainer.new()
@@ -216,8 +216,8 @@ func _pintar_mano() -> void:
 		_lbl_corrector.text = "[b]Sin cartas[/b] en la mano. Termina el turno para robar más."
 		return
 	_sel = clampi(_sel, 0, n - 1)
-	var ancho := 106.0
-	var alto := 150.0
+	var ancho := 110.0
+	var alto := 170.0
 	var paso := 0.0 if n < 2 else minf(ancho * 0.8, (Tema.ANCHO - 20.0 - ancho) / float(n - 1))
 	var x0 := (Tema.ANCHO - (ancho + paso * float(n - 1))) * 0.5
 	var firma := ",".join(est.mano.map(func(c: Dictionary) -> String: return String(c["id"])))
@@ -238,14 +238,14 @@ func _pintar_mano() -> void:
 		c.atenuada = i != _sel or costo > est.pa_actual
 		c.size = Vector2(ancho, alto)
 		c.pivot_offset = Vector2(ancho * 0.5, alto)
-		c.position = Vector2(x0 + paso * float(i), 44.0)
+		c.position = Vector2(x0 + paso * float(i), 46.0)
 		c.rotation_degrees = float(i - (n - 1) * 0.5) * 6.0
 		var destino_pos := c.position
 		var destino_rot := c.rotation_degrees
 		var destino_esc := Vector2.ONE
 		if i == _sel:
-			destino_esc = Vector2(1.3, 1.3)
-			destino_pos.y = 30.0
+			destino_esc = Vector2(1.2, 1.2)
+			destino_pos.y = 22.0
 			destino_rot = 0.0
 		c.tocada.connect(_on_carta.bind(i))
 		_mano.add_child(c)

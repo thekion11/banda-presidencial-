@@ -29,7 +29,7 @@ static func insignia() -> Control:
 
 static func pastilla_pa(refs: Dictionary) -> Control:
 	var p := PanelContainer.new()
-	p.add_theme_stylebox_override("panel", Tema.caja(Tema.ORO, 16, Color("#FFE49A"), 1))
+	p.add_theme_stylebox_override("panel", Tema.caja_degradada(Color("#FFD76A"), Color("#E3A92A"), 16, Color("#FFE9A8"), 1))
 	var h := HBoxContainer.new()
 	h.add_theme_constant_override("separation", 4)
 	h.add_child(Icono.crear("bolt", Tema.TINTA, 16.0))
@@ -68,7 +68,7 @@ static func cabecera(refs: Dictionary) -> Control:
 	refs["chips"] = {}
 	for par in [["aprobacion", "Aprob."], ["capital", "Capital"], ["cohesion", "Cohes."], ["fiscal", "Fiscal"]]:
 		var p := PanelContainer.new()
-		p.add_theme_stylebox_override("panel", Tema.caja(Color("#12395A"), 10, Color("#1E5078"), 1))
+		p.add_theme_stylebox_override("panel", Tema.caja_degradada(Color("#17476C"), Color("#0F3355"), 10, Color("#2A6290"), 1))
 		p.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		var h := HBoxContainer.new()
 		h.add_theme_constant_override("separation", 3)
@@ -127,8 +127,9 @@ static func tarjeta_region(refs: Dictionary) -> Control:
 static func boton_redondo(tipo: String) -> Button:
 	var b := Button.new()
 	b.custom_minimum_size = Vector2(54, 54)
-	for e in ["normal", "hover", "pressed", "disabled"]:
-		b.add_theme_stylebox_override(e, Tema.caja(Color("#12395A") if e != "disabled" else Color("#0C2336"), 27, Color("#3A6E98"), 2))
+	for e in ["normal", "hover", "pressed"]:
+		b.add_theme_stylebox_override(e, Tema.caja_degradada(Color("#1B4F78"), Color("#0F2F4A"), 27, Color("#4C84AE"), 2))
+	b.add_theme_stylebox_override("disabled", Tema.caja_degradada(Color("#0F2A40"), Color("#0A1E31"), 27, Color("#25506F"), 2))
 	b.add_theme_stylebox_override("focus", StyleBoxEmpty.new())
 	var centro := CenterContainer.new()
 	centro.set_anchors_preset(Control.PRESET_FULL_RECT)
@@ -140,11 +141,10 @@ static func boton_redondo(tipo: String) -> Button:
 
 static func boton_jugar() -> Button:
 	var b := Tema.boton("Jugar", Tema.ROJO, Tema.TEXTO, 18, 54)
-	for e in ["normal", "hover", "pressed"]:
-		var sb := Tema.caja(Tema.ROJO if e != "pressed" else Tema.ROJO.darkened(0.15), 27, Color("#E8806F"), 2)
-		sb.shadow_color = Color(0.76, 0.23, 0.18, 0.5)
-		sb.shadow_size = 10
-		b.add_theme_stylebox_override(e, sb)
+	b.add_theme_stylebox_override("normal", Tema.caja_degradada(Color("#E8705A"), Color("#B7332A"), 27, Color("#F2A08F"), 2))
+	b.add_theme_stylebox_override("hover", Tema.caja_degradada(Color("#F07C66"), Color("#C23B2E"), 27, Color("#F2A08F"), 2))
+	b.add_theme_stylebox_override("pressed", Tema.caja_degradada(Color("#A92F27"), Color("#C23B2E"), 27, Color("#E8806F"), 2))
+	b.add_theme_stylebox_override("disabled", Tema.caja_degradada(Color("#6B3A3A"), Color("#4C2A2A"), 27))
 	return b
 
 
@@ -153,10 +153,7 @@ static func _boton_central(texto: String, al_avanzar: Callable) -> Control:
 	b.custom_minimum_size = Vector2(64, 64)
 	b.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
 	for e in ["normal", "hover", "pressed"]:
-		var sb := Tema.caja(Tema.ROJO, 32, Color("#F4F0E4"), 3)
-		sb.shadow_color = Color(0.76, 0.23, 0.18, 0.55)
-		sb.shadow_size = 10
-		b.add_theme_stylebox_override(e, sb)
+		b.add_theme_stylebox_override(e, Tema.caja_degradada(Color("#E8705A") if e != "pressed" else Color("#A92F27"), Color("#B7332A"), 32, Color("#F4F0E4"), 3))
 	b.add_theme_stylebox_override("focus", StyleBoxEmpty.new())
 	var cc := CenterContainer.new()
 	cc.set_anchors_preset(Control.PRESET_FULL_RECT)

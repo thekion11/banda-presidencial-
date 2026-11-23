@@ -43,10 +43,27 @@ func _cielo(arte: Rect2, base: Color) -> void:
 	bajo.corner_radius_bottom_right = 9
 	draw_style_box(bajo, Rect2(arte.position.x, arte.position.y + arte.size.y * 0.67, arte.size.x, arte.size.y * 0.33))
 	draw_circle(arte.position + Vector2(arte.size.x * 0.8, arte.size.y * 0.27), arte.size.y * 0.15, Color(1, 0.88, 0.55, 0.75))
+	_montanas(arte, base)
 	var suelo := Tema.caja(base.darkened(0.55), 0)
 	suelo.corner_radius_bottom_left = 9
 	suelo.corner_radius_bottom_right = 9
 	draw_style_box(suelo, Rect2(arte.position.x, arte.end.y - 10, arte.size.x, 10))
+
+
+func _montanas(arte: Rect2, base: Color) -> void:
+	## Cordillera de fondo en dos planos con cumbres nevadas (Chile siempre tiene los Andes detrás).
+	var o := arte.position
+	var w := arte.size.x
+	var h := arte.size.y
+	var y0 := arte.end.y - 10.0
+	var lejos := PackedVector2Array([Vector2(o.x, y0), Vector2(o.x, o.y + h * 0.60), Vector2(o.x + w * 0.16, o.y + h * 0.44), Vector2(o.x + w * 0.30, o.y + h * 0.56), Vector2(o.x + w * 0.50, o.y + h * 0.36), Vector2(o.x + w * 0.70, o.y + h * 0.54), Vector2(o.x + w * 0.86, o.y + h * 0.42), Vector2(arte.end.x, o.y + h * 0.58), Vector2(arte.end.x, y0)])
+	draw_colored_polygon(lejos, base.lightened(0.05).lerp(Color("#C9B8D8"), 0.35))
+	for k in [[0.16, 0.44], [0.50, 0.36], [0.86, 0.42]]:
+		var px := o.x + w * float(k[0])
+		var py := o.y + h * float(k[1])
+		draw_colored_polygon(PackedVector2Array([Vector2(px - 6.0, py + 8.0), Vector2(px, py), Vector2(px + 6.0, py + 8.0)]), Color(1, 1, 1, 0.8))
+	var cerca := PackedVector2Array([Vector2(o.x, y0), Vector2(o.x, o.y + h * 0.74), Vector2(o.x + w * 0.22, o.y + h * 0.60), Vector2(o.x + w * 0.42, o.y + h * 0.72), Vector2(o.x + w * 0.66, o.y + h * 0.58), Vector2(o.x + w * 0.88, o.y + h * 0.72), Vector2(arte.end.x, o.y + h * 0.66), Vector2(arte.end.x, y0)])
+	draw_colored_polygon(cerca, base.darkened(0.28).lerp(Color("#6A5F8A"), 0.25))
 
 
 func _escena(arte: Rect2, base: Color) -> void:
@@ -196,8 +213,10 @@ func _draw() -> void:
 			var g := 3.0 + float(k) * 3.0
 			draw_style_box(Tema.caja(Color(Tema.ORO, 0.07), 16 + k * 2), Rect2(-g, -g, w + g * 2.0, h + g * 2.0))
 	var borde := Tema.ORO if elegida else Color("#7C8EA0")
-	draw_style_box(Tema.caja(Color("#0E2A44"), 13, borde, 3 if elegida else 2), Rect2(Vector2.ZERO, size))
-	var arte := Rect2(5, 5, w - 10, h * 0.40)
+	var marco := Tema.caja_degradada(Color("#FFE08A"), Color("#B8851A"), 13) if elegida else Tema.caja_degradada(Color("#AEBCCB"), Color("#5D6E80"), 13)
+	draw_style_box(marco, Rect2(Vector2.ZERO, size))
+	draw_style_box(Tema.caja_degradada(Color("#12395C"), Color("#0A2037"), 11), Rect2(Vector2(2.5, 2.5), size - Vector2(5, 5)))
+	var arte := Rect2(5, 5, w - 10, h * 0.47)
 	_escena(arte, base)
 	var cat: String = NOMBRES_CAT.get(String(carta["categoria"]), String(carta["categoria"]).to_upper())
 	var cinta := Rect2(w - 68.0, 9, 62, 16)
@@ -206,7 +225,7 @@ func _draw() -> void:
 	_gema(Vector2(21, 21), 14.0)
 	draw_multiline_string(Tema.fuente_titulo(), Vector2(8, arte.end.y + 17), String(carta["titulo"]),
 			HORIZONTAL_ALIGNMENT_LEFT, w - 14, 12 if elegida else 11, 2, Tema.TEXTO)
-	var y := h - 41.0
+	var y := h - 42.0
 	var n := 0
 	for ef in carta["efectos"]:
 		if n >= 2:

@@ -12,8 +12,19 @@ var _pantalla: Control
 func _ready() -> void:
 	datos = Datos.cargar_todo()
 	geo = Datos.leer_json("res://data/geo/regiones_mapa.json")
-	var fondo := ColorRect.new()
-	fondo.color = Tema.OCEANO
+	var g := Gradient.new()
+	g.colors = PackedColorArray([Color("#154F7A"), Color("#0B2236"), Color("#07182A")])
+	g.offsets = PackedFloat32Array([0.0, 0.55, 1.0])
+	var gt := GradientTexture2D.new()
+	gt.gradient = g
+	gt.fill = GradientTexture2D.FILL_RADIAL
+	gt.fill_from = Vector2(0.5, 0.18)
+	gt.fill_to = Vector2(0.5, 1.05)
+	gt.width = 390
+	gt.height = 844
+	var fondo := TextureRect.new()
+	fondo.texture = gt
+	fondo.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 	fondo.set_anchors_preset(Control.PRESET_FULL_RECT)
 	add_child(fondo)
 	mostrar_menu()

@@ -51,6 +51,44 @@ static func color_aprobacion(v: float) -> Color:
 	return ESCALA_APROBACION[i].lerp(ESCALA_APROBACION[i + 1], t - float(i))
 
 
+static var _cache_grad: Dictionary = {}
+
+
+static func caja_degradada(arriba: Color, abajo: Color, radio: int = 27, borde: Color = Color(0, 0, 0, 0), grosor: int = 0) -> StyleBoxTexture:
+	## Caja redondeada con degradado vertical suave y borde opcional (9-slice generado una sola vez por combinación).
+	var clave := "%s|%s|%d|%s|%d" % [arriba.to_html(), abajo.to_html(), radio, borde.to_html(), grosor]
+	if not _cache_grad.has(clave):
+		var n := 96
+		var img := Image.create(n, n, false, Image.FORMAT_RGBA8)
+		for y in range(n):
+			var c := arriba.lerp(abajo, float(y) / float(n - 1))
+			for x in range(n):
+				var dx := maxf(maxf(float(radio) - float(x) - 0.5, float(x) + 0.5 - float(n - radio)), 0.0)
+				var dy := maxf(maxf(float(radio) - float(y) - 0.5, float(y) + 0.5 - float(n - radio)), 0.0)
+				var d := sqrt(dx * dx + dy * dy)
+				var a := clampf(float(radio) - d + 0.5, 0.0, 1.0)  # antialias en el borde
+				var col := c
+				if grosor > 0:
+					var entrada := float(mini(mini(x, n - 1 - x), mini(y, n - 1 - y)))
+					var en_borde := d > float(radio - grosor) or entrada < float(grosor)
+					if en_borde:
+						col = borde
+				col.a *= a
+				img.set_pixel(x, y, col)
+		_cache_grad[clave] = ImageTexture.create_from_image(img)
+	var sb := StyleBoxTexture.new()
+	sb.texture = _cache_grad[clave]
+	sb.texture_margin_left = radio
+	sb.texture_margin_right = radio
+	sb.texture_margin_top = radio
+	sb.texture_margin_bottom = radio
+	sb.content_margin_left = 12
+	sb.content_margin_right = 12
+	sb.content_margin_top = 8
+	sb.content_margin_bottom = 8
+	return sb
+
+
 static func caja(color: Color, radio: int = 14, borde: Color = Color(0, 0, 0, 0), grosor: int = 0) -> StyleBoxFlat:
 	var s := StyleBoxFlat.new()
 	s.bg_color = color

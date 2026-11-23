@@ -124,6 +124,9 @@ func _draw() -> void:
 			col = col.lightened(0.18)
 		if _mallas.has(id):
 			var h := size.y - 16.0
+			draw_set_transform(_transformar(Vector2.ZERO) + Vector2(5.0, 6.0), 0.0, Vector2(h * estirar_x, h))
+			draw_mesh(_mallas[id], null, Transform2D.IDENTITY, Color(0, 0, 0, 0.38))
+			draw_set_transform(Vector2.ZERO, 0.0, Vector2.ONE)
 			var origen := _transformar(Vector2.ZERO)
 			draw_set_transform(origen, 0.0, Vector2(h * estirar_x, h))
 			draw_mesh(_mallas[id], null, Transform2D.IDENTITY, col)
