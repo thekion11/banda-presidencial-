@@ -1,3 +1,29 @@
+# Revisión del PR #6 contra la Enmienda de Cierre y CLAUDE.md
+
+Fuente: `docs/enmienda_de_cierre.pdf` (leída completa, 9 págs.) y `CLAUDE.md` vigente, contrastados con `ccr-ec102a3c-giitie` + este PR. El PR solo toca `docs/REVISION.md` y 8 líneas de `game/componentes/urbano_base.gd` (rótulos del mapa 9 → 10 pt, que **cumple** CLAUDE.md §5 «mínimo 10 pt»); no hay cambios de `sim/` ni `data/`. Pruebas ejecutadas con Godot 4.3: `test_enmienda`, oro completa, guardado, UI humo, balance en verde.
+
+## Conformes con la Enmienda (verificado en código/datos)
+- Test de 8 preguntas (`ideologia.json`: 8) y 3 arquetipos por `eje_eco` (§5.1).
+- Fórmulas del partido idénticas a §2/§6.1: escaños `clamp(round(18−6·d),6,22)`, cohesión `round(65+20·d)`, fiscal `round(65+15·eco)`, capital `round(60+10·inst)`, aprobación `clamp(38+6(1−d/2),32,46)` (`sim/generador_partido.gd`).
+- Campaña de 8 turnos = 56 días; `semanas_campana`, `dias_por_turno`, `duracion_mandato_dias`, `bono_aprobacion_promesa` leídos de `leyes.json` (§5.2). El bono +50 % se aplica como `(base + efecto) × 1,5` (`motor_cartas.gd:113`).
+- Metas de Legado evaluadas en los turnos 104 y 208 con descuento de capital y aprobación (`leyes.json › legado`, `motor_mandato.gd:14-26`).
+- Pantalla de partido: «Fundación de Partido · Pregunta N de 8», franja crema con perfil y «Proyección: N de 50 escaños», botón «Iniciar Campaña · 8 Semanas» (`pantalla_partido.gd:75,86,195`); paleta de `tema.gd` idéntica a la congelada (océano, panel, oro, rojo, crema, escala `#4CC38A`→`#E8705A`).
+- Prueba de oro integral determinista (huella igual en dos corridas) y guardado por eventos.
+
+## Desviaciones respecto de la Enmienda
+**D1 (alto) — CLAUDE.md contradice el comportamiento real de la elección.** La sección «Enmienda de Cierre» de CLAUDE.md (y §1 del PDF) dice: en el Turno 8 se vota; si no supera el umbral, **pierde**. El código implementa **segunda vuelta** (4 semanas más y nueva votación; `motor_mandato.gd:resolver_eleccion`, `estado.ronda_electoral`) con un piso `umbral_pasa_balotaje` = 38. La autorización del usuario consta en `docs/ESTADO_FASES.md:27-33`, pero **CLAUDE.md no lo recoge** y sigue declarando «ALCANCE CONGELADO». Propuesta: añadir a CLAUDE.md, bajo la Enmienda, «Ampliación autorizada (23‑nov‑2026): 2ª vuelta, gabinete de 8, movimientos, coalición, proyectos reales», y citar la fecha. Sin esto, cualquier revisor futuro (o agente) tomará el balotaje por una violación del congelamiento.
+**D2 (medio) — Umbral 51 en vez de 50.** El PDF §5.2 fija `umbral_victoria_presidencial: 50.0`; `leyes.json` tiene `51.0` (`ESTADO_FASES.md:39`, «balance»). El valor sí vive en datos (cumple la regla), pero cambia un parámetro del documento de cierre. Propuesta: dejar constancia en `ESTADO_FASES`/CLAUDE.md como decisión de balance con fecha, o restaurar 50 y balancear con `ruido_eleccion`.
+**D3 (medio) — Acto 2 «25 ministros» vs gabinete de 8.** El PDF (§1) pide gobierno con 25 ministros; `leyes.json › gabinete.tamano` = 8 (de los 25 de `ministros.json`). CLAUDE.md §4 ya lo describe, pero el PDF y el Documento Maestro no. Propuesta: anotar la enmienda v2 en `docs/DISENO_V2.md` como reemplazo explícito del Acto 2.
+**D4 (medio) — Constantes en código.** `EstadoSimulacion.eleccion_pendiente(semanas_campana, semanas_balotaje = 4)` (`estado_simulacion.gd:146`) tiene el 4 de la segunda vuelta como valor por defecto, y la UI lo llama sin el segundo argumento (`pantalla_dia.gd:166,252,325`; `main.gd:89`) además de escribir «4 semanas más» en el texto (`pantalla_dia.gd:350`). Si `semanas_balotaje` cambia en `leyes.json`, la UI y el sim divergen. Viola «ningún número de balance en el código» (CLAUDE.md §3). Propuesta: pasar `datos["leyes"]["hemiciclo"]["semanas_balotaje"]` en todas las llamadas y formatear el texto con ese valor.
+**D5 (bajo) — La elección no se resuelve «en la pantalla del hemiciclo» (§1).** Se muestra como un overlay de evento sobre la pantalla del día (`pantalla_dia.gd:342-355`), con la etiqueta «Obtuviste X % de los votos», aunque el número es la **aprobación** más ruido. Propuesta: usar el componente `Hemiciclo` o rotular «Resultado proyectado»; evita engañar al jugador sobre qué mide.
+**D6 (bajo) — Botón «Iniciar Campaña · 8 Semanas».** Con balotaje la campaña puede durar 12 semanas; el texto es correcto para la 1ª vuelta pero omite la posible 2ª. Aceptable; rotular «hasta 12 semanas» o dejarlo y explicarlo en el tutorial.
+**D7 (bajo) — Docs desalineadas con el estado real.** `docs/AUDITORIA_VIDA_REAL.md:15` aún dice que la elección es de una sola votación y que la 2ª vuelta está «Pendiente»; `ESTADO_FASES` dice «Cerrada» para la Enmienda sin mencionar la 2ª vuelta. Actualizar ambos.
+
+## Veredicto sobre el PR #6
+Puede revisarse y fusionarse a la rama de integración: el cambio de código es mínimo y conforme a CLAUDE.md §5, y el resto es documentación. **No** doy por cerrado el plan: D1 (CLAUDE.md sin la ampliación autorizada) y D4 (constantes en código) deberían corregirse antes de declarar la Enmienda «cerrada» tras la ampliación. No he modificado `CLAUDE.md`, `sim/`, `game/` (salvo los 8 renglones de fuente) ni `data/`. Nada se fusiona a `main`.
+
+---
+
 # Revisión externa — Seguimiento 3 (rama `revision/auditoria`, integrada con `ccr-ec102a3c-giitie` @ d109fe9)
 
 Al integrar la rama principal comprobé qué de la Auditoría 2 ya estaba corregido por otras sesiones y corregí lo que faltaba (solo cambios pequeños en `game/`; pruebas ejecutadas con Godot 4.3 tras los cambios: UI humo, grafo, oro completa, guardado y balance en verde; `check_limits` OK).
