@@ -326,5 +326,25 @@
     "vigencia_dias": 180,
     "es_ilustrativa": false,
     "verificado_contra_texto": false
+  },
+  {
+    "id": "servel_elecciones_2025_zip",
+    "institucion": "Servicio Electoral de Chile (Servel)",
+    "titulo": "Resultados provisorios elecciones 2025 (visor elecciones.servel.cl, archivos total_votacion_5/6.zip)",
+    "url": "https://elecciones.servel.cl/",
+    "fecha_corte": "2026-11-23",
+    "vigencia_dias": 180,
+    "es_ilustrativa": false,
+    "verificado_contra_texto": true
+  },
+  {
+    "id": "senado_votaciones_xml",
+    "institucion": "Senado de Chile",
+    "titulo": "Servicio público de votaciones nominales (tramitacion.senado.cl/wspublico/votaciones.php)",
+    "url": "https://tramitacion.senado.cl/wspublico/votaciones.php",
+    "fecha_corte": "2026-11-23",
+    "vigencia_dias": 180,
+    "es_ilustrativa": false,
+    "verificado_contra_texto": true
   }
 ]
