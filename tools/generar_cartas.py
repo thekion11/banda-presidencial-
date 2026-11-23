@@ -169,6 +169,12 @@ def main() -> None:
     for c in cartas:
         suf = c["meta"].get("boletin", "").split("-")[0] or (c["meta"].get("region_id") or c["id"][-6:])
         c["titulo"] = unico(c["titulo"], usados, suf)
+    for c in cartas:  # arte específico (game/arte/cartas/<arte>.jpg); si falta el archivo la carta usa el de su categoría
+        t = (c["meta"].get("titulo_completo") or c["titulo"]).lower()
+        if c["meta"]["tipo"] in ("reforma_constitucional", "propuesta_constitucional"):
+            c["arte"] = "politica_reforma"
+        elif c["meta"]["tipo"] == "proyecto_de_ley" and any(k in t for k in ("tratado", "convenio", "acuerdo entre", "protocolo")):
+            c["arte"] = "politica_tratados"
     ids = [c["id"] for c in cartas]
     assert len(ids) == len(set(ids)), "ids duplicados"
     assert all(len(c["titulo"]) <= 60 for c in cartas), "título > 60"
