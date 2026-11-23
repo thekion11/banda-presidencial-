@@ -86,6 +86,20 @@ def validar_efectos(efectos: list, contexto: str) -> None:
             raise ValueError(f"{contexto}: delta inválido")
 
 
+def validar_leyes_v2(leyes: dict) -> None:
+    mano, gab, dele, mov = leyes["mano"], leyes["gabinete"], leyes["delegacion"], leyes["movimientos_internos"]
+    if not 1 <= mano["costo_min"] <= mano["costo_max"] <= 3:
+        raise ValueError("mano: costo_min/costo_max deben estar en 1..3")
+    if not 1 <= gab["tamano"] <= 25:
+        raise ValueError("gabinete: tamano fuera de 1..25")
+    if not 0 <= dele["prob_fallo_min"] <= dele["prob_fallo_max"] <= 1:
+        raise ValueError("delegacion: probabilidades de fallo inválidas")
+    if mov["por_turno"] < 1 or mov["ajustar_sector"]["paso"] <= 0:
+        raise ValueError("movimientos_internos inválidos")
+    for clave in ("efectos_subir", "efectos_bajar"):
+        validar_efectos(mov["ajustar_sector"][clave], f"movimientos_internos.{clave}")
+
+
 def validar_leyes(leyes: dict, ids_fuentes: set) -> set:
     h = leyes["hemiciclo"]
     if h["dias_por_turno"] * 208 != h["duracion_mandato_dias"] + 0 and \
@@ -93,6 +107,7 @@ def validar_leyes(leyes: dict, ids_fuentes: set) -> set:
         raise ValueError("hemiciclo: 208 turnos no cubren la duración del mandato")
     if h["total_senadores"] != 50:
         raise ValueError("hemiciclo: el Senado debe tener 50 senadores")
+    validar_leyes_v2(leyes)
     tipos = unicos(leyes["tipos_ley"], "tipos_ley")
     for t in leyes["tipos_ley"]:
         verificar_ref_fuente(t, ids_fuentes, f"tipo_ley {t['id']}")
@@ -102,6 +117,21 @@ def validar_leyes(leyes: dict, ids_fuentes: set) -> set:
             if not 0.0 <= t[p] <= 1.0:
                 raise ValueError(f"tipo_ley {t['id']}: {p} fuera de [0,1]")
     return tipos
+
+
+def validar_disponibilidad(c: dict, ctx: str) -> None:
+    d = c.get("disponibilidad")
+    if d is None:
+        return
+    desde, hasta = d.get("anio_desde"), d.get("anio_hasta")
+    for a in (desde, hasta):
+        if a is not None and not (isinstance(a, int) and 1 <= a <= 4):
+            raise ValueError(f"{ctx}: anio fuera de 1..4")
+    if desde is not None and hasta is not None and desde > hasta:
+        raise ValueError(f"{ctx}: anio_desde > anio_hasta")
+    fm = d.get("fiscal_min")
+    if fm is not None and not 0 <= fm <= 100:
+        raise ValueError(f"{ctx}: fiscal_min fuera de 0..100")
 
 
 def validar_cartas(cartas: list, ids_fuentes: set, tipos: set, props: set) -> None:
@@ -115,9 +145,38 @@ def validar_cartas(cartas: list, ids_fuentes: set, tipos: set, props: set) -> No
                 raise ValueError(f"{ctx}: requisito {k} desconocido '{c['requisitos'][k]}'")
         if c["abre_propuesta_comite"] and c["abre_propuesta_comite"] not in props:
             raise ValueError(f"{ctx}: propuesta inexistente")
+        validar_disponibilidad(c, ctx)
         corr = c["corrector"]
         if corr and corr["meta"] <= 0:
             raise ValueError(f"{ctx}: meta del corrector debe ser positiva")
+
+
+def validar_metas(metas: list, cartas: list, ids_fuentes: set) -> None:
+    unicos(metas, "metas")
+    ids_cartas = {c["id"] for c in cartas}
+    cats = {c["categoria"] for c in cartas}
+    ids = {m["id"] for m in metas}
+    for m in metas:
+        ctx = f"meta {m['id']}"
+        verificar_ref_fuente(m, ids_fuentes, ctx)
+        validar_efectos(m["efectos"], ctx)
+        if not m.get("cifras_ilustrativas"):
+            raise ValueError(f"{ctx}: debe rotular cifras_ilustrativas")
+        if m["sector"] not in cats:
+            raise ValueError(f"{ctx}: sector '{m['sector']}' sin cartas")
+        if m["requiere"] is not None and m["requiere"] not in ids:
+            raise ValueError(f"{ctx}: requiere una meta inexistente")
+        for cid in m["desbloquea"]:
+            if cid not in ids_cartas:
+                raise ValueError(f"{ctx}: desbloquea una carta inexistente '{cid}'")
+    for cat in cats:
+        for i in (1, 2, 3):
+            if f"meta_{cat}_{i}" not in ids:
+                raise ValueError(f"falta la meta meta_{cat}_{i}")
+    for c in cartas:
+        d = c.get("disponibilidad") or {}
+        if d.get("meta") and d["meta"] not in ids:
+            raise ValueError(f"carta {c['id']}: disponibilidad.meta inexistente '{d['meta']}'")
 
 
 def validar_eventos(eventos: list, ids_fuentes: set, tipos: set, dias_mandato: int) -> None:
@@ -292,6 +351,9 @@ def main() -> int:
             raise ValueError(f"carta real {c['id']}: quórum sin verificar debe llevar nota_quorum")
     datos["cartas"] = datos["cartas"] + reales
     validar_cartas(datos["cartas"], ids_fuentes, tipos, props)
+    datos["metas"] = cargar_json("metas.json")
+    validar_schema("metas.json", datos["metas"])
+    validar_metas(datos["metas"], datos["cartas"], ids_fuentes)
     datos["eventos"] = datos["eventos"] + json.loads((DATA_DIR / "juego_eventos_reales.json").read_text(encoding="utf-8"))
     validar_eventos(datos["eventos"], ids_fuentes, tipos, datos["leyes"]["hemiciclo"]["duracion_mandato_dias"])
     validar_ideologia(datos["ideologia"])

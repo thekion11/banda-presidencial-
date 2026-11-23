@@ -1,0 +1,33 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "array",
+  "minItems": 3,
+  "items": {
+    "type": "object",
+    "required": ["id", "nombre", "sector", "descripcion", "costo_mov", "requiere", "desbloquea", "efectos", "fuente", "cifras_ilustrativas"],
+    "properties": {
+      "id": {"type": "string", "pattern": "^meta_[a-z]+_[1-3]$"},
+      "nombre": {"type": "string", "maxLength": 60},
+      "sector": {"type": "string"},
+      "sector_nombre": {"type": "string"},
+      "descripcion": {"type": "string"},
+      "costo_mov": {"type": "integer", "minimum": 1, "maximum": 3},
+      "requiere": {"type": ["string", "null"]},
+      "desbloquea": {"type": "array", "items": {"type": "string"}},
+      "efectos": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "required": ["ind", "delta"],
+          "additionalProperties": false,
+          "properties": {
+            "ind": {"enum": ["aprobacion", "capital", "cohesion", "fiscal", "riesgo_ejecucion", "viviendas_anio"]},
+            "delta": {"type": "number"}
+          }
+        }
+      },
+      "fuente": {"type": "string", "pattern": "^fuentes\\.json#[a-z0-9_]+$"},
+      "cifras_ilustrativas": {"const": true}
+    }
+  }
+}

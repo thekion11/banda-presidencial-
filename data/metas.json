@@ -1,0 +1,908 @@
+[
+  {
+    "id": "meta_vivienda_1",
+    "nombre": "Catastro de suelo fiscal",
+    "sector": "vivienda",
+    "sector_nombre": "Vivienda",
+    "descripcion": "Inventariar terrenos del Estado aptos para vivienda social.",
+    "costo_mov": 1,
+    "requiere": null,
+    "desbloquea": [],
+    "efectos": [
+      {
+        "ind": "capital",
+        "delta": 1.0
+      }
+    ],
+    "fuente": "fuentes.json#minvu_2026",
+    "cifras_ilustrativas": true
+  },
+  {
+    "id": "meta_vivienda_2",
+    "nombre": "Mesa de campamentos",
+    "sector": "vivienda",
+    "sector_nombre": "Vivienda",
+    "descripcion": "Coordinar a municipios y organizaciones para abordar campamentos.",
+    "costo_mov": 2,
+    "requiere": "meta_vivienda_1",
+    "desbloquea": [],
+    "efectos": [
+      {
+        "ind": "cohesion",
+        "delta": 2.0
+      },
+      {
+        "ind": "aprobacion",
+        "delta": 0.5
+      }
+    ],
+    "fuente": "fuentes.json#minvu_2026",
+    "cifras_ilustrativas": true
+  },
+  {
+    "id": "meta_vivienda_3",
+    "nombre": "Plan de ciudades compactas",
+    "sector": "vivienda",
+    "sector_nombre": "Vivienda",
+    "descripcion": "Acuerdo de densificación con gobiernos regionales.",
+    "costo_mov": 3,
+    "requiere": "meta_vivienda_2",
+    "desbloquea": [],
+    "efectos": [
+      {
+        "ind": "viviendas_anio",
+        "delta": 3000.0
+      },
+      {
+        "ind": "riesgo_ejecucion",
+        "delta": 1.0
+      }
+    ],
+    "fuente": "fuentes.json#minvu_2026",
+    "cifras_ilustrativas": true
+  },
+  {
+    "id": "meta_energia_1",
+    "nombre": "Hoja de ruta de transmisión",
+    "sector": "energia",
+    "sector_nombre": "Energía",
+    "descripcion": "Cerrar el trazado prioritario de líneas de transmisión.",
+    "costo_mov": 1,
+    "requiere": null,
+    "desbloquea": [],
+    "efectos": [
+      {
+        "ind": "capital",
+        "delta": 1.0
+      }
+    ],
+    "fuente": "fuentes.json#ficticio_2026",
+    "cifras_ilustrativas": true
+  },
+  {
+    "id": "meta_energia_2",
+    "nombre": "Acuerdo con generadoras",
+    "sector": "energia",
+    "sector_nombre": "Energía",
+    "descripcion": "Alinear inversión privada con la meta de descarbonización.",
+    "costo_mov": 2,
+    "requiere": "meta_energia_1",
+    "desbloquea": [],
+    "efectos": [
+      {
+        "ind": "fiscal",
+        "delta": 1.0
+      },
+      {
+        "ind": "riesgo_ejecucion",
+        "delta": -1.0
+      }
+    ],
+    "fuente": "fuentes.json#ficticio_2026",
+    "cifras_ilustrativas": true
+  },
+  {
+    "id": "meta_energia_3",
+    "nombre": "Pacto de almacenamiento",
+    "sector": "energia",
+    "sector_nombre": "Energía",
+    "descripcion": "Marco para baterías y respaldo del sistema eléctrico.",
+    "costo_mov": 3,
+    "requiere": "meta_energia_2",
+    "desbloquea": [],
+    "efectos": [
+      {
+        "ind": "aprobacion",
+        "delta": 1.0
+      },
+      {
+        "ind": "fiscal",
+        "delta": 1.5
+      }
+    ],
+    "fuente": "fuentes.json#ficticio_2026",
+    "cifras_ilustrativas": true
+  },
+  {
+    "id": "meta_hacienda_1",
+    "nombre": "Revisión del gasto",
+    "sector": "hacienda",
+    "sector_nombre": "Hacienda",
+    "descripcion": "Auditoría rápida de programas con baja ejecución.",
+    "costo_mov": 1,
+    "requiere": null,
+    "desbloquea": [],
+    "efectos": [
+      {
+        "ind": "fiscal",
+        "delta": 1.5
+      }
+    ],
+    "fuente": "fuentes.json#dipres_2026",
+    "cifras_ilustrativas": true
+  },
+  {
+    "id": "meta_hacienda_2",
+    "nombre": "Regla fiscal reforzada",
+    "sector": "hacienda",
+    "sector_nombre": "Hacienda",
+    "descripcion": "Ordenar la trayectoria de deuda con el Consejo Fiscal.",
+    "costo_mov": 2,
+    "requiere": "meta_hacienda_1",
+    "desbloquea": [],
+    "efectos": [
+      {
+        "ind": "fiscal",
+        "delta": 2.5
+      },
+      {
+        "ind": "capital",
+        "delta": -0.5
+      }
+    ],
+    "fuente": "fuentes.json#dipres_2026",
+    "cifras_ilustrativas": true
+  },
+  {
+    "id": "meta_hacienda_3",
+    "nombre": "Acuerdo tributario marco",
+    "sector": "hacienda",
+    "sector_nombre": "Hacienda",
+    "descripcion": "Mesa técnica con oposición para ampliar la base.",
+    "costo_mov": 3,
+    "requiere": "meta_hacienda_2",
+    "desbloquea": [],
+    "efectos": [
+      {
+        "ind": "fiscal",
+        "delta": 3.0
+      },
+      {
+        "ind": "cohesion",
+        "delta": -1.0
+      }
+    ],
+    "fuente": "fuentes.json#dipres_2026",
+    "cifras_ilustrativas": true
+  },
+  {
+    "id": "meta_salud_1",
+    "nombre": "Diagnóstico de listas de espera",
+    "sector": "salud",
+    "sector_nombre": "Salud",
+    "descripcion": "Levantar la lista de espera por hospital y especialidad.",
+    "costo_mov": 1,
+    "requiere": null,
+    "desbloquea": [],
+    "efectos": [
+      {
+        "ind": "capital",
+        "delta": 1.0
+      }
+    ],
+    "fuente": "fuentes.json#minsal_inversiones",
+    "cifras_ilustrativas": true
+  },
+  {
+    "id": "meta_salud_2",
+    "nombre": "Red integrada de urgencias",
+    "sector": "salud",
+    "sector_nombre": "Salud",
+    "descripcion": "Coordinar SAPU, SAR y hospitales de cada servicio.",
+    "costo_mov": 2,
+    "requiere": "meta_salud_1",
+    "desbloquea": [],
+    "efectos": [
+      {
+        "ind": "aprobacion",
+        "delta": 1.0
+      },
+      {
+        "ind": "riesgo_ejecucion",
+        "delta": 1.0
+      }
+    ],
+    "fuente": "fuentes.json#minsal_inversiones",
+    "cifras_ilustrativas": true
+  },
+  {
+    "id": "meta_salud_3",
+    "nombre": "Plan de especialistas",
+    "sector": "salud",
+    "sector_nombre": "Salud",
+    "descripcion": "Convenios de formación y retención de médicos especialistas.",
+    "costo_mov": 3,
+    "requiere": "meta_salud_2",
+    "desbloquea": [],
+    "efectos": [
+      {
+        "ind": "aprobacion",
+        "delta": 1.5
+      },
+      {
+        "ind": "fiscal",
+        "delta": -1.0
+      }
+    ],
+    "fuente": "fuentes.json#minsal_inversiones",
+    "cifras_ilustrativas": true
+  },
+  {
+    "id": "meta_seguridad_1",
+    "nombre": "Mapa del delito",
+    "sector": "seguridad",
+    "sector_nombre": "Seguridad",
+    "descripcion": "Cruzar datos de Carabineros, PDI y Fiscalía por comuna.",
+    "costo_mov": 1,
+    "requiere": null,
+    "desbloquea": [],
+    "efectos": [
+      {
+        "ind": "riesgo_ejecucion",
+        "delta": -1.0
+      }
+    ],
+    "fuente": "fuentes.json#ficticio_2026",
+    "cifras_ilustrativas": true
+  },
+  {
+    "id": "meta_seguridad_2",
+    "nombre": "Coordinación policial",
+    "sector": "seguridad",
+    "sector_nombre": "Seguridad",
+    "descripcion": "Protocolo único entre policías y municipios.",
+    "costo_mov": 2,
+    "requiere": "meta_seguridad_1",
+    "desbloquea": [],
+    "efectos": [
+      {
+        "ind": "aprobacion",
+        "delta": 1.0
+      },
+      {
+        "ind": "cohesion",
+        "delta": 0.5
+      }
+    ],
+    "fuente": "fuentes.json#ficticio_2026",
+    "cifras_ilustrativas": true
+  },
+  {
+    "id": "meta_seguridad_3",
+    "nombre": "Plan de control fronterizo",
+    "sector": "seguridad",
+    "sector_nombre": "Seguridad",
+    "descripcion": "Despliegue conjunto en pasos no habilitados.",
+    "costo_mov": 3,
+    "requiere": "meta_seguridad_2",
+    "desbloquea": [],
+    "efectos": [
+      {
+        "ind": "aprobacion",
+        "delta": 1.5
+      },
+      {
+        "ind": "capital",
+        "delta": -1.0
+      }
+    ],
+    "fuente": "fuentes.json#ficticio_2026",
+    "cifras_ilustrativas": true
+  },
+  {
+    "id": "meta_social_1",
+    "nombre": "Registro social actualizado",
+    "sector": "social",
+    "sector_nombre": "Desarrollo social",
+    "descripcion": "Depurar el Registro Social de Hogares.",
+    "costo_mov": 1,
+    "requiere": null,
+    "desbloquea": [],
+    "efectos": [
+      {
+        "ind": "riesgo_ejecucion",
+        "delta": -1.0
+      }
+    ],
+    "fuente": "fuentes.json#ficticio_2026",
+    "cifras_ilustrativas": true
+  },
+  {
+    "id": "meta_social_2",
+    "nombre": "Alianza con organizaciones",
+    "sector": "social",
+    "sector_nombre": "Desarrollo social",
+    "descripcion": "Convenio con ONG y juntas de vecinos para entrega de beneficios.",
+    "costo_mov": 2,
+    "requiere": "meta_social_1",
+    "desbloquea": [],
+    "efectos": [
+      {
+        "ind": "cohesion",
+        "delta": 2.0
+      }
+    ],
+    "fuente": "fuentes.json#ficticio_2026",
+    "cifras_ilustrativas": true
+  },
+  {
+    "id": "meta_social_3",
+    "nombre": "Pacto por la infancia",
+    "sector": "social",
+    "sector_nombre": "Desarrollo social",
+    "descripcion": "Acuerdo transversal de protección de la niñez.",
+    "costo_mov": 3,
+    "requiere": "meta_social_2",
+    "desbloquea": [],
+    "efectos": [
+      {
+        "ind": "aprobacion",
+        "delta": 1.5
+      },
+      {
+        "ind": "cohesion",
+        "delta": 1.5
+      }
+    ],
+    "fuente": "fuentes.json#ficticio_2026",
+    "cifras_ilustrativas": true
+  },
+  {
+    "id": "meta_politica_1",
+    "nombre": "Mesa con los presidentes de partido",
+    "sector": "politica",
+    "sector_nombre": "Política",
+    "descripcion": "Reunión de coordinación semanal de la coalición.",
+    "costo_mov": 1,
+    "requiere": null,
+    "desbloquea": [],
+    "efectos": [
+      {
+        "ind": "capital",
+        "delta": 1.5
+      }
+    ],
+    "fuente": "fuentes.json#ficticio_2026",
+    "cifras_ilustrativas": true
+  },
+  {
+    "id": "meta_politica_2",
+    "nombre": "Protocolo legislativo",
+    "sector": "politica",
+    "sector_nombre": "Política",
+    "descripcion": "Acuerdo de prioridades con Senado y Cámara.",
+    "costo_mov": 2,
+    "requiere": "meta_politica_1",
+    "desbloquea": [],
+    "efectos": [
+      {
+        "ind": "capital",
+        "delta": 1.0
+      },
+      {
+        "ind": "cohesion",
+        "delta": 1.0
+      }
+    ],
+    "fuente": "fuentes.json#ficticio_2026",
+    "cifras_ilustrativas": true
+  },
+  {
+    "id": "meta_politica_3",
+    "nombre": "Pacto de gobernabilidad",
+    "sector": "politica",
+    "sector_nombre": "Política",
+    "descripcion": "Compromiso formal de la coalición ampliada.",
+    "costo_mov": 3,
+    "requiere": "meta_politica_2",
+    "desbloquea": [],
+    "efectos": [
+      {
+        "ind": "cohesion",
+        "delta": 2.5
+      },
+      {
+        "ind": "capital",
+        "delta": 1.0
+      }
+    ],
+    "fuente": "fuentes.json#ficticio_2026",
+    "cifras_ilustrativas": true
+  },
+  {
+    "id": "meta_comite_1",
+    "nombre": "Cartera priorizada",
+    "sector": "comite",
+    "sector_nombre": "Comité de Planificación",
+    "descripcion": "Ordenar los proyectos del Plan Maestro por retorno.",
+    "costo_mov": 1,
+    "requiere": null,
+    "desbloquea": [],
+    "efectos": [
+      {
+        "ind": "riesgo_ejecucion",
+        "delta": -1.0
+      }
+    ],
+    "fuente": "fuentes.json#sectra_planes",
+    "cifras_ilustrativas": true
+  },
+  {
+    "id": "meta_comite_2",
+    "nombre": "Evaluación social de proyectos",
+    "sector": "comite",
+    "sector_nombre": "Comité de Planificación",
+    "descripcion": "Fortalecer la evaluación previa de obras de transporte.",
+    "costo_mov": 2,
+    "requiere": "meta_comite_1",
+    "desbloquea": [],
+    "efectos": [
+      {
+        "ind": "fiscal",
+        "delta": 1.0
+      }
+    ],
+    "fuente": "fuentes.json#sectra_planes",
+    "cifras_ilustrativas": true
+  },
+  {
+    "id": "meta_comite_3",
+    "nombre": "Banco integrado de proyectos",
+    "sector": "comite",
+    "sector_nombre": "Comité de Planificación",
+    "descripcion": "Un solo banco de proyectos entre ministerios.",
+    "costo_mov": 3,
+    "requiere": "meta_comite_2",
+    "desbloquea": [],
+    "efectos": [
+      {
+        "ind": "riesgo_ejecucion",
+        "delta": -2.0
+      },
+      {
+        "ind": "capital",
+        "delta": 0.5
+      }
+    ],
+    "fuente": "fuentes.json#sectra_planes",
+    "cifras_ilustrativas": true
+  },
+  {
+    "id": "meta_educacion_1",
+    "nombre": "Diagnóstico de aprendizajes",
+    "sector": "educacion",
+    "sector_nombre": "Educación",
+    "descripcion": "Medición común de aprendizajes por región.",
+    "costo_mov": 1,
+    "requiere": null,
+    "desbloquea": [],
+    "efectos": [
+      {
+        "ind": "capital",
+        "delta": 1.0
+      }
+    ],
+    "fuente": "fuentes.json#ficticio_2026",
+    "cifras_ilustrativas": true
+  },
+  {
+    "id": "meta_educacion_2",
+    "nombre": "Plan de asistencia",
+    "sector": "educacion",
+    "sector_nombre": "Educación",
+    "descripcion": "Programa contra el ausentismo escolar crónico.",
+    "costo_mov": 2,
+    "requiere": "meta_educacion_1",
+    "desbloquea": [],
+    "efectos": [
+      {
+        "ind": "aprobacion",
+        "delta": 1.0
+      },
+      {
+        "ind": "cohesion",
+        "delta": 0.5
+      }
+    ],
+    "fuente": "fuentes.json#ficticio_2026",
+    "cifras_ilustrativas": true
+  },
+  {
+    "id": "meta_educacion_3",
+    "nombre": "Carrera docente ampliada",
+    "sector": "educacion",
+    "sector_nombre": "Educación",
+    "descripcion": "Acuerdo con gremios sobre carrera y evaluación.",
+    "costo_mov": 3,
+    "requiere": "meta_educacion_2",
+    "desbloquea": [],
+    "efectos": [
+      {
+        "ind": "cohesion",
+        "delta": 1.5
+      },
+      {
+        "ind": "fiscal",
+        "delta": -1.5
+      }
+    ],
+    "fuente": "fuentes.json#ficticio_2026",
+    "cifras_ilustrativas": true
+  },
+  {
+    "id": "meta_transportes_1",
+    "nombre": "Catastro de proyectos viales",
+    "sector": "transportes",
+    "sector_nombre": "Transportes",
+    "descripcion": "Actualizar el catastro de proyectos con SECTRA.",
+    "costo_mov": 1,
+    "requiere": null,
+    "desbloquea": [],
+    "efectos": [
+      {
+        "ind": "capital",
+        "delta": 1.0
+      }
+    ],
+    "fuente": "fuentes.json#sectra_planes",
+    "cifras_ilustrativas": true
+  },
+  {
+    "id": "meta_transportes_2",
+    "nombre": "Plan de buses eléctricos",
+    "sector": "transportes",
+    "sector_nombre": "Transportes",
+    "descripcion": "Convenio de renovación de flota con operadores.",
+    "costo_mov": 2,
+    "requiere": "meta_transportes_1",
+    "desbloquea": [],
+    "efectos": [
+      {
+        "ind": "aprobacion",
+        "delta": 1.0
+      },
+      {
+        "ind": "fiscal",
+        "delta": -1.0
+      }
+    ],
+    "fuente": "fuentes.json#sectra_planes",
+    "cifras_ilustrativas": true
+  },
+  {
+    "id": "meta_transportes_3",
+    "nombre": "Integración tarifaria",
+    "sector": "transportes",
+    "sector_nombre": "Transportes",
+    "descripcion": "Integrar modos de transporte público en una tarifa.",
+    "costo_mov": 3,
+    "requiere": "meta_transportes_2",
+    "desbloquea": [],
+    "efectos": [
+      {
+        "ind": "aprobacion",
+        "delta": 1.5
+      },
+      {
+        "ind": "riesgo_ejecucion",
+        "delta": 1.0
+      }
+    ],
+    "fuente": "fuentes.json#sectra_planes",
+    "cifras_ilustrativas": true
+  },
+  {
+    "id": "meta_economia_1",
+    "nombre": "Mesa de productividad",
+    "sector": "economia",
+    "sector_nombre": "Economía",
+    "descripcion": "Diálogo con gremios para destrabar inversión.",
+    "costo_mov": 1,
+    "requiere": null,
+    "desbloquea": [],
+    "efectos": [
+      {
+        "ind": "capital",
+        "delta": 1.0
+      }
+    ],
+    "fuente": "fuentes.json#ficticio_2026",
+    "cifras_ilustrativas": true
+  },
+  {
+    "id": "meta_economia_2",
+    "nombre": "Ventanilla única",
+    "sector": "economia",
+    "sector_nombre": "Economía",
+    "descripcion": "Simplificar permisos para pymes.",
+    "costo_mov": 2,
+    "requiere": "meta_economia_1",
+    "desbloquea": [],
+    "efectos": [
+      {
+        "ind": "aprobacion",
+        "delta": 1.0
+      },
+      {
+        "ind": "riesgo_ejecucion",
+        "delta": -1.0
+      }
+    ],
+    "fuente": "fuentes.json#ficticio_2026",
+    "cifras_ilustrativas": true
+  },
+  {
+    "id": "meta_economia_3",
+    "nombre": "Plan de empleo",
+    "sector": "economia",
+    "sector_nombre": "Economía",
+    "descripcion": "Subsidios focalizados al empleo formal.",
+    "costo_mov": 3,
+    "requiere": "meta_economia_2",
+    "desbloquea": [],
+    "efectos": [
+      {
+        "ind": "aprobacion",
+        "delta": 1.5
+      },
+      {
+        "ind": "fiscal",
+        "delta": -1.5
+      }
+    ],
+    "fuente": "fuentes.json#ficticio_2026",
+    "cifras_ilustrativas": true
+  },
+  {
+    "id": "meta_medioambiente_1",
+    "nombre": "Línea base ambiental",
+    "sector": "medioambiente",
+    "sector_nombre": "Medio ambiente",
+    "descripcion": "Levantar información ambiental de zonas prioritarias.",
+    "costo_mov": 1,
+    "requiere": null,
+    "desbloquea": [],
+    "efectos": [
+      {
+        "ind": "capital",
+        "delta": 1.0
+      }
+    ],
+    "fuente": "fuentes.json#ficticio_2026",
+    "cifras_ilustrativas": true
+  },
+  {
+    "id": "meta_medioambiente_2",
+    "nombre": "Agilización de evaluación",
+    "sector": "medioambiente",
+    "sector_nombre": "Medio ambiente",
+    "descripcion": "Ordenar los plazos del sistema de evaluación ambiental.",
+    "costo_mov": 2,
+    "requiere": "meta_medioambiente_1",
+    "desbloquea": [],
+    "efectos": [
+      {
+        "ind": "riesgo_ejecucion",
+        "delta": -1.5
+      }
+    ],
+    "fuente": "fuentes.json#ficticio_2026",
+    "cifras_ilustrativas": true
+  },
+  {
+    "id": "meta_medioambiente_3",
+    "nombre": "Pacto por la biodiversidad",
+    "sector": "medioambiente",
+    "sector_nombre": "Medio ambiente",
+    "descripcion": "Acuerdo de protección de áreas silvestres.",
+    "costo_mov": 3,
+    "requiere": "meta_medioambiente_2",
+    "desbloquea": [],
+    "efectos": [
+      {
+        "ind": "aprobacion",
+        "delta": 1.0
+      },
+      {
+        "ind": "cohesion",
+        "delta": 1.0
+      }
+    ],
+    "fuente": "fuentes.json#ficticio_2026",
+    "cifras_ilustrativas": true
+  },
+  {
+    "id": "meta_descentralizacion_1",
+    "nombre": "Convenios con gobernadores",
+    "sector": "descentralizacion",
+    "sector_nombre": "Descentralización",
+    "descripcion": "Convenios de programación con gobiernos regionales.",
+    "costo_mov": 1,
+    "requiere": null,
+    "desbloquea": [],
+    "efectos": [
+      {
+        "ind": "capital",
+        "delta": 1.0
+      }
+    ],
+    "fuente": "fuentes.json#ficticio_2026",
+    "cifras_ilustrativas": true
+  },
+  {
+    "id": "meta_descentralizacion_2",
+    "nombre": "Traspaso de competencias",
+    "sector": "descentralizacion",
+    "sector_nombre": "Descentralización",
+    "descripcion": "Cronograma de traspaso de competencias.",
+    "costo_mov": 2,
+    "requiere": "meta_descentralizacion_1",
+    "desbloquea": [],
+    "efectos": [
+      {
+        "ind": "cohesion",
+        "delta": 1.5
+      }
+    ],
+    "fuente": "fuentes.json#ficticio_2026",
+    "cifras_ilustrativas": true
+  },
+  {
+    "id": "meta_descentralizacion_3",
+    "nombre": "Fondo regional de convergencia",
+    "sector": "descentralizacion",
+    "sector_nombre": "Descentralización",
+    "descripcion": "Reglas para el reparto del fondo entre regiones.",
+    "costo_mov": 3,
+    "requiere": "meta_descentralizacion_2",
+    "desbloquea": [],
+    "efectos": [
+      {
+        "ind": "cohesion",
+        "delta": 2.0
+      },
+      {
+        "ind": "fiscal",
+        "delta": -1.0
+      }
+    ],
+    "fuente": "fuentes.json#ficticio_2026",
+    "cifras_ilustrativas": true
+  },
+  {
+    "id": "meta_obras_1",
+    "nombre": "Cartera de obras priorizada",
+    "sector": "obras",
+    "sector_nombre": "Obras públicas",
+    "descripcion": "Ordenar licitaciones por impacto y plazos.",
+    "costo_mov": 1,
+    "requiere": null,
+    "desbloquea": [],
+    "efectos": [
+      {
+        "ind": "riesgo_ejecucion",
+        "delta": -1.0
+      }
+    ],
+    "fuente": "fuentes.json#mop_obras",
+    "cifras_ilustrativas": true
+  },
+  {
+    "id": "meta_obras_2",
+    "nombre": "Mesa de inspección fiscal",
+    "sector": "obras",
+    "sector_nombre": "Obras públicas",
+    "descripcion": "Reforzar la inspección de obras en ejecución.",
+    "costo_mov": 2,
+    "requiere": "meta_obras_1",
+    "desbloquea": [],
+    "efectos": [
+      {
+        "ind": "riesgo_ejecucion",
+        "delta": -2.0
+      }
+    ],
+    "fuente": "fuentes.json#mop_obras",
+    "cifras_ilustrativas": true
+  },
+  {
+    "id": "meta_obras_3",
+    "nombre": "Plan de concesiones",
+    "sector": "obras",
+    "sector_nombre": "Obras públicas",
+    "descripcion": "Calendario de concesiones con participación privada.",
+    "costo_mov": 3,
+    "requiere": "meta_obras_2",
+    "desbloquea": [],
+    "efectos": [
+      {
+        "ind": "fiscal",
+        "delta": 2.0
+      },
+      {
+        "ind": "aprobacion",
+        "delta": 0.5
+      }
+    ],
+    "fuente": "fuentes.json#mop_obras",
+    "cifras_ilustrativas": true
+  },
+  {
+    "id": "meta_estado_1",
+    "nombre": "Catastro de empresas públicas",
+    "sector": "estado",
+    "sector_nombre": "Estado empresario",
+    "descripcion": "Inventario del patrimonio empresarial del Estado.",
+    "costo_mov": 1,
+    "requiere": null,
+    "desbloquea": [],
+    "efectos": [
+      {
+        "ind": "capital",
+        "delta": 1.0
+      }
+    ],
+    "fuente": "fuentes.json#cpr_chile_2026",
+    "cifras_ilustrativas": true
+  },
+  {
+    "id": "meta_estado_2",
+    "nombre": "Gobierno corporativo",
+    "sector": "estado",
+    "sector_nombre": "Estado empresario",
+    "descripcion": "Directorios profesionales para empresas estatales.",
+    "costo_mov": 2,
+    "requiere": "meta_estado_1",
+    "desbloquea": [],
+    "efectos": [
+      {
+        "ind": "riesgo_ejecucion",
+        "delta": -1.5
+      }
+    ],
+    "fuente": "fuentes.json#cpr_chile_2026",
+    "cifras_ilustrativas": true
+  },
+  {
+    "id": "meta_estado_3",
+    "nombre": "Política de propiedad estatal",
+    "sector": "estado",
+    "sector_nombre": "Estado empresario",
+    "descripcion": "Criterios públicos para crear, vender o expropiar.",
+    "costo_mov": 3,
+    "requiere": "meta_estado_2",
+    "desbloquea": [],
+    "efectos": [
+      {
+        "ind": "capital",
+        "delta": 1.5
+      },
+      {
+        "ind": "cohesion",
+        "delta": 0.5
+      }
+    ],
+    "fuente": "fuentes.json#cpr_chile_2026",
+    "cifras_ilustrativas": true
+  }
+]
