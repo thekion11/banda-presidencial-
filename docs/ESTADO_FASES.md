@@ -134,3 +134,6 @@ Las comparaciones fotograma a fotograma contra el PDF están en `docs/comparacio
 - **APK de prueba:** se entregó solo al usuario (único destinatario) mediante el canal de archivos de esta sesión el 23-nov-2026; no hay correo ni enlace público. Es un APK de depuración (`build/presidente-debug.apk`, ignorado por git), sin firma de publicación.
 - **Evidencia del botón principal y captura 390×844:** `docs/DIFERENCIAS_MAQUETA.md` (sección "Evidencia del botón principal fijo", 6 semillas con rectángulo idéntico) y `docs/comparacion/v2_dia_maqueta_vs_juego.png` (captura lado a lado con la maqueta del día del PDF; fecha 23-nov-2026).
 - **1.276 vs 1.040 y citas CPR 66/127:** ver "Cierre verificado" más arriba en este archivo.
+
+- **Figma:** no es un bloqueo técnico. El plan Starter limita las llamadas de herramienta (20 al mes) y generar imágenes con IA consume créditos; el usuario decidió el 23-nov-2026 usar **solo Canva** para ilustraciones. Una maqueta en Figma sigue siendo decisión pendiente del usuario (no se hace sin su aprobación).
+- **Rendimiento en teléfono real (30 fps, RAM ≤ 800 MB):** PENDIENTE; mediciones en escritorio (RAM estática 47–62 MB) no sustituyen la prueba en Android. APK de depuración entregado al usuario para probar.
