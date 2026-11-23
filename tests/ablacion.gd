@@ -1,6 +1,6 @@
 extends SceneTree
 ## Ablación de las mecánicas v2: cada variante desactiva UNA mecánica (solo con parámetros de data/leyes.json) en la política «completo».
-## Uso: godot --headless --path . -s tests/ablacion.gd -- [partidas=100] [variante]
+## Uso: godot --headless --path . -s tests/ablacion.gd -- [partidas=100] [variante] [{"seccion.clave": valor} sobrescrituras extra en JSON]
 ## Salida: tabla Markdown (la copia docs/INFORME_BALANCE.md).
 
 const VARIANTES := {
@@ -32,7 +32,10 @@ func _init() -> void:
 	print("| variante | n | gana elección | cae en crisis | completa mandato | aprobación final | puntaje medio | puntaje mediano |")
 	print("|---|---|---|---|---|---|---|---|")
 	for nombre in nombres:
-		var d := aplicar(datos, VARIANTES[nombre])
+		var cambios: Dictionary = VARIANTES[nombre].duplicate()
+		if args.size() > 2:
+			cambios.merge(JSON.parse_string(args[2]), true)
+		var d := aplicar(datos, cambios)
 		var electos := 0
 		var crisis := 0
 		var completos := 0
