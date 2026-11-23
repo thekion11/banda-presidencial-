@@ -25,6 +25,22 @@ Regla del proyecto: la maqueta manda. Esta lista deja explícito dónde el juego
 - **Pantalla Nación** con su barra propia (Cartas / Comité / Día N / Congreso / Gabinete), tal como la maqueta.
 - **Pantallas sin maqueta**: menú, test ideológico, fundación del partido y fin de partida. Son necesarias para el Modo Único de la Enmienda; se construyeron con los mismos componentes congelados (paleta, tipografías, zonas táctiles ≥ 44 px). No existe referencia en Figma para ellas.
 
+## Pantallas v2 (gabinete, movimientos, delegación, asesores, coalición, internos) — revisión del 23-nov-2026
+**Limitación:** no existe maqueta en Figma ni el Documento Maestro (PDF) dibuja estas pantallas: son extensiones de `docs/DISENO_V2.md`. La comparación se hizo sobre lo que el PDF sí fija (paleta, tipografías, 390×844, componentes Carta / Corrector / Botón de jugar, reglas de pantalla de la p. 9: mapa > 1/3, mano en abanico, botón principal fijo) y sobre `docs/comparacion/dia_maqueta_vs_juego.png`. Capturas nuevas: `docs/comparacion/v2_*.png` (`tests/captura_comparar.gd`); lado a lado con la maqueta del día: `v2_dia_maqueta_vs_juego.png`. Los paneles nuevos reutilizan Tema, Barras y la hoja inferior (paleta congelada, Space Grotesk / Inter, zonas táctiles ≥ 44 px, sin emojis).
+
+| Elemento | Maqueta | Juego | Motivo / estado |
+|---|---|---|---|
+| Botón "Jugar · 2 PA" y pastilla "16 PA" | PA | "Jugar · 2 mov", "4/8 mov" | DISENO_V2 renombra PA a movimientos y suma bono por aprobación y asesores. Texto, no estilo. |
+| Texto de la mano | "Toca una carta · 5 en mano" | "base 5 · aprob. +2 · asesor +1" | Explica el origen de los movimientos del turno. |
+| Franja del corrector | Una franja con el corrector | Primera línea con título, categoría y costo de la carta elegida, y alto fijo | El abanico tapa los títulos de las no elegidas (regla de la maqueta: solo la elegida muestra todo). Corregido: antes el título no se leía completo. |
+| Carta elegida | Sube con marco dorado | Sube y crece sin invadir la cabecera "Tu mano" | Bug corregido: con la carta 1 elegida cubría "Tu mano". |
+| Botón de delegar | Ícono de persona | Mismo ícono + insignia con delegaciones restantes | Compacto; el detalle va en la hoja de delegación. |
+| Hoja de delegación, panel Gabinete (4 pestañas), selector de 8 ministros | Sin maqueta | Hoja inferior y filas de varias líneas sobre `PANEL`/`OCEANO` | Nuevos; contraste del texto rojo pequeño aclarado a `#F59A87` (`FilasUI.ROJO_TEXTO`) para llegar a 4,5:1 sobre el panel. |
+| Pantalla de configuración de gabinete | Sin maqueta | Botón "Comenzar campaña" fijo al pie; la fundación del partido lo tiene al final del contenido | Diferencia abierta: unificar la posición con la pantalla de fundación. |
+| Mapa visible con el panel Gabinete abierto | Mapa > 1/3 en el día | El panel tapa el mapa (igual que Comité y Congreso) y deja visible la fila Jugar / avanzar | Excepción de hoja a pantalla completa; en la vista de día el mapa mide 290 de 844 px (34,4 %), verificado en `tests/test_ui_humo.gd`. |
+
+Verificación automática (`tests/test_ui_humo.gd`): el botón principal conserva su rectángulo al cambiar de carta y con cada pestaña del panel Gabinete abierta, y el panel nunca lo cubre.
+
 ## Pendiente
 - Trazado propio (estaciones sobre grafo + sliders): extensión de la Fase 3 del Documento Maestro (niveles 2 y 3), sobre el grafo real de calles principales de Gran Santiago (2.459 nodos). Costos y expropiaciones son ilustrativos.
 - Reflejar estas mejoras en la maqueta de Figma (no se hizo: requiere gastar créditos de IA del plan y decisión del usuario).

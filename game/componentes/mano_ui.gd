@@ -5,7 +5,7 @@ extends Control
 
 signal tocada(indice: int)
 
-const ANCHO := 110.0
+const ANCHO := 104.0
 const ALTO := 170.0
 
 var _pos_prev: Dictionary = {}  # id de carta -> última posición de reposo
@@ -58,12 +58,12 @@ func pintar(motor: MotorTurno, sel: int, ministro: String = "", nuevas: Array = 
 		c.size = Vector2(ANCHO, ALTO)
 		c.pivot_offset = Vector2(ANCHO * 0.5, ALTO)
 		var reposo := Vector2(x0 + paso * float(i), 46.0)
-		var rot := float(i - (n - 1) * 0.5) * 6.0
+		var rot := float(i - (n - 1) * 0.5) * 5.0
 		var esc := Vector2.ONE
 		var destino := reposo
 		if i == sel:
 			esc = Vector2(1.2, 1.2)
-			destino.y = 22.0
+			destino.y = 40.0  # sube y crece sin tapar la cabecera "Tu mano"
 			rot = 0.0
 		_pos_prev[id] = destino
 		c.tocada.connect(func(_c: CartaUI) -> void: tocada.emit(i))

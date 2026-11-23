@@ -119,6 +119,7 @@ func _construir_cuerpo() -> Control:
 	_lbl_corrector.add_theme_font_override("bold_font", Tema.fuente_texto(800))
 	_lbl_corrector.add_theme_font_size_override("normal_font_size", 11)
 	_lbl_corrector.add_theme_font_size_override("bold_font_size", 11)
+	corr.custom_minimum_size = Vector2(0, 62)  # alto fijo: el botón principal no se mueve
 	corr.add_child(_lbl_corrector)
 	var mc := MarginContainer.new()
 	mc.add_theme_constant_override("margin_left", 12)
@@ -223,12 +224,14 @@ func _pintar_mano() -> void:
 		_lbl_corrector.text = "[b]Sin cartas[/b] en la mano. Termina el turno para robar más."
 		return
 	var v := motor.vista_carta(_sel, _ministro)
+	var c: Dictionary = est.mano[_sel]
+	var cabeza := "[b]%s[/b] · %s · %d mov\n" % [c["titulo"], BloqueoCarta.nombre_cat(String(c["categoria"])), motor.costo_carta(c, _ministro)]
 	if est.etapa == "campana":
-		_lbl_corrector.text = "[b]Campaña:[/b] cada carta es una promesa. Sube la aprobación de la región elegida (+50 %) y queda como meta de legado."
+		_lbl_corrector.text = cabeza + "[b]Campaña:[/b] cada carta es una promesa: sube la aprobación de la región elegida y queda como meta de legado."
 	elif v["corrector"]["aplica"]:
-		_lbl_corrector.text = "[b]Corrector de realismo:[/b] " + String(v["corrector"]["mensaje"])
+		_lbl_corrector.text = cabeza + "[b]Corrector de realismo:[/b] " + String(v["corrector"]["mensaje"])
 	else:
-		_lbl_corrector.text = "[b]Corrector de realismo:[/b] sin observaciones; la meta es viable con la capacidad actual."
+		_lbl_corrector.text = cabeza + "[b]Corrector de realismo:[/b] sin observaciones; la meta es viable."
 
 
 func _actualizar_botones() -> void:
@@ -377,6 +380,7 @@ func _abrir_panel(cual: String) -> void:
 		_zona_panel.visible = false
 		return
 	_zona_panel.visible = true
+	_zona_panel.offset_bottom = -66.0 if cual == "gabinete" else 0.0  # con Gabinete, la fila de Jugar/avanzar queda en su sitio
 	var contenido: Control
 	match cual:
 		"comite":

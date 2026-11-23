@@ -111,9 +111,10 @@ func _v2(main: Node, dia: Node, d: Dictionary, partido: Dictionary) -> void:
 	est.pa_actual = 4
 	est.bono_mov = {"aprobacion": 2, "asesores": 1}
 	m.contratar_asesor("as_economista")
-	m.unirse_coalicion("par_horizonte")
-	m.unirse_coalicion("par_laborista")
-	est.coalicion["par_laborista"]["satisfaccion"] = 22.0
+	var pids: Array = m.coalicion.partidos.keys()
+	m.unirse_coalicion(pids[0])
+	m.unirse_coalicion(pids[1])
+	est.coalicion[pids[1]]["satisfaccion"] = 22.0
 	est.internos_actual = 3
 	dia._abrir_panel("mapa")
 	dia._sel = 1
@@ -128,7 +129,7 @@ func _v2(main: Node, dia: Node, d: Dictionary, partido: Dictionary) -> void:
 		PanelGestion.pestana = par[0]
 		dia._abrir_panel("gabinete")
 		await _guardar(par[1], 0.5)
-	PanelCoalicion.abierto = "par_horizonte"
+	PanelCoalicion.abierto = pids[0]
 	PanelGestion.pestana = "coalicion"
 	dia._abrir_panel("gabinete")
 	await _guardar("v2_coalicion_cuotas", 0.5)

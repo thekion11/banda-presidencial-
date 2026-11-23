@@ -97,6 +97,24 @@ func _recorrer_v2(main: Node, dia: Node) -> void:
 	dia._sel = 0
 	dia._refrescar()
 	await process_frame
+	await process_frame
+	# maqueta: el mapa ocupa más de un tercio y el botón principal no se mueve (mapa, otra carta, panel Gabinete)
+	var base: Rect2 = dia._btn_jugar.get_global_rect()
+	_check(dia._mapa.size.y > dia.size.y / 3.0, "el mapa debe ocupar más de un tercio de la pantalla (%d de %d)" % [dia._mapa.size.y, dia.size.y])
+	dia._sel = 3
+	dia._refrescar()
+	await process_frame
+	_check(dia._btn_jugar.get_global_rect() == base, "el botón principal debe quedar en la misma posición al cambiar de carta")
+	dia._sel = 0
+	for pest in ["gabinete", "equipo", "coalicion", "internos"]:
+		PanelGestion.pestana = pest
+		dia._abrir_panel("gabinete")
+		await process_frame
+		await process_frame
+		_check(dia._btn_jugar.get_global_rect() == base, "el botón principal debe quedar en el mismo sitio con la pestaña " + pest)
+		_check(dia._zona_panel.get_global_rect().end.y <= base.position.y + 1.0, "el panel no debe tapar el botón principal (" + pest + ")")
+	dia._abrir_panel("mapa")
+	await process_frame
 	_check(est.mano.size() == 5, "la mano debe tener 5 cartas")
 	var antes: int = est.pa_actual
 	dia._jugar()
