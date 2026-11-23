@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Convierte los listados curados (tools/proyectos/curados/*.jsonl, una fila por proyecto leída de páginas públicas) en data/proyectos/curados_*.json.
 
-Reglas: verificado=true sólo si la fila se marcó oficial Y la URL es de un dominio del Estado (dominio estatal: ver es_estatal); si no, false (prensa).
+Reglas: verificado=true (salvo notas que pidan 'verificar') sólo si la fila se marcó oficial Y la URL es de un dominio del Estado (dominio estatal: ver es_estatal); si no, false (prensa).
 Se descartan duplicados (misma región+nombre normalizado, o ya existentes en data/proyectos/) y filas inválidas (se listan en pantalla).
 Uso   : python3 tools/proyectos/curados_jsonl.py
 """
@@ -60,7 +60,7 @@ def main():
                 continue
             vistos.add(k)
             host = urlparse(r["fuente_url"]).hostname or ""
-            ofi = bool(r.get("oficial")) and es_estatal(host)
+            ofi = bool(r.get("oficial")) and es_estatal(host) and "verificar" not in (r.get("notas") or "").lower()
             n_of += ofi
             n_pr += not ofi
             regs.append(registro(
