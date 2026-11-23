@@ -120,5 +120,15 @@
     "vigencia_dias": 180,
     "es_ilustrativa": false,
     "verificado_contra_texto": false
+  },
+  {
+    "id": "metro_santiago",
+    "institucion": "Metro de Santiago y prensa (Meganoticias, El Dínamo, Radio Agricultura)",
+    "titulo": "Nuevas líneas 7, 8, 9 y A: fichas oficiales y cifras de prensa",
+    "url": "https://www.metro.cl/nuevos-proyectos/linea-7",
+    "fecha_corte": "2026-11-23",
+    "vigencia_dias": 180,
+    "es_ilustrativa": false,
+    "verificado_contra_texto": false
   }
 ]
