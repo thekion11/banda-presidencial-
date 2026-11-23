@@ -110,7 +110,7 @@ func _construir_cuerpo() -> Control:
 	corr.add_theme_stylebox_override("panel", Tema.caja(Tema.CREMA, 10, Color("#E8D9A8"), 1))
 	_lbl_corrector = RichTextLabel.new()
 	_lbl_corrector.bbcode_enabled = true
-	_lbl_corrector.fit_content = true
+	_lbl_corrector.fit_content = false  # alto fijo (62 px del panel): el texto largo se recorta, nunca empuja el botón principal
 	_lbl_corrector.scroll_active = false
 	_lbl_corrector.custom_minimum_size = Vector2(330, 0)
 	_lbl_corrector.mouse_filter = Control.MOUSE_FILTER_IGNORE
@@ -225,7 +225,8 @@ func _pintar_mano() -> void:
 		return
 	var v := motor.vista_carta(_sel, _ministro)
 	var c: Dictionary = est.mano[_sel]
-	var cabeza := "[b]%s[/b] · %s · %d mov\n" % [c["titulo"], BloqueoCarta.nombre_cat(String(c["categoria"])), motor.costo_carta(c, _ministro)]
+	var tit := String(c["titulo"])
+	var cabeza := "[b]%s[/b] · %s · %d mov\n" % [tit if tit.length() <= 34 else tit.substr(0, 33) + "…", BloqueoCarta.nombre_cat(String(c["categoria"])), motor.costo_carta(c, _ministro)]
 	if est.etapa == "campana":
 		_lbl_corrector.text = cabeza + "[b]Campaña:[/b] cada carta es una promesa: sube la aprobación de la región elegida y queda como meta de legado."
 	elif v["corrector"]["aplica"]:

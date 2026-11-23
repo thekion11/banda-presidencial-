@@ -9,6 +9,8 @@ var _aviso: Label
 
 
 func _ready() -> void:
+	PanelCoalicion.abierto = ""  # estado de pestañas de la partida anterior
+	PanelGestion.pestana = "gabinete"
 	var m := MarginContainer.new()
 	m.set_anchors_preset(Control.PRESET_FULL_RECT)
 	for lado in ["left", "right"]:
