@@ -1415,5 +1415,89 @@
       "nombre": "Conectividad zonas extremas",
       "dias_totales": 330
     }
+  },
+  {
+    "id": "com_buses_maipu",
+    "categoria": "comite",
+    "costo_pa": 2,
+    "titulo": "Corredor de buses a Maipú",
+    "efectos": [
+      {
+        "ind": "aprobacion",
+        "delta": 3
+      },
+      {
+        "ind": "fiscal",
+        "delta": -2
+      }
+    ],
+    "requisitos": {
+      "ley": null,
+      "quorum": null
+    },
+    "corrector": {
+      "meta": 900,
+      "capacidad": 600,
+      "modo": "por_tramos",
+      "unidad": "US$ M"
+    },
+    "abre_propuesta_comite": "prop_buses_maipu",
+    "fuente": "fuentes.json#ficticio_2026"
+  },
+  {
+    "id": "com_metro_norte",
+    "categoria": "comite",
+    "costo_pa": 2,
+    "titulo": "Línea de Metro Centro–Norte",
+    "efectos": [
+      {
+        "ind": "aprobacion",
+        "delta": 3
+      },
+      {
+        "ind": "fiscal",
+        "delta": -2
+      }
+    ],
+    "requisitos": {
+      "ley": null,
+      "quorum": null
+    },
+    "corrector": {
+      "meta": 1700,
+      "capacidad": 1200,
+      "modo": "por_tramos",
+      "unidad": "US$ M"
+    },
+    "abre_propuesta_comite": "prop_metro_norte",
+    "fuente": "fuentes.json#ficticio_2026"
+  },
+  {
+    "id": "com_tranvia_oriente",
+    "categoria": "comite",
+    "costo_pa": 2,
+    "titulo": "Tranvía Providencia–Las Condes",
+    "efectos": [
+      {
+        "ind": "aprobacion",
+        "delta": 3
+      },
+      {
+        "ind": "fiscal",
+        "delta": -2
+      }
+    ],
+    "requisitos": {
+      "ley": null,
+      "quorum": null
+    },
+    "corrector": {
+      "meta": 700,
+      "capacidad": 500,
+      "modo": "por_tramos",
+      "unidad": "US$ M"
+    },
+    "abre_propuesta_comite": "prop_tranvia_oriente",
+    "fuente": "fuentes.json#ficticio_2026"
   }
 ]
