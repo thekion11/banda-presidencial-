@@ -1637,6 +1637,10 @@
       {
         "ind": "capital",
         "delta": -2
+      },
+      {
+        "ind": "riesgo_ejecucion",
+        "delta": 1
       }
     ],
     "requisitos": {
@@ -1713,6 +1717,10 @@
       {
         "ind": "capital",
         "delta": -1
+      },
+      {
+        "ind": "riesgo_ejecucion",
+        "delta": 1
       }
     ],
     "requisitos": {
