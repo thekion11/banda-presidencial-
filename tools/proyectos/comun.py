@@ -1,7 +1,7 @@
 """Utilidades comunes de los scrapers de proyectos públicos (data/proyectos/*.json).
 
 Esquema de registro (todas las claves siempre presentes; null si no hay dato, nunca se inventan cifras):
-id, nombre, sector, region_id, region_ids, comuna, estado, estado_2026_03_11, inversion_musd, inversion_uf,
+id, nombre, sector, region_id, region_ids, comuna, estado, estado_2026_03_11, inversion_musd, inversion_uf, inversion_clp,
 fecha_inicio, fecha_fin, mandante, descripcion, fuente_url, fuente, fecha_consulta, verificado, notas
 Fechas: 'YYYY-MM-DD', 'YYYY-MM', 'YYYY', 'YYYY-Qn' o null (estimadas o hitos oficiales).
 """
@@ -18,7 +18,7 @@ ROOT = Path(__file__).resolve().parents[2]
 SALIDA = ROOT / "data" / "proyectos"
 ESTADOS = ("idea", "perfil", "prefactibilidad", "diseno", "licitacion", "ejecucion", "terminado", "abandonado")
 CLAVES = ("id", "nombre", "sector", "region_id", "region_ids", "comuna", "estado", "estado_2026_03_11", "inversion_musd",
-          "inversion_uf", "fecha_inicio", "fecha_fin", "mandante", "descripcion", "fuente_url", "fuente", "fecha_consulta",
+          "inversion_uf", "inversion_clp", "fecha_inicio", "fecha_fin", "mandante", "descripcion", "fuente_url", "fuente", "fecha_consulta",
           "verificado", "notas")
 HOY = date.today().isoformat()
 

@@ -1,0 +1,106 @@
+{
+ "meta": {
+  "fuente": "mop_obras",
+  "scraper": "tools/proyectos/mop_obras.py",
+  "fecha_consulta": "2026-11-23",
+  "nota": "Fichas de obras destacadas; muchas con fechas de 2021-2024 (el estado puede estar desactualizado)."
+ },
+ "proyectos": [
+  {
+   "id": "mop-www-14374-construccion-obras-de-control-aluvional-quebradas",
+   "nombre": "Construcción Obras de Control Aluvional Quebradas Sectores República y Tiro al Blanco, Taltal",
+   "sector": "agua",
+   "region_id": "antofagasta",
+   "region_ids": [
+    "antofagasta"
+   ],
+   "comuna": "Taltal",
+   "estado": "ejecucion",
+   "estado_2026_03_11": null,
+   "inversion_musd": null,
+   "inversion_uf": null,
+   "inversion_clp": 2887554000.0,
+   "fecha_inicio": "2021-08-07",
+   "fecha_fin": "2022-03-05",
+   "mandante": "Dirección de Obras Hidráulicas",
+   "descripcion": "Construcción Obras de Control Aluvional Quebradas Sectores República y Tiro al Blanco, Taltal Región: Antofagasta Ubicación: Taltal Servicio: Dirección de Obras Hidráulicas Estado: Ejecución Monto: 2.887.554.000 Fecha de Inicio: 07/08/2021 Fecha de Término: 05/03/2022 Código Bip: 40025805-0 Descripción del Proyecto La iniciativa comprende la ejecución de las obras de control aluvional para las que",
+   "fuente_url": "https://www.mop.gob.cl/project/construccion-obras-de-control-aluvional-quebradas-sectores-republica-y-tiro-al-blanco-taltal/",
+   "fuente": "fuentes.json#mop_obras",
+   "fecha_consulta": "2026-11-23",
+   "verificado": true,
+   "notas": "estado según la ficha (fecha de consulta); código BIP: 40025805-0 Descripción del Proyecto La iniciativa comprende la ejecución de las obras de control aluvional para las quebradas S2 y S3, afluentes a la población Tiro al Blanco y las obras de control aluvional para la quebrada afluente S4, del sector República Alto de la ciudad de Taltal. La solución alberga pozas decantadoras y barreras, más una vía aluvional para la cuenca S2, una barrera y poza decantadora para la cuenca s3, más dos muros gravitacionales y canal interceptor para cuenca S4. La inicativa actualmente en su inicio, movimiento de tierras en sector Tiro al Blanco. El proyecto resuelve el control aluvional para las cuencas aportantes a ambos sectores, ubicados en el anfiteatro sur de Taltal, que se han visto constantemente afectados por precipitaciones costeras. Las obras resuelven el control de las escorrentías de caudales que hoy en día, vulneran a la población aguas abajo. El proyecto genera mano de obra promedio de 40 personas, llegando en su peak sobre 60 trabajadores. Documentos Observaciones Las obras protegerán 920,46 m2 de ambos sectores. Financiamiento MOP. Proyectos Relacionados Teleférico Bicentenario Edificación Pública , Metropolitana Habilitación espacio público Nudo Baquedano Arquitectura , Edificación Pública , Metropolitana Construcción Biblioteca Regional de La Araucanía Arquitectura , Edificación Pública , La Araucanía Mejoramiento Borde Costero Buchupureo Cobquecura Bordes Costeros , Ñuble , Obras Portuarias ← Proyecto anterior Proyecto siguiente →; monto en CLP salvo que indique UF/USD"
+  },
+  {
+   "id": "mop-www-14397-mejoramiento-sistema-apr-tulahuen",
+   "nombre": "Mejoramiento Sistema APR Tulahuén",
+   "sector": "agua",
+   "region_id": "coquimbo",
+   "region_ids": [
+    "coquimbo"
+   ],
+   "comuna": "Monte Patria",
+   "estado": "ejecucion",
+   "estado_2026_03_11": null,
+   "inversion_musd": null,
+   "inversion_uf": null,
+   "inversion_clp": 3105127000.0,
+   "fecha_inicio": "2021-04-12",
+   "fecha_fin": "2022-10-04",
+   "mandante": "Dirección de Obras Hidráulicas",
+   "descripcion": "Mejoramiento Sistema APR Tulahuén Región: Coquimbo Ubicación: Monte Patria Servicio: Dirección de Obras Hidráulicas Estado: Ejecución Monto: 3.105.127.000 Fecha de Inicio: 12/04/2021 Fecha de Término: 04/10/2022 Código Bip: 30478237-0 Descripción del Proyecto El mejoramiento del sistema considera las siguientes obras: - Limpieza pozo existente. - Mejoramiento y habilitación de pozo nuevo y caseta.",
+   "fuente_url": "https://www.mop.gob.cl/project/mejoramiento-sistema-apr-tulahuen/",
+   "fuente": "fuentes.json#mop_obras",
+   "fecha_consulta": "2026-11-23",
+   "verificado": true,
+   "notas": "estado según la ficha (fecha de consulta); código BIP: 30478237-0 Descripción del Proyecto El mejoramiento del sistema considera las siguientes obras: - Limpieza pozo existente. - Mejoramiento y habilitación de pozo nuevo y caseta. - Reposición estanque de regulación 200 m3 El Chagual. - Impulsión directa a estanques existentes - Re-elevadora a estanque proyectado en sector La Cisterna. - Construcción estanque de regulación 20 [m3] en sector La Cisterna. - Red de distribución - Suministro e instalación de 13 nuevos arranques domiciliarios y 272 reconexiones. - Obras eléctricas. Documentos Buscador de Proyectos Observaciones Se consideran 890 arranques totales que beneficiarán a 2.035 personas. El sistema data desde el año 1991 y desde entonces no ha recibido un mejoramiento integral significativo. La posibilidad de financiar un mejoramiento general por parte del comité de Agua Potable Rural es prácticamente nula, debido al alto costo. Financiamiento MOP. Proyectos Relacionados Teleférico Bicentenario Edificación Pública , Metropolitana Habilitación espacio público Nudo Baquedano Arquitectura , Edificación Pública , Metropolitana Construcción Biblioteca Regional de La Araucanía Arquitectura , Edificación Pública , La Araucanía Mejoramiento Borde Costero Buchupureo Cobquecura Bordes Costeros , Ñuble , Obras Portuarias ← Proyecto anterior Proyecto siguiente →; monto en CLP salvo que indique UF/USD"
+  },
+  {
+   "id": "mop-www-14430-sistemas-apr-en-longomilla-el-telegrafo-quebrada-h",
+   "nombre": "Sistemas APR en Longomilla-El Telégrafo-Quebrada Honda-Florida-Maitencillo Oriente",
+   "sector": "agua",
+   "region_id": "atacama",
+   "region_ids": [
+    "atacama"
+   ],
+   "comuna": "Freirina",
+   "estado": "ejecucion",
+   "estado_2026_03_11": null,
+   "inversion_musd": null,
+   "inversion_uf": null,
+   "inversion_clp": 1242365000.0,
+   "fecha_inicio": "2021-03-09",
+   "fecha_fin": "2022-03-09",
+   "mandante": "Dirección de Obras Hidráulicas",
+   "descripcion": "Sistemas APR en Longomilla-El Telégrafo-Quebrada Honda-Florida-Maitencillo Oriente Región: Atacama Ubicación: Freirina Servicio: Dirección de Obras Hidráulicas Estado: Ejecución Monto: 1.242.365.000 Fecha de Inicio: 09/03/2021 Fecha de Término: 09/03/2022 Código Bip: 40010742-0 Descripción del Proyecto El proyecto entregará cobertura de agua potable en localidades rezagadas entre Freirina y Vallen",
+   "fuente_url": "https://www.mop.gob.cl/project/sistemas-apr-en-longomilla-el-telegrafo-quebrada-honda-florida-maitencillo-oriente/",
+   "fuente": "fuentes.json#mop_obras",
+   "fecha_consulta": "2026-11-23",
+   "verificado": true,
+   "notas": "estado según la ficha (fecha de consulta); código BIP: 40010742-0 Descripción del Proyecto El proyecto entregará cobertura de agua potable en localidades rezagadas entre Freirina y Vallenar, beneficiando a 540 personas de los sectores de Longomilla, La Florida, Maitencillo y Quebrada Honda. Documentos Buscador de Proyectos Observaciones Abarca 75 arranques de sistemas de APR semi concentrado. Financiamiento MOP. Proyectos Relacionados Teleférico Bicentenario Edificación Pública , Metropolitana Habilitación espacio público Nudo Baquedano Arquitectura , Edificación Pública , Metropolitana Construcción Biblioteca Regional de La Araucanía Arquitectura , Edificación Pública , La Araucanía Mejoramiento Borde Costero Buchupureo Cobquecura Bordes Costeros , Ñuble , Obras Portuarias ← Proyecto anterior Proyecto siguiente →; monto en CLP salvo que indique UF/USD"
+  },
+  {
+   "id": "mop-www-14732-conservacion-obras-de-riego-fiscales-valparaiso-20",
+   "nombre": "Conservación Obras de Riego Fiscales Valparaíso 2020-2023",
+   "sector": "agua",
+   "region_id": "valparaiso",
+   "region_ids": [
+    "valparaiso"
+   ],
+   "comuna": "Cuencas de los ríos Petorca y Aconcagua.",
+   "estado": "ejecucion",
+   "estado_2026_03_11": null,
+   "inversion_musd": null,
+   "inversion_uf": null,
+   "inversion_clp": 2696584000.0,
+   "fecha_inicio": "2020-09-29",
+   "fecha_fin": "2023-12-30",
+   "mandante": "Dirección de Obras Hidráulicas",
+   "descripcion": "Conservación Obras de Riego Fiscales Valparaíso 2020-2023 Región: Valparaíso Ubicación: Cuencas de los ríos Petorca y Aconcagua. Servicio: Dirección de Obras Hidráulicas Estado: Ejecución Monto: 2.696.584.000 Fecha de Inicio: 29/09/2020 Fecha de Término: 30/12/2023 Código Bip: 40025992-0 Descripción del Proyecto El proyecto consiste en la conservación de las obras de riego fiscales dentro de la Re",
+   "fuente_url": "https://www.mop.gob.cl/project/conservacion-obras-de-riego-fiscales-valparaiso-2020-2023/",
+   "fuente": "fuentes.json#mop_obras",
+   "fecha_consulta": "2026-11-23",
+   "verificado": true,
+   "notas": "estado según la ficha (fecha de consulta); código BIP: 40025992-0 Descripción del Proyecto El proyecto consiste en la conservación de las obras de riego fiscales dentro de la Región de Valparaíso. Mantención de los niveles de operatividad de las obras, incorporando nuevas tecnologías para su adecuado control, así como de las estructuras de regulación y entrega de los sistemas en cuenca de Petorca y cuenca del río Aconcagua, con el objeto de asegurar el abastecimiento continuo del recurso para el riego en la región. Documentos Observaciones 8.000 ml de tramos protegidos con obras manejo de cauces Según el DFL 850, a la Dirección de Obras Hidráulicas le corresponde realizar los trabajos de mantenimiento y reparaciones menores necesarios para mantener los estándares que garanticen la operatividad y el buen funcionamiento de las obras de riego fiscales, razón por la cual este servicio anualmente financia los trabajos de conservación que se requieren para estos efectos. Además, de acuerdo al DFL 1.123 del año 1981, también le corresponde a esta dirección la administración provisional de las obras que se construyen con fondos del estado y que por razones estratégicas deberán permanecer en poder del fisco. Financiamiento MOP. Proyectos Relacionados Teleférico Bicentenario Edificación Pública , Metropolitana Habilitación espacio público Nudo Baquedano Arquitectura , Edificación Pública , Metropolitana Construcción Biblioteca Regional de La Araucanía Arquitectura , Edificación Pública , La Araucanía Mejoramiento Borde Costero Buchupureo Cobquecura Bordes Costeros , Ñuble , Obras Portuarias ← Proyecto anterior Proyecto siguiente →; monto en CLP salvo que indique UF/USD"
+  }
+ ]
+}

@@ -100,5 +100,15 @@
     "vigencia_dias": 180,
     "es_ilustrativa": false,
     "verificado_contra_texto": false
+  },
+  {
+    "id": "mop_obras",
+    "institucion": "Ministerio de Obras Públicas (MOP) y sus direcciones",
+    "titulo": "Fichas de obras: Vialidad, DOH, DOP, Arquitectura, Aeropuertos",
+    "url": "https://www.mop.gob.cl/",
+    "fecha_corte": "2026-11-23",
+    "vigencia_dias": 365,
+    "es_ilustrativa": false,
+    "verificado_contra_texto": false
   }
 ]

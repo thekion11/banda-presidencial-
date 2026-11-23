@@ -242,7 +242,7 @@ def validar_proyectos(regiones: set, ids_fuentes: set) -> None:
     """data/proyectos/*.json: esquema de registro, regiones, fuentes y ausencia de cifras inventadas."""
     estados = {"idea", "perfil", "prefactibilidad", "diseno", "licitacion", "ejecucion", "terminado", "abandonado"}
     claves = {"id", "nombre", "sector", "region_id", "region_ids", "comuna", "estado", "estado_2026_03_11", "inversion_musd",
-              "inversion_uf", "fecha_inicio", "fecha_fin", "mandante", "descripcion", "fuente_url", "fuente", "fecha_consulta",
+              "inversion_uf", "inversion_clp", "fecha_inicio", "fecha_fin", "mandante", "descripcion", "fuente_url", "fuente", "fecha_consulta",
               "verificado", "notas"}
     patron_fecha = re.compile(r"^\d{4}(-\d{2}(-\d{2})?|-Q[1-4])?$")
     vistos = set()
@@ -264,7 +264,7 @@ def validar_proyectos(regiones: set, ids_fuentes: set) -> None:
             if any(r not in regiones for r in p["region_ids"]):
                 raise ValueError(f"{ctx}: region_ids desconocida")
             verificar_ref_fuente(p, ids_fuentes, ctx)
-            for k in ("inversion_musd", "inversion_uf"):
+            for k in ("inversion_musd", "inversion_uf", "inversion_clp"):
                 if p[k] is not None and (not isinstance(p[k], (int, float)) or p[k] < 0):
                     raise ValueError(f"{ctx}: {k} inválido")
             for k in ("fecha_inicio", "fecha_fin"):

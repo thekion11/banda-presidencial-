@@ -1,0 +1,154 @@
+{
+ "meta": {
+  "fuente": "mop_obras",
+  "scraper": "tools/proyectos/mop_obras.py",
+  "fecha_consulta": "2026-11-23",
+  "nota": "Fichas de obras destacadas; muchas con fechas de 2021-2024 (el estado puede estar desactualizado)."
+ },
+ "proyectos": [
+  {
+   "id": "mop-www-14318-construccion-edificio-sector-justicia-regional-de",
+   "nombre": "Construcción Edificio Sector Justicia Regional de O’Higgins",
+   "sector": "edificacion",
+   "region_id": "ohiggins",
+   "region_ids": [
+    "ohiggins"
+   ],
+   "comuna": "Rancagua",
+   "estado": "ejecucion",
+   "estado_2026_03_11": null,
+   "inversion_musd": null,
+   "inversion_uf": null,
+   "inversion_clp": 10361404000.0,
+   "fecha_inicio": "2021-08-10",
+   "fecha_fin": "2023-05-31",
+   "mandante": "Dirección de Arquitectura",
+   "descripcion": "Construcción Edificio Sector Justicia Regional de O’Higgins Región: Metropolitana Ubicación: Rancagua Servicio: Dirección de Arquitectura Estado: Ejecución Monto: 10.361.404.000 Fecha de Inicio: 10/08/2021 Fecha de Término: 31/05/2023 Código Bip: 30488157-0 Descripción del Proyecto El proyecto estará emplazado en la calle oficial Carlos María O´Carrol N° 879 de Rancagua. El terreno con una superfi",
+   "fuente_url": "https://www.mop.gob.cl/project/construccion-edificio-sector-justicia-regional-de-ohiggins/",
+   "fuente": "fuentes.json#mop_obras",
+   "fecha_consulta": "2026-11-23",
+   "verificado": true,
+   "notas": "región corregida por categoría (el texto de la ficha discrepa); estado según la ficha (fecha de consulta); código BIP: 30488157-0 Descripción del Proyecto El proyecto estará emplazado en la calle oficial Carlos María O´Carrol N° 879 de Rancagua. El terreno con una superficie de 2.766,00 metros cuadrados, donde se proyecta una edificación de siete pisos de altura con una superficie total construida de 8292.32. Se identifican dos volúmenes separados por un eje central público de circulación que remata en áreas comunes y una plaza destinada principalmente como memorial. En estos volúmenes se desarrolla en programa espacial y funcional de cada servicio participante de acuerdo a distribuciones indicadas en plantas arquitectónicas, además se considera dos bajo niveles para estacionamientos y bodegas. Documentos Observaciones Se requiere de un edificio que concentre en un solo lugar, los servicios de la cartera de Justicia (como Servicio Nacional de Menores, Corporación de Asistencia Judicial, Gendarmería de Chile, Servicio Registro Civil e Identificación, Defensoría Local de Rancagua y Seremi de Justicia y Derechos Humanos) para mejorar la entrega de servicios, debido principalmente a la dispersión geográfica y a la deficiencia de la infraestructura. Financiamiento extrasectorial. Mandante: Ministerio de Justicia y DD.HH. Proyectos Relacionados Teleférico Bicentenario Edificación Pública , Metropolitana Habilitación espacio público Nudo Baquedano Arquitectura , Edificación Pública , Metropolitana Construcción Biblioteca Regional de La Araucanía Arquitectura , Edificación Pública , La Araucanía Mejoramiento Borde Costero Buchupureo Cobquecura Bordes Costeros , Ñuble , Obras Portuarias ← Proyecto anterior Proyecto siguiente →; monto en CLP salvo que indique UF/USD"
+  },
+  {
+   "id": "mop-www-14321-construccion-museo-arqueologico-san-miguel-de-azap",
+   "nombre": "Construcción Museo Arqueológico San Miguel de Azapa",
+   "sector": "edificacion",
+   "region_id": "arica",
+   "region_ids": [
+    "arica"
+   ],
+   "comuna": "Arica",
+   "estado": "ejecucion",
+   "estado_2026_03_11": null,
+   "inversion_musd": null,
+   "inversion_uf": null,
+   "inversion_clp": 9277011000.0,
+   "fecha_inicio": "2021-10-29",
+   "fecha_fin": "2024-02-16",
+   "mandante": "Dirección de Arquitectura",
+   "descripcion": "Construcción Museo Arqueológico San Miguel de Azapa Región: Arica y Parinacota Ubicación: Arica Servicio: Dirección de Arquitectura Estado: Ejecución Monto: 9.277.011.000 Fecha de Inicio: 29/10/2021 Fecha de Término: 16/02/2024 Código Bip: 30476884-0 Descripción del Proyecto El proyecto en esta etapa implica la construcción de una edificación con un total de 4.953.00 m2, ubicada en la parcela 27 d",
+   "fuente_url": "https://www.mop.gob.cl/project/museo-san-miguel-de-azapa-10/",
+   "fuente": "fuentes.json#mop_obras",
+   "fecha_consulta": "2026-11-23",
+   "verificado": true,
+   "notas": "estado según la ficha (fecha de consulta); código BIP: 30476884-0 Descripción del Proyecto El proyecto en esta etapa implica la construcción de una edificación con un total de 4.953.00 m2, ubicada en la parcela 27 de San Miguel de Azapa, km 12, que incluye 5 áreas: - Exhibición (exposición, museografía, extensión y recepción). - Administración y finanzas (dirección, administración y financias y servicios). - Mantenimiento y control (jefatura y mantenimiento, control de accesos, soporte técnico y servicios). - Procesos técnicos (conservación, registro, depósitos y servicios), - Investigación (arqueología, antropología, física, antropología social y apoyo), adicionalmente se consideran obras exteriores por 5.332,95 m2 que incluyen paisajismo y pavimentos vehiculares. En este espacio se exhibirán 2.539 piezas arqueológicas y etnográficas regionales pertenecientes a la colección del museo Universidad de Tarapacá. Se propone una museografía, didáctica, interactiva e inclusiva, cuyos contenidos releven la historia cultural en base a cuatro ejes (orígenes, modos de subsistencia, organización social y sistemas de creencias) considerando como base la cultura chinchorro. Documentos Documento 1 PDF Documento 2 PDF Observaciones El presupuesto estimado para el total del proyecto es de M$18.602.389 con un plazo de 840 días. Financiamiento extrasectorial. Proyectos Relacionados Teleférico Bicentenario Edificación Pública , Metropolitana Habilitación espacio público Nudo Baquedano Arquitectura , Edificación Pública , Metropolitana Construcción Biblioteca Regional de La Araucanía Arquitectura , Edificación Pública , La Araucanía Mejoramiento Borde Costero Buchupureo Cobquecura Bordes Costeros , Ñuble , Obras Portuarias Proyecto siguiente →; monto en CLP salvo que indique UF/USD"
+  },
+  {
+   "id": "mop-www-14421-reposicion-residencia-discapacidad-sename-de-coqui",
+   "nombre": "Reposición Residencia Discapacidad Sename de Coquimbo",
+   "sector": "edificacion",
+   "region_id": "coquimbo",
+   "region_ids": [
+    "coquimbo"
+   ],
+   "comuna": "Coquimbo",
+   "estado": "ejecucion",
+   "estado_2026_03_11": null,
+   "inversion_musd": null,
+   "inversion_uf": null,
+   "inversion_clp": 2665953000.0,
+   "fecha_inicio": "2020-08-28",
+   "fecha_fin": "2022-03-30",
+   "mandante": "Dirección de Arquitectura",
+   "descripcion": "Reposición Residencia Discapacidad Sename de Coquimbo Región: Coquimbo Ubicación: Coquimbo Servicio: Dirección de Arquitectura Estado: Ejecución Monto: 2.665.953.000 Fecha de Inicio: 28/08/2020 Fecha de Término: 30/03/2022 Código Bip: 30149176-0 Descripción del Proyecto La iniciativa consulta el mejoramiento y reparación de un sector existente, habilitándolo para el “Plan de Contingencia” con una ",
+   "fuente_url": "https://www.mop.gob.cl/project/reposicion-residencia-discapacidad-sename-de-coquimbo/",
+   "fuente": "fuentes.json#mop_obras",
+   "fecha_consulta": "2026-11-23",
+   "verificado": true,
+   "notas": "estado según la ficha (fecha de consulta); código BIP: 30149176-0 Descripción del Proyecto La iniciativa consulta el mejoramiento y reparación de un sector existente, habilitándolo para el “Plan de Contingencia” con una superficie aprox. de 468 m². Además, construir el sector de residencia con una superficie aproximada de 1.310 m², que cuente con áreas nuevas destinadas a viviendas, cocina, comedor y áreas de esparcimiento, entre otras dependencias, para albergar y brindar los cuidados que requieren los niños y niñas que serán atendidos integralmente en esta residencia (la residencia cuenta con distintas especialidades terapéuticas). Documentos Observaciones El recinto en la actualidad se encuentra en deficientes condiciones, dada la antigüedad de su construcción y otros factores que lo han afectado negativamente. Mandante: Gobierno Regional de Coquimbo. Proyectos Relacionados Teleférico Bicentenario Edificación Pública , Metropolitana Habilitación espacio público Nudo Baquedano Arquitectura , Edificación Pública , Metropolitana Construcción Biblioteca Regional de La Araucanía Arquitectura , Edificación Pública , La Araucanía Mejoramiento Borde Costero Buchupureo Cobquecura Bordes Costeros , Ñuble , Obras Portuarias ← Proyecto anterior Proyecto siguiente →; monto en CLP salvo que indique UF/USD"
+  },
+  {
+   "id": "mop-www-14770-construccion-biblioteca-regional-de-la-araucania",
+   "nombre": "Construcción Biblioteca Regional de La Araucanía",
+   "sector": "edificacion",
+   "region_id": "araucania",
+   "region_ids": [
+    "araucania"
+   ],
+   "comuna": "Temuco",
+   "estado": "ejecucion",
+   "estado_2026_03_11": null,
+   "inversion_musd": null,
+   "inversion_uf": null,
+   "inversion_clp": 10785088000.0,
+   "fecha_inicio": "2022-06-01",
+   "fecha_fin": "2024-01-22",
+   "mandante": "Dirección de Arquitectura",
+   "descripcion": "Construcción Biblioteca Regional de La Araucanía Región: La Araucanía Ubicación: Temuco Servicio: Dirección de Arquitectura Estado: Ejecución Monto: 10.785.088.000 Fecha de Inicio: 01/06/2022 Fecha de Término: 22/01/2024 Código Bip: 30376489-0 Descripción del Proyecto En la etapa de ejecución, se construirá y habilitará el edificio en terreno cedido a través de una concesión de uso gratuito por 25",
+   "fuente_url": "https://www.mop.gob.cl/project/construccion-biblioteca-regional-de-la-araucania-2/",
+   "fuente": "fuentes.json#mop_obras",
+   "fecha_consulta": "2026-11-23",
+   "verificado": true,
+   "notas": "estado según la ficha (fecha de consulta); código BIP: 30376489-0 Descripción del Proyecto En la etapa de ejecución, se construirá y habilitará el edificio en terreno cedido a través de una concesión de uso gratuito por 25 años por Bienes Nacionales, ubicado la calle Vicuña Mackenna N° 956. La superficie total a construir es de 6.234,72 m2 y en este edificio (proyectado en hormigón armado, con losa de hormigón armado de entrepiso y vigas y pilares de hormigón armado) se entregarán todos los servicios asociados a una biblioteca pública para la población de la comuna de Temuco y demás comunas de la región: actividades de extensión cultural, capacitaciones de biblioredes, archivo de la memoria regional y del depósito legal, así como otras actividades del amplio rango del fomento lector. Además, en las dependencias funcionará la Coordinación Regional de Bibliotecas Públicas. Al proyecto se encuentra asociada la adquisición de equipamiento y equipos para su correcto funcionamiento, tanto especialmente diseñado (estanterías perimetrales) como mobiliario de línea (existente en el mercado). La biblioteca cuenta con: - área de acceso de 128.2 m2, compuesta por un hall de acceso, un mesón de información y áreas de lockers - área de lectura con 1985,6 m2 que contempla áreas de circulación y préstamos, sala infantil y guaguateca, área juvenil, novedades,+ 60, áreas diarios y revistas, áreas referencias, área literatura, áreas colecciones generales, relatos interculturales y archivo del patrimonio inmaterial, sala memoria regional, +18 y servicios higiénicos. - áreas de extensión con 675.2 m2. - zona de trabajo administrativo con 886 m2. - zona de Coordinación Regional con 111 m2. - estacionamientos vehículos con 806,5 m2 y estacionamiento bicicletas con 95.4 m2. Documentos Observaciones Ninguna de las bibliotecas públicas de la región o aquellas en convenio con el Servicio Nacional de Bibliotecas Públicas cumple con requerimientos y estándares para entregar calidad de servicio y una cobertura a escala regional. Por ello, existe la necesidad de contar con un edificio que dé acceso a las personas de recibir servicios bibliotecarios de alto estándar impidiendo en definitiva entregar los servicios que den real cumplimiento al manifiesto de bibliotecas públicas de la IFLA-Unesco. Financiamiento extrasectorial. Proyectos Relacionados Teleférico Bicentenario Edificación Pública , Metropolitana Habilitación espacio público Nudo Baquedano Arquitectura , Edificación Pública , Metropolitana Construcción Biblioteca Regional de La Araucanía Arquitectura , Edificación Pública , La Araucanía Mejoramiento Borde Costero Buchupureo Cobquecura Bordes Costeros , Ñuble , Obras Portuarias ← Proyecto anterior Proyecto siguiente →; monto en CLP salvo que indique UF/USD"
+  },
+  {
+   "id": "mop-www-37574-habilitacion-espacio-publico-nudo-baquedano",
+   "nombre": "Habilitación espacio público Nudo Baquedano",
+   "sector": "edificacion",
+   "region_id": "metropolitana",
+   "region_ids": [
+    "metropolitana"
+   ],
+   "comuna": "Santiago",
+   "estado": "ejecucion",
+   "estado_2026_03_11": null,
+   "inversion_musd": null,
+   "inversion_uf": null,
+   "inversion_clp": 26148578.0,
+   "fecha_inicio": "2024-10-31",
+   "fecha_fin": null,
+   "mandante": "Dirección de Arquitectura",
+   "descripcion": "Habilitación espacio público Nudo Baquedano Región: Metropolitana Ubicación: Santiago Servicio: Dirección de Arquitectura Estado: Ejecución Monto: 26.148.578 Fecha de Inicio: 31/10/2024 Fecha de Término: - Código Bip: - Descripción del Proyecto Será un espacio centrado en las personas, revitalizando este icónico lugar de encuentro y celebración de la ciudad Aumento de 8.750 m2 de áreas verdes. Ren",
+   "fuente_url": "https://www.mop.gob.cl/project/nueva-alameda/",
+   "fuente": "fuentes.json#mop_obras",
+   "fecha_consulta": "2026-11-23",
+   "verificado": true,
+   "notas": "estado según la ficha (fecha de consulta); código BIP: - Descripción del Proyecto Será un espacio centrado en las personas, revitalizando este icónico lugar de encuentro y celebración de la ciudad Aumento de 8.750 m2 de áreas verdes. Renovación integral de la Explanada de las Artes frente a edificios Turri. Nueva plaza cívica y áreas verdes entre los parques Balmaceda y Forestal. Mejor circulación peatonal. Integración de los medios de transporte. Nuevos recorridos y accesibilidad peatonal a través de la reconfiguración del tránsito. Intervención de áreas verdes, con arborización y jardines. Renovación de la iluminación, pavimentación y equipamiento. Documentos Observaciones Para más información https://www.gob.cl/nuevaalameda/ Proyectos Relacionados Teleférico Bicentenario Edificación Pública , Metropolitana Habilitación espacio público Nudo Baquedano Arquitectura , Edificación Pública , Metropolitana Construcción Biblioteca Regional de La Araucanía Arquitectura , Edificación Pública , La Araucanía Mejoramiento Borde Costero Buchupureo Cobquecura Bordes Costeros , Ñuble , Obras Portuarias ← Proyecto anterior Proyecto siguiente →; monto en CLP salvo que indique UF/USD"
+  },
+  {
+   "id": "mop-www-38737-teleferico-bicentenario",
+   "nombre": "Teleférico Bicentenario",
+   "sector": "edificacion",
+   "region_id": "metropolitana",
+   "region_ids": [
+    "metropolitana"
+   ],
+   "comuna": "Santiago",
+   "estado": "ejecucion",
+   "estado_2026_03_11": null,
+   "inversion_musd": 79.7,
+   "inversion_uf": 1948603.0,
+   "inversion_clp": null,
+   "fecha_inicio": "2018-05-19",
+   "fecha_fin": null,
+   "mandante": "Dirección General de Conceciones",
+   "descripcion": "Teleférico Bicentenario Región: Metropolitana Ubicación: Santiago Servicio: Dirección General de Conceciones Estado: Ejecución Monto: UF 1.948.603 (MM USD 79,7) Fecha de Inicio: 19 de mayo de 2018 Fecha de Término: - Código Bip: - Descripción del Proyecto Este proyecto considera la construcción de un Transporte Público, un teleférico, con una línea de 3,2 km que comienza sobre el Canal San Carlos,",
+   "fuente_url": "https://www.mop.gob.cl/project/teleferico-bicentenario/",
+   "fuente": "fuentes.json#mop_obras",
+   "fecha_consulta": "2026-11-23",
+   "verificado": true,
+   "notas": "estado según la ficha (fecha de consulta); código BIP: - Descripción del Proyecto Este proyecto considera la construcción de un Transporte Público, un teleférico, con una línea de 3,2 km que comienza sobre el Canal San Carlos, entre las Avenidas Nueva Tobalaba y Nueva Tajamar, ubicado aproximadamente a 250 metros de la estación de Metro Tobalaba, en la comuna de Providencia. Luego avanza hacia el Parque Metropolitano para conectar a continuación con Ciudad Empresarial, en la comuna de Huechuraba. La infraestructura constará de cabinas para 10 personas , montadas sobre cables que tendrán una frecuencia cada 12 segundos y con una estimación de 3.000 pasajeros/hora por sentido. El proyecto se sustenta en la necesidad de complementar el transporte de personas no contaminante en un sector complejo de vialidad y tránsito peatonal. Documentos Ver Documentos Observaciones Para más información www.telefericobicentenario.cl Proyectos Relacionados Teleférico Bicentenario Edificación Pública , Metropolitana Habilitación espacio público Nudo Baquedano Arquitectura , Edificación Pública , Metropolitana Construcción Biblioteca Regional de La Araucanía Arquitectura , Edificación Pública , La Araucanía Mejoramiento Borde Costero Buchupureo Cobquecura Bordes Costeros , Ñuble , Obras Portuarias ← Proyecto anterior; monto en CLP salvo que indique UF/USD"
+  }
+ ]
+}
