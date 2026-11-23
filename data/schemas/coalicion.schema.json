@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "type": "array",
-  "minItems": 4,
+  "minItems": 15,
   "items": {
     "type": "object",
     "required": [
@@ -13,7 +13,11 @@
       "escanos_camara",
       "peticion",
       "fuente",
-      "cifras_ilustrativas"
+      "cifras_ilustrativas",
+      "categorias_pedidas",
+      "categorias_rechazadas",
+      "ministerios_pedidos",
+      "nota_escanos"
     ],
     "properties": {
       "id": {
@@ -24,7 +28,7 @@
       },
       "sigla": {
         "type": "string",
-        "maxLength": 4
+        "maxLength": 5
       },
       "ideologia": {
         "type": "object",
@@ -69,6 +73,33 @@
       },
       "cifras_ilustrativas": {
         "const": true
+      },
+      "categorias_pedidas": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "categorias_rechazadas": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "ministerios_pedidos": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "nota_escanos": {
+        "type": "string"
+      },
+      "real_ref": {
+        "type": "string"
+      },
+      "alias_bloque": {
+        "type": "string"
       }
     }
   }

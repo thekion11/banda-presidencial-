@@ -218,8 +218,19 @@ def validar_coalicion(partidos: list, cartas: list, leyes: dict, ids_fuentes: se
             raise ValueError(f"{ctx}: categoria_carta sin cartas")
         if p["peticion"]["ministerios"] < 0 or p["peticion"]["asesores"] < 0:
             raise ValueError(f"{ctx}: petición negativa")
-    if sum(p["escanos_senado"] for p in partidos) > leyes["hemiciclo"]["total_senadores"] // 2:
-        raise ValueError("coalicion: los aliados suman demasiados senadores")
+    ministros = {m["id"] for m in cargar_json("ministros.json")}
+    for p in partidos:
+        ctx = f"partido aliado {p['id']}"
+        if p["escanos_senado"] > leyes["hemiciclo"]["total_senadores"] or p["escanos_camara"] > leyes["hemiciclo"]["total_diputados"]:
+            raise ValueError(f"{ctx}: más escaños que la cámara")
+        for c in p["categorias_pedidas"] + p["categorias_rechazadas"]:
+            if c not in cats:
+                raise ValueError(f"{ctx}: categoría sin cartas '{c}'")
+        for mid in p["ministerios_pedidos"]:
+            if mid not in ministros:
+                raise ValueError(f"{ctx}: ministerio inexistente '{mid}'")
+        if not p.get("cifras_ilustrativas") or not p.get("nota_escanos"):
+            raise ValueError(f"{ctx}: escaños deben rotularse como ilustrativos")
 
 
 def validar_eventos(eventos: list, ids_fuentes: set, tipos: set, dias_mandato: int) -> None:
