@@ -30,7 +30,7 @@ func descartar_mano() -> void:
 
 
 func es_real(carta: Dictionary) -> bool:
-	return carta.get("meta", {}).get("tipo", "") == "proyecto_publico"
+	return carta.get("meta", {}).get("tipo", "") in ["proyecto_publico", "proyecto_de_ley", "reforma_constitucional", "propuesta_constitucional"]
 
 
 func reales_para_mazo() -> Array[String]:

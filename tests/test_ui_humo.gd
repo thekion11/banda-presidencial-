@@ -26,7 +26,7 @@ func _correr() -> void:
 	await process_frame
 	pp._fundar()
 	await process_frame
-	main.motor = Partida.crear(main.datos, 20260415, main.motor.estado.partido)  # semilla fija: la prueba no depende del reloj
+	main.motor = Partida.crear(main.datos, 7, main.motor.estado.partido)  # semilla fija: la prueba no depende del reloj
 	main.mostrar_gabinete()
 	await process_frame
 	_check(main._pantalla is PantallaGabinete, "tras fundar el partido debe venir la elección de gabinete")
