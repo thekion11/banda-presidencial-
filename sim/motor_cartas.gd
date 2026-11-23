@@ -21,6 +21,13 @@ func costo_carta(carta: Dictionary, ministro_id: String = "") -> int:
 	return maxi(1, costo)
 
 
+func descartar_mano() -> void:
+	## Cierre de turno: las cartas más antiguas sin jugar van al descarte para que la mano no se atasque con cartas imposibles de jugar.
+	var n := mini(int(m.catalogo_leyes["mano"].get("descartes_por_turno", 0)), m.estado.mano.size())
+	for _i in range(n):
+		m.estado.descarte.append(String(m.estado.mano.pop_front()["id"]))
+
+
 func es_unica(carta: Dictionary) -> bool:
 	return carta["requisitos"]["ley"] != null or carta.has("obra") or carta.get("abre_propuesta_comite", null) != null
 

@@ -15,7 +15,7 @@ func _init() -> void:
 	var h := Datos.huella(datos)
 	_check(h.length() == 64 and h == Datos.huella(Datos.cargar_todo()), "huella estable entre cargas")
 	var otro := Datos.cargar_todo()
-	otro["leyes"]["hemiciclo"]["umbral_victoria_presidencial"] = 51.0
+	otro["leyes"]["hemiciclo"]["umbral_victoria_presidencial"] = 77.0
 	_check(Datos.huella(otro) != h, "la huella cambia al cambiar un número de balance")
 	var resp: Array[Dictionary] = []
 	for p in datos["ideologia"]["preguntas"]:

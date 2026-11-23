@@ -17,6 +17,8 @@ static func _valor(carta: Dictionary, estado: EstadoSimulacion) -> float:
 	v /= float(carta["costo_pa"])
 	if carta["requisitos"]["ley"] != null:
 		v *= 0.8
+	if carta.has("obra"):
+		v *= 0.5  # la aprobación de una obra llega tarde (a su inauguración)
 	return v
 
 
@@ -33,6 +35,8 @@ static func jugar_turno(motor: MotorTurno, politica: String, rng: RandomNumberGe
 			var c: Dictionary = est.mano[i]
 			if est.etapa == "gobierno" and motor.es_unica(c) and est.cartas_ejecutadas.has(String(c["id"])):
 				continue
+			if c.has("obra") and est.etapa == "gobierno" and politica != "azar" and est.obras_en_curso.size() >= int(motor.catalogo_leyes["dinamica"]["max_obras_concurrentes"]):
+				continue  # el jugador competente no satura la capacidad de ejecución con obras simultáneas
 			var v := rng.randf() if politica == "azar" else _valor(c, est)
 			if v > mejor_v:
 				mejor_v = v
@@ -44,6 +48,8 @@ static func jugar_turno(motor: MotorTurno, politica: String, rng: RandomNumberGe
 			region = String(motor.regiones.catalogo[rng.randi_range(0, motor.regiones.catalogo.size() - 1)]["id"]) if politica == "azar" else _region_objetivo(motor)
 		motor.jugar_carta(mejor, "", region)
 	for pid in est.propuestas_abiertas.duplicate():
+		if est.etapa == "gobierno" and politica != "azar" and est.obras_en_curso.size() >= int(motor.catalogo_leyes["dinamica"]["max_obras_concurrentes"]):
+			break
 		var vs := ["A", "B", "C"]
 		motor.aprobar_propuesta(pid, vs[rng.randi_range(0, 2)] if politica == "azar" else "C")
 

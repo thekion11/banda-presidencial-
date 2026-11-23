@@ -31,3 +31,10 @@ Las comparaciones fotograma a fotograma contra el PDF están en `docs/comparacio
 ### C3 resuelto (calendario real y segunda vuelta)
 - Campaña desde el 21-sep-2025 (8 semanas) hasta la 1ª vuelta del 16-nov-2025; si no se supera el umbral pero sí `umbral_pasa_balotaje`, 4 semanas más hasta la 2ª vuelta del 14-dic-2025; el mandato arranca el 11-mar-2026 (la transición no se juega por turnos). Parámetros en `data/leyes.json` (`calendario`, `hemiciclo.semanas_balotaje`, `umbral_pasa_balotaje` — este último ilustrativo).
 - `sim/motor_mandato.gd#resolver_eleccion`; `estado.ronda_electoral`; replay y pruebas actualizados (`Bots.elegir`). Mecánica nueva: segunda vuelta. Fuente: Servel (`fuentes.json#servel_calendario_2025`).
+
+### Cartas reales (fase de ampliación)
+- `tools/generar_cartas.py` genera `data/cartas_reales.json` (53 cartas) desde las bases reales: 25 obras (proyectos públicos en idea/perfil/diseño/licitación + 5 en ejecución, por inversión), 20 proyectos de ley en tramitación (Senado) y 8 reformas constitucionales (4/7, CPR art. 127: quórum verificado). Se cargan junto a `cartas.json` (`Datos.cargar_todo`).
+- Los hechos (nombre, región, estado, inversión, boletín) son reales y citan fuente; las magnitudes de efectos son ilustrativas (`meta.cifras_ilustrativas`). Quórum de leyes ordinarias: ilustrativo (mayoría simple) con `nota_quorum`; no se verificó el quórum real de cada boletín.
+- Pendiente: las 177 obras restantes y ~1.250 boletines quedan en la base de datos, no como cartas (con >110 cartas el balance se rompía: ver `test_balance`). Opción: desbloquearlas por fecha/temporada.
+- Balance: umbral de victoria 51 y `umbral_pasa_balotaje` 38; descarte de 2 cartas por turno (`mano.descartes_por_turno`) para que la mano no se atasque; bots no saturan la capacidad de ejecución.
+- Revisado el merge de `fuentes.json` y `validate_data.py`: unión por id (24 fuentes), todas las validaciones de ambas ramas activas.

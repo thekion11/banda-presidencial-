@@ -17,6 +17,9 @@ static func cargar_todo(base: String = "res://data/") -> Dictionary:
 	var d := {}
 	for n in ARCHIVOS:
 		d[n] = leer_json("%s%s.json" % [base, n])
+	var reales: Variant = leer_json(base + "cartas_reales.json")  # generado por tools/generar_cartas.py desde datos públicos
+	if reales is Array:
+		d["cartas"] = Array(d["cartas"]) + Array(reales)
 	d["grafo"] = leer_json(base + "geo/grafo_urbano.json")
 	d["sectra"] = leer_json(base + "sectra_planes.json")
 	return d

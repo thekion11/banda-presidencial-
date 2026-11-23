@@ -5,10 +5,10 @@
     "dias_por_turno": 7,
     "duracion_mandato_dias": 1460,
     "semanas_campana": 8,
-    "umbral_victoria_presidencial": 50.0,
+    "umbral_victoria_presidencial": 51.0,
     "bono_aprobacion_promesa": 1.5,
     "semanas_balotaje": 4,
-    "umbral_pasa_balotaje": 28.0
+    "umbral_pasa_balotaje": 38.0
   },
   "campana": {
     "aprobacion_base_por_carta": 0.2,
@@ -33,7 +33,8 @@
   },
   "mano": {
     "tamano": 5,
-    "pa_por_turno": 8
+    "pa_por_turno": 8,
+    "descartes_por_turno": 2
   },
   "dinamica": {
     "riesgo_umbral": 60.0,

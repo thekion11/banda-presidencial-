@@ -160,6 +160,7 @@ func cerrar_turno() -> void:
 		mandato.evaluar_crisis()
 	estado.registrar_accion("cierre_turno", {"aprobacion": snappedf(estado.ind("aprobacion"), 0.01), "resumen": resumen.size()})
 	estado.registrar_entrada("cerrar", {})
+	cartas.descartar_mano()
 	if estado.etapa != "gobierno" and estado.etapa != "campana":
 		return
 	estado.turno_actual += 1

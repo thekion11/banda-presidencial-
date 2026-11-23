@@ -284,6 +284,13 @@ def main() -> int:
     ids_fuentes = validar_fuentes(datos["fuentes"])
     tipos = validar_leyes(datos["leyes"], ids_fuentes)
     props = unicos(datos["propuestas"], "propuestas")
+    reales = json.loads((DATA_DIR / "cartas_reales.json").read_text(encoding="utf-8"))
+    for c in reales:
+        if "meta" not in c or not c["meta"].get("cifras_ilustrativas"):
+            raise ValueError(f"carta real {c['id']}: debe rotular cifras_ilustrativas")
+        if c["requisitos"]["ley"] and not c["meta"].get("quorum_verificado") and not c["meta"].get("nota_quorum"):
+            raise ValueError(f"carta real {c['id']}: quórum sin verificar debe llevar nota_quorum")
+    datos["cartas"] = datos["cartas"] + reales
     validar_cartas(datos["cartas"], ids_fuentes, tipos, props)
     validar_eventos(datos["eventos"], ids_fuentes, tipos, datos["leyes"]["hemiciclo"]["duracion_mandato_dias"])
     validar_ideologia(datos["ideologia"])

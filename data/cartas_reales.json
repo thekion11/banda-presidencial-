@@ -1,0 +1,2070 @@
+[
+ {
+  "id": "real_obra_metro_linea_9",
+  "categoria": "transportes",
+  "costo_pa": 3,
+  "titulo": "Nueva Línea 9 Metro de Santiago (Recoleta-La Pintana/Bajos…",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 4
+   },
+   {
+    "ind": "fiscal",
+    "delta": -2.0
+   },
+   {
+    "ind": "riesgo_ejecucion",
+    "delta": 1
+   }
+  ],
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "obra": {
+   "nombre": "Nueva Línea 9 Metro de Santiago (Recoleta-La Pintana/Bajos de Mena)",
+   "dias_totales": 240
+  },
+  "fuente": "fuentes.json#metro_santiago",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "metro-linea-9",
+   "region_id": "metropolitana",
+   "estado_real": "diseno",
+   "inversion_musd": 2733.0,
+   "mandante": "Metro S.A.",
+   "verificado": false,
+   "fuente_url": "https://www.metro.cl/nuevos-proyectos/linea-9",
+   "cifras_ilustrativas": true
+  }
+ },
+ {
+  "id": "real_obra_conc_orbital_norponiente_de_santiago",
+  "categoria": "obras",
+  "costo_pa": 3,
+  "titulo": "Orbital Norponiente de Santiago",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 4
+   },
+   {
+    "ind": "fiscal",
+    "delta": -2.0
+   },
+   {
+    "ind": "riesgo_ejecucion",
+    "delta": 1
+   }
+  ],
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "obra": {
+   "nombre": "Orbital Norponiente de Santiago",
+   "dias_totales": 240
+  },
+  "fuente": "fuentes.json#mop_concesiones",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "conc-orbital-norponiente-de-santiago",
+   "region_id": "metropolitana",
+   "estado_real": "perfil",
+   "inversion_musd": 1747.0,
+   "mandante": "MOP - Dirección General de Concesiones",
+   "verificado": true,
+   "fuente_url": "https://concesiones.mop.gob.cl/project/orbital-norponiente-de-santiago/",
+   "cifras_ilustrativas": true
+  }
+ },
+ {
+  "id": "real_obra_conc_tren_valparaiso_santiago",
+  "categoria": "obras",
+  "costo_pa": 3,
+  "titulo": "Tren Valparaíso – Santiago",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 4
+   },
+   {
+    "ind": "fiscal",
+    "delta": -2.0
+   },
+   {
+    "ind": "riesgo_ejecucion",
+    "delta": 1
+   }
+  ],
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "obra": {
+   "nombre": "Tren Valparaíso – Santiago",
+   "dias_totales": 240
+  },
+  "fuente": "fuentes.json#mop_concesiones",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "conc-tren-valparaiso-santiago",
+   "region_id": "valparaiso",
+   "estado_real": "perfil",
+   "inversion_musd": 1320.0,
+   "mandante": "MOP - Dirección General de Concesiones",
+   "verificado": true,
+   "fuente_url": "https://concesiones.mop.gob.cl/project/tren-valparaiso-santiago/",
+   "cifras_ilustrativas": true
+  }
+ },
+ {
+  "id": "real_obra_conc_segunda_concesion_ruta_5_tramo_collipulli_temuco",
+  "categoria": "obras",
+  "costo_pa": 3,
+  "titulo": "Segunda Concesión Ruta 5 Tramo Collipulli – Temuco",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 4
+   },
+   {
+    "ind": "fiscal",
+    "delta": -1.8
+   },
+   {
+    "ind": "riesgo_ejecucion",
+    "delta": 1
+   }
+  ],
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "obra": {
+   "nombre": "Segunda Concesión Ruta 5 Tramo Collipulli – Temuco",
+   "dias_totales": 240
+  },
+  "fuente": "fuentes.json#mop_concesiones",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "conc-segunda-concesion-ruta-5-tramo-collipulli-temuco",
+   "region_id": "araucania",
+   "estado_real": "perfil",
+   "inversion_musd": 1051.0,
+   "mandante": "MOP - Dirección General de Concesiones",
+   "verificado": true,
+   "fuente_url": "https://concesiones.mop.gob.cl/project/segunda-concesion-ruta-5-tramo-collipulli-temuco/",
+   "cifras_ilustrativas": true
+  }
+ },
+ {
+  "id": "real_obra_conc_segunda_concesion_ruta_57_santiago_colina_los_andes",
+  "categoria": "obras",
+  "costo_pa": 3,
+  "titulo": "Segunda Concesión Ruta 57 Santiago – Colina – Los Andes",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 4
+   },
+   {
+    "ind": "fiscal",
+    "delta": -1.6
+   },
+   {
+    "ind": "riesgo_ejecucion",
+    "delta": 1
+   }
+  ],
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "obra": {
+   "nombre": "Segunda Concesión Ruta 57 Santiago – Colina – Los Andes",
+   "dias_totales": 240
+  },
+  "fuente": "fuentes.json#mop_concesiones",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "conc-segunda-concesion-ruta-57-santiago-colina-los-andes",
+   "region_id": "valparaiso",
+   "estado_real": "licitacion",
+   "inversion_musd": 946.0,
+   "mandante": "MOP - Dirección General de Concesiones",
+   "verificado": true,
+   "fuente_url": "https://concesiones.mop.gob.cl/project/segunda-concesion-ruta-57-santiago-colina-los-andes/",
+   "cifras_ilustrativas": true
+  }
+ },
+ {
+  "id": "real_obra_efe_limache_la_calera",
+  "categoria": "transportes",
+  "costo_pa": 3,
+  "titulo": "Extensión Tren Limache-Puerto a Quillota y La Calera",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 4
+   },
+   {
+    "ind": "fiscal",
+    "delta": -1.4
+   },
+   {
+    "ind": "riesgo_ejecucion",
+    "delta": 1
+   }
+  ],
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "obra": {
+   "nombre": "Extensión Tren Limache-Puerto a Quillota y La Calera",
+   "dias_totales": 240
+  },
+  "fuente": "fuentes.json#efe_proyectos",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "efe-limache-la-calera",
+   "region_id": "valparaiso",
+   "estado_real": "diseno",
+   "inversion_musd": 811.0,
+   "mandante": "EFE Trenes de Chile",
+   "verificado": true,
+   "fuente_url": "https://www.efe.cl/?page_id=5616",
+   "cifras_ilustrativas": true
+  }
+ },
+ {
+  "id": "real_obra_conc_accesos_a_valdivia",
+  "categoria": "obras",
+  "costo_pa": 3,
+  "titulo": "Accesos a Valdivia",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 4
+   },
+   {
+    "ind": "fiscal",
+    "delta": -1.0
+   },
+   {
+    "ind": "riesgo_ejecucion",
+    "delta": 1
+   }
+  ],
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "obra": {
+   "nombre": "Accesos a Valdivia",
+   "dias_totales": 207
+  },
+  "fuente": "fuentes.json#mop_concesiones",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "conc-accesos-a-valdivia",
+   "region_id": "losrios",
+   "estado_real": "licitacion",
+   "inversion_musd": 587.0,
+   "mandante": "MOP - Dirección General de Concesiones",
+   "verificado": true,
+   "fuente_url": "https://concesiones.mop.gob.cl/project/accesos-a-valdivia/",
+   "cifras_ilustrativas": true
+  }
+ },
+ {
+  "id": "real_obra_conc_ruta_5_tramo_antofagasta_iquique",
+  "categoria": "obras",
+  "costo_pa": 3,
+  "titulo": "Ruta 5 Tramo Antofagasta – Iquique",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 4
+   },
+   {
+    "ind": "fiscal",
+    "delta": -1.0
+   },
+   {
+    "ind": "riesgo_ejecucion",
+    "delta": 1
+   }
+  ],
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "obra": {
+   "nombre": "Ruta 5 Tramo Antofagasta – Iquique",
+   "dias_totales": 207
+  },
+  "fuente": "fuentes.json#mop_concesiones",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "conc-ruta-5-tramo-antofagasta-iquique",
+   "region_id": "tarapaca",
+   "estado_real": "perfil",
+   "inversion_musd": 587.0,
+   "mandante": "MOP - Dirección General de Concesiones",
+   "verificado": true,
+   "fuente_url": "https://concesiones.mop.gob.cl/project/ruta-5-tramo-antofagasta-iquique/",
+   "cifras_ilustrativas": true
+  }
+ },
+ {
+  "id": "real_obra_conc_concesion_ruta_5_tramo_caldera_taltal",
+  "categoria": "obras",
+  "costo_pa": 3,
+  "titulo": "Concesión Ruta 5 Tramo Caldera – Taltal",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 4
+   },
+   {
+    "ind": "fiscal",
+    "delta": -0.8
+   },
+   {
+    "ind": "riesgo_ejecucion",
+    "delta": 1
+   }
+  ],
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "obra": {
+   "nombre": "Concesión Ruta 5 Tramo Caldera – Taltal",
+   "dias_totales": 190
+  },
+  "fuente": "fuentes.json#mop_concesiones",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "conc-concesion-ruta-5-tramo-caldera-taltal",
+   "region_id": "atacama",
+   "estado_real": "perfil",
+   "inversion_musd": 500.0,
+   "mandante": "MOP - Dirección General de Concesiones",
+   "verificado": true,
+   "fuente_url": "https://concesiones.mop.gob.cl/project/concesion-ruta-5-tramo-caldera-taltal/",
+   "cifras_ilustrativas": true
+  }
+ },
+ {
+  "id": "real_obra_metro_linea_a_aeropuerto",
+  "categoria": "transportes",
+  "costo_pa": 2,
+  "titulo": "Línea A Metro de Santiago al Aeropuerto AMB",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 3
+   },
+   {
+    "ind": "fiscal",
+    "delta": -0.6
+   }
+  ],
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "obra": {
+   "nombre": "Línea A Metro de Santiago al Aeropuerto AMB",
+   "dias_totales": 163
+  },
+  "fuente": "fuentes.json#metro_santiago",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "metro-linea-a-aeropuerto",
+   "region_id": "metropolitana",
+   "estado_real": "diseno",
+   "inversion_musd": 365.0,
+   "mandante": "Metro S.A.",
+   "verificado": false,
+   "fuente_url": "https://www.metro.cl/nuevos-proyectos/linea-a",
+   "cifras_ilustrativas": true
+  }
+ },
+ {
+  "id": "real_obra_conc_concesion_centro_penitenciario_de_calama",
+  "categoria": "seguridad",
+  "costo_pa": 2,
+  "titulo": "Concesión Centro Penitenciario de Calama",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 3
+   },
+   {
+    "ind": "fiscal",
+    "delta": -0.6
+   }
+  ],
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "obra": {
+   "nombre": "Concesión Centro Penitenciario de Calama",
+   "dias_totales": 158
+  },
+  "fuente": "fuentes.json#mop_concesiones",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "conc-concesion-centro-penitenciario-de-calama",
+   "region_id": "antofagasta",
+   "estado_real": "perfil",
+   "inversion_musd": 344.0,
+   "mandante": "MOP - Dirección General de Concesiones",
+   "verificado": true,
+   "fuente_url": "https://concesiones.mop.gob.cl/project/centro-penitenciario-de-calama/",
+   "cifras_ilustrativas": true
+  }
+ },
+ {
+  "id": "real_obra_conc_segunda_concesion_infraestructura_penitenciaria_grupo_3_valdivia_y_pue",
+  "categoria": "seguridad",
+  "costo_pa": 2,
+  "titulo": "Segunda Concesión Infraestructura Penitenciaria Grupo 3 (Va…",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 3
+   },
+   {
+    "ind": "fiscal",
+    "delta": -0.5
+   }
+  ],
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "obra": {
+   "nombre": "Segunda Concesión Infraestructura Penitenciaria Grupo 3 (Valdivia y Puerto Mont…",
+   "dias_totales": 154
+  },
+  "fuente": "fuentes.json#mop_concesiones",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "conc-segunda-concesion-infraestructura-penitenciaria-grupo-3-valdivia-y-pue",
+   "region_id": "losrios",
+   "estado_real": "perfil",
+   "inversion_musd": 321.0,
+   "mandante": "MOP - Dirección General de Concesiones",
+   "verificado": true,
+   "fuente_url": "https://concesiones.mop.gob.cl/project/segunda-concesion-carcelesg3/",
+   "cifras_ilustrativas": true
+  }
+ },
+ {
+  "id": "real_obra_conc_red_aeroportuaria_sur_tepual_5a_canal_bajo_mocopulli_y_pichoy",
+  "categoria": "transportes",
+  "costo_pa": 2,
+  "titulo": "Red Aeroportuaria Sur: Tepual (5a), Cañal Bajo, Mocopulli y…",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 3
+   },
+   {
+    "ind": "fiscal",
+    "delta": -0.5
+   }
+  ],
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "obra": {
+   "nombre": "Red Aeroportuaria Sur: Tepual (5a), Cañal Bajo, Mocopulli y Pichoy",
+   "dias_totales": 137
+  },
+  "fuente": "fuentes.json#mop_concesiones",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "conc-red-aeroportuaria-sur-tepual-5a-canal-bajo-mocopulli-y-pichoy",
+   "region_id": "loslagos",
+   "estado_real": "perfil",
+   "inversion_musd": 236.0,
+   "mandante": "MOP - Dirección General de Concesiones",
+   "verificado": true,
+   "fuente_url": "https://concesiones.mop.gob.cl/project/red-aeroportuaria-sur-tepual-5a-canal-bajo-mocopulli-y-pichoy/",
+   "cifras_ilustrativas": true
+  }
+ },
+ {
+  "id": "real_obra_conc_segunda_concesion_centro_de_justicia_de_santiago",
+  "categoria": "obras",
+  "costo_pa": 2,
+  "titulo": "Segunda Concesión Centro de Justicia de Santiago",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 3
+   },
+   {
+    "ind": "fiscal",
+    "delta": -0.5
+   }
+  ],
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "obra": {
+   "nombre": "Segunda Concesión Centro de Justicia de Santiago",
+   "dias_totales": 135
+  },
+  "fuente": "fuentes.json#mop_concesiones",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "conc-segunda-concesion-centro-de-justicia-de-santiago",
+   "region_id": "metropolitana",
+   "estado_real": "perfil",
+   "inversion_musd": 225.5,
+   "mandante": "MOP - Dirección General de Concesiones",
+   "verificado": true,
+   "fuente_url": "https://concesiones.mop.gob.cl/project/segunda-concesion-centro-de-justicia-de-santiago/",
+   "cifras_ilustrativas": true
+  }
+ },
+ {
+  "id": "real_obra_conc_segunda_concesion_infraestructura_penitenciaria_grupo_1_alto_hospicio",
+  "categoria": "seguridad",
+  "costo_pa": 2,
+  "titulo": "Segunda Concesión Infraestructura Penitenciaria Grupo 1 (Al…",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 3
+   },
+   {
+    "ind": "fiscal",
+    "delta": -0.5
+   }
+  ],
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "obra": {
+   "nombre": "Segunda Concesión Infraestructura Penitenciaria Grupo 1 (Alto Hospicio – La Ser…",
+   "dias_totales": 128
+  },
+  "fuente": "fuentes.json#mop_concesiones",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "conc-segunda-concesion-infraestructura-penitenciaria-grupo-1-alto-hospicio",
+   "region_id": "tarapaca",
+   "estado_real": "perfil",
+   "inversion_musd": 190.0,
+   "mandante": "MOP - Dirección General de Concesiones",
+   "verificado": true,
+   "fuente_url": "https://concesiones.mop.gob.cl/project/segunda-concesion-carcelesg1/",
+   "cifras_ilustrativas": true
+  }
+ },
+ {
+  "id": "real_obra_efe_biotren_lota",
+  "categoria": "transportes",
+  "costo_pa": 2,
+  "titulo": "Extensión Biotren Coronel-Lota",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 3
+   },
+   {
+    "ind": "fiscal",
+    "delta": -0.5
+   }
+  ],
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "obra": {
+   "nombre": "Extensión Biotren Coronel-Lota",
+   "dias_totales": 121
+  },
+  "fuente": "fuentes.json#efe_proyectos",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "efe-biotren-lota",
+   "region_id": "biobio",
+   "estado_real": "diseno",
+   "inversion_musd": 155.0,
+   "mandante": "EFE Trenes de Chile",
+   "verificado": true,
+   "fuente_url": "https://www.efe.cl/proyectos/otros-desarrollos/",
+   "cifras_ilustrativas": true
+  }
+ },
+ {
+  "id": "real_obra_conc_segunda_concesion_ruta_g21",
+  "categoria": "obras",
+  "costo_pa": 2,
+  "titulo": "Segunda Concesión Ruta G21",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 3
+   },
+   {
+    "ind": "fiscal",
+    "delta": -0.5
+   }
+  ],
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "obra": {
+   "nombre": "Segunda Concesión Ruta G21",
+   "dias_totales": 120
+  },
+  "fuente": "fuentes.json#mop_concesiones",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "conc-segunda-concesion-ruta-g21",
+   "region_id": "metropolitana",
+   "estado_real": "perfil",
+   "inversion_musd": 150.0,
+   "mandante": "MOP - Dirección General de Concesiones",
+   "verificado": true,
+   "fuente_url": "https://concesiones.mop.gob.cl/project/segunda-concesion-ruta-g21/",
+   "cifras_ilustrativas": true
+  }
+ },
+ {
+  "id": "real_obra_conc_teleferico_de_talcahuano",
+  "categoria": "obras",
+  "costo_pa": 2,
+  "titulo": "Teleférico de Talcahuano",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 3
+   },
+   {
+    "ind": "fiscal",
+    "delta": -0.5
+   }
+  ],
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "obra": {
+   "nombre": "Teleférico de Talcahuano",
+   "dias_totales": 116
+  },
+  "fuente": "fuentes.json#mop_concesiones",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "conc-teleferico-de-talcahuano",
+   "region_id": "biobio",
+   "estado_real": "perfil",
+   "inversion_musd": 133.0,
+   "mandante": "MOP - Dirección General de Concesiones",
+   "verificado": true,
+   "fuente_url": "https://concesiones.mop.gob.cl/project/teleferico-de-talcahuano/",
+   "cifras_ilustrativas": true
+  }
+ },
+ {
+  "id": "real_obra_conc_teleferico_alto_hospicio_iquique",
+  "categoria": "obras",
+  "costo_pa": 2,
+  "titulo": "Teleférico Alto Hospicio – Iquique",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 3
+   },
+   {
+    "ind": "fiscal",
+    "delta": -0.5
+   }
+  ],
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "obra": {
+   "nombre": "Teleférico Alto Hospicio – Iquique",
+   "dias_totales": 115
+  },
+  "fuente": "fuentes.json#mop_concesiones",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "conc-teleferico-alto-hospicio-iquique",
+   "region_id": "tarapaca",
+   "estado_real": "licitacion",
+   "inversion_musd": 129.0,
+   "mandante": "MOP - Dirección General de Concesiones",
+   "verificado": true,
+   "fuente_url": "https://concesiones.mop.gob.cl/project/teleferico-alto-hospicio-iquique/",
+   "cifras_ilustrativas": true
+  }
+ },
+ {
+  "id": "real_obra_conc_concesion_sistema_nacional_de_alerta_temprana_de_tsunami",
+  "categoria": "medioambiente",
+  "costo_pa": 2,
+  "titulo": "Concesión Sistema Nacional de Alerta Temprana de Tsunami",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 3
+   },
+   {
+    "ind": "fiscal",
+    "delta": -0.5
+   }
+  ],
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "obra": {
+   "nombre": "Concesión Sistema Nacional de Alerta Temprana de Tsunami",
+   "dias_totales": 113
+  },
+  "fuente": "fuentes.json#mop_concesiones",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "conc-concesion-sistema-nacional-de-alerta-temprana-de-tsunami",
+   "region_id": null,
+   "estado_real": "licitacion",
+   "inversion_musd": 115.0,
+   "mandante": "MOP - Dirección General de Concesiones",
+   "verificado": false,
+   "fuente_url": "https://concesiones.mop.gob.cl/project/sistema-alerta-de-tsunami/",
+   "cifras_ilustrativas": true
+  }
+ },
+ {
+  "id": "real_obra_metro_linea_7",
+  "categoria": "transportes",
+  "costo_pa": 3,
+  "titulo": "Nueva Línea 7 Metro de Santiago (Renca-Vitacura)",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 4
+   },
+   {
+    "ind": "fiscal",
+    "delta": -2.0
+   },
+   {
+    "ind": "riesgo_ejecucion",
+    "delta": 1
+   }
+  ],
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "obra": {
+   "nombre": "Nueva Línea 7 Metro de Santiago (Renca-Vitacura)",
+   "dias_totales": 240
+  },
+  "fuente": "fuentes.json#metro_santiago",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "metro-linea-7",
+   "region_id": "metropolitana",
+   "estado_real": "ejecucion",
+   "inversion_musd": 2700.0,
+   "mandante": "Metro S.A.",
+   "verificado": false,
+   "fuente_url": "https://www.metro.cl/nuevos-proyectos/linea-7",
+   "cifras_ilustrativas": true
+  }
+ },
+ {
+  "id": "real_obra_metro_linea_8",
+  "categoria": "transportes",
+  "costo_pa": 3,
+  "titulo": "Nueva Línea 8 Metro de Santiago (Providencia-Puente Alto)",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 4
+   },
+   {
+    "ind": "fiscal",
+    "delta": -2.0
+   },
+   {
+    "ind": "riesgo_ejecucion",
+    "delta": 1
+   }
+  ],
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "obra": {
+   "nombre": "Nueva Línea 8 Metro de Santiago (Providencia-Puente Alto)",
+   "dias_totales": 240
+  },
+  "fuente": "fuentes.json#metro_santiago",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "metro-linea-8",
+   "region_id": "metropolitana",
+   "estado_real": "ejecucion",
+   "inversion_musd": 2000.0,
+   "mandante": "Metro S.A.",
+   "verificado": false,
+   "fuente_url": "https://www.metro.cl/nuevos-proyectos/linea-8",
+   "cifras_ilustrativas": true
+  }
+ },
+ {
+  "id": "real_obra_efe_alameda_melipilla",
+  "categoria": "transportes",
+  "costo_pa": 3,
+  "titulo": "Tren Alameda-Melipilla",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 4
+   },
+   {
+    "ind": "fiscal",
+    "delta": -2.0
+   },
+   {
+    "ind": "riesgo_ejecucion",
+    "delta": 1
+   }
+  ],
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "obra": {
+   "nombre": "Tren Alameda-Melipilla",
+   "dias_totales": 240
+  },
+  "fuente": "fuentes.json#efe_proyectos",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "efe-alameda-melipilla",
+   "region_id": "metropolitana",
+   "estado_real": "ejecucion",
+   "inversion_musd": 1877.0,
+   "mandante": "EFE Trenes de Chile",
+   "verificado": true,
+   "fuente_url": "https://www.efe.cl/?page_id=8297",
+   "cifras_ilustrativas": true
+  }
+ },
+ {
+  "id": "real_obra_conc_segunda_concesion_interconexion_vial_santiago_valparaiso_vina_del_mar",
+  "categoria": "obras",
+  "costo_pa": 3,
+  "titulo": "Segunda Concesión Interconexión Vial Santiago-Valparaíso-Vi…",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 4
+   },
+   {
+    "ind": "fiscal",
+    "delta": -2.0
+   },
+   {
+    "ind": "riesgo_ejecucion",
+    "delta": 1
+   }
+  ],
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "obra": {
+   "nombre": "Segunda Concesión Interconexión Vial Santiago-Valparaíso-Viña del Mar, Ruta 68",
+   "dias_totales": 240
+  },
+  "fuente": "fuentes.json#mop_concesiones",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "conc-segunda-concesion-interconexion-vial-santiago-valparaiso-vina-del-mar",
+   "region_id": "metropolitana",
+   "estado_real": "ejecucion",
+   "inversion_musd": 1474.8,
+   "mandante": "MOP - Dirección General de Concesiones",
+   "verificado": true,
+   "fuente_url": "https://concesiones.mop.gob.cl/project/segunda-concesion-interconexion-vial-santiago-valparaiso-vina-del-mar-ruta-68/",
+   "cifras_ilustrativas": true
+  }
+ },
+ {
+  "id": "real_obra_conc_segunda_concesion_ruta_5_tramo_santiago_los_vilos",
+  "categoria": "obras",
+  "costo_pa": 3,
+  "titulo": "Segunda Concesión Ruta 5 Tramo Santiago – Los Vilos",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 4
+   },
+   {
+    "ind": "fiscal",
+    "delta": -1.9
+   },
+   {
+    "ind": "riesgo_ejecucion",
+    "delta": 1
+   }
+  ],
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "obra": {
+   "nombre": "Segunda Concesión Ruta 5 Tramo Santiago – Los Vilos",
+   "dias_totales": 240
+  },
+  "fuente": "fuentes.json#mop_concesiones",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "conc-segunda-concesion-ruta-5-tramo-santiago-los-vilos",
+   "region_id": "metropolitana",
+   "estado_real": "ejecucion",
+   "inversion_musd": 1159.8,
+   "mandante": "MOP - Dirección General de Concesiones",
+   "verificado": true,
+   "fuente_url": "https://concesiones.mop.gob.cl/project/segunda-concesion-ruta-5-santiago-los-vilos/",
+   "cifras_ilustrativas": true
+  }
+ },
+ {
+  "id": "real_ley_14839_06",
+  "categoria": "descentralizacion",
+  "costo_pa": 2,
+  "titulo": "Modifica diversos cuerpos legales con el objeto de fortalec…",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 2
+   },
+   {
+    "ind": "capital",
+    "delta": -1
+   }
+  ],
+  "requisitos": {
+   "ley": "ley_simple",
+   "quorum": "ley_simple"
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "camara_origen": "camara",
+  "fuente": "fuentes.json#senado_tramitacion",
+  "meta": {
+   "tipo": "proyecto_de_ley",
+   "boletin": "14839-06",
+   "titulo_completo": "Modifica diversos cuerpos legales con el objeto de fortalecer la integridad pública, probidad y transparencia en las municipalidades",
+   "iniciativa": "mensaje",
+   "fecha_ingreso": "2022-03-07",
+   "estado_real": "En tramitación",
+   "etapa": "Primer trámite constitucional (C.Diputados)",
+   "url": "https://tramitacion.senado.cl/appsenado/templates/tramitacion/index.php?boletin_ini=14839-06",
+   "quorum_verificado": false,
+   "nota_quorum": "Quórum ilustrativo (mayoría simple): el quórum real depende del contenido del proyecto y no se verificó contra el texto oficial.",
+   "cifras_ilustrativas": true
+  }
+ },
+ {
+  "id": "real_ley_17678_11",
+  "categoria": "economia",
+  "costo_pa": 2,
+  "titulo": "Modifica el periodo de carencia del subsidio de incapacidad…",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 3
+   },
+   {
+    "ind": "capital",
+    "delta": -1
+   }
+  ],
+  "requisitos": {
+   "ley": "ley_simple",
+   "quorum": "ley_simple"
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "camara_origen": "senado",
+  "fuente": "fuentes.json#senado_tramitacion",
+  "meta": {
+   "tipo": "proyecto_de_ley",
+   "boletin": "17678-11",
+   "titulo_completo": "Modifica el periodo de carencia del subsidio de incapacidad laboral por accidente o enfermedad común, introduce modificaciones en su aplicación al sector público, fortalece las facultades de las Comisiones de Medicina Preventiva e Invalidez, y modifica las normas que indica",
+   "iniciativa": "mensaje",
+   "fecha_ingreso": "2025-07-09",
+   "estado_real": "En tramitación",
+   "etapa": "Primer trámite constitucional (Senado)",
+   "url": "https://tramitacion.senado.cl/appsenado/templates/tramitacion/index.php?boletin_ini=17678-11",
+   "quorum_verificado": false,
+   "nota_quorum": "Quórum ilustrativo (mayoría simple): el quórum real depende del contenido del proyecto y no se verificó contra el texto oficial.",
+   "cifras_ilustrativas": true
+  }
+ },
+ {
+  "id": "real_ley_14782_13",
+  "categoria": "educacion",
+  "costo_pa": 2,
+  "titulo": "Equipara el derecho de sala cuna para las trabajadoras, los…",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 3
+   },
+   {
+    "ind": "capital",
+    "delta": -1
+   },
+   {
+    "ind": "fiscal",
+    "delta": -1.0
+   }
+  ],
+  "requisitos": {
+   "ley": "ley_simple",
+   "quorum": "ley_simple"
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "camara_origen": "senado",
+  "fuente": "fuentes.json#senado_tramitacion",
+  "meta": {
+   "tipo": "proyecto_de_ley",
+   "boletin": "14782-13",
+   "titulo_completo": "Equipara el derecho de sala cuna para las trabajadoras, los trabajadores y los independientes que indica, en las condiciones que establece, modifica el Código del Trabajo para tales efectos y crea un fondo solidario de sala cuna.",
+   "iniciativa": "mensaje",
+   "fecha_ingreso": "2022-01-04",
+   "estado_real": "En tramitación",
+   "etapa": "Tercer trámite constitucional (Senado)",
+   "url": "https://tramitacion.senado.cl/appsenado/templates/tramitacion/index.php?boletin_ini=14782-13",
+   "quorum_verificado": false,
+   "nota_quorum": "Quórum ilustrativo (mayoría simple): el quórum real depende del contenido del proyecto y no se verificó contra el texto oficial.",
+   "cifras_ilustrativas": true
+  }
+ },
+ {
+  "id": "real_ley_18011_15",
+  "categoria": "energia",
+  "costo_pa": 2,
+  "titulo": "Modifica la ley N° 18.168, Ley General de Telecomunicacione…",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 3
+   },
+   {
+    "ind": "capital",
+    "delta": -1
+   }
+  ],
+  "requisitos": {
+   "ley": "ley_simple",
+   "quorum": "ley_simple"
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "camara_origen": "camara",
+  "fuente": "fuentes.json#senado_tramitacion",
+  "meta": {
+   "tipo": "proyecto_de_ley",
+   "boletin": "18011-15",
+   "titulo_completo": "Modifica la ley N° 18.168, Ley General de Telecomunicaciones, para permitir la creación de radios públicas nacionales, y amplía el espectro radioeléctrico",
+   "iniciativa": "mensaje",
+   "fecha_ingreso": "2025-12-10",
+   "estado_real": "En tramitación",
+   "etapa": "Primer trámite constitucional (C.Diputados)",
+   "url": "https://tramitacion.senado.cl/appsenado/templates/tramitacion/index.php?boletin_ini=18011-15",
+   "quorum_verificado": false,
+   "nota_quorum": "Quórum ilustrativo (mayoría simple): el quórum real depende del contenido del proyecto y no se verificó contra el texto oficial.",
+   "cifras_ilustrativas": true
+  }
+ },
+ {
+  "id": "real_ley_15921_05",
+  "categoria": "hacienda",
+  "costo_pa": 2,
+  "titulo": "Dicta normas sobre financiamiento regional, descentralizaci…",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 3
+   },
+   {
+    "ind": "capital",
+    "delta": -1
+   },
+   {
+    "ind": "fiscal",
+    "delta": -1.0
+   }
+  ],
+  "requisitos": {
+   "ley": "ley_simple",
+   "quorum": "ley_simple"
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "camara_origen": "camara",
+  "fuente": "fuentes.json#senado_tramitacion",
+  "meta": {
+   "tipo": "proyecto_de_ley",
+   "boletin": "15921-05",
+   "titulo_completo": "Dicta normas sobre financiamiento regional, descentralización fiscal y responsabilidad fiscal regional",
+   "iniciativa": "mensaje",
+   "fecha_ingreso": "2023-05-16",
+   "estado_real": "En tramitación",
+   "etapa": "Primer trámite constitucional (C.Diputados)",
+   "url": "https://tramitacion.senado.cl/appsenado/templates/tramitacion/index.php?boletin_ini=15921-05",
+   "quorum_verificado": false,
+   "nota_quorum": "Quórum ilustrativo (mayoría simple): el quórum real depende del contenido del proyecto y no se verificó contra el texto oficial.",
+   "cifras_ilustrativas": true
+  }
+ },
+ {
+  "id": "real_ley_16552_12",
+  "categoria": "medioambiente",
+  "costo_pa": 2,
+  "titulo": "Modifica diversos cuerpos legales, con el objeto de fortale…",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 3
+   },
+   {
+    "ind": "capital",
+    "delta": -1
+   }
+  ],
+  "requisitos": {
+   "ley": "ley_simple",
+   "quorum": "ley_simple"
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "camara_origen": "senado",
+  "fuente": "fuentes.json#senado_tramitacion",
+  "meta": {
+   "tipo": "proyecto_de_ley",
+   "boletin": "16552-12",
+   "titulo_completo": "Modifica diversos cuerpos legales, con el objeto de fortalecer la institucionalidad ambiental y mejorar su eficiencia",
+   "iniciativa": "mensaje",
+   "fecha_ingreso": "2024-01-10",
+   "estado_real": "En tramitación",
+   "etapa": "Segundo trámite constitucional (C.Diputados)",
+   "url": "https://tramitacion.senado.cl/appsenado/templates/tramitacion/index.php?boletin_ini=16552-12",
+   "quorum_verificado": false,
+   "nota_quorum": "Quórum ilustrativo (mayoría simple): el quórum real depende del contenido del proyecto y no se verificó contra el texto oficial.",
+   "cifras_ilustrativas": true
+  }
+ },
+ {
+  "id": "real_ley_14818_29",
+  "categoria": "politica",
+  "costo_pa": 2,
+  "titulo": "Adopta medidas para resguardar la integridad competitiva en…",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 3
+   },
+   {
+    "ind": "capital",
+    "delta": -1
+   }
+  ],
+  "requisitos": {
+   "ley": "ley_simple",
+   "quorum": "ley_simple"
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "camara_origen": "camara",
+  "fuente": "fuentes.json#senado_tramitacion",
+  "meta": {
+   "tipo": "proyecto_de_ley",
+   "boletin": "14818-29",
+   "titulo_completo": "Adopta medidas para resguardar la integridad competitiva en el ámbito de la práctica deportiva",
+   "iniciativa": "mensaje",
+   "fecha_ingreso": "2022-01-28",
+   "estado_real": "En tramitación",
+   "etapa": "Segundo trámite constitucional (Senado)",
+   "url": "https://tramitacion.senado.cl/appsenado/templates/tramitacion/index.php?boletin_ini=14818-29",
+   "quorum_verificado": false,
+   "nota_quorum": "Quórum ilustrativo (mayoría simple): el quórum real depende del contenido del proyecto y no se verificó contra el texto oficial.",
+   "cifras_ilustrativas": true
+  }
+ },
+ {
+  "id": "real_ley_18255_31",
+  "categoria": "salud",
+  "costo_pa": 2,
+  "titulo": "Establece un beneficio de compensación por la compra de pañ…",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 3
+   },
+   {
+    "ind": "capital",
+    "delta": -1
+   },
+   {
+    "ind": "fiscal",
+    "delta": -1.0
+   }
+  ],
+  "requisitos": {
+   "ley": "ley_simple",
+   "quorum": "ley_simple"
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "camara_origen": "camara",
+  "fuente": "fuentes.json#senado_tramitacion",
+  "meta": {
+   "tipo": "proyecto_de_ley",
+   "boletin": "18255-31",
+   "titulo_completo": "Establece un beneficio de compensación por la compra de pañales y de medicamentos",
+   "iniciativa": "mensaje",
+   "fecha_ingreso": "2026-05-18",
+   "estado_real": "En tramitación",
+   "etapa": "Segundo trámite constitucional (Senado)",
+   "url": "https://tramitacion.senado.cl/appsenado/templates/tramitacion/index.php?boletin_ini=18255-31",
+   "quorum_verificado": false,
+   "nota_quorum": "Quórum ilustrativo (mayoría simple): el quórum real depende del contenido del proyecto y no se verificó contra el texto oficial.",
+   "cifras_ilustrativas": true
+  }
+ },
+ {
+  "id": "real_ley_14773_02",
+  "categoria": "seguridad",
+  "costo_pa": 2,
+  "titulo": "Crea la Comisión de Comercio Estratégico y regula la export…",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 3
+   },
+   {
+    "ind": "capital",
+    "delta": -1
+   }
+  ],
+  "requisitos": {
+   "ley": "ley_simple",
+   "quorum": "ley_simple"
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "camara_origen": "senado",
+  "fuente": "fuentes.json#senado_tramitacion",
+  "meta": {
+   "tipo": "proyecto_de_ley",
+   "boletin": "14773-02",
+   "titulo_completo": "Crea la Comisión de Comercio Estratégico y regula la exportación de material de uso dual y de defensa y otras materias que indica.",
+   "iniciativa": "mensaje",
+   "fecha_ingreso": "2022-01-04",
+   "estado_real": "En tramitación",
+   "etapa": "Segundo trámite constitucional (C.Diputados)",
+   "url": "https://tramitacion.senado.cl/appsenado/templates/tramitacion/index.php?boletin_ini=14773-02",
+   "quorum_verificado": false,
+   "nota_quorum": "Quórum ilustrativo (mayoría simple): el quórum real depende del contenido del proyecto y no se verificó contra el texto oficial.",
+   "cifras_ilustrativas": true
+  }
+ },
+ {
+  "id": "real_ley_15351_07",
+  "categoria": "social",
+  "costo_pa": 2,
+  "titulo": "Sobre armonización de la ley N° 21.302, que Crea el Servici…",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 3
+   },
+   {
+    "ind": "capital",
+    "delta": -1
+   },
+   {
+    "ind": "fiscal",
+    "delta": -1.0
+   }
+  ],
+  "requisitos": {
+   "ley": "ley_simple",
+   "quorum": "ley_simple"
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "camara_origen": "senado",
+  "fuente": "fuentes.json#senado_tramitacion",
+  "meta": {
+   "tipo": "proyecto_de_ley",
+   "boletin": "15351-07",
+   "titulo_completo": "Sobre armonización de la ley N° 21.302, que Crea el Servicio Nacional de Protección Especializada a la Niñez y Adolescencia y Modifica Normas Legales que Indica, y la ley N° 20.032, que Regula el Régimen de Aportes Financieros del Estado a los Colaboradores Acreditados, con la ley N° 21.430, Sobre Garantías y Protección Integral de los Derechos de la Niñez y Adolescencia.",
+   "iniciativa": "mensaje",
+   "fecha_ingreso": "2022-09-21",
+   "estado_real": "En tramitación",
+   "etapa": "Comisión Mixta por rechazo de modificaciones (Senado)",
+   "url": "https://tramitacion.senado.cl/appsenado/templates/tramitacion/index.php?boletin_ini=15351-07",
+   "quorum_verificado": false,
+   "nota_quorum": "Quórum ilustrativo (mayoría simple): el quórum real depende del contenido del proyecto y no se verificó contra el texto oficial.",
+   "cifras_ilustrativas": true
+  }
+ },
+ {
+  "id": "real_ley_16448_10",
+  "categoria": "transportes",
+  "costo_pa": 2,
+  "titulo": "Aprueba el Acuerdo sobre Transporte Aéreo entre el Gobierno…",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 2
+   },
+   {
+    "ind": "capital",
+    "delta": -1
+   }
+  ],
+  "requisitos": {
+   "ley": "ley_simple",
+   "quorum": "ley_simple"
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "camara_origen": "camara",
+  "fuente": "fuentes.json#senado_tramitacion",
+  "meta": {
+   "tipo": "proyecto_de_ley",
+   "boletin": "16448-10",
+   "titulo_completo": "Aprueba el Acuerdo sobre Transporte Aéreo entre el Gobierno de la República de Colombia y el Gobierno de la República de Chile, firmado en Cartagena de Indias, Colombia, el 27 de enero de 2022",
+   "iniciativa": "mensaje",
+   "fecha_ingreso": "2023-11-28",
+   "estado_real": "En tramitación",
+   "etapa": "Trámite finalización en Cámara de Origen (C.Diputados)",
+   "url": "https://tramitacion.senado.cl/appsenado/templates/tramitacion/index.php?boletin_ini=16448-10",
+   "quorum_verificado": false,
+   "nota_quorum": "Quórum ilustrativo (mayoría simple): el quórum real depende del contenido del proyecto y no se verificó contra el texto oficial.",
+   "cifras_ilustrativas": true
+  }
+ },
+ {
+  "id": "real_ley_16391_01",
+  "categoria": "vivienda",
+  "costo_pa": 2,
+  "titulo": "Establece un Sistema de Incentivos para la Gestión Sostenib…",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 3
+   },
+   {
+    "ind": "capital",
+    "delta": -1
+   },
+   {
+    "ind": "fiscal",
+    "delta": -1.0
+   }
+  ],
+  "requisitos": {
+   "ley": "ley_simple",
+   "quorum": "ley_simple"
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "camara_origen": "camara",
+  "fuente": "fuentes.json#senado_tramitacion",
+  "meta": {
+   "tipo": "proyecto_de_ley",
+   "boletin": "16391-01",
+   "titulo_completo": "Establece un Sistema de Incentivos para la Gestión Sostenible de Suelos Agropecuarios (SIGESS)",
+   "iniciativa": "mensaje",
+   "fecha_ingreso": "2023-11-02",
+   "estado_real": "En tramitación",
+   "etapa": "Segundo trámite constitucional (Senado)",
+   "url": "https://tramitacion.senado.cl/appsenado/templates/tramitacion/index.php?boletin_ini=16391-01",
+   "quorum_verificado": false,
+   "nota_quorum": "Quórum ilustrativo (mayoría simple): el quórum real depende del contenido del proyecto y no se verificó contra el texto oficial.",
+   "cifras_ilustrativas": true
+  }
+ },
+ {
+  "id": "real_ley_16966_06",
+  "categoria": "descentralizacion",
+  "costo_pa": 2,
+  "titulo": "Declara un día para cada región como feriado legal de carác…",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 2
+   },
+   {
+    "ind": "capital",
+    "delta": -1
+   }
+  ],
+  "requisitos": {
+   "ley": "ley_simple",
+   "quorum": "ley_simple"
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "camara_origen": "camara",
+  "fuente": "fuentes.json#senado_tramitacion",
+  "meta": {
+   "tipo": "proyecto_de_ley",
+   "boletin": "16966-06",
+   "titulo_completo": "Declara un día para cada región como feriado legal de carácter regional",
+   "iniciativa": "mensaje",
+   "fecha_ingreso": "2024-07-05",
+   "estado_real": "En tramitación",
+   "etapa": "Insistencia (Senado)",
+   "url": "https://tramitacion.senado.cl/appsenado/templates/tramitacion/index.php?boletin_ini=16966-06",
+   "quorum_verificado": false,
+   "nota_quorum": "Quórum ilustrativo (mayoría simple): el quórum real depende del contenido del proyecto y no se verificó contra el texto oficial.",
+   "cifras_ilustrativas": true
+  }
+ },
+ {
+  "id": "real_ley_18036_05",
+  "categoria": "economia",
+  "costo_pa": 2,
+  "titulo": "Otorga reajuste general de remuneraciones a las y los traba…",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 3
+   },
+   {
+    "ind": "capital",
+    "delta": -1
+   }
+  ],
+  "requisitos": {
+   "ley": "ley_simple",
+   "quorum": "ley_simple"
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "camara_origen": "camara",
+  "fuente": "fuentes.json#senado_tramitacion",
+  "meta": {
+   "tipo": "proyecto_de_ley",
+   "boletin": "18036-05",
+   "titulo_completo": "Otorga reajuste general de remuneraciones a las y los trabajadores del sector público, concede aguinaldos que señala, concede otros beneficios que indica y modifica diversos cuerpos legales",
+   "iniciativa": "mensaje",
+   "fecha_ingreso": "2026-01-06",
+   "estado_real": "En tramitación",
+   "etapa": "Trámite en Tribunal Constitucional (C.Diputados)",
+   "url": "https://tramitacion.senado.cl/appsenado/templates/tramitacion/index.php?boletin_ini=18036-05",
+   "quorum_verificado": false,
+   "nota_quorum": "Quórum ilustrativo (mayoría simple): el quórum real depende del contenido del proyecto y no se verificó contra el texto oficial.",
+   "cifras_ilustrativas": true
+  }
+ },
+ {
+  "id": "real_ley_18155_25",
+  "categoria": "educacion",
+  "costo_pa": 2,
+  "titulo": "Modifica el Código Penal para establecer nuevas agravantes…",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 3
+   },
+   {
+    "ind": "capital",
+    "delta": -1
+   },
+   {
+    "ind": "fiscal",
+    "delta": -1.0
+   }
+  ],
+  "requisitos": {
+   "ley": "ley_simple",
+   "quorum": "ley_simple"
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "camara_origen": "camara",
+  "fuente": "fuentes.json#senado_tramitacion",
+  "meta": {
+   "tipo": "proyecto_de_ley",
+   "boletin": "18155-25",
+   "titulo_completo": "Modifica el Código Penal para establecer nuevas agravantes por delitos cometidos contra la comunidad educativa y en recintos educacionales",
+   "iniciativa": "mensaje",
+   "fecha_ingreso": "2026-04-07",
+   "estado_real": "En tramitación",
+   "etapa": "Segundo trámite constitucional (Senado)",
+   "url": "https://tramitacion.senado.cl/appsenado/templates/tramitacion/index.php?boletin_ini=18155-25",
+   "quorum_verificado": false,
+   "nota_quorum": "Quórum ilustrativo (mayoría simple): el quórum real depende del contenido del proyecto y no se verificó contra el texto oficial.",
+   "cifras_ilustrativas": true
+  }
+ },
+ {
+  "id": "real_ley_16035_03",
+  "categoria": "energia",
+  "costo_pa": 2,
+  "titulo": "Mejora la competencia y perfecciona el mercado del gas licu…",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 2
+   },
+   {
+    "ind": "capital",
+    "delta": -1
+   }
+  ],
+  "requisitos": {
+   "ley": "ley_simple",
+   "quorum": "ley_simple"
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "camara_origen": "camara",
+  "fuente": "fuentes.json#senado_tramitacion",
+  "meta": {
+   "tipo": "proyecto_de_ley",
+   "boletin": "16035-03",
+   "titulo_completo": "Mejora la competencia y perfecciona el mercado del gas licuado",
+   "iniciativa": "mensaje",
+   "fecha_ingreso": "2023-06-19",
+   "estado_real": "En tramitación",
+   "etapa": "Primer trámite constitucional (C.Diputados)",
+   "url": "https://tramitacion.senado.cl/appsenado/templates/tramitacion/index.php?boletin_ini=16035-03",
+   "quorum_verificado": false,
+   "nota_quorum": "Quórum ilustrativo (mayoría simple): el quórum real depende del contenido del proyecto y no se verificó contra el texto oficial.",
+   "cifras_ilustrativas": true
+  }
+ },
+ {
+  "id": "real_ley_16553_12",
+  "categoria": "hacienda",
+  "costo_pa": 2,
+  "titulo": "Fortalece y mejora la eficacia de la fiscalización y el cum…",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 3
+   },
+   {
+    "ind": "capital",
+    "delta": -1
+   },
+   {
+    "ind": "fiscal",
+    "delta": -1.0
+   }
+  ],
+  "requisitos": {
+   "ley": "ley_simple",
+   "quorum": "ley_simple"
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "camara_origen": "camara",
+  "fuente": "fuentes.json#senado_tramitacion",
+  "meta": {
+   "tipo": "proyecto_de_ley",
+   "boletin": "16553-12",
+   "titulo_completo": "Fortalece y mejora la eficacia de la fiscalización y el cumplimiento de la regulación ambiental a cargo de la Superintendencia del Medio Ambiente, y regula otras materias que indica",
+   "iniciativa": "mensaje",
+   "fecha_ingreso": "2024-01-10",
+   "estado_real": "En tramitación",
+   "etapa": "Segundo trámite constitucional (Senado)",
+   "url": "https://tramitacion.senado.cl/appsenado/templates/tramitacion/index.php?boletin_ini=16553-12",
+   "quorum_verificado": false,
+   "nota_quorum": "Quórum ilustrativo (mayoría simple): el quórum real depende del contenido del proyecto y no se verificó contra el texto oficial.",
+   "cifras_ilustrativas": true
+  }
+ },
+ {
+  "id": "real_ley_16182_12",
+  "categoria": "medioambiente",
+  "costo_pa": 2,
+  "titulo": "Promueve la valorización de los residuos orgánicos y fortal…",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 2
+   },
+   {
+    "ind": "capital",
+    "delta": -1
+   }
+  ],
+  "requisitos": {
+   "ley": "ley_simple",
+   "quorum": "ley_simple"
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "camara_origen": "camara",
+  "fuente": "fuentes.json#senado_tramitacion",
+  "meta": {
+   "tipo": "proyecto_de_ley",
+   "boletin": "16182-12",
+   "titulo_completo": "Promueve la valorización de los residuos orgánicos y fortalece la gestión de los residuos a nivel territorial",
+   "iniciativa": "mensaje",
+   "fecha_ingreso": "2023-08-11",
+   "estado_real": "En tramitación",
+   "etapa": "Primer trámite constitucional (C.Diputados)",
+   "url": "https://tramitacion.senado.cl/appsenado/templates/tramitacion/index.php?boletin_ini=16182-12",
+   "quorum_verificado": false,
+   "nota_quorum": "Quórum ilustrativo (mayoría simple): el quórum real depende del contenido del proyecto y no se verificó contra el texto oficial.",
+   "cifras_ilustrativas": true
+  }
+ },
+ {
+  "id": "real_ley_14832_24",
+  "categoria": "politica",
+  "costo_pa": 2,
+  "titulo": "Modifica la ley N°19.132, que crea empresa Televisión Nacio…",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 3
+   },
+   {
+    "ind": "capital",
+    "delta": -1
+   }
+  ],
+  "requisitos": {
+   "ley": "ley_simple",
+   "quorum": "ley_simple"
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "camara_origen": "camara",
+  "fuente": "fuentes.json#senado_tramitacion",
+  "meta": {
+   "tipo": "proyecto_de_ley",
+   "boletin": "14832-24",
+   "titulo_completo": "Modifica la ley N°19.132, que crea empresa Televisión Nacional de Chile",
+   "iniciativa": "mensaje",
+   "fecha_ingreso": "2022-03-02",
+   "estado_real": "En tramitación",
+   "etapa": "Primer trámite constitucional (C.Diputados)",
+   "url": "https://tramitacion.senado.cl/appsenado/templates/tramitacion/index.php?boletin_ini=14832-24",
+   "quorum_verificado": false,
+   "nota_quorum": "Quórum ilustrativo (mayoría simple): el quórum real depende del contenido del proyecto y no se verificó contra el texto oficial.",
+   "cifras_ilustrativas": true
+  }
+ },
+ {
+  "id": "real_ley_14831_13",
+  "categoria": "salud",
+  "costo_pa": 2,
+  "titulo": "Reconoce la labor de los recolectores de residuos domicilia…",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 2
+   },
+   {
+    "ind": "capital",
+    "delta": -1
+   },
+   {
+    "ind": "fiscal",
+    "delta": -1.0
+   }
+  ],
+  "requisitos": {
+   "ley": "ley_simple",
+   "quorum": "ley_simple"
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "camara_origen": "senado",
+  "fuente": "fuentes.json#senado_tramitacion",
+  "meta": {
+   "tipo": "proyecto_de_ley",
+   "boletin": "14831-13",
+   "titulo_completo": "Reconoce la labor de los recolectores de residuos domiciliarios y fortalece la protección de su vida, salud y seguridad laboral.",
+   "iniciativa": "mensaje",
+   "fecha_ingreso": "2022-03-02",
+   "estado_real": "En tramitación",
+   "etapa": "Primer trámite constitucional (Senado)",
+   "url": "https://tramitacion.senado.cl/appsenado/templates/tramitacion/index.php?boletin_ini=14831-13",
+   "quorum_verificado": false,
+   "nota_quorum": "Quórum ilustrativo (mayoría simple): el quórum real depende del contenido del proyecto y no se verificó contra el texto oficial.",
+   "cifras_ilustrativas": true
+  }
+ },
+ {
+  "id": "real_plebiscito_convencion_2022",
+  "categoria": "politica",
+  "costo_pa": 4,
+  "titulo": "Nueva Constitución: propuesta convencion 2022",
+  "efectos": [
+   {
+    "ind": "capital",
+    "delta": -3
+   },
+   {
+    "ind": "cohesion",
+    "delta": -1
+   },
+   {
+    "ind": "aprobacion",
+    "delta": 2
+   }
+  ],
+  "requisitos": {
+   "ley": "reforma_constitucional",
+   "quorum": "reforma_constitucional"
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#wikipedia_es",
+  "meta": {
+   "tipo": "propuesta_constitucional",
+   "resultado": "Rechazada en plebiscito de salida el 2022-09-04: Rechazo 61,89 % (7.891.415) / Apruebo 38,11 % (4.859.103)",
+   "url": "https://es.wikipedia.org/wiki/Propuesta_de_Constitución_Política_de_la_República_de_Chile_de_2022",
+   "quorum_verificado": true,
+   "cifras_ilustrativas": true
+  }
+ },
+ {
+  "id": "real_plebiscito_consejo_2023",
+  "categoria": "politica",
+  "costo_pa": 4,
+  "titulo": "Nueva Constitución: propuesta consejo 2023",
+  "efectos": [
+   {
+    "ind": "capital",
+    "delta": -3
+   },
+   {
+    "ind": "cohesion",
+    "delta": -1
+   },
+   {
+    "ind": "aprobacion",
+    "delta": 2
+   }
+  ],
+  "requisitos": {
+   "ley": "reforma_constitucional",
+   "quorum": "reforma_constitucional"
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#wikipedia_es",
+  "meta": {
+   "tipo": "propuesta_constitucional",
+   "resultado": "Rechazada en plebiscito de salida el 2023-12-17: En contra 55,76 % (6.894.287) / A favor 44,24 % (5.470.025)",
+   "url": "https://es.wikipedia.org/wiki/Propuesta_de_Constitución_Política_de_la_República_de_Chile_de_2023",
+   "quorum_verificado": true,
+   "cifras_ilustrativas": true
+  }
+ },
+ {
+  "id": "real_ley_18894_07",
+  "categoria": "politica",
+  "costo_pa": 3,
+  "titulo": "Modifica la Constitución Política de la República para reba…",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 2
+   },
+   {
+    "ind": "capital",
+    "delta": -1
+   }
+  ],
+  "requisitos": {
+   "ley": "reforma_constitucional",
+   "quorum": "reforma_constitucional"
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "camara_origen": "camara",
+  "fuente": "fuentes.json#senado_tramitacion",
+  "meta": {
+   "tipo": "reforma_constitucional",
+   "boletin": "18894-07",
+   "titulo_completo": "Modifica la Constitución Política de la República para rebajar transitoriamente el impuesto específico a los combustibles en el evento que indica",
+   "iniciativa": "mocion",
+   "fecha_ingreso": "2026-11-12",
+   "estado_real": "En tramitación",
+   "etapa": "Primer trámite constitucional (C.Diputados)",
+   "url": "https://tramitacion.senado.cl/appsenado/templates/tramitacion/index.php?boletin_ini=18894-07",
+   "quorum_verificado": true,
+   "nota_quorum": "4/7 de los miembros en ejercicio de cada Cámara (CPR art. 127, verificado contra el texto oficial).",
+   "cifras_ilustrativas": true
+  }
+ },
+ {
+  "id": "real_ley_18580_07",
+  "categoria": "politica",
+  "costo_pa": 3,
+  "titulo": "Modifica el artículo 101 de la Carta Fundamental, con el ob…",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 2
+   },
+   {
+    "ind": "capital",
+    "delta": -1
+   }
+  ],
+  "requisitos": {
+   "ley": "reforma_constitucional",
+   "quorum": "reforma_constitucional"
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "camara_origen": "camara",
+  "fuente": "fuentes.json#senado_tramitacion",
+  "meta": {
+   "tipo": "reforma_constitucional",
+   "boletin": "18580-07",
+   "titulo_completo": "Modifica el artículo 101 de la Carta Fundamental, con el objeto de establecer la inhabilidad que indica",
+   "iniciativa": "mocion",
+   "fecha_ingreso": "2026-08-12",
+   "estado_real": "En tramitación",
+   "etapa": "Primer trámite constitucional (Senado)",
+   "url": "https://tramitacion.senado.cl/appsenado/templates/tramitacion/index.php?boletin_ini=18580-07",
+   "quorum_verificado": true,
+   "nota_quorum": "4/7 de los miembros en ejercicio de cada Cámara (CPR art. 127, verificado contra el texto oficial).",
+   "cifras_ilustrativas": true
+  }
+ },
+ {
+  "id": "real_ley_18502_07",
+  "categoria": "politica",
+  "costo_pa": 3,
+  "titulo": "Modifica el artículo 52 de la Carta Fundamental, en materia…",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 2
+   },
+   {
+    "ind": "capital",
+    "delta": -1
+   }
+  ],
+  "requisitos": {
+   "ley": "reforma_constitucional",
+   "quorum": "reforma_constitucional"
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "camara_origen": "camara",
+  "fuente": "fuentes.json#senado_tramitacion",
+  "meta": {
+   "tipo": "reforma_constitucional",
+   "boletin": "18502-07",
+   "titulo_completo": "Modifica el artículo 52 de la Carta Fundamental, en materia de acusación constitucional",
+   "iniciativa": "mocion",
+   "fecha_ingreso": "2026-07-22",
+   "estado_real": "En tramitación",
+   "etapa": "Primer trámite constitucional (Senado)",
+   "url": "https://tramitacion.senado.cl/appsenado/templates/tramitacion/index.php?boletin_ini=18502-07",
+   "quorum_verificado": true,
+   "nota_quorum": "4/7 de los miembros en ejercicio de cada Cámara (CPR art. 127, verificado contra el texto oficial).",
+   "cifras_ilustrativas": true
+  }
+ },
+ {
+  "id": "real_ley_18410_07",
+  "categoria": "politica",
+  "costo_pa": 3,
+  "titulo": "Modifica el artículo 60 de la Constitución Política de la R…",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 2
+   },
+   {
+    "ind": "capital",
+    "delta": -1
+   }
+  ],
+  "requisitos": {
+   "ley": "reforma_constitucional",
+   "quorum": "reforma_constitucional"
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "camara_origen": "camara",
+  "fuente": "fuentes.json#senado_tramitacion",
+  "meta": {
+   "tipo": "reforma_constitucional",
+   "boletin": "18410-07",
+   "titulo_completo": "Modifica el artículo 60 de la Constitución Política de la República con el objeto de permitir la renuncia al cargo de diputado o senador",
+   "iniciativa": "mocion",
+   "fecha_ingreso": "2026-06-19",
+   "estado_real": "En tramitación",
+   "etapa": "Primer trámite constitucional (C.Diputados)",
+   "url": "https://tramitacion.senado.cl/appsenado/templates/tramitacion/index.php?boletin_ini=18410-07",
+   "quorum_verificado": true,
+   "nota_quorum": "4/7 de los miembros en ejercicio de cada Cámara (CPR art. 127, verificado contra el texto oficial).",
+   "cifras_ilustrativas": true
+  }
+ },
+ {
+  "id": "real_ley_18354_07",
+  "categoria": "politica",
+  "costo_pa": 3,
+  "titulo": "Modifica el artículo 19 N°16 de la Constitución Política, p…",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 2
+   },
+   {
+    "ind": "capital",
+    "delta": -1
+   }
+  ],
+  "requisitos": {
+   "ley": "reforma_constitucional",
+   "quorum": "reforma_constitucional"
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "camara_origen": "camara",
+  "fuente": "fuentes.json#senado_tramitacion",
+  "meta": {
+   "tipo": "reforma_constitucional",
+   "boletin": "18354-07",
+   "titulo_completo": "Modifica el artículo 19 N°16 de la Constitución Política, para disponer un procedimiento de negociación de reajustes salariales en el sector público y privado",
+   "iniciativa": "mocion",
+   "fecha_ingreso": "2026-06-10",
+   "estado_real": "En tramitación",
+   "etapa": "Primer trámite constitucional (C.Diputados)",
+   "url": "https://tramitacion.senado.cl/appsenado/templates/tramitacion/index.php?boletin_ini=18354-07",
+   "quorum_verificado": true,
+   "nota_quorum": "4/7 de los miembros en ejercicio de cada Cámara (CPR art. 127, verificado contra el texto oficial).",
+   "cifras_ilustrativas": true
+  }
+ },
+ {
+  "id": "real_ley_18264_07",
+  "categoria": "politica",
+  "costo_pa": 3,
+  "titulo": "Modifica el artículo 57 de la Constitución Política de la R…",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 2
+   },
+   {
+    "ind": "capital",
+    "delta": -1
+   }
+  ],
+  "requisitos": {
+   "ley": "reforma_constitucional",
+   "quorum": "reforma_constitucional"
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "camara_origen": "camara",
+  "fuente": "fuentes.json#senado_tramitacion",
+  "meta": {
+   "tipo": "reforma_constitucional",
+   "boletin": "18264-07",
+   "titulo_completo": "Modifica el artículo 57 de la Constitución Política de la República, para eliminar la facultad de las autoridades locales y regionales de renunciar a sus cargos para ser candidatos a diputados y senadores",
+   "iniciativa": "mocion",
+   "fecha_ingreso": "2026-05-12",
+   "estado_real": "En tramitación",
+   "etapa": "Primer trámite constitucional (C.Diputados)",
+   "url": "https://tramitacion.senado.cl/appsenado/templates/tramitacion/index.php?boletin_ini=18264-07",
+   "quorum_verificado": true,
+   "nota_quorum": "4/7 de los miembros en ejercicio de cada Cámara (CPR art. 127, verificado contra el texto oficial).",
+   "cifras_ilustrativas": true
+  }
+ }
+]
