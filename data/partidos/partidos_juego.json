@@ -3,7 +3,8 @@
   "fecha": "2026-11-23",
   "ejes": "Mismos ejes y escala de data/ideologia.json: eje_eco -1 estatista/redistributivo a +1 mercado; eje_inst -1 ruptura, movilización o regionalismo radical a +1 gradualismo e institucionalidad. Los valores son estimaciones editoriales ancladas en los hechos citados en `justificacion`.",
   "cifras_ilustrativas": "Escaños = elecciones 2025 redondeados al partido real, usados solo como peso de juego; no son datos oficiales.",
-  "criterio_nombres": "Ver docs/PARTIDOS.md"
+  "criterio_nombres": "Ver docs/PARTIDOS.md",
+  "revision_2026_11_23": "Escaños verificados contra Servel provisorio (diputados 2025 sin diferencias); se corrigió la justificación del PNL (se había citado un principio que correspondía a otro partido)."
  },
  "partidos": [
   {
@@ -560,7 +561,7 @@
    "eje_eco": 0.95,
    "eje_inst": -0.2,
    "justificacion": {
-    "eco": "Principios: derechos 'anteriores y superiores al Estado' (secundaria); votó en contra de la reforma de pensiones en la Cámara (ene-2025); decidió no integrar el gobierno de Kast (2025, titular 24horas); pacto Cambio por Chile 2025.",
+    "eco": "Votó en contra de la reforma de pensiones en la Cámara (ene-2025, según El Dínamo); presidente del partido es Johannes Kaiser (Servel); pacto Cambio por Chile 2025. Sin declaración de principios primaria verificada: el valor se apoya en su posición pública de oposición al acuerdo de pensiones y su identificación como 'nueva derecha' (formulario de candidatos 2025, secundaria).",
     "inst": "Se define 'nueva derecha' y rechazó el acuerdo de pensiones y el ingreso al gobierno: perfil anti-establishment, de ahí valor negativo."
    },
    "pide": {

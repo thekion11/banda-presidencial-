@@ -22,7 +22,11 @@
    "Radical: sin declaracion vigente, sin fallo Tricel confirmado, sin posiciones por tema.",
    "Posiciones por tema (pensiones, tributaria, descentralizacion, etc.): casi sin votaciones verificables; pendiente consultar camara.cl/senado.cl.",
    "Partido Cristiano: sin estatutos ni declaracion oficial hallados; coaliciones no documentadas.",
-   "Fila Servel del 2026-09-30 sin nombre; estado PDG posterior a sep-2026 no revisado."
+   "Fila Servel del 2026-09-30 sin nombre; estado PDG posterior a sep-2026 no revisado.",
+   "2026-11-23 (ronda 2): sigue sin cita literal de principios para PCCh, FA, PR, FRVS, UDI, PNL, PDG y Cristiano (sitios con desafío anti-bot, 404 o inaccesibles; extractos de estatutos del Servel son escaneos sin texto).",
+   "Senado y Cámara 2022-2026 por partido: sin fuente primaria utilizable (opendata de la Cámara no trae militancias).",
+   "Se retiró del PNL una cita que correspondía al Partido Libertario de Chile (otra organización).",
+   "Votaciones del Senado: totales verificados en el XML oficial; el desglose por partido no se publica porque la afiliación de cada senador por fecha no está en una fuente accesible."
   ]
  },
  "partidos": [
@@ -145,7 +149,19 @@
      "senadores": 7,
      "nota": "Electos el 16-nov-2025 (diputados 2026-2030; senadores: total de la bancada 2026-2034 incluye los no renovados)",
      "fuente": "https://es.wikipedia.org/wiki/Elecciones_parlamentarias_de_Chile_de_2025",
-     "verificado": false
+     "verificado": false,
+     "diputados_fuente_servel": {
+      "valor": 11,
+      "fuente": "https://elecciones.servel.cl/total_votacion_6.zip",
+      "nota": "Resultados provisorios Servel (iteración 2025-11-17 04:30, 99,96% de mesas); no es el escrutinio del Tricel",
+      "verificado": true
+     },
+     "senadores_electos_2025": {
+      "valor": 3,
+      "fuente": "https://elecciones.servel.cl/total_votacion_5.zip",
+      "nota": "Solo los 23 senadores elegidos en 2025; el total de la bancada 2026-2034 incluye senadores no renovados (cifra de Wikipedia, no verificada)",
+      "verificado": true
+     }
     }
    },
    "estado_servel": "constituido",
@@ -287,7 +303,19 @@
      "senadores": 4,
      "nota": "Electos el 16-nov-2025 (diputados 2026-2030; senadores: total de la bancada 2026-2034 incluye los no renovados)",
      "fuente": "https://es.wikipedia.org/wiki/Elecciones_parlamentarias_de_Chile_de_2025",
-     "verificado": false
+     "verificado": false,
+     "diputados_fuente_servel": {
+      "valor": 9,
+      "fuente": "https://elecciones.servel.cl/total_votacion_6.zip",
+      "nota": "Resultados provisorios Servel (iteración 2025-11-17 04:30, 99,96% de mesas); no es el escrutinio del Tricel",
+      "verificado": true
+     },
+     "senadores_electos_2025": {
+      "valor": 2,
+      "fuente": "https://elecciones.servel.cl/total_votacion_5.zip",
+      "nota": "Solo los 23 senadores elegidos en 2025; el total de la bancada 2026-2034 incluye senadores no renovados (cifra de Wikipedia, no verificada)",
+      "verificado": true
+     }
     }
    },
    "estado_servel": "constituido",
@@ -433,7 +461,19 @@
      "senadores": 3,
      "nota": "Electos el 16-nov-2025 (diputados 2026-2030; senadores: total de la bancada 2026-2034 incluye los no renovados)",
      "fuente": "https://es.wikipedia.org/wiki/Elecciones_parlamentarias_de_Chile_de_2025",
-     "verificado": false
+     "verificado": false,
+     "diputados_fuente_servel": {
+      "valor": 8,
+      "fuente": "https://elecciones.servel.cl/total_votacion_6.zip",
+      "nota": "Resultados provisorios Servel (iteración 2025-11-17 04:30, 99,96% de mesas); no es el escrutinio del Tricel",
+      "verificado": true
+     },
+     "senadores_electos_2025": {
+      "valor": 2,
+      "fuente": "https://elecciones.servel.cl/total_votacion_5.zip",
+      "nota": "Solo los 23 senadores elegidos en 2025; el total de la bancada 2026-2034 incluye senadores no renovados (cifra de Wikipedia, no verificada)",
+      "verificado": true
+     }
     }
    },
    "estado_servel": "constituido",
@@ -552,7 +592,19 @@
      "senadores": 3,
      "nota": "Electos el 16-nov-2025 (diputados 2026-2030; senadores: total de la bancada 2026-2034 incluye los no renovados)",
      "fuente": "https://es.wikipedia.org/wiki/Elecciones_parlamentarias_de_Chile_de_2025",
-     "verificado": false
+     "verificado": false,
+     "diputados_fuente_servel": {
+      "valor": 11,
+      "fuente": "https://elecciones.servel.cl/total_votacion_6.zip",
+      "nota": "Resultados provisorios Servel (iteración 2025-11-17 04:30, 99,96% de mesas); no es el escrutinio del Tricel",
+      "verificado": true
+     },
+     "senadores_electos_2025": {
+      "valor": 1,
+      "fuente": "https://elecciones.servel.cl/total_votacion_5.zip",
+      "nota": "Solo los 23 senadores elegidos en 2025; el total de la bancada 2026-2034 incluye senadores no renovados (cifra de Wikipedia, no verificada)",
+      "verificado": true
+     }
     }
    },
    "estado_servel": "constituido",
@@ -647,7 +699,19 @@
      "senadores": 2,
      "nota": "Electos el 16-nov-2025 (diputados 2026-2030; senadores: total de la bancada 2026-2034 incluye los no renovados)",
      "fuente": "https://es.wikipedia.org/wiki/Elecciones_parlamentarias_de_Chile_de_2025",
-     "verificado": false
+     "verificado": false,
+     "diputados_fuente_servel": {
+      "valor": 17,
+      "fuente": "https://elecciones.servel.cl/total_votacion_6.zip",
+      "nota": "Resultados provisorios Servel (iteración 2025-11-17 04:30, 99,96% de mesas); no es el escrutinio del Tricel",
+      "verificado": true
+     },
+     "senadores_electos_2025": {
+      "valor": 2,
+      "fuente": "https://elecciones.servel.cl/total_votacion_5.zip",
+      "nota": "Solo los 23 senadores elegidos en 2025; el total de la bancada 2026-2034 incluye senadores no renovados (cifra de Wikipedia, no verificada)",
+      "verificado": true
+     }
     }
    },
    "estado_servel": "constituido",
@@ -783,7 +847,19 @@
      "senadores": 1,
      "nota": "Electos el 16-nov-2025 (diputados 2026-2030; senadores: total de la bancada 2026-2034 incluye los no renovados)",
      "fuente": "https://es.wikipedia.org/wiki/Elecciones_parlamentarias_de_Chile_de_2025",
-     "verificado": false
+     "verificado": false,
+     "diputados_fuente_servel": {
+      "valor": 3,
+      "fuente": "https://elecciones.servel.cl/total_votacion_6.zip",
+      "nota": "Resultados provisorios Servel (iteración 2025-11-17 04:30, 99,96% de mesas); no es el escrutinio del Tricel",
+      "verificado": true
+     },
+     "senadores_electos_2025": {
+      "valor": 1,
+      "fuente": "https://elecciones.servel.cl/total_votacion_5.zip",
+      "nota": "Solo los 23 senadores elegidos en 2025; el total de la bancada 2026-2034 incluye senadores no renovados (cifra de Wikipedia, no verificada)",
+      "verificado": true
+     }
     }
    },
    "estado_servel": "constituido",
@@ -871,7 +947,19 @@
      "senadores": 0,
      "nota": "Electos el 16-nov-2025 (diputados 2026-2030; senadores: total de la bancada 2026-2034 incluye los no renovados)",
      "fuente": "https://es.wikipedia.org/wiki/Elecciones_parlamentarias_de_Chile_de_2025",
-     "verificado": false
+     "verificado": false,
+     "diputados_fuente_servel": {
+      "valor": 2,
+      "fuente": "https://elecciones.servel.cl/total_votacion_6.zip",
+      "nota": "Resultados provisorios Servel (iteración 2025-11-17 04:30, 99,96% de mesas); no es el escrutinio del Tricel",
+      "verificado": true
+     },
+     "senadores_electos_2025": {
+      "valor": 0,
+      "fuente": "https://elecciones.servel.cl/total_votacion_5.zip",
+      "nota": "Solo los 23 senadores elegidos en 2025; el total de la bancada 2026-2034 incluye senadores no renovados (cifra de Wikipedia, no verificada)",
+      "verificado": true
+     }
     }
    },
    "estado_servel": "constituido",
@@ -979,7 +1067,19 @@
      "senadores": 3,
      "nota": "Electos el 16-nov-2025 (diputados 2026-2030; senadores: total de la bancada 2026-2034 incluye los no renovados)",
      "fuente": "https://es.wikipedia.org/wiki/Elecciones_parlamentarias_de_Chile_de_2025",
-     "verificado": false
+     "verificado": false,
+     "diputados_fuente_servel": {
+      "valor": 2,
+      "fuente": "https://elecciones.servel.cl/total_votacion_6.zip",
+      "nota": "Resultados provisorios Servel (iteración 2025-11-17 04:30, 99,96% de mesas); no es el escrutinio del Tricel",
+      "verificado": true
+     },
+     "senadores_electos_2025": {
+      "valor": 1,
+      "fuente": "https://elecciones.servel.cl/total_votacion_5.zip",
+      "nota": "Solo los 23 senadores elegidos en 2025; el total de la bancada 2026-2034 incluye senadores no renovados (cifra de Wikipedia, no verificada)",
+      "verificado": true
+     }
     }
    },
    "estado_servel": "constituido",
@@ -1129,7 +1229,19 @@
      "senadores": 8,
      "nota": "Electos el 16-nov-2025 (diputados 2026-2030; senadores: total de la bancada 2026-2034 incluye los no renovados)",
      "fuente": "https://es.wikipedia.org/wiki/Elecciones_parlamentarias_de_Chile_de_2025",
-     "verificado": false
+     "verificado": false,
+     "diputados_fuente_servel": {
+      "valor": 13,
+      "fuente": "https://elecciones.servel.cl/total_votacion_6.zip",
+      "nota": "Resultados provisorios Servel (iteración 2025-11-17 04:30, 99,96% de mesas); no es el escrutinio del Tricel",
+      "verificado": true
+     },
+     "senadores_electos_2025": {
+      "valor": 4,
+      "fuente": "https://elecciones.servel.cl/total_votacion_5.zip",
+      "nota": "Solo los 23 senadores elegidos en 2025; el total de la bancada 2026-2034 incluye senadores no renovados (cifra de Wikipedia, no verificada)",
+      "verificado": true
+     }
     }
    },
    "estado_servel": "constituido",
@@ -1254,7 +1366,19 @@
      "senadores": 5,
      "nota": "Electos el 16-nov-2025 (diputados 2026-2030; senadores: total de la bancada 2026-2034 incluye los no renovados)",
      "fuente": "https://es.wikipedia.org/wiki/Elecciones_parlamentarias_de_Chile_de_2025",
-     "verificado": false
+     "verificado": false,
+     "diputados_fuente_servel": {
+      "valor": 18,
+      "fuente": "https://elecciones.servel.cl/total_votacion_6.zip",
+      "nota": "Resultados provisorios Servel (iteración 2025-11-17 04:30, 99,96% de mesas); no es el escrutinio del Tricel",
+      "verificado": true
+     },
+     "senadores_electos_2025": {
+      "valor": 0,
+      "fuente": "https://elecciones.servel.cl/total_votacion_5.zip",
+      "nota": "Solo los 23 senadores elegidos en 2025; el total de la bancada 2026-2034 incluye senadores no renovados (cifra de Wikipedia, no verificada)",
+      "verificado": true
+     }
     }
    },
    "estado_servel": "constituido",
@@ -1392,7 +1516,19 @@
      "senadores": 2,
      "nota": "Electos el 16-nov-2025 (diputados 2026-2030; senadores: total de la bancada 2026-2034 incluye los no renovados)",
      "fuente": "https://es.wikipedia.org/wiki/Elecciones_parlamentarias_de_Chile_de_2025",
-     "verificado": false
+     "verificado": false,
+     "diputados_fuente_servel": {
+      "valor": 2,
+      "fuente": "https://elecciones.servel.cl/total_votacion_6.zip",
+      "nota": "Resultados provisorios Servel (iteración 2025-11-17 04:30, 99,96% de mesas); no es el escrutinio del Tricel",
+      "verificado": true
+     },
+     "senadores_electos_2025": {
+      "valor": 0,
+      "fuente": "https://elecciones.servel.cl/total_votacion_5.zip",
+      "nota": "Solo los 23 senadores elegidos en 2025; el total de la bancada 2026-2034 incluye senadores no renovados (cifra de Wikipedia, no verificada)",
+      "verificado": true
+     }
     }
    },
    "estado_servel": "constituido",
@@ -1524,7 +1660,19 @@
      "senadores": 5,
      "nota": "Electos el 16-nov-2025 (diputados 2026-2030; senadores: total de la bancada 2026-2034 incluye los no renovados)",
      "fuente": "https://es.wikipedia.org/wiki/Elecciones_parlamentarias_de_Chile_de_2025",
-     "verificado": false
+     "verificado": false,
+     "diputados_fuente_servel": {
+      "valor": 31,
+      "fuente": "https://elecciones.servel.cl/total_votacion_6.zip",
+      "nota": "Resultados provisorios Servel (iteración 2025-11-17 04:30, 99,96% de mesas); no es el escrutinio del Tricel",
+      "verificado": true
+     },
+     "senadores_electos_2025": {
+      "valor": 5,
+      "fuente": "https://elecciones.servel.cl/total_votacion_5.zip",
+      "nota": "Solo los 23 senadores elegidos en 2025; el total de la bancada 2026-2034 incluye senadores no renovados (cifra de Wikipedia, no verificada)",
+      "verificado": true
+     }
     }
    },
    "estado_servel": "constituido",
@@ -1551,7 +1699,7 @@
    "declaracion_principios": {
     "verificado": false,
     "citas": [],
-    "nota": null
+    "nota": "Sin texto primario. Se descartó una cita 'derechos anteriores y superiores al Estado' porque coincide con la declaración del Partido Libertario de Chile (partidolibertario.cl), organización distinta; el sitio del PNL devuelve un desafío anti-bot."
    },
    "ubicacion_ideologica": {
     "autodescripcion": "Formulario de compromiso ético de candidatos (2025, The Clinic): 'somos la nueva derecha' (frase según resumen de búsqueda; verificar en el PDF).",
@@ -1579,12 +1727,6 @@
       "hecho": "24horas titula que el PNL decidió no ser parte del gobierno de Kast (no se leyó el cuerpo del artículo).",
       "fecha": "2025-12",
       "fuente_url": "https://www.24horas.cl/actualidad/politica/partido-nacional-libertario-decide-no-ser-parte-del-gobierno-de-kast"
-     },
-     {
-      "tema": "derechos",
-      "hecho": "Declaración de principios (secundaria): derechos inalienables 'anteriores y superiores al Estado', libertad de pensamiento, expresión y culto.",
-      "fecha": "2024",
-      "fuente_url": "https://www.latercera.com/politica/noticia/los-principios-esenciales-del-partido-nacional-libertario-de-kaiser-que-ya-logro-las-firmas-para-su-constitucion/DI5CLVIAS5FYVIZK2RDWYLG6GA/"
      }
     ]
    },
@@ -1601,7 +1743,19 @@
      "senadores": 1,
      "nota": "Electos el 16-nov-2025 (diputados 2026-2030; senadores: total de la bancada 2026-2034 incluye los no renovados)",
      "fuente": "https://es.wikipedia.org/wiki/Elecciones_parlamentarias_de_Chile_de_2025",
-     "verificado": false
+     "verificado": false,
+     "diputados_fuente_servel": {
+      "valor": 8,
+      "fuente": "https://elecciones.servel.cl/total_votacion_6.zip",
+      "nota": "Resultados provisorios Servel (iteración 2025-11-17 04:30, 99,96% de mesas); no es el escrutinio del Tricel",
+      "verificado": true
+     },
+     "senadores_electos_2025": {
+      "valor": 1,
+      "fuente": "https://elecciones.servel.cl/total_votacion_5.zip",
+      "nota": "Solo los 23 senadores elegidos en 2025; el total de la bancada 2026-2034 incluye senadores no renovados (cifra de Wikipedia, no verificada)",
+      "verificado": true
+     }
     }
    },
    "estado_servel": "constituido",
@@ -1703,7 +1857,19 @@
      "senadores": 0,
      "nota": "Electos el 16-nov-2025 (diputados 2026-2030; senadores: total de la bancada 2026-2034 incluye los no renovados)",
      "fuente": "https://es.wikipedia.org/wiki/Elecciones_parlamentarias_de_Chile_de_2025",
-     "verificado": false
+     "verificado": false,
+     "diputados_fuente_servel": {
+      "valor": 14,
+      "fuente": "https://elecciones.servel.cl/total_votacion_6.zip",
+      "nota": "Resultados provisorios Servel (iteración 2025-11-17 04:30, 99,96% de mesas); no es el escrutinio del Tricel",
+      "verificado": true
+     },
+     "senadores_electos_2025": {
+      "valor": 0,
+      "fuente": "https://elecciones.servel.cl/total_votacion_5.zip",
+      "nota": "Solo los 23 senadores elegidos en 2025; el total de la bancada 2026-2034 incluye senadores no renovados (cifra de Wikipedia, no verificada)",
+      "verificado": true
+     }
     }
    },
    "estado_servel": "constituido",
@@ -1765,7 +1931,19 @@
      "senadores": 0,
      "nota": "Electos el 16-nov-2025 (diputados 2026-2030; senadores: total de la bancada 2026-2034 incluye los no renovados)",
      "fuente": "https://es.wikipedia.org/wiki/Elecciones_parlamentarias_de_Chile_de_2025",
-     "verificado": false
+     "verificado": false,
+     "diputados_fuente_servel": {
+      "valor": 0,
+      "fuente": "https://elecciones.servel.cl/total_votacion_6.zip",
+      "nota": "Resultados provisorios Servel (iteración 2025-11-17 04:30, 99,96% de mesas); no es el escrutinio del Tricel",
+      "verificado": true
+     },
+     "senadores_electos_2025": {
+      "valor": 0,
+      "fuente": "https://elecciones.servel.cl/total_votacion_5.zip",
+      "nota": "Solo los 23 senadores elegidos en 2025; el total de la bancada 2026-2034 incluye senadores no renovados (cifra de Wikipedia, no verificada)",
+      "verificado": true
+     }
     }
    },
    "estado_servel": "constituido",
@@ -1784,9 +1962,9 @@
  "disueltos_2026": [
   {
    "nombre": "Partido Radical de Chile",
-   "revertida": "probable_no_confirmada",
-   "detalle": "No se hallo nota de prensa del fallo Tricel sobre el Radical. Recurrio a Tricel y presento inaplicabilidad ante el TC (art. 56 N°2; reporte 2026-04-05). La pagina Servel de partidos constituidos (consultada 2026-11-23) lo lista como constituido, lo que es consistente con que siga vigente; la causa del Tricel debe confirmarse.",
-   "fuente_url": "https://www.servel.cl/partidos-politicos/partidos-constituidos/"
+   "revertida": "pendiente",
+   "detalle": "Figura en el registro del Servel (ficha de sep-2026 activa). Reclamación ante el Tricel suspendida desde el 8-abr-2026; requerimiento de inaplicabilidad (art. 56 N°2 Ley 18.603) con alegatos en el Pleno del TC el 24-sep-2026, 'en acuerdo'. No se encontró fallo del TC ni del Tricel al 2026-11-23.",
+   "fuente_url": "https://www.biobiochile.cl/noticias/nacional/chile/2026/09/25/partido-radical-juega-sus-ultimas-cartas-ante-el-tc-para-evitar-su-desaparicion-del-sistema-politico.shtml"
   },
   {
    "nombre": "Evolucion Politica (Evopoli)",
@@ -1861,5 +2039,168 @@
    "fuente_url": "https://www.pauta.cl/actualidad/2026/02/17/luego-de-que-servel-ordeno-su-disolucion-tres-partidos-apelaran-el-dictamen-y-otros-buscaran-reinscribirse.html"
   }
  ],
- "disueltos_2026_contexto": "Resolucion Servel de feb-2026 (CNN Chile/Emol: orden 2026-02-05/12; Servel RA N°0051 de 2026-02-06 segun un reporte) disolvio 13 partidos por Ley 18.603 art. 56 N°2 (5% de votos o 4 parlamentarios en 2 regiones) y art. 57."
+ "disueltos_2026_contexto": "Resolucion Servel de feb-2026 (CNN Chile/Emol: orden 2026-02-05/12; Servel RA N°0051 de 2026-02-06 segun un reporte) disolvio 13 partidos por Ley 18.603 art. 56 N°2 (5% de votos o 4 parlamentarios en 2 regiones) y art. 57.",
+ "votaciones": {
+  "fuente": "https://tramitacion.senado.cl/wspublico/votaciones.php?boletin=<N>",
+  "fecha_consulta": "2026-11-23",
+  "nota": "Totales de votación nominal del Senado leídos del XML oficial de tramitación; no incluye desglose por partido (ver meta.huecos). La reforma de pensiones figura con fecha 2025-01-27 en el XML (otras fuentes de prensa indican 28-ene).",
+  "senado": [
+   {
+    "tema": "Reforma de pensiones (nuevo Sistema Mixto de Pensiones)",
+    "boletin": "15480-13",
+    "fecha": "2025-01-27",
+    "instancia": "Discusión general",
+    "total": {
+     "favor": 40,
+     "contra": 7,
+     "abst": 0
+    },
+    "fuente_url": "https://tramitacion.senado.cl/wspublico/votaciones.php?boletin=15480"
+   },
+   {
+    "tema": "Reforma tributaria 2014",
+    "boletin": "9290-05",
+    "fecha": "2014-07-15",
+    "instancia": "Discusión general",
+    "total": {
+     "favor": 33,
+     "contra": 1,
+     "abst": 1
+    },
+    "fuente_url": "https://tramitacion.senado.cl/wspublico/votaciones.php?boletin=9290"
+   },
+   {
+    "tema": "Reforma tributaria 2014",
+    "boletin": "9290-05",
+    "fecha": "2014-08-19",
+    "instancia": "Discusión particular",
+    "total": {
+     "favor": 33,
+     "contra": 1,
+     "abst": 1
+    },
+    "fuente_url": "https://tramitacion.senado.cl/wspublico/votaciones.php?boletin=9290"
+   },
+   {
+    "tema": "Reforma tributaria 2014",
+    "boletin": "9290-05",
+    "fecha": "2014-08-19",
+    "instancia": "Discusión particular",
+    "total": {
+     "favor": 25,
+     "contra": 2,
+     "abst": 5
+    },
+    "fuente_url": "https://tramitacion.senado.cl/wspublico/votaciones.php?boletin=9290"
+   },
+   {
+    "tema": "Matrimonio igualitario",
+    "boletin": "11422-07",
+    "fecha": "2021-12-07",
+    "instancia": "Discusión informe de Comisión Mixta",
+    "total": {
+     "favor": 21,
+     "contra": 8,
+     "abst": 3
+    },
+    "fuente_url": "https://tramitacion.senado.cl/wspublico/votaciones.php?boletin=11422"
+   },
+   {
+    "tema": "Matrimonio igualitario",
+    "boletin": "11422-07",
+    "fecha": "2020-01-15",
+    "instancia": "Discusión general",
+    "total": {
+     "favor": 22,
+     "contra": 16,
+     "abst": 1
+    },
+    "fuente_url": "https://tramitacion.senado.cl/wspublico/votaciones.php?boletin=11422"
+   },
+   {
+    "tema": "Aborto en tres causales",
+    "boletin": "9895-11",
+    "fecha": "2017-01-25",
+    "instancia": "Discusión general",
+    "total": {
+     "favor": 20,
+     "contra": 15,
+     "abst": 2
+    },
+    "fuente_url": "https://tramitacion.senado.cl/wspublico/votaciones.php?boletin=9895"
+   },
+   {
+    "tema": "Aborto en tres causales",
+    "boletin": "9895-11",
+    "fecha": "2017-08-02",
+    "instancia": "Discusión informe de Comisión Mixta",
+    "total": {
+     "favor": 22,
+     "contra": 13,
+     "abst": 0
+    },
+    "fuente_url": "https://tramitacion.senado.cl/wspublico/votaciones.php?boletin=9895"
+   },
+   {
+    "tema": "Elección popular del órgano ejecutivo del gobierno regional (gobernadores)",
+    "boletin": "9834-06",
+    "fecha": "2016-03-01",
+    "instancia": "Discusión general",
+    "total": {
+     "favor": 37,
+     "contra": 0,
+     "abst": 0
+    },
+    "fuente_url": "https://tramitacion.senado.cl/wspublico/votaciones.php?boletin=9834"
+   },
+   {
+    "tema": "Elección popular del órgano ejecutivo del gobierno regional (gobernadores)",
+    "boletin": "9834-06",
+    "fecha": "2016-12-20",
+    "instancia": "Discusión informe de Comisión Mixta",
+    "total": {
+     "favor": 24,
+     "contra": 1,
+     "abst": 9
+    },
+    "fuente_url": "https://tramitacion.senado.cl/wspublico/votaciones.php?boletin=9834"
+   },
+   {
+    "tema": "Ley Naín-Retamal (fortalece función policial; boletines refundidos 14870/15470/15444)",
+    "boletin": "14870-25",
+    "fecha": "2023-04-04",
+    "instancia": "Discusión general",
+    "total": {
+     "favor": 40,
+     "contra": 5,
+     "abst": 0
+    },
+    "fuente_url": "https://tramitacion.senado.cl/wspublico/votaciones.php?boletin=14870"
+   },
+   {
+    "tema": "Ley Marco de Cambio Climático",
+    "boletin": "13191-12",
+    "fecha": "2020-08-25",
+    "instancia": "Discusión general",
+    "total": {
+     "favor": 41,
+     "contra": 0,
+     "abst": 0
+    },
+    "fuente_url": "https://tramitacion.senado.cl/wspublico/votaciones.php?boletin=13191"
+   },
+   {
+    "tema": "Ley Marco de Cambio Climático",
+    "boletin": "13191-12",
+    "fecha": "2022-03-09",
+    "instancia": "Discusión única",
+    "total": {
+     "favor": 32,
+     "contra": 0,
+     "abst": 0
+    },
+    "fuente_url": "https://tramitacion.senado.cl/wspublico/votaciones.php?boletin=13191"
+   }
+  ]
+ }
 }
