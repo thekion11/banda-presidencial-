@@ -6701,14 +6701,14 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#dipres_siap_429200",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-antofagasta-ampliacion-molo-de-abrigo-principal-puerto-antofagasta",
    "sector": "puertos",
    "region_id": "antofagasta",
    "estado_real": "ejecucion",
-   "inversion_musd": null,
+   "inversion_musd": 48.3,
    "mandante": "Gobierno Regional de Antofagasta (inversión regional)",
    "verificado_hecho": false,
    "verificado": false,
@@ -6732,7 +6732,7 @@
    },
    {
     "ind": "fiscal",
-    "delta": -1.0
+    "delta": -0.5
    }
   ],
   "obra": {
@@ -6750,14 +6750,14 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#dipres_siap_429200",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-antofagasta-construccion-cuartel-prefectura-provincial-tocopilla-pdi",
    "sector": "seguridad",
    "region_id": "antofagasta",
    "estado_real": "ejecucion",
-   "inversion_musd": null,
+   "inversion_musd": 6.6,
    "mandante": "Gobierno Regional de Antofagasta (inversión regional)",
    "verificado_hecho": false,
    "verificado": false,
@@ -6781,7 +6781,7 @@
    },
    {
     "ind": "fiscal",
-    "delta": -1.0
+    "delta": -0.5
    }
   ],
   "obra": {
@@ -6799,7 +6799,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#dipres_siap_429200",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-antofagasta-construccion-macrourbanizacion-heroes-de-la-concepcion-sector-la-chimb",
@@ -6847,7 +6847,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#dipres_siap_429200",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-antofagasta-construccion-plaza-paula-jaraquemada-antofagasta",
@@ -6895,7 +6895,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#curados_minvu_gob_cl",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-antofagasta-convenio-de-programacion-minvu-gore-antofagasta-2023-2029-8-733-soluci",
@@ -6943,7 +6943,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#curados_minsal_cl",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-antofagasta-hospital-multicultural-de-san-pedro-de-atacama",
@@ -6992,7 +6992,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_prensa_2026",
+  "fuente": "fuentes.json#prensa_infraestructurapublica_cl",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-antofagasta-mejoramiento-ruta-23-ch-sector-calama-san-pedro-de-atacama-dos-tramos",
@@ -7041,7 +7041,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#dipres_siap_429200",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-antofagasta-normalizacion-del-hospital-de-mejillones",
@@ -7090,7 +7090,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#dipres_siap_429200",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-antofagasta-normalizacion-hospital-21-de-mayo-de-taltal",
@@ -7139,7 +7139,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_prensa_2026",
+  "fuente": "fuentes.json#prensa_df_cl",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-antofagasta-reposicion-con-relocalizacion-edificio-consistorial-calama-nueva-munic",
@@ -7188,7 +7188,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#dipres_siap_429200",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-antofagasta-reposicion-liceo-politecnico-c-20-comuna-de-taltal",
@@ -7236,7 +7236,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#curados_araucania_mop_gob_cl",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-araucania-apr-catrimalal-temuco",
@@ -7285,7 +7285,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#curados_minsal_cl",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-araucania-centro-oncologico-ambulatorio-infantil-troi-araucania",
@@ -7330,7 +7330,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#curados_araucania_mop_gob_cl",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-araucania-mejoramiento-borde-costero-caleta-la-barra",
@@ -7379,7 +7379,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#curados_minsal_cl",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-araucania-mejoramiento-hospital-de-traiguen-conservacion-primera-etapa",
@@ -7428,7 +7428,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#curados_minsal_cl",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-araucania-nuevo-cesfam-amanecer-temuco",
@@ -7477,7 +7477,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#curados_vialidad_mop_gob_cl",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-araucania-pavimentacion-camino-huallepenco-rinconada",
@@ -7526,7 +7526,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#curados_doh_mop_gob_cl",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-araucania-reposicion-apr-hualpin-y-ampliacion-a-isla-lican-mejoramiento-apr-teod",
@@ -7575,7 +7575,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#curados_ssan_redsalud_gob_cl",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-araucania-reposicion-cesfam-alemania-de-angol",
@@ -7624,7 +7624,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_prensa_2026",
+  "fuente": "fuentes.json#prensa_encancha_cl",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-araucania-reposicion-puente-malleco-y-accesos-ruta-r-152",
@@ -7673,7 +7673,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#curados_mop_gob_cl",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-araucania-sistema-integral-apr-boyeco-panco-collimallin-maniuco-y-pajal",
@@ -7722,7 +7722,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#curados_minvu_gob_cl",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-arica-condominio-lazka-plan-urbano-habitacional-el-alto-etapa-iii",
@@ -7770,7 +7770,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#dipres_siap_429213",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-arica-construccion-centro-de-convenciones-de-pueblos-originarios-region-de-a",
@@ -7819,14 +7819,14 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#dipres_siap_429213",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-arica-construccion-centro-de-salud-ambiental-comuna-de-arica",
    "sector": "salud",
    "region_id": "arica",
    "estado_real": "ejecucion",
-   "inversion_musd": null,
+   "inversion_musd": 4.2,
    "mandante": "Gobierno Regional de Arica y Parinacota (inversión regional)",
    "verificado_hecho": false,
    "verificado": false,
@@ -7850,7 +7850,7 @@
    },
    {
     "ind": "fiscal",
-    "delta": -1.0
+    "delta": -0.5
    }
   ],
   "obra": {
@@ -7868,7 +7868,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#dipres_siap_429213",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-arica-construccion-parque-el-alto-sector-el-alto-sur-arica",
@@ -7916,7 +7916,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#dipres_siap_429213",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-arica-construccion-red-de-alcantarillado-publico-localidad-de-illapata-comun",
@@ -7965,7 +7965,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#dipres_siap_429213",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-arica-construccion-servicio-ferroviario-de-pasajeros-en-la-region-de-arica-y",
@@ -8014,7 +8014,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#dipres_siap_429213",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-arica-construccion-servicio-medico-legal-de-arica",
@@ -8063,7 +8063,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#curados_minsal_cl",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-arica-nuevo-hospital-de-alta-complejidad-de-arica",
@@ -8112,7 +8112,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_prensa_2026",
+  "fuente": "fuentes.json#prensa_theclinic_cl",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-arica-planta-desalinizadora-de-agua-de-mar-para-agua-potable-de-arica",
@@ -8161,7 +8161,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#dipres_siap_429213",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-arica-reposicion-y-ampliacion-escuela-pampa-algodonal-arica",
@@ -8209,7 +8209,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_prensa_2026",
+  "fuente": "fuentes.json#prensa_df_cl",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-arica-saneamiento-programa-demolicion-cerro-chuno-etapa-i-arica",
@@ -8257,7 +8257,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#dipres_siap_429201",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-atacama-ampliacion-red-de-agua-potable-huasco-bajo-sur-huasco",
@@ -8306,7 +8306,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#curados_goreatacama_gob_cl",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-atacama-centro-museo-y-parque-paleontologico-de-bahia-inglesa",
@@ -8355,7 +8355,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#curados_goreatacama_gob_cl",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-atacama-conjunto-habitacional-26-y-78-viviendas-nantoco",
@@ -8403,7 +8403,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#curados_goreatacama_gob_cl",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-atacama-construccion-cesfam-altiplano-norte-de-vallenar",
@@ -8448,7 +8448,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#curados_goreatacama_gob_cl",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-atacama-construccion-infraestructura-portuaria-caleta-totoral-bajo",
@@ -8497,7 +8497,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#curados_goreatacama_gob_cl",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-atacama-construccion-nuevo-cuartel-de-bomberos-de-tierra-amarilla",
@@ -8546,7 +8546,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#curados_goreatacama_gob_cl",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-atacama-construccion-plaza-cerro-corazon-chanaral",
@@ -8590,7 +8590,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#curados_goreatacama_gob_cl",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-atacama-diseno-de-arquitectura-unidad-de-angiografia-hospital-regional-de-copi",
@@ -8639,7 +8639,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#curados_goreatacama_gob_cl",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-atacama-escuela-de-formacion-de-carabineros-en-atacama",
@@ -8688,7 +8688,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#curados_goreatacama_gob_cl",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-atacama-programa-subsidio-de-conectividad-al-transporte-publico-rural-en-tierr",
@@ -8736,7 +8736,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#curados_goreatacama_gob_cl",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-atacama-proyecto-de-17-buses-electricos-estandar-red-para-caldera",
@@ -8784,7 +8784,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#curados_goreatacama_gob_cl",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-atacama-reparacion-redes-de-agua-potable-condominio-social-renacer-copiapo",
@@ -8833,7 +8833,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#curados_goreatacama_gob_cl",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-atacama-reposicion-cesfam-dr-bernardo-mellibovsky-copiapo",
@@ -8882,14 +8882,14 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#dipres_siap_429201",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-atacama-reposicion-hospital-comunitario-diego-de-almagro",
    "sector": "salud",
    "region_id": "atacama",
    "estado_real": "ejecucion",
-   "inversion_musd": null,
+   "inversion_musd": 16.8,
    "mandante": "Gobierno Regional de Atacama (inversión regional)",
    "verificado_hecho": false,
    "verificado": false,
@@ -8913,7 +8913,7 @@
    },
    {
     "ind": "fiscal",
-    "delta": -1.0
+    "delta": -0.5
    }
   ],
   "obra": {
@@ -8931,7 +8931,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#curados_aysen_mop_gob_cl",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-aysen-conservacion-mayor-aerodromo-villa-o-higgins",
@@ -8980,7 +8980,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#curados_minsal_cl",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-aysen-construccion-cesfam-coyhaique-con-sar-adosado",
@@ -9029,7 +9029,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#curados_minsal_cl",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-aysen-hospital-dr-leopoldo-ortega-de-chile-chico",
@@ -9074,7 +9074,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_prensa_2026",
+  "fuente": "fuentes.json#prensa_diarioestrategia_cl",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-aysen-nuevo-cuartel-primera-compania-de-bomberos-de-coyhaique",
@@ -9123,7 +9123,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#curados_aysen_mop_gob_cl",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-aysen-nuevo-terminal-regional-de-buses-rodoviario-de-coyhaique",
@@ -9171,7 +9171,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_prensa_2026",
+  "fuente": "fuentes.json#prensa_24horas_cl",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-aysen-pavimentacion-ruta-7-carretera-austral-bahia-murta-puente-el-belga",
@@ -9220,7 +9220,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_prensa_2026",
+  "fuente": "fuentes.json#prensa_cooperativa_cl",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-aysen-plan-ruta-austral-soberania-que-conecta-2026-2030",
@@ -9269,7 +9269,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_prensa_2026",
+  "fuente": "fuentes.json#prensa_24horas_cl",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-aysen-puente-el-manso-tramo-laguna-verde-alcantarilla-la-cascada-ruta-7",
@@ -9318,7 +9318,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#curados_mop_gob_cl",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-aysen-servicio-sanitario-rural-de-las-bandurrias",
@@ -9367,7 +9367,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#curados_gorebiobio_cl",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-biobio-autogeneracion-electrica-isla-mocha-operacion-2026",
@@ -9415,7 +9415,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#curados_mop_gob_cl",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-biobio-complejo-fronterizo-pichachen",
@@ -9464,7 +9464,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#curados_gorebiobio_cl",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-biobio-construccion-cesfam-y-red-de-alcantarillado-sector-chacayal",
@@ -9513,7 +9513,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#curados_gorebiobio_cl",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-biobio-hospital-de-mulchen-estudio-de-prefactibilidad-y-terreno",
@@ -9562,7 +9562,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#curados_gorebiobio_cl",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-biobio-mejoramiento-de-la-gestion-del-transito-en-la-ruta-160-tramo-manuel-ro",
@@ -9611,7 +9611,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#curados_gorebiobio_cl",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-biobio-mercado-municipal-de-arauco",
@@ -9660,7 +9660,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#curados_gorebiobio_cl",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-biobio-modernizacion-mercado-municipal-de-laja",
@@ -9709,7 +9709,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#curados_gorebiobio_cl",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-biobio-nuevo-hospital-de-tome",
@@ -9758,7 +9758,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#curados_gorebiobio_cl",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-biobio-reconstruccion-liceo-manuel-alcazar-de-tucapel",
@@ -9806,7 +9806,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#curados_gorebiobio_cl",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-biobio-reposicion-liceo-politecnico-heroes-de-la-concepcion-area-tecnico-prof",
@@ -9854,7 +9854,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#curados_gorebiobio_cl",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-biobio-reposicion-mercado-central-de-talcahuano",
@@ -9903,7 +9903,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#curados_gorebiobio_cl",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-biobio-reposicion-primera-compania-de-bomberos-de-san-pedro-de-la-paz-sector",
@@ -9952,7 +9952,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#curados_gorebiobio_cl",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-biobio-servicio-sanitario-rural-de-aurora-de-enero",
@@ -10001,7 +10001,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#dipres_siap_429202",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-coquimbo-construccion-centro-de-estimulacion-temprana-para-ninos-as-con-sindrom",
@@ -10050,7 +10050,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#dipres_siap_429202",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-coquimbo-construccion-parque-recreativo-san-joaquin-comuna-de-la-serena",
@@ -10098,7 +10098,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#dipres_siap_429202",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-coquimbo-construccion-sistema-de-electrificacion-rural-rinconada-escorza-ii-eta",
@@ -10146,7 +10146,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#dipres_siap_429202",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-coquimbo-mejoramiento-integral-acceso-sur-comuna-de-illapel",
@@ -10195,7 +10195,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#dipres_siap_429202",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-coquimbo-mejoramiento-parque-urbano-avenida-sur-combarbala",
@@ -10243,7 +10243,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#curados_minsal_cl",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-coquimbo-nuevo-hospital-provincial-dr-humberto-elorza-cortes-de-illapel",
@@ -10292,7 +10292,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#dipres_siap_429202",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-coquimbo-reposicion-centro-de-salud-caren-comuna-de-monte-patria",
@@ -10341,7 +10341,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#dipres_siap_429202",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-coquimbo-reposicion-colegio-yungay-de-educacion-especial-ovalle",
@@ -10389,7 +10389,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#dipres_siap_429202",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-coquimbo-reposicion-cuartel-1-compania-de-bomberos-sindempart-coquimbo",
@@ -10438,7 +10438,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#dipres_siap_429202",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-coquimbo-reposicion-escuela-basica-canela-alta-canela",
@@ -10486,7 +10486,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#dipres_siap_429202",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-coquimbo-reposicion-subcomisaria-tierras-blancas-coquimbo",
@@ -10535,7 +10535,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#curados_mop_gob_cl",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-loslagos-acceso-norte-a-osorno-ampliacion-ruta-u-500-sector-pilauco-y-nuevo-pue",
@@ -10584,7 +10584,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#curados_mop_gob_cl",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-loslagos-borde-costero-de-puerto-varas",
@@ -10632,7 +10632,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#curados_mop_gob_cl",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-loslagos-caleta-anahuac-puerto-montt",
@@ -10677,7 +10677,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#curados_aeropuertos_mop_gob_cl",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-loslagos-conservacion-global-de-pequenos-aerodromos-de-chiloe-2026-2027",
@@ -10726,7 +10726,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#curados_subtrans_gob_cl",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-loslagos-construccion-ascensores-interterrazas-de-puerto-montt",
@@ -10774,7 +10774,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#curados_minvu_gob_cl",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-loslagos-predio-baquedano-540-viviendas-y-parque-osorno",
@@ -10822,7 +10822,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#curados_vialidad_mop_gob_cl",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-loslagos-puente-el-negro-ruta-w-807-chana-chumelden",
@@ -10867,7 +10867,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#curados_losrios_mop_gob_cl",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-losrios-construccion-segunda-barcaza-conexion-futrono-isla-huapi",
@@ -10915,7 +10915,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#curados_losrios_mop_gob_cl",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-losrios-etapa-2-circunvalacion-de-valdivia",
@@ -10964,7 +10964,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#curados_losrios_mop_gob_cl",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-losrios-mejoramiento-ruta-choshuenco-rinihue-primera-etapa",
@@ -11013,7 +11013,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#curados_losrios_mop_gob_cl",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-losrios-mejoramiento-ruta-rupumeica-alto-rupumeica-bajo",
@@ -11062,7 +11062,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#curados_losrios_mop_gob_cl",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-losrios-mejoramiento-y-pavimentacion-ruta-t-60-camino-viejo-a-la-union-tramo-2",
@@ -11111,7 +11111,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#curados_losrios_mop_gob_cl",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-losrios-modernizacion-borde-fluvial-y-balneario-cocule",
@@ -11159,7 +11159,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#curados_losrios_mop_gob_cl",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-losrios-nuevo-cuartel-de-la-pdi-en-la-union",
@@ -11208,7 +11208,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#curados_vialidad_mop_gob_cl",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-losrios-puente-collilelfu-2-ciudad-de-los-lagos",
@@ -11257,7 +11257,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#curados_goremagallanes_cl",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-magallanes-conservacion-escuela-espana-punta-arenas",
@@ -11305,7 +11305,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#curados_goremagallanes_cl",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-magallanes-construccion-avda-circunvalacion-tramo-pedro-borquez-gral-del-canto-pu",
@@ -11354,7 +11354,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#curados_goremagallanes_cl",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-magallanes-construccion-colector-interceptor-de-aguas-servidas-de-av-frei-punta-a",
@@ -11403,7 +11403,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#curados_goremagallanes_cl",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-magallanes-construccion-obras-de-control-sedimentologico-rio-de-las-minas-punta-a",
@@ -11452,7 +11452,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#curados_goremagallanes_cl",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-magallanes-escuela-de-carabineros-de-magallanes",
@@ -11501,7 +11501,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#curados_goremagallanes_cl",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-magallanes-mejoramiento-red-de-agua-potable-puerto-williams",
@@ -11550,7 +11550,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#curados_mop_gob_cl",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-magallanes-mejoramiento-ruta-9-norte-e-iluminacion-ruta-al-aeropuerto-de-punta-ar",
@@ -11599,7 +11599,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#curados_goremagallanes_cl",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-magallanes-mejoramiento-y-ampliacion-gimnasio-municipal-villa-alfredo-lorca",
@@ -11648,7 +11648,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#curados_goremagallanes_cl",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-magallanes-reposicion-y-actualizacion-red-de-alcantarillado-y-ptas-villa-punta-de",
@@ -11697,7 +11697,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_prensa_2026",
+  "fuente": "fuentes.json#prensa_cpichile_org",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-maule-apr-molino-ventana-del-alto-a-santa-laura-de-teno",
@@ -11746,7 +11746,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_prensa_2026",
+  "fuente": "fuentes.json#prensa_cpichile_org",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-maule-apr-pejerrey-los-hualles",
@@ -11795,7 +11795,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_prensa_2026",
+  "fuente": "fuentes.json#prensa_meganoticias_cl",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-maule-estudio-aeropuerto-internacional-de-carga-del-maule",
@@ -11844,7 +11844,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_prensa_2026",
+  "fuente": "fuentes.json#prensa_cpichile_org",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-maule-master-plan-de-bordes-costeros-y-caletas-2026-2035",
@@ -11893,7 +11893,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_prensa_2026",
+  "fuente": "fuentes.json#prensa_radioagricultura_cl",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-maule-nuevo-hospital-de-licanten",
@@ -11942,7 +11942,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_prensa_2026",
+  "fuente": "fuentes.json#prensa_reporteminero_cl",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-maule-parque-eolico-el-parron",
@@ -11990,7 +11990,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_prensa_2026",
+  "fuente": "fuentes.json#prensa_reporteminero_cl",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-maule-parque-eolico-viento-pacifico-verde",
@@ -12038,7 +12038,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_prensa_2026",
+  "fuente": "fuentes.json#prensa_portalminero_com",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-maule-parque-fotovoltaico-el-colorado",
@@ -12086,7 +12086,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_prensa_2026",
+  "fuente": "fuentes.json#prensa_reporteminero_cl",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-maule-sistema-de-almacenamiento-de-energia-bess-en-subestacion-panguilemo",
@@ -12134,7 +12134,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#dipres_siap_411734",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-metropolitana-ampliacion-camino-padre-hurtado-ruta-g-45",
@@ -12183,7 +12183,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#dipres_siap_411734",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-metropolitana-ampliacion-ruta-76-sector-esquina-blanca-malloco",
@@ -12232,7 +12232,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#dipres_siap_411734",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-metropolitana-ampliacion-ruta-g-180-sector-costanera-norte-americo-vespucio",
@@ -12281,7 +12281,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#curados_minsal_cl",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-metropolitana-cesfam-eduardo-frei-montalva-la-cisterna",
@@ -12326,7 +12326,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_prensa_2026",
+  "fuente": "fuentes.json#prensa_theclinic_cl",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-metropolitana-ciudad-sanitaria-la-platina-cesfam-cosam-crs-y-hospital",
@@ -12375,7 +12375,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_prensa_2026",
+  "fuente": "fuentes.json#prensa_gobiernosantiago_cl",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-metropolitana-colector-san-juan-valdes-pudahuel",
@@ -12420,7 +12420,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_prensa_2026",
+  "fuente": "fuentes.json#prensa_gobiernosantiago_cl",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-metropolitana-comisaria-la-farfana-29-comisaria-maipu",
@@ -12465,7 +12465,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_prensa_2026",
+  "fuente": "fuentes.json#prensa_gobiernosantiago_cl",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-metropolitana-conservacion-del-puente-los-carros",
@@ -12514,7 +12514,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#dipres_siap_411792",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-metropolitana-construccion-avenida-centenario-entre-ruta-5-y-vicuna-mackenna",
@@ -12563,7 +12563,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#dipres_siap_411734",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-metropolitana-construccion-camino-internacional-sector-ruta-5-avda-ejercito-libertad",
@@ -12612,7 +12612,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_prensa_2026",
+  "fuente": "fuentes.json#dipres_siap_411792",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-metropolitana-construccion-canal-troncal-san-francisco",
@@ -12661,7 +12661,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#dipres_siap_411739",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-metropolitana-construccion-centro-gabriela-mistral-etapa-2-gam",
@@ -12710,7 +12710,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#dipres_siap_411733",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-metropolitana-construccion-colectores-san-francisco-y-almirante-latorre-el-bosque-la",
@@ -12759,14 +12759,14 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#dipres_siap_411806",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-metropolitana-construccion-complejo-policia-de-investigaciones-occidente-pudahuel",
    "sector": "seguridad",
    "region_id": "metropolitana",
    "estado_real": "ejecucion",
-   "inversion_musd": null,
+   "inversion_musd": 10.1,
    "mandante": "Policía de Investigaciones",
    "verificado_hecho": false,
    "verificado": false,
@@ -12790,7 +12790,7 @@
    },
    {
     "ind": "fiscal",
-    "delta": -1.0
+    "delta": -0.5
    }
   ],
   "obra": {
@@ -12808,7 +12808,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#dipres_siap_411775",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-metropolitana-construccion-cosam-antumapu-la-pintana",
@@ -12857,7 +12857,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#dipres_siap_411805",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-metropolitana-construccion-edificio-direccion-general-de-carabineros-de-chile",
@@ -12906,7 +12906,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#dipres_siap_411797",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-metropolitana-construccion-eje-de-movilidad-independencia",
@@ -12954,7 +12954,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#dipres_siap_411792",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-metropolitana-construccion-eje-juanita-la-platina-la-pintana",
@@ -13003,7 +13003,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#dipres_siap_411733",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-metropolitana-construccion-hidroparque-la-aguada-etapa-ii",
@@ -13052,14 +13052,14 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#dipres_siap_411775",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-metropolitana-construccion-hospital-provincia-cordillera-puente-alto",
    "sector": "salud",
    "region_id": "metropolitana",
    "estado_real": "ejecucion",
-   "inversion_musd": null,
+   "inversion_musd": 176.8,
    "mandante": "Servicio de Salud Metropolitano Sur-Oriente",
    "verificado_hecho": false,
    "verificado": false,
@@ -13083,7 +13083,7 @@
    },
    {
     "ind": "fiscal",
-    "delta": -1.0
+    "delta": -0.5
    }
   ],
   "obra": {
@@ -13101,14 +13101,14 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#dipres_siap_411774",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-metropolitana-construccion-nuevo-cesfam-de-padre-hurtado",
    "sector": "salud",
    "region_id": "metropolitana",
    "estado_real": "ejecucion",
-   "inversion_musd": null,
+   "inversion_musd": 9.3,
    "mandante": "Servicio de Salud Metropolitano Occidente",
    "verificado_hecho": false,
    "verificado": false,
@@ -13132,7 +13132,7 @@
    },
    {
     "ind": "fiscal",
-    "delta": -1.0
+    "delta": -0.5
    }
   ],
   "obra": {
@@ -13150,7 +13150,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_prensa_2026",
+  "fuente": "fuentes.json#dipres_siap_411733",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-metropolitana-construccion-obras-de-retencion-en-hondonada-quebrada-de-macul",
@@ -13199,7 +13199,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#dipres_siap_411792",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-metropolitana-construccion-parque-la-platina-etapa-1-la-pintana",
@@ -13247,7 +13247,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#dipres_siap_411775",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-metropolitana-construccion-sar-cardenal-raul-silva-henriquez-puente-alto",
@@ -13296,7 +13296,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#dipres_siap_411773",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-metropolitana-construccion-sar-de-quilicura",
@@ -13345,7 +13345,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#dipres_siap_411773",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-metropolitana-construccion-sar-juan-antonio-rios-independencia",
@@ -13394,7 +13394,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#dipres_siap_411772",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-metropolitana-construccion-sar-paine",
@@ -13443,7 +13443,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#dipres_siap_411772",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-metropolitana-construccion-sar-santa-laura-el-bosque",
@@ -13492,7 +13492,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#dipres_siap_411733",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-metropolitana-construccion-sistema-de-drenaje-urbano-zona-norte-de-santiago-canal-lo",
@@ -13541,7 +13541,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#dipres_siap_411733",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-metropolitana-construccion-sistema-de-drenaje-zona-sur-poniente-etapa-1-canal-santa",
@@ -13590,7 +13590,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#dipres_siap_411733",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-metropolitana-construccion-sistema-de-evacuacion-de-aguas-lluvias-comuna-de-la-flori",
@@ -13639,14 +13639,14 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#dipres_siap_411805",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-metropolitana-construccion-subcomisaria-de-carabineros-huechuraba-poniente",
    "sector": "seguridad",
    "region_id": "metropolitana",
    "estado_real": "ejecucion",
-   "inversion_musd": null,
+   "inversion_musd": 6.3,
    "mandante": "Carabineros de Chile",
    "verificado_hecho": false,
    "verificado": false,
@@ -13670,7 +13670,7 @@
    },
    {
     "ind": "fiscal",
-    "delta": -1.0
+    "delta": -0.5
    }
   ],
   "obra": {
@@ -13688,14 +13688,14 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_prensa_2026",
+  "fuente": "fuentes.json#dipres_siap_411792",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-metropolitana-construccion-teleferico-pio-nono-parque-metropolitano-de-santiago",
    "sector": "transporte",
    "region_id": "metropolitana",
    "estado_real": "ejecucion",
-   "inversion_musd": null,
+   "inversion_musd": 38.0,
    "mandante": "SERVIU Metropolitano",
    "verificado_hecho": false,
    "verificado": false,
@@ -13719,7 +13719,7 @@
    },
    {
     "ind": "fiscal",
-    "delta": -1.0
+    "delta": -0.5
    }
   ],
   "obra": {
@@ -13736,7 +13736,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#dipres_siap_411734",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-metropolitana-construccion-y-mejoramiento-conexion-vial-lampa-pudahuel-penaflor-tala",
@@ -13785,7 +13785,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_prensa_2026",
+  "fuente": "fuentes.json#prensa_gobiernosantiago_cl",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-metropolitana-convenio-aceleracion-de-infraestructura-de-aguas-lluvias-rm-2025-2030",
@@ -13834,7 +13834,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_prensa_2026",
+  "fuente": "fuentes.json#prensa_gobiernosantiago_cl",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-metropolitana-cuartel-bicrim-pdi-san-ramon",
@@ -13879,7 +13879,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_prensa_2026",
+  "fuente": "fuentes.json#prensa_gobiernosantiago_cl",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-metropolitana-cuartel-pdi-quilicura",
@@ -13924,7 +13924,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_prensa_2026",
+  "fuente": "fuentes.json#prensa_theclinic_cl",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-metropolitana-eco-barrio-la-platina-4-500-viviendas-la-pintana",
@@ -13972,7 +13972,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_prensa_2026",
+  "fuente": "fuentes.json#prensa_gobiernosantiago_cl",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-metropolitana-estacion-de-buses-electricos-con-electrolinera-pirque",
@@ -14016,7 +14016,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_prensa_2026",
+  "fuente": "fuentes.json#prensa_gobiernosantiago_cl",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-metropolitana-estadio-la-montura-san-miguel",
@@ -14061,7 +14061,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_prensa_2026",
+  "fuente": "fuentes.json#prensa_gobiernosantiago_cl",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-metropolitana-estadio-municipal-roberto-bravo-santibanez-melipilla",
@@ -14110,7 +14110,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_prensa_2026",
+  "fuente": "fuentes.json#prensa_gobiernosantiago_cl",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-metropolitana-hospital-clinico-publico-veterinario-regional",
@@ -14159,7 +14159,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#curados_parvularia_mineduc_cl",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-metropolitana-jardin-infantil-el-arte-de-violeta-macul",
@@ -14203,7 +14203,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#dipres_siap_411792",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-metropolitana-mejoramiento-bandejon-central-huertos-familiares-til-til",
@@ -14251,20 +14251,20 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#dipres_siap_411806",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-metropolitana-mejoramiento-jefatura-nacional-de-inteligencia-policial-pdi-nunoa",
    "sector": "seguridad",
    "region_id": "metropolitana",
-   "estado_real": "ejecucion",
+   "estado_real": "diseno",
    "inversion_musd": null,
    "mandante": "Policía de Investigaciones",
    "verificado_hecho": false,
    "verificado": false,
    "fuente_url": "https://www.dipres.gob.cl/597/articles-411806_doc_pdf.pdf",
    "cifras_ilustrativas": true,
-   "modo": "acelerar"
+   "modo": "obra"
   },
   "disponibilidad": {
    "anio_desde": 1,
@@ -14274,11 +14274,11 @@
    "meta": null
   },
   "costo_pa": 2,
-  "titulo": "Acelerar: Mejoramiento Jefatura Nacional",
+  "titulo": "Mejoramiento Jefatura Nacional de Inteligencia Policial PDI",
   "efectos": [
    {
     "ind": "aprobacion",
-    "delta": 2.5
+    "delta": 3
    },
    {
     "ind": "fiscal",
@@ -14287,7 +14287,7 @@
   ],
   "obra": {
    "nombre": "Mejoramiento Jefatura Nacional de Inteligencia Policial PDI, Ñuñoa",
-   "dias_totales": 90
+   "dias_totales": 100
   },
   "arte": "seguridad_carceles"
  },
@@ -14300,7 +14300,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#dipres_siap_411732",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-metropolitana-mejoramiento-parque-coronel-santiago-bueras-lo-prado",
@@ -14348,7 +14348,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#curados_interior_gob_cl",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-metropolitana-mejoramiento-parque-portales-santiago",
@@ -14396,7 +14396,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_prensa_2026",
+  "fuente": "fuentes.json#dipres_siap_411792",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-metropolitana-mejoramiento-parque-rio-viejo-la-hondonada",
@@ -14444,7 +14444,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#dipres_siap_411792",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-metropolitana-mejoramiento-plaza-12-de-octubre-san-miguel",
@@ -14492,7 +14492,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_prensa_2026",
+  "fuente": "fuentes.json#prensa_gobiernosantiago_cl",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-metropolitana-mirador-y-sendero-cerros-de-renca",
@@ -14540,14 +14540,14 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#dipres_siap_411772",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-metropolitana-normalizacion-hospital-barros-luco-trudeau",
    "sector": "salud",
    "region_id": "metropolitana",
    "estado_real": "ejecucion",
-   "inversion_musd": null,
+   "inversion_musd": 376.8,
    "mandante": "Servicio de Salud Metropolitano Sur",
    "verificado_hecho": false,
    "verificado": false,
@@ -14571,7 +14571,7 @@
    },
    {
     "ind": "fiscal",
-    "delta": -1.0
+    "delta": -0.6
    }
   ],
   "obra": {
@@ -14589,7 +14589,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#dipres_siap_411775",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-metropolitana-normalizacion-hospital-padre-hurtado-san-ramon",
@@ -14638,7 +14638,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#dipres_siap_411803",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-metropolitana-normalizacion-velodromo-sergio-tormen-nunoa",
@@ -14687,7 +14687,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_prensa_2026",
+  "fuente": "fuentes.json#prensa_latercera_com",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-metropolitana-nuevo-cesfam-cerro-colorado-renca",
@@ -14732,7 +14732,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#curados_minsal_cl",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-metropolitana-nuevo-hospital-zona-norte-de-la-region-metropolitana",
@@ -14781,7 +14781,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_prensa_2026",
+  "fuente": "fuentes.json#prensa_gobiernosantiago_cl",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-metropolitana-obras-zona-tipica-barrio-plaza-chacabuco-y-av-fermin-vivaceta-independ",
@@ -14825,7 +14825,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_prensa_2026",
+  "fuente": "fuentes.json#prensa_gobiernosantiago_cl",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-metropolitana-parque-calle-g-conchali",
@@ -14873,7 +14873,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_prensa_2026",
+  "fuente": "fuentes.json#prensa_theclinic_cl",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-metropolitana-parque-la-aguada-el-pajonal-maipu",
@@ -14921,7 +14921,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_prensa_2026",
+  "fuente": "fuentes.json#prensa_gobiernosantiago_cl",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-metropolitana-parque-metropolitano-sur-cerro-chena",
@@ -14969,7 +14969,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_prensa_2026",
+  "fuente": "fuentes.json#prensa_gobiernosantiago_cl",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-metropolitana-paseo-fluvial-rio-mapocho",
@@ -15017,7 +15017,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#curados_minvu_gob_cl",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-metropolitana-proyecto-nueva-francisco-coloane-etapa-c1-bajos-de-mena",
@@ -15065,7 +15065,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_prensa_2026",
+  "fuente": "fuentes.json#prensa_gobiernosantiago_cl",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-metropolitana-remodelacion-plaza-poniente-del-centro-cultural-gam",
@@ -15114,7 +15114,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_prensa_2026",
+  "fuente": "fuentes.json#prensa_gobiernosantiago_cl",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-metropolitana-remodelacion-poligono-diagonal-paraguay-santiago",
@@ -15162,7 +15162,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_prensa_2026",
+  "fuente": "fuentes.json#prensa_radio_uchile_cl",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-metropolitana-renovacion-total-de-sillones-dentales-clinica-odontologica-universidad",
@@ -15210,14 +15210,14 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#dipres_siap_411771",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-metropolitana-reparacion-mayor-del-cdt-y-placa-del-hospital-clinico-san-borja-arriar",
    "sector": "salud",
    "region_id": "metropolitana",
    "estado_real": "ejecucion",
-   "inversion_musd": null,
+   "inversion_musd": 102.1,
    "mandante": "Servicio de Salud Metropolitano Central",
    "verificado_hecho": false,
    "verificado": false,
@@ -15241,7 +15241,7 @@
    },
    {
     "ind": "fiscal",
-    "delta": -1.0
+    "delta": -0.5
    }
   ],
   "obra": {
@@ -15259,7 +15259,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#dipres_siap_411773",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-metropolitana-reposicion-centro-de-salud-juan-petrinovic-briones-recoleta",
@@ -15308,7 +15308,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#dipres_siap_411771",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-metropolitana-reposicion-cesfam-con-sar-san-jose-de-chuchunco-estacion-central",
@@ -15357,7 +15357,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#dipres_siap_411770",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-metropolitana-reposicion-cesfam-dr-hernan-alessandri-providencia",
@@ -15406,7 +15406,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#dipres_siap_411770",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-metropolitana-reposicion-cesfam-felix-de-amesti-macul",
@@ -15455,7 +15455,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#dipres_siap_411772",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-metropolitana-reposicion-cesfam-haydee-lopez-el-bosque",
@@ -15504,14 +15504,14 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#dipres_siap_411775",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-metropolitana-reposicion-complejo-asistencial-dr-sotero-del-rio",
    "sector": "salud",
    "region_id": "metropolitana",
    "estado_real": "ejecucion",
-   "inversion_musd": null,
+   "inversion_musd": 401.1,
    "mandante": "Servicio de Salud Metropolitano Sur-Oriente",
    "verificado_hecho": false,
    "verificado": false,
@@ -15535,7 +15535,7 @@
    },
    {
     "ind": "fiscal",
-    "delta": -1.0
+    "delta": -0.7
    }
   ],
   "obra": {
@@ -15553,7 +15553,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#dipres_siap_411806",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-metropolitana-reposicion-complejo-policial-pdi-metropolitano-oriente",
@@ -15602,7 +15602,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#dipres_siap_411803",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-metropolitana-reposicion-con-ampliacion-estadio-clara-estrella-lo-espejo",
@@ -15651,7 +15651,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#dipres_siap_411772",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-metropolitana-reposicion-con-relocalizacion-cesfam-baeza-goni-san-joaquin",
@@ -15700,7 +15700,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#dipres_siap_411770",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-metropolitana-reposicion-con-relocalizacion-consultorio-ossandon-la-reina",
@@ -15749,14 +15749,14 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#dipres_siap_411774",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-metropolitana-reposicion-con-relocalizacion-hospital-de-melipilla",
    "sector": "salud",
    "region_id": "metropolitana",
    "estado_real": "ejecucion",
-   "inversion_musd": null,
+   "inversion_musd": 98.5,
    "mandante": "Servicio de Salud Metropolitano Occidente",
    "verificado_hecho": false,
    "verificado": false,
@@ -15780,7 +15780,7 @@
    },
    {
     "ind": "fiscal",
-    "delta": -1.0
+    "delta": -0.5
    }
   ],
   "obra": {
@@ -15798,7 +15798,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#dipres_siap_411705",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-metropolitana-reposicion-con-relocalizacion-juzgado-de-garantia-y-tribunal-de-juicio",
@@ -15847,7 +15847,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#dipres_siap_411705",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-metropolitana-reposicion-con-relocalizacion-juzgado-de-letras-de-colina",
@@ -15896,7 +15896,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#dipres_siap_411772",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-metropolitana-reposicion-consultorio-julio-acuna-pinzon-lo-espejo",
@@ -15945,7 +15945,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#dipres_siap_411770",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-metropolitana-reposicion-hospital-luis-calvo-mackenna",
@@ -15994,7 +15994,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#dipres_siap_411709",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-metropolitana-reposicion-jardin-infantil-bambi-cerro-navia",
@@ -16042,7 +16042,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#dipres_siap_411774",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-metropolitana-reposicion-pabellones-y-upc-instituto-traumatologico",
@@ -16091,7 +16091,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#dipres_siap_411734",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-metropolitana-reposicion-puente-esperanza-en-ruta-g-68-padre-hurtado",
@@ -16140,20 +16140,20 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#dipres_siap_411709",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-metropolitana-reposicion-sala-cuna-y-jardin-infantil-cepillin-la-granja",
    "sector": "educacion",
    "region_id": "metropolitana",
-   "estado_real": "ejecucion",
+   "estado_real": "diseno",
    "inversion_musd": null,
    "mandante": "JUNJI",
    "verificado_hecho": false,
    "verificado": false,
    "fuente_url": "https://www.dipres.gob.cl/597/articles-411709_doc_pdf.pdf",
    "cifras_ilustrativas": true,
-   "modo": "acelerar"
+   "modo": "obra"
   },
   "disponibilidad": {
    "anio_desde": 1,
@@ -16163,11 +16163,11 @@
    "meta": null
   },
   "costo_pa": 2,
-  "titulo": "Acelerar: Reposición Sala Cuna y Jardín Infantil Cepillín",
+  "titulo": "Reposición Sala Cuna y Jardín Infantil Cepillín, La Granja",
   "efectos": [
    {
     "ind": "aprobacion",
-    "delta": 2.5
+    "delta": 3
    },
    {
     "ind": "fiscal",
@@ -16176,7 +16176,7 @@
   ],
   "obra": {
    "nombre": "Reposición Sala Cuna y Jardín Infantil Cepillín, La Granja",
-   "dias_totales": 90
+   "dias_totales": 100
   }
  },
  {
@@ -16188,7 +16188,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#dipres_siap_411709",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-metropolitana-reposicion-sala-cuna-y-jardin-infantil-duendecitos-y-duendecitas-puent",
@@ -16236,7 +16236,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#dipres_siap_411709",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-metropolitana-reposicion-sala-cuna-y-jardin-infantil-estrella-de-los-morros-el-bosqu",
@@ -16284,7 +16284,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#dipres_siap_411709",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-metropolitana-reposicion-sala-cuna-y-jardin-infantil-semillitas-estacion-central",
@@ -16332,7 +16332,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#dipres_siap_411709",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-metropolitana-reposicion-sala-cuna-y-jardin-infantil-ternura-quinta-normal",
@@ -16380,7 +16380,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#dipres_siap_411773",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-metropolitana-reposicion-y-relocalizacion-cesfam-huertos-familiares-til-til",
@@ -16429,7 +16429,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#curados_parvularia_mineduc_cl",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-metropolitana-sala-cuna-y-jardin-infantil-valdivia-la-granja",
@@ -16473,7 +16473,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#curados_sea_gob_cl",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-metropolitana-sistema-de-transmision-lo-aguirre-peralillo-y-sistema-de-almacenamient",
@@ -16521,7 +16521,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#curados_mop_gob_cl",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-metropolitana-subcomisaria-motorizada-de-carabineros-renca",
@@ -16570,7 +16570,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_prensa_2026",
+  "fuente": "fuentes.json#prensa_gobiernosantiago_cl",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-metropolitana-tercer-tramo-de-la-ciclovia-nueva-alameda",
@@ -16618,7 +16618,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#curados_goredenuble_cl",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-nuble-aeropuerto-bernardo-o-higgins-nuble",
@@ -16667,7 +16667,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#curados_goredenuble_cl",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-nuble-cesfam-de-pinto",
@@ -16716,14 +16716,14 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#curados_goredenuble_cl",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-nuble-instituto-teleton-nuble",
    "sector": "salud",
    "region_id": "nuble",
    "estado_real": "ejecucion",
-   "inversion_musd": null,
+   "inversion_musd": 14.7,
    "mandante": "Gobierno Regional de Ñuble",
    "verificado_hecho": false,
    "verificado": false,
@@ -16747,7 +16747,7 @@
    },
    {
     "ind": "fiscal",
-    "delta": -1.0
+    "delta": -0.5
    }
   ],
   "obra": {
@@ -16765,7 +16765,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_prensa_2026",
+  "fuente": "fuentes.json#prensa_cpichile_org",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-nuble-mejoramiento-del-borde-costero-de-mela",
@@ -16814,7 +16814,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_prensa_2026",
+  "fuente": "fuentes.json#prensa_cpichile_org",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-nuble-mejoramiento-del-borde-costero-de-perales",
@@ -16863,7 +16863,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#curados_minsal_cl",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-nuble-nuevo-hospital-regional-de-nuble",
@@ -16912,7 +16912,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#curados_goredenuble_cl",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-nuble-nuevo-liceo-de-yungay",
@@ -16960,7 +16960,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_prensa_2026",
+  "fuente": "fuentes.json#prensa_biobiochile_cl",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-nuble-puente-quillon-bulnes-sobre-el-rio-itata-sector-cerro-negro",
@@ -17009,7 +17009,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#curados_goredenuble_cl",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-nuble-remodelacion-eje-comercial-de-quillon-calles-el-roble-san-martin-y-art",
@@ -17057,7 +17057,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_prensa_2026",
+  "fuente": "fuentes.json#prensa_g5noticias_cl",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-nuble-reposicion-ruta-n-59-q-chillan-yungay-tramo-i-puente-las-lajuelas-escu",
@@ -17106,7 +17106,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#curados_minvu_gob_cl",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-nuble-san-bartolome-ii-comite-pedro-lagos-marchant",
@@ -17154,7 +17154,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_prensa_2026",
+  "fuente": "fuentes.json#prensa_g5noticias_cl",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-nuble-servicio-sanitario-rural-las-cabras-nuevo",
@@ -17203,7 +17203,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_prensa_2026",
+  "fuente": "fuentes.json#prensa_g5noticias_cl",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-nuble-sondaje-para-ssr-copihual",
@@ -17252,7 +17252,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_prensa_2026",
+  "fuente": "fuentes.json#prensa_radioagricultura_cl",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-ohiggins-altos-de-mackenna",
@@ -17296,7 +17296,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_prensa_2026",
+  "fuente": "fuentes.json#prensa_radioagricultura_cl",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-ohiggins-condominio-el-sol",
@@ -17340,7 +17340,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_prensa_2026",
+  "fuente": "fuentes.json#prensa_cpichile_org",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-ohiggins-construccion-hogar-de-adultos-mayores-de-malloa",
@@ -17389,7 +17389,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_prensa_2026",
+  "fuente": "fuentes.json#prensa_24horas_cl",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-ohiggins-instituto-teleton-o-higgins",
@@ -17434,7 +17434,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_prensa_2026",
+  "fuente": "fuentes.json#prensa_cpichile_org",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-ohiggins-mejoramiento-del-camino-h-634",
@@ -17483,7 +17483,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_prensa_2026",
+  "fuente": "fuentes.json#prensa_elrancaguino_cl",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-ohiggins-mejoramiento-y-ampliacion-avenida-baquedano-segunda-etapa",
@@ -17532,7 +17532,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#curados_minsal_cl",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-ohiggins-nuevo-hospital-de-san-vicente",
@@ -17581,7 +17581,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_prensa_2026",
+  "fuente": "fuentes.json#prensa_portalminero_com",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-ohiggins-parque-fotovoltaico-bastian-solar",
@@ -17629,7 +17629,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_prensa_2026",
+  "fuente": "fuentes.json#prensa_reporteminero_cl",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-ohiggins-parque-fotovoltaico-y-sistema-bess-chanqueahue",
@@ -17677,7 +17677,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_prensa_2026",
+  "fuente": "fuentes.json#prensa_reporteminero_cl",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-ohiggins-planta-solar-la-hornilla",
@@ -17725,7 +17725,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_prensa_2026",
+  "fuente": "fuentes.json#prensa_cpichile_org",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-ohiggins-reposicion-del-puente-la-candelaria",
@@ -17774,7 +17774,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_prensa_2026",
+  "fuente": "fuentes.json#prensa_cpichile_org",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-ohiggins-reposicion-liceo-claudio-arrau-leon",
@@ -17822,7 +17822,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_prensa_2026",
+  "fuente": "fuentes.json#prensa_cpichile_org",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-ohiggins-reposicion-liceo-san-jose-del-carmen",
@@ -17870,7 +17870,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_prensa_2026",
+  "fuente": "fuentes.json#prensa_cpichile_org",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-ohiggins-reposicion-primera-compania-de-bomberos-de-malloa",
@@ -17919,7 +17919,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_prensa_2026",
+  "fuente": "fuentes.json#prensa_cpichile_org",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-ohiggins-reposicion-reten-de-carabineros-de-los-lirios",
@@ -17968,7 +17968,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_prensa_2026",
+  "fuente": "fuentes.json#prensa_cpichile_org",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-ohiggins-ssr-codegua-chimbarongo",
@@ -18017,7 +18017,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_prensa_2026",
+  "fuente": "fuentes.json#prensa_cpichile_org",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-ohiggins-ssr-el-caleuche-san-roberto-san-luis",
@@ -18066,7 +18066,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_prensa_2026",
+  "fuente": "fuentes.json#prensa_biobiochile_cl",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-ohiggins-subestacion-totihue",
@@ -18110,7 +18110,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#dipres_siap_429199",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-tarapaca-construccion-cuartel-de-1ra-compania-y-cuartel-general-del-cuerpo-de-b",
@@ -18159,7 +18159,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_prensa_2026",
+  "fuente": "fuentes.json#prensa_aduana_cl",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-tarapaca-construccion-nueva-avanzada-aduanera-cerca-del-rio-loa",
@@ -18208,7 +18208,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#dipres_siap_429199",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-tarapaca-construccion-nuevo-cementerio-municipal-comuna-iquique",
@@ -18257,7 +18257,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#dipres_siap_429199",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-tarapaca-construccion-red-alcantarillado-poblacion-las-quintas-pozo-almonte",
@@ -18306,7 +18306,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#curados_minvu_gob_cl",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-tarapaca-megaproyectos-habitacionales-brisas-del-tamarugal-ii-y-iii-alto-hospic",
@@ -18354,7 +18354,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_prensa_2026",
+  "fuente": "fuentes.json#prensa_serviutarapaca_minvu_cl",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-tarapaca-mejoramiento-del-entorno-del-mercado-de-iquique",
@@ -18402,7 +18402,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_prensa_2026",
+  "fuente": "fuentes.json#prensa_serviutarapaca_minvu_cl",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-tarapaca-obras-de-la-avenida-ricardo-lagos-alto-hospicio",
@@ -18451,7 +18451,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#curados_minvu_gob_cl",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-tarapaca-plan-iquique-sur",
@@ -18499,7 +18499,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#curados_minvu_gob_cl",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-tarapaca-plan-socavones-alto-hospicio",
@@ -18547,7 +18547,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#dipres_siap_429199",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-tarapaca-reposicion-con-relocalizacion-centro-de-salud-camina",
@@ -18596,7 +18596,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#dipres_siap_429199",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-tarapaca-reposicion-con-relocalizacion-escuela-fuerte-baquedano-comuna-de-pozo",
@@ -18644,7 +18644,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#dipres_siap_429199",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-tarapaca-restauracion-ex-carcel-de-pisagua-para-el-centro-de-interpretacion-his",
@@ -18693,14 +18693,14 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_prensa_2026",
+  "fuente": "fuentes.json#prensa_cpichile_org",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-valparaiso-ampliacion-y-mejoramiento-del-aerodromo-vina-del-mar-concon",
    "sector": "aeropuertos",
    "region_id": "valparaiso",
    "estado_real": "diseno",
-   "inversion_musd": null,
+   "inversion_musd": 80.0,
    "mandante": "MOP, Dirección de Aeropuertos",
    "verificado_hecho": false,
    "verificado": false,
@@ -18724,12 +18724,12 @@
    },
    {
     "ind": "fiscal",
-    "delta": -1.0
+    "delta": -0.5
    }
   ],
   "obra": {
    "nombre": "Ampliación y mejoramiento del aeródromo Viña del Mar (Concón)",
-   "dias_totales": 100
+   "dias_totales": 106
   },
   "arte": "transportes_aeropuertos"
  },
@@ -18742,7 +18742,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_prensa_2026",
+  "fuente": "fuentes.json#prensa_g5noticias_cl",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-valparaiso-conservacion-del-liceo-bicentenario-maritimo-de-valparaiso",
@@ -18786,7 +18786,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#curados_minsal_cl",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-valparaiso-expansion-del-hospital-carlos-van-buren",
@@ -18835,7 +18835,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_oficiales_2026",
+  "fuente": "fuentes.json#curados_minsal_cl",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-valparaiso-hospital-claudio-vicuna-nuevo-hospital-de-alta-complejidad-de-san-anto",
@@ -18880,14 +18880,14 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_prensa_2026",
+  "fuente": "fuentes.json#prensa_g5noticias_cl",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-valparaiso-hospital-provincial-marga-marga",
    "sector": "salud",
    "region_id": "valparaiso",
    "estado_real": "terminado",
-   "inversion_musd": null,
+   "inversion_musd": 107.3,
    "mandante": "Servicio de Salud Viña del Mar Quillota Petorca",
    "verificado_hecho": false,
    "verificado": false,
@@ -18925,7 +18925,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_prensa_2026",
+  "fuente": "fuentes.json#prensa_elmostrador_cl",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-valparaiso-nuevo-instituto-teleton-valparaiso",
@@ -18974,7 +18974,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_prensa_2026",
+  "fuente": "fuentes.json#prensa_g5noticias_cl",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-valparaiso-parque-baron",
@@ -19022,7 +19022,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_prensa_2026",
+  "fuente": "fuentes.json#prensa_reporteminero_cl",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-valparaiso-parque-fotovoltaico-y-bess-versalles-ii-sector-chilicauquen",
@@ -19070,7 +19070,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_prensa_2026",
+  "fuente": "fuentes.json#prensa_df_cl",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-valparaiso-parque-solar-fotovoltaico-guanay",
@@ -19118,7 +19118,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_prensa_2026",
+  "fuente": "fuentes.json#prensa_cpichile_org",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-valparaiso-planta-desalinizadora-aguas-pacifico-proyecto-aconcagua",
@@ -19167,7 +19167,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_prensa_2026",
+  "fuente": "fuentes.json#prensa_cpichile_org",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-valparaiso-puerto-exterior-de-san-antonio",
@@ -19220,7 +19220,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_prensa_2026",
+  "fuente": "fuentes.json#prensa_reporteminero_cl",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-valparaiso-sistema-de-generacion-solar-fotovoltaica-loma-verde",
@@ -19268,7 +19268,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_prensa_2026",
+  "fuente": "fuentes.json#prensa_radioagricultura_cl",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-valparaiso-subcomisaria-de-forestal-alto",
@@ -19317,7 +19317,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_prensa_2026",
+  "fuente": "fuentes.json#prensa_cpichile_org",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-valparaiso-teleferico-de-valparaiso",
@@ -19365,7 +19365,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_prensa_2026",
+  "fuente": "fuentes.json#prensa_g5noticias_cl",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-valparaiso-tenencia-de-carabineros-de-playa-ancha",
@@ -19414,7 +19414,7 @@
   },
   "corrector": null,
   "abre_propuesta_comite": null,
-  "fuente": "fuentes.json#curados_prensa_2026",
+  "fuente": "fuentes.json#prensa_cpichile_org",
   "meta": {
    "tipo": "proyecto_publico",
    "proyecto_id": "cur-valparaiso-terminal-cerros-de-valparaiso-tcval",

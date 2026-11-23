@@ -57,3 +57,17 @@ Corte: 2026-11-23. Todo se regenera con scripts de `tools/`; ninguno esquiva blo
 Huecos conocidos: series de IPC, dólar, cobre y tasa (mindicador.cl y APIs del Banco Central no accesibles); resultados de primera vuelta por región (la única tabla disponible es secundaria y no cuadra); texto sustantivo de la propuesta 2023; quórums y fechas de leyes sectoriales no originadas en un boletín reciente; conflictos sociales y desastres 2025-2026.
 
 Regenerar: `python3 tools/bcn_proyectos.py --cache /tmp/cache`, `python3 tools/bcn_normas.py --cpr constitucion.pdf --pdf ley.pdf`, `python3 tools/bcn_reformas.py --cpr constitucion.pdf`, `python3 tools/reformas_propuestas_build.py`, `python3 tools/eventos_reales_build.py` y `python3 tools/validate_data.py`.
+
+## Proyectos públicos (`data/proyectos/*.json`) — fuentes y verificación
+
+Generados por los scripts de `tools/proyectos/` (concesiones MOP, obras MOP, EFE, MINSAL, Metro, listados curados). Esquema en `tools/proyectos/comun.py`; validador en `tools/validate_data.py` (`validar_proyectos`).
+`verificado: true` sólo si la fuente es un sitio del Estado y el dato se leyó en la página; la prensa y lo deducido quedan en `false` con nota.
+
+### Informes de Dipres citados (SIAP 2.0)
+- **Qué son:** «Informe de identificación y ejecución de inversión pública» del SIAP 2.0 de Dipres, un PDF por programa/servicio, en miles de pesos, «a marzo de 2026» (emitidos el 22-04-2026) y «a agosto de 2026» (22-09-2026). 22 PDF (`dipres.gob.cl/597/articles-<n>_doc_pdf.pdf`) sustentan 94 proyectos curados; cada PDF tiene su propia entrada en `data/fuentes.json` (`dipres_siap_<n>`) con título, programa y fecha de corte.
+- **Cómo se obtuvieron:** los enlaces los halló un agente de investigación por búsqueda web (no hay listado descargable en el sitio); los PDF sí son accesibles por enlace directo. Antes se informó que Dipres «no era accesible» por esto: el sitio y sus búsquedas no entregan carteras de proyectos, sólo estos informes sueltos. Esa lectura inicial la hizo el agente; la comprobación contra el texto se hizo después con `python3 tools/proyectos/verificar_dipres.py <carpeta>` (descarga cada PDF, lo lee con `pdftotext` y busca cada proyecto por nombre).
+- **Resultado** (`data/verificacion/dipres_siap.json`): 94 filas curadas citan un PDF de Dipres; 75 aparecen por nombre en su PDF (similitud ≥ 0,80) y 19 no. Las 19 quedan `verificado: false` con la nota «NO se halló el nombre en el PDF citado»; en las que aparecen con otra etapa, el estado se corrigió a la etapa del PDF y se anotó.
+- **Qué sale del PDF:** código BIP, nombre oficial del proyecto, etapa (→ `estado`), programa/servicio (→ `mandante`) y presupuesto 2026 identificado (anual, en notas). **No** sale del PDF: comuna (sólo hay región), fechas, ni inversión total; por eso esas filas llevan `inversion_*` en `null`.
+- **Fuentes por documento:** `curados_oficiales_2026` y `curados_prensa_2026` eran umbrellas genéricas; se sustituyen por una fuente por PDF de Dipres y una por sitio (`curados_<dominio>`, `prensa_<dominio>`).
+
+Regenerar: `python3 tools/proyectos/verificar_dipres.py /tmp/dipres_pdf && python3 tools/proyectos/aplicar_parches.py && python3 tools/proyectos/curados_jsonl.py` y luego `python3 tools/generar_cartas.py`.
