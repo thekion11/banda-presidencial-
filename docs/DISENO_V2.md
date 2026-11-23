@@ -17,3 +17,9 @@ Alcance autorizado por el usuario (ampliación sobre la Enmienda de Cierre). Tod
 "disponibilidad": {"anio_desde": 1, "anio_hasta": 4, "evento": null, "fiscal_min": null, "meta": null}
 ```
 Metas internas: `data/metas.json` (id, nombre, sector, descripcion, costo_mov, desbloquea[], efectos[]), cada una citando fuente.
+
+## Ampliación 2 (usuario, 23-nov-2026): asesores, bono por aprobación, coalición y reposición de cartas
+9. **Asesores:** se pueden contratar hasta **3 asesores distintos**. Cada uno da **+1 movimiento** por turno y además un efecto **positivo** y uno **negativo** extra (p. ej. +bono en un sector / −riesgo o −aprobación en otro). Catálogo en `data/asesores.json` (id, nombre ficticio, perfil, efecto_positivo, efecto_negativo, ideología afín), parámetros en leyes.json; entrada de guardado "asesor".
+10. **Ideología y coalición:** la ideología importa. Cada partido de tu coalición puede tener ideología distinta (ejes de `data/ideologia.json`); si gobiernas en coalición, los partidos aliados **piden poder** (cuotas de ministerios/asesores/cartas); satisfacerlos o no afecta cohesión, votos en el Congreso y movimientos internos. Partidos ficticios (no organizaciones reales).
+11. **Bono de movimientos por aprobación:** base 5. Desde **60 % de aprobación, por cada 5 % adicional (60, 65, 70, 75, 80) se agrega hasta +1 movimiento**; **después de 80 %, por cada 5 % hasta 100 % (85, 90, 95, 100) se agregan +2 movimientos**. Umbrales y valores en leyes.json.
+12. **Reposición con animación:** si usaste todas tus cartas y te quedan movimientos, se agregan más cartas a la mano/mazo (la mano nunca queda vacía con movimientos disponibles). El sim emite un registro `reposicion` (ids de cartas nuevas) para que la interfaz lo anime.

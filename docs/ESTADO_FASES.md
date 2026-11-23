@@ -59,3 +59,9 @@ Las comparaciones fotograma a fotograma contra el PDF están en `docs/comparacio
 - **Guardado**: el partido se redondea a 6 decimales al iniciar (`EstadoSimulacion.normalizar`); sin eso el replay desde JSON difería en el último dígito de la aprobación regional (defecto previo expuesto al cambiar los datos).
 - **Balance** (con 5 movimientos en lugar de 8): `test_balance` pasa sin relajar aserciones; el bot codicioso gana la elección en ~80 % (antes ~97 %), el azar ~20 %. Margen sobre la aserción (>70 %) estrecho: si el reparto de cartas cambia, ajustar `campana.*` en `leyes.json`, no las aserciones.
 - Pruebas nuevas: `test_gabinete`, `test_delegacion`, `test_movimientos`; `test_guardado` amplía el replay (gabinete, delegación, metas).
+
+### Decisiones abiertas (para confirmar con el usuario)
+- **Fecha de inicio 21-sep-2025:** NO viene de una fuente. Es derivada por mí de dos datos: el usuario pidió empezar "antes del domingo 16-nov-2025" (1ª vuelta) y la Enmienda de Cierre fija 8 semanas de campaña (56 días): 16-nov-2025 − 56 días = 21-sep-2025. Parámetro en `data/leyes.json › calendario.fecha_inicio_campana`; se cambia ahí sin tocar código (los eventos reales de campaña se regeneran con `python3 tools/generar_eventos.py`, que hoy tiene la misma constante).
+- **Nombres de políticos:** los eventos y cartas usan roles, sin nombres propios (criterio más estricto que CLAUDE.md, que permite políticos reales con alias satíricos). Falta decidir si se usan alias y cuáles.
+- **"1.040 proyectos":** interpretado como los ~1.044 proyectos de ley en tramitación + los 230 proyectos públicos.
+- Las ramas `feat/mecanicas-v2` y `datos/cartas-1040` (sesiones delegadas) se revisan contra la Enmienda, validate_data y pruebas de oro antes de integrarlas; nada va a `main` sin confirmación.
