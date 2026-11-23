@@ -45,3 +45,17 @@ Verificación automática (`tests/test_ui_humo.gd`): el botón principal conserv
 - Trazado propio (estaciones sobre grafo + sliders): extensión de la Fase 3 del Documento Maestro (niveles 2 y 3), sobre el grafo real de calles principales de Gran Santiago (2.459 nodos). Costos y expropiaciones son ilustrativos.
 - Reflejar estas mejoras en la maqueta de Figma (no se hizo: requiere gastar créditos de IA del plan y decisión del usuario).
 - Medir rendimiento (30 fps, ≤ 800 MB) en un teléfono real.
+
+## Evidencia del botón principal fijo (23-nov-2026, 390x844)
+`tests/test_ui_humo.gd` recorre 6 semillas y, con cada carta de la mano y cada pestaña del panel Gabinete, exige que el rectángulo del botón principal sea idéntico (y que el mapa ocupe > 1/3). Rectángulo medido (posición, tamaño) en cada semilla:
+
+| Semilla | Botón principal | Cartas en mano |
+|---|---|---|
+| 7 | (74, 710) 242×54 | 5 |
+| 11 | (74, 710) 242×54 | 5 |
+| 20260415 | (74, 710) 242×54 | 5 |
+| 31337 | (74, 710) 242×54 | 5 |
+| 99991 | (74, 710) 242×54 | 5 |
+| 123456 | (74, 710) 242×54 | 5 |
+
+La prueba falla si la posición cambia: la sesión de UI revirtió la corrección del corrector (alto fijo) y obtuvo 9 `FALLO UI`. Captura comparada de la pantalla de juego: `docs/comparacion/v2_dia_maqueta_vs_juego.png` (lado a lado con la maqueta del día del PDF del Documento Maestro; referencia = PDF, no existe maqueta en Figma; fecha 23-nov-2026).

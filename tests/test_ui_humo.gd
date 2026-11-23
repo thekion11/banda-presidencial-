@@ -116,6 +116,7 @@ func _recorrer_v2(main: Node, dia: Node) -> void:
 	for _k in range(4):
 		await process_frame
 	var base: Rect2 = dia._btn_jugar.get_global_rect()
+	print("  botón principal (semilla %d): %s, cartas en mano: %d" % [main.motor.estado.semilla, base, est.mano.size()])
 	_check(dia._mapa.size.y > dia.size.y / 3.0, "el mapa debe ocupar más de un tercio de la pantalla (%d de %d)" % [dia._mapa.size.y, dia.size.y])
 	for i in range(est.mano.size()):  # cualquier carta elegida (título largo, corrector de varias líneas): el botón no se mueve
 		dia._sel = i
