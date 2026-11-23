@@ -21,3 +21,9 @@ Las herramientas `mcp__Figma__` están disponibles, así que no es un bloqueo t�
 Las comparaciones fotograma a fotograma contra el PDF están en `docs/comparacion/` y las diferencias en `docs/DIFERENCIAS_MAQUETA.md`.
 
 **Decisión abierta (cuesta créditos de IA del plan de Figma):** crear una maqueta en Figma a partir del PDF y del juego para poder comparar con esas herramientas. Si se aprueba, se haría con `use_figma` y se compararía pantalla por pantalla.
+
+## Ampliación de alcance (23-nov-2026, autorizada por el usuario en su mensaje directo)
+
+- Alcance: base masiva de proyectos públicos reales, leyes BCN como límites legales, proyectos de ley, reformas constitucionales (plebiscitos 2022/2023), eventos reales, cartas y pantallas nuevas. Inicio del juego: domingo 16-nov-2025; 2ª vuelta 14-dic-2025; cambio de gobierno miércoles 11-mar-2026.
+- Sesiones: A `datos/proyectos-publicos`, B `datos/leyes-eventos`, Revisor `revision/auditoria`. Cada mecánica o pantalla nueva debe documentar su fuente.
+- Pendiente: subir los datos a `main` (la rama no existe aún; se crea tras la revisión), cartera de la RM (sin cartera oficial publicada por SECTRA; se busca en fuentes oficiales alternativas, citadas), tope de ilustraciones Figma.
