@@ -330,12 +330,12 @@
   {
     "id": "servel_elecciones_2025_zip",
     "institucion": "Servicio Electoral de Chile (Servel)",
-    "titulo": "Resultados provisorios elecciones 2025 (visor elecciones.servel.cl, archivos total_votacion_5/6.zip)",
+    "titulo": "Resultados PROVISORIOS elecciones 2025 (visor elecciones.servel.cl, total_votacion_5/6.zip; iteración 2025-11-17, no es el escrutinio definitivo del Tricel)",
     "url": "https://elecciones.servel.cl/",
     "fecha_corte": "2026-11-23",
     "vigencia_dias": 180,
     "es_ilustrativa": false,
-    "verificado_contra_texto": true
+    "verificado_contra_texto": false
   },
   {
     "id": "senado_votaciones_xml",

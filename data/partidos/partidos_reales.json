@@ -201,14 +201,14 @@
      "diputados_fuente_servel": {
       "valor": 11,
       "fuente": "https://elecciones.servel.cl/total_votacion_6.zip",
-      "nota": "Resultados provisorios Servel (iteración 2025-11-17 04:30, 99,96% de mesas); no es el escrutinio del Tricel",
-      "verificado": true
+      "nota": "Resultados provisorios Servel (iteración 2025-11-17 04:30, 99,96% de mesas); no es el escrutinio del Tricel; pendiente contrastar con la sentencia de proclamación del Tricel",
+      "verificado": false
      },
      "senadores_electos_2025": {
       "valor": 3,
       "fuente": "https://elecciones.servel.cl/total_votacion_5.zip",
       "nota": "Solo los 23 senadores elegidos en 2025; el total de la bancada 2026-2034 incluye senadores no renovados (cifra de Wikipedia, no verificada)",
-      "verificado": true
+      "verificado": false
      }
     }
    },
@@ -403,14 +403,14 @@
      "diputados_fuente_servel": {
       "valor": 9,
       "fuente": "https://elecciones.servel.cl/total_votacion_6.zip",
-      "nota": "Resultados provisorios Servel (iteración 2025-11-17 04:30, 99,96% de mesas); no es el escrutinio del Tricel",
-      "verificado": true
+      "nota": "Resultados provisorios Servel (iteración 2025-11-17 04:30, 99,96% de mesas); no es el escrutinio del Tricel; pendiente contrastar con la sentencia de proclamación del Tricel",
+      "verificado": false
      },
      "senadores_electos_2025": {
       "valor": 2,
       "fuente": "https://elecciones.servel.cl/total_votacion_5.zip",
       "nota": "Solo los 23 senadores elegidos en 2025; el total de la bancada 2026-2034 incluye senadores no renovados (cifra de Wikipedia, no verificada)",
-      "verificado": true
+      "verificado": false
      }
     }
    },
@@ -609,14 +609,14 @@
      "diputados_fuente_servel": {
       "valor": 8,
       "fuente": "https://elecciones.servel.cl/total_votacion_6.zip",
-      "nota": "Resultados provisorios Servel (iteración 2025-11-17 04:30, 99,96% de mesas); no es el escrutinio del Tricel",
-      "verificado": true
+      "nota": "Resultados provisorios Servel (iteración 2025-11-17 04:30, 99,96% de mesas); no es el escrutinio del Tricel; pendiente contrastar con la sentencia de proclamación del Tricel",
+      "verificado": false
      },
      "senadores_electos_2025": {
       "valor": 2,
       "fuente": "https://elecciones.servel.cl/total_votacion_5.zip",
       "nota": "Solo los 23 senadores elegidos en 2025; el total de la bancada 2026-2034 incluye senadores no renovados (cifra de Wikipedia, no verificada)",
-      "verificado": true
+      "verificado": false
      }
     }
    },
@@ -788,14 +788,14 @@
      "diputados_fuente_servel": {
       "valor": 11,
       "fuente": "https://elecciones.servel.cl/total_votacion_6.zip",
-      "nota": "Resultados provisorios Servel (iteración 2025-11-17 04:30, 99,96% de mesas); no es el escrutinio del Tricel",
-      "verificado": true
+      "nota": "Resultados provisorios Servel (iteración 2025-11-17 04:30, 99,96% de mesas); no es el escrutinio del Tricel; pendiente contrastar con la sentencia de proclamación del Tricel",
+      "verificado": false
      },
      "senadores_electos_2025": {
       "valor": 1,
       "fuente": "https://elecciones.servel.cl/total_votacion_5.zip",
       "nota": "Solo los 23 senadores elegidos en 2025; el total de la bancada 2026-2034 incluye senadores no renovados (cifra de Wikipedia, no verificada)",
-      "verificado": true
+      "verificado": false
      }
     }
    },
@@ -901,14 +901,14 @@
      "diputados_fuente_servel": {
       "valor": 17,
       "fuente": "https://elecciones.servel.cl/total_votacion_6.zip",
-      "nota": "Resultados provisorios Servel (iteración 2025-11-17 04:30, 99,96% de mesas); no es el escrutinio del Tricel",
-      "verificado": true
+      "nota": "Resultados provisorios Servel (iteración 2025-11-17 04:30, 99,96% de mesas); no es el escrutinio del Tricel; pendiente contrastar con la sentencia de proclamación del Tricel",
+      "verificado": false
      },
      "senadores_electos_2025": {
       "valor": 2,
       "fuente": "https://elecciones.servel.cl/total_votacion_5.zip",
       "nota": "Solo los 23 senadores elegidos en 2025; el total de la bancada 2026-2034 incluye senadores no renovados (cifra de Wikipedia, no verificada)",
-      "verificado": true
+      "verificado": false
      }
     }
    },
@@ -1097,14 +1097,14 @@
      "diputados_fuente_servel": {
       "valor": 3,
       "fuente": "https://elecciones.servel.cl/total_votacion_6.zip",
-      "nota": "Resultados provisorios Servel (iteración 2025-11-17 04:30, 99,96% de mesas); no es el escrutinio del Tricel",
-      "verificado": true
+      "nota": "Resultados provisorios Servel (iteración 2025-11-17 04:30, 99,96% de mesas); no es el escrutinio del Tricel; pendiente contrastar con la sentencia de proclamación del Tricel",
+      "verificado": false
      },
      "senadores_electos_2025": {
       "valor": 1,
       "fuente": "https://elecciones.servel.cl/total_votacion_5.zip",
       "nota": "Solo los 23 senadores elegidos en 2025; el total de la bancada 2026-2034 incluye senadores no renovados (cifra de Wikipedia, no verificada)",
-      "verificado": true
+      "verificado": false
      }
     }
    },
@@ -1246,14 +1246,14 @@
      "diputados_fuente_servel": {
       "valor": 2,
       "fuente": "https://elecciones.servel.cl/total_votacion_6.zip",
-      "nota": "Resultados provisorios Servel (iteración 2025-11-17 04:30, 99,96% de mesas); no es el escrutinio del Tricel",
-      "verificado": true
+      "nota": "Resultados provisorios Servel (iteración 2025-11-17 04:30, 99,96% de mesas); no es el escrutinio del Tricel; pendiente contrastar con la sentencia de proclamación del Tricel",
+      "verificado": false
      },
      "senadores_electos_2025": {
       "valor": 0,
       "fuente": "https://elecciones.servel.cl/total_votacion_5.zip",
       "nota": "Solo los 23 senadores elegidos en 2025; el total de la bancada 2026-2034 incluye senadores no renovados (cifra de Wikipedia, no verificada)",
-      "verificado": true
+      "verificado": false
      }
     }
    },
@@ -1390,14 +1390,14 @@
      "diputados_fuente_servel": {
       "valor": 2,
       "fuente": "https://elecciones.servel.cl/total_votacion_6.zip",
-      "nota": "Resultados provisorios Servel (iteración 2025-11-17 04:30, 99,96% de mesas); no es el escrutinio del Tricel",
-      "verificado": true
+      "nota": "Resultados provisorios Servel (iteración 2025-11-17 04:30, 99,96% de mesas); no es el escrutinio del Tricel; pendiente contrastar con la sentencia de proclamación del Tricel",
+      "verificado": false
      },
      "senadores_electos_2025": {
       "valor": 1,
       "fuente": "https://elecciones.servel.cl/total_votacion_5.zip",
       "nota": "Solo los 23 senadores elegidos en 2025; el total de la bancada 2026-2034 incluye senadores no renovados (cifra de Wikipedia, no verificada)",
-      "verificado": true
+      "verificado": false
      }
     }
    },
@@ -1600,14 +1600,14 @@
      "diputados_fuente_servel": {
       "valor": 13,
       "fuente": "https://elecciones.servel.cl/total_votacion_6.zip",
-      "nota": "Resultados provisorios Servel (iteración 2025-11-17 04:30, 99,96% de mesas); no es el escrutinio del Tricel",
-      "verificado": true
+      "nota": "Resultados provisorios Servel (iteración 2025-11-17 04:30, 99,96% de mesas); no es el escrutinio del Tricel; pendiente contrastar con la sentencia de proclamación del Tricel",
+      "verificado": false
      },
      "senadores_electos_2025": {
       "valor": 4,
       "fuente": "https://elecciones.servel.cl/total_votacion_5.zip",
       "nota": "Solo los 23 senadores elegidos en 2025; el total de la bancada 2026-2034 incluye senadores no renovados (cifra de Wikipedia, no verificada)",
-      "verificado": true
+      "verificado": false
      }
     }
    },
@@ -1785,14 +1785,14 @@
      "diputados_fuente_servel": {
       "valor": 18,
       "fuente": "https://elecciones.servel.cl/total_votacion_6.zip",
-      "nota": "Resultados provisorios Servel (iteración 2025-11-17 04:30, 99,96% de mesas); no es el escrutinio del Tricel",
-      "verificado": true
+      "nota": "Resultados provisorios Servel (iteración 2025-11-17 04:30, 99,96% de mesas); no es el escrutinio del Tricel; pendiente contrastar con la sentencia de proclamación del Tricel",
+      "verificado": false
      },
      "senadores_electos_2025": {
       "valor": 0,
       "fuente": "https://elecciones.servel.cl/total_votacion_5.zip",
       "nota": "Solo los 23 senadores elegidos en 2025; el total de la bancada 2026-2034 incluye senadores no renovados (cifra de Wikipedia, no verificada)",
-      "verificado": true
+      "verificado": false
      }
     }
    },
@@ -1935,14 +1935,14 @@
      "diputados_fuente_servel": {
       "valor": 2,
       "fuente": "https://elecciones.servel.cl/total_votacion_6.zip",
-      "nota": "Resultados provisorios Servel (iteración 2025-11-17 04:30, 99,96% de mesas); no es el escrutinio del Tricel",
-      "verificado": true
+      "nota": "Resultados provisorios Servel (iteración 2025-11-17 04:30, 99,96% de mesas); no es el escrutinio del Tricel; pendiente contrastar con la sentencia de proclamación del Tricel",
+      "verificado": false
      },
      "senadores_electos_2025": {
       "valor": 0,
       "fuente": "https://elecciones.servel.cl/total_votacion_5.zip",
       "nota": "Solo los 23 senadores elegidos en 2025; el total de la bancada 2026-2034 incluye senadores no renovados (cifra de Wikipedia, no verificada)",
-      "verificado": true
+      "verificado": false
      }
     }
    },
@@ -2103,14 +2103,14 @@
      "diputados_fuente_servel": {
       "valor": 31,
       "fuente": "https://elecciones.servel.cl/total_votacion_6.zip",
-      "nota": "Resultados provisorios Servel (iteración 2025-11-17 04:30, 99,96% de mesas); no es el escrutinio del Tricel",
-      "verificado": true
+      "nota": "Resultados provisorios Servel (iteración 2025-11-17 04:30, 99,96% de mesas); no es el escrutinio del Tricel; pendiente contrastar con la sentencia de proclamación del Tricel",
+      "verificado": false
      },
      "senadores_electos_2025": {
       "valor": 5,
       "fuente": "https://elecciones.servel.cl/total_votacion_5.zip",
       "nota": "Solo los 23 senadores elegidos en 2025; el total de la bancada 2026-2034 incluye senadores no renovados (cifra de Wikipedia, no verificada)",
-      "verificado": true
+      "verificado": false
      }
     }
    },
@@ -2192,14 +2192,14 @@
      "diputados_fuente_servel": {
       "valor": 8,
       "fuente": "https://elecciones.servel.cl/total_votacion_6.zip",
-      "nota": "Resultados provisorios Servel (iteración 2025-11-17 04:30, 99,96% de mesas); no es el escrutinio del Tricel",
-      "verificado": true
+      "nota": "Resultados provisorios Servel (iteración 2025-11-17 04:30, 99,96% de mesas); no es el escrutinio del Tricel; pendiente contrastar con la sentencia de proclamación del Tricel",
+      "verificado": false
      },
      "senadores_electos_2025": {
       "valor": 1,
       "fuente": "https://elecciones.servel.cl/total_votacion_5.zip",
       "nota": "Solo los 23 senadores elegidos en 2025; el total de la bancada 2026-2034 incluye senadores no renovados (cifra de Wikipedia, no verificada)",
-      "verificado": true
+      "verificado": false
      }
     }
    },
@@ -2318,14 +2318,14 @@
      "diputados_fuente_servel": {
       "valor": 14,
       "fuente": "https://elecciones.servel.cl/total_votacion_6.zip",
-      "nota": "Resultados provisorios Servel (iteración 2025-11-17 04:30, 99,96% de mesas); no es el escrutinio del Tricel",
-      "verificado": true
+      "nota": "Resultados provisorios Servel (iteración 2025-11-17 04:30, 99,96% de mesas); no es el escrutinio del Tricel; pendiente contrastar con la sentencia de proclamación del Tricel",
+      "verificado": false
      },
      "senadores_electos_2025": {
       "valor": 0,
       "fuente": "https://elecciones.servel.cl/total_votacion_5.zip",
       "nota": "Solo los 23 senadores elegidos en 2025; el total de la bancada 2026-2034 incluye senadores no renovados (cifra de Wikipedia, no verificada)",
-      "verificado": true
+      "verificado": false
      }
     }
    },
@@ -2392,14 +2392,14 @@
      "diputados_fuente_servel": {
       "valor": 0,
       "fuente": "https://elecciones.servel.cl/total_votacion_6.zip",
-      "nota": "Resultados provisorios Servel (iteración 2025-11-17 04:30, 99,96% de mesas); no es el escrutinio del Tricel",
-      "verificado": true
+      "nota": "Resultados provisorios Servel (iteración 2025-11-17 04:30, 99,96% de mesas); no es el escrutinio del Tricel; pendiente contrastar con la sentencia de proclamación del Tricel",
+      "verificado": false
      },
      "senadores_electos_2025": {
       "valor": 0,
       "fuente": "https://elecciones.servel.cl/total_votacion_5.zip",
       "nota": "Solo los 23 senadores elegidos en 2025; el total de la bancada 2026-2034 incluye senadores no renovados (cifra de Wikipedia, no verificada)",
-      "verificado": true
+      "verificado": false
      }
     }
    },
