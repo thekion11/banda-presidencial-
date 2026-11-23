@@ -1,0 +1,424 @@
+[
+  {
+    "id": "evt_senado_energia_d36",
+    "tipo": "programado",
+    "dia_objetivo": 36,
+    "hora_etiqueta": "16:00",
+    "peso_sorteo": 1.0,
+    "titulo": "Senado vota la ley de quórum calificado de energía",
+    "descripcion": "Votación clave en el hemiciclo con riesgo de TC.",
+    "votacion": {
+      "tipo_ley": "quorum_calificado",
+      "votos_firmes_base": 29,
+      "prob_exito_tc": 0.65
+    },
+    "efectos_base": [
+      {
+        "ind": "capital",
+        "delta": 4
+      },
+      {
+        "ind": "cohesion",
+        "delta": 2
+      },
+      {
+        "ind": "fiscal",
+        "delta": -2
+      }
+    ],
+    "etapa": "gobierno",
+    "fuente": "fuentes.json#cpr_chile_2026"
+  },
+  {
+    "id": "evt_sequia_norte",
+    "tipo": "aleatorio_semilla",
+    "dia_objetivo": null,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 0.25,
+    "titulo": "Déficit hídrico en valles transversales",
+    "descripcion": "Presión regional por subsidios de riego y agua potable.",
+    "votacion": null,
+    "efectos_base": [
+      {
+        "ind": "aprobacion",
+        "delta": -2
+      },
+      {
+        "ind": "fiscal",
+        "delta": -1
+      }
+    ],
+    "etapa": "gobierno",
+    "fuente": "fuentes.json#dipres_2026"
+  },
+  {
+    "id": "evt_terremoto",
+    "tipo": "aleatorio_semilla",
+    "dia_objetivo": null,
+    "hora_etiqueta": "03:15",
+    "peso_sorteo": 0.02,
+    "titulo": "Terremoto en la zona centro",
+    "descripcion": "Emergencia nacional: la reconstrucción pone a prueba al gobierno.",
+    "votacion": null,
+    "efectos_base": [
+      {
+        "ind": "aprobacion",
+        "delta": -3
+      },
+      {
+        "ind": "fiscal",
+        "delta": -4
+      },
+      {
+        "ind": "cohesion",
+        "delta": 3
+      },
+      {
+        "ind": "riesgo_ejecucion",
+        "delta": 6
+      }
+    ],
+    "etapa": "gobierno",
+    "fuente": "fuentes.json#ficticio_2026"
+  },
+  {
+    "id": "evt_paro_transporte",
+    "tipo": "aleatorio_semilla",
+    "dia_objetivo": null,
+    "hora_etiqueta": "07:30",
+    "peso_sorteo": 0.1,
+    "titulo": "Paro de transportistas",
+    "descripcion": "Camiones en las rutas y presión por combustibles.",
+    "votacion": null,
+    "efectos_base": [
+      {
+        "ind": "aprobacion",
+        "delta": -2
+      },
+      {
+        "ind": "capital",
+        "delta": -2
+      }
+    ],
+    "etapa": "gobierno",
+    "fuente": "fuentes.json#ficticio_2026"
+  },
+  {
+    "id": "evt_alza_cobre",
+    "tipo": "aleatorio_semilla",
+    "dia_objetivo": null,
+    "hora_etiqueta": "10:00",
+    "peso_sorteo": 0.08,
+    "titulo": "Sube el precio del cobre",
+    "descripcion": "Ingresos fiscales extra por la minería.",
+    "votacion": null,
+    "efectos_base": [
+      {
+        "ind": "fiscal",
+        "delta": 3
+      },
+      {
+        "ind": "aprobacion",
+        "delta": 1
+      }
+    ],
+    "etapa": "gobierno",
+    "fuente": "fuentes.json#ficticio_2026"
+  },
+  {
+    "id": "evt_baja_cobre",
+    "tipo": "aleatorio_semilla",
+    "dia_objetivo": null,
+    "hora_etiqueta": "10:00",
+    "peso_sorteo": 0.08,
+    "titulo": "Cae el precio del cobre",
+    "descripcion": "Menores ingresos fiscales proyectados.",
+    "votacion": null,
+    "efectos_base": [
+      {
+        "ind": "fiscal",
+        "delta": -3
+      }
+    ],
+    "etapa": "gobierno",
+    "fuente": "fuentes.json#ficticio_2026"
+  },
+  {
+    "id": "evt_incendios",
+    "tipo": "aleatorio_semilla",
+    "dia_objetivo": null,
+    "hora_etiqueta": "15:00",
+    "peso_sorteo": 0.06,
+    "titulo": "Incendios forestales en el sur",
+    "descripcion": "Despliegue de brigadas y críticas por la prevención.",
+    "votacion": null,
+    "efectos_base": [
+      {
+        "ind": "aprobacion",
+        "delta": -2
+      },
+      {
+        "ind": "riesgo_ejecucion",
+        "delta": 3
+      }
+    ],
+    "etapa": "gobierno",
+    "fuente": "fuentes.json#ficticio_2026"
+  },
+  {
+    "id": "evt_protesta_estudiantil",
+    "tipo": "aleatorio_semilla",
+    "dia_objetivo": null,
+    "hora_etiqueta": "12:00",
+    "peso_sorteo": 0.07,
+    "titulo": "Marchas estudiantiles",
+    "descripcion": "Demandas por financiamiento de la educación.",
+    "votacion": null,
+    "efectos_base": [
+      {
+        "ind": "aprobacion",
+        "delta": -2
+      },
+      {
+        "ind": "cohesion",
+        "delta": -1
+      }
+    ],
+    "etapa": "gobierno",
+    "fuente": "fuentes.json#ficticio_2026"
+  },
+  {
+    "id": "evt_cuenta_publica_a1",
+    "tipo": "programado",
+    "dia_objetivo": 82,
+    "hora_etiqueta": "11:00",
+    "peso_sorteo": 1.0,
+    "titulo": "Cuenta Pública: primer año",
+    "descripcion": "El discurso ante el Congreso marca el rumbo del período.",
+    "votacion": null,
+    "efectos_base": [
+      {
+        "ind": "capital",
+        "delta": 2
+      },
+      {
+        "ind": "aprobacion",
+        "delta": 1
+      }
+    ],
+    "etapa": "gobierno",
+    "fuente": "fuentes.json#ficticio_2026"
+  },
+  {
+    "id": "evt_presupuesto_a1",
+    "tipo": "programado",
+    "dia_objetivo": 204,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 1.0,
+    "titulo": "Se presenta la Ley de Presupuestos",
+    "descripcion": "Se abre el debate anual del gasto público.",
+    "votacion": null,
+    "efectos_base": [
+      {
+        "ind": "fiscal",
+        "delta": -1
+      },
+      {
+        "ind": "capital",
+        "delta": -1
+      }
+    ],
+    "etapa": "gobierno",
+    "fuente": "fuentes.json#ficticio_2026"
+  },
+  {
+    "id": "evt_cuenta_publica_a2",
+    "tipo": "programado",
+    "dia_objetivo": 447,
+    "hora_etiqueta": "11:00",
+    "peso_sorteo": 1.0,
+    "titulo": "Cuenta Pública: segundo año",
+    "descripcion": "Balance de medio período.",
+    "votacion": null,
+    "efectos_base": [
+      {
+        "ind": "capital",
+        "delta": 2
+      },
+      {
+        "ind": "aprobacion",
+        "delta": 1
+      }
+    ],
+    "etapa": "gobierno",
+    "fuente": "fuentes.json#ficticio_2026"
+  },
+  {
+    "id": "evt_presupuesto_a2",
+    "tipo": "programado",
+    "dia_objetivo": 569,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 1.0,
+    "titulo": "Se presenta la Ley de Presupuestos",
+    "descripcion": "Se abre el debate anual del gasto público.",
+    "votacion": null,
+    "efectos_base": [
+      {
+        "ind": "fiscal",
+        "delta": -1
+      },
+      {
+        "ind": "capital",
+        "delta": -1
+      }
+    ],
+    "etapa": "gobierno",
+    "fuente": "fuentes.json#ficticio_2026"
+  },
+  {
+    "id": "evt_cuenta_publica_a3",
+    "tipo": "programado",
+    "dia_objetivo": 812,
+    "hora_etiqueta": "11:00",
+    "peso_sorteo": 1.0,
+    "titulo": "Cuenta Pública: tercer año",
+    "descripcion": "Se acerca el cierre del mandato.",
+    "votacion": null,
+    "efectos_base": [
+      {
+        "ind": "capital",
+        "delta": 2
+      },
+      {
+        "ind": "aprobacion",
+        "delta": 1
+      }
+    ],
+    "etapa": "gobierno",
+    "fuente": "fuentes.json#ficticio_2026"
+  },
+  {
+    "id": "evt_presupuesto_a3",
+    "tipo": "programado",
+    "dia_objetivo": 934,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 1.0,
+    "titulo": "Se presenta la Ley de Presupuestos",
+    "descripcion": "Se abre el debate anual del gasto público.",
+    "votacion": null,
+    "efectos_base": [
+      {
+        "ind": "fiscal",
+        "delta": -1
+      },
+      {
+        "ind": "capital",
+        "delta": -1
+      }
+    ],
+    "etapa": "gobierno",
+    "fuente": "fuentes.json#ficticio_2026"
+  },
+  {
+    "id": "evt_cuenta_publica_a4",
+    "tipo": "programado",
+    "dia_objetivo": 1177,
+    "hora_etiqueta": "11:00",
+    "peso_sorteo": 1.0,
+    "titulo": "Cuenta Pública: último año",
+    "descripcion": "Última cuenta pública del período.",
+    "votacion": null,
+    "efectos_base": [
+      {
+        "ind": "capital",
+        "delta": 2
+      },
+      {
+        "ind": "aprobacion",
+        "delta": 1
+      }
+    ],
+    "etapa": "gobierno",
+    "fuente": "fuentes.json#ficticio_2026"
+  },
+  {
+    "id": "evt_franja",
+    "tipo": "programado",
+    "dia_objetivo": 28,
+    "hora_etiqueta": "21:00",
+    "peso_sorteo": 1.0,
+    "titulo": "Comienza la franja electoral",
+    "descripcion": "Los partidos salen a la televisión.",
+    "votacion": null,
+    "efectos_base": [
+      {
+        "ind": "aprobacion",
+        "delta": 1
+      }
+    ],
+    "etapa": "campana",
+    "fuente": "fuentes.json#ficticio_2026"
+  },
+  {
+    "id": "evt_debate",
+    "tipo": "programado",
+    "dia_objetivo": 42,
+    "hora_etiqueta": "20:00",
+    "peso_sorteo": 1.0,
+    "titulo": "Debate presidencial televisado",
+    "descripcion": "Tu desempeño frente a las cámaras mueve las encuestas.",
+    "votacion": null,
+    "efectos_base": [
+      {
+        "ind": "aprobacion",
+        "delta": 2
+      },
+      {
+        "ind": "capital",
+        "delta": -1
+      }
+    ],
+    "etapa": "campana",
+    "fuente": "fuentes.json#ficticio_2026"
+  },
+  {
+    "id": "evt_polemica_rival",
+    "tipo": "aleatorio_semilla",
+    "dia_objetivo": null,
+    "hora_etiqueta": "13:00",
+    "peso_sorteo": 0.12,
+    "titulo": "Polémica en el comando rival",
+    "descripcion": "Un traspié de la competencia te favorece.",
+    "votacion": null,
+    "efectos_base": [
+      {
+        "ind": "aprobacion",
+        "delta": 2
+      }
+    ],
+    "etapa": "campana",
+    "fuente": "fuentes.json#ficticio_2026"
+  },
+  {
+    "id": "evt_gaffe",
+    "tipo": "aleatorio_semilla",
+    "dia_objetivo": null,
+    "hora_etiqueta": "19:00",
+    "peso_sorteo": 0.12,
+    "titulo": "Declaración desafortunada en campaña",
+    "descripcion": "Una frase fuera de contexto se vuelve viral.",
+    "votacion": null,
+    "efectos_base": [
+      {
+        "ind": "aprobacion",
+        "delta": -2
+      },
+      {
+        "ind": "cohesion",
+        "delta": -1
+      }
+    ],
+    "etapa": "campana",
+    "fuente": "fuentes.json#ficticio_2026"
+  }
+]

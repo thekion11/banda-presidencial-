@@ -1,0 +1,71 @@
+class_name GeneradorPartido
+extends RefCounted
+## Test ideológico -> partido propio. Fórmulas de la Enmienda de Cierre, sección 2.
+
+
+static func calcular_ejes(respuestas: Array) -> Vector2:
+	var eco: float = 0.0
+	var inst: float = 0.0
+	for resp in respuestas:
+		eco += float(resp.get("delta_eco", 0.0))
+		inst += float(resp.get("delta_inst", 0.0))
+	return Vector2(clampf(eco, -1.0, 1.0), clampf(inst, -1.0, 1.0))
+
+
+static func perfil_para(eco: float, inst: float, catalogo: Dictionary) -> String:
+	## Perfil 2D mostrado en vivo en la franja crema. Primer perfil que calza; si ninguno, arquetipo por eje económico.
+	for p in catalogo.get("perfiles", []):
+		if eco >= float(p["eco_min"]) and eco <= float(p["eco_max"]) \
+				and inst >= float(p["inst_min"]) and inst <= float(p["inst_max"]):
+			return String(p["nombre"])
+	return arquetipo_para(eco, catalogo)
+
+
+static func arquetipo_para(eco: float, catalogo: Dictionary) -> String:
+	var nombre := "Coalición Reformista"
+	for arq in catalogo.get("arquetipos", []):
+		if eco >= float(arq["eco_min"]) and eco <= float(arq["eco_max"]):
+			nombre = String(arq["nombre"])
+			break
+	return nombre
+
+
+static func escanos_para(eco: float, inst: float) -> int:
+	return clampi(roundi(18.0 - 6.0 * sqrt(eco * eco + inst * inst)), 6, 22)
+
+
+static func construir_partido(
+		nombre: String,
+		sigla: String,
+		region_bastion: String,
+		respuestas: Array[Dictionary],
+		catalogo_ideologia: Dictionary
+) -> Dictionary:
+	var ejes := calcular_ejes(respuestas)
+	var eco: float = ejes.x
+	var inst: float = ejes.y
+	var distancia := sqrt(eco * eco + inst * inst)
+
+	var cohesion_ini := float(roundi(65.0 + 20.0 * distancia))
+	var fiscal_ini := float(roundi(65.0 + 15.0 * eco))
+	var capital_ini := float(roundi(60.0 + 10.0 * inst))
+	var aprobacion_ini := clampf(38.0 + 6.0 * (1.0 - distancia * 0.5), 32.0, 46.0)
+
+	return {
+		"nombre": nombre.strip_edges(),
+		"sigla": sigla.strip_edges().to_upper(),
+		"region_bastion": region_bastion,
+		"eje_eco": eco,
+		"eje_inst": inst,
+		"arquetipo": arquetipo_para(eco, catalogo_ideologia),
+		"perfil": perfil_para(eco, inst, catalogo_ideologia),
+		"escanos_propios": escanos_para(eco, inst),
+		"indicadores_iniciales": {
+			"aprobacion": aprobacion_ini,
+			"capital": capital_ini,
+			"cohesion": cohesion_ini,
+			"fiscal": fiscal_ini,
+			"riesgo_ejecucion": 18.0,
+			"viviendas_anio": 55000.0
+		}
+	}

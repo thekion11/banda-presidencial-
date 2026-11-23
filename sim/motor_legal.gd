@@ -1,0 +1,95 @@
+class_name MotorLegal
+extends RefCounted
+## Validación legal: votaciones bicamerales, Tribunal Constitucional y Corrector de Realismo.
+
+var leyes: Dictionary = {}
+var rng: RandomNumberGenerator
+
+
+func configurar(p_leyes: Dictionary, p_rng: RandomNumberGenerator) -> void:
+	leyes = p_leyes
+	rng = p_rng
+
+
+func tipo(id: String) -> Dictionary:
+	for t in leyes.get("tipos_ley", []):
+		if t["id"] == id:
+			return t
+	return {}
+
+
+func _votos_camara(propios: int, total: int, apoyo: float) -> int:
+	return propios + roundi(float(total - propios) * apoyo)
+
+
+func votar(estado: EstadoSimulacion, tipo_id: String, votos_firmes_senado: int = -1) -> Dictionary:
+	var t := tipo(tipo_id)
+	if t.is_empty():
+		return {"aprobada": false, "razon": "tipo_desconocido"}
+	var h: Dictionary = leyes["hemiciclo"]
+	var min_sen := int(t["votos_minimos"])
+	var min_cam := int(t.get("votos_minimos_camara", min_sen))
+	if not bool(t.get("requiere_votacion", true)):
+		return {"aprobada": true, "senado": 0, "camara": 0, "min_senado": 0, "min_camara": 0, "sin_votacion": true}
+	var c: Dictionary = leyes["congreso"]
+	var apoyo := clampf(
+		float(c["apoyo_base"]) + float(c["peso_capital"]) * estado.ind("capital") + float(c["peso_cohesion"]) * estado.ind("cohesion"),
+		0.0, 1.0)
+	var n_sen := int(h["total_senadores"])
+	var n_dip := int(h.get("total_diputados", 155))
+	var propios_sen := int(estado.partido.get("escanos_propios", 16))
+	var propios_dip := roundi(float(propios_sen) * float(n_dip) / float(n_sen))
+	var ruido := int(c["ruido_votos"])
+	var sen: int
+	if votos_firmes_senado >= 0:
+		sen = votos_firmes_senado
+	else:
+		sen = clampi(_votos_camara(propios_sen, n_sen, apoyo) + rng.randi_range(-ruido, ruido), 0, n_sen)
+	var dip := clampi(_votos_camara(propios_dip, n_dip, apoyo) + rng.randi_range(-ruido * 3, ruido * 3), 0, n_dip)
+	return {
+		"aprobada": sen >= min_sen and dip >= min_cam,
+		"senado": sen, "camara": dip, "min_senado": min_sen, "min_camara": min_cam,
+		"en_contra_senado": n_sen - sen, "sin_votacion": false
+	}
+
+
+func resolver_tc(tipo_id: String, prob_exito_override: float = -1.0) -> Dictionary:
+	## recurso: la oposición acude al TC. cae: el TC declara inconstitucional (el gobierno pierde).
+	var t := tipo(tipo_id)
+	if t.is_empty() or not bool(t.get("puede_ir_tc", false)):
+		return {"recurso": false, "cae": false}
+	var recurso := prob_exito_override >= 0.0 or rng.randf() < float(t["prob_recurso_tc"])
+	if not recurso:
+		return {"recurso": false, "cae": false}
+	var p_exito := prob_exito_override if prob_exito_override >= 0.0 else float(t["prob_exito_tc"])
+	return {"recurso": true, "cae": rng.randf() >= p_exito, "prob_exito": p_exito}
+
+
+static func fmt_cifra(n: float, unidad: String) -> String:
+	var txt: String
+	if absf(n) >= 10000.0:
+		txt = "%d mil" % roundi(n / 1000.0)
+	else:
+		txt = "%d" % roundi(n)
+	return txt if unidad == "" else "%s %s" % [txt, unidad]
+
+
+func corregir(carta: Dictionary, estado: EstadoSimulacion) -> Dictionary:
+	## Nunca responde con un "no" seco: ofrece una versión viable o por tramos.
+	var corr: Variant = carta.get("corrector", null)
+	if corr == null:
+		return {"aplica": false, "ratio": 1.0, "mensaje": ""}
+	var meta := float(corr["meta"])
+	var cap := float(corr["capacidad"])
+	if corr.has("capacidad_ind"):
+		cap = estado.ind(String(corr["capacidad_ind"]))
+	if cap >= meta:
+		return {"aplica": false, "ratio": 1.0, "mensaje": ""}
+	var ratio := clampf(cap / meta, 0.1, 1.0)
+	var u := String(corr.get("unidad", ""))
+	var msg := "La meta pide %s y la capacidad actual es ~%s. " % [fmt_cifra(meta, u), fmt_cifra(cap, u)]
+	if corr["modo"] == "por_tramos":
+		msg += "Te ofrezco construirla por tramos: el primero cubre el %d %%." % roundi(ratio * 100.0)
+	else:
+		msg += "Te propongo una versión viable (%d %% de la meta)." % roundi(ratio * 100.0)
+	return {"aplica": true, "ratio": ratio, "mensaje": msg, "modo": corr["modo"]}

@@ -1,0 +1,227 @@
+[
+  {
+    "id": "min_interior",
+    "cartera": "Ministerio del Interior",
+    "alias": "El Vigía del Pasillo",
+    "categoria_afin": "politica",
+    "reduccion_costo_pa": 1,
+    "bono_ejecucion": 0.1,
+    "riesgo_escandalo": 0.06
+  },
+  {
+    "id": "min_exteriores",
+    "cartera": "Ministerio de Relaciones Exteriores",
+    "alias": "El Embajador de Bolsillo",
+    "categoria_afin": "politica",
+    "reduccion_costo_pa": 1,
+    "bono_ejecucion": 0.11,
+    "riesgo_escandalo": 0.07
+  },
+  {
+    "id": "min_defensa",
+    "cartera": "Ministerio de Defensa Nacional",
+    "alias": "La Guardiana del Sur",
+    "categoria_afin": "seguridad",
+    "reduccion_costo_pa": 1,
+    "bono_ejecucion": 0.12,
+    "riesgo_escandalo": 0.08
+  },
+  {
+    "id": "min_hacienda",
+    "cartera": "Ministerio de Hacienda",
+    "alias": "El Guardián de la Billetera",
+    "categoria_afin": "hacienda",
+    "reduccion_costo_pa": 1,
+    "bono_ejecucion": 0.15,
+    "riesgo_escandalo": 0.05
+  },
+  {
+    "id": "min_segegob",
+    "cartera": "Ministerio Secretaría General de Gobierno",
+    "alias": "La Voz Oficial",
+    "categoria_afin": "politica",
+    "reduccion_costo_pa": 1,
+    "bono_ejecucion": 0.14,
+    "riesgo_escandalo": 0.06
+  },
+  {
+    "id": "min_economia",
+    "cartera": "Ministerio de Economía, Fomento y Turismo",
+    "alias": "El Aprendiz de Mercader",
+    "categoria_afin": "economia",
+    "reduccion_costo_pa": 1,
+    "bono_ejecucion": 0.1,
+    "riesgo_escandalo": 0.07
+  },
+  {
+    "id": "min_social",
+    "cartera": "Ministerio de Desarrollo Social y Familia",
+    "alias": "La Tejedora de Redes",
+    "categoria_afin": "social",
+    "reduccion_costo_pa": 1,
+    "bono_ejecucion": 0.11,
+    "riesgo_escandalo": 0.08
+  },
+  {
+    "id": "min_educacion",
+    "cartera": "Ministerio de Educación",
+    "alias": "El Maestro Paciente",
+    "categoria_afin": "educacion",
+    "reduccion_costo_pa": 1,
+    "bono_ejecucion": 0.12,
+    "riesgo_escandalo": 0.09
+  },
+  {
+    "id": "min_justicia",
+    "cartera": "Ministerio de Justicia y Derechos Humanos",
+    "alias": "La Balanza Inquieta",
+    "categoria_afin": "seguridad",
+    "reduccion_costo_pa": 1,
+    "bono_ejecucion": 0.13,
+    "riesgo_escandalo": 0.06
+  },
+  {
+    "id": "min_trabajo",
+    "cartera": "Ministerio del Trabajo y Previsión Social",
+    "alias": "El Gremialista Tranquilo",
+    "categoria_afin": "social",
+    "reduccion_costo_pa": 1,
+    "bono_ejecucion": 0.14,
+    "riesgo_escandalo": 0.07
+  },
+  {
+    "id": "min_obras",
+    "cartera": "Ministerio de Obras Públicas",
+    "alias": "El Constructor de Puentes",
+    "categoria_afin": "obras",
+    "reduccion_costo_pa": 1,
+    "bono_ejecucion": 0.1,
+    "riesgo_escandalo": 0.08
+  },
+  {
+    "id": "min_salud",
+    "cartera": "Ministerio de Salud",
+    "alias": "La Doctora de Urgencias",
+    "categoria_afin": "salud",
+    "reduccion_costo_pa": 1,
+    "bono_ejecucion": 0.11,
+    "riesgo_escandalo": 0.09
+  },
+  {
+    "id": "min_vivienda",
+    "cartera": "Ministerio de Vivienda y Urbanismo",
+    "alias": "La Arquitecta del Déficit",
+    "categoria_afin": "vivienda",
+    "reduccion_costo_pa": 1,
+    "bono_ejecucion": 0.2,
+    "riesgo_escandalo": 0.12
+  },
+  {
+    "id": "min_agricultura",
+    "cartera": "Ministerio de Agricultura",
+    "alias": "El Sembrador del Valle",
+    "categoria_afin": "economia",
+    "reduccion_costo_pa": 1,
+    "bono_ejecucion": 0.13,
+    "riesgo_escandalo": 0.07
+  },
+  {
+    "id": "min_mineria",
+    "cartera": "Ministerio de Minería",
+    "alias": "El Minero de Escritorio",
+    "categoria_afin": "economia",
+    "reduccion_costo_pa": 1,
+    "bono_ejecucion": 0.14,
+    "riesgo_escandalo": 0.08
+  },
+  {
+    "id": "min_transportes",
+    "cartera": "Ministerio de Transportes y Telecomunicaciones",
+    "alias": "La Estratega de los Rieles",
+    "categoria_afin": "transportes",
+    "reduccion_costo_pa": 1,
+    "bono_ejecucion": 0.15,
+    "riesgo_escandalo": 0.08
+  },
+  {
+    "id": "min_bienes",
+    "cartera": "Ministerio de Bienes Nacionales",
+    "alias": "El Cartógrafo del Fisco",
+    "categoria_afin": "obras",
+    "reduccion_costo_pa": 1,
+    "bono_ejecucion": 0.11,
+    "riesgo_escandalo": 0.06
+  },
+  {
+    "id": "min_energia",
+    "cartera": "Ministerio de Energía",
+    "alias": "La Chispa del Norte",
+    "categoria_afin": "energia",
+    "reduccion_costo_pa": 1,
+    "bono_ejecucion": 0.12,
+    "riesgo_escandalo": 0.07
+  },
+  {
+    "id": "min_ambiente",
+    "cartera": "Ministerio del Medio Ambiente",
+    "alias": "La Guardabosques",
+    "categoria_afin": "medioambiente",
+    "reduccion_costo_pa": 1,
+    "bono_ejecucion": 0.13,
+    "riesgo_escandalo": 0.08
+  },
+  {
+    "id": "min_segpres",
+    "cartera": "Ministerio Secretaría General de la Presidencia",
+    "alias": "El Contador de Votos",
+    "categoria_afin": "politica",
+    "reduccion_costo_pa": 1,
+    "bono_ejecucion": 0.14,
+    "riesgo_escandalo": 0.09
+  },
+  {
+    "id": "min_deporte",
+    "cartera": "Ministerio del Deporte",
+    "alias": "El Entrenador Cívico",
+    "categoria_afin": "social",
+    "reduccion_costo_pa": 1,
+    "bono_ejecucion": 0.1,
+    "riesgo_escandalo": 0.06
+  },
+  {
+    "id": "min_mujer",
+    "cartera": "Ministerio de la Mujer y la Equidad de Género",
+    "alias": "La Voz de las Mil",
+    "categoria_afin": "social",
+    "reduccion_costo_pa": 1,
+    "bono_ejecucion": 0.11,
+    "riesgo_escandalo": 0.07
+  },
+  {
+    "id": "min_cultura",
+    "cartera": "Ministerio de las Culturas, las Artes y el Patrimonio",
+    "alias": "El Archivista del Alma",
+    "categoria_afin": "social",
+    "reduccion_costo_pa": 1,
+    "bono_ejecucion": 0.12,
+    "riesgo_escandalo": 0.08
+  },
+  {
+    "id": "min_ciencia",
+    "cartera": "Ministerio de Ciencia, Tecnología, Conocimiento e Innovación",
+    "alias": "La Curiosa de Laboratorio",
+    "categoria_afin": "economia",
+    "reduccion_costo_pa": 1,
+    "bono_ejecucion": 0.13,
+    "riesgo_escandalo": 0.09
+  },
+  {
+    "id": "min_seguridad",
+    "cartera": "Ministerio de Seguridad Pública",
+    "alias": "El Centinela de Barrio",
+    "categoria_afin": "seguridad",
+    "reduccion_costo_pa": 1,
+    "bono_ejecucion": 0.14,
+    "riesgo_escandalo": 0.06
+  }
+]

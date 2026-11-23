@@ -1,0 +1,16 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "array",
+  "minItems": 16,
+  "maxItems": 16,
+  "items": {
+    "type": "object",
+    "required": [
+      "id",
+      "nombre",
+      "poblacion_miles",
+      "pob_pct",
+      "fuente"
+    ]
+  }
+}

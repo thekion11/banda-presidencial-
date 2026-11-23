@@ -1,0 +1,37 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "required": [
+    "preguntas",
+    "arquetipos"
+  ],
+  "properties": {
+    "preguntas": {
+      "type": "array",
+      "minItems": 8,
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "texto",
+          "opciones"
+        ],
+        "properties": {
+          "opciones": {
+            "type": "array",
+            "minItems": 3,
+            "maxItems": 3,
+            "items": {
+              "type": "object",
+              "required": [
+                "etiqueta",
+                "delta_eco",
+                "delta_inst"
+              ]
+            }
+          }
+        }
+      }
+    }
+  }
+}

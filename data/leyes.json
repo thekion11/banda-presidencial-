@@ -1,0 +1,130 @@
+{
+  "hemiciclo": {
+    "total_senadores": 50,
+    "total_diputados": 155,
+    "dias_por_turno": 7,
+    "duracion_mandato_dias": 1460,
+    "semanas_campana": 8,
+    "umbral_victoria_presidencial": 50.0,
+    "bono_aprobacion_promesa": 1.5
+  },
+  "campana": {
+    "aprobacion_base_por_carta": 0.5,
+    "ruido_eleccion": 2.0,
+    "bono_bastion": 8.0,
+    "derrame_regional": 0.15,
+    "reversion_semanal": 0.34,
+    "variacion_regional_inicial": 6.0
+  },
+  "indicadores_iniciales": {
+    "aprobacion": 90.0,
+    "capital": 65.0,
+    "cohesion": 85.0,
+    "fiscal": 67.0,
+    "riesgo_ejecucion": 20.0,
+    "viviendas_anio": 55000.0
+  },
+  "limites_indicadores": {
+    "min": 0.0,
+    "max": 100.0,
+    "viviendas_anio_max": 200000.0
+  },
+  "mano": {
+    "tamano": 5,
+    "pa_por_turno": 8
+  },
+  "dinamica": {
+    "riesgo_umbral": 60.0,
+    "penal_aprobacion_riesgo": 1.0,
+    "desgaste_aprobacion_semanal": 0.3,
+    "regen_capital_semanal": 0.5,
+    "regen_cohesion_semanal": 0.2,
+    "umbral_crisis_aprobacion": 12.0,
+    "semanas_crisis_para_caida": 3,
+    "ancla_base": 24.0,
+    "ancla_peso_fiscal": 0.18,
+    "ancla_peso_cohesion": 0.1,
+    "ancla_peso_capital": 0.06,
+    "reversion_semanal": 0.1,
+    "rendimiento_decreciente": 125.0,
+    "regen_fiscal_semanal": 0.8,
+    "max_obras_concurrentes": 5,
+    "riesgo_por_obra_extra": 1.5,
+    "fiscal_critico": 30.0,
+    "penal_fiscal_critico": 0.6
+  },
+  "congreso": {
+    "apoyo_base": 0.25,
+    "peso_capital": 0.004,
+    "peso_cohesion": 0.003,
+    "ruido_votos": 2.0,
+    "penal_capital_rechazo": 2.0
+  },
+  "tc": {
+    "capital_perdido_si_cae": 3.0
+  },
+  "legado": {
+    "turnos_evaluacion": [
+      104,
+      208
+    ],
+    "penal_capital": 2.0,
+    "penal_aprobacion": 1.5
+  },
+  "puntaje": {
+    "peso_aprobacion": 4.0,
+    "peso_legado": 150.0,
+    "peso_obras": 40.0,
+    "peso_fiscal": 2.0,
+    "peso_capital": 1.0
+  },
+  "tipos_ley": [
+    {
+      "id": "decreto_supremo",
+      "nombre": "Decreto Supremo (Potestad Reglamentaria)",
+      "articulo_constitucional": "Art. 32 N° 6 CPR",
+      "votos_minimos": 1,
+      "requiere_votacion": false,
+      "dias_tramitacion_base": 7,
+      "puede_ir_tc": true,
+      "prob_recurso_tc": 0.1,
+      "prob_exito_tc": 0.8,
+      "fuente": "fuentes.json#cpr_chile_2026",
+      "votos_minimos_camara": 1
+    },
+    {
+      "id": "ley_simple",
+      "nombre": "Ley Simple",
+      "articulo_constitucional": "Art. 66 inc. 4 CPR",
+      "votos_minimos": 26,
+      "requiere_votacion": true,
+      "dias_tramitacion_base": 28,
+      "puede_ir_tc": true,
+      "prob_recurso_tc": 0.2,
+      "prob_exito_tc": 0.8,
+      "fuente": "fuentes.json#cpr_chile_2026",
+      "votos_minimos_camara": 78
+    },
+    {
+      "id": "quorum_calificado",
+      "nombre": "Ley de Quórum Calificado",
+      "articulo_constitucional": "Art. 66 inc. 3 CPR",
+      "votos_minimos": 26,
+      "requiere_votacion": true,
+      "dias_tramitacion_base": 35,
+      "puede_ir_tc": true,
+      "prob_recurso_tc": 0.35,
+      "prob_exito_tc": 0.65,
+      "fuente": "fuentes.json#cpr_chile_2026",
+      "votos_minimos_camara": 78
+    }
+  ],
+  "escandalo": {
+    "penal_aprobacion": 2.0,
+    "penal_capital": 2.0
+  },
+  "obras": {
+    "prob_retraso_por_riesgo": 0.005
+  },
+  "repeticion_promesa": 0.5
+}

@@ -1,0 +1,47 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "array",
+  "minItems": 25,
+  "maxItems": 25,
+  "items": {
+    "type": "object",
+    "required": [
+      "id",
+      "cartera",
+      "alias",
+      "categoria_afin",
+      "reduccion_costo_pa",
+      "bono_ejecucion",
+      "riesgo_escandalo"
+    ],
+    "properties": {
+      "id": {
+        "type": "string"
+      },
+      "cartera": {
+        "type": "string"
+      },
+      "alias": {
+        "type": "string"
+      },
+      "categoria_afin": {
+        "type": "string"
+      },
+      "reduccion_costo_pa": {
+        "type": "integer",
+        "minimum": 0,
+        "maximum": 2
+      },
+      "bono_ejecucion": {
+        "type": "number",
+        "minimum": 0,
+        "maximum": 0.5
+      },
+      "riesgo_escandalo": {
+        "type": "number",
+        "minimum": 0,
+        "maximum": 1
+      }
+    }
+  }
+}

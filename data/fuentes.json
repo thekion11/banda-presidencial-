@@ -1,0 +1,10 @@
+[
+  {"id": "minvu_2026", "institucion": "Ministerio de Vivienda y Urbanismo (MINVU)", "titulo": "Plan de Emergencia Habitacional - Balance anual", "url": "https://www.minvu.gob.cl/", "fecha_corte": "2026-04-15", "vigencia_dias": 365, "es_ilustrativa": true},
+  {"id": "cpr_chile_2026", "institucion": "Biblioteca del Congreso Nacional (BCN Ley Chile)", "titulo": "Constitución Política de la República - Quórums", "url": "https://www.bcn.cl/leychile/", "fecha_corte": "2026-04-15", "vigencia_dias": 730, "es_ilustrativa": false, "verificado_contra_texto": false},
+  {"id": "dipres_2026", "institucion": "Dirección de Presupuestos (DIPRES)", "titulo": "Ley de Presupuestos del Sector Público 2026", "url": "https://www.dipres.gob.cl/", "fecha_corte": "2026-04-15", "vigencia_dias": 365, "es_ilustrativa": true},
+  {"id": "ine_censo_2017", "institucion": "Instituto Nacional de Estadísticas (INE)", "titulo": "Censo 2017 - Población por región (cifras redondeadas, a verificar)", "url": "https://www.ine.gob.cl/", "fecha_corte": "2017-04-19", "vigencia_dias": 36500, "es_ilustrativa": true},
+  {"id": "ficticio_2026", "institucion": "Diseño del juego", "titulo": "Contenido inventado para el juego (no representa hechos reales)", "url": "https://github.com/thekion11/banda-presidencial-", "fecha_corte": "2026-11-23", "vigencia_dias": 3650, "es_ilustrativa": true},
+  {"id": "osm_odbl", "institucion": "OpenStreetMap contributors", "titulo": "Datos de calles bajo ODbL (vía Geofabrik)", "url": "https://download.geofabrik.de/south-america/chile.html", "fecha_corte": "2026-11-23", "vigencia_dias": 365, "es_ilustrativa": false},
+  {"id": "copernicus_dem", "institucion": "Copernicus / ESA", "titulo": "Copernicus DEM GLO-30", "url": "https://spacedata.copernicus.eu/", "fecha_corte": "2026-11-23", "vigencia_dias": 3650, "es_ilustrativa": false},
+  {"id": "geojson_regiones", "institucion": "Repositorios públicos de GeoJSON de Chile", "titulo": "Límites regionales simplificados", "url": "https://github.com/", "fecha_corte": "2026-11-23", "vigencia_dias": 3650, "es_ilustrativa": true}
+]

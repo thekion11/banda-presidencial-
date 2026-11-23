@@ -1,0 +1,31 @@
+class_name Partida
+extends RefCounted
+## Fachada: crea una partida lista para jugar y la reproduce desde un guardado por eventos.
+
+
+static func crear(datos: Dictionary, semilla: int, partido: Dictionary) -> MotorTurno:
+	var estado := EstadoSimulacion.new()
+	estado.configurar(semilla, int(datos["leyes"]["hemiciclo"]["dias_por_turno"]), datos["leyes"])
+	var motor := MotorTurno.new()
+	motor.inicializar(estado, datos["cartas"], datos["eventos"], datos["leyes"], datos["ministros"],
+			{"regiones": datos["regiones"], "propuestas": datos["propuestas"]})
+	motor.aplicar_partido_inicial(partido)
+	motor.iniciar_turno()
+	return motor
+
+
+static func reproducir(datos: Dictionary, guardado: Dictionary) -> MotorTurno:
+	## Reconstruye la partida exacta desde semilla + partido + entradas del jugador.
+	var motor := crear(datos, int(guardado["semilla"]), guardado["partido"])
+	for e in guardado["entradas"]:
+		match String(e["tipo"]):
+			"jugar":
+				motor.jugar_carta(int(e["idx"]), String(e["ministro"]), String(e["region"]))
+			"aprobar_propuesta":
+				motor.aprobar_propuesta(String(e["prop"]), String(e["variante"]), String(e["region"]))
+			"cerrar":
+				motor.terminar_turno()
+			"eleccion":
+				if bool(motor.resolver_eleccion_presidencial()["electo"]):
+					motor.iniciar_turno()
+	return motor

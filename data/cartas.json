@@ -1,0 +1,566 @@
+[
+  {
+    "id": "viv_acelerar",
+    "categoria": "vivienda",
+    "costo_pa": 2,
+    "titulo": "Acelerar vivienda",
+    "efectos": [
+      {
+        "ind": "viviendas_anio",
+        "delta": 8000
+      },
+      {
+        "ind": "capital",
+        "delta": -3
+      }
+    ],
+    "requisitos": {
+      "ley": null,
+      "quorum": null
+    },
+    "corrector": {
+      "meta": 75000,
+      "capacidad": 55000,
+      "capacidad_ind": "viviendas_anio",
+      "modo": "version_viable",
+      "unidad": "viviendas/año"
+    },
+    "abre_propuesta_comite": null,
+    "fuente": "fuentes.json#minvu_2026"
+  },
+  {
+    "id": "com_metro_suroriente",
+    "categoria": "comite",
+    "costo_pa": 2,
+    "titulo": "Nueva línea de Metro suroriente-centro",
+    "efectos": [
+      {
+        "ind": "aprobacion",
+        "delta": 4
+      },
+      {
+        "ind": "fiscal",
+        "delta": -2
+      }
+    ],
+    "requisitos": {
+      "ley": null,
+      "quorum": null
+    },
+    "corrector": {
+      "meta": 1900,
+      "capacidad": 1100,
+      "modo": "por_tramos",
+      "unidad": "US$ M"
+    },
+    "abre_propuesta_comite": "prop_metro_suroriente",
+    "fuente": "fuentes.json#dipres_2026"
+  },
+  {
+    "id": "ene_reforma_quorum",
+    "categoria": "energia",
+    "costo_pa": 3,
+    "titulo": "Ley de transmisión eléctrica limpia",
+    "efectos": [
+      {
+        "ind": "cohesion",
+        "delta": 3
+      },
+      {
+        "ind": "fiscal",
+        "delta": -2
+      }
+    ],
+    "requisitos": {
+      "ley": "quorum_calificado",
+      "quorum": "quorum_calificado"
+    },
+    "corrector": null,
+    "abre_propuesta_comite": null,
+    "fuente": "fuentes.json#cpr_chile_2026"
+  },
+  {
+    "id": "hac_regla_fiscal",
+    "categoria": "hacienda",
+    "costo_pa": 2,
+    "titulo": "Regla fiscal con metas claras",
+    "efectos": [
+      {
+        "ind": "fiscal",
+        "delta": 5
+      },
+      {
+        "ind": "aprobacion",
+        "delta": -1
+      }
+    ],
+    "requisitos": {
+      "ley": null,
+      "quorum": null
+    },
+    "corrector": null,
+    "abre_propuesta_comite": null,
+    "fuente": "fuentes.json#dipres_2026"
+  },
+  {
+    "id": "hac_ajuste_gasto",
+    "categoria": "hacienda",
+    "costo_pa": 2,
+    "titulo": "Ajuste de gasto corriente",
+    "efectos": [
+      {
+        "ind": "fiscal",
+        "delta": 4
+      },
+      {
+        "ind": "aprobacion",
+        "delta": -2
+      },
+      {
+        "ind": "riesgo_ejecucion",
+        "delta": -1
+      }
+    ],
+    "requisitos": {
+      "ley": null,
+      "quorum": null
+    },
+    "corrector": null,
+    "abre_propuesta_comite": null,
+    "fuente": "fuentes.json#dipres_2026"
+  },
+  {
+    "id": "sal_urgencias",
+    "categoria": "salud",
+    "costo_pa": 2,
+    "titulo": "Plan de urgencias hospitalarias",
+    "efectos": [
+      {
+        "ind": "aprobacion",
+        "delta": 3
+      },
+      {
+        "ind": "fiscal",
+        "delta": -1
+      },
+      {
+        "ind": "riesgo_ejecucion",
+        "delta": -2
+      }
+    ],
+    "requisitos": {
+      "ley": null,
+      "quorum": null
+    },
+    "corrector": null,
+    "abre_propuesta_comite": null,
+    "fuente": "fuentes.json#ficticio_2026"
+  },
+  {
+    "id": "edu_alimentacion",
+    "categoria": "educacion",
+    "costo_pa": 1,
+    "titulo": "Alimentación escolar reforzada",
+    "efectos": [
+      {
+        "ind": "aprobacion",
+        "delta": 2
+      },
+      {
+        "ind": "fiscal",
+        "delta": -1
+      }
+    ],
+    "requisitos": {
+      "ley": null,
+      "quorum": null
+    },
+    "corrector": null,
+    "abre_propuesta_comite": null,
+    "fuente": "fuentes.json#ficticio_2026"
+  },
+  {
+    "id": "seg_plan_calles",
+    "categoria": "seguridad",
+    "costo_pa": 2,
+    "titulo": "Plan de patrullaje y calles seguras",
+    "efectos": [
+      {
+        "ind": "aprobacion",
+        "delta": 3
+      },
+      {
+        "ind": "capital",
+        "delta": -1
+      }
+    ],
+    "requisitos": {
+      "ley": null,
+      "quorum": null
+    },
+    "corrector": null,
+    "abre_propuesta_comite": null,
+    "fuente": "fuentes.json#ficticio_2026"
+  },
+  {
+    "id": "seg_reforma_policias",
+    "categoria": "seguridad",
+    "costo_pa": 3,
+    "titulo": "Reforma de carrera policial",
+    "efectos": [
+      {
+        "ind": "cohesion",
+        "delta": 2
+      },
+      {
+        "ind": "aprobacion",
+        "delta": 2
+      }
+    ],
+    "requisitos": {
+      "ley": "ley_simple",
+      "quorum": "ley_simple"
+    },
+    "corrector": null,
+    "abre_propuesta_comite": null,
+    "fuente": "fuentes.json#ficticio_2026"
+  },
+  {
+    "id": "tra_tren_valpo",
+    "categoria": "transportes",
+    "costo_pa": 2,
+    "titulo": "Tren rápido Santiago-Valparaíso",
+    "efectos": [
+      {
+        "ind": "aprobacion",
+        "delta": 3
+      },
+      {
+        "ind": "fiscal",
+        "delta": -2
+      }
+    ],
+    "requisitos": {
+      "ley": null,
+      "quorum": null
+    },
+    "corrector": {
+      "meta": 2500,
+      "capacidad": 1300,
+      "modo": "por_tramos",
+      "unidad": "US$ M"
+    },
+    "abre_propuesta_comite": "prop_tren_valparaiso",
+    "fuente": "fuentes.json#dipres_2026"
+  },
+  {
+    "id": "obr_hospital_regional",
+    "categoria": "salud",
+    "costo_pa": 2,
+    "titulo": "Hospital regional nuevo",
+    "efectos": [
+      {
+        "ind": "aprobacion",
+        "delta": 3
+      },
+      {
+        "ind": "fiscal",
+        "delta": -2
+      }
+    ],
+    "requisitos": {
+      "ley": null,
+      "quorum": null
+    },
+    "corrector": null,
+    "abre_propuesta_comite": null,
+    "fuente": "fuentes.json#ficticio_2026",
+    "obra": {
+      "nombre": "Hospital regional",
+      "dias_totales": 420
+    }
+  },
+  {
+    "id": "soc_pension_basica",
+    "categoria": "social",
+    "costo_pa": 3,
+    "titulo": "Mejora de la pensión básica",
+    "efectos": [
+      {
+        "ind": "aprobacion",
+        "delta": 5
+      },
+      {
+        "ind": "fiscal",
+        "delta": -4
+      }
+    ],
+    "requisitos": {
+      "ley": "ley_simple",
+      "quorum": "ley_simple"
+    },
+    "corrector": null,
+    "abre_propuesta_comite": null,
+    "fuente": "fuentes.json#ficticio_2026"
+  },
+  {
+    "id": "eco_pyme_credito",
+    "categoria": "economia",
+    "costo_pa": 2,
+    "titulo": "Crédito para pymes",
+    "efectos": [
+      {
+        "ind": "aprobacion",
+        "delta": 2
+      },
+      {
+        "ind": "fiscal",
+        "delta": -1
+      },
+      {
+        "ind": "capital",
+        "delta": 1
+      }
+    ],
+    "requisitos": {
+      "ley": null,
+      "quorum": null
+    },
+    "corrector": null,
+    "abre_propuesta_comite": null,
+    "fuente": "fuentes.json#ficticio_2026"
+  },
+  {
+    "id": "ene_solar_norte",
+    "categoria": "energia",
+    "costo_pa": 2,
+    "titulo": "Parque solar en el norte",
+    "efectos": [
+      {
+        "ind": "aprobacion",
+        "delta": 2
+      },
+      {
+        "ind": "fiscal",
+        "delta": -1
+      }
+    ],
+    "requisitos": {
+      "ley": null,
+      "quorum": null
+    },
+    "corrector": null,
+    "abre_propuesta_comite": null,
+    "fuente": "fuentes.json#ficticio_2026",
+    "obra": {
+      "nombre": "Parque solar",
+      "dias_totales": 350
+    }
+  },
+  {
+    "id": "amb_humedales",
+    "categoria": "medioambiente",
+    "costo_pa": 1,
+    "titulo": "Protección de humedales urbanos",
+    "efectos": [
+      {
+        "ind": "cohesion",
+        "delta": 1
+      },
+      {
+        "ind": "aprobacion",
+        "delta": 1
+      }
+    ],
+    "requisitos": {
+      "ley": null,
+      "quorum": null
+    },
+    "corrector": null,
+    "abre_propuesta_comite": null,
+    "fuente": "fuentes.json#ficticio_2026"
+  },
+  {
+    "id": "des_traspaso",
+    "categoria": "descentralizacion",
+    "costo_pa": 3,
+    "titulo": "Traspaso de competencias a regiones",
+    "efectos": [
+      {
+        "ind": "cohesion",
+        "delta": 2
+      },
+      {
+        "ind": "capital",
+        "delta": -2
+      },
+      {
+        "ind": "aprobacion",
+        "delta": 2
+      }
+    ],
+    "requisitos": {
+      "ley": "quorum_calificado",
+      "quorum": "quorum_calificado"
+    },
+    "corrector": null,
+    "abre_propuesta_comite": null,
+    "fuente": "fuentes.json#cpr_chile_2026"
+  },
+  {
+    "id": "pol_dialogo",
+    "categoria": "politica",
+    "costo_pa": 1,
+    "titulo": "Mesa de diálogo con la oposición",
+    "efectos": [
+      {
+        "ind": "capital",
+        "delta": 2
+      },
+      {
+        "ind": "cohesion",
+        "delta": -1
+      }
+    ],
+    "requisitos": {
+      "ley": null,
+      "quorum": null
+    },
+    "corrector": null,
+    "abre_propuesta_comite": null,
+    "fuente": "fuentes.json#ficticio_2026"
+  },
+  {
+    "id": "pol_cadena",
+    "categoria": "politica",
+    "costo_pa": 1,
+    "titulo": "Cadena nacional de gobierno",
+    "efectos": [
+      {
+        "ind": "aprobacion",
+        "delta": 2
+      },
+      {
+        "ind": "capital",
+        "delta": -1
+      }
+    ],
+    "requisitos": {
+      "ley": null,
+      "quorum": null
+    },
+    "corrector": null,
+    "abre_propuesta_comite": null,
+    "fuente": "fuentes.json#ficticio_2026"
+  },
+  {
+    "id": "viv_campamentos",
+    "categoria": "vivienda",
+    "costo_pa": 2,
+    "titulo": "Plan de campamentos",
+    "efectos": [
+      {
+        "ind": "viviendas_anio",
+        "delta": 4000
+      },
+      {
+        "ind": "aprobacion",
+        "delta": 2
+      },
+      {
+        "ind": "capital",
+        "delta": -1
+      }
+    ],
+    "requisitos": {
+      "ley": null,
+      "quorum": null
+    },
+    "corrector": {
+      "meta": 30000,
+      "capacidad": 55000,
+      "capacidad_ind": "viviendas_anio",
+      "modo": "version_viable",
+      "unidad": "viviendas/año"
+    },
+    "abre_propuesta_comite": null,
+    "fuente": "fuentes.json#minvu_2026"
+  },
+  {
+    "id": "tra_buses_electricos",
+    "categoria": "transportes",
+    "costo_pa": 2,
+    "titulo": "Buses eléctricos para regiones",
+    "efectos": [
+      {
+        "ind": "aprobacion",
+        "delta": 2
+      },
+      {
+        "ind": "riesgo_ejecucion",
+        "delta": 2
+      }
+    ],
+    "requisitos": {
+      "ley": null,
+      "quorum": null
+    },
+    "corrector": null,
+    "abre_propuesta_comite": null,
+    "fuente": "fuentes.json#ficticio_2026",
+    "obra": {
+      "nombre": "Flota de buses eléctricos",
+      "dias_totales": 280
+    }
+  },
+  {
+    "id": "pol_gabinete",
+    "categoria": "politica",
+    "costo_pa": 1,
+    "titulo": "Reunión de gabinete ampliado",
+    "efectos": [
+      {
+        "ind": "riesgo_ejecucion",
+        "delta": -3
+      },
+      {
+        "ind": "cohesion",
+        "delta": 1
+      }
+    ],
+    "requisitos": {
+      "ley": null,
+      "quorum": null
+    },
+    "corrector": null,
+    "abre_propuesta_comite": null,
+    "fuente": "fuentes.json#ficticio_2026"
+  },
+  {
+    "id": "obr_puentes_rurales",
+    "categoria": "obras",
+    "costo_pa": 2,
+    "titulo": "Puentes y caminos rurales",
+    "efectos": [
+      {
+        "ind": "aprobacion",
+        "delta": 2
+      },
+      {
+        "ind": "riesgo_ejecucion",
+        "delta": 1
+      }
+    ],
+    "requisitos": {
+      "ley": null,
+      "quorum": null
+    },
+    "corrector": null,
+    "abre_propuesta_comite": null,
+    "obra": {
+      "nombre": "Puentes rurales",
+      "dias_totales": 210
+    },
+    "fuente": "fuentes.json#ficticio_2026"
+  }
+]

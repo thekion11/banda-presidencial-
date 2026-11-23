@@ -1,0 +1,130 @@
+[
+  {
+    "id": "arica",
+    "nombre": "Arica y Parinacota",
+    "poblacion_miles": 226,
+    "pob_pct": 1.29,
+    "latitud_centro": -18.5,
+    "fuente": "fuentes.json#ine_censo_2017"
+  },
+  {
+    "id": "tarapaca",
+    "nombre": "Tarapacá",
+    "poblacion_miles": 330,
+    "pob_pct": 1.88,
+    "latitud_centro": -20.5,
+    "fuente": "fuentes.json#ine_censo_2017"
+  },
+  {
+    "id": "antofagasta",
+    "nombre": "Antofagasta",
+    "poblacion_miles": 607,
+    "pob_pct": 3.46,
+    "latitud_centro": -23.5,
+    "fuente": "fuentes.json#ine_censo_2017"
+  },
+  {
+    "id": "atacama",
+    "nombre": "Atacama",
+    "poblacion_miles": 286,
+    "pob_pct": 1.63,
+    "latitud_centro": -27.0,
+    "fuente": "fuentes.json#ine_censo_2017"
+  },
+  {
+    "id": "coquimbo",
+    "nombre": "Coquimbo",
+    "poblacion_miles": 757,
+    "pob_pct": 4.31,
+    "latitud_centro": -30.0,
+    "fuente": "fuentes.json#ine_censo_2017"
+  },
+  {
+    "id": "valparaiso",
+    "nombre": "Valparaíso",
+    "poblacion_miles": 1815,
+    "pob_pct": 10.33,
+    "latitud_centro": -33.0,
+    "fuente": "fuentes.json#ine_censo_2017"
+  },
+  {
+    "id": "metropolitana",
+    "nombre": "Metropolitana de Santiago",
+    "poblacion_miles": 7112,
+    "pob_pct": 40.49,
+    "latitud_centro": -33.5,
+    "fuente": "fuentes.json#ine_censo_2017"
+  },
+  {
+    "id": "ohiggins",
+    "nombre": "O'Higgins",
+    "poblacion_miles": 914,
+    "pob_pct": 5.2,
+    "latitud_centro": -34.5,
+    "fuente": "fuentes.json#ine_censo_2017"
+  },
+  {
+    "id": "maule",
+    "nombre": "Maule",
+    "poblacion_miles": 1044,
+    "pob_pct": 5.94,
+    "latitud_centro": -35.5,
+    "fuente": "fuentes.json#ine_censo_2017"
+  },
+  {
+    "id": "nuble",
+    "nombre": "Ñuble",
+    "poblacion_miles": 480,
+    "pob_pct": 2.73,
+    "latitud_centro": -36.6,
+    "fuente": "fuentes.json#ine_censo_2017"
+  },
+  {
+    "id": "biobio",
+    "nombre": "Biobío",
+    "poblacion_miles": 1556,
+    "pob_pct": 8.86,
+    "latitud_centro": -37.5,
+    "fuente": "fuentes.json#ine_censo_2017"
+  },
+  {
+    "id": "araucania",
+    "nombre": "La Araucanía",
+    "poblacion_miles": 957,
+    "pob_pct": 5.45,
+    "latitud_centro": -38.7,
+    "fuente": "fuentes.json#ine_censo_2017"
+  },
+  {
+    "id": "losrios",
+    "nombre": "Los Ríos",
+    "poblacion_miles": 384,
+    "pob_pct": 2.19,
+    "latitud_centro": -39.8,
+    "fuente": "fuentes.json#ine_censo_2017"
+  },
+  {
+    "id": "loslagos",
+    "nombre": "Los Lagos",
+    "poblacion_miles": 828,
+    "pob_pct": 4.71,
+    "latitud_centro": -41.5,
+    "fuente": "fuentes.json#ine_censo_2017"
+  },
+  {
+    "id": "aysen",
+    "nombre": "Aysén",
+    "poblacion_miles": 103,
+    "pob_pct": 0.59,
+    "latitud_centro": -46.0,
+    "fuente": "fuentes.json#ine_censo_2017"
+  },
+  {
+    "id": "magallanes",
+    "nombre": "Magallanes y la Antártica Chilena",
+    "poblacion_miles": 166,
+    "pob_pct": 0.95,
+    "latitud_centro": -53.0,
+    "fuente": "fuentes.json#ine_censo_2017"
+  }
+]

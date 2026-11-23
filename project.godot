@@ -1,0 +1,21 @@
+; Engine configuration file.
+config_version=5
+
+[application]
+config/name="Presidente de Chile"
+config/features=PackedStringArray("4.3", "Mobile")
+run/main_scene="res://game/main.tscn"
+config/icon="res://icon.svg"
+
+[autoload]
+
+[display]
+window/size/viewport_width=390
+window/size/viewport_height=844
+window/stretch/mode="canvas_items"
+window/stretch/aspect="keep_width"
+window/handheld/orientation=1
+
+[rendering]
+renderer/rendering_method="mobile"
+textures/vram_compression/import_etc2_astc=true

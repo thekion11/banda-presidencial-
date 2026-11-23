@@ -1,0 +1,242 @@
+{
+  "preguntas": [
+    {
+      "id": "preg_rol_estado",
+      "texto": "Ante un déficit habitacional crítico, ¿cuál debe ser el eje del plan?",
+      "opciones": [
+        {
+          "etiqueta": "Empresa estatal de vivienda y suelo público",
+          "delta_eco": -0.35,
+          "delta_inst": -0.15
+        },
+        {
+          "etiqueta": "Alianza público-privada con subsidio focalizado",
+          "delta_eco": 0.05,
+          "delta_inst": 0.1
+        },
+        {
+          "etiqueta": "Desregulación de permisos e incentivos tributarios",
+          "delta_eco": 0.35,
+          "delta_inst": 0.15
+        }
+      ]
+    },
+    {
+      "id": "preg_regla_fiscal",
+      "texto": "Si una reforma social exige superar el gasto proyectado por DIPRES:",
+      "opciones": [
+        {
+          "etiqueta": "Se financia con alza de impuestos al capital",
+          "delta_eco": -0.3,
+          "delta_inst": -0.1
+        },
+        {
+          "etiqueta": "Se implementa por tramos según crecimiento real",
+          "delta_eco": 0.1,
+          "delta_inst": 0.25
+        },
+        {
+          "etiqueta": "Se posterga hasta lograr superávit estructural",
+          "delta_eco": 0.35,
+          "delta_inst": 0.2
+        }
+      ]
+    },
+    {
+      "id": "preg_quorum_reformas",
+      "texto": "Cuando el Senado bloquea una ley emblemática del programa:",
+      "opciones": [
+        {
+          "etiqueta": "Plebiscitar y movilizar apoyo regional directo",
+          "delta_eco": -0.1,
+          "delta_inst": -0.35
+        },
+        {
+          "etiqueta": "Negociar indicaciones con bancadas moderadas",
+          "delta_eco": 0.0,
+          "delta_inst": 0.15
+        },
+        {
+          "etiqueta": "Acotar la medida a decretos dentro del marco vigente",
+          "delta_eco": 0.1,
+          "delta_inst": 0.35
+        }
+      ]
+    },
+    {
+      "id": "preg_pensiones",
+      "texto": "Sobre el sistema de pensiones, tu prioridad es:",
+      "opciones": [
+        {
+          "etiqueta": "Reparto con aporte estatal y empleador",
+          "delta_eco": -0.25,
+          "delta_inst": -0.1
+        },
+        {
+          "etiqueta": "Sistema mixto con garantías mínimas",
+          "delta_eco": 0.05,
+          "delta_inst": 0.1
+        },
+        {
+          "etiqueta": "Capitalización individual con incentivos al ahorro",
+          "delta_eco": 0.25,
+          "delta_inst": 0.05
+        }
+      ]
+    },
+    {
+      "id": "preg_seguridad",
+      "texto": "Frente al aumento del delito, ¿qué priorizas?",
+      "opciones": [
+        {
+          "etiqueta": "Prevención social y reinserción",
+          "delta_eco": -0.15,
+          "delta_inst": -0.15
+        },
+        {
+          "etiqueta": "Inteligencia, coordinación y más policías",
+          "delta_eco": 0.05,
+          "delta_inst": 0.2
+        },
+        {
+          "etiqueta": "Mano dura y penas más altas",
+          "delta_eco": 0.1,
+          "delta_inst": 0.3
+        }
+      ]
+    },
+    {
+      "id": "preg_regiones",
+      "texto": "Sobre el poder de las regiones:",
+      "opciones": [
+        {
+          "etiqueta": "Más recursos y autonomía a los gobiernos regionales",
+          "delta_eco": -0.1,
+          "delta_inst": -0.25
+        },
+        {
+          "etiqueta": "Traspaso gradual de competencias",
+          "delta_eco": 0.0,
+          "delta_inst": 0.1
+        },
+        {
+          "etiqueta": "Un Estado unitario con gestión eficiente central",
+          "delta_eco": 0.05,
+          "delta_inst": 0.25
+        }
+      ]
+    },
+    {
+      "id": "preg_energia",
+      "texto": "Para la matriz energética del país:",
+      "opciones": [
+        {
+          "etiqueta": "Inversión estatal fuerte en renovables",
+          "delta_eco": -0.25,
+          "delta_inst": -0.1
+        },
+        {
+          "etiqueta": "Transición con licitaciones privadas",
+          "delta_eco": 0.15,
+          "delta_inst": 0.05
+        },
+        {
+          "etiqueta": "Mercado libre, el precio decide",
+          "delta_eco": 0.25,
+          "delta_inst": 0.05
+        }
+      ]
+    },
+    {
+      "id": "preg_educacion",
+      "texto": "En educación, el foco debe ser:",
+      "opciones": [
+        {
+          "etiqueta": "Gratuidad universal y fortalecimiento de lo público",
+          "delta_eco": -0.25,
+          "delta_inst": -0.15
+        },
+        {
+          "etiqueta": "Financiamiento por resultados y diversidad de proveedores",
+          "delta_eco": 0.1,
+          "delta_inst": 0.1
+        },
+        {
+          "etiqueta": "Libertad de elección y vouchers",
+          "delta_eco": 0.2,
+          "delta_inst": 0.1
+        }
+      ]
+    }
+  ],
+  "arquetipos": [
+    {
+      "id": "izq_transformadora",
+      "nombre": "Frente Transformador",
+      "eco_min": -1.0,
+      "eco_max": -0.25
+    },
+    {
+      "id": "centro_reformista",
+      "nombre": "Coalición Reformista",
+      "eco_min": -0.25,
+      "eco_max": 0.25
+    },
+    {
+      "id": "der_liberal",
+      "nombre": "Alianza Liberal",
+      "eco_min": 0.25,
+      "eco_max": 1.0
+    }
+  ],
+  "perfiles": [
+    {
+      "id": "socdem_reformista",
+      "nombre": "Socialdemocracia Reformista",
+      "eco_min": -0.6,
+      "eco_max": -0.1,
+      "inst_min": -0.4,
+      "inst_max": 0.4
+    },
+    {
+      "id": "liberalismo_fiscal",
+      "nombre": "Liberalismo Fiscal",
+      "eco_min": 0.3,
+      "eco_max": 1.0,
+      "inst_min": -0.2,
+      "inst_max": 1.0
+    },
+    {
+      "id": "regionalismo_pragmatico",
+      "nombre": "Regionalismo Pragmático",
+      "eco_min": -0.3,
+      "eco_max": 0.3,
+      "inst_min": -1.0,
+      "inst_max": -0.1
+    },
+    {
+      "id": "izq_rupturista",
+      "nombre": "Izquierda Rupturista",
+      "eco_min": -1.0,
+      "eco_max": -0.6,
+      "inst_min": -1.0,
+      "inst_max": 0.0
+    },
+    {
+      "id": "conservadurismo_orden",
+      "nombre": "Conservadurismo de Orden",
+      "eco_min": 0.0,
+      "eco_max": 1.0,
+      "inst_min": 0.3,
+      "inst_max": 1.0
+    },
+    {
+      "id": "centro_gradualista",
+      "nombre": "Centro Gradualista",
+      "eco_min": -0.3,
+      "eco_max": 0.3,
+      "inst_min": 0.1,
+      "inst_max": 1.0
+    }
+  ]
+}
