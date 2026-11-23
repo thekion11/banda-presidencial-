@@ -6,6 +6,7 @@ Se descartan duplicados (misma región+nombre normalizado, o ya existentes en da
 Uso   : python3 tools/proyectos/curados_jsonl.py
 """
 import json
+import re
 import sys
 from pathlib import Path
 from urllib.parse import urlparse
@@ -60,7 +61,13 @@ def main():
                 continue
             vistos.add(k)
             host = urlparse(r["fuente_url"]).hostname or ""
-            ofi = bool(r.get("oficial")) and es_estatal(host) and "verificar" not in (r.get("notas") or "").lower()
+            estatal = bool(r.get("oficial")) and es_estatal(host)
+            notas = (r.get("notas") or "").strip()
+            anios = sorted(set(re.findall(r"\b(20(?:18|19|20|21|22|23|24))\b", notas)))
+            dudoso = "verificar" in notas.lower() or "no verificad" in notas.lower() or bool(anios)
+            if anios and not notas.startswith("[fuente de"):
+                notas = f"[fuente de {anios[0]}: estado a 2025-2026 sin confirmar] " + notas
+            ofi = estatal and not dudoso
             n_of += ofi
             n_pr += not ofi
             regs.append(registro(
@@ -68,8 +75,8 @@ def main():
                 comuna=r.get("comuna") or None, estado=r["estado"], inversion_musd=num(r.get("inversion_musd")), inversion_uf=num(r.get("inversion_uf")),
                 inversion_clp=num(r.get("inversion_clp")), fecha_inicio=r.get("fecha_inicio"), fecha_fin=r.get("fecha_fin"), mandante=r.get("mandante"),
                 descripcion=(r.get("descripcion") or "")[:300] or None, fuente_url=r["fuente_url"],
-                fuente="fuentes.json#curados_oficiales_2026" if ofi else "fuentes.json#curados_prensa_2026", verificado=ofi,
-                notas=(r.get("notas") or None)))
+                fuente="fuentes.json#curados_oficiales_2026" if estatal else "fuentes.json#curados_prensa_2026", verificado=ofi,
+                notas=notas or None))
         print(f"{arch.name}: {len(regs)} válidos, {dup} duplicados, {malos} inválidos")
         if regs:
             guardar(f"curados_{arch.stem}", regs, {"fuente": "curados_*_2026", "scraper": "tools/proyectos/curados_jsonl.py", "fecha_consulta": HOY,

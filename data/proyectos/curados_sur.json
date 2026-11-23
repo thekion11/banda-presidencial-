@@ -123,8 +123,8 @@
    "fuente_url": "https://www.minsal.cl/municipalidad-de-temuco-hizo-entrega-de-antecedentes-al-servicio-de-salud-araucania-sur-para-licitar-proyecto-nuevo-cesfam-amanecer/",
    "fuente": "fuentes.json#curados_oficiales_2026",
    "fecha_consulta": "2026-11-23",
-   "verificado": true,
-   "notas": "Nota de abr-2019; estado actual no verificado. Monto 'bordea los 5 mil millones'."
+   "verificado": false,
+   "notas": "[fuente de 2019: estado a 2025-2026 sin confirmar] Nota de abr-2019; estado actual no verificado. Monto 'bordea los 5 mil millones'."
   },
   {
    "id": "cur-araucania-pavimentacion-camino-huallepenco-rinconada",
@@ -171,8 +171,8 @@
    "fuente_url": "https://doh.mop.gob.cl/mop-inicia-obras-de-agua-potable-para-favorecer-a-cerca-de-10-mil-habitantes-de-la-comuna-de-teodoro-schmidt/",
    "fuente": "fuentes.json#curados_oficiales_2026",
    "fecha_consulta": "2026-11-23",
-   "verificado": true,
-   "notas": "Fecha de la nota no indicada (posible 2024 por ruta de imagen). Dos obras, monto conjunto 'más de 4 mil millones'."
+   "verificado": false,
+   "notas": "[fuente de 2024: estado a 2025-2026 sin confirmar] Fecha de la nota no indicada (posible 2024 por ruta de imagen). Dos obras, monto conjunto 'más de 4 mil millones'."
   },
   {
    "id": "cur-araucania-reposicion-cesfam-alemania-de-angol",
@@ -267,8 +267,8 @@
    "fuente_url": "https://aysen.mop.gob.cl/mop-invierte-sobre-8-mil-millones-en-mejoramiento-de-aerodromos/",
    "fuente": "fuentes.json#curados_oficiales_2026",
    "fecha_consulta": "2026-11-23",
-   "verificado": true,
-   "notas": "Nota nov-2023; la nota no indica la comuna (O'Higgins es inferencia)."
+   "verificado": false,
+   "notas": "[fuente de 2023: estado a 2025-2026 sin confirmar] Nota nov-2023; la nota no indica la comuna (O'Higgins es inferencia)."
   },
   {
    "id": "cur-aysen-construccion-cesfam-coyhaique-con-sar-adosado",
@@ -291,8 +291,8 @@
    "fuente_url": "https://www.minsal.cl/subsecretario-de-redes-asistenciales-visito-terreno-donde-se-construira-nuevo-cesfam-de-coyhaique/",
    "fuente": "fuentes.json#curados_oficiales_2026",
    "fecha_consulta": "2026-11-23",
-   "verificado": true,
-   "notas": "Nota feb-2021 (previo a construcción); un resultado de búsqueda sobre DIPRES sugería ejecución con 16,7% a dic-2023 (no leído). Estado actual no verificado."
+   "verificado": false,
+   "notas": "[fuente de 2021: estado a 2025-2026 sin confirmar] Nota feb-2021 (previo a construcción); un resultado de búsqueda sobre DIPRES sugería ejecución con 16,7% a dic-2023 (no leído). Estado actual no verificado."
   },
   {
    "id": "cur-aysen-hospital-dr-leopoldo-ortega-de-chile-chico",
@@ -363,8 +363,8 @@
    "fuente_url": "https://aysen.mop.gob.cl/importantes-avances-presenta-construccion-de-nuevo-rodoviario-regional/",
    "fuente": "fuentes.json#curados_oficiales_2026",
    "fecha_consulta": "2026-11-23",
-   "verificado": true,
-   "notas": "Nota de ene-2020 con 30% de avance; estado actual no verificado (puede estar terminado). Inversión 'cercana a $4.000 millones'."
+   "verificado": false,
+   "notas": "[fuente de 2020: estado a 2025-2026 sin confirmar] Nota de ene-2020 con 30% de avance; estado actual no verificado (puede estar terminado). Inversión 'cercana a $4.000 millones'."
   },
   {
    "id": "cur-aysen-pavimentacion-ruta-7-carretera-austral-bahia-murta-puente-el-belga",
@@ -531,8 +531,8 @@
    "fuente_url": "https://gorebiobio.cl/2023/11/20/gobierno-regional-compromete-apoyo-para-construir-un-cesfam-en-los-angeles/",
    "fuente": "fuentes.json#curados_oficiales_2026",
    "fecha_consulta": "2026-11-23",
-   "verificado": true,
-   "notas": "Nota de nov-2023 (etapa de diseño). El monto (~$8.000 millones) cubre Cesfam + alcantarillado en conjunto ('alcanzaría')."
+   "verificado": false,
+   "notas": "[fuente de 2023: estado a 2025-2026 sin confirmar] Nota de nov-2023 (etapa de diseño). El monto (~$8.000 millones) cubre Cesfam + alcantarillado en conjunto ('alcanzaría')."
   },
   {
    "id": "cur-biobio-hospital-de-mulchen-estudio-de-prefactibilidad-y-terreno",
@@ -555,8 +555,8 @@
    "fuente_url": "https://gorebiobio.cl/2024/02/06/gobierno-regional-compromete-apoyo-para-la-futura-construccion-del-hospital-de-mulchen/",
    "fuente": "fuentes.json#curados_oficiales_2026",
    "fecha_consulta": "2026-11-23",
-   "verificado": true,
-   "notas": "Nota feb-2024. 'Mil millones de pesos' es el monto de la iniciativa inicial citada, no el costo del hospital."
+   "verificado": false,
+   "notas": "[fuente de 2024: estado a 2025-2026 sin confirmar] Nota feb-2024. 'Mil millones de pesos' es el monto de la iniciativa inicial citada, no el costo del hospital."
   },
   {
    "id": "cur-biobio-mejoramiento-de-la-gestion-del-transito-en-la-ruta-160-tramo-manuel-ro",
@@ -579,8 +579,8 @@
    "fuente_url": "https://gorebiobio.cl/2023/11/27/ministerio-de-obras-publicas-y-gobierno-regional-del-biobio-realizaran-licitacion-para-ampliacion-de-terceras-pistas-en-ruta-160/",
    "fuente": "fuentes.json#curados_oficiales_2026",
    "fecha_consulta": "2026-11-23",
-   "verificado": true,
-   "notas": "Nota de nov-2023: inicio de licitación; estado actual no verificado."
+   "verificado": false,
+   "notas": "[fuente de 2023: estado a 2025-2026 sin confirmar] Nota de nov-2023: inicio de licitación; estado actual no verificado."
   },
   {
    "id": "cur-biobio-mercado-municipal-de-arauco",
@@ -723,8 +723,8 @@
    "fuente_url": "https://gorebiobio.cl/2024/06/13/gobierno-regional-financiara-reconstruccion-del-mercado-central-de-talcahuano/",
    "fuente": "fuentes.json#curados_oficiales_2026",
    "fecha_consulta": "2026-11-23",
-   "verificado": true,
-   "notas": "Financiamiento aprobado jun-2024; estado 'licitacion' es lectura (fase posterior a la aprobación). Sin fechas de obra."
+   "verificado": false,
+   "notas": "[fuente de 2024: estado a 2025-2026 sin confirmar] Financiamiento aprobado jun-2024; estado 'licitacion' es lectura (fase posterior a la aprobación). Sin fechas de obra."
   },
   {
    "id": "cur-biobio-reposicion-primera-compania-de-bomberos-de-san-pedro-de-la-paz-sector",
@@ -747,8 +747,8 @@
    "fuente_url": "https://gorebiobio.cl/2024/07/24/gobierno-regional-destinara-2-500-millones-para-nuevo-cuartel-de-la-primera-compania-de-bomberos-en-candelaria/",
    "fuente": "fuentes.json#curados_oficiales_2026",
    "fecha_consulta": "2026-11-23",
-   "verificado": true,
-   "notas": "Convenio firmado jul-2024; monto 'ronda' $2.500 millones; estado 'licitacion' es lectura."
+   "verificado": false,
+   "notas": "[fuente de 2024: estado a 2025-2026 sin confirmar] Convenio firmado jul-2024; monto 'ronda' $2.500 millones; estado 'licitacion' es lectura."
   },
   {
    "id": "cur-biobio-servicio-sanitario-rural-de-aurora-de-enero",
@@ -891,8 +891,8 @@
    "fuente_url": "https://www.subtrans.gob.cl/mtt-y-gobierno-regional-de-los-lagos-anuncian-financiamiento-para-construccion-de-ascensores-interterrazas-de-puerto-montt/",
    "fuente": "fuentes.json#curados_oficiales_2026",
    "fecha_consulta": "2026-11-23",
-   "verificado": true,
-   "notas": "Nota jul-2024: convenio mandato Serviu-GORE; expropiaciones aún no inician; término esperado 1er semestre 2027 (estado actual no verificado)."
+   "verificado": false,
+   "notas": "[fuente de 2024: estado a 2025-2026 sin confirmar] Nota jul-2024: convenio mandato Serviu-GORE; expropiaciones aún no inician; término esperado 1er semestre 2027 (estado actual no verificado)."
   },
   {
    "id": "cur-loslagos-predio-baquedano-540-viviendas-y-parque-osorno",
@@ -987,8 +987,8 @@
    "fuente_url": "https://losrios.mop.gob.cl/avanza-construccion-de-etapa-2-de-la-circunvalacion-de-valdivia-que-unira-los-accesos-norte-y-sur-a-la-capital-regional/",
    "fuente": "fuentes.json#curados_oficiales_2026",
    "fecha_consulta": "2026-11-23",
-   "verificado": true,
-   "notas": "Nota feb-2022: 36% de avance, término 'mediados del año en curso'; el encabezado dice 12.886 M y el cuerpo 12.866 M. Estado actual no verificado."
+   "verificado": false,
+   "notas": "[fuente de 2022: estado a 2025-2026 sin confirmar] Nota feb-2022: 36% de avance, término 'mediados del año en curso'; el encabezado dice 12.886 M y el cuerpo 12.866 M. Estado actual no verificado."
   },
   {
    "id": "cur-losrios-mejoramiento-ruta-choshuenco-rinihue-primera-etapa",
@@ -1179,8 +1179,8 @@
    "fuente_url": "https://www.goremagallanes.cl/consejo-regional-aprueba-proyecto-para-avenida-circunvalacion-por-mas-de-25-mil-millones-de-pesos/",
    "fuente": "fuentes.json#curados_oficiales_2026",
    "fecha_consulta": "2026-11-23",
-   "verificado": true,
-   "notas": "Nota de jul-2023 (financiamiento aprobado, $25.215 millones); estado actual no verificado."
+   "verificado": false,
+   "notas": "[fuente de 2023: estado a 2025-2026 sin confirmar] Nota de jul-2023 (financiamiento aprobado, $25.215 millones); estado actual no verificado."
   },
   {
    "id": "cur-magallanes-construccion-colector-interceptor-de-aguas-servidas-de-av-frei-punta-a",

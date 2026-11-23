@@ -148,7 +148,7 @@
    "fuente": "fuentes.json#curados_prensa_2026",
    "fecha_consulta": "2026-11-23",
    "verificado": false,
-   "notas": "Sin monto en la fuente. Construido por SERVIU en 2024."
+   "notas": "[fuente de 2024: estado a 2025-2026 sin confirmar] Sin monto en la fuente. Construido por SERVIU en 2024."
   },
   {
    "id": "cur-metropolitana-comisaria-la-farfana-29-comisaria-maipu",
@@ -265,7 +265,7 @@
    "mandante": "SERVIU Metropolitano",
    "descripcion": "Construcción Canal Troncal San Francisco",
    "fuente_url": "https://www.dipres.gob.cl/597/articles-411792_doc_pdf.pdf",
-   "fuente": "fuentes.json#curados_prensa_2026",
+   "fuente": "fuentes.json#curados_oficiales_2026",
    "fecha_consulta": "2026-11-23",
    "verificado": false,
    "notas": "Informe Dipres de inversion publica a marzo 2026 (cod. 30371723-0, etapa SIAP EJECUCION). Presupuesto 2026 identificado: 13.809.016 miles de pesos (monto anual, no costo total del proyecto; por eso sin monto). Comuna no indicada en el titulo (verificar)."
@@ -529,7 +529,7 @@
    "mandante": "Dirección de Obras Hidráulicas (MOP)",
    "descripcion": "Construcción Obras de Retención en Hondonada, Quebrada de Macul",
    "fuente_url": "https://www.dipres.gob.cl/597/articles-411733_doc_pdf.pdf",
-   "fuente": "fuentes.json#curados_prensa_2026",
+   "fuente": "fuentes.json#curados_oficiales_2026",
    "fecha_consulta": "2026-11-23",
    "verificado": false,
    "notas": "Informe Dipres de inversion publica a marzo 2026 (cod. 30097900-0, etapa SIAP EJECUCION). Presupuesto 2026 identificado: 658.470 miles de pesos (monto anual, no costo total del proyecto; por eso sin monto). Comuna no indicada en el titulo (Quebrada de Macul; verificar)."
@@ -793,7 +793,7 @@
    "mandante": "SERVIU Metropolitano",
    "descripcion": "Construcción Teleférico Pío Nono, Parque Metropolitano de Santiago",
    "fuente_url": "https://www.dipres.gob.cl/597/articles-411792_doc_pdf.pdf",
-   "fuente": "fuentes.json#curados_prensa_2026",
+   "fuente": "fuentes.json#curados_oficiales_2026",
    "fecha_consulta": "2026-11-23",
    "verificado": false,
    "notas": "Informe Dipres de inversion publica a marzo 2026 (cod. 40011602-0, etapa SIAP EJECUCION). Presupuesto 2026 identificado: 8.118.000 miles de pesos (monto anual, no costo total del proyecto; por eso sin monto). Comuna no indicada en el titulo; Pio Nono esta en Recoleta/Providencia (verificar)."
@@ -1153,7 +1153,7 @@
    "mandante": "SERVIU Metropolitano",
    "descripcion": "Mejoramiento Parque Río Viejo-La Hondonada",
    "fuente_url": "https://www.dipres.gob.cl/597/articles-411792_doc_pdf.pdf",
-   "fuente": "fuentes.json#curados_prensa_2026",
+   "fuente": "fuentes.json#curados_oficiales_2026",
    "fecha_consulta": "2026-11-23",
    "verificado": false,
    "notas": "Informe Dipres de inversion publica a marzo 2026 (cod. 40053181-0, etapa SIAP EJECUCION). Presupuesto 2026 identificado: 3.350.030 miles de pesos (monto anual, no costo total del proyecto; por eso sin monto). Comuna no indicada en el titulo; La Hondonada esta en Cerro Navia segun listado de Parque Metropolitano (verificar)."
@@ -1563,8 +1563,8 @@
    "fuente_url": "https://www.dipres.gob.cl/597/articles-411771_doc_pdf.pdf",
    "fuente": "fuentes.json#curados_oficiales_2026",
    "fecha_consulta": "2026-11-23",
-   "verificado": true,
-   "notas": "Informe Dipres de inversion publica a marzo 2026 (cod. 40032166-0, etapa SIAP EJECUCION). Presupuesto 2026 identificado: 12.326.270 miles de pesos (monto anual, no costo total del proyecto; por eso sin monto). Reconstruccion tras incendio 2021; contrato Sacyr 95,2 M euros segun resultado de busqueda (no leido)."
+   "verificado": false,
+   "notas": "[fuente de 2021: estado a 2025-2026 sin confirmar] Informe Dipres de inversion publica a marzo 2026 (cod. 40032166-0, etapa SIAP EJECUCION). Presupuesto 2026 identificado: 12.326.270 miles de pesos (monto anual, no costo total del proyecto; por eso sin monto). Reconstruccion tras incendio 2021; contrato Sacyr 95,2 M euros segun resultado de busqueda (no leido)."
   },
   {
    "id": "cur-metropolitana-reposicion-centro-de-salud-juan-petrinovic-briones-recoleta",
@@ -2211,8 +2211,8 @@
    "fuente_url": "https://www.mop.gob.cl/mop-construira-subcomisaria-motorizada-de-carabineros-para-la-region-metropolitana-en-renca/",
    "fuente": "fuentes.json#curados_oficiales_2026",
    "fecha_consulta": "2026-11-23",
-   "verificado": true,
-   "notas": "Nota del 19-08-2024: en diseno, inicio de obras previsto ultimo trimestre 2025; avance posterior no verificado. Monto US$12 millones."
+   "verificado": false,
+   "notas": "[fuente de 2024: estado a 2025-2026 sin confirmar] Nota del 19-08-2024: en diseno, inicio de obras previsto ultimo trimestre 2025; avance posterior no verificado. Monto US$12 millones."
   },
   {
    "id": "cur-metropolitana-tercer-tramo-de-la-ciclovia-nueva-alameda",

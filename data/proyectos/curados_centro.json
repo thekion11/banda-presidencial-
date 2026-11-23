@@ -28,7 +28,7 @@
    "fuente": "fuentes.json#curados_prensa_2026",
    "fecha_consulta": "2026-11-23",
    "verificado": false,
-   "notas": "$1.300 millones. Nota de mayo de 2021; estado posterior no verificado."
+   "notas": "[fuente de 2021: estado a 2025-2026 sin confirmar] $1.300 millones. Nota de mayo de 2021; estado posterior no verificado."
   },
   {
    "id": "cur-maule-apr-pejerrey-los-hualles",
@@ -52,7 +52,7 @@
    "fuente": "fuentes.json#curados_prensa_2026",
    "fecha_consulta": "2026-11-23",
    "verificado": false,
-   "notas": "$2.551 millones. Nota de mayo de 2021; estado posterior no verificado."
+   "notas": "[fuente de 2021: estado a 2025-2026 sin confirmar] $2.551 millones. Nota de mayo de 2021; estado posterior no verificado."
   },
   {
    "id": "cur-maule-estudio-aeropuerto-internacional-de-carga-del-maule",
@@ -124,7 +124,7 @@
    "fuente": "fuentes.json#curados_prensa_2026",
    "fecha_consulta": "2026-11-23",
    "verificado": false,
-   "notas": "'Más de 21 mil millones de pesos'. Primera piedra esperada 2S 2025; operación 1S 2028. Información de 2024; avance posterior no verificado."
+   "notas": "[fuente de 2024: estado a 2025-2026 sin confirmar] 'Más de 21 mil millones de pesos'. Primera piedra esperada 2S 2025; operación 1S 2028. Información de 2024; avance posterior no verificado."
   },
   {
    "id": "cur-maule-parque-eolico-el-parron",
@@ -316,7 +316,7 @@
    "fuente": "fuentes.json#curados_prensa_2026",
    "fecha_consulta": "2026-11-23",
    "verificado": false,
-   "notas": "Sin monto. Nota de abril 2024 (plan 2025); estado actual no verificado."
+   "notas": "[fuente de 2024: estado a 2025-2026 sin confirmar] Sin monto. Nota de abril 2024 (plan 2025); estado actual no verificado."
   },
   {
    "id": "cur-nuble-mejoramiento-del-borde-costero-de-perales",
@@ -340,7 +340,7 @@
    "fuente": "fuentes.json#curados_prensa_2026",
    "fecha_consulta": "2026-11-23",
    "verificado": false,
-   "notas": "Sin monto. Nota de abril 2024 (plan 2025); estado actual no verificado."
+   "notas": "[fuente de 2024: estado a 2025-2026 sin confirmar] Sin monto. Nota de abril 2024 (plan 2025); estado actual no verificado."
   },
   {
    "id": "cur-nuble-nuevo-hospital-regional-de-nuble",
@@ -363,8 +363,8 @@
    "fuente_url": "https://www.minsal.cl/?p=94004",
    "fuente": "fuentes.json#curados_oficiales_2026",
    "fecha_consulta": "2026-11-23",
-   "verificado": true,
-   "notas": "'Más de 250 mil millones de pesos' en nota 2024; una nota Minsal de 2022 decía más de 204 mil millones. Comuna Chillán inferida del texto. Avance posterior (2026) no verificado."
+   "verificado": false,
+   "notas": "[fuente de 2022: estado a 2025-2026 sin confirmar] 'Más de 250 mil millones de pesos' en nota 2024; una nota Minsal de 2022 decía más de 204 mil millones. Comuna Chillán inferida del texto. Avance posterior (2026) no verificado."
   },
   {
    "id": "cur-nuble-nuevo-liceo-de-yungay",
@@ -483,8 +483,8 @@
    "fuente_url": "https://www.minvu.gob.cl/noticia/ministro-poduje-destraba-proyecto-habitacional-paralizado-por-hallazgos-arqueologicos-en-chillan-viejo/",
    "fuente": "fuentes.json#curados_oficiales_2026",
    "fecha_consulta": "2026-11-23",
-   "verificado": true,
-   "notas": "Sin inversión total; el rescate arqueológico cuesta cerca de $300 millones. Obras se esperaban desde agosto 2026. Subsidios en noviembre 2022."
+   "verificado": false,
+   "notas": "[fuente de 2022: estado a 2025-2026 sin confirmar] Sin inversión total; el rescate arqueológico cuesta cerca de $300 millones. Obras se esperaban desde agosto 2026. Subsidios en noviembre 2022."
   },
   {
    "id": "cur-nuble-servicio-sanitario-rural-las-cabras-nuevo",
@@ -699,8 +699,8 @@
    "fuente_url": "https://www.minsal.cl/aprueban-recursos-para-construccion-de-nuevo-hospital-de-san-vicente/",
    "fuente": "fuentes.json#curados_oficiales_2026",
    "fecha_consulta": "2026-11-23",
-   "verificado": true,
-   "notas": "Nota de junio 2018; estado actual no verificado. Sin monto propio: los 'más de $300 mil millones' son del convenio de programación completo."
+   "verificado": false,
+   "notas": "[fuente de 2018: estado a 2025-2026 sin confirmar] Nota de junio 2018; estado actual no verificado. Sin monto propio: los 'más de $300 mil millones' son del convenio de programación completo."
   },
   {
    "id": "cur-ohiggins-parque-fotovoltaico-bastian-solar",
@@ -1084,7 +1084,7 @@
    "fuente": "fuentes.json#curados_prensa_2026",
    "fecha_consulta": "2026-11-23",
    "verificado": false,
-   "notas": "Comuna tomada de nota CPI 2026-01 (Villa Alemana); la nota g5 no la indica. Sin monto en la página. Inicio de obras mayo 2020."
+   "notas": "[fuente de 2020: estado a 2025-2026 sin confirmar] Comuna tomada de nota CPI 2026-01 (Villa Alemana); la nota g5 no la indica. Sin monto en la página. Inicio de obras mayo 2020."
   },
   {
    "id": "cur-valparaiso-nuevo-instituto-teleton-valparaiso",
