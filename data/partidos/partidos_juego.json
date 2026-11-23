@@ -3,7 +3,8 @@
   "fecha": "2026-11-23",
   "ejes": "Mismos ejes y escala de data/ideologia.json: eje_eco -1 estatista/redistributivo a +1 mercado; eje_inst -1 ruptura, movilización o regionalismo radical a +1 gradualismo e institucionalidad. Los valores son estimaciones editoriales ancladas en los hechos citados en `justificacion`.",
   "cifras_ilustrativas": "Escaños = elecciones 2025 redondeados al partido real, usados solo como peso de juego; no son datos oficiales.",
-  "criterio_nombres": "Ver docs/PARTIDOS.md"
+  "criterio_nombres": "Ver docs/PARTIDOS.md",
+  "revision_2026_11_23": "Escaños verificados contra Servel provisorio (diputados 2025 sin diferencias); se corrigió la justificación del PNL (se había citado un principio que correspondía a otro partido). Los nuevos conteos de la Cámara respaldan los valores vigentes de los ejes; no se movieron."
  },
  "partidos": [
   {
@@ -150,7 +151,7 @@
    "eje_eco": -0.85,
    "eje_inst": -0.3,
    "justificacion": {
-    "eco": "La declaración de 1922 (cita BCN) declaró 'abolido el régimen capitalista'; integró Nueva Mayoría, Chile Digno y Apruebo Dignidad; 2 senadores votaron a favor de la reforma de pensiones (28-ene-2025).",
+    "eco": "La declaración de 1922 (cita BCN) declaró 'abolido el régimen capitalista'; integró Nueva Mayoría, Chile Digno y Apruebo Dignidad; 2 senadores votaron a favor de la reforma de pensiones (28-ene-2025). Dato nuevo: Votaciones nominales de la Cámara: 12 a favor del proyecto tributario 2023 (sin votos en contra); 0 a favor y 5 en contra de la ley de uso de la fuerza (2026-10-07).",
     "inst": "Mantiene política de movilización social (Chile Digno 2019, Apruebo Dignidad 2021) pero votó la reforma de pensiones en el Congreso: ruptura moderada."
    },
    "pide": {
@@ -196,7 +197,7 @@
    "eje_eco": -0.65,
    "eje_inst": -0.35,
    "justificacion": {
-    "eco": "BCN: se define 'socialista, feminista y ecologista'; integró Apruebo Dignidad y la Alianza de Gobierno 2022; el proyecto tributario de 2023 fue rechazado en la Cámara 73-71-3.",
+    "eco": "BCN: se define 'socialista, feminista y ecologista'; integró Apruebo Dignidad y la Alianza de Gobierno 2022; el proyecto tributario de 2023 fue rechazado en la Cámara 73-71-3. Dato nuevo: Votación nominal de la ley de uso de la fuerza (Cámara, 2026-10-07): 1 a favor y 10 en contra de sus diputados.",
     "inst": "Nacido de movimientos sociales y de coalición de reforma profunda; promueve gobiernos regionales y participación, pero gobernó en alianza con partidos de la Concertación."
    },
    "pide": {
@@ -376,7 +377,7 @@
    "eje_eco": 0.4,
    "eje_inst": 0.6,
    "justificacion": {
-    "eco": "Estatutos 2016: economía social de mercado, subsidiariedad y solidaridad; coaliciones Alianza, Chile Vamos, Chile Grande y Unido; en 2014 votó contra la idea de legislar la reforma tributaria; integra el gobierno desde 11-mar-2026 (Wikipedia).",
+    "eco": "Estatutos 2016: economía social de mercado, subsidiariedad y solidaridad; coaliciones Alianza, Chile Vamos, Chile Grande y Unido; en 2014 votó contra la idea de legislar la reforma tributaria; integra el gobierno desde 11-mar-2026 (Wikipedia). Dato nuevo: Votaciones nominales de la Cámara: 0 a favor y 15 en contra en el primer voto de la reforma tributaria 2014; 0 a favor y 17 en contra del proyecto tributario 2023; 12 a favor y 16 en contra del matrimonio igualitario (2021-11-23).",
     "inst": "Gobierno y oposición dentro de reglas; en 2023 la idea de legislar tributaria cayó 73-71-3 con acuerdo de rechazo de la derecha (La Tercera); respaldo a regionalización en estatutos."
    },
    "pide": {
@@ -421,7 +422,7 @@
    "eje_eco": 0.65,
    "eje_inst": 0.65,
    "justificacion": {
-    "eco": "BCN: Congreso Doctrinario 1991, partido popular, libertario, de sentido cristiano, economía de mercado con subsidiariedad; en 2014 votó contra la idea de legislar la reforma tributaria; los diputados UDI Guillermo Ramírez y Juan Antonio Coloma votaron en contra del matrimonio igualitario (Cámara, 23-nov-2021); firmó declaración 'Chile sin violencia' (2026).",
+    "eco": "BCN: Congreso Doctrinario 1991, partido popular, libertario, de sentido cristiano, economía de mercado con subsidiariedad; en 2014 votó contra la idea de legislar la reforma tributaria; los diputados UDI Guillermo Ramírez y Juan Antonio Coloma votaron en contra del matrimonio igualitario (Cámara, 23-nov-2021); firmó declaración 'Chile sin violencia' (2026). Dato nuevo: Votaciones nominales de la Cámara: 0 a favor y 29 en contra en el primer voto de la reforma tributaria 2014; 0 a favor y 20 en contra del proyecto tributario 2023; 0 a favor y 28 en contra del primer voto del aborto en tres causales (2016).",
     "inst": "Defiende orden e institucionalidad; llama a la paz social y rechazo a la violencia; presidente del partido celebró la aprobación de pensiones aunque un senador votó en contra."
    },
    "pide": {
@@ -513,7 +514,7 @@
    "eje_eco": 0.7,
    "eje_inst": 0.5,
    "justificacion": {
-    "eco": "Principios: economía social de mercado, impedir que el Estado invada la actividad económica, rechazo a la violencia, vida desde la concepción y matrimonio entre hombre y mujer; en 2025 votó contra la reforma de pensiones (senadores y bancada de diputados); pacto Cambio por Chile 2025.",
+    "eco": "Principios: economía social de mercado, impedir que el Estado invada la actividad económica, rechazo a la violencia, vida desde la concepción y matrimonio entre hombre y mujer; en 2025 votó contra la reforma de pensiones (senadores y bancada de diputados); pacto Cambio por Chile 2025. Dato nuevo: Votación nominal de la ley de uso de la fuerza (Cámara, 2026-10-07): 26 a favor de sus diputados, sin votos en contra.",
     "inst": "Énfasis en orden y seguridad con descentralización declarada (principio 12); oposición a pactos transversales de pensiones. Valor moderado-alto."
    },
    "pide": {
@@ -560,7 +561,7 @@
    "eje_eco": 0.95,
    "eje_inst": -0.2,
    "justificacion": {
-    "eco": "Principios: derechos 'anteriores y superiores al Estado' (secundaria); votó en contra de la reforma de pensiones en la Cámara (ene-2025); decidió no integrar el gobierno de Kast (2025, titular 24horas); pacto Cambio por Chile 2025.",
+    "eco": "Votó en contra de la reforma de pensiones en la Cámara (ene-2025, según El Dínamo); presidente del partido es Johannes Kaiser (Servel); pacto Cambio por Chile 2025. Sin declaración de principios primaria verificada: el valor se apoya en su posición pública de oposición al acuerdo de pensiones y su identificación como 'nueva derecha' (formulario de candidatos 2025, secundaria).",
     "inst": "Se define 'nueva derecha' y rechazó el acuerdo de pensiones y el ingreso al gobierno: perfil anti-establishment, de ahí valor negativo."
    },
    "pide": {
