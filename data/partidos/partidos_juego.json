@@ -1,0 +1,691 @@
+{
+ "meta": {
+  "fecha": "2026-11-23",
+  "ejes": "Mismos ejes y escala de data/ideologia.json: eje_eco -1 estatista/redistributivo a +1 mercado; eje_inst -1 ruptura, movilización o regionalismo radical a +1 gradualismo e institucionalidad. Los valores son estimaciones editoriales ancladas en los hechos citados en `justificacion`.",
+  "cifras_ilustrativas": "Escaños = elecciones 2025 redondeados al partido real, usados solo como peso de juego; no son datos oficiales.",
+  "criterio_nombres": "Ver docs/PARTIDOS.md"
+ },
+ "partidos": [
+  {
+   "id": "laborismo_austral",
+   "real_ref": "ps",
+   "nombre": "Movimiento Laborista Reformista",
+   "sigla": "MLR",
+   "alias_bloque": "Bloque de la Aurora",
+   "eje_eco": -0.5,
+   "eje_inst": 0.2,
+   "justificacion": {
+    "eco": "Declara ser partido 'popular y de izquierda' (declaración de principios, pschile.cl); gobernó en Concertación y Nueva Mayoría (patrocinio de la reforma tributaria Ley 20.780, 2014); votó a favor de la reforma de pensiones en el Senado (7 de 7, 28-ene-2025). Redistributivo pero con pactos.",
+    "inst": "Participó de forma continua en coaliciones de gobierno desde 1988 y sus 7 senadores respaldaron un acuerdo negociado de pensiones: institucional, aunque su declaración se define 'revolucionario' en cambio social. Valor levemente positivo."
+   },
+   "pide": {
+    "categorias": [
+     "social",
+     "salud",
+     "educacion"
+    ],
+    "ministerios": [
+     "min_trabajo",
+     "min_social"
+    ],
+    "asesores": [
+     "perfil sindical y social"
+    ],
+    "temas": [
+     "pensiones con aporte estatal",
+     "reforma tributaria",
+     "derechos laborales"
+    ]
+   },
+   "rechaza": {
+    "categorias": [
+     "seguridad"
+    ],
+    "temas": [
+     "recortes del gasto social",
+     "privatizaciones"
+    ]
+   },
+   "escanos": {
+    "diputados": 11,
+    "senadores": 7
+   },
+   "cifras_ilustrativas": true
+  },
+  {
+   "id": "convergencia_progresista",
+   "real_ref": "ppd",
+   "nombre": "Convergencia Progresista Cívica",
+   "sigla": "CPC",
+   "alias_bloque": "Bloque de la Aurora",
+   "eje_eco": -0.2,
+   "eje_inst": 0.35,
+   "justificacion": {
+    "eco": "Sus estatutos no usan etiqueta ideológica (art. 1); integró Concertación, Nueva Mayoría y Unidad por Chile; 4 senadores PPD votaron a favor de la reforma de pensiones (28-ene-2025). Centroizquierda de agenda de derechos y Estado regulador.",
+    "inst": "Coaliciones de gobierno continuas 1988-2025 y apoyo a acuerdos transversales de pensiones indican preferencia por la vía institucional."
+   },
+   "pide": {
+    "categorias": [
+     "politica",
+     "educacion",
+     "medioambiente"
+    ],
+    "ministerios": [
+     "min_segpres",
+     "min_interior"
+    ],
+    "asesores": [
+     "perfil legislativo"
+    ],
+    "temas": [
+     "derechos civiles",
+     "modernización del Estado"
+    ]
+   },
+   "rechaza": {
+    "categorias": [
+     "hacienda"
+    ],
+    "temas": [
+     "retroceso en derechos"
+    ]
+   },
+   "escanos": {
+    "diputados": 9,
+    "senadores": 4
+   },
+   "cifras_ilustrativas": true
+  },
+  {
+   "id": "comunidad_solidaria",
+   "real_ref": "pdc",
+   "nombre": "Concordia Comunitaria de Centro",
+   "sigla": "CCC",
+   "alias_bloque": "Bloque de la Aurora",
+   "eje_eco": -0.1,
+   "eje_inst": 0.45,
+   "justificacion": {
+    "eco": "Estatutos: partido 'fundado en los valores del Humanismo Cristiano'; 3 senadores DC votaron a favor de la reforma de pensiones (28-ene-2025); apoyó a Boric en 2021 sin integrar su gobierno (BCN). Centro con énfasis solidario.",
+    "inst": "Participó en Concertación y Nueva Mayoría y definió en 2021 apoyar sin entrar al gobierno: gradualismo y negociación como método."
+   },
+   "pide": {
+    "categorias": [
+     "social",
+     "educacion",
+     "descentralizacion"
+    ],
+    "ministerios": [
+     "min_social",
+     "min_educacion"
+    ],
+    "asesores": [
+     "perfil comunitario"
+    ],
+    "temas": [
+     "familia y protección social",
+     "pensiones mixtas"
+    ]
+   },
+   "rechaza": {
+    "categorias": [
+     "economia"
+    ],
+    "temas": [
+     "medidas rupturistas",
+     "desregulación laboral"
+    ]
+   },
+   "escanos": {
+    "diputados": 8,
+    "senadores": 3
+   },
+   "cifras_ilustrativas": true
+  },
+  {
+   "id": "frente_obrero_popular",
+   "real_ref": "pcch",
+   "nombre": "Frente Obrero Popular",
+   "sigla": "FOP",
+   "alias_bloque": "Bloque de la Aurora",
+   "eje_eco": -0.85,
+   "eje_inst": -0.3,
+   "justificacion": {
+    "eco": "La declaración de 1922 (cita BCN) declaró 'abolido el régimen capitalista'; integró Nueva Mayoría, Chile Digno y Apruebo Dignidad; 2 senadores votaron a favor de la reforma de pensiones (28-ene-2025).",
+    "inst": "Mantiene política de movilización social (Chile Digno 2019, Apruebo Dignidad 2021) pero votó la reforma de pensiones en el Congreso: ruptura moderada."
+   },
+   "pide": {
+    "categorias": [
+     "social",
+     "salud",
+     "hacienda"
+    ],
+    "ministerios": [
+     "min_trabajo",
+     "min_hacienda"
+    ],
+    "asesores": [
+     "perfil sindical"
+    ],
+    "temas": [
+     "pensiones de reparto",
+     "empresas públicas",
+     "derechos laborales"
+    ]
+   },
+   "rechaza": {
+    "categorias": [
+     "seguridad"
+    ],
+    "temas": [
+     "privatizaciones",
+     "flexibilización laboral"
+    ]
+   },
+   "escanos": {
+    "diputados": 11,
+    "senadores": 3
+   },
+   "cifras_ilustrativas": true
+  },
+  {
+   "id": "horizonte_comun",
+   "real_ref": "fa",
+   "nombre": "Movimiento Horizonte Común",
+   "sigla": "MHC",
+   "alias_bloque": "Bloque de la Aurora",
+   "eje_eco": -0.65,
+   "eje_inst": -0.35,
+   "justificacion": {
+    "eco": "BCN: se define 'socialista, feminista y ecologista'; integró Apruebo Dignidad y la Alianza de Gobierno 2022; el proyecto tributario de 2023 fue rechazado en la Cámara 73-71-3.",
+    "inst": "Nacido de movimientos sociales y de coalición de reforma profunda; promueve gobiernos regionales y participación, pero gobernó en alianza con partidos de la Concertación."
+   },
+   "pide": {
+    "categorias": [
+     "medioambiente",
+     "descentralizacion",
+     "educacion"
+    ],
+    "ministerios": [
+     "min_ambiente",
+     "min_mujer"
+    ],
+    "asesores": [
+     "perfil ecologista"
+    ],
+    "temas": [
+     "feminismo y derechos",
+     "descentralización",
+     "transición ecológica"
+    ]
+   },
+   "rechaza": {
+    "categorias": [
+     "seguridad"
+    ],
+    "temas": [
+     "mano dura sin reforma",
+     "extractivismo"
+    ]
+   },
+   "escanos": {
+    "diputados": 17,
+    "senadores": 2
+   },
+   "cifras_ilustrativas": true
+  },
+  {
+   "id": "sociedad_abierta",
+   "real_ref": "pl",
+   "nombre": "Sociedad Abierta Ciudadana",
+   "sigla": "SAC",
+   "alias_bloque": "Bloque de la Aurora",
+   "eje_eco": 0.0,
+   "eje_inst": 0.0,
+   "justificacion": {
+    "eco": "Manifiesto: 'proyecto de centro izquierda, reformador, progresista' y 'libertad individual como económica, con un estado robusto que evite la concentración'; laicidad (BCN, 2019). Mezcla de liberalismo y Estado regulador.",
+    "inst": "Cambió de coalición varias veces (Frente Amplio 2017, Nuevo Trato 2020, Nuevo Pacto Social 2021) y presentó proyecto de seguridad (2022): posición intermedia sin sesgo claro."
+   },
+   "pide": {
+    "categorias": [
+     "economia",
+     "politica"
+    ],
+    "ministerios": [
+     "min_economia",
+     "min_ciencia"
+    ],
+    "asesores": [
+     "perfil liberal"
+    ],
+    "temas": [
+     "libertades individuales",
+     "laicidad",
+     "competencia"
+    ]
+   },
+   "rechaza": {
+    "categorias": [
+     "hacienda"
+    ],
+    "temas": [
+     "monopolios",
+     "confesionalismo"
+    ]
+   },
+   "escanos": {
+    "diputados": 3,
+    "senadores": 1
+   },
+   "cifras_ilustrativas": true
+  },
+  {
+   "id": "liga_laica",
+   "real_ref": "pr",
+   "nombre": "Liga Laica Reformista",
+   "sigla": "LLR",
+   "alias_bloque": "Bloque de la Aurora",
+   "eje_eco": -0.25,
+   "eje_inst": 0.4,
+   "justificacion": {
+    "eco": "Wikipedia: centro y centroizquierda; se declara progresista, laico y socialdemócrata; en Concertación, Nueva Mayoría y Unidad por Chile. Sin votaciones por tema verificadas (hueco).",
+    "inst": "Participación ininterrumpida en coaliciones de gobierno 1988-2026; sin evidencia de acción rupturista."
+   },
+   "pide": {
+    "categorias": [
+     "educacion",
+     "politica"
+    ],
+    "ministerios": [
+     "min_educacion",
+     "min_justicia"
+    ],
+    "asesores": [
+     "perfil jurídico"
+    ],
+    "temas": [
+     "laicidad",
+     "educación pública"
+    ]
+   },
+   "rechaza": {
+    "categorias": [
+     "economia"
+    ],
+    "temas": [
+     "confesionalismo"
+    ]
+   },
+   "escanos": {
+    "diputados": 2,
+    "senadores": 0
+   },
+   "cifras_ilustrativas": true
+  },
+  {
+   "id": "territorios_verdes",
+   "real_ref": "frvs",
+   "nombre": "Confederación Territorial Ecosocial",
+   "sigla": "CTE",
+   "alias_bloque": "Pacto Costa y Cordillera",
+   "eje_eco": -0.35,
+   "eje_inst": -0.55,
+   "justificacion": {
+    "eco": "Su declaración incluye pasar de visión antropocéntrica a ecocéntrica; eslogan 'Regionalizar para desarrollar'; coaliciones: Chile Digno, Apruebo Dignidad, Unidad por Chile; Tricel revocó su disolución el 24-abr-2026.",
+    "inst": "Eje en regionalismo y descentralización de atribuciones y recursos: tensión con el centralismo, de ahí valor muy negativo."
+   },
+   "pide": {
+    "categorias": [
+     "descentralizacion",
+     "medioambiente",
+     "obras"
+    ],
+    "ministerios": [
+     "min_ambiente",
+     "min_bienes"
+    ],
+    "asesores": [
+     "perfil regionalista"
+    ],
+    "temas": [
+     "descentralización fiscal",
+     "protección ambiental",
+     "obras regionales"
+    ]
+   },
+   "rechaza": {
+    "categorias": [
+     "hacienda"
+    ],
+    "temas": [
+     "centralismo",
+     "proyectos sin consulta local"
+    ]
+   },
+   "escanos": {
+    "diputados": 2,
+    "senadores": 3
+   },
+   "cifras_ilustrativas": true
+  },
+  {
+   "id": "compromiso_civico",
+   "real_ref": "rn",
+   "nombre": "Compromiso Cívico Austral",
+   "sigla": "CCA",
+   "alias_bloque": "Bloque del Faro",
+   "eje_eco": 0.4,
+   "eje_inst": 0.6,
+   "justificacion": {
+    "eco": "Estatutos 2016: economía social de mercado, subsidiariedad y solidaridad; coaliciones Alianza, Chile Vamos, Chile Grande y Unido; en 2014 votó contra la idea de legislar la reforma tributaria; integra el gobierno desde 11-mar-2026 (Wikipedia).",
+    "inst": "Gobierno y oposición dentro de reglas; en 2023 la idea de legislar tributaria cayó 73-71-3 con acuerdo de rechazo de la derecha (La Tercera); respaldo a regionalización en estatutos."
+   },
+   "pide": {
+    "categorias": [
+     "economia",
+     "hacienda",
+     "politica"
+    ],
+    "ministerios": [
+     "min_economia",
+     "min_interior"
+    ],
+    "asesores": [
+     "perfil de centroderecha"
+    ],
+    "temas": [
+     "crecimiento",
+     "acuerdos legislativos"
+    ]
+   },
+   "rechaza": {
+    "categorias": [
+     "social"
+    ],
+    "temas": [
+     "alzas de impuestos",
+     "estatizaciones"
+    ]
+   },
+   "escanos": {
+    "diputados": 13,
+    "senadores": 8
+   },
+   "cifras_ilustrativas": true
+  },
+  {
+   "id": "gremio_solidario",
+   "real_ref": "udi",
+   "nombre": "Cuerpo Gremial Solidario",
+   "sigla": "CGS",
+   "alias_bloque": "Bloque del Faro",
+   "eje_eco": 0.65,
+   "eje_inst": 0.65,
+   "justificacion": {
+    "eco": "BCN: Congreso Doctrinario 1991, partido popular, libertario, de sentido cristiano, economía de mercado con subsidiariedad; en 2014 votó contra la idea de legislar la reforma tributaria; los diputados UDI Guillermo Ramírez y Juan Antonio Coloma votaron en contra del matrimonio igualitario (Cámara, 23-nov-2021); firmó declaración 'Chile sin violencia' (2026).",
+    "inst": "Defiende orden e institucionalidad; llama a la paz social y rechazo a la violencia; presidente del partido celebró la aprobación de pensiones aunque un senador votó en contra."
+   },
+   "pide": {
+    "categorias": [
+     "seguridad",
+     "hacienda",
+     "economia"
+    ],
+    "ministerios": [
+     "min_seguridad",
+     "min_hacienda"
+    ],
+    "asesores": [
+     "perfil gremial"
+    ],
+    "temas": [
+     "seguridad",
+     "baja de impuestos",
+     "subsidiariedad"
+    ]
+   },
+   "rechaza": {
+    "categorias": [
+     "social"
+    ],
+    "temas": [
+     "alzas de impuestos",
+     "expropiaciones"
+    ]
+   },
+   "escanos": {
+    "diputados": 18,
+    "senadores": 5
+   },
+   "cifras_ilustrativas": true
+  },
+  {
+   "id": "vanguardia_civica",
+   "real_ref": "evopoli",
+   "nombre": "Vanguardia Cívica Moderna",
+   "sigla": "VCM",
+   "alias_bloque": "Bloque del Faro",
+   "eje_eco": 0.55,
+   "eje_inst": 0.45,
+   "justificacion": {
+    "eco": "Principios N° 7, 8, 11, 12 y 13: libre mercado y subsidiariedad activa, democracia liberal, sustentabilidad, descentralización y rechazo a la discriminación arbitraria; Chile Vamos y Chile Grande y Unido.",
+    "inst": "Defiende institucionalidad liberal y descentralización (principio 12); sin votos por tema verificados, por eso valor moderado."
+   },
+   "pide": {
+    "categorias": [
+     "economia",
+     "medioambiente",
+     "educacion"
+    ],
+    "ministerios": [
+     "min_ciencia",
+     "min_economia"
+    ],
+    "asesores": [
+     "perfil liberal-conservador"
+    ],
+    "temas": [
+     "libre mercado",
+     "sustentabilidad",
+     "modernización"
+    ]
+   },
+   "rechaza": {
+    "categorias": [
+     "social"
+    ],
+    "temas": [
+     "estatismo",
+     "discriminación"
+    ]
+   },
+   "escanos": {
+    "diputados": 2,
+    "senadores": 2
+   },
+   "cifras_ilustrativas": true
+  },
+  {
+   "id": "frente_tradicion",
+   "real_ref": "republicano",
+   "nombre": "Frente por la Tradición y el Orden",
+   "sigla": "FTO",
+   "alias_bloque": "Frente del Roble",
+   "eje_eco": 0.7,
+   "eje_inst": 0.5,
+   "justificacion": {
+    "eco": "Principios: economía social de mercado, impedir que el Estado invada la actividad económica, rechazo a la violencia, vida desde la concepción y matrimonio entre hombre y mujer; en 2025 votó contra la reforma de pensiones (senadores y bancada de diputados); pacto Cambio por Chile 2025.",
+    "inst": "Énfasis en orden y seguridad con descentralización declarada (principio 12); oposición a pactos transversales de pensiones. Valor moderado-alto."
+   },
+   "pide": {
+    "categorias": [
+     "seguridad",
+     "hacienda",
+     "economia"
+    ],
+    "ministerios": [
+     "min_seguridad",
+     "min_defensa"
+    ],
+    "asesores": [
+     "perfil de orden y seguridad"
+    ],
+    "temas": [
+     "seguridad",
+     "recorte del gasto",
+     "familia"
+    ]
+   },
+   "rechaza": {
+    "categorias": [
+     "social",
+     "medioambiente"
+    ],
+    "temas": [
+     "alzas de impuestos",
+     "enfoque de género"
+    ]
+   },
+   "escanos": {
+    "diputados": 31,
+    "senadores": 5
+   },
+   "cifras_ilustrativas": true
+  },
+  {
+   "id": "liga_libertad",
+   "real_ref": "pnl",
+   "nombre": "Liga de la Libertad Individual",
+   "sigla": "LLI",
+   "alias_bloque": "Frente del Roble",
+   "eje_eco": 0.95,
+   "eje_inst": -0.2,
+   "justificacion": {
+    "eco": "Principios: derechos 'anteriores y superiores al Estado' (secundaria); votó en contra de la reforma de pensiones en la Cámara (ene-2025); decidió no integrar el gobierno de Kast (2025, titular 24horas); pacto Cambio por Chile 2025.",
+    "inst": "Se define 'nueva derecha' y rechazó el acuerdo de pensiones y el ingreso al gobierno: perfil anti-establishment, de ahí valor negativo."
+   },
+   "pide": {
+    "categorias": [
+     "economia",
+     "hacienda"
+    ],
+    "ministerios": [
+     "min_hacienda",
+     "min_economia"
+    ],
+    "asesores": [
+     "perfil libertario"
+    ],
+    "temas": [
+     "recorte del Estado",
+     "libertades individuales",
+     "desregulación"
+    ]
+   },
+   "rechaza": {
+    "categorias": [
+     "social",
+     "politica"
+    ],
+    "temas": [
+     "alzas de impuestos",
+     "empresas públicas"
+    ]
+   },
+   "escanos": {
+    "diputados": 8,
+    "senadores": 1
+   },
+   "cifras_ilustrativas": true
+  },
+  {
+   "id": "plataforma_voz",
+   "real_ref": "pdg",
+   "nombre": "Plataforma Voz Directa",
+   "sigla": "PVD",
+   "alias_bloque": "Independiente (sin pacto)",
+   "eje_eco": 0.15,
+   "eje_inst": -0.5,
+   "justificacion": {
+    "eco": "BCN: 'Partido Nacional Ciudadano, independiente, regional, transversal, sin ideologías políticas'; principio de economía libre; consulta interna 2021: 61,41% por Kast; sin pacto formal en 2021; Servel denunció gastos no acreditados (jul-2026).",
+    "inst": "Se define independiente y transversal; reservó su voto en la 'megarreforma' 2026: comportamiento de bisagra y desconfianza hacia partidos tradicionales."
+   },
+   "pide": {
+    "categorias": [
+     "seguridad",
+     "salud",
+     "social"
+    ],
+    "ministerios": [
+     "min_salud",
+     "min_social"
+    ],
+    "asesores": [
+     "perfil ciudadano"
+    ],
+    "temas": [
+     "costo de la vida",
+     "salud",
+     "seguridad"
+    ]
+   },
+   "rechaza": {
+    "categorias": [
+     "hacienda"
+    ],
+    "temas": [
+     "acuerdos de cúpula"
+    ]
+   },
+   "escanos": {
+    "diputados": 14,
+    "senadores": 0
+   },
+   "cifras_ilustrativas": true
+  },
+  {
+   "id": "concilio_familia",
+   "real_ref": "cristiano",
+   "nombre": "Concilio Cívico por la Familia",
+   "sigla": "CCF",
+   "alias_bloque": "Frente del Roble",
+   "eje_eco": 0.45,
+   "eje_inst": 0.4,
+   "justificacion": {
+    "eco": "Emol (6-jun-2026): 'partido de derecha, con un profundo compromiso social'; defiende vida, familia y libertades; firmó la declaración 'Chile sin violencia' (2026); constituido el 23-jul-2026 en Ñuble, Biobío y La Araucanía.",
+    "inst": "Partido nuevo y regional sin votaciones propias; se ubica junto a partidos de orden. Valor provisional, sin historial legislativo."
+   },
+   "pide": {
+    "categorias": [
+     "social",
+     "educacion",
+     "salud"
+    ],
+    "ministerios": [
+     "min_social",
+     "min_educacion"
+    ],
+    "asesores": [
+     "perfil de familia"
+    ],
+    "temas": [
+     "familia",
+     "educación",
+     "seguridad"
+    ]
+   },
+   "rechaza": {
+    "categorias": [
+     "medioambiente"
+    ],
+    "temas": [
+     "agenda valórica contraria"
+    ]
+   },
+   "escanos": {
+    "diputados": 0,
+    "senadores": 0
+   },
+   "cifras_ilustrativas": true
+  }
+ ]
+}

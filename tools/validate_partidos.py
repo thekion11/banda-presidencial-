@@ -78,6 +78,10 @@ def _validar_juego(p: dict, reales: dict, nombres: set, siglas: set) -> None:
         if c not in CATS:
             raise ValueError(f"{ctx}: categoría desconocida '{c}'")
     real = reales[p["real_ref"]]
+    ministros = {m["id"] for m in json.loads((DIR.parent / "ministros.json").read_text(encoding="utf-8"))}
+    for m in p["pide"].get("ministerios", []):
+        if m not in ministros:
+            raise ValueError(f"{ctx}: ministerio desconocido '{m}'")
     n_f, n_r = norm(p["nombre"]), norm(real["nombre_oficial"])
     if n_f == n_r or SequenceMatcher(None, n_f, n_r).ratio() >= MIN_SIMILITUD:
         raise ValueError(f"{ctx}: nombre demasiado parecido al real")
@@ -87,7 +91,7 @@ def _validar_juego(p: dict, reales: dict, nombres: set, siglas: set) -> None:
     siglas.add(p["sigla"])
     if p["sigla"].upper().replace(" ", "") in SIGLAS_REALES:
         raise ValueError(f"{ctx}: sigla coincide con una real")
-    nombre_real_sin_sigla = norm(real["sigla"])
+    nombre_real_sin_sigla = norm(real["sigla"] or "")
     if nombre_real_sin_sigla and norm(p["sigla"]) == nombre_real_sin_sigla:
         raise ValueError(f"{ctx}: sigla igual a la real")
 
