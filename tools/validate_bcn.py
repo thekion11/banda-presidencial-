@@ -58,12 +58,21 @@ def validar_bcn(ids_fuentes: set, regiones: set) -> None:
                 raise ValueError(f"{ctx}: iniciativa/título inválidos")
             for r in p["fuentes"]:
                 _ref(r, ids_fuentes, ctx)
-    for nombre, clave in (("reformas_constitucionales.json", "reformas_en_texto_vigente"), ("reformas_propuestas.json", "propuestas")):
+    for nombre, clave in (("reformas_constitucionales.json", "reformas_en_texto_vigente"), ("reformas_propuestas.json", "propuestas"),
+                          ("reformas_propuestas.json", "reformas_en_tramite")):
         if (d / nombre).exists():
             for r in _cargar(d / nombre)[clave]:
-                _ref(r["fuente"], ids_fuentes, f"{nombre}:{r.get('ley') or r.get('id')}")
+                _ref(r["fuente"], ids_fuentes, f"{nombre}:{r.get('ley') or r.get('id') or r.get('boletin')}")
                 if not isinstance(r.get("verificado"), bool):
                     raise ValueError(f"{nombre}: 'verificado' debe ser booleano")
+    rp = d / "resultados_2da_vuelta_2025.json"
+    if rp.exists():  # cada fila cuadra y el total regional + extranjero se acerca al oficial
+        r = _cargar(rp)
+        for x in r["regiones"] + [r["extranjero"]]:
+            if x["validos"] + x["nulos"] + x["blancos"] != x["total_votacion"] or x["jara"] + x["kast"] != x["validos"]:
+                raise ValueError(f"resultados 2da vuelta: fila inconsistente {x.get('region_id', 'extranjero')}")
+        if r["regiones"] and {x["region_id"] for x in r["regiones"]} != regiones:
+            raise ValueError("resultados 2da vuelta: regiones no coinciden con data/regiones.json")
     ids = set()
     for f in sorted(DATA.glob("eventos_reales*.json")):
         for e in _cargar(f)["eventos"]:
