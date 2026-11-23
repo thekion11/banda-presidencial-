@@ -48,8 +48,7 @@ _DEBILES = [" de la ", " del ", " de los ", " de las ", " de ", " en la ", " en 
 
 
 def recortar(texto: str, n: int = 60, minimo: int = 24) -> str:
-    """Recorta a ≤ n caracteres en el último límite de frase (coma, 'y', 'que', 'para'…) o de sintagma ('de', 'en'…); no añade '…' salvo
-    como último recurso (sin ningún límite posible). Nunca corta a mitad de palabra ni termina en artículo/preposición."""
+    """Recorta a ≤ n caracteres en el último límite de frase (coma, 'y', 'que', 'para'…) o de sintagma ('de', 'en'…); no añade '…'. Nunca corta a mitad de palabra ni termina en artículo/preposición."""
     texto = " ".join(texto.split())
     if len(texto) <= n:
         return texto
@@ -69,7 +68,7 @@ def recortar(texto: str, n: int = 60, minimo: int = 24) -> str:
         palabras = palabras[:-1]
     while len(palabras) > 1 and palabras[-1].lower().strip(",.;:") in _VACIAS:
         palabras.pop()
-    return " ".join(palabras).rstrip(" ,.;:()-") + "…"
+    return " ".join(palabras).rstrip(" ,.;:()-")  # corte en límite de palabra, sin "…" (el validador lo prohíbe)
 
 
 def unico(titulo: str, usados: set, sufijo: str, n: int = 60) -> str:

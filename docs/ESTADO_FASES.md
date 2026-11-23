@@ -221,3 +221,8 @@ Sesión de monitoreo (`session_015HWWmk4UVthE3U1iKnZXQ8`): no es hija de esta; s
 
 ### Resultado de CI de `723f03c` (merge de `datos/cartas-1040`)
 CI (workflow "CI", corrida 101, push 23-nov-2026 21:00 UTC): **success** — incluye validate_data, check_limits y todos los `test_*.gd` listados en `.github/workflows/ci.yml` (test_ui_humo con 6 semillas, en headless). También en verde localmente (suite completa, headless y xvfb). El commit anterior `1d0566e` (corrida 96) también en verde.
+
+### Integración de la base ampliada de proyectos (23-nov-2026, tarde)
+- `datos/proyectos-publicos` integrada: **494 proyectos públicos** (+264; 341 con `verificado:true` solo con dominio estatal); fuentes nuevas `curados_oficiales_2026` y `curados_prensa_2026`. Cartas regeneradas: **1.540** (494 proyectos públicos + 935 proyectos de ley + 109 reformas + 2 plebiscitos), `data/cartas_reales.json` 2,2 MB. Se ajustó `tools/cartas_util.py` (`recortar` ya no añade "…" y corta en límite de palabra) porque 10 títulos nuevos quedaban truncados.
+- Balance tras la integración (`test_balance`, n=60): codicioso 75 % gana elección, 0 % crisis; azar 15 %; pasivo 0 %. Suite completa y CI de este commit: ver más abajo.
+- Huecos que reporta la sesión de datos: educación débil (22; ninguna en 4 regiones del sur), energía y transporte pocos, vivienda SERVIU fuera de la RM, Maule; fechas de inicio/fin casi siempre null; mineduc.cl, subdere y camara.cl bloqueados.
