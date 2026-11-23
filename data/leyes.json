@@ -286,7 +286,7 @@
   },
   "delegacion": {
     "max_por_turno": 2,
-    "prob_fallo_base": 0.3,
+    "prob_fallo_base": 0.4,
     "peso_riesgo_escandalo": 1.5,
     "peso_riesgo_ejecucion": 0.4,
     "peso_bono_ejecucion": 0.5,
@@ -296,7 +296,7 @@
     "escala_si_falla": 0.4,
     "prob_escandalo_si_falla": 0.5,
     "nota": "Probabilidad de fallo = base + riesgo_escandalo*peso + (riesgo_ejecucion/100)*peso - bono_ejecucion*peso (+ recargo fuera de área), acotada. Cifras ilustrativas de balance.",
-    "prob_anula_si_falla": 0.5
+    "prob_anula_si_falla": 0.75
   },
   "movimientos_internos": {
     "por_turno": 3,
