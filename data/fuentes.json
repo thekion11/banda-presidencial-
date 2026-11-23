@@ -71,5 +71,24 @@
     "fecha_corte": "2026-11-23",
     "vigencia_dias": 3650,
     "es_ilustrativa": true
+  },
+  {
+    "id": "sectra_planes",
+    "institucion": "SECTRA (Programa de Vialidad y Transporte Urbano, Ministerio de Transportes y Telecomunicaciones)",
+    "titulo": "Planes maestros de transporte urbano por región: proyectos, inversión (UF), TIR, mandante y estado",
+    "url": "https://www.sectra.gob.cl/plan-y-proyecto/",
+    "fecha_corte": "2026-11-23",
+    "vigencia_dias": 365,
+    "es_ilustrativa": false,
+    "verificado_contra_texto": true
+  },
+  {
+    "id": "uf_aprox",
+    "institucion": "Diseño del juego",
+    "titulo": "Valor de la UF en dólares: aproximación fija para convertir inversiones (no es un dato oficial)",
+    "url": "https://www.sii.cl/valores_y_fechas/uf/uf2026.htm",
+    "fecha_corte": "2026-11-23",
+    "vigencia_dias": 365,
+    "es_ilustrativa": true
   }
 ]

@@ -65,6 +65,7 @@ godot --headless --path . -s tests/test_prueba_oro_completa.gd
 godot --headless --path . -s tests/test_enmienda.gd
 godot --headless --path . -s tests/test_congreso.gd
 godot --headless --path . -s tests/test_grafo.gd
+godot --headless --path . -s tests/test_sectra.gd
 godot --headless --path . -s tests/test_presupuesto.gd
 godot --headless --path . -s tests/test_balance.gd
 godot --headless --path . -s tests/test_ui_humo.gd

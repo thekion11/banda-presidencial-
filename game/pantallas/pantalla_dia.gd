@@ -400,7 +400,10 @@ func _abrir_panel(cual: String) -> void:
 	var contenido: Control
 	match cual:
 		"comite":
-			contenido = PanelComite.crear(motor, _aprobar)
+			contenido = PanelComite.crear(motor, _aprobar, _region, func(pid: String) -> void:
+					motor.impulsar_proyecto(pid)
+					_refrescar()
+					_abrir_panel("comite"))
 		"nacion":
 			contenido = PanelNacionCompleto.crear(motor, geo, datos["regiones"], "%s · %s" % [_r["ev_hora"].text.replace("● ", ""), _r["ev_titulo"].text],
 					func() -> void:

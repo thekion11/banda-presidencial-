@@ -8,7 +8,7 @@ static func crear(datos: Dictionary, semilla: int, partido: Dictionary) -> Motor
 	estado.configurar(semilla, int(datos["leyes"]["hemiciclo"]["dias_por_turno"]), datos["leyes"])
 	var motor := MotorTurno.new()
 	motor.inicializar(estado, datos["cartas"], datos["eventos"], datos["leyes"], datos["ministros"],
-			{"regiones": datos["regiones"], "propuestas": datos["propuestas"], "grafo": datos.get("grafo", {})})
+			{"regiones": datos["regiones"], "propuestas": datos["propuestas"], "grafo": datos.get("grafo", {}), "sectra": datos.get("sectra", {})})
 	motor.aplicar_partido_inicial(partido)
 	motor.iniciar_turno()
 	return motor
@@ -23,6 +23,8 @@ static func reproducir(datos: Dictionary, guardado: Dictionary) -> MotorTurno:
 				motor.jugar_carta(int(e["idx"]), String(e["ministro"]), String(e["region"]))
 			"aprobar_propuesta":
 				motor.aprobar_propuesta(String(e["prop"]), String(e["variante"]), String(e["region"]), e.get("custom", {}))
+			"sectra":
+				motor.impulsar_proyecto(String(e["pid"]))
 			"cerrar":
 				motor.terminar_turno()
 			"eleccion":

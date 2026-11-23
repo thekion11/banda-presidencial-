@@ -215,6 +215,28 @@ def validar_grafo() -> None:
         raise ValueError("grafo: no es conexo")
 
 
+def validar_sectra(regiones: set, leyes: dict) -> None:
+    ruta = DATA_DIR / "sectra_planes.json"
+    d = json.loads(ruta.read_text(encoding="utf-8"))
+    n = 0
+    for c in d["ciudades"]:
+        if c.get("region_id") and c["region_id"] not in regiones:
+            raise ValueError(f"sectra: región desconocida {c['region_id']}")
+        for p in c.get("proyectos", []):
+            n += 1
+            for k in ("nombre", "estado", "mandante"):
+                if not isinstance(p.get(k), str) or (k != "mandante" and not p[k]):
+                    raise ValueError(f"sectra: proyecto sin {k} en {c.get('region_id')}")
+            for k in ("inversion_uf", "tir_pct"):
+                if p.get(k) is not None and not isinstance(p[k], (int, float)):
+                    raise ValueError(f"sectra: {k} no numérico en {p['nombre']}")
+    if n == 0:
+        raise ValueError("sectra: cartera vacía")
+    cfg = leyes["sectra"]
+    if len(cfg["semanas_por_etapa"]) != 3 or cfg["max_simultaneos"] < 1:
+        raise ValueError("leyes.sectra inválida")
+
+
 def main() -> int:
     nombres = ("fuentes", "leyes", "ministros", "cartas", "eventos", "ideologia", "regiones", "propuestas")
     datos = {n: cargar_json(f"{n}.json") for n in nombres}
@@ -230,6 +252,7 @@ def main() -> int:
     validar_regiones(datos["regiones"], ids_fuentes)
     validar_propuestas(datos["propuestas"], ids_fuentes, {r["id"] for r in datos["regiones"]})
     validar_grafo()
+    validar_sectra({r["id"] for r in datos["regiones"]}, datos["leyes"])
     print("OK: Todos los JSON de Fase 0 superaron la validación")
     return 0
 

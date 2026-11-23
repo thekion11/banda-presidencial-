@@ -15,6 +15,7 @@ var obras := MotorObras.new()
 var mandato := MotorMandato.new(self)
 var fx := MotorEfectos.new()
 var grafo := GrafoTrazado.new()
+var sectra := MotorSectra.new(self)
 var cartas := MotorCartas.new(self)
 var eventos := MotorEventos.new(self)
 var ultimos_eventos: Array[Dictionary] = []
@@ -44,6 +45,7 @@ func inicializar(p_estado: EstadoSimulacion, p_cartas: Array, p_eventos: Array, 
 	obras.configurar(catalogo_leyes, rng, regiones)
 	fx.configurar(estado, catalogo_leyes, regiones)
 	grafo.cargar(p_extra.get("grafo", {}))
+	sectra.cargar(p_extra.get("sectra", {}))
 	if estado.indicadores.is_empty():
 		estado.indicadores = EstadoSimulacion.IND_DEFECTO.duplicate()
 
@@ -151,6 +153,7 @@ func cerrar_turno() -> void:
 	votaciones_semana = []
 	if estado.etapa == "gobierno":
 		votaciones_semana = cartas.resolver_proyectos()
+		sectra.avanzar()
 		resumen["leyes"] = votaciones_semana
 		resumen["obras_terminadas"] = obras.avanzar(estado, estado.dias_por_turno, fx.aplicar_efecto, fx.marcar_cumplida).size()
 		mandato.evaluar_legado()
@@ -205,6 +208,9 @@ func jugar_carta(idx: int, ministro_id: String = "", region_id: String = "") -> 
 
 
 func aprobar_propuesta(prop_id: String, variante_id: String, region_id: String = "", custom: Dictionary = {}) -> Dictionary: return cartas.aprobar_propuesta(prop_id, variante_id, region_id, custom)
+
+
+func impulsar_proyecto(pid: String) -> Dictionary: return sectra.impulsar(pid)
 
 
 func calcular_puntaje() -> int: return mandato.calcular_puntaje()

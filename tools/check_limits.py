@@ -17,7 +17,8 @@ def main() -> int:
             if f.suffix not in (".gd", ".py"):
                 continue
             lineas = f.read_text(encoding="utf-8").splitlines()
-            if len(lineas) > LIMITE:
+            limite = LIMITE_GUIA.get(str(f.relative_to(ROOT)), LIMITE)
+            if len(lineas) > limite:
                 errores.append(f"{f.relative_to(ROOT)}: {len(lineas)} líneas (máx {limite})")
             if carpeta == "sim" and PROHIBIDOS_SIM.search("\n".join(lineas)):
                 errores.append(f"{f.relative_to(ROOT)}: sim/ no puede depender de nodos de Godot")

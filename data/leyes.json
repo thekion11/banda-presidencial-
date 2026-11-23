@@ -168,5 +168,25 @@
       "descripcion": "Corte de cinta, puesta en marcha y primeros usuarios.",
       "titulo": "Inauguración y puesta en marcha"
     }
-  ]
+  ],
+  "sectra": {
+    "uf_en_usd": 41.0,
+    "semanas_por_etapa": [
+      6,
+      8,
+      10
+    ],
+    "costo_pa_impulso": 1,
+    "max_simultaneos": 3,
+    "fiscal_por_musd": 0.05,
+    "tope_fiscal": 5.0,
+    "dias_base_obra": 150,
+    "dias_por_musd": 6.0,
+    "dias_max_obra": 900,
+    "aprobacion_base": 1.0,
+    "aprobacion_por_tir": 0.5,
+    "aprobacion_max": 6.0,
+    "riesgo_tir_negativa": 2.0,
+    "fuente": "fuentes.json#uf_aprox"
+  }
 }

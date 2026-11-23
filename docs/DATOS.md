@@ -32,3 +32,10 @@ python3 tools/geo/relieve_urbano.py
 ```
 
 **Sobre Google Maps:** sus mapas, teselas y datos no se pueden copiar ni guardar sin conexión en una app (términos de servicio), y exigen clave de pago. OpenStreetMap ofrece cartografía comparable con licencia ODbL, por eso es la base del juego.
+
+## Plan Maestro de Transporte (SECTRA) — `data/sectra_planes.json`
+
+- Fuente: sitio público de SECTRA (`sectra.gob.cl`, tipo de contenido «plan-y-proyecto», API REST de WordPress). Extraído con `python3 tools/sectra_planes.py`; registrado en `data/fuentes.json` (`sectra_planes`). Inversión en UF; la conversión a US$ usa una aproximación fija (`uf_aprox`, `leyes.json › sectra.uf_en_usd`).
+- Cobertura real: 14 regiones con proyectos (452 proyectos). **Región Metropolitana y Aysén no publican proyectos en el sitio**: no se inventan; el juego no muestra cartera SECTRA para ellas.
+- Salvedades: los montos de «cartera» por ciudad son inconsistentes entre páginas (no se usan); 83 proyectos no informan inversión y varios no informan TIR o mandante (se muestran como «s/d»); los estados se normalizan a etapas (perfil, prefactibilidad, diseño, ejecución); los ya en ejecución o terminados no se gestionan.
+- Mecánica (`sim/motor_sectra.gd`): impulsar un proyecto cuesta PA y lo hace avanzar una etapa tras N semanas (máx. 3 simultáneos); al llegar a ejecución se crea una obra con la inversión real y un efecto de aprobación según su TIR. Todos los parámetros viven en `leyes.json › sectra`. Se guarda como entrada `sectra` (replay exacto). Prueba: `tests/test_sectra.gd`.

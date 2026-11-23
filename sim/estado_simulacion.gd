@@ -31,6 +31,7 @@ var obras_en_curso: Array[Dictionary] = []
 var obras_terminadas: Array[Dictionary] = []
 var proyectos_ley: Array[Dictionary] = []
 var propuestas_abiertas: Array[String] = []
+var sectra: Dictionary = {}  # proyectos del Plan Maestro de SECTRA: id -> {etapa, hasta}
 var cartas_ejecutadas: Dictionary = {}  # cartas únicas (ley/obra/propuesta) ya usadas
 var propuestas_aprobadas: Array[String] = []
 var registro_acciones: Array[Dictionary] = []
@@ -67,6 +68,7 @@ func configurar(p_semilla: int, p_dias_turno: int = 7, p_leyes: Dictionary = {})
 	obras_terminadas.clear()
 	proyectos_ley.clear()
 	propuestas_abiertas.clear()
+	sectra.clear()
 	cartas_ejecutadas.clear()
 	propuestas_aprobadas.clear()
 	registro_acciones.clear()
@@ -125,6 +127,7 @@ func exportar_resumen() -> Dictionary:
 		"obras_terminadas": obras_terminadas.size(),
 		"proyectos_ley": proyectos_ley.duplicate(true),
 		"cartas_ejecutadas": cartas_ejecutadas.keys(),
+		"sectra": sectra.duplicate(true),
 		"propuestas_abiertas": propuestas_abiertas.duplicate(),
 		"propuestas_aprobadas": propuestas_aprobadas.duplicate(),
 		"total_acciones": registro_acciones.size(),

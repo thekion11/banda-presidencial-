@@ -12,7 +12,7 @@ static func _scroll(contenido: VBoxContainer) -> ScrollContainer:
 	return sc
 
 
-static func crear(motor: MotorTurno, al_aprobar: Callable) -> Control:
+static func crear(motor: MotorTurno, al_aprobar: Callable, region: String = "", al_impulsar: Callable = Callable()) -> Control:
 	var col := VBoxContainer.new()
 	col.add_theme_constant_override("separation", 10)
 	col.add_child(Tema.etiqueta("COMITÉ DE PLANIFICACIÓN", 10, Tema.ORO, true))
@@ -21,6 +21,8 @@ static func crear(motor: MotorTurno, al_aprobar: Callable) -> Control:
 		col.add_child(Tema.etiqueta("No hay propuestas abiertas. Juega una carta de Comité (Metro, tren) para recibir tres variantes.", 13, Tema.TEXTO_SUAVE))
 	for pid in abiertas:
 		_propuesta(col, motor, String(pid), al_aprobar)
+	if al_impulsar.is_valid():
+		col.add_child(PanelSectra.crear(motor, region, al_impulsar))
 	return _scroll(col)
 
 
