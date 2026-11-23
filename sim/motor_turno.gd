@@ -84,7 +84,7 @@ func aplicar_partido_inicial(datos_partido: Dictionary) -> void:
 func iniciar_turno() -> Array[Dictionary]:
 	ejecutar_amanecer()
 	var evs := procesar_eventos_semana()
-	robar_mano(int(catalogo_leyes["mano"]["tamano"]))
+	mazo.refiltrar_mano()  # las cartas cuya ventana (año, evento, dinero) terminó vuelven al descarte y entran otras
 	ultimos_eventos = evs
 	return evs
 

@@ -269,7 +269,9 @@
     "aprobacion_por_tir": 0.5,
     "aprobacion_max": 6.0,
     "riesgo_tir_negativa": 2.0,
-    "fuente": "fuentes.json#uf_aprox"
+    "fuente": "fuentes.json#uf_aprox",
+    "clp_por_usd": 950.0,
+    "nota_conversion": "Tipos de cambio aproximados e ilustrativos (UF→US$ y CLP→US$) solo para dimensionar el costo de las cartas de proyecto; no son datos oficiales."
   },
   "gabinete": {
     "tamano": 8,
