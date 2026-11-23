@@ -94,6 +94,9 @@ def main():
                         notas += f" | estado corregido a '{dv['etapa_pdf']}' según el PDF (antes '{estado}')"
                         estado = dv["etapa_pdf"]
                     ofi = estatal and not ("verificar" in notas.lower() or "no verificad" in notas.lower())
+                    if dv["identificado_miles_clp"] < 100:
+                        notas += " | presupuesto 2026 simbólico (< M$100): el avance real de obra no está confirmado"
+                        ofi = False
                 else:
                     notas += f" | NO se halló el nombre en el PDF citado (similitud {dv['similitud']}): nombre y estado sin sustento en el documento"
                     ofi = False

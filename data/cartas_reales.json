@@ -6815,9 +6815,9 @@
    "modo": "acelerar"
   },
   "disponibilidad": {
-   "anio_desde": 1,
+   "anio_desde": 2,
    "anio_hasta": 4,
-   "evento": "evt_real_20260923_086",
+   "evento": null,
    "fiscal_min": null,
    "meta": null
   },
@@ -7322,6 +7322,54 @@
   "arte": "salud_hospitales"
  },
  {
+  "id": "real_obra_cur_araucania_conservacion_parque_isla_cautin_temuco",
+  "categoria": "vivienda",
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#dipres_siap_411788",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "cur-araucania-conservacion-parque-isla-cautin-temuco",
+   "sector": "vivienda_urbana",
+   "region_id": "araucania",
+   "estado_real": "ejecucion",
+   "inversion_musd": null,
+   "mandante": "Serviu Región de La Araucanía",
+   "verificado_hecho": false,
+   "verificado": false,
+   "fuente_url": "https://www.dipres.gob.cl/597/articles-411788_doc_pdf.pdf",
+   "cifras_ilustrativas": true,
+   "modo": "acelerar"
+  },
+  "disponibilidad": {
+   "anio_desde": 1,
+   "anio_hasta": 2,
+   "evento": null,
+   "fiscal_min": null,
+   "meta": "meta_vivienda_1"
+  },
+  "costo_pa": 2,
+  "titulo": "Acelerar: Conservación Parque Isla Cautín, Temuco",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 2.5
+   },
+   {
+    "ind": "fiscal",
+    "delta": -1.0
+   }
+  ],
+  "obra": {
+   "nombre": "Conservación Parque Isla Cautín, Temuco",
+   "dias_totales": 90
+  }
+ },
+ {
   "id": "real_obra_cur_araucania_mejoramiento_borde_costero_caleta_la_barra",
   "categoria": "economia",
   "requisitos": {
@@ -7418,6 +7466,150 @@
    "dias_totales": 90
   },
   "arte": "salud_hospitales"
+ },
+ {
+  "id": "real_obra_cur_araucania_mejoramiento_parque_historico_fuerte_puren_puren",
+  "categoria": "vivienda",
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#dipres_siap_411788",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "cur-araucania-mejoramiento-parque-historico-fuerte-puren-puren",
+   "sector": "vivienda_urbana",
+   "region_id": "araucania",
+   "estado_real": "ejecucion",
+   "inversion_musd": null,
+   "mandante": "Serviu Región de La Araucanía",
+   "verificado_hecho": false,
+   "verificado": false,
+   "fuente_url": "https://www.dipres.gob.cl/597/articles-411788_doc_pdf.pdf",
+   "cifras_ilustrativas": true,
+   "modo": "acelerar"
+  },
+  "disponibilidad": {
+   "anio_desde": 2,
+   "anio_hasta": 4,
+   "evento": null,
+   "fiscal_min": null,
+   "meta": null
+  },
+  "costo_pa": 2,
+  "titulo": "Acelerar: Mejoramiento Parque Histórico Fuerte Purén, Purén",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 2.5
+   },
+   {
+    "ind": "fiscal",
+    "delta": -1.0
+   }
+  ],
+  "obra": {
+   "nombre": "Mejoramiento Parque Histórico Fuerte Purén, Purén",
+   "dias_totales": 90
+  }
+ },
+ {
+  "id": "real_obra_cur_araucania_mejoramiento_parque_pulmahue_padre_las_casas",
+  "categoria": "vivienda",
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#dipres_siap_411788",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "cur-araucania-mejoramiento-parque-pulmahue-padre-las-casas",
+   "sector": "vivienda_urbana",
+   "region_id": "araucania",
+   "estado_real": "ejecucion",
+   "inversion_musd": null,
+   "mandante": "Serviu Región de La Araucanía",
+   "verificado_hecho": false,
+   "verificado": false,
+   "fuente_url": "https://www.dipres.gob.cl/597/articles-411788_doc_pdf.pdf",
+   "cifras_ilustrativas": true,
+   "modo": "acelerar"
+  },
+  "disponibilidad": {
+   "anio_desde": 1,
+   "anio_hasta": 4,
+   "evento": null,
+   "fiscal_min": null,
+   "meta": null
+  },
+  "costo_pa": 2,
+  "titulo": "Acelerar: Mejoramiento Parque Pulmahue, Padre Las Casas",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 2.5
+   },
+   {
+    "ind": "fiscal",
+    "delta": -1.0
+   }
+  ],
+  "obra": {
+   "nombre": "Mejoramiento Parque Pulmahue, Padre Las Casas",
+   "dias_totales": 90
+  }
+ },
+ {
+  "id": "real_obra_cur_araucania_mejoramiento_parque_santa_lucia_collipulli",
+  "categoria": "vivienda",
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#dipres_siap_411788",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "cur-araucania-mejoramiento-parque-santa-lucia-collipulli",
+   "sector": "vivienda_urbana",
+   "region_id": "araucania",
+   "estado_real": "ejecucion",
+   "inversion_musd": null,
+   "mandante": "Serviu Región de La Araucanía",
+   "verificado_hecho": false,
+   "verificado": false,
+   "fuente_url": "https://www.dipres.gob.cl/597/articles-411788_doc_pdf.pdf",
+   "cifras_ilustrativas": true,
+   "modo": "acelerar"
+  },
+  "disponibilidad": {
+   "anio_desde": 1,
+   "anio_hasta": 3,
+   "evento": null,
+   "fiscal_min": null,
+   "meta": null
+  },
+  "costo_pa": 2,
+  "titulo": "Acelerar: Mejoramiento Parque Santa Lucía, Collipulli",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 2.5
+   },
+   {
+    "ind": "fiscal",
+    "delta": -1.0
+   }
+  ],
+  "obra": {
+   "nombre": "Mejoramiento Parque Santa Lucía, Collipulli",
+   "dias_totales": 90
+  }
  },
  {
   "id": "real_obra_cur_araucania_nuevo_cesfam_amanecer_temuco",
@@ -7614,6 +7806,438 @@
    "dias_totales": 100
   },
   "arte": "salud_hospitales"
+ },
+ {
+  "id": "real_obra_cur_araucania_reposicion_escuela_basica_licancura_curarrehue",
+  "categoria": "educacion",
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#dipres_siap_429207",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "cur-araucania-reposicion-escuela-basica-licancura-curarrehue",
+   "sector": "educacion",
+   "region_id": "araucania",
+   "estado_real": "ejecucion",
+   "inversion_musd": null,
+   "mandante": "Gobierno Regional de La Araucanía",
+   "verificado_hecho": false,
+   "verificado": false,
+   "fuente_url": "https://www.dipres.gob.cl/597/articles-429207_doc_pdf.pdf",
+   "cifras_ilustrativas": true,
+   "modo": "acelerar"
+  },
+  "disponibilidad": {
+   "anio_desde": 2,
+   "anio_hasta": 4,
+   "evento": null,
+   "fiscal_min": null,
+   "meta": null
+  },
+  "costo_pa": 2,
+  "titulo": "Acelerar: Reposición Escuela Básica Licancura, Curarrehue",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 2.5
+   },
+   {
+    "ind": "fiscal",
+    "delta": -1.0
+   }
+  ],
+  "obra": {
+   "nombre": "Reposición Escuela Básica Licancura, Curarrehue",
+   "dias_totales": 90
+  }
+ },
+ {
+  "id": "real_obra_cur_araucania_reposicion_escuela_cruzaco_lonquimay",
+  "categoria": "educacion",
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#dipres_siap_429207",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "cur-araucania-reposicion-escuela-cruzaco-lonquimay",
+   "sector": "educacion",
+   "region_id": "araucania",
+   "estado_real": "diseno",
+   "inversion_musd": null,
+   "mandante": "Gobierno Regional de La Araucanía",
+   "verificado_hecho": false,
+   "verificado": false,
+   "fuente_url": "https://www.dipres.gob.cl/597/articles-429207_doc_pdf.pdf",
+   "cifras_ilustrativas": true,
+   "modo": "obra"
+  },
+  "disponibilidad": {
+   "anio_desde": 1,
+   "anio_hasta": 3,
+   "evento": null,
+   "fiscal_min": null,
+   "meta": null
+  },
+  "costo_pa": 2,
+  "titulo": "Reposición Escuela Cruzaco, Lonquimay",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 3
+   },
+   {
+    "ind": "fiscal",
+    "delta": -1.0
+   }
+  ],
+  "obra": {
+   "nombre": "Reposición Escuela Cruzaco, Lonquimay",
+   "dias_totales": 100
+  }
+ },
+ {
+  "id": "real_obra_cur_araucania_reposicion_escuela_especial_nielol_de_temuco",
+  "categoria": "educacion",
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#dipres_siap_429207",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "cur-araucania-reposicion-escuela-especial-nielol-de-temuco",
+   "sector": "educacion",
+   "region_id": "araucania",
+   "estado_real": "ejecucion",
+   "inversion_musd": null,
+   "mandante": "Gobierno Regional de La Araucanía",
+   "verificado_hecho": false,
+   "verificado": false,
+   "fuente_url": "https://www.dipres.gob.cl/597/articles-429207_doc_pdf.pdf",
+   "cifras_ilustrativas": true,
+   "modo": "acelerar"
+  },
+  "disponibilidad": {
+   "anio_desde": 1,
+   "anio_hasta": 3,
+   "evento": null,
+   "fiscal_min": null,
+   "meta": null
+  },
+  "costo_pa": 2,
+  "titulo": "Acelerar: Reposición Escuela Especial Nielol de Temuco",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 2.5
+   },
+   {
+    "ind": "fiscal",
+    "delta": -1.0
+   }
+  ],
+  "obra": {
+   "nombre": "Reposición Escuela Especial Nielol de Temuco",
+   "dias_totales": 90
+  }
+ },
+ {
+  "id": "real_obra_cur_araucania_reposicion_escuela_intercultural_chomio_padre_las_casas",
+  "categoria": "educacion",
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#dipres_siap_429207",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "cur-araucania-reposicion-escuela-intercultural-chomio-padre-las-casas",
+   "sector": "educacion",
+   "region_id": "araucania",
+   "estado_real": "ejecucion",
+   "inversion_musd": null,
+   "mandante": "Gobierno Regional de La Araucanía",
+   "verificado_hecho": false,
+   "verificado": false,
+   "fuente_url": "https://www.dipres.gob.cl/597/articles-429207_doc_pdf.pdf",
+   "cifras_ilustrativas": true,
+   "modo": "acelerar"
+  },
+  "disponibilidad": {
+   "anio_desde": 1,
+   "anio_hasta": 2,
+   "evento": null,
+   "fiscal_min": null,
+   "meta": null
+  },
+  "costo_pa": 2,
+  "titulo": "Acelerar: Reposición Escuela Intercultural Chomio",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 2.5
+   },
+   {
+    "ind": "fiscal",
+    "delta": -1.0
+   }
+  ],
+  "obra": {
+   "nombre": "Reposición Escuela Intercultural Chomio, Padre Las Casas",
+   "dias_totales": 90
+  }
+ },
+ {
+  "id": "real_obra_cur_araucania_reposicion_escuela_martin_alonqueo_piutrin_vilcun",
+  "categoria": "educacion",
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#curados_dep_gob_cl",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "cur-araucania-reposicion-escuela-martin-alonqueo-piutrin-vilcun",
+   "sector": "educacion",
+   "region_id": "araucania",
+   "estado_real": "ejecucion",
+   "inversion_musd": 14.8,
+   "mandante": "Dirección de Arquitectura MOP (unidad técnica); Mineduc y Gobierno Regional de La Araucanía",
+   "verificado_hecho": false,
+   "verificado": false,
+   "fuente_url": "https://dep.gob.cl/wp-content/uploads/2025/04/muestras-de-casos-de-coordinacion-1.pdf",
+   "cifras_ilustrativas": true,
+   "modo": "acelerar"
+  },
+  "disponibilidad": {
+   "anio_desde": 1,
+   "anio_hasta": 3,
+   "evento": null,
+   "fiscal_min": null,
+   "meta": null
+  },
+  "costo_pa": 2,
+  "titulo": "Acelerar: Reposición Escuela Martín Alonqueo Piutrín, Vilcún",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 2.5
+   },
+   {
+    "ind": "fiscal",
+    "delta": -0.5
+   }
+  ],
+  "obra": {
+   "nombre": "Reposición Escuela Martín Alonqueo Piutrín, Vilcún",
+   "dias_totales": 90
+  }
+ },
+ {
+  "id": "real_obra_cur_araucania_reposicion_escuela_salvador_allende_de_pailahueque_ercilla",
+  "categoria": "educacion",
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#dipres_siap_429207",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "cur-araucania-reposicion-escuela-salvador-allende-de-pailahueque-ercilla",
+   "sector": "educacion",
+   "region_id": "araucania",
+   "estado_real": "ejecucion",
+   "inversion_musd": null,
+   "mandante": "Gobierno Regional de La Araucanía",
+   "verificado_hecho": false,
+   "verificado": false,
+   "fuente_url": "https://www.dipres.gob.cl/597/articles-429207_doc_pdf.pdf",
+   "cifras_ilustrativas": true,
+   "modo": "acelerar"
+  },
+  "disponibilidad": {
+   "anio_desde": 1,
+   "anio_hasta": 2,
+   "evento": "evt_real_20260401_065",
+   "fiscal_min": null,
+   "meta": null
+  },
+  "costo_pa": 2,
+  "titulo": "Acelerar: Reposición Escuela Salvador Allende",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 2.5
+   },
+   {
+    "ind": "fiscal",
+    "delta": -1.0
+   }
+  ],
+  "obra": {
+   "nombre": "Reposición Escuela Salvador Allende de Pailahueque, Ercilla",
+   "dias_totales": 90
+  }
+ },
+ {
+  "id": "real_obra_cur_araucania_reposicion_liceo_atenea_cunco",
+  "categoria": "educacion",
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#dipres_siap_429207",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "cur-araucania-reposicion-liceo-atenea-cunco",
+   "sector": "educacion",
+   "region_id": "araucania",
+   "estado_real": "ejecucion",
+   "inversion_musd": null,
+   "mandante": "Gobierno Regional de La Araucanía",
+   "verificado_hecho": false,
+   "verificado": false,
+   "fuente_url": "https://www.dipres.gob.cl/597/articles-429207_doc_pdf.pdf",
+   "cifras_ilustrativas": true,
+   "modo": "acelerar"
+  },
+  "disponibilidad": {
+   "anio_desde": 1,
+   "anio_hasta": 2,
+   "evento": null,
+   "fiscal_min": null,
+   "meta": null
+  },
+  "costo_pa": 2,
+  "titulo": "Acelerar: Reposición Liceo Atenea, Cunco",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 2.5
+   },
+   {
+    "ind": "fiscal",
+    "delta": -1.0
+   }
+  ],
+  "obra": {
+   "nombre": "Reposición Liceo Atenea, Cunco",
+   "dias_totales": 90
+  }
+ },
+ {
+  "id": "real_obra_cur_araucania_reposicion_liceo_gregorio_urrutia_galvarino",
+  "categoria": "educacion",
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#dipres_siap_429207",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "cur-araucania-reposicion-liceo-gregorio-urrutia-galvarino",
+   "sector": "educacion",
+   "region_id": "araucania",
+   "estado_real": "diseno",
+   "inversion_musd": null,
+   "mandante": "Gobierno Regional de La Araucanía",
+   "verificado_hecho": false,
+   "verificado": false,
+   "fuente_url": "https://www.dipres.gob.cl/597/articles-429207_doc_pdf.pdf",
+   "cifras_ilustrativas": true,
+   "modo": "obra"
+  },
+  "disponibilidad": {
+   "anio_desde": 2,
+   "anio_hasta": 4,
+   "evento": null,
+   "fiscal_min": null,
+   "meta": null
+  },
+  "costo_pa": 2,
+  "titulo": "Reposición Liceo Gregorio Urrutia, Galvarino",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 3
+   },
+   {
+    "ind": "fiscal",
+    "delta": -1.0
+   }
+  ],
+  "obra": {
+   "nombre": "Reposición Liceo Gregorio Urrutia, Galvarino",
+   "dias_totales": 100
+  }
+ },
+ {
+  "id": "real_obra_cur_araucania_reposicion_parcial_liceo_domingo_santa_maria_renaico",
+  "categoria": "educacion",
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#dipres_siap_429207",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "cur-araucania-reposicion-parcial-liceo-domingo-santa-maria-renaico",
+   "sector": "educacion",
+   "region_id": "araucania",
+   "estado_real": "ejecucion",
+   "inversion_musd": null,
+   "mandante": "Gobierno Regional de La Araucanía",
+   "verificado_hecho": false,
+   "verificado": false,
+   "fuente_url": "https://www.dipres.gob.cl/597/articles-429207_doc_pdf.pdf",
+   "cifras_ilustrativas": true,
+   "modo": "acelerar"
+  },
+  "disponibilidad": {
+   "anio_desde": 2,
+   "anio_hasta": 4,
+   "evento": null,
+   "fiscal_min": null,
+   "meta": null
+  },
+  "costo_pa": 2,
+  "titulo": "Acelerar: Reposición parcial Liceo Domingo Santa María",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 2.5
+   },
+   {
+    "ind": "fiscal",
+    "delta": -1.0
+   }
+  ],
+  "obra": {
+   "nombre": "Reposición parcial Liceo Domingo Santa María, Renaico",
+   "dias_totales": 90
+  }
  },
  {
   "id": "real_obra_cur_araucania_reposicion_puente_malleco_y_accesos_ruta_r_152",
@@ -9066,6 +9690,150 @@
   "arte": "salud_hospitales"
  },
  {
+  "id": "real_obra_cur_aysen_infraestructura_fundacional_universidad_de_aysen",
+  "categoria": "educacion",
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#dipres_siap_429209",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "cur-aysen-infraestructura-fundacional-universidad-de-aysen",
+   "sector": "educacion",
+   "region_id": "aysen",
+   "estado_real": "ejecucion",
+   "inversion_musd": null,
+   "mandante": "Gobierno Regional de Aysén",
+   "verificado_hecho": false,
+   "verificado": false,
+   "fuente_url": "https://www.dipres.gob.cl/597/articles-429209_doc_pdf.pdf",
+   "cifras_ilustrativas": true,
+   "modo": "acelerar"
+  },
+  "disponibilidad": {
+   "anio_desde": 1,
+   "anio_hasta": 3,
+   "evento": null,
+   "fiscal_min": null,
+   "meta": "meta_educacion_3"
+  },
+  "costo_pa": 2,
+  "titulo": "Acelerar: Infraestructura Fundacional Universidad de Aysén",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 2.5
+   },
+   {
+    "ind": "fiscal",
+    "delta": -1.0
+   }
+  ],
+  "obra": {
+   "nombre": "Infraestructura Fundacional Universidad de Aysén",
+   "dias_totales": 90
+  }
+ },
+ {
+  "id": "real_obra_cur_aysen_mejoramiento_plaza_de_mallin_grande_chile_chico",
+  "categoria": "vivienda",
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#dipres_siap_411790",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "cur-aysen-mejoramiento-plaza-de-mallin-grande-chile-chico",
+   "sector": "vivienda_urbana",
+   "region_id": "aysen",
+   "estado_real": "ejecucion",
+   "inversion_musd": null,
+   "mandante": "Serviu Región de Aysén",
+   "verificado_hecho": false,
+   "verificado": false,
+   "fuente_url": "https://www.dipres.gob.cl/597/articles-411790_doc_pdf.pdf",
+   "cifras_ilustrativas": true,
+   "modo": "acelerar"
+  },
+  "disponibilidad": {
+   "anio_desde": 1,
+   "anio_hasta": 2,
+   "evento": null,
+   "fiscal_min": null,
+   "meta": null
+  },
+  "costo_pa": 2,
+  "titulo": "Acelerar: Mejoramiento Plaza de Mallín Grande, Chile Chico",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 2.5
+   },
+   {
+    "ind": "fiscal",
+    "delta": -1.0
+   }
+  ],
+  "obra": {
+   "nombre": "Mejoramiento Plaza de Mallín Grande, Chile Chico",
+   "dias_totales": 90
+  }
+ },
+ {
+  "id": "real_obra_cur_aysen_mejoramiento_y_ampliacion_provisoria_jardin_infantil_y_sala_cuna_arbol",
+  "categoria": "educacion",
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#dipres_siap_429209",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "cur-aysen-mejoramiento-y-ampliacion-provisoria-jardin-infantil-y-sala-cuna-arbol",
+   "sector": "educacion",
+   "region_id": "aysen",
+   "estado_real": "ejecucion",
+   "inversion_musd": null,
+   "mandante": "Gobierno Regional de Aysén",
+   "verificado_hecho": false,
+   "verificado": false,
+   "fuente_url": "https://www.dipres.gob.cl/597/articles-429209_doc_pdf.pdf",
+   "cifras_ilustrativas": true,
+   "modo": "acelerar"
+  },
+  "disponibilidad": {
+   "anio_desde": 1,
+   "anio_hasta": 3,
+   "evento": null,
+   "fiscal_min": null,
+   "meta": null
+  },
+  "costo_pa": 2,
+  "titulo": "Acelerar: Mejoramiento",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 2.5
+   },
+   {
+    "ind": "fiscal",
+    "delta": -1.0
+   }
+  ],
+  "obra": {
+   "nombre": "Mejoramiento y Ampliación Provisoria Jardín Infantil y Sala Cuna Arboliris",
+   "dias_totales": 90
+  }
+ },
+ {
   "id": "real_obra_cur_aysen_nuevo_cuartel_primera_compania_de_bomberos_de_coyhaique",
   "categoria": "seguridad",
   "requisitos": {
@@ -9310,6 +10078,150 @@
   "arte": "obras_vial"
  },
  {
+  "id": "real_obra_cur_aysen_reposicion_escuela_diferencial_despertar_puerto_aysen",
+  "categoria": "educacion",
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#dipres_siap_429239",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "cur-aysen-reposicion-escuela-diferencial-despertar-puerto-aysen",
+   "sector": "educacion",
+   "region_id": "aysen",
+   "estado_real": "ejecucion",
+   "inversion_musd": null,
+   "mandante": "Servicio Local de Educación Pública de Aysén (Servicio Educativo Aysén)",
+   "verificado_hecho": false,
+   "verificado": false,
+   "fuente_url": "https://www.dipres.gob.cl/597/articles-429239_doc_pdf.pdf",
+   "cifras_ilustrativas": true,
+   "modo": "acelerar"
+  },
+  "disponibilidad": {
+   "anio_desde": 1,
+   "anio_hasta": 4,
+   "evento": null,
+   "fiscal_min": null,
+   "meta": null
+  },
+  "costo_pa": 2,
+  "titulo": "Acelerar: Reposición Escuela Diferencial Despertar",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 2.5
+   },
+   {
+    "ind": "fiscal",
+    "delta": -1.0
+   }
+  ],
+  "obra": {
+   "nombre": "Reposición Escuela Diferencial Despertar, Puerto Aysén",
+   "dias_totales": 90
+  }
+ },
+ {
+  "id": "real_obra_cur_aysen_reposicion_escuela_diferencial_espana_de_coyhaique",
+  "categoria": "educacion",
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#dipres_siap_429239",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "cur-aysen-reposicion-escuela-diferencial-espana-de-coyhaique",
+   "sector": "educacion",
+   "region_id": "aysen",
+   "estado_real": "ejecucion",
+   "inversion_musd": null,
+   "mandante": "Servicio Local de Educación Pública de Aysén (Servicio Educativo Aysén)",
+   "verificado_hecho": false,
+   "verificado": false,
+   "fuente_url": "https://www.dipres.gob.cl/597/articles-429239_doc_pdf.pdf",
+   "cifras_ilustrativas": true,
+   "modo": "acelerar"
+  },
+  "disponibilidad": {
+   "anio_desde": 1,
+   "anio_hasta": 2,
+   "evento": null,
+   "fiscal_min": null,
+   "meta": "meta_educacion_3"
+  },
+  "costo_pa": 2,
+  "titulo": "Acelerar: Reposición Escuela Diferencial España de Coyhaique",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 2.5
+   },
+   {
+    "ind": "fiscal",
+    "delta": -1.0
+   }
+  ],
+  "obra": {
+   "nombre": "Reposición Escuela Diferencial España de Coyhaique",
+   "dias_totales": 90
+  }
+ },
+ {
+  "id": "real_obra_cur_aysen_reposicion_plaza_principal_de_villa_ortega_coyhaique",
+  "categoria": "vivienda",
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#dipres_siap_411790",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "cur-aysen-reposicion-plaza-principal-de-villa-ortega-coyhaique",
+   "sector": "vivienda_urbana",
+   "region_id": "aysen",
+   "estado_real": "ejecucion",
+   "inversion_musd": null,
+   "mandante": "Serviu Región de Aysén",
+   "verificado_hecho": false,
+   "verificado": false,
+   "fuente_url": "https://www.dipres.gob.cl/597/articles-411790_doc_pdf.pdf",
+   "cifras_ilustrativas": true,
+   "modo": "acelerar"
+  },
+  "disponibilidad": {
+   "anio_desde": 1,
+   "anio_hasta": 4,
+   "evento": null,
+   "fiscal_min": null,
+   "meta": null
+  },
+  "costo_pa": 2,
+  "titulo": "Acelerar: Reposición Plaza Principal de Villa Ortega",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 2.5
+   },
+   {
+    "ind": "fiscal",
+    "delta": -1.0
+   }
+  ],
+  "obra": {
+   "nombre": "Reposición Plaza Principal de Villa Ortega, Coyhaique",
+   "dias_totales": 90
+  }
+ },
+ {
   "id": "real_obra_cur_aysen_servicio_sanitario_rural_de_las_bandurrias",
   "categoria": "medioambiente",
   "requisitos": {
@@ -9456,6 +10368,150 @@
   "arte": "obras_edificacion"
  },
  {
+  "id": "real_obra_cur_biobio_conservacion_parque_el_carbon_de_lebu",
+  "categoria": "vivienda",
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#curados_gorebiobio_cl",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "cur-biobio-conservacion-parque-el-carbon-de-lebu",
+   "sector": "vivienda_urbana",
+   "region_id": "biobio",
+   "estado_real": "ejecucion",
+   "inversion_musd": 1.0,
+   "mandante": "Serviu / Minvu Región del Biobío",
+   "verificado_hecho": false,
+   "verificado": false,
+   "fuente_url": "https://gorebiobio.cl/wp-content/uploads/2026/06/MINVU.pdf",
+   "cifras_ilustrativas": true,
+   "modo": "acelerar"
+  },
+  "disponibilidad": {
+   "anio_desde": 1,
+   "anio_hasta": 2,
+   "evento": null,
+   "fiscal_min": null,
+   "meta": null
+  },
+  "costo_pa": 2,
+  "titulo": "Acelerar: Conservación Parque El Carbón de Lebu",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 2.5
+   },
+   {
+    "ind": "fiscal",
+    "delta": -0.5
+   }
+  ],
+  "obra": {
+   "nombre": "Conservación Parque El Carbón de Lebu",
+   "dias_totales": 90
+  }
+ },
+ {
+  "id": "real_obra_cur_biobio_conservacion_parque_metropolitano_cerro_caracol_2018_2020_concepcion",
+  "categoria": "vivienda",
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#curados_gorebiobio_cl",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "cur-biobio-conservacion-parque-metropolitano-cerro-caracol-2018-2020-concepcion",
+   "sector": "vivienda_urbana",
+   "region_id": "biobio",
+   "estado_real": "ejecucion",
+   "inversion_musd": 5.1,
+   "mandante": "Serviu / Minvu Región del Biobío",
+   "verificado_hecho": false,
+   "verificado": false,
+   "fuente_url": "https://gorebiobio.cl/wp-content/uploads/2026/06/MINVU.pdf",
+   "cifras_ilustrativas": true,
+   "modo": "acelerar"
+  },
+  "disponibilidad": {
+   "anio_desde": 1,
+   "anio_hasta": 2,
+   "evento": null,
+   "fiscal_min": null,
+   "meta": null
+  },
+  "costo_pa": 2,
+  "titulo": "Acelerar: Conservación Parque Metropolitano Cerro Caracol",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 2.5
+   },
+   {
+    "ind": "fiscal",
+    "delta": -0.5
+   }
+  ],
+  "obra": {
+   "nombre": "Conservación Parque Metropolitano Cerro Caracol 2018-2020, Concepción",
+   "dias_totales": 90
+  }
+ },
+ {
+  "id": "real_obra_cur_biobio_construccion_15_viviendas_tuteladas_para_adulto_mayor_chiguayante",
+  "categoria": "vivienda",
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#curados_gorebiobio_cl",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "cur-biobio-construccion-15-viviendas-tuteladas-para-adulto-mayor-chiguayante",
+   "sector": "vivienda_urbana",
+   "region_id": "biobio",
+   "estado_real": "perfil",
+   "inversion_musd": 1.8,
+   "mandante": "Serviu / Minvu Región del Biobío",
+   "verificado_hecho": false,
+   "verificado": false,
+   "fuente_url": "https://gorebiobio.cl/wp-content/uploads/2026/06/MINVU.pdf",
+   "cifras_ilustrativas": true,
+   "modo": "obra"
+  },
+  "disponibilidad": {
+   "anio_desde": 2,
+   "anio_hasta": 4,
+   "evento": null,
+   "fiscal_min": null,
+   "meta": null
+  },
+  "costo_pa": 2,
+  "titulo": "Construcción 15 Viviendas Tuteladas para Adulto Mayor",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 3
+   },
+   {
+    "ind": "fiscal",
+    "delta": -0.5
+   }
+  ],
+  "obra": {
+   "nombre": "Construcción 15 Viviendas Tuteladas para Adulto Mayor, Chiguayante",
+   "dias_totales": 90
+  }
+ },
+ {
   "id": "real_obra_cur_biobio_construccion_cesfam_y_red_de_alcantarillado_sector_chacayal",
   "categoria": "salud",
   "requisitos": {
@@ -9503,6 +10559,198 @@
    "dias_totales": 91
   },
   "arte": "salud_hospitales"
+ },
+ {
+  "id": "real_obra_cur_biobio_construccion_parque_ecologico_las_vertientes_talcahuano",
+  "categoria": "vivienda",
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#curados_gorebiobio_cl",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "cur-biobio-construccion-parque-ecologico-las-vertientes-talcahuano",
+   "sector": "vivienda_urbana",
+   "region_id": "biobio",
+   "estado_real": "diseno",
+   "inversion_musd": 0.2,
+   "mandante": "Serviu / Minvu Región del Biobío",
+   "verificado_hecho": false,
+   "verificado": false,
+   "fuente_url": "https://gorebiobio.cl/wp-content/uploads/2026/06/MINVU.pdf",
+   "cifras_ilustrativas": true,
+   "modo": "obra"
+  },
+  "disponibilidad": {
+   "anio_desde": 2,
+   "anio_hasta": 4,
+   "evento": null,
+   "fiscal_min": null,
+   "meta": null
+  },
+  "costo_pa": 2,
+  "titulo": "Construcción Parque Ecológico Las Vertientes, Talcahuano",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 3
+   },
+   {
+    "ind": "fiscal",
+    "delta": -0.5
+   }
+  ],
+  "obra": {
+   "nombre": "Construcción Parque Ecológico Las Vertientes, Talcahuano",
+   "dias_totales": 90
+  }
+ },
+ {
+  "id": "real_obra_cur_biobio_construccion_parque_quichiuto_tome",
+  "categoria": "vivienda",
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#curados_gorebiobio_cl",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "cur-biobio-construccion-parque-quichiuto-tome",
+   "sector": "vivienda_urbana",
+   "region_id": "biobio",
+   "estado_real": "perfil",
+   "inversion_musd": 3.1,
+   "mandante": "Serviu / Minvu Región del Biobío",
+   "verificado_hecho": false,
+   "verificado": false,
+   "fuente_url": "https://gorebiobio.cl/wp-content/uploads/2026/06/MINVU.pdf",
+   "cifras_ilustrativas": true,
+   "modo": "obra"
+  },
+  "disponibilidad": {
+   "anio_desde": 2,
+   "anio_hasta": 3,
+   "evento": null,
+   "fiscal_min": null,
+   "meta": "meta_vivienda_2"
+  },
+  "costo_pa": 2,
+  "titulo": "Construcción Parque Quichiuto, Tomé",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 3
+   },
+   {
+    "ind": "fiscal",
+    "delta": -0.5
+   }
+  ],
+  "obra": {
+   "nombre": "Construcción Parque Quichiuto, Tomé",
+   "dias_totales": 90
+  }
+ },
+ {
+  "id": "real_obra_cur_biobio_construccion_parque_urbano_aurora_concepcion",
+  "categoria": "vivienda",
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#curados_gorebiobio_cl",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "cur-biobio-construccion-parque-urbano-aurora-concepcion",
+   "sector": "vivienda_urbana",
+   "region_id": "biobio",
+   "estado_real": "ejecucion",
+   "inversion_musd": 0.4,
+   "mandante": "Serviu / Minvu Región del Biobío",
+   "verificado_hecho": false,
+   "verificado": false,
+   "fuente_url": "https://gorebiobio.cl/wp-content/uploads/2026/06/MINVU.pdf",
+   "cifras_ilustrativas": true,
+   "modo": "acelerar"
+  },
+  "disponibilidad": {
+   "anio_desde": 2,
+   "anio_hasta": 4,
+   "evento": null,
+   "fiscal_min": null,
+   "meta": null
+  },
+  "costo_pa": 2,
+  "titulo": "Acelerar: Construcción Parque Urbano Aurora, Concepción",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 2.5
+   },
+   {
+    "ind": "fiscal",
+    "delta": -0.5
+   }
+  ],
+  "obra": {
+   "nombre": "Construcción Parque Urbano Aurora, Concepción",
+   "dias_totales": 90
+  }
+ },
+ {
+  "id": "real_obra_cur_biobio_habilitacion_de_terrenos_para_regeneracion_habitacional_michaihue_san",
+  "categoria": "vivienda",
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#curados_gorebiobio_cl",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "cur-biobio-habilitacion-de-terrenos-para-regeneracion-habitacional-michaihue-san",
+   "sector": "vivienda_urbana",
+   "region_id": "biobio",
+   "estado_real": "ejecucion",
+   "inversion_musd": 3.4,
+   "mandante": "Serviu / Minvu Región del Biobío",
+   "verificado_hecho": false,
+   "verificado": false,
+   "fuente_url": "https://gorebiobio.cl/wp-content/uploads/2026/06/MINVU.pdf",
+   "cifras_ilustrativas": true,
+   "modo": "acelerar"
+  },
+  "disponibilidad": {
+   "anio_desde": 1,
+   "anio_hasta": 3,
+   "evento": null,
+   "fiscal_min": null,
+   "meta": null
+  },
+  "costo_pa": 2,
+  "titulo": "Acelerar: Habilitación de Terrenos",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 2.5
+   },
+   {
+    "ind": "fiscal",
+    "delta": -0.5
+   }
+  ],
+  "obra": {
+   "nombre": "Habilitación de Terrenos para Regeneración Habitacional Michaihue",
+   "dias_totales": 90
+  }
  },
  {
   "id": "real_obra_cur_biobio_hospital_de_mulchen_estudio_de_prefactibilidad_y_terreno",
@@ -9750,6 +10998,150 @@
   "arte": "salud_hospitales"
  },
  {
+  "id": "real_obra_cur_biobio_parque_villa_futuro_chiguayante",
+  "categoria": "vivienda",
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#curados_gorebiobio_cl",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "cur-biobio-parque-villa-futuro-chiguayante",
+   "sector": "vivienda_urbana",
+   "region_id": "biobio",
+   "estado_real": "perfil",
+   "inversion_musd": 6.2,
+   "mandante": "Serviu / Minvu Región del Biobío",
+   "verificado_hecho": false,
+   "verificado": false,
+   "fuente_url": "https://gorebiobio.cl/wp-content/uploads/2026/06/MINVU.pdf",
+   "cifras_ilustrativas": true,
+   "modo": "obra"
+  },
+  "disponibilidad": {
+   "anio_desde": 2,
+   "anio_hasta": 3,
+   "evento": null,
+   "fiscal_min": null,
+   "meta": null
+  },
+  "costo_pa": 2,
+  "titulo": "Parque Villa Futuro, Chiguayante",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 3
+   },
+   {
+    "ind": "fiscal",
+    "delta": -0.5
+   }
+  ],
+  "obra": {
+   "nombre": "Parque Villa Futuro, Chiguayante",
+   "dias_totales": 91
+  }
+ },
+ {
+  "id": "real_obra_cur_biobio_pequeno_condominio_de_tome_bellavista",
+  "categoria": "vivienda",
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#curados_minvu_gob_cl",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "cur-biobio-pequeno-condominio-de-tome-bellavista",
+   "sector": "vivienda_urbana",
+   "region_id": "biobio",
+   "estado_real": "ejecucion",
+   "inversion_musd": 0.2,
+   "mandante": "Minvu / Serviu Región del Biobío",
+   "verificado_hecho": false,
+   "verificado": false,
+   "fuente_url": "https://www.minvu.gob.cl/noticia/ministro-poduje-presenta-en-tome-innovador-modelo-de-pequenos-condominios-para-ampliar-soluciones-habitacionales-en-terrenos-urbanos-de-menor-tamano/",
+   "cifras_ilustrativas": true,
+   "modo": "acelerar"
+  },
+  "disponibilidad": {
+   "anio_desde": 2,
+   "anio_hasta": 4,
+   "evento": null,
+   "fiscal_min": null,
+   "meta": null
+  },
+  "costo_pa": 2,
+  "titulo": "Acelerar: Pequeño Condominio de Tomé (Bellavista)",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 2.5
+   },
+   {
+    "ind": "fiscal",
+    "delta": -0.5
+   }
+  ],
+  "obra": {
+   "nombre": "Pequeño Condominio de Tomé (Bellavista)",
+   "dias_totales": 90
+  }
+ },
+ {
+  "id": "real_obra_cur_biobio_plan_maestro_de_nacimiento_700_viviendas_y_obras_urbanas",
+  "categoria": "vivienda",
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#curados_minvu_gob_cl",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "cur-biobio-plan-maestro-de-nacimiento-700-viviendas-y-obras-urbanas",
+   "sector": "vivienda_urbana",
+   "region_id": "biobio",
+   "estado_real": "perfil",
+   "inversion_musd": 63.2,
+   "mandante": "Ministerio de Vivienda y Urbanismo",
+   "verificado_hecho": false,
+   "verificado": false,
+   "fuente_url": "https://www.minvu.gob.cl/noticia/ministro-poduje-anuncia-historica-inversion-cercana-a-los-60-mil-millones-para-nacimiento-contempla-700-viviendas-y-obras-urbanas/",
+   "cifras_ilustrativas": true,
+   "modo": "obra"
+  },
+  "disponibilidad": {
+   "anio_desde": 2,
+   "anio_hasta": 3,
+   "evento": null,
+   "fiscal_min": null,
+   "meta": null
+  },
+  "costo_pa": 2,
+  "titulo": "Plan maestro de Nacimiento: 700 viviendas y obras urbanas",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 3
+   },
+   {
+    "ind": "fiscal",
+    "delta": -0.5
+   }
+  ],
+  "obra": {
+   "nombre": "Plan maestro de Nacimiento: 700 viviendas y obras urbanas",
+   "dias_totales": 102
+  }
+ },
+ {
   "id": "real_obra_cur_biobio_reconstruccion_liceo_manuel_alcazar_de_tucapel",
   "categoria": "educacion",
   "requisitos": {
@@ -9824,7 +11216,7 @@
   "disponibilidad": {
    "anio_desde": 1,
    "anio_hasta": 2,
-   "evento": "evt_real_20260401_065",
+   "evento": "evt_real_20260525_070",
    "fiscal_min": null,
    "meta": null
   },
@@ -9993,6 +11385,54 @@
   "arte": "medioambiente_agua"
  },
  {
+  "id": "real_obra_cur_coquimbo_ciudad_justa_maestranza_puh_maestranza_coquimbo",
+  "categoria": "vivienda",
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#curados_minvu_gob_cl",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "cur-coquimbo-ciudad-justa-maestranza-puh-maestranza-coquimbo",
+   "sector": "vivienda_urbana",
+   "region_id": "coquimbo",
+   "estado_real": "ejecucion",
+   "inversion_musd": null,
+   "mandante": "Minvu / Serviu Región de Coquimbo",
+   "verificado_hecho": false,
+   "verificado": false,
+   "fuente_url": "https://www.minvu.gob.cl/noticia/minvu-inicia-obras-de-emblematico-proyecto-ciudades-justas-maestranza-en-coquimbo/",
+   "cifras_ilustrativas": true,
+   "modo": "acelerar"
+  },
+  "disponibilidad": {
+   "anio_desde": 2,
+   "anio_hasta": 4,
+   "evento": null,
+   "fiscal_min": null,
+   "meta": null
+  },
+  "costo_pa": 2,
+  "titulo": "Acelerar: Ciudad Justa Maestranza (PUH Maestranza), Coquimbo",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 2.5
+   },
+   {
+    "ind": "fiscal",
+    "delta": -1.0
+   }
+  ],
+  "obra": {
+   "nombre": "Ciudad Justa Maestranza (PUH Maestranza), Coquimbo",
+   "dias_totales": 90
+  }
+ },
+ {
   "id": "real_obra_cur_coquimbo_construccion_centro_de_estimulacion_temprana_para_ninos_as_con_sindrom",
   "categoria": "salud",
   "requisitos": {
@@ -10040,6 +11480,54 @@
    "dias_totales": 90
   },
   "arte": "salud_hospitales"
+ },
+ {
+  "id": "real_obra_cur_coquimbo_construccion_parque_humedal_el_culebron_coquimbo",
+  "categoria": "vivienda",
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#dipres_siap_411782",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "cur-coquimbo-construccion-parque-humedal-el-culebron-coquimbo",
+   "sector": "vivienda_urbana",
+   "region_id": "coquimbo",
+   "estado_real": "ejecucion",
+   "inversion_musd": null,
+   "mandante": "Serviu Región de Coquimbo",
+   "verificado_hecho": false,
+   "verificado": false,
+   "fuente_url": "https://www.dipres.gob.cl/597/articles-411782_doc_pdf.pdf",
+   "cifras_ilustrativas": true,
+   "modo": "acelerar"
+  },
+  "disponibilidad": {
+   "anio_desde": 2,
+   "anio_hasta": 4,
+   "evento": null,
+   "fiscal_min": null,
+   "meta": null
+  },
+  "costo_pa": 2,
+  "titulo": "Acelerar: Construcción Parque Humedal El Culebrón, Coquimbo",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 2.5
+   },
+   {
+    "ind": "fiscal",
+    "delta": -1.0
+   }
+  ],
+  "obra": {
+   "nombre": "Construcción Parque Humedal El Culebrón, Coquimbo",
+   "dias_totales": 90
+  }
  },
  {
   "id": "real_obra_cur_coquimbo_construccion_parque_recreativo_san_joaquin_comuna_de_la_serena",
@@ -10284,6 +11772,246 @@
   "arte": "salud_hospitales"
  },
  {
+  "id": "real_obra_cur_coquimbo_proyecto_habitacional_adonay_el_palqui_monte_patria",
+  "categoria": "vivienda",
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#curados_serviucoquimbo_minvu_gob_cl",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "cur-coquimbo-proyecto-habitacional-adonay-el-palqui-monte-patria",
+   "sector": "vivienda_urbana",
+   "region_id": "coquimbo",
+   "estado_real": "ejecucion",
+   "inversion_musd": null,
+   "mandante": "Serviu Región de Coquimbo",
+   "verificado_hecho": false,
+   "verificado": false,
+   "fuente_url": "https://serviucoquimbo.minvu.gob.cl/wp-content/uploads/2025/07/Informe-liviano-CPP-MINVU-SERVIU-Coquimbo-2025.pdf",
+   "cifras_ilustrativas": true,
+   "modo": "acelerar"
+  },
+  "disponibilidad": {
+   "anio_desde": 1,
+   "anio_hasta": 2,
+   "evento": null,
+   "fiscal_min": null,
+   "meta": null
+  },
+  "costo_pa": 2,
+  "titulo": "Acelerar: Proyecto habitacional Adonay, El Palqui",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 2.5
+   },
+   {
+    "ind": "fiscal",
+    "delta": -1.0
+   }
+  ],
+  "obra": {
+   "nombre": "Proyecto habitacional Adonay, El Palqui (Monte Patria)",
+   "dias_totales": 90
+  }
+ },
+ {
+  "id": "real_obra_cur_coquimbo_proyecto_habitacional_altos_del_sauce_coquimbo",
+  "categoria": "vivienda",
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#curados_serviucoquimbo_minvu_gob_cl",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "cur-coquimbo-proyecto-habitacional-altos-del-sauce-coquimbo",
+   "sector": "vivienda_urbana",
+   "region_id": "coquimbo",
+   "estado_real": "ejecucion",
+   "inversion_musd": 14.7,
+   "mandante": "Serviu Región de Coquimbo",
+   "verificado_hecho": false,
+   "verificado": false,
+   "fuente_url": "https://serviucoquimbo.minvu.gob.cl/wp-content/uploads/2025/07/Informe-liviano-CPP-MINVU-SERVIU-Coquimbo-2025.pdf",
+   "cifras_ilustrativas": true,
+   "modo": "acelerar"
+  },
+  "disponibilidad": {
+   "anio_desde": 1,
+   "anio_hasta": 4,
+   "evento": null,
+   "fiscal_min": null,
+   "meta": null
+  },
+  "costo_pa": 2,
+  "titulo": "Acelerar: Proyecto habitacional Altos del Sauce, Coquimbo",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 2.5
+   },
+   {
+    "ind": "fiscal",
+    "delta": -0.5
+   }
+  ],
+  "obra": {
+   "nombre": "Proyecto habitacional Altos del Sauce, Coquimbo",
+   "dias_totales": 90
+  }
+ },
+ {
+  "id": "real_obra_cur_coquimbo_proyecto_habitacional_sol_del_valle_monte_patria",
+  "categoria": "vivienda",
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#curados_serviucoquimbo_minvu_gob_cl",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "cur-coquimbo-proyecto-habitacional-sol-del-valle-monte-patria",
+   "sector": "vivienda_urbana",
+   "region_id": "coquimbo",
+   "estado_real": "ejecucion",
+   "inversion_musd": null,
+   "mandante": "Serviu Región de Coquimbo",
+   "verificado_hecho": false,
+   "verificado": false,
+   "fuente_url": "https://serviucoquimbo.minvu.gob.cl/wp-content/uploads/2025/07/Informe-liviano-CPP-MINVU-SERVIU-Coquimbo-2025.pdf",
+   "cifras_ilustrativas": true,
+   "modo": "acelerar"
+  },
+  "disponibilidad": {
+   "anio_desde": 2,
+   "anio_hasta": 4,
+   "evento": null,
+   "fiscal_min": null,
+   "meta": null
+  },
+  "costo_pa": 2,
+  "titulo": "Acelerar: Proyecto habitacional Sol del Valle, Monte Patria",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 2.5
+   },
+   {
+    "ind": "fiscal",
+    "delta": -1.0
+   }
+  ],
+  "obra": {
+   "nombre": "Proyecto habitacional Sol del Valle, Monte Patria",
+   "dias_totales": 90
+  }
+ },
+ {
+  "id": "real_obra_cur_coquimbo_proyecto_habitacional_ultima_esperanza_los_vilos",
+  "categoria": "vivienda",
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#curados_minvu_gob_cl",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "cur-coquimbo-proyecto-habitacional-ultima-esperanza-los-vilos",
+   "sector": "vivienda_urbana",
+   "region_id": "coquimbo",
+   "estado_real": "ejecucion",
+   "inversion_musd": null,
+   "mandante": "Minvu / Serviu Región de Coquimbo",
+   "verificado_hecho": false,
+   "verificado": false,
+   "fuente_url": "https://www.minvu.gob.cl/noticia/minvu-inicia-obras-de-emblematico-proyecto-ciudades-justas-maestranza-en-coquimbo/",
+   "cifras_ilustrativas": true,
+   "modo": "acelerar"
+  },
+  "disponibilidad": {
+   "anio_desde": 1,
+   "anio_hasta": 2,
+   "evento": null,
+   "fiscal_min": null,
+   "meta": null
+  },
+  "costo_pa": 2,
+  "titulo": "Acelerar: Proyecto habitacional Última Esperanza, Los Vilos",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 2.5
+   },
+   {
+    "ind": "fiscal",
+    "delta": -1.0
+   }
+  ],
+  "obra": {
+   "nombre": "Proyecto habitacional Última Esperanza, Los Vilos",
+   "dias_totales": 90
+  }
+ },
+ {
+  "id": "real_obra_cur_coquimbo_proyectos_habitacionales_altos_del_mar_y_monte_everest_los_vilos",
+  "categoria": "vivienda",
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#curados_minvu_gob_cl",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "cur-coquimbo-proyectos-habitacionales-altos-del-mar-y-monte-everest-los-vilos",
+   "sector": "vivienda_urbana",
+   "region_id": "coquimbo",
+   "estado_real": "ejecucion",
+   "inversion_musd": null,
+   "mandante": "Minvu / Serviu Región de Coquimbo",
+   "verificado_hecho": false,
+   "verificado": false,
+   "fuente_url": "https://www.minvu.gob.cl/noticia/minvu-inicia-obras-de-emblematico-proyecto-ciudades-justas-maestranza-en-coquimbo/",
+   "cifras_ilustrativas": true,
+   "modo": "acelerar"
+  },
+  "disponibilidad": {
+   "anio_desde": 1,
+   "anio_hasta": 4,
+   "evento": null,
+   "fiscal_min": null,
+   "meta": null
+  },
+  "costo_pa": 2,
+  "titulo": "Acelerar: Proyectos habitacionales Altos del Mar",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 2.5
+   },
+   {
+    "ind": "fiscal",
+    "delta": -1.0
+   }
+  ],
+  "obra": {
+   "nombre": "Proyectos habitacionales Altos del Mar y Monte Everest, Los Vilos",
+   "dias_totales": 90
+  }
+ },
+ {
   "id": "real_obra_cur_coquimbo_reposicion_centro_de_salud_caren_comuna_de_monte_patria",
   "categoria": "salud",
   "requisitos": {
@@ -10359,7 +12087,7 @@
   "disponibilidad": {
    "anio_desde": 1,
    "anio_hasta": 3,
-   "evento": "evt_real_20260525_070",
+   "evento": "evt_real_20260605_073",
    "fiscal_min": null,
    "meta": null
   },
@@ -10474,6 +12202,54 @@
   ],
   "obra": {
    "nombre": "Reposición Escuela Básica Canela Alta, Canela",
+   "dias_totales": 90
+  }
+ },
+ {
+  "id": "real_obra_cur_coquimbo_reposicion_parque_sesquicentenario_ovalle",
+  "categoria": "vivienda",
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#dipres_siap_411782",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "cur-coquimbo-reposicion-parque-sesquicentenario-ovalle",
+   "sector": "vivienda_urbana",
+   "region_id": "coquimbo",
+   "estado_real": "ejecucion",
+   "inversion_musd": null,
+   "mandante": "Serviu Región de Coquimbo",
+   "verificado_hecho": false,
+   "verificado": false,
+   "fuente_url": "https://www.dipres.gob.cl/597/articles-411782_doc_pdf.pdf",
+   "cifras_ilustrativas": true,
+   "modo": "acelerar"
+  },
+  "disponibilidad": {
+   "anio_desde": 2,
+   "anio_hasta": 4,
+   "evento": null,
+   "fiscal_min": null,
+   "meta": null
+  },
+  "costo_pa": 2,
+  "titulo": "Acelerar: Reposición Parque Sesquicentenario, Ovalle",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 2.5
+   },
+   {
+    "ind": "fiscal",
+    "delta": -1.0
+   }
+  ],
+  "obra": {
+   "nombre": "Reposición Parque Sesquicentenario, Ovalle",
    "dias_totales": 90
   }
  },
@@ -10718,6 +12494,54 @@
   "arte": "transportes_aeropuertos"
  },
  {
+  "id": "real_obra_cur_loslagos_construccion_20_viviendas_adulto_mayor_rio_negro",
+  "categoria": "vivienda",
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#dipres_siap_411789",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "cur-loslagos-construccion-20-viviendas-adulto-mayor-rio-negro",
+   "sector": "vivienda_urbana",
+   "region_id": "loslagos",
+   "estado_real": "ejecucion",
+   "inversion_musd": null,
+   "mandante": "Serviu Región de Los Lagos",
+   "verificado_hecho": false,
+   "verificado": false,
+   "fuente_url": "https://www.dipres.gob.cl/597/articles-411789_doc_pdf.pdf",
+   "cifras_ilustrativas": true,
+   "modo": "acelerar"
+  },
+  "disponibilidad": {
+   "anio_desde": 1,
+   "anio_hasta": 4,
+   "evento": null,
+   "fiscal_min": null,
+   "meta": null
+  },
+  "costo_pa": 2,
+  "titulo": "Acelerar: Construcción 20 Viviendas Adulto Mayor, Río Negro",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 2.5
+   },
+   {
+    "ind": "fiscal",
+    "delta": -1.0
+   }
+  ],
+  "obra": {
+   "nombre": "Construcción 20 Viviendas Adulto Mayor, Río Negro",
+   "dias_totales": 90
+  }
+ },
+ {
   "id": "real_obra_cur_loslagos_construccion_ascensores_interterrazas_de_puerto_montt",
   "categoria": "transportes",
   "requisitos": {
@@ -10763,6 +12587,246 @@
   "obra": {
    "nombre": "Construcción ascensores interterrazas de Puerto Montt",
    "dias_totales": 92
+  }
+ },
+ {
+  "id": "real_obra_cur_loslagos_construccion_jardin_infantil_y_sala_cuna_la_vara_puerto_montt",
+  "categoria": "educacion",
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#dipres_siap_429208",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "cur-loslagos-construccion-jardin-infantil-y-sala-cuna-la-vara-puerto-montt",
+   "sector": "educacion",
+   "region_id": "loslagos",
+   "estado_real": "ejecucion",
+   "inversion_musd": null,
+   "mandante": "Gobierno Regional de Los Lagos",
+   "verificado_hecho": false,
+   "verificado": false,
+   "fuente_url": "https://www.dipres.gob.cl/597/articles-429208_doc_pdf.pdf",
+   "cifras_ilustrativas": true,
+   "modo": "acelerar"
+  },
+  "disponibilidad": {
+   "anio_desde": 2,
+   "anio_hasta": 4,
+   "evento": null,
+   "fiscal_min": null,
+   "meta": "meta_educacion_1"
+  },
+  "costo_pa": 2,
+  "titulo": "Acelerar: Construcción Jardín Infantil y Sala Cuna La Vara",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 2.5
+   },
+   {
+    "ind": "fiscal",
+    "delta": -1.0
+   }
+  ],
+  "obra": {
+   "nombre": "Construcción Jardín Infantil y Sala Cuna La Vara, Puerto Montt",
+   "dias_totales": 90
+  }
+ },
+ {
+  "id": "real_obra_cur_loslagos_construccion_parque_hott_de_osorno_segunda_etapa",
+  "categoria": "vivienda",
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#prensa_biobiochile_cl",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "cur-loslagos-construccion-parque-hott-de-osorno-segunda-etapa",
+   "sector": "vivienda_urbana",
+   "region_id": "loslagos",
+   "estado_real": "ejecucion",
+   "inversion_musd": 2.1,
+   "mandante": "Serviu Región de Los Lagos",
+   "verificado_hecho": false,
+   "verificado": false,
+   "fuente_url": "https://www.biobiochile.cl/noticias/nacional/region-de-los-lagos/2026/06/23/avanza-la-construccion-de-la-segunda-etapa-del-parque-hott-en-osorno.shtml",
+   "cifras_ilustrativas": true,
+   "modo": "acelerar"
+  },
+  "disponibilidad": {
+   "anio_desde": 1,
+   "anio_hasta": 2,
+   "evento": null,
+   "fiscal_min": null,
+   "meta": null
+  },
+  "costo_pa": 2,
+  "titulo": "Acelerar: Construcción Parque Hott de Osorno (segunda etapa)",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 2.5
+   },
+   {
+    "ind": "fiscal",
+    "delta": -0.5
+   }
+  ],
+  "obra": {
+   "nombre": "Construcción Parque Hott de Osorno (segunda etapa)",
+   "dias_totales": 90
+  }
+ },
+ {
+  "id": "real_obra_cur_loslagos_construccion_parque_humedal_nueva_braunau_puerto_varas",
+  "categoria": "vivienda",
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#dipres_siap_411789",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "cur-loslagos-construccion-parque-humedal-nueva-braunau-puerto-varas",
+   "sector": "vivienda_urbana",
+   "region_id": "loslagos",
+   "estado_real": "diseno",
+   "inversion_musd": null,
+   "mandante": "Serviu Región de Los Lagos",
+   "verificado_hecho": false,
+   "verificado": false,
+   "fuente_url": "https://www.dipres.gob.cl/597/articles-411789_doc_pdf.pdf",
+   "cifras_ilustrativas": true,
+   "modo": "obra"
+  },
+  "disponibilidad": {
+   "anio_desde": 2,
+   "anio_hasta": 3,
+   "evento": null,
+   "fiscal_min": null,
+   "meta": null
+  },
+  "costo_pa": 2,
+  "titulo": "Construcción Parque Humedal Nueva Braunau, Puerto Varas",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 3
+   },
+   {
+    "ind": "fiscal",
+    "delta": -1.0
+   }
+  ],
+  "obra": {
+   "nombre": "Construcción Parque Humedal Nueva Braunau, Puerto Varas",
+   "dias_totales": 100
+  }
+ },
+ {
+  "id": "real_obra_cur_loslagos_mejoramiento_y_ampliacion_parque_la_toma_de_rio_negro",
+  "categoria": "vivienda",
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#curados_minvu_gob_cl",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "cur-loslagos-mejoramiento-y-ampliacion-parque-la-toma-de-rio-negro",
+   "sector": "vivienda_urbana",
+   "region_id": "loslagos",
+   "estado_real": "perfil",
+   "inversion_musd": 5.7,
+   "mandante": "Minvu y Gobierno Regional de Los Lagos",
+   "verificado_hecho": false,
+   "verificado": false,
+   "fuente_url": "https://www.minvu.gob.cl/noticia/minvu-gore-los-lagos-y-municipios-acuerdan-forma-de-financiamiento-para-materializar-parques-metropolitano-de-puerto-montt-y-la-toma-de-rio-negro/",
+   "cifras_ilustrativas": true,
+   "modo": "obra"
+  },
+  "disponibilidad": {
+   "anio_desde": 2,
+   "anio_hasta": 4,
+   "evento": null,
+   "fiscal_min": null,
+   "meta": null
+  },
+  "costo_pa": 2,
+  "titulo": "Mejoramiento y ampliación Parque La Toma de Río Negro",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 3
+   },
+   {
+    "ind": "fiscal",
+    "delta": -0.5
+   }
+  ],
+  "obra": {
+   "nombre": "Mejoramiento y ampliación Parque La Toma de Río Negro",
+   "dias_totales": 91
+  }
+ },
+ {
+  "id": "real_obra_cur_loslagos_parque_mirador_tercera_terraza_puerto_montt",
+  "categoria": "vivienda",
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#curados_minvu_gob_cl",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "cur-loslagos-parque-mirador-tercera-terraza-puerto-montt",
+   "sector": "vivienda_urbana",
+   "region_id": "loslagos",
+   "estado_real": "perfil",
+   "inversion_musd": null,
+   "mandante": "Municipalidad de Puerto Montt; Minvu / Serviu Los Lagos",
+   "verificado_hecho": false,
+   "verificado": false,
+   "fuente_url": "https://www.minvu.gob.cl/noticia/ministro-poduje-autoriza-comodato-para-construir-nuevo-parque-en-puerto-montt-en-el-marco-del-plan-sitio-eriazo-cero/",
+   "cifras_ilustrativas": true,
+   "modo": "obra"
+  },
+  "disponibilidad": {
+   "anio_desde": 2,
+   "anio_hasta": 3,
+   "evento": null,
+   "fiscal_min": null,
+   "meta": null
+  },
+  "costo_pa": 2,
+  "titulo": "Parque Mirador Tercera Terraza, Puerto Montt",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 3
+   },
+   {
+    "ind": "fiscal",
+    "delta": -1.0
+   }
+  ],
+  "obra": {
+   "nombre": "Parque Mirador Tercera Terraza, Puerto Montt",
+   "dias_totales": 100
   }
  },
  {
@@ -10857,6 +12921,342 @@
    }
   ],
   "arte": "obras_vial"
+ },
+ {
+  "id": "real_obra_cur_loslagos_reposicion_escuela_de_la_cultura_fridolina_barrientos_castro",
+  "categoria": "educacion",
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#dipres_siap_429208",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "cur-loslagos-reposicion-escuela-de-la-cultura-fridolina-barrientos-castro",
+   "sector": "educacion",
+   "region_id": "loslagos",
+   "estado_real": "ejecucion",
+   "inversion_musd": null,
+   "mandante": "Gobierno Regional de Los Lagos",
+   "verificado_hecho": false,
+   "verificado": false,
+   "fuente_url": "https://www.dipres.gob.cl/597/articles-429208_doc_pdf.pdf",
+   "cifras_ilustrativas": true,
+   "modo": "acelerar"
+  },
+  "disponibilidad": {
+   "anio_desde": 1,
+   "anio_hasta": 4,
+   "evento": "evt_real_20260401_065",
+   "fiscal_min": null,
+   "meta": null
+  },
+  "costo_pa": 2,
+  "titulo": "Acelerar: Reposición Escuela",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 2.5
+   },
+   {
+    "ind": "fiscal",
+    "delta": -1.0
+   }
+  ],
+  "obra": {
+   "nombre": "Reposición Escuela de la Cultura Fridolina Barrientos, Castro",
+   "dias_totales": 90
+  }
+ },
+ {
+  "id": "real_obra_cur_loslagos_reposicion_escuela_rural_de_alao_quinchao",
+  "categoria": "educacion",
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#dipres_siap_429208",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "cur-loslagos-reposicion-escuela-rural-de-alao-quinchao",
+   "sector": "educacion",
+   "region_id": "loslagos",
+   "estado_real": "ejecucion",
+   "inversion_musd": null,
+   "mandante": "Gobierno Regional de Los Lagos",
+   "verificado_hecho": false,
+   "verificado": false,
+   "fuente_url": "https://www.dipres.gob.cl/597/articles-429208_doc_pdf.pdf",
+   "cifras_ilustrativas": true,
+   "modo": "acelerar"
+  },
+  "disponibilidad": {
+   "anio_desde": 1,
+   "anio_hasta": 2,
+   "evento": null,
+   "fiscal_min": null,
+   "meta": null
+  },
+  "costo_pa": 2,
+  "titulo": "Acelerar: Reposición Escuela Rural de Alao, Quinchao",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 2.5
+   },
+   {
+    "ind": "fiscal",
+    "delta": -1.0
+   }
+  ],
+  "obra": {
+   "nombre": "Reposición Escuela Rural de Alao, Quinchao",
+   "dias_totales": 90
+  }
+ },
+ {
+  "id": "real_obra_cur_loslagos_reposicion_escuela_rural_de_huillinco_chonchi",
+  "categoria": "educacion",
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#dipres_siap_429208",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "cur-loslagos-reposicion-escuela-rural-de-huillinco-chonchi",
+   "sector": "educacion",
+   "region_id": "loslagos",
+   "estado_real": "diseno",
+   "inversion_musd": null,
+   "mandante": "Gobierno Regional de Los Lagos",
+   "verificado_hecho": false,
+   "verificado": false,
+   "fuente_url": "https://www.dipres.gob.cl/597/articles-429208_doc_pdf.pdf",
+   "cifras_ilustrativas": true,
+   "modo": "obra"
+  },
+  "disponibilidad": {
+   "anio_desde": 2,
+   "anio_hasta": 4,
+   "evento": null,
+   "fiscal_min": null,
+   "meta": null
+  },
+  "costo_pa": 2,
+  "titulo": "Reposición Escuela Rural de Huillinco, Chonchi",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 3
+   },
+   {
+    "ind": "fiscal",
+    "delta": -1.0
+   }
+  ],
+  "obra": {
+   "nombre": "Reposición Escuela Rural de Huillinco, Chonchi",
+   "dias_totales": 100
+  }
+ },
+ {
+  "id": "real_obra_cur_loslagos_reposicion_escuela_rural_de_quitripulli_chonchi",
+  "categoria": "educacion",
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#dipres_siap_429208",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "cur-loslagos-reposicion-escuela-rural-de-quitripulli-chonchi",
+   "sector": "educacion",
+   "region_id": "loslagos",
+   "estado_real": "ejecucion",
+   "inversion_musd": null,
+   "mandante": "Gobierno Regional de Los Lagos",
+   "verificado_hecho": false,
+   "verificado": false,
+   "fuente_url": "https://www.dipres.gob.cl/597/articles-429208_doc_pdf.pdf",
+   "cifras_ilustrativas": true,
+   "modo": "acelerar"
+  },
+  "disponibilidad": {
+   "anio_desde": 2,
+   "anio_hasta": 4,
+   "evento": null,
+   "fiscal_min": null,
+   "meta": null
+  },
+  "costo_pa": 2,
+  "titulo": "Acelerar: Reposición Escuela Rural de Quitripulli, Chonchi",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 2.5
+   },
+   {
+    "ind": "fiscal",
+    "delta": -1.0
+   }
+  ],
+  "obra": {
+   "nombre": "Reposición Escuela Rural de Quitripulli, Chonchi",
+   "dias_totales": 90
+  }
+ },
+ {
+  "id": "real_obra_cur_loslagos_reposicion_escuela_rural_lagunitas_puerto_montt",
+  "categoria": "educacion",
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#dipres_siap_429208",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "cur-loslagos-reposicion-escuela-rural-lagunitas-puerto-montt",
+   "sector": "educacion",
+   "region_id": "loslagos",
+   "estado_real": "ejecucion",
+   "inversion_musd": null,
+   "mandante": "Gobierno Regional de Los Lagos",
+   "verificado_hecho": false,
+   "verificado": false,
+   "fuente_url": "https://www.dipres.gob.cl/597/articles-429208_doc_pdf.pdf",
+   "cifras_ilustrativas": true,
+   "modo": "acelerar"
+  },
+  "disponibilidad": {
+   "anio_desde": 1,
+   "anio_hasta": 4,
+   "evento": null,
+   "fiscal_min": null,
+   "meta": null
+  },
+  "costo_pa": 2,
+  "titulo": "Acelerar: Reposición Escuela Rural Lagunitas, Puerto Montt",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 2.5
+   },
+   {
+    "ind": "fiscal",
+    "delta": -1.0
+   }
+  ],
+  "obra": {
+   "nombre": "Reposición Escuela Rural Lagunitas, Puerto Montt",
+   "dias_totales": 90
+  }
+ },
+ {
+  "id": "real_obra_cur_loslagos_reposicion_liceo_carmela_carvajal_de_prat_osorno",
+  "categoria": "educacion",
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#dipres_siap_429208",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "cur-loslagos-reposicion-liceo-carmela-carvajal-de-prat-osorno",
+   "sector": "educacion",
+   "region_id": "loslagos",
+   "estado_real": "ejecucion",
+   "inversion_musd": null,
+   "mandante": "Gobierno Regional de Los Lagos",
+   "verificado_hecho": false,
+   "verificado": false,
+   "fuente_url": "https://www.dipres.gob.cl/597/articles-429208_doc_pdf.pdf",
+   "cifras_ilustrativas": true,
+   "modo": "acelerar"
+  },
+  "disponibilidad": {
+   "anio_desde": 1,
+   "anio_hasta": 2,
+   "evento": null,
+   "fiscal_min": null,
+   "meta": null
+  },
+  "costo_pa": 2,
+  "titulo": "Acelerar: Reposición Liceo Carmela Carvajal de Prat, Osorno",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 2.5
+   },
+   {
+    "ind": "fiscal",
+    "delta": -1.0
+   }
+  ],
+  "obra": {
+   "nombre": "Reposición Liceo Carmela Carvajal de Prat, Osorno",
+   "dias_totales": 90
+  }
+ },
+ {
+  "id": "real_obra_cur_loslagos_reposicion_parcial_liceo_politecnico_de_calbuco",
+  "categoria": "educacion",
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#dipres_siap_429208",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "cur-loslagos-reposicion-parcial-liceo-politecnico-de-calbuco",
+   "sector": "educacion",
+   "region_id": "loslagos",
+   "estado_real": "ejecucion",
+   "inversion_musd": null,
+   "mandante": "Gobierno Regional de Los Lagos",
+   "verificado_hecho": false,
+   "verificado": false,
+   "fuente_url": "https://www.dipres.gob.cl/597/articles-429208_doc_pdf.pdf",
+   "cifras_ilustrativas": true,
+   "modo": "acelerar"
+  },
+  "disponibilidad": {
+   "anio_desde": 2,
+   "anio_hasta": 4,
+   "evento": null,
+   "fiscal_min": null,
+   "meta": null
+  },
+  "costo_pa": 2,
+  "titulo": "Acelerar: Reposición parcial Liceo Politécnico de Calbuco",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 2.5
+   },
+   {
+    "ind": "fiscal",
+    "delta": -1.0
+   }
+  ],
+  "obra": {
+   "nombre": "Reposición parcial Liceo Politécnico de Calbuco",
+   "dias_totales": 90
+  }
  },
  {
   "id": "real_obra_cur_losrios_construccion_segunda_barcaza_conexion_futrono_isla_huapi",
@@ -10956,6 +13356,102 @@
   "arte": "obras_vial"
  },
  {
+  "id": "real_obra_cur_losrios_mejoramiento_aceras_plan_maestro_barrio_historico_general_lagos_valdiv",
+  "categoria": "vivienda",
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#dipres_siap_411793",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "cur-losrios-mejoramiento-aceras-plan-maestro-barrio-historico-general-lagos-valdiv",
+   "sector": "vivienda_urbana",
+   "region_id": "losrios",
+   "estado_real": "diseno",
+   "inversion_musd": null,
+   "mandante": "Serviu Región de Los Ríos",
+   "verificado_hecho": false,
+   "verificado": false,
+   "fuente_url": "https://www.dipres.gob.cl/597/articles-411793_doc_pdf.pdf",
+   "cifras_ilustrativas": true,
+   "modo": "obra"
+  },
+  "disponibilidad": {
+   "anio_desde": 2,
+   "anio_hasta": 3,
+   "evento": null,
+   "fiscal_min": null,
+   "meta": null
+  },
+  "costo_pa": 2,
+  "titulo": "Mejoramiento Aceras Plan Maestro Barrio Histórico General",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 3
+   },
+   {
+    "ind": "fiscal",
+    "delta": -1.0
+   }
+  ],
+  "obra": {
+   "nombre": "Mejoramiento Aceras Plan Maestro Barrio Histórico General Lagos, Valdivia",
+   "dias_totales": 100
+  }
+ },
+ {
+  "id": "real_obra_cur_losrios_mejoramiento_parque_municipal_de_la_union",
+  "categoria": "vivienda",
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#dipres_siap_411793",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "cur-losrios-mejoramiento-parque-municipal-de-la-union",
+   "sector": "vivienda_urbana",
+   "region_id": "losrios",
+   "estado_real": "diseno",
+   "inversion_musd": null,
+   "mandante": "Serviu Región de Los Ríos",
+   "verificado_hecho": false,
+   "verificado": false,
+   "fuente_url": "https://www.dipres.gob.cl/597/articles-411793_doc_pdf.pdf",
+   "cifras_ilustrativas": true,
+   "modo": "obra"
+  },
+  "disponibilidad": {
+   "anio_desde": 1,
+   "anio_hasta": 3,
+   "evento": null,
+   "fiscal_min": null,
+   "meta": null
+  },
+  "costo_pa": 2,
+  "titulo": "Mejoramiento Parque Municipal de La Unión",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 3
+   },
+   {
+    "ind": "fiscal",
+    "delta": -1.0
+   }
+  ],
+  "obra": {
+   "nombre": "Mejoramiento Parque Municipal de La Unión",
+   "dias_totales": 100
+  }
+ },
+ {
   "id": "real_obra_cur_losrios_mejoramiento_ruta_choshuenco_rinihue_primera_etapa",
   "categoria": "obras",
   "requisitos": {
@@ -11052,6 +13548,54 @@
    "dias_totales": 90
   },
   "arte": "obras_vial"
+ },
+ {
+  "id": "real_obra_cur_losrios_mejoramiento_y_ampliacion_escuela_d_1_chile_valdivia",
+  "categoria": "educacion",
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#dipres_siap_429212",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "cur-losrios-mejoramiento-y-ampliacion-escuela-d-1-chile-valdivia",
+   "sector": "educacion",
+   "region_id": "losrios",
+   "estado_real": "ejecucion",
+   "inversion_musd": null,
+   "mandante": "Gobierno Regional de Los Ríos",
+   "verificado_hecho": false,
+   "verificado": false,
+   "fuente_url": "https://www.dipres.gob.cl/597/articles-429212_doc_pdf.pdf",
+   "cifras_ilustrativas": true,
+   "modo": "acelerar"
+  },
+  "disponibilidad": {
+   "anio_desde": 1,
+   "anio_hasta": 4,
+   "evento": "evt_real_20261017_090",
+   "fiscal_min": null,
+   "meta": null
+  },
+  "costo_pa": 2,
+  "titulo": "Acelerar: Mejoramiento y Ampliación Escuela D-1 Chile",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 2.5
+   },
+   {
+    "ind": "fiscal",
+    "delta": -1.0
+   }
+  ],
+  "obra": {
+   "nombre": "Mejoramiento y Ampliación Escuela D-1 Chile, Valdivia",
+   "dias_totales": 90
+  }
  },
  {
   "id": "real_obra_cur_losrios_mejoramiento_y_pavimentacion_ruta_t_60_camino_viejo_a_la_union_tramo_2",
@@ -11249,6 +13793,54 @@
   "arte": "obras_vial"
  },
  {
+  "id": "real_obra_cur_losrios_reposicion_colegio_jose_manuel_balmaceda_futrono",
+  "categoria": "educacion",
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#dipres_siap_429212",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "cur-losrios-reposicion-colegio-jose-manuel-balmaceda-futrono",
+   "sector": "educacion",
+   "region_id": "losrios",
+   "estado_real": "diseno",
+   "inversion_musd": null,
+   "mandante": "Gobierno Regional de Los Ríos",
+   "verificado_hecho": false,
+   "verificado": false,
+   "fuente_url": "https://www.dipres.gob.cl/597/articles-429212_doc_pdf.pdf",
+   "cifras_ilustrativas": true,
+   "modo": "obra"
+  },
+  "disponibilidad": {
+   "anio_desde": 2,
+   "anio_hasta": 3,
+   "evento": null,
+   "fiscal_min": null,
+   "meta": "meta_educacion_2"
+  },
+  "costo_pa": 2,
+  "titulo": "Reposición Colegio José Manuel Balmaceda, Futrono",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 3
+   },
+   {
+    "ind": "fiscal",
+    "delta": -1.0
+   }
+  ],
+  "obra": {
+   "nombre": "Reposición Colegio José Manuel Balmaceda, Futrono",
+   "dias_totales": 100
+  }
+ },
+ {
   "id": "real_obra_cur_magallanes_conservacion_escuela_espana_punta_arenas",
   "categoria": "educacion",
   "requisitos": {
@@ -11293,6 +13885,54 @@
   ],
   "obra": {
    "nombre": "Conservación Escuela España, Punta Arenas",
+   "dias_totales": 90
+  }
+ },
+ {
+  "id": "real_obra_cur_magallanes_conservacion_sistema_de_calefaccion_liceo_maria_behety_de_menendez_pun",
+  "categoria": "educacion",
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#dipres_siap_429210",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "cur-magallanes-conservacion-sistema-de-calefaccion-liceo-maria-behety-de-menendez-pun",
+   "sector": "educacion",
+   "region_id": "magallanes",
+   "estado_real": "ejecucion",
+   "inversion_musd": null,
+   "mandante": "Gobierno Regional de Magallanes y de la Antártica Chilena",
+   "verificado_hecho": false,
+   "verificado": false,
+   "fuente_url": "https://www.dipres.gob.cl/597/articles-429210_doc_pdf.pdf",
+   "cifras_ilustrativas": true,
+   "modo": "acelerar"
+  },
+  "disponibilidad": {
+   "anio_desde": 1,
+   "anio_hasta": 4,
+   "evento": null,
+   "fiscal_min": null,
+   "meta": null
+  },
+  "costo_pa": 2,
+  "titulo": "Acelerar: Conservación Sistema",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 2.5
+   },
+   {
+    "ind": "fiscal",
+    "delta": -1.0
+   }
+  ],
+  "obra": {
+   "nombre": "Conservación Sistema de Calefacción Liceo María Behety de Menéndez, Punta Arenas",
    "dias_totales": 90
   }
  },
@@ -11493,6 +14133,150 @@
   "arte": "seguridad_carceles"
  },
  {
+  "id": "real_obra_cur_magallanes_mejoramiento_barrio_comercial_18_de_septiembre_punta_arenas",
+  "categoria": "vivienda",
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#dipres_siap_411791",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "cur-magallanes-mejoramiento-barrio-comercial-18-de-septiembre-punta-arenas",
+   "sector": "vivienda_urbana",
+   "region_id": "magallanes",
+   "estado_real": "ejecucion",
+   "inversion_musd": null,
+   "mandante": "Serviu Región de Magallanes",
+   "verificado_hecho": false,
+   "verificado": false,
+   "fuente_url": "https://www.dipres.gob.cl/597/articles-411791_doc_pdf.pdf",
+   "cifras_ilustrativas": true,
+   "modo": "acelerar"
+  },
+  "disponibilidad": {
+   "anio_desde": 2,
+   "anio_hasta": 4,
+   "evento": null,
+   "fiscal_min": null,
+   "meta": null
+  },
+  "costo_pa": 2,
+  "titulo": "Acelerar: Mejoramiento Barrio Comercial 18 de Septiembre",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 2.5
+   },
+   {
+    "ind": "fiscal",
+    "delta": -1.0
+   }
+  ],
+  "obra": {
+   "nombre": "Mejoramiento Barrio Comercial 18 de Septiembre, Punta Arenas",
+   "dias_totales": 90
+  }
+ },
+ {
+  "id": "real_obra_cur_magallanes_mejoramiento_parque_maria_behety_punta_arenas",
+  "categoria": "vivienda",
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#dipres_siap_411791",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "cur-magallanes-mejoramiento-parque-maria-behety-punta-arenas",
+   "sector": "vivienda_urbana",
+   "region_id": "magallanes",
+   "estado_real": "ejecucion",
+   "inversion_musd": null,
+   "mandante": "Serviu Región de Magallanes",
+   "verificado_hecho": false,
+   "verificado": false,
+   "fuente_url": "https://www.dipres.gob.cl/597/articles-411791_doc_pdf.pdf",
+   "cifras_ilustrativas": true,
+   "modo": "acelerar"
+  },
+  "disponibilidad": {
+   "anio_desde": 1,
+   "anio_hasta": 2,
+   "evento": null,
+   "fiscal_min": null,
+   "meta": null
+  },
+  "costo_pa": 2,
+  "titulo": "Acelerar: Mejoramiento Parque María Behety, Punta Arenas",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 2.5
+   },
+   {
+    "ind": "fiscal",
+    "delta": -1.0
+   }
+  ],
+  "obra": {
+   "nombre": "Mejoramiento Parque María Behety, Punta Arenas",
+   "dias_totales": 90
+  }
+ },
+ {
+  "id": "real_obra_cur_magallanes_mejoramiento_parque_urbano_ukika_cabo_de_hornos",
+  "categoria": "vivienda",
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#dipres_siap_411791",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "cur-magallanes-mejoramiento-parque-urbano-ukika-cabo-de-hornos",
+   "sector": "vivienda_urbana",
+   "region_id": "magallanes",
+   "estado_real": "diseno",
+   "inversion_musd": null,
+   "mandante": "Serviu Región de Magallanes",
+   "verificado_hecho": false,
+   "verificado": false,
+   "fuente_url": "https://www.dipres.gob.cl/597/articles-411791_doc_pdf.pdf",
+   "cifras_ilustrativas": true,
+   "modo": "obra"
+  },
+  "disponibilidad": {
+   "anio_desde": 2,
+   "anio_hasta": 3,
+   "evento": null,
+   "fiscal_min": null,
+   "meta": null
+  },
+  "costo_pa": 2,
+  "titulo": "Mejoramiento Parque Urbano Ukika, Cabo de Hornos",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 3
+   },
+   {
+    "ind": "fiscal",
+    "delta": -1.0
+   }
+  ],
+  "obra": {
+   "nombre": "Mejoramiento Parque Urbano Ukika, Cabo de Hornos",
+   "dias_totales": 100
+  }
+ },
+ {
   "id": "real_obra_cur_magallanes_mejoramiento_red_de_agua_potable_puerto_williams",
   "categoria": "medioambiente",
   "requisitos": {
@@ -11638,6 +14422,54 @@
    "dias_totales": 100
   },
   "arte": "obras_edificacion"
+ },
+ {
+  "id": "real_obra_cur_magallanes_mejoramiento_y_reposicion_parcial_escuela_argentina_punta_arenas",
+  "categoria": "educacion",
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#dipres_siap_429210",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "cur-magallanes-mejoramiento-y-reposicion-parcial-escuela-argentina-punta-arenas",
+   "sector": "educacion",
+   "region_id": "magallanes",
+   "estado_real": "diseno",
+   "inversion_musd": null,
+   "mandante": "Gobierno Regional de Magallanes y de la Antártica Chilena",
+   "verificado_hecho": false,
+   "verificado": false,
+   "fuente_url": "https://www.dipres.gob.cl/597/articles-429210_doc_pdf.pdf",
+   "cifras_ilustrativas": true,
+   "modo": "obra"
+  },
+  "disponibilidad": {
+   "anio_desde": 2,
+   "anio_hasta": 3,
+   "evento": null,
+   "fiscal_min": null,
+   "meta": null
+  },
+  "costo_pa": 2,
+  "titulo": "Mejoramiento y Reposición Parcial Escuela Argentina",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 3
+   },
+   {
+    "ind": "fiscal",
+    "delta": -1.0
+   }
+  ],
+  "obra": {
+   "nombre": "Mejoramiento y Reposición Parcial Escuela Argentina, Punta Arenas",
+   "dias_totales": 100
+  }
  },
  {
   "id": "real_obra_cur_magallanes_reposicion_y_actualizacion_red_de_alcantarillado_y_ptas_villa_punta_de",
@@ -11787,6 +14619,246 @@
   "arte": "medioambiente_agua"
  },
  {
+  "id": "real_obra_cur_maule_construccion_20_viviendas_tuteladas_para_adulto_mayor_licanten",
+  "categoria": "vivienda",
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#dipres_siap_411786",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "cur-maule-construccion-20-viviendas-tuteladas-para-adulto-mayor-licanten",
+   "sector": "vivienda_urbana",
+   "region_id": "maule",
+   "estado_real": "diseno",
+   "inversion_musd": null,
+   "mandante": "Serviu Región del Maule",
+   "verificado_hecho": false,
+   "verificado": false,
+   "fuente_url": "https://www.dipres.gob.cl/597/articles-411786_doc_pdf.pdf",
+   "cifras_ilustrativas": true,
+   "modo": "obra"
+  },
+  "disponibilidad": {
+   "anio_desde": 2,
+   "anio_hasta": 4,
+   "evento": null,
+   "fiscal_min": null,
+   "meta": null
+  },
+  "costo_pa": 2,
+  "titulo": "Construcción 20 Viviendas Tuteladas para Adulto Mayor",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 3
+   },
+   {
+    "ind": "fiscal",
+    "delta": -1.0
+   }
+  ],
+  "obra": {
+   "nombre": "Construcción 20 Viviendas Tuteladas para Adulto Mayor, Licantén",
+   "dias_totales": 100
+  }
+ },
+ {
+  "id": "real_obra_cur_maule_construccion_parque_borde_fluvial_ciudad_de_constitucion",
+  "categoria": "vivienda",
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#dipres_siap_411786",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "cur-maule-construccion-parque-borde-fluvial-ciudad-de-constitucion",
+   "sector": "vivienda_urbana",
+   "region_id": "maule",
+   "estado_real": "ejecucion",
+   "inversion_musd": null,
+   "mandante": "Serviu Región del Maule",
+   "verificado_hecho": false,
+   "verificado": false,
+   "fuente_url": "https://www.dipres.gob.cl/597/articles-411786_doc_pdf.pdf",
+   "cifras_ilustrativas": true,
+   "modo": "acelerar"
+  },
+  "disponibilidad": {
+   "anio_desde": 1,
+   "anio_hasta": 2,
+   "evento": null,
+   "fiscal_min": null,
+   "meta": "meta_vivienda_2"
+  },
+  "costo_pa": 2,
+  "titulo": "Acelerar: Construcción Parque Borde Fluvial Ciudad",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 2.5
+   },
+   {
+    "ind": "fiscal",
+    "delta": -1.0
+   }
+  ],
+  "obra": {
+   "nombre": "Construcción Parque Borde Fluvial Ciudad de Constitución",
+   "dias_totales": 90
+  }
+ },
+ {
+  "id": "real_obra_cur_maule_construccion_parque_civico_de_maule",
+  "categoria": "vivienda",
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#dipres_siap_411786",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "cur-maule-construccion-parque-civico-de-maule",
+   "sector": "vivienda_urbana",
+   "region_id": "maule",
+   "estado_real": "diseno",
+   "inversion_musd": null,
+   "mandante": "Serviu Región del Maule",
+   "verificado_hecho": false,
+   "verificado": false,
+   "fuente_url": "https://www.dipres.gob.cl/597/articles-411786_doc_pdf.pdf",
+   "cifras_ilustrativas": true,
+   "modo": "obra"
+  },
+  "disponibilidad": {
+   "anio_desde": 2,
+   "anio_hasta": 4,
+   "evento": null,
+   "fiscal_min": null,
+   "meta": null
+  },
+  "costo_pa": 2,
+  "titulo": "Construcción Parque Cívico de Maule",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 3
+   },
+   {
+    "ind": "fiscal",
+    "delta": -1.0
+   }
+  ],
+  "obra": {
+   "nombre": "Construcción Parque Cívico de Maule",
+   "dias_totales": 100
+  }
+ },
+ {
+  "id": "real_obra_cur_maule_construccion_viviendas_tuteladas_adulto_mayor_san_javier",
+  "categoria": "vivienda",
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#dipres_siap_411786",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "cur-maule-construccion-viviendas-tuteladas-adulto-mayor-san-javier",
+   "sector": "vivienda_urbana",
+   "region_id": "maule",
+   "estado_real": "diseno",
+   "inversion_musd": null,
+   "mandante": "Serviu Región del Maule",
+   "verificado_hecho": false,
+   "verificado": false,
+   "fuente_url": "https://www.dipres.gob.cl/597/articles-411786_doc_pdf.pdf",
+   "cifras_ilustrativas": true,
+   "modo": "obra"
+  },
+  "disponibilidad": {
+   "anio_desde": 1,
+   "anio_hasta": 3,
+   "evento": null,
+   "fiscal_min": null,
+   "meta": null
+  },
+  "costo_pa": 2,
+  "titulo": "Construcción Viviendas Tuteladas Adulto Mayor San Javier",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 3
+   },
+   {
+    "ind": "fiscal",
+    "delta": -1.0
+   }
+  ],
+  "obra": {
+   "nombre": "Construcción Viviendas Tuteladas Adulto Mayor San Javier",
+   "dias_totales": 100
+  }
+ },
+ {
+  "id": "real_obra_cur_maule_construccion_y_habilitacion_sala_cuna_y_jardin_infantil_los_chiquitine",
+  "categoria": "educacion",
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#dipres_siap_425968",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "cur-maule-construccion-y-habilitacion-sala-cuna-y-jardin-infantil-los-chiquitine",
+   "sector": "educacion",
+   "region_id": "maule",
+   "estado_real": "ejecucion",
+   "inversion_musd": null,
+   "mandante": "Gobierno Regional del Maule",
+   "verificado_hecho": false,
+   "verificado": false,
+   "fuente_url": "https://www.dipres.gob.cl/597/articles-425968_doc_pdf.pdf",
+   "cifras_ilustrativas": true,
+   "modo": "acelerar"
+  },
+  "disponibilidad": {
+   "anio_desde": 1,
+   "anio_hasta": 3,
+   "evento": null,
+   "fiscal_min": null,
+   "meta": null
+  },
+  "costo_pa": 2,
+  "titulo": "Acelerar: Construcción y Habilitación Sala Cuna",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 2.5
+   },
+   {
+    "ind": "fiscal",
+    "delta": -1.0
+   }
+  ],
+  "obra": {
+   "nombre": "Construcción y Habilitación Sala Cuna y Jardín Infantil Los Chiquitines, Talca",
+   "dias_totales": 90
+  }
+ },
+ {
   "id": "real_obra_cur_maule_estudio_aeropuerto_internacional_de_carga_del_maule",
   "categoria": "transportes",
   "requisitos": {
@@ -11883,6 +14955,102 @@
    "dias_totales": 111
   },
   "arte": "economia_puertos"
+ },
+ {
+  "id": "real_obra_cur_maule_mejoramiento_parque_agustin_quintana_empedrado",
+  "categoria": "vivienda",
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#dipres_siap_411786",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "cur-maule-mejoramiento-parque-agustin-quintana-empedrado",
+   "sector": "vivienda_urbana",
+   "region_id": "maule",
+   "estado_real": "ejecucion",
+   "inversion_musd": null,
+   "mandante": "Serviu Región del Maule",
+   "verificado_hecho": false,
+   "verificado": false,
+   "fuente_url": "https://www.dipres.gob.cl/597/articles-411786_doc_pdf.pdf",
+   "cifras_ilustrativas": true,
+   "modo": "acelerar"
+  },
+  "disponibilidad": {
+   "anio_desde": 1,
+   "anio_hasta": 4,
+   "evento": "evt_real_20260923_086",
+   "fiscal_min": null,
+   "meta": null
+  },
+  "costo_pa": 2,
+  "titulo": "Acelerar: Mejoramiento Parque Agustín Quintana, Empedrado",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 2.5
+   },
+   {
+    "ind": "fiscal",
+    "delta": -1.0
+   }
+  ],
+  "obra": {
+   "nombre": "Mejoramiento Parque Agustín Quintana, Empedrado",
+   "dias_totales": 90
+  }
+ },
+ {
+  "id": "real_obra_cur_maule_mejoramiento_parque_pumaiten_romeral",
+  "categoria": "vivienda",
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#dipres_siap_411786",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "cur-maule-mejoramiento-parque-pumaiten-romeral",
+   "sector": "vivienda_urbana",
+   "region_id": "maule",
+   "estado_real": "ejecucion",
+   "inversion_musd": null,
+   "mandante": "Serviu Región del Maule",
+   "verificado_hecho": false,
+   "verificado": false,
+   "fuente_url": "https://www.dipres.gob.cl/597/articles-411786_doc_pdf.pdf",
+   "cifras_ilustrativas": true,
+   "modo": "acelerar"
+  },
+  "disponibilidad": {
+   "anio_desde": 2,
+   "anio_hasta": 4,
+   "evento": null,
+   "fiscal_min": null,
+   "meta": null
+  },
+  "costo_pa": 2,
+  "titulo": "Acelerar: Mejoramiento Parque Pumaitén, Romeral",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 2.5
+   },
+   {
+    "ind": "fiscal",
+    "delta": -1.0
+   }
+  ],
+  "obra": {
+   "nombre": "Mejoramiento Parque Pumaitén, Romeral",
+   "dias_totales": 90
+  }
  },
  {
   "id": "real_obra_cur_maule_nuevo_hospital_de_licanten",
@@ -12078,6 +15246,198 @@
   }
  },
  {
+  "id": "real_obra_cur_maule_parque_las_americas_villa_las_americas_talca",
+  "categoria": "vivienda",
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#curados_minvu_gob_cl",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "cur-maule-parque-las-americas-villa-las-americas-talca",
+   "sector": "vivienda_urbana",
+   "region_id": "maule",
+   "estado_real": "diseno",
+   "inversion_musd": 4.7,
+   "mandante": "Ministerio de Vivienda y Urbanismo",
+   "verificado_hecho": false,
+   "verificado": false,
+   "fuente_url": "https://www.minvu.gob.cl/noticia/ministro-poduje-encabeza-hito-de-reactivacion-de-proyecto-que-dara-un-nuevo-comienzo-a-familias-de-villa-las-americas-de-talca/",
+   "cifras_ilustrativas": true,
+   "modo": "obra"
+  },
+  "disponibilidad": {
+   "anio_desde": 1,
+   "anio_hasta": 3,
+   "evento": null,
+   "fiscal_min": null,
+   "meta": null
+  },
+  "costo_pa": 2,
+  "titulo": "Parque Las Américas (Villa Las Américas), Talca",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 3
+   },
+   {
+    "ind": "fiscal",
+    "delta": -0.5
+   }
+  ],
+  "obra": {
+   "nombre": "Parque Las Américas (Villa Las Américas), Talca",
+   "dias_totales": 90
+  }
+ },
+ {
+  "id": "real_obra_cur_maule_reposicion_parcial_de_aulas_y_prebasica_escuela_el_colorado_san_clemen",
+  "categoria": "educacion",
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#dipres_siap_425968",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "cur-maule-reposicion-parcial-de-aulas-y-prebasica-escuela-el-colorado-san-clemen",
+   "sector": "educacion",
+   "region_id": "maule",
+   "estado_real": "ejecucion",
+   "inversion_musd": null,
+   "mandante": "Gobierno Regional del Maule",
+   "verificado_hecho": false,
+   "verificado": false,
+   "fuente_url": "https://www.dipres.gob.cl/597/articles-425968_doc_pdf.pdf",
+   "cifras_ilustrativas": true,
+   "modo": "acelerar"
+  },
+  "disponibilidad": {
+   "anio_desde": 2,
+   "anio_hasta": 4,
+   "evento": null,
+   "fiscal_min": null,
+   "meta": null
+  },
+  "costo_pa": 2,
+  "titulo": "Acelerar: Reposición parcial de aulas",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 2.5
+   },
+   {
+    "ind": "fiscal",
+    "delta": -1.0
+   }
+  ],
+  "obra": {
+   "nombre": "Reposición parcial de aulas y prebásica Escuela El Colorado, San Clemente",
+   "dias_totales": 90
+  }
+ },
+ {
+  "id": "real_obra_cur_maule_restauracion_escuela_presidente_jose_manuel_balmaceda_curico",
+  "categoria": "educacion",
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#dipres_siap_425968",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "cur-maule-restauracion-escuela-presidente-jose-manuel-balmaceda-curico",
+   "sector": "educacion",
+   "region_id": "maule",
+   "estado_real": "ejecucion",
+   "inversion_musd": null,
+   "mandante": "Gobierno Regional del Maule",
+   "verificado_hecho": false,
+   "verificado": false,
+   "fuente_url": "https://www.dipres.gob.cl/597/articles-425968_doc_pdf.pdf",
+   "cifras_ilustrativas": true,
+   "modo": "acelerar"
+  },
+  "disponibilidad": {
+   "anio_desde": 2,
+   "anio_hasta": 4,
+   "evento": null,
+   "fiscal_min": null,
+   "meta": null
+  },
+  "costo_pa": 2,
+  "titulo": "Acelerar: Restauración Escuela Presidente José Manuel",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 2.5
+   },
+   {
+    "ind": "fiscal",
+    "delta": -1.0
+   }
+  ],
+  "obra": {
+   "nombre": "Restauración Escuela Presidente José Manuel Balmaceda, Curicó",
+   "dias_totales": 90
+  }
+ },
+ {
+  "id": "real_obra_cur_maule_restauracion_y_puesta_en_valor_liceo_viejo_de_teno",
+  "categoria": "educacion",
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#dipres_siap_425968",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "cur-maule-restauracion-y-puesta-en-valor-liceo-viejo-de-teno",
+   "sector": "educacion",
+   "region_id": "maule",
+   "estado_real": "ejecucion",
+   "inversion_musd": null,
+   "mandante": "Gobierno Regional del Maule",
+   "verificado_hecho": false,
+   "verificado": false,
+   "fuente_url": "https://www.dipres.gob.cl/597/articles-425968_doc_pdf.pdf",
+   "cifras_ilustrativas": true,
+   "modo": "acelerar"
+  },
+  "disponibilidad": {
+   "anio_desde": 1,
+   "anio_hasta": 3,
+   "evento": null,
+   "fiscal_min": null,
+   "meta": null
+  },
+  "costo_pa": 2,
+  "titulo": "Acelerar: Restauración y Puesta en Valor Liceo Viejo de Teno",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 2.5
+   },
+   {
+    "ind": "fiscal",
+    "delta": -1.0
+   }
+  ],
+  "obra": {
+   "nombre": "Restauración y Puesta en Valor Liceo Viejo de Teno",
+   "dias_totales": 90
+  }
+ },
+ {
   "id": "real_obra_cur_maule_sistema_de_almacenamiento_de_energia_bess_en_subestacion_panguilemo",
   "categoria": "energia",
   "requisitos": {
@@ -12123,6 +15483,54 @@
   "obra": {
    "nombre": "Sistema de Almacenamiento de Energía (BESS) en Subestación Panguilemo",
    "dias_totales": 101
+  }
+ },
+ {
+  "id": "real_obra_cur_maule_villa_las_americas_de_talca_plan_maestro_nueva_las_americas",
+  "categoria": "vivienda",
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#curados_minvu_gob_cl",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "cur-maule-villa-las-americas-de-talca-plan-maestro-nueva-las-americas",
+   "sector": "vivienda_urbana",
+   "region_id": "maule",
+   "estado_real": "ejecucion",
+   "inversion_musd": null,
+   "mandante": "Ministerio de Vivienda y Urbanismo",
+   "verificado_hecho": false,
+   "verificado": false,
+   "fuente_url": "https://www.minvu.gob.cl/noticia/ministro-poduje-encabeza-hito-de-reactivacion-de-proyecto-que-dara-un-nuevo-comienzo-a-familias-de-villa-las-americas-de-talca/",
+   "cifras_ilustrativas": true,
+   "modo": "acelerar"
+  },
+  "disponibilidad": {
+   "anio_desde": 1,
+   "anio_hasta": 2,
+   "evento": null,
+   "fiscal_min": null,
+   "meta": null
+  },
+  "costo_pa": 2,
+  "titulo": "Acelerar: Villa Las Américas de Talca",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 2.5
+   },
+   {
+    "ind": "fiscal",
+    "delta": -1.0
+   }
+  ],
+  "obra": {
+   "nombre": "Villa Las Américas de Talca (Plan Maestro Nueva Las Américas)",
+   "dias_totales": 90
   }
  },
  {
@@ -14177,7 +17585,7 @@
   "disponibilidad": {
    "anio_desde": 1,
    "anio_hasta": 2,
-   "evento": "evt_real_20260525_070",
+   "evento": "evt_real_20260605_073",
    "fiscal_min": null,
    "meta": null
   },
@@ -16158,7 +19566,7 @@
   "disponibilidad": {
    "anio_desde": 1,
    "anio_hasta": 3,
-   "evento": "evt_real_20260401_065",
+   "evento": "evt_real_20260525_070",
    "fiscal_min": null,
    "meta": null
   },
@@ -16853,6 +20261,102 @@
    "dias_totales": 100
   },
   "arte": "economia_puertos"
+ },
+ {
+  "id": "real_obra_cur_nuble_mejoramiento_parque_sarita_gajardo_chillan",
+  "categoria": "vivienda",
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#dipres_siap_411795",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "cur-nuble-mejoramiento-parque-sarita-gajardo-chillan",
+   "sector": "vivienda_urbana",
+   "region_id": "nuble",
+   "estado_real": "ejecucion",
+   "inversion_musd": null,
+   "mandante": "Serviu Región de Ñuble",
+   "verificado_hecho": false,
+   "verificado": false,
+   "fuente_url": "https://www.dipres.gob.cl/597/articles-411795_doc_pdf.pdf",
+   "cifras_ilustrativas": true,
+   "modo": "acelerar"
+  },
+  "disponibilidad": {
+   "anio_desde": 1,
+   "anio_hasta": 3,
+   "evento": null,
+   "fiscal_min": null,
+   "meta": null
+  },
+  "costo_pa": 2,
+  "titulo": "Acelerar: Mejoramiento Parque Sarita Gajardo, Chillán",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 2.5
+   },
+   {
+    "ind": "fiscal",
+    "delta": -1.0
+   }
+  ],
+  "obra": {
+   "nombre": "Mejoramiento Parque Sarita Gajardo, Chillán",
+   "dias_totales": 90
+  }
+ },
+ {
+  "id": "real_obra_cur_nuble_normalizacion_electrica_escuela_glorias_navales_ninhue",
+  "categoria": "educacion",
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#curados_dep_gob_cl",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "cur-nuble-normalizacion-electrica-escuela-glorias-navales-ninhue",
+   "sector": "educacion",
+   "region_id": "nuble",
+   "estado_real": "ejecucion",
+   "inversion_musd": 0.2,
+   "mandante": "Gobierno Regional de Ñuble",
+   "verificado_hecho": false,
+   "verificado": false,
+   "fuente_url": "https://dep.gob.cl/wp-content/uploads/2025/04/muestras-de-casos-de-coordinacion-1.pdf",
+   "cifras_ilustrativas": true,
+   "modo": "acelerar"
+  },
+  "disponibilidad": {
+   "anio_desde": 2,
+   "anio_hasta": 4,
+   "evento": null,
+   "fiscal_min": null,
+   "meta": null
+  },
+  "costo_pa": 2,
+  "titulo": "Acelerar: Normalización eléctrica Escuela Glorias Navales",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 2.5
+   },
+   {
+    "ind": "fiscal",
+    "delta": -0.5
+   }
+  ],
+  "obra": {
+   "nombre": "Normalización eléctrica Escuela Glorias Navales, Ninhue",
+   "dias_totales": 90
+  }
  },
  {
   "id": "real_obra_cur_nuble_nuevo_hospital_regional_de_nuble",
@@ -17766,6 +21270,54 @@
   "arte": "obras_vial"
  },
  {
+  "id": "real_obra_cur_ohiggins_reposicion_escuela_union_de_mujeres_americanas_paredones",
+  "categoria": "educacion",
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#curados_dep_gob_cl",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "cur-ohiggins-reposicion-escuela-union-de-mujeres-americanas-paredones",
+   "sector": "educacion",
+   "region_id": "ohiggins",
+   "estado_real": "ejecucion",
+   "inversion_musd": 10.8,
+   "mandante": "Gobierno Regional de O'Higgins; unidad técnica Dirección de Arquitectura MOP",
+   "verificado_hecho": false,
+   "verificado": false,
+   "fuente_url": "https://dep.gob.cl/wp-content/uploads/2025/04/muestras-de-casos-de-coordinacion-1.pdf",
+   "cifras_ilustrativas": true,
+   "modo": "acelerar"
+  },
+  "disponibilidad": {
+   "anio_desde": 1,
+   "anio_hasta": 4,
+   "evento": null,
+   "fiscal_min": null,
+   "meta": null
+  },
+  "costo_pa": 2,
+  "titulo": "Acelerar: Reposición Escuela Unión de Mujeres Americanas",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 2.5
+   },
+   {
+    "ind": "fiscal",
+    "delta": -0.5
+   }
+  ],
+  "obra": {
+   "nombre": "Reposición Escuela Unión de Mujeres Americanas, Paredones",
+   "dias_totales": 90
+  }
+ },
+ {
   "id": "real_obra_cur_ohiggins_reposicion_liceo_claudio_arrau_leon",
   "categoria": "educacion",
   "requisitos": {
@@ -18296,6 +21848,54 @@
    "dias_totales": 90
   },
   "arte": "medioambiente_agua"
+ },
+ {
+  "id": "real_obra_cur_tarapaca_liceo_politecnico_jose_gutierrez_de_la_fuente_alto_hospicio_financiami",
+  "categoria": "educacion",
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#curados_dep_gob_cl",
+  "meta": {
+   "tipo": "proyecto_publico",
+   "proyecto_id": "cur-tarapaca-liceo-politecnico-jose-gutierrez-de-la-fuente-alto-hospicio-financiami",
+   "sector": "educacion",
+   "region_id": "tarapaca",
+   "estado_real": "perfil",
+   "inversion_musd": 4.8,
+   "mandante": "Gobierno Regional de Tarapacá; SLEP Iquique",
+   "verificado_hecho": false,
+   "verificado": false,
+   "fuente_url": "https://dep.gob.cl/wp-content/uploads/2025/04/muestras-de-casos-de-coordinacion-1.pdf",
+   "cifras_ilustrativas": true,
+   "modo": "obra"
+  },
+  "disponibilidad": {
+   "anio_desde": 3,
+   "anio_hasta": 4,
+   "evento": null,
+   "fiscal_min": null,
+   "meta": null
+  },
+  "costo_pa": 2,
+  "titulo": "Liceo Politécnico José Gutiérrez de la Fuente",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 3
+   },
+   {
+    "ind": "fiscal",
+    "delta": -0.5
+   }
+  ],
+  "obra": {
+   "nombre": "Liceo Politécnico José Gutiérrez de la Fuente, Alto Hospicio",
+   "dias_totales": 90
+  }
  },
  {
   "id": "real_obra_cur_tarapaca_megaproyectos_habitacionales_brisas_del_tamarugal_ii_y_iii_alto_hospic",
@@ -35436,9 +39036,9 @@
   "camara_origen": "camara",
   "fuente": "fuentes.json#senado_tramitacion",
   "disponibilidad": {
-   "anio_desde": 1,
+   "anio_desde": 2,
    "anio_hasta": 4,
-   "evento": "evt_real_20260605_073",
+   "evento": null,
    "fiscal_min": null,
    "meta": null
   },
@@ -54364,9 +57964,9 @@
   "camara_origen": "camara",
   "fuente": "fuentes.json#senado_tramitacion",
   "disponibilidad": {
-   "anio_desde": 1,
+   "anio_desde": 2,
    "anio_hasta": 3,
-   "evento": "evt_real_20261017_090",
+   "evento": null,
    "fiscal_min": null,
    "meta": null
   },
@@ -68799,7 +72399,7 @@
   "disponibilidad": {
    "anio_desde": 1,
    "anio_hasta": 2,
-   "evento": "evt_real_20261017_090",
+   "evento": null,
    "fiscal_min": null,
    "meta": null
   },
@@ -72328,7 +75928,7 @@
   "disponibilidad": {
    "anio_desde": 1,
    "anio_hasta": 2,
-   "evento": "evt_real_20260605_073",
+   "evento": "evt_real_20261017_090",
    "fiscal_min": null,
    "meta": null
   },

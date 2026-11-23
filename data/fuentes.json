@@ -936,5 +936,175 @@
     "vigencia_dias": 180,
     "es_ilustrativa": false,
     "verificado_contra_texto": false
+  },
+  {
+    "id": "curados_dep_gob_cl",
+    "institucion": "dep.gob.cl",
+    "titulo": "Sitio institucional del Estado dep.gob.cl: páginas de proyectos consultadas en 2026",
+    "url": "https://dep.gob.cl/",
+    "fecha_corte": "2026-11-23",
+    "vigencia_dias": 180,
+    "es_ilustrativa": false,
+    "verificado_contra_texto": false
+  },
+  {
+    "id": "curados_serviucoquimbo_minvu_gob_cl",
+    "institucion": "serviucoquimbo.minvu.gob.cl",
+    "titulo": "Sitio institucional del Estado serviucoquimbo.minvu.gob.cl: páginas de proyectos consultadas en 2026",
+    "url": "https://serviucoquimbo.minvu.gob.cl/",
+    "fecha_corte": "2026-11-23",
+    "vigencia_dias": 180,
+    "es_ilustrativa": false,
+    "verificado_contra_texto": false
+  },
+  {
+    "id": "dipres_siap_411782",
+    "institucion": "Dirección de Presupuestos (Dipres)",
+    "titulo": "Informe de identificación y ejecución de inversión pública (SIAP 2.0) a Marzo de 2026, doc. 411782: 182401 SERVIU REGIÓN DE COQUIMBO",
+    "url": "https://www.dipres.gob.cl/597/articles-411782_doc_pdf.pdf",
+    "fecha_corte": "2026-04-22",
+    "vigencia_dias": 365,
+    "es_ilustrativa": false,
+    "verificado_contra_texto": false
+  },
+  {
+    "id": "dipres_siap_411786",
+    "institucion": "Dirección de Presupuestos (Dipres)",
+    "titulo": "Informe de identificación y ejecución de inversión pública (SIAP 2.0) a Marzo de 2026, doc. 411786: 182701 SERVIU REGIÓN DEL MAULE",
+    "url": "https://www.dipres.gob.cl/597/articles-411786_doc_pdf.pdf",
+    "fecha_corte": "2026-04-22",
+    "vigencia_dias": 365,
+    "es_ilustrativa": false,
+    "verificado_contra_texto": false
+  },
+  {
+    "id": "dipres_siap_411788",
+    "institucion": "Dirección de Presupuestos (Dipres)",
+    "titulo": "Informe de identificación y ejecución de inversión pública (SIAP 2.0) a Marzo de 2026, doc. 411788: 182901 SERVIU REGIÓN DE LA ARAUCANÍA",
+    "url": "https://www.dipres.gob.cl/597/articles-411788_doc_pdf.pdf",
+    "fecha_corte": "2026-04-22",
+    "vigencia_dias": 365,
+    "es_ilustrativa": false,
+    "verificado_contra_texto": false
+  },
+  {
+    "id": "dipres_siap_411789",
+    "institucion": "Dirección de Presupuestos (Dipres)",
+    "titulo": "Informe de identificación y ejecución de inversión pública (SIAP 2.0) a Marzo de 2026, doc. 411789: 183001 SERVIU REGIÓN DE LOS LAGOS",
+    "url": "https://www.dipres.gob.cl/597/articles-411789_doc_pdf.pdf",
+    "fecha_corte": "2026-04-22",
+    "vigencia_dias": 365,
+    "es_ilustrativa": false,
+    "verificado_contra_texto": false
+  },
+  {
+    "id": "dipres_siap_411790",
+    "institucion": "Dirección de Presupuestos (Dipres)",
+    "titulo": "Informe de identificación y ejecución de inversión pública (SIAP 2.0) a Marzo de 2026, doc. 411790: 183101 SERVIU REGIÓN DE AYSÉN DEL GENERAL CARLOS IBÁÑEZ DEL CAMPO",
+    "url": "https://www.dipres.gob.cl/597/articles-411790_doc_pdf.pdf",
+    "fecha_corte": "2026-04-22",
+    "vigencia_dias": 365,
+    "es_ilustrativa": false,
+    "verificado_contra_texto": false
+  },
+  {
+    "id": "dipres_siap_411791",
+    "institucion": "Dirección de Presupuestos (Dipres)",
+    "titulo": "Informe de identificación y ejecución de inversión pública (SIAP 2.0) a Marzo de 2026, doc. 411791: 183201 SERVIU REGIÓN DE MAGALLANES Y DE LA ANTÁRTICA CHILENA",
+    "url": "https://www.dipres.gob.cl/597/articles-411791_doc_pdf.pdf",
+    "fecha_corte": "2026-04-22",
+    "vigencia_dias": 365,
+    "es_ilustrativa": false,
+    "verificado_contra_texto": false
+  },
+  {
+    "id": "dipres_siap_411793",
+    "institucion": "Dirección de Presupuestos (Dipres)",
+    "titulo": "Informe de identificación y ejecución de inversión pública (SIAP 2.0) a Marzo de 2026, doc. 411793: 183401 SERVIU REGIÓN DE LOS RÍOS",
+    "url": "https://www.dipres.gob.cl/597/articles-411793_doc_pdf.pdf",
+    "fecha_corte": "2026-04-22",
+    "vigencia_dias": 365,
+    "es_ilustrativa": false,
+    "verificado_contra_texto": false
+  },
+  {
+    "id": "dipres_siap_411795",
+    "institucion": "Dirección de Presupuestos (Dipres)",
+    "titulo": "Informe de identificación y ejecución de inversión pública (SIAP 2.0) a Marzo de 2026, doc. 411795: 183601 SERVIU REGIÓN DE ÑUBLE",
+    "url": "https://www.dipres.gob.cl/597/articles-411795_doc_pdf.pdf",
+    "fecha_corte": "2026-04-22",
+    "vigencia_dias": 365,
+    "es_ilustrativa": false,
+    "verificado_contra_texto": false
+  },
+  {
+    "id": "dipres_siap_425968",
+    "institucion": "Dirección de Presupuestos (Dipres)",
+    "titulo": "Informe de identificación y ejecución de inversión pública (SIAP 2.0) a Julio de 2026, doc. 425968: ",
+    "url": "https://www.dipres.gob.cl/597/articles-425968_doc_pdf.pdf",
+    "fecha_corte": "2026-08-24",
+    "vigencia_dias": 365,
+    "es_ilustrativa": false,
+    "verificado_contra_texto": false
+  },
+  {
+    "id": "dipres_siap_429207",
+    "institucion": "Dirección de Presupuestos (Dipres)",
+    "titulo": "Informe de identificación y ejecución de inversión pública (SIAP 2.0) a Agosto de 2026, doc. 429207: ",
+    "url": "https://www.dipres.gob.cl/597/articles-429207_doc_pdf.pdf",
+    "fecha_corte": "2026-09-22",
+    "vigencia_dias": 365,
+    "es_ilustrativa": false,
+    "verificado_contra_texto": false
+  },
+  {
+    "id": "dipres_siap_429208",
+    "institucion": "Dirección de Presupuestos (Dipres)",
+    "titulo": "Informe de identificación y ejecución de inversión pública (SIAP 2.0) a Agosto de 2026, doc. 429208: ",
+    "url": "https://www.dipres.gob.cl/597/articles-429208_doc_pdf.pdf",
+    "fecha_corte": "2026-09-22",
+    "vigencia_dias": 365,
+    "es_ilustrativa": false,
+    "verificado_contra_texto": false
+  },
+  {
+    "id": "dipres_siap_429209",
+    "institucion": "Dirección de Presupuestos (Dipres)",
+    "titulo": "Informe de identificación y ejecución de inversión pública (SIAP 2.0) a Agosto de 2026, doc. 429209: ",
+    "url": "https://www.dipres.gob.cl/597/articles-429209_doc_pdf.pdf",
+    "fecha_corte": "2026-09-22",
+    "vigencia_dias": 365,
+    "es_ilustrativa": false,
+    "verificado_contra_texto": false
+  },
+  {
+    "id": "dipres_siap_429210",
+    "institucion": "Dirección de Presupuestos (Dipres)",
+    "titulo": "Informe de identificación y ejecución de inversión pública (SIAP 2.0) a Agosto de 2026, doc. 429210: ",
+    "url": "https://www.dipres.gob.cl/597/articles-429210_doc_pdf.pdf",
+    "fecha_corte": "2026-09-22",
+    "vigencia_dias": 365,
+    "es_ilustrativa": false,
+    "verificado_contra_texto": false
+  },
+  {
+    "id": "dipres_siap_429212",
+    "institucion": "Dirección de Presupuestos (Dipres)",
+    "titulo": "Informe de identificación y ejecución de inversión pública (SIAP 2.0) a Agosto de 2026, doc. 429212: ",
+    "url": "https://www.dipres.gob.cl/597/articles-429212_doc_pdf.pdf",
+    "fecha_corte": "2026-09-22",
+    "vigencia_dias": 365,
+    "es_ilustrativa": false,
+    "verificado_contra_texto": false
+  },
+  {
+    "id": "dipres_siap_429239",
+    "institucion": "Dirección de Presupuestos (Dipres)",
+    "titulo": "Informe de identificación y ejecución de inversión pública (SIAP 2.0) a Agosto de 2026, doc. 429239: 093402 SERVICIO EDUCATIVO AYSÉN",
+    "url": "https://www.dipres.gob.cl/597/articles-429239_doc_pdf.pdf",
+    "fecha_corte": "2026-09-22",
+    "vigencia_dias": 365,
+    "es_ilustrativa": false,
+    "verificado_contra_texto": false
   }
 ]

@@ -219,8 +219,8 @@
    "fuente_url": "https://www.dipres.gob.cl/597/articles-429200_doc_pdf.pdf",
    "fuente": "fuentes.json#dipres_siap_429200",
    "fecha_consulta": "2026-11-23",
-   "verificado": true,
-   "notas": "Línea de inversión regional (FNDR) en informe Dipres de ejecución a agosto 2026 (emitido 22/09/2026); la fuente no entrega monto total ni fechas; estado = etapa presupuestaria. | Dipres Agosto de 2026: BIP 30076880-0. etapa ejecucion. presupuesto 2026 identificado $0 miles"
+   "verificado": false,
+   "notas": "Línea de inversión regional (FNDR) en informe Dipres de ejecución a agosto 2026 (emitido 22/09/2026); la fuente no entrega monto total ni fechas; estado = etapa presupuestaria. | Dipres Agosto de 2026: BIP 30076880-0. etapa ejecucion. presupuesto 2026 identificado $0 miles | presupuesto 2026 simbólico (< M$100): el avance real de obra no está confirmado"
   },
   {
    "id": "cur-antofagasta-reposicion-con-relocalizacion-edificio-consistorial-calama-nueva-munic",
@@ -435,8 +435,8 @@
    "fuente_url": "https://www.dipres.gob.cl/597/articles-429213_doc_pdf.pdf",
    "fuente": "fuentes.json#dipres_siap_429213",
    "fecha_consulta": "2026-11-23",
-   "verificado": true,
-   "notas": "Línea de inversión regional (FNDR) en informe Dipres de ejecución a agosto 2026 (emitido 22/09/2026); la fuente no entrega monto total ni fechas; estado = etapa presupuestaria. | Dipres Agosto de 2026: BIP 40015880-0. etapa diseno. presupuesto 2026 identificado $1 miles"
+   "verificado": false,
+   "notas": "Línea de inversión regional (FNDR) en informe Dipres de ejecución a agosto 2026 (emitido 22/09/2026); la fuente no entrega monto total ni fechas; estado = etapa presupuestaria. | Dipres Agosto de 2026: BIP 40015880-0. etapa diseno. presupuesto 2026 identificado $1 miles | presupuesto 2026 simbólico (< M$100): el avance real de obra no está confirmado"
   },
   {
    "id": "cur-arica-nuevo-hospital-de-alta-complejidad-de-arica",
@@ -915,8 +915,8 @@
    "fuente_url": "https://www.dipres.gob.cl/597/articles-429202_doc_pdf.pdf",
    "fuente": "fuentes.json#dipres_siap_429202",
    "fecha_consulta": "2026-11-23",
-   "verificado": true,
-   "notas": "Línea de inversión regional (FNDR) en informe Dipres de ejecución a agosto 2026 (emitido 22/09/2026); la fuente no entrega monto total ni fechas; estado = etapa presupuestaria. | Dipres Agosto de 2026: BIP 30432172-0. etapa ejecucion. presupuesto 2026 identificado $0 miles"
+   "verificado": false,
+   "notas": "Línea de inversión regional (FNDR) en informe Dipres de ejecución a agosto 2026 (emitido 22/09/2026); la fuente no entrega monto total ni fechas; estado = etapa presupuestaria. | Dipres Agosto de 2026: BIP 30432172-0. etapa ejecucion. presupuesto 2026 identificado $0 miles | presupuesto 2026 simbólico (< M$100): el avance real de obra no está confirmado"
   },
   {
    "id": "cur-coquimbo-construccion-sistema-de-electrificacion-rural-rinconada-escorza-ii-eta",
@@ -963,8 +963,8 @@
    "fuente_url": "https://www.dipres.gob.cl/597/articles-429202_doc_pdf.pdf",
    "fuente": "fuentes.json#dipres_siap_429202",
    "fecha_consulta": "2026-11-23",
-   "verificado": true,
-   "notas": "Línea de inversión regional (FNDR) en informe Dipres de ejecución a agosto 2026 (emitido 22/09/2026); la fuente no entrega monto total ni fechas; estado = etapa presupuestaria. | Dipres Agosto de 2026: BIP 40016874-0. etapa ejecucion. presupuesto 2026 identificado $0 miles"
+   "verificado": false,
+   "notas": "Línea de inversión regional (FNDR) en informe Dipres de ejecución a agosto 2026 (emitido 22/09/2026); la fuente no entrega monto total ni fechas; estado = etapa presupuestaria. | Dipres Agosto de 2026: BIP 40016874-0. etapa ejecucion. presupuesto 2026 identificado $0 miles | presupuesto 2026 simbólico (< M$100): el avance real de obra no está confirmado"
   },
   {
    "id": "cur-coquimbo-mejoramiento-parque-urbano-avenida-sur-combarbala",
@@ -987,8 +987,8 @@
    "fuente_url": "https://www.dipres.gob.cl/597/articles-429202_doc_pdf.pdf",
    "fuente": "fuentes.json#dipres_siap_429202",
    "fecha_consulta": "2026-11-23",
-   "verificado": true,
-   "notas": "Línea de inversión regional (FNDR) en informe Dipres de ejecución a agosto 2026 (emitido 22/09/2026); la fuente no entrega monto total ni fechas; estado = etapa presupuestaria. | Dipres Agosto de 2026: BIP 30091815-0. etapa ejecucion. presupuesto 2026 identificado $0 miles"
+   "verificado": false,
+   "notas": "Línea de inversión regional (FNDR) en informe Dipres de ejecución a agosto 2026 (emitido 22/09/2026); la fuente no entrega monto total ni fechas; estado = etapa presupuestaria. | Dipres Agosto de 2026: BIP 30091815-0. etapa ejecucion. presupuesto 2026 identificado $0 miles | presupuesto 2026 simbólico (< M$100): el avance real de obra no está confirmado"
   },
   {
    "id": "cur-coquimbo-nuevo-hospital-provincial-dr-humberto-elorza-cortes-de-illapel",
@@ -1035,8 +1035,8 @@
    "fuente_url": "https://www.dipres.gob.cl/597/articles-429202_doc_pdf.pdf",
    "fuente": "fuentes.json#dipres_siap_429202",
    "fecha_consulta": "2026-11-23",
-   "verificado": true,
-   "notas": "Línea de inversión regional (FNDR) en informe Dipres de ejecución a agosto 2026 (emitido 22/09/2026); la fuente no entrega monto total ni fechas; estado = etapa presupuestaria. | Dipres Agosto de 2026: BIP 30073874-0. etapa ejecucion. presupuesto 2026 identificado $0 miles"
+   "verificado": false,
+   "notas": "Línea de inversión regional (FNDR) en informe Dipres de ejecución a agosto 2026 (emitido 22/09/2026); la fuente no entrega monto total ni fechas; estado = etapa presupuestaria. | Dipres Agosto de 2026: BIP 30073874-0. etapa ejecucion. presupuesto 2026 identificado $0 miles | presupuesto 2026 simbólico (< M$100): el avance real de obra no está confirmado"
   },
   {
    "id": "cur-coquimbo-reposicion-colegio-yungay-de-educacion-especial-ovalle",
@@ -1059,8 +1059,8 @@
    "fuente_url": "https://www.dipres.gob.cl/597/articles-429202_doc_pdf.pdf",
    "fuente": "fuentes.json#dipres_siap_429202",
    "fecha_consulta": "2026-11-23",
-   "verificado": true,
-   "notas": "Línea de inversión regional (FNDR) en informe Dipres de ejecución a agosto 2026 (emitido 22/09/2026); la fuente no entrega monto total ni fechas; estado = etapa presupuestaria. | Dipres Agosto de 2026: BIP 30109832-0. etapa ejecucion. presupuesto 2026 identificado $0 miles"
+   "verificado": false,
+   "notas": "Línea de inversión regional (FNDR) en informe Dipres de ejecución a agosto 2026 (emitido 22/09/2026); la fuente no entrega monto total ni fechas; estado = etapa presupuestaria. | Dipres Agosto de 2026: BIP 30109832-0. etapa ejecucion. presupuesto 2026 identificado $0 miles | presupuesto 2026 simbólico (< M$100): el avance real de obra no está confirmado"
   },
   {
    "id": "cur-coquimbo-reposicion-cuartel-1-compania-de-bomberos-sindempart-coquimbo",
@@ -1083,8 +1083,8 @@
    "fuente_url": "https://www.dipres.gob.cl/597/articles-429202_doc_pdf.pdf",
    "fuente": "fuentes.json#dipres_siap_429202",
    "fecha_consulta": "2026-11-23",
-   "verificado": true,
-   "notas": "Línea de inversión regional (FNDR) en informe Dipres de ejecución a agosto 2026 (emitido 22/09/2026); la fuente no entrega monto total ni fechas; estado = etapa presupuestaria. | Dipres Agosto de 2026: BIP 30484211-0. etapa ejecucion. presupuesto 2026 identificado $0 miles"
+   "verificado": false,
+   "notas": "Línea de inversión regional (FNDR) en informe Dipres de ejecución a agosto 2026 (emitido 22/09/2026); la fuente no entrega monto total ni fechas; estado = etapa presupuestaria. | Dipres Agosto de 2026: BIP 30484211-0. etapa ejecucion. presupuesto 2026 identificado $0 miles | presupuesto 2026 simbólico (< M$100): el avance real de obra no está confirmado"
   },
   {
    "id": "cur-coquimbo-reposicion-escuela-basica-canela-alta-canela",
@@ -1107,8 +1107,8 @@
    "fuente_url": "https://www.dipres.gob.cl/597/articles-429202_doc_pdf.pdf",
    "fuente": "fuentes.json#dipres_siap_429202",
    "fecha_consulta": "2026-11-23",
-   "verificado": true,
-   "notas": "Línea de inversión regional (FNDR) en informe Dipres de ejecución a agosto 2026 (emitido 22/09/2026); la fuente no entrega monto total ni fechas; estado = etapa presupuestaria. | Dipres Agosto de 2026: BIP 30140173-0. etapa ejecucion. presupuesto 2026 identificado $0 miles"
+   "verificado": false,
+   "notas": "Línea de inversión regional (FNDR) en informe Dipres de ejecución a agosto 2026 (emitido 22/09/2026); la fuente no entrega monto total ni fechas; estado = etapa presupuestaria. | Dipres Agosto de 2026: BIP 30140173-0. etapa ejecucion. presupuesto 2026 identificado $0 miles | presupuesto 2026 simbólico (< M$100): el avance real de obra no está confirmado"
   },
   {
    "id": "cur-coquimbo-reposicion-subcomisaria-tierras-blancas-coquimbo",
@@ -1131,8 +1131,8 @@
    "fuente_url": "https://www.dipres.gob.cl/597/articles-429202_doc_pdf.pdf",
    "fuente": "fuentes.json#dipres_siap_429202",
    "fecha_consulta": "2026-11-23",
-   "verificado": true,
-   "notas": "Línea de inversión regional (FNDR) en informe Dipres de ejecución a agosto 2026 (emitido 22/09/2026); la fuente no entrega monto total ni fechas; estado = etapa presupuestaria. | Dipres Agosto de 2026: BIP 40059551-0. etapa diseno. presupuesto 2026 identificado $0 miles"
+   "verificado": false,
+   "notas": "Línea de inversión regional (FNDR) en informe Dipres de ejecución a agosto 2026 (emitido 22/09/2026); la fuente no entrega monto total ni fechas; estado = etapa presupuestaria. | Dipres Agosto de 2026: BIP 40059551-0. etapa diseno. presupuesto 2026 identificado $0 miles | presupuesto 2026 simbólico (< M$100): el avance real de obra no está confirmado"
   },
   {
    "id": "cur-tarapaca-construccion-cuartel-de-1ra-compania-y-cuartel-general-del-cuerpo-de-b",
@@ -1203,8 +1203,8 @@
    "fuente_url": "https://www.dipres.gob.cl/597/articles-429199_doc_pdf.pdf",
    "fuente": "fuentes.json#dipres_siap_429199",
    "fecha_consulta": "2026-11-23",
-   "verificado": true,
-   "notas": "Línea de inversión regional (FNDR) en informe Dipres de ejecución a agosto 2026 (emitido 22/09/2026); la fuente no entrega monto total ni fechas; estado = etapa presupuestaria. | Dipres Agosto de 2026: BIP 40031314-0. etapa prefactibilidad. presupuesto 2026 identificado $0 miles"
+   "verificado": false,
+   "notas": "Línea de inversión regional (FNDR) en informe Dipres de ejecución a agosto 2026 (emitido 22/09/2026); la fuente no entrega monto total ni fechas; estado = etapa presupuestaria. | Dipres Agosto de 2026: BIP 40031314-0. etapa prefactibilidad. presupuesto 2026 identificado $0 miles | presupuesto 2026 simbólico (< M$100): el avance real de obra no está confirmado"
   },
   {
    "id": "cur-tarapaca-construccion-red-alcantarillado-poblacion-las-quintas-pozo-almonte",
@@ -1371,8 +1371,8 @@
    "fuente_url": "https://www.dipres.gob.cl/597/articles-429199_doc_pdf.pdf",
    "fuente": "fuentes.json#dipres_siap_429199",
    "fecha_consulta": "2026-11-23",
-   "verificado": true,
-   "notas": "Línea de inversión regional (FNDR) en informe Dipres de ejecución a agosto 2026 (emitido 22/09/2026); la fuente no entrega monto total ni fechas; estado = etapa presupuestaria. | Dipres Agosto de 2026: BIP 40001353-0. etapa ejecucion. presupuesto 2026 identificado $2 miles"
+   "verificado": false,
+   "notas": "Línea de inversión regional (FNDR) en informe Dipres de ejecución a agosto 2026 (emitido 22/09/2026); la fuente no entrega monto total ni fechas; estado = etapa presupuestaria. | Dipres Agosto de 2026: BIP 40001353-0. etapa ejecucion. presupuesto 2026 identificado $2 miles | presupuesto 2026 simbólico (< M$100): el avance real de obra no está confirmado"
   },
   {
    "id": "cur-tarapaca-reposicion-con-relocalizacion-escuela-fuerte-baquedano-comuna-de-pozo",
