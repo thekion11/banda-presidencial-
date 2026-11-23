@@ -14,6 +14,7 @@ Todo dato real vive en `data/` y apunta a `data/fuentes.json` con enlace y fecha
 | Relieve de Gran Santiago (`relieve_santiago.png`, `elevacion_santiago.bin`) | AWS Terrain Tiles (Terrarium), `tools/geo/relieve_urbano.py` | Hecho. Elevaciones reales (450–1.223 m) con exageración ×1,8 en el 3D. |
 | Relieve (teselas de elevación) | AWS Terrain Tiles (Terrarium), ver arriba | Hecho para el mapa nacional. Copernicus DEM GLO-30 sigue pendiente. |
 | Ilustraciones de cartas (`game/arte/cartas/*.jpg`) | Generadas con IA (modelo de imágenes de Figma, 2026-11-23) a partir de prompts propios; 14 categorías, 512×410 | Declarar el uso de IA en la ficha de Google Play. Algunas escenas incluyen la bandera chilena. Revisar derechos de uso comercial según los términos de Figma AI. Los prompts están en el historial del proyecto. |
+| Partidos políticos (`data/partidos/`) | Servel (nómina y fechas, verificado); escaños de Wikipedia; historial de BCN y prensa; réplicas ficticias propias | Ver `docs/PARTIDOS.md`: huecos y advertencia legal (no es asesoría). |
 | Tipografías | Space Grotesk e Inter (SIL OFL 1.1) | Licencias en `game/fuentes/`. |
 
 Regenerar el mapa:
