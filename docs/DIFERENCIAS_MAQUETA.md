@@ -16,6 +16,7 @@ Regla del proyecto: la maqueta manda. Esta lista deja explícito dónde el juego
 | Mapa nacional | Regiones coloreadas con textura de relieve ilustrada | Relieve real sombreado (teselas públicas de elevación) y Chile ensanchado ×2,3 | Datos reales y legibilidad en pantalla vertical. |
 | Mapa urbano | Plano esquemático de manzanas | Cartografía real de Gran Santiago (calles, río, parques y las líneas de Metro con sus colores oficiales) | Datos reales de OpenStreetMap (ODbL) con el pipeline de la Fase 3. Es más denso que la maqueta; se prioriza la fidelidad al territorio. |
 | Botones y chips | Colores planos | Degradados y marcos metálicos | Profundidad, manteniendo la paleta congelada. |
+| Mapas urbanos y Comité 3D | Plano estilizado | Edificios, calles, río, parques, Metro, cerros y nombres de lugares reales (OSM + elevaciones públicas); exageración visual de relieve y edificios | Realismo del territorio chileno. |
 | Comité y hito de obra | Isométricas ilustradas | Escenas 3D reales de Godot (cámara orbitable, trazado elevado, 5 fases animables) | Cumple la Fase 2 del plan; presupuesto móvil con una sola MultiMesh y sin sombras. |
 | Animaciones | (estático) | Reparto de cartas, hemiciclo que se llena, sello que cae, barcos, Comité 2D/3D, reproducción de obra | Superar la maqueta sin cambiar su estructura. |
 

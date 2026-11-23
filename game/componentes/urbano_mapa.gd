@@ -29,7 +29,7 @@ func _draw() -> void:
 	draw_style_box(Tema.caja(Color("#EFEADF"), 16, Tema.BORDE_CLARO, 1), Rect2(Vector2.ZERO, size))
 	if datos.is_empty():
 		return
-	UrbanoBase.dibujar(self, size, MARGEN, mostrar_metro)
+	UrbanoBase.dibujar(self, size, MARGEN, mostrar_metro, 1.0, true)
 	if propuesta.size() >= 2:
 		var pp := PackedVector2Array()
 		for q in propuesta:
