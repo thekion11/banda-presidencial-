@@ -89,6 +89,7 @@ def main() -> int:
     for rid, polys in salida["regiones"].items():
         salida["regiones"][rid] = [[[round((x * coslat - x0) / alto, 4), round((y1 - y) / alto, 4)] for x, y in poly] for poly in polys]
     salida["ancho_rel"] = round((x1 - x0) / alto, 4)  # alto normalizado = 1.0
+    salida["proy"] = {"coslat": coslat, "x0": x0, "y1": y1, "alto": alto}  # para alinear el relieve
     salida["ciudades"] = [
         {"nombre": n, "x": round((lon * coslat - x0) / alto, 4), "y": round((y1 - lat) / alto, 4)}
         for n, lat, lon in CIUDADES]

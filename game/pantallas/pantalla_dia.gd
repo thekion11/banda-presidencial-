@@ -367,7 +367,8 @@ func _terminar_turno() -> void:
 	elif est.etapa != "campana" and est.etapa != "gobierno":
 		terminado.emit()
 		return
-	_cola_eventos = nuevos.duplicate()
+	_cola_eventos = OverlaysDia.eventos_de_votaciones(motor)
+	_cola_eventos.append_array(nuevos)
 	_refrescar()
 	_siguiente_evento()
 
@@ -380,20 +381,20 @@ func _resolver_eleccion() -> void:
 	var ev := {"titulo": "Elección presidencial", "hora": "20:00", "votacion": null,
 		"descripcion": "Obtuviste %.1f %% de los votos con un umbral de %.0f %%. %s" % [float(res["voto_final"]), float(res["umbral"]),
 			"¡Eres el nuevo Presidente de Chile! Asumes el gobierno con tus promesas como metas de legado." if res["electo"] else "No alcanzaste la presidencia."]}
-	_capa.add_child(PanelesDia.evento(ev, func() -> void:
+	_capa.add_child(OverlaysDia.evento(ev, func() -> void:
 		if res["electo"]:
 			_cola_eventos = motor.ultimos_eventos.duplicate()
 			_refrescar()
 			_siguiente_evento()
 		else:
-			terminado.emit(), 50))
+			terminado.emit(), motor.catalogo_leyes["congreso"]["nombres"]))
 
 
 func _siguiente_evento() -> void:
 	if _cola_eventos.is_empty():
 		return
 	var ev: Dictionary = _cola_eventos.pop_front()
-	_capa.add_child(PanelesDia.evento(ev, _siguiente_evento, 50, motor.estado.dia_actual))
+	_capa.add_child(OverlaysDia.evento(ev, _siguiente_evento, motor.catalogo_leyes["congreso"]["nombres"], motor.estado.dia_actual))
 
 
 func _abrir_panel(cual: String) -> void:
@@ -446,4 +447,4 @@ func _elegir_ministro(id: String) -> void:
 
 
 func _abrir_hito(obra: Dictionary) -> void:
-	_capa.add_child(PanelesDia.hito(obra, datos["leyes"]["fases_obra"], func() -> void: pass))
+	_capa.add_child(OverlaysDia.hito(obra, datos["leyes"]["fases_obra"], func() -> void: pass))

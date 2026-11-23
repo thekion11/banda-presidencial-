@@ -10,7 +10,8 @@
     "votacion": {
       "tipo_ley": "quorum_calificado",
       "votos_firmes_base": 29,
-      "prob_exito_tc": 0.65
+      "prob_exito_tc": 0.65,
+      "origen": "senado"
     },
     "efectos_base": [
       {

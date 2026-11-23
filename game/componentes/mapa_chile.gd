@@ -19,6 +19,7 @@ var _este: PackedVector2Array = PackedVector2Array()  # borde oriental (Cordille
 var propuestas: Dictionary = {}
 var _decor: Control
 var animar: bool = true
+var _relieve: Texture2D
 var x_centro_rel: float = 0.5
 var leyenda: bool = true
 var ciudades_visibles: bool = true
@@ -27,6 +28,8 @@ var ciudades_visibles: bool = true
 func cargar_geo(geo: Dictionary) -> void:
 	_ancho_rel = float(geo["ancho_rel"])
 	_ciudades = geo.get("ciudades", [])
+	if ResourceLoader.exists("res://data/geo/relieve.png"):
+		_relieve = load("res://data/geo/relieve.png")
 	for id in geo["regiones"].keys():
 		var lista: Array[PackedVector2Array] = []
 		var vertices := PackedVector2Array()
@@ -53,8 +56,11 @@ func cargar_geo(geo: Dictionary) -> void:
 			var arrays := []
 			arrays.resize(Mesh.ARRAY_MAX)
 			var v3 := PackedVector3Array()
+			var uvs := PackedVector2Array()
 			for v in vertices:
 				v3.append(Vector3(v.x, v.y, 0.0))
+				uvs.append(Vector2(v.x / _ancho_rel, v.y))
+			arrays[Mesh.ARRAY_TEX_UV] = uvs
 			arrays[Mesh.ARRAY_VERTEX] = v3
 			arrays[Mesh.ARRAY_INDEX] = indices
 			var malla := ArrayMesh.new()
@@ -121,6 +127,8 @@ func _draw() -> void:
 			var origen := _transformar(Vector2.ZERO)
 			draw_set_transform(origen, 0.0, Vector2(h * estirar_x, h))
 			draw_mesh(_mallas[id], null, Transform2D.IDENTITY, col)
+			if _relieve != null:
+				draw_mesh(_mallas[id], _relieve, Transform2D.IDENTITY, Color.WHITE)
 			draw_set_transform(Vector2.ZERO, 0.0, Vector2.ONE)
 		for pieza in _piezas[id]:
 			var pts := PackedVector2Array()

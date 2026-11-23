@@ -114,24 +114,61 @@ static func _mostrar_variante(detalle: VBoxContainer, pid: String, v: Dictionary
 	detalle.add_child(ok)
 
 
+static func _camara_bloques(motor: MotorTurno, camara: bool, titulo: String, col: VBoxContainer) -> void:
+	var comp := motor.legal.composicion(motor.estado, camara)
+	var fila := HBoxContainer.new()
+	fila.add_child(Tema.etiqueta_corta(titulo, 15, Tema.TEXTO, true))
+	var espacio := Control.new()
+	espacio.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	fila.add_child(espacio)
+	fila.add_child(Tema.etiqueta_corta("%d miembros" % int(comp["total"]), 11, Tema.TEXTO_SUAVE))
+	col.add_child(fila)
+	var h := Hemiciclo.new()
+	h.custom_minimum_size = Vector2(0, 150 if not camara else 170)
+	h.configurar_bloques(int(comp["total"]), [[comp["propios"], Tema.ORO], [comp["aliados"], Tema.SUBE], [comp["oposicion"], Tema.BAJA]], int(comp["propios"]) + int(comp["aliados"]), "apoyo esperado")
+	col.add_child(h)
+	h.animar(0.9)
+	var minimo := int(motor.legal.tipo("quorum_calificado").get("votos_minimos_camara" if camara else "votos_minimos", 0))
+	var leyenda := HBoxContainer.new()
+	leyenda.alignment = BoxContainer.ALIGNMENT_CENTER
+	leyenda.add_theme_constant_override("separation", 10)
+	for par in [[Tema.ORO, "Tu bancada %d" % int(comp["propios"])], [Tema.SUBE, "Aliados %d" % int(comp["aliados"])], [Tema.BAJA, "Oposición %d" % int(comp["oposicion"])]]:
+		leyenda.add_child(Icono.crear("dot", par[0], 12.0))
+		leyenda.add_child(Tema.etiqueta_corta(par[1], 11, Tema.TEXTO_SUAVE))
+	col.add_child(leyenda)
+	col.add_child(Tema.etiqueta("Mayoría necesaria para leyes de quórum calificado: %d votos." % minimo, 11, Tema.TEXTO_SUAVE))
+
+
 static func congreso(motor: MotorTurno, al_abrir_obra: Callable = Callable()) -> Control:
 	var est := motor.estado
+	var nombres: Dictionary = motor.catalogo_leyes["congreso"]["nombres"]
 	var col := VBoxContainer.new()
 	col.add_theme_constant_override("separation", 10)
-	col.add_child(Tema.etiqueta("CONGRESO", 10, Tema.ORO, true))
-	var propios := int(est.partido.get("escanos_propios", 0))
-	col.add_child(Tema.etiqueta("Tu bancada: %d de 50 senadores · %d de 155 diputados" % [propios, roundi(float(propios) * 155.0 / 50.0)], 14, Tema.TEXTO, true))
-	var h := Hemiciclo.new()
-	h.custom_minimum_size = Vector2(0, 150)
-	h.configurar(50, propios, 0)
-	col.add_child(h)
+	col.add_child(Tema.etiqueta("CONGRESO NACIONAL · BICAMERAL", 10, Tema.ORO, true))
+	_camara_bloques(motor, true, String(nombres["camara"]), col)
+	_camara_bloques(motor, false, String(nombres["senado"]), col)
 	col.add_child(Tema.etiqueta("Proyectos en tramitación", 15, Tema.TEXTO, true))
 	if est.proyectos_ley.is_empty():
-		col.add_child(Tema.etiqueta("Ninguno. Las cartas con ley (quórum calificado, ley simple) entran aquí y se votan en ambas cámaras.", 12, Tema.TEXTO_SUAVE))
+		col.add_child(Tema.etiqueta("Ninguno. Las cartas con ley entran por una cámara, pasan a la otra y se votan en ambas; luego puede intervenir el Tribunal Constitucional.", 12, Tema.TEXTO_SUAVE))
 	for p in est.proyectos_ley:
 		var c: Dictionary = motor._cartas_por_id[p["carta_id"]]
 		var t := motor.legal.tipo(String(p["tipo_ley"]))
-		col.add_child(_tarjeta(Tema.etiqueta("%s\n%s · votación el día %d · mínimo %d senadores" % [c["titulo"], t["nombre"], int(p["dia_votacion"]), int(t["votos_minimos"])], 12, Tema.TEXTO)))
+		var total := maxi(1, int(p["dia_votacion"]) - int(p["dia_ingreso"]))
+		var frac := float(est.dia_actual - int(p["dia_ingreso"])) / float(total)
+		var origen := String(p["origen"])
+		var revisora := "senado" if origen == "camara" else "camara"
+		var donde := String(nombres[origen]) if frac < 0.5 else String(nombres[revisora])
+		var barra := ProgressBar.new()
+		barra.show_percentage = false
+		barra.custom_minimum_size = Vector2(0, 6)
+		barra.value = clampf(frac, 0.0, 1.0) * 100.0
+		barra.add_theme_stylebox_override("background", Tema.caja(Color("#274A66"), 3))
+		barra.add_theme_stylebox_override("fill", Tema.caja(Tema.ORO, 3))
+		var v := VBoxContainer.new()
+		v.add_child(Tema.etiqueta("%s\n%s · %s → %s" % [c["titulo"], t["nombre"], nombres[origen], nombres[revisora]], 12, Tema.TEXTO))
+		v.add_child(barra)
+		v.add_child(Tema.etiqueta("Hoy en la %s · votación el día %d · mínimo %d senadores y %d diputados" % [donde, int(p["dia_votacion"]), int(t["votos_minimos"]), int(t.get("votos_minimos_camara", 0))], 11, Tema.TEXTO_SUAVE))
+		col.add_child(_tarjeta(v))
 	col.add_child(Tema.etiqueta("Obras en curso", 15, Tema.TEXTO, true))
 	if est.obras_en_curso.is_empty():
 		col.add_child(Tema.etiqueta("Sin obras en curso.", 12, Tema.TEXTO_SUAVE))
@@ -167,215 +204,3 @@ static func gabinete(motor: MotorTurno, elegido: String, al_elegir: Callable) ->
 		b.pressed.connect(func() -> void: al_elegir.call(id))
 		col.add_child(b)
 	return _scroll(col)
-
-
-static func _fondo_radial() -> TextureRect:
-	var g := Gradient.new()
-	g.colors = PackedColorArray([Color("#154F7A"), Color("#0B2236"), Color("#081A2B")])
-	g.offsets = PackedFloat32Array([0.0, 0.55, 1.0])
-	var t := GradientTexture2D.new()
-	t.gradient = g
-	t.fill = GradientTexture2D.FILL_RADIAL
-	t.fill_from = Vector2(0.5, 0.22)
-	t.fill_to = Vector2(0.5, 1.05)
-	t.width = 390
-	t.height = 844
-	var r := TextureRect.new()
-	r.texture = t
-	r.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
-	r.set_anchors_preset(Control.PRESET_FULL_RECT)
-	r.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	return r
-
-
-static func _centrada(texto: String, tam: int, color: Color, titulo: bool = false, peso: int = 400) -> Label:
-	var l := Tema.etiqueta(texto, tam, color, titulo, peso)
-	l.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	return l
-
-
-static func evento(ev: Dictionary, al_continuar: Callable, total_senadores: int, dia: int = 0) -> Control:
-	var capa := Control.new()
-	capa.set_anchors_preset(Control.PRESET_FULL_RECT)
-	capa.add_child(_fondo_radial())
-	var col := VBoxContainer.new()
-	col.set_anchors_preset(Control.PRESET_FULL_RECT)
-	col.offset_left = 20
-	col.offset_right = -20
-	col.offset_top = 46
-	col.offset_bottom = -26
-	col.add_theme_constant_override("separation", 10)
-	capa.add_child(col)
-	var v: Variant = ev.get("votacion", null)
-	var cab := ("SENADO · %s" % String(ev["hora"])) if v != null else ("EVENTO · %s" % String(ev["hora"]))
-	if dia > 0:
-		cab += " · DÍA %d" % dia
-	col.add_child(_centrada(cab, 11, Tema.ORO, true))
-	col.add_child(_centrada(String(ev["titulo"]), 25, Tema.TEXTO, true))
-	col.add_child(_centrada(String(ev["descripcion"]), 13, Tema.TEXTO_SUAVE))
-	var consecuencia := ""
-	var sello := ""
-	if v != null:
-		var voto: Dictionary = v["voto"]
-		var abst := roundi(0.35 * float(voto["en_contra_senado"]))
-		var h := Hemiciclo.new()
-		h.custom_minimum_size = Vector2(0, 230)
-		h.configurar(total_senadores, int(voto["senado"]), int(voto["en_contra_senado"]) - abst, abst, true)
-		col.add_child(h)
-		h.animar(1.3)
-		var leyenda := HBoxContainer.new()
-		leyenda.alignment = BoxContainer.ALIGNMENT_CENTER
-		leyenda.add_theme_constant_override("separation", 12)
-		for par in [[Tema.SUBE, "A favor %d" % int(voto["senado"])], [Color("#9AA9C0"), "Abstención %d" % abst], [Tema.BAJA, "En contra %d" % (int(voto["en_contra_senado"]) - abst)]]:
-			leyenda.add_child(Icono.crear("dot", par[0], 12.0))
-			leyenda.add_child(Tema.etiqueta_corta(par[1], 11, Tema.TEXTO_SUAVE))
-		col.add_child(leyenda)
-		sello = "APROBADA" if voto["aprobada"] else "RECHAZADA"
-		var tc: Dictionary = v["tc"]
-		if not bool(voto["aprobada"]):
-			consecuencia = "El proyecto no alcanzó el quórum (Cámara: %d de %d requeridos): pierdes capital político." % [int(voto["camara"]), int(voto["min_camara"])]
-		elif bool(tc["recurso"]) and bool(tc["cae"]):
-			consecuencia = "El Tribunal Constitucional acoge el recurso de la oposición: la norma cae y pierdes capital político."
-		elif bool(tc["recurso"]):
-			consecuencia = "La oposición recurrió al Tribunal Constitucional, pero fue rechazado: la norma se promulga."
-		else:
-			consecuencia = "Aprobada en ambas cámaras (Cámara: %d votos, mínimo %d). Se promulga sin reparos." % [int(voto["camara"]), int(voto["min_camara"])]
-	if sello != "":
-		var ok: bool = v["voto"]["aprobada"]
-		var color := Tema.SUBE if ok else Tema.BAJA
-		var sc := CenterContainer.new()
-		var caja := PanelContainer.new()
-		caja.add_theme_stylebox_override("panel", Tema.caja(Color(color, 0.12), 10, color, 3))
-		var lt := Tema.etiqueta_corta(sello, 30, color, true)
-		lt.add_theme_constant_override("outline_size", 0)
-		caja.add_child(lt)
-		caja.pivot_offset = Vector2(100, 24)
-		sc.add_child(caja)
-		caja.set_deferred("rotation_degrees", -4.0)
-		caja.modulate.a = 0.0
-		caja.scale = Vector2(2.2, 2.2)
-		var tws := caja.create_tween().set_parallel(true)
-		tws.tween_property(caja, "modulate:a", 1.0, 0.12).set_delay(1.35)
-		tws.tween_property(caja, "scale", Vector2.ONE, 0.32).set_delay(1.35).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
-		sc.custom_minimum_size = Vector2(0, 70)
-		col.add_child(sc)
-	var efectos: Variant = ev.get("efectos", null)
-	if (efectos != null and not efectos.is_empty()) or consecuencia != "":
-		var tarjeta := PanelContainer.new()
-		tarjeta.add_theme_stylebox_override("panel", Tema.caja(Color(0.06, 0.18, 0.3, 0.55), 14, Color("#2B5D86"), 1))
-		var cv := VBoxContainer.new()
-		cv.add_theme_constant_override("separation", 8)
-		cv.add_child(Tema.etiqueta("Consecuencias", 14, Tema.TEXTO, true))
-		if efectos != null and not efectos.is_empty():
-			var fila := HBoxContainer.new()
-			fila.add_theme_constant_override("separation", 8)
-			var nombres := {"aprobacion": "Aprobación", "capital": "Capital político", "cohesion": "Cohesión", "fiscal": "Credibilidad fiscal", "riesgo_ejecucion": "Riesgo de ejecución", "viviendas_anio": "Viviendas/año"}
-			for ef in efectos:
-				var d := float(ef["delta"])
-				var bueno := d >= 0.0 if ef["ind"] != "riesgo_ejecucion" else d <= 0.0
-				var cp := PanelContainer.new()
-				cp.add_theme_stylebox_override("panel", Tema.caja(Color("#14405F"), 10))
-				cp.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-				var cvv := VBoxContainer.new()
-				cvv.add_theme_constant_override("separation", 0)
-				cvv.add_child(Tema.etiqueta(String(nombres[ef["ind"]]), 10, Tema.TEXTO_SUAVE))
-				cvv.add_child(Tema.etiqueta(Tema.signo(d), 16, Tema.SUBE if bueno else Tema.BAJA, true))
-				cp.add_child(cvv)
-				fila.add_child(cp)
-			cv.add_child(fila)
-		if consecuencia != "":
-			cv.add_child(Tema.etiqueta(consecuencia, 12, Tema.TEXTO))
-		tarjeta.add_child(cv)
-		col.add_child(tarjeta)
-	var esp := Control.new()
-	esp.size_flags_vertical = Control.SIZE_EXPAND_FILL
-	col.add_child(esp)
-	var b := Barras.boton_jugar()
-	b.text = "Continuar"
-	b.pressed.connect(func() -> void:
-		capa.queue_free()
-		al_continuar.call())
-	col.add_child(b)
-	return capa
-
-
-static func hito(obra: Dictionary, fases: Array, al_cerrar: Callable) -> Control:
-	var capa := Control.new()
-	capa.set_anchors_preset(Control.PRESET_FULL_RECT)
-	capa.add_child(_fondo_radial())
-	var col := VBoxContainer.new()
-	col.set_anchors_preset(Control.PRESET_FULL_RECT)
-	col.offset_left = 18
-	col.offset_right = -18
-	col.offset_top = 44
-	col.offset_bottom = -24
-	col.add_theme_constant_override("separation", 10)
-	capa.add_child(col)
-	col.add_child(Tema.etiqueta("OBRA EN CURSO · HITO", 10, Tema.ORO, true))
-	col.add_child(Tema.etiqueta(String(obra["nombre"]), 22, Tema.TEXTO, true))
-	var iso := ObraIso.new()
-	iso.custom_minimum_size = Vector2(0, 250)
-	iso.fase = float(MotorObras.fase_de(obra))
-	col.add_child(iso)
-	var info := Tema.etiqueta("", 12, Tema.TEXTO_SUAVE)
-	var nom := Tema.etiqueta("", 16, Tema.TEXTO, true)
-	var fila := HBoxContainer.new()
-	fila.add_theme_constant_override("separation", 6)
-	var actualizar := func(f: int) -> void:
-		nom.text = "Fase %d · %s" % [f, fases[f - 1]["nombre"]]
-		info.text = String(fases[f - 1]["descripcion"])
-	for i in range(5):
-		var b := Tema.boton(str(i + 1), Tema.PANEL, Tema.TEXTO, 15, 44)
-		b.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-		b.pressed.connect(func() -> void:
-			iso.ir_a(i + 1)
-			actualizar.call(i + 1))
-		fila.add_child(b)
-	col.add_child(fila)
-	var barra := ProgressBar.new()
-	barra.show_percentage = false
-	barra.custom_minimum_size = Vector2(0, 8)
-	barra.value = 100.0 * float(obra["dias_avanzados"]) / float(obra["dias_totales"])
-	barra.add_theme_stylebox_override("background", Tema.caja(Color("#274A66"), 4))
-	barra.add_theme_stylebox_override("fill", Tema.caja(Tema.ROJO, 4))
-	col.add_child(barra)
-	col.add_child(Tema.etiqueta("Día %d de %d · retrasos: %d" % [int(obra["dias_avanzados"]), int(obra["dias_totales"]), int(obra["retrasos"])], 11, Tema.TEXTO_SUAVE))
-	var tarjeta := PanelContainer.new()
-	tarjeta.add_theme_stylebox_override("panel", Tema.caja(Tema.CREMA, 14))
-	var tv := VBoxContainer.new()
-	nom.add_theme_color_override("font_color", Tema.TINTA)
-	info.add_theme_color_override("font_color", Tema.TINTA)
-	tv.add_child(nom)
-	tv.add_child(info)
-	var chips := HBoxContainer.new()
-	var emp := roundi(float(obra["dias_totales"]) * 1.6 / 10.0) * 10
-	var ap := 0.0
-	for ef in obra["efectos_final"]:
-		ap += float(ef["delta"])
-	chips.add_child(_chip("Empleo (ilustrativo)", "+%d" % emp, Color("#DDF1E6")))
-	chips.add_child(_chip("Aprobación local", Tema.signo(ap), Color("#FBEFD2")))
-	chips.add_child(_chip("Riesgo de retraso", "Bajo" if int(obra["retrasos"]) == 0 else "Medio", Color("#F7D9D5")))
-	tv.add_child(chips)
-	tarjeta.add_child(tv)
-	col.add_child(tarjeta)
-	actualizar.call(MotorObras.fase_de(obra))
-	var esp := Control.new()
-	esp.size_flags_vertical = Control.SIZE_EXPAND_FILL
-	col.add_child(esp)
-	var botones := HBoxContainer.new()
-	botones.add_theme_constant_override("separation", 8)
-	var rep := Tema.boton("Reproducir obra", Tema.PANEL, Tema.TEXTO, 14, 52)
-	rep.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	rep.pressed.connect(func() -> void:
-		iso.reproducir()
-		actualizar.call(5))
-	var cer := Barras.boton_jugar()
-	cer.text = "Volver"
-	cer.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	cer.pressed.connect(func() -> void:
-		capa.queue_free()
-		al_cerrar.call())
-	botones.add_child(rep)
-	botones.add_child(cer)
-	col.add_child(botones)
-	return capa

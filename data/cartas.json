@@ -405,7 +405,8 @@
     },
     "corrector": null,
     "abre_propuesta_comite": null,
-    "fuente": "fuentes.json#cpr_chile_2026"
+    "fuente": "fuentes.json#cpr_chile_2026",
+    "camara_origen": "senado"
   },
   {
     "id": "pol_dialogo",

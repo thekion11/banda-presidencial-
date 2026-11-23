@@ -14,6 +14,7 @@ var regiones := Regiones.new()
 var obras := MotorObras.new()
 var mandato := MotorMandato.new(self)
 var ultimos_eventos: Array[Dictionary] = []
+var votaciones_semana: Array[Dictionary] = []  # votaciones de leyes resueltas al cerrar el turno (para la UI)
 var _cartas_por_id: Dictionary = {}
 
 
@@ -133,7 +134,7 @@ func _aplicar_evento(evt: Dictionary) -> Dictionary:
 		var voto := legal.votar(estado, String(v["tipo_ley"]), int(v.get("votos_firmes_base", -1)))
 		var tc := legal.resolver_tc(String(v["tipo_ley"]), float(v.get("prob_exito_tc", -1.0)))
 		aplicar = bool(voto["aprobada"]) and not bool(tc["cae"])
-		res["votacion"] = {"voto": voto, "tc": tc, "aprobada": aplicar}
+		res["votacion"] = {"voto": voto, "tc": tc, "aprobada": aplicar, "origen": String(v.get("origen", "camara"))}
 		if not bool(voto["aprobada"]):
 			_sumar_ind("capital", -float(catalogo_leyes["congreso"]["penal_capital_rechazo"]))
 		elif bool(tc["cae"]):
@@ -264,6 +265,7 @@ func _jugar_en_gobierno(carta: Dictionary, ministro_id: String, region_id: Strin
 	if ley != null:
 		var t := legal.tipo(String(ley))
 		var proy := {"carta_id": carta["id"], "tipo_ley": ley, "escala": escala, "region": region_id,
+				"origen": String(carta.get("camara_origen", "camara")), "dia_ingreso": estado.dia_actual,
 				"dia_votacion": estado.dia_actual + int(t["dias_tramitacion_base"])}
 		estado.proyectos_ley.append(proy)
 		res["proyecto"] = proy
@@ -331,8 +333,10 @@ func cerrar_turno() -> void:
 	if estado.etapa != "campana" and estado.etapa != "gobierno":
 		return
 	var resumen := {}
+	votaciones_semana = []
 	if estado.etapa == "gobierno":
-		resumen["leyes"] = _resolver_proyectos()
+		votaciones_semana = _resolver_proyectos()
+		resumen["leyes"] = votaciones_semana
 		resumen["obras_terminadas"] = obras.avanzar(estado, estado.dias_por_turno, _aplicar_efecto, _marcar_cumplida).size()
 		mandato.evaluar_legado()
 		mandato.evaluar_crisis()
@@ -368,7 +372,7 @@ func _resolver_proyectos() -> Array[Dictionary]:
 		if ok:
 			_ejecutar_carta(carta, float(p["escala"]), String(p["region"]))
 		estado.registrar_accion("votacion", {"carta": carta["id"], "aprobada": ok, "senado": voto["senado"], "camara": voto["camara"], "tc": tc["recurso"]})
-		vistos.append({"carta_id": carta["id"], "aprobada": ok, "voto": voto, "tc": tc})
+		vistos.append({"carta_id": carta["id"], "aprobada": ok, "voto": voto, "tc": tc, "origen": String(p.get("origen", "camara"))})
 	estado.proyectos_ley = pendientes
 	return vistos
 

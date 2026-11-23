@@ -59,7 +59,12 @@
     "peso_capital": 0.004,
     "peso_cohesion": 0.003,
     "ruido_votos": 2.0,
-    "penal_capital_rechazo": 2.0
+    "penal_capital_rechazo": 2.0,
+    "fraccion_abstencion": 0.35,
+    "nombres": {
+      "camara": "Cámara de Diputados",
+      "senado": "Senado"
+    }
   },
   "tc": {
     "capital_perdido_si_cae": 3.0

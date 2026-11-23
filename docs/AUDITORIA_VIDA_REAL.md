@@ -8,7 +8,7 @@ Estado al 23 nov 2026. Marcado: **Hecho** (modelado), **Simplificado** (aproxima
 |---|---|---|
 | Mandato presidencial de 4 años, sin reelección inmediata | **Hecho** | 1 mandato = 208 turnos semanales. No hay reelección. |
 | Senado de 50 miembros | **Hecho** | `leyes.json › hemiciclo.total_senadores`. Verificar vigencia legal. |
-| Congreso **bicameral** (Cámara de 155 diputados + Senado) | **Hecho (extensión)** | Los documentos modelaban solo el Senado. Se añadió la Cámara: una ley necesita ambas. Mínimo de Cámara en `votos_minimos_camara`. |
+| Congreso **bicameral** (Cámara de 155 diputados + Senado) | **Hecho (extensión)** | Los documentos modelaban solo el Senado. Se añadió la Cámara: una ley necesita ambas (`votos_minimos_camara`). En pantalla: dos hemiciclos con bancada propia, aliados y oposición; las votaciones se muestran cámara de origen → cámara revisora → Tribunal Constitucional; los proyectos en tramitación indican en qué cámara están. Prueba: `tests/test_congreso.gd`. |
 | Quórums por tipo de norma | **Hecho / Verificar** | Los umbrales se leen de `leyes.json` con cita de artículo, **marcada como sin verificar** (`fuentes.json › verificado_contra_texto: false`). El validador avisa en cada ejecución. |
 | Tribunal Constitucional | **Simplificado** | Recurso con probabilidad por tipo de norma; si el TC acoge, se pierde el efecto y capital político. No se modelan composición ni plazos. |
 | Potestad reglamentaria (decretos) | **Simplificado** | Decreto supremo: 7 días, sin votación, con riesgo TC. No se modela toma de razón de la Contraloría. |

@@ -46,11 +46,30 @@ func votar(estado: EstadoSimulacion, tipo_id: String, votos_firmes_senado: int =
 	else:
 		sen = clampi(_votos_camara(propios_sen, n_sen, apoyo) + rng.randi_range(-ruido, ruido), 0, n_sen)
 	var dip := clampi(_votos_camara(propios_dip, n_dip, apoyo) + rng.randi_range(-ruido * 3, ruido * 3), 0, n_dip)
+	var fr := float(c.get("fraccion_abstencion", 0.35))  # presentación: parte de los no-favorables se abstiene
+	var abst_sen := roundi(fr * float(n_sen - sen))
+	var abst_dip := roundi(fr * float(n_dip - dip))
 	return {
 		"aprobada": sen >= min_sen and dip >= min_cam,
 		"senado": sen, "camara": dip, "min_senado": min_sen, "min_camara": min_cam,
+		"total_senado": n_sen, "total_camara": n_dip,
+		"abst_senado": abst_sen, "abst_camara": abst_dip,
+		"contra_senado": n_sen - sen - abst_sen, "contra_camara": n_dip - dip - abst_dip,
 		"en_contra_senado": n_sen - sen, "sin_votacion": false
 	}
+
+
+func composicion(estado: EstadoSimulacion, camara: bool) -> Dictionary:
+	## Bloques esperados de una cámara: bancada propia, aliados que suelen apoyar y oposición.
+	var h: Dictionary = leyes["hemiciclo"]
+	var c: Dictionary = leyes["congreso"]
+	var total := int(h["total_diputados"]) if camara else int(h["total_senadores"])
+	var propios := int(estado.partido.get("escanos_propios", 16))
+	if camara:
+		propios = roundi(float(propios) * float(total) / float(h["total_senadores"]))
+	var apoyo := clampf(float(c["apoyo_base"]) + float(c["peso_capital"]) * estado.ind("capital") + float(c["peso_cohesion"]) * estado.ind("cohesion"), 0.0, 1.0)
+	var aliados := roundi(float(total - propios) * apoyo)
+	return {"total": total, "propios": propios, "aliados": aliados, "oposicion": total - propios - aliados}
 
 
 func resolver_tc(tipo_id: String, prob_exito_override: float = -1.0) -> Dictionary:
