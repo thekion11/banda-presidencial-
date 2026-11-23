@@ -53,3 +53,28 @@ func finalizar(motivo: String) -> void:
 			"promesas_pendientes": m.estado.promesas_pendientes().size()}
 	m.estado.registrar_accion("fin", m.estado.resultado_final)
 
+
+
+func resolver_eleccion() -> Dictionary:
+	## 1ª vuelta: gana quien supera el umbral; si no, pasa a la 2ª vuelta (4 semanas más de campaña) con el piso configurado.
+	var h: Dictionary = m.catalogo_leyes["hemiciclo"]
+	var umbral := float(h["umbral_victoria_presidencial"])
+	var ruido := float(m.catalogo_leyes["campana"]["ruido_eleccion"])
+	var voto_final := clampf(m.estado.ind("aprobacion") + m.rng.randf_range(-ruido, ruido), 0.0, 100.0)
+	var ronda := m.estado.ronda_electoral
+	var electo := voto_final >= umbral
+	var balotaje := ronda == 1 and not electo and voto_final >= float(h["umbral_pasa_balotaje"])
+	m.estado.registrar_accion("eleccion_presidencial", {"voto_final": voto_final, "umbral": umbral, "electo": electo,
+			"ronda": ronda, "balotaje": balotaje, "promesas_registradas": m.estado.promesas_campana.size()})
+	m.estado.registrar_entrada("eleccion", {})
+	if balotaje:
+		m.estado.ronda_electoral = 2
+	elif electo:
+		m.estado.etapa = "gobierno"
+		m.estado.turno_actual = 1
+		m.estado.dia_actual = 1
+		m.estado.pa_actual = m.estado.pa_maximo
+	else:
+		m.estado.etapa = "derrota_electoral"
+		m.estado.resultado_final = {"motivo": "derrota_electoral", "voto_final": voto_final, "puntaje": 0}
+	return {"electo": electo, "balotaje": balotaje, "ronda": ronda, "voto_final": voto_final, "umbral": umbral}

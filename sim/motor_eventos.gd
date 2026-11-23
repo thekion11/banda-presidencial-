@@ -47,4 +47,6 @@ func aplicar_evento(evt: Dictionary) -> Dictionary:
 		for ef in evt["efectos_base"]:
 			m.fx.aplicar_efecto(ef, 1.0, "")
 	m.estado.registrar_accion("evento", {"id": evt["id"], "aplicado": aplicar})
+	m.estado.eventos_ocurridos[String(evt["id"])] = m.estado.turno_actual
+	m.mazo.incorporar(m.mazo.ids_con_disponibilidad("evento", String(evt["id"])))  # desbloquea cartas ligadas a este evento
 	return res

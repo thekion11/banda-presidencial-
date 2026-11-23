@@ -12,13 +12,14 @@ var geo: Dictionary = {}
 var _sel: int = 0
 var _raiz: VBoxContainer
 var _nav: Control
-var _sel_prev: int = -1
-var _firma_mano: String = ""
+var _nuevas: Array = []  # ids de cartas que entraron por reposición (se animan al pintar la mano)
+var _lbl_mov: Label
+var _badge: Label
 var _ministro: String = ""
 var _region: String = ""
 var _r: Dictionary = {}  # referencias de Barras
 var _mapa: MapaChile
-var _mano: Control
+var _mano: ManoUI
 var _lbl_corrector: RichTextLabel
 var _btn_jugar: Button
 var _btn_fin: Button
@@ -95,20 +96,21 @@ func _construir_cuerpo() -> Control:
 	mm.add_theme_constant_override("margin_right", 14)
 	mm.add_child(cab_mano)
 	cab_mano.add_child(Tema.etiqueta_corta("Tu mano", 13, Tema.TEXTO, true))
-	var tip := Tema.etiqueta_corta("%d en mano" % motor.estado.mano.size(), 11, Tema.TEXTO_SUAVE)
-	tip.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	tip.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
-	cab_mano.add_child(tip)
+	_lbl_mov = Tema.etiqueta_corta("", 11, Tema.TEXTO_SUAVE)
+	_lbl_mov.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	_lbl_mov.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
+	cab_mano.add_child(_lbl_mov)
 	vista.add_child(mm)
-	_mano = Control.new()
+	_mano = ManoUI.new()
 	_mano.custom_minimum_size = Vector2(0, 218)
 	_mano.clip_contents = false
+	_mano.tocada.connect(_on_carta)
 	vista.add_child(_mano)
 	var corr := PanelContainer.new()
 	corr.add_theme_stylebox_override("panel", Tema.caja(Tema.CREMA, 10, Color("#E8D9A8"), 1))
 	_lbl_corrector = RichTextLabel.new()
 	_lbl_corrector.bbcode_enabled = true
-	_lbl_corrector.fit_content = true
+	_lbl_corrector.fit_content = false  # alto fijo (62 px del panel): el texto largo se recorta, nunca empuja el botón principal
 	_lbl_corrector.scroll_active = false
 	_lbl_corrector.custom_minimum_size = Vector2(330, 0)
 	_lbl_corrector.mouse_filter = Control.MOUSE_FILTER_IGNORE
@@ -117,6 +119,7 @@ func _construir_cuerpo() -> Control:
 	_lbl_corrector.add_theme_font_override("bold_font", Tema.fuente_texto(800))
 	_lbl_corrector.add_theme_font_size_override("normal_font_size", 11)
 	_lbl_corrector.add_theme_font_size_override("bold_font_size", 11)
+	corr.custom_minimum_size = Vector2(0, 62)  # alto fijo: el botón principal no se mueve
 	corr.add_child(_lbl_corrector)
 	var mc := MarginContainer.new()
 	mc.add_theme_constant_override("margin_left", 12)
@@ -126,7 +129,10 @@ func _construir_cuerpo() -> Control:
 	var acciones := HBoxContainer.new()
 	acciones.add_theme_constant_override("separation", 8)
 	_btn_deleg = Barras.boton_redondo("person")
-	_btn_deleg.pressed.connect(func() -> void: _abrir_panel("gabinete"))
+	_btn_deleg.pressed.connect(_delegar)
+	_badge = Tema.etiqueta_corta("", 10, Tema.ORO, true)
+	_badge.position = Vector2(36, 34)
+	_btn_deleg.add_child(_badge)
 	_btn_jugar = Barras.boton_jugar()
 	_btn_jugar.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	_btn_jugar.pressed.connect(_jugar)
@@ -163,7 +169,8 @@ func _refrescar() -> void:
 	else:
 		_r["dia"].text = "Día %d" % est.dia_actual
 	_r["fecha"].text = Barras.fecha_texto(datos["leyes"], est.etapa, est.turno_actual, est.dia_actual)
-	_r["pa"].text = "%d PA" % est.pa_actual
+	_r["pa"].text = ManoUI.texto_pastilla(est)
+	_lbl_mov.text = ManoUI.texto_movimientos(est)
 	for k in _r["chips"].keys():
 		var l: Label = _r["chips"][k]
 		l.text = str(roundi(est.ind(k)))
@@ -208,72 +215,24 @@ func _actualizar_region() -> void:
 
 
 func _pintar_mano() -> void:
-	for h in _mano.get_children():
-		h.queue_free()
 	var est := motor.estado
 	var n := est.mano.size()
+	_sel = clampi(_sel, 0, maxi(0, n - 1))
+	_mano.pintar(motor, _sel, _ministro, _nuevas)
+	_nuevas = []
 	if n == 0:
 		_lbl_corrector.text = "[b]Sin cartas[/b] en la mano. Termina el turno para robar más."
 		return
-	_sel = clampi(_sel, 0, n - 1)
-	var ancho := 110.0
-	var alto := 170.0
-	var paso := 0.0 if n < 2 else minf(ancho * 0.8, (Tema.ANCHO - 20.0 - ancho) / float(n - 1))
-	var x0 := (Tema.ANCHO - (ancho + paso * float(n - 1))) * 0.5
-	var firma := ",".join(est.mano.map(func(c: Dictionary) -> String: return String(c["id"])))
-	var repartir := firma != _firma_mano
-	_firma_mano = firma
-	var anima_sel := _sel != _sel_prev and not repartir
-	_sel_prev = _sel
-	var orden: Array[int] = []
-	for i in range(n):
-		if i != _sel:
-			orden.append(i)
-	orden.append(_sel)  # la elegida se agrega al final para dibujarse encima
-	for i in orden:
-		var c := CartaUI.new()
-		var costo := motor.costo_carta(est.mano[i], _ministro)
-		c.configurar(est.mano[i], costo)
-		c.elegida = i == _sel
-		c.atenuada = i != _sel or costo > est.pa_actual
-		c.size = Vector2(ancho, alto)
-		c.pivot_offset = Vector2(ancho * 0.5, alto)
-		c.position = Vector2(x0 + paso * float(i), 46.0)
-		c.rotation_degrees = float(i - (n - 1) * 0.5) * 6.0
-		var destino_pos := c.position
-		var destino_rot := c.rotation_degrees
-		var destino_esc := Vector2.ONE
-		if i == _sel:
-			destino_esc = Vector2(1.2, 1.2)
-			destino_pos.y = 22.0
-			destino_rot = 0.0
-		c.tocada.connect(_on_carta.bind(i))
-		_mano.add_child(c)
-		if repartir:  # las cartas entran desde abajo, una tras otra
-			c.position = Vector2(destino_pos.x, 260.0)
-			c.rotation_degrees = 0.0
-			var tw := c.create_tween().set_parallel(true).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
-			var demora := 0.05 * float(i)
-			tw.tween_property(c, "position", destino_pos, 0.38).set_delay(demora)
-			tw.tween_property(c, "rotation_degrees", destino_rot, 0.38).set_delay(demora)
-			tw.tween_property(c, "scale", destino_esc, 0.38).set_delay(demora)
-		elif anima_sel and i == _sel:  # la elegida se levanta con rebote
-			c.position = Vector2(destino_pos.x, destino_pos.y + 26.0)
-			c.scale = Vector2(1.0, 1.0)
-			var tw2 := c.create_tween().set_parallel(true).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
-			tw2.tween_property(c, "position", destino_pos, 0.22)
-			tw2.tween_property(c, "scale", destino_esc, 0.22)
-		else:
-			c.position = destino_pos
-			c.rotation_degrees = destino_rot
-			c.scale = destino_esc
 	var v := motor.vista_carta(_sel, _ministro)
+	var c: Dictionary = est.mano[_sel]
+	var tit := String(c["titulo"])
+	var cabeza := "[b]%s[/b] · %s · %d mov\n" % [tit if tit.length() <= 34 else tit.substr(0, 33) + "…", BloqueoCarta.nombre_cat(String(c["categoria"])), motor.costo_carta(c, _ministro)]
 	if est.etapa == "campana":
-		_lbl_corrector.text = "[b]Campaña:[/b] cada carta es una promesa. Sube la aprobación de la región elegida (+50 %) y queda como meta de legado."
+		_lbl_corrector.text = cabeza + "[b]Campaña:[/b] cada carta es una promesa: sube la aprobación de la región elegida y queda como meta de legado."
 	elif v["corrector"]["aplica"]:
-		_lbl_corrector.text = "[b]Corrector de realismo:[/b] " + String(v["corrector"]["mensaje"])
+		_lbl_corrector.text = cabeza + "[b]Corrector de realismo:[/b] " + String(v["corrector"]["mensaje"])
 	else:
-		_lbl_corrector.text = "[b]Corrector de realismo:[/b] sin observaciones; la meta es viable con la capacidad actual."
+		_lbl_corrector.text = cabeza + "[b]Corrector de realismo:[/b] sin observaciones; la meta es viable."
 
 
 func _actualizar_botones() -> void:
@@ -281,19 +240,22 @@ func _actualizar_botones() -> void:
 	var n := est.mano.size()
 	if n > 0:
 		var costo := motor.costo_carta(est.mano[_sel], _ministro)
-		_btn_jugar.text = "Jugar · %d PA" % costo
+		_btn_jugar.text = "Jugar · %d mov" % costo
 		_btn_jugar.disabled = costo > est.pa_actual
 	else:
 		_btn_jugar.text = "Sin cartas"
 		_btn_jugar.disabled = true
-	_btn_deleg.disabled = est.etapa != "gobierno"
+	var max_deleg := int(motor.catalogo_leyes["delegacion"]["max_por_turno"])
+	_btn_deleg.disabled = est.etapa != "gobierno" or n == 0 or est.delegadas_turno >= max_deleg
+	_btn_deleg.tooltip_text = "Delegar la carta elegida en un ministro"
+	_badge.text = str(max_deleg - est.delegadas_turno) if est.etapa == "gobierno" else ""
 	var elec := est.eleccion_pendiente(int(datos["leyes"]["hemiciclo"]["semanas_campana"]))
 	_btn_fin.tooltip_text = "Urnas" if elec else "Terminar turno"
 	_btn_jugar.disabled = _btn_jugar.disabled or elec
 
 
 # ------------------------------------------------------------------ interacción
-func _on_carta(_c: CartaUI, i: int) -> void:
+func _on_carta(i: int) -> void:
 	_sel = i
 	_pintar_mano()
 	_actualizar_botones()
@@ -305,11 +267,12 @@ func _on_region(id: String) -> void:
 
 
 func _jugar() -> void:
+	var n_reg := motor.estado.registro_acciones.size()
 	var r := motor.jugar_carta(_sel, _ministro, _region)
 	if not bool(r["ok"]):
-		var razones := {"pa_insuficiente": "No te alcanzan los PA.", "ya_ejecutada": "Esa meta ya está en marcha.", "region_invalida": "Región inválida."}
-		_avisar(String(razones.get(r["razon"], "No se pudo jugar la carta.")))
+		_avisar(Razones.texto(r))
 		return
+	_leer_reposicion(n_reg)
 	_ministro = ""
 	var msg := "Carta jugada."
 	if r.get("promesa", false):
@@ -326,6 +289,27 @@ func _jugar() -> void:
 	_avisar(msg)
 	accion_hecha.emit()
 	_refrescar()
+
+
+func _leer_reposicion(desde: int) -> void:
+	## Si el motor repuso cartas (registro `reposicion`), la mano las anima al pintarse.
+	for a in motor.estado.registro_acciones.slice(desde):
+		if a["tipo"] == "reposicion":
+			_nuevas = a["detalle"]["ids"]
+
+
+func _delegar() -> void:
+	if motor.estado.mano.is_empty():
+		return
+	var n_reg := motor.estado.registro_acciones.size()
+	_capa.add_child(PanelDelegar.crear(motor, _sel, _region, func(r: Dictionary) -> void:
+		if not bool(r["ok"]):
+			_avisar(Razones.texto(r))
+			return
+		_leer_reposicion(n_reg)
+		_avisar("Escándalo ministerial: pierdes aprobación y capital." if r["escandalo"] else ("El ministro falló: efecto reducido." if r["fallo"] else "Delegada: el ministro la ejecutó sin gastar movimientos."))
+		accion_hecha.emit()
+		_refrescar()))
 
 
 func _avisar(txt: String) -> void:
@@ -357,14 +341,14 @@ func _terminar_turno() -> void:
 
 func _resolver_eleccion() -> void:
 	var res := motor.resolver_eleccion_presidencial()
-	if res["electo"]:
+	if res["electo"] or res["balotaje"]:
 		motor.iniciar_turno()  # mismo orden que la reproducción desde guardado
 	accion_hecha.emit()
 	var ev := {"titulo": "Elección presidencial", "hora": "20:00", "votacion": null,
 		"descripcion": "Obtuviste %.1f %% de los votos con un umbral de %.0f %%. %s" % [float(res["voto_final"]), float(res["umbral"]),
-			"¡Eres el nuevo Presidente de Chile! Asumes el gobierno con tus promesas como metas de legado." if res["electo"] else "No alcanzaste la presidencia."]}
+			"¡Eres el nuevo Presidente de Chile! Asumes el gobierno con tus promesas como metas de legado." if res["electo"] else ("Pasas a segunda vuelta: tienes 4 semanas más de campaña." if res["balotaje"] else "No alcanzaste la presidencia.")]}
 	_capa.add_child(OverlaysDia.evento(ev, func() -> void:
-		if res["electo"]:
+		if res["electo"] or res["balotaje"]:
 			_cola_eventos = motor.ultimos_eventos.duplicate()
 			_refrescar()
 			_siguiente_evento()
@@ -397,6 +381,7 @@ func _abrir_panel(cual: String) -> void:
 		_zona_panel.visible = false
 		return
 	_zona_panel.visible = true
+	_zona_panel.offset_bottom = -66.0 if cual == "gabinete" else 0.0  # con Gabinete, la fila de Jugar/avanzar queda en su sitio
 	var contenido: Control
 	match cual:
 		"comite":
@@ -412,7 +397,9 @@ func _abrir_panel(cual: String) -> void:
 		"congreso":
 			contenido = PanelesDia.congreso(motor, _abrir_hito)
 		_:
-			contenido = PanelesDia.gabinete(motor, _ministro, _elegir_ministro)
+			contenido = PanelGestion.crear(motor, _avisar, func() -> void:
+					accion_hecha.emit()
+					_refrescar())
 	var m := MarginContainer.new()
 	m.add_theme_constant_override("margin_left", 16)
 	m.add_theme_constant_override("margin_right", 16)
@@ -434,12 +421,6 @@ func _aprobar(pid: String, variante: String, custom: Dictionary = {}) -> void:
 		_abrir_panel("congreso")
 	else:
 		_avisar("No se pudo aprobar la propuesta.")
-
-
-func _elegir_ministro(id: String) -> void:
-	_ministro = id
-	_abrir_panel("mapa")
-	_refrescar()
 
 
 func _abrir_hito(obra: Dictionary) -> void:

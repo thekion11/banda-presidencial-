@@ -112,6 +112,50 @@
       "fuente": {
         "type": "string",
         "pattern": "^fuentes\\.json#[a-z0-9_]+$"
+      },
+      "disponibilidad": {
+        "type": [
+          "object",
+          "null"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "anio_desde": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 1,
+            "maximum": 4
+          },
+          "anio_hasta": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 1,
+            "maximum": 4
+          },
+          "evento": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "fiscal_min": {
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "meta": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "pattern": "^meta_[a-z]+_[1-3]$"
+          }
+        }
       }
     }
   }

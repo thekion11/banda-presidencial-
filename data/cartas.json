@@ -1499,5 +1499,365 @@
     },
     "abre_propuesta_comite": "prop_tranvia_oriente",
     "fuente": "fuentes.json#ficticio_2026"
+  },
+  {
+    "id": "estado_empresa_litio",
+    "categoria": "estado",
+    "costo_pa": 3,
+    "titulo": "Empresa pública del litio",
+    "efectos": [
+      {
+        "ind": "fiscal",
+        "delta": -6
+      },
+      {
+        "ind": "capital",
+        "delta": -3
+      },
+      {
+        "ind": "riesgo_ejecucion",
+        "delta": 3
+      },
+      {
+        "ind": "aprobacion",
+        "delta": 2
+      },
+      {
+        "ind": "cohesion",
+        "delta": 1
+      }
+    ],
+    "requisitos": {
+      "ley": "quorum_calificado",
+      "quorum": "quorum_calificado"
+    },
+    "corrector": null,
+    "abre_propuesta_comite": null,
+    "fuente": "fuentes.json#cpr_chile_2026",
+    "meta": {
+      "tipo": "estado_empresario",
+      "subtipo": "empresa_publica",
+      "cifras_ilustrativas": true
+    }
+  },
+  {
+    "id": "estado_empresa_farmacias",
+    "categoria": "estado",
+    "costo_pa": 2,
+    "titulo": "Red estatal de farmacias",
+    "efectos": [
+      {
+        "ind": "fiscal",
+        "delta": -4
+      },
+      {
+        "ind": "capital",
+        "delta": -2
+      },
+      {
+        "ind": "riesgo_ejecucion",
+        "delta": 2
+      },
+      {
+        "ind": "aprobacion",
+        "delta": 3
+      }
+    ],
+    "requisitos": {
+      "ley": "quorum_calificado",
+      "quorum": "quorum_calificado"
+    },
+    "corrector": null,
+    "abre_propuesta_comite": null,
+    "fuente": "fuentes.json#cpr_chile_2026",
+    "meta": {
+      "tipo": "estado_empresario",
+      "subtipo": "empresa_publica",
+      "cifras_ilustrativas": true
+    }
+  },
+  {
+    "id": "estado_empresa_conectividad",
+    "categoria": "estado",
+    "costo_pa": 3,
+    "titulo": "Empresa estatal de conectividad",
+    "efectos": [
+      {
+        "ind": "fiscal",
+        "delta": -5
+      },
+      {
+        "ind": "capital",
+        "delta": -2
+      },
+      {
+        "ind": "riesgo_ejecucion",
+        "delta": 3
+      },
+      {
+        "ind": "cohesion",
+        "delta": 2
+      },
+      {
+        "ind": "aprobacion",
+        "delta": 2
+      }
+    ],
+    "requisitos": {
+      "ley": "quorum_calificado",
+      "quorum": "quorum_calificado"
+    },
+    "corrector": null,
+    "abre_propuesta_comite": null,
+    "fuente": "fuentes.json#cpr_chile_2026",
+    "meta": {
+      "tipo": "estado_empresario",
+      "subtipo": "empresa_publica",
+      "cifras_ilustrativas": true
+    }
+  },
+  {
+    "id": "estado_priv_sanitarias",
+    "categoria": "estado",
+    "costo_pa": 3,
+    "titulo": "Venta de participación en sanitarias",
+    "efectos": [
+      {
+        "ind": "fiscal",
+        "delta": 7
+      },
+      {
+        "ind": "cohesion",
+        "delta": -3
+      },
+      {
+        "ind": "aprobacion",
+        "delta": -3
+      },
+      {
+        "ind": "capital",
+        "delta": -2
+      },
+      {
+        "ind": "riesgo_ejecucion",
+        "delta": 1
+      }
+    ],
+    "requisitos": {
+      "ley": "ley_simple",
+      "quorum": "ley_simple"
+    },
+    "corrector": null,
+    "abre_propuesta_comite": null,
+    "fuente": "fuentes.json#cpr_chile_2026",
+    "meta": {
+      "tipo": "estado_empresario",
+      "subtipo": "privatizacion",
+      "cifras_ilustrativas": true
+    }
+  },
+  {
+    "id": "estado_priv_energia",
+    "categoria": "estado",
+    "costo_pa": 3,
+    "titulo": "Venta de participación en generadora estatal",
+    "efectos": [
+      {
+        "ind": "fiscal",
+        "delta": 6
+      },
+      {
+        "ind": "aprobacion",
+        "delta": -2
+      },
+      {
+        "ind": "cohesion",
+        "delta": -2
+      },
+      {
+        "ind": "capital",
+        "delta": -2
+      },
+      {
+        "ind": "riesgo_ejecucion",
+        "delta": 1
+      }
+    ],
+    "requisitos": {
+      "ley": "ley_simple",
+      "quorum": "ley_simple"
+    },
+    "corrector": null,
+    "abre_propuesta_comite": null,
+    "fuente": "fuentes.json#cpr_chile_2026",
+    "meta": {
+      "tipo": "estado_empresario",
+      "subtipo": "privatizacion",
+      "cifras_ilustrativas": true
+    }
+  },
+  {
+    "id": "estado_priv_terrenos",
+    "categoria": "estado",
+    "costo_pa": 2,
+    "titulo": "Venta de terrenos fiscales ociosos",
+    "efectos": [
+      {
+        "ind": "fiscal",
+        "delta": 4
+      },
+      {
+        "ind": "cohesion",
+        "delta": -1
+      },
+      {
+        "ind": "aprobacion",
+        "delta": -1
+      },
+      {
+        "ind": "capital",
+        "delta": -1
+      },
+      {
+        "ind": "riesgo_ejecucion",
+        "delta": 1
+      }
+    ],
+    "requisitos": {
+      "ley": "ley_simple",
+      "quorum": "ley_simple"
+    },
+    "corrector": null,
+    "abre_propuesta_comite": null,
+    "fuente": "fuentes.json#cpr_chile_2026",
+    "meta": {
+      "tipo": "estado_empresario",
+      "subtipo": "privatizacion",
+      "cifras_ilustrativas": true
+    }
+  },
+  {
+    "id": "estado_expro_ferrocarril",
+    "categoria": "estado",
+    "costo_pa": 3,
+    "titulo": "Expropiación para corredor ferroviario",
+    "efectos": [
+      {
+        "ind": "fiscal",
+        "delta": -3
+      },
+      {
+        "ind": "aprobacion",
+        "delta": -2
+      },
+      {
+        "ind": "capital",
+        "delta": -3
+      },
+      {
+        "ind": "riesgo_ejecucion",
+        "delta": 3
+      },
+      {
+        "ind": "cohesion",
+        "delta": -1
+      }
+    ],
+    "requisitos": {
+      "ley": "ley_simple",
+      "quorum": "ley_simple"
+    },
+    "corrector": null,
+    "abre_propuesta_comite": null,
+    "fuente": "fuentes.json#cpr_chile_2026",
+    "meta": {
+      "tipo": "estado_empresario",
+      "subtipo": "expropiacion",
+      "cifras_ilustrativas": true
+    }
+  },
+  {
+    "id": "estado_expro_suelo_vivienda",
+    "categoria": "estado",
+    "costo_pa": 3,
+    "titulo": "Expropiación de suelo para vivienda social",
+    "efectos": [
+      {
+        "ind": "fiscal",
+        "delta": -4
+      },
+      {
+        "ind": "viviendas_anio",
+        "delta": 4000
+      },
+      {
+        "ind": "capital",
+        "delta": -3
+      },
+      {
+        "ind": "cohesion",
+        "delta": -2
+      },
+      {
+        "ind": "aprobacion",
+        "delta": 1
+      },
+      {
+        "ind": "riesgo_ejecucion",
+        "delta": 2
+      }
+    ],
+    "requisitos": {
+      "ley": "ley_simple",
+      "quorum": "ley_simple"
+    },
+    "corrector": null,
+    "abre_propuesta_comite": null,
+    "fuente": "fuentes.json#cpr_chile_2026",
+    "meta": {
+      "tipo": "estado_empresario",
+      "subtipo": "expropiacion",
+      "cifras_ilustrativas": true
+    }
+  },
+  {
+    "id": "estado_expro_activos",
+    "categoria": "estado",
+    "costo_pa": 3,
+    "titulo": "Expropiación de activos estratégicos",
+    "efectos": [
+      {
+        "ind": "fiscal",
+        "delta": -7
+      },
+      {
+        "ind": "aprobacion",
+        "delta": 1
+      },
+      {
+        "ind": "capital",
+        "delta": -4
+      },
+      {
+        "ind": "cohesion",
+        "delta": -3
+      },
+      {
+        "ind": "riesgo_ejecucion",
+        "delta": 4
+      }
+    ],
+    "requisitos": {
+      "ley": "ley_simple",
+      "quorum": "ley_simple"
+    },
+    "corrector": null,
+    "abre_propuesta_comite": null,
+    "fuente": "fuentes.json#cpr_chile_2026",
+    "meta": {
+      "tipo": "estado_empresario",
+      "subtipo": "expropiacion",
+      "cifras_ilustrativas": true
+    }
   }
 ]

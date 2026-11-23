@@ -1,0 +1,130 @@
+{
+ "meta": {
+  "fuente": "mop_obras",
+  "scraper": "tools/proyectos/mop_obras.py",
+  "fecha_consulta": "2026-11-23",
+  "nota": "Fichas de obras destacadas; muchas con fechas de 2021-2024 (el estado puede estar desactualizado)."
+ },
+ "proyectos": [
+  {
+   "id": "mop-www-14341-obras-maritimas-infraestructura-portuaria-multipro",
+   "nombre": "Obras Marítimas Infraestructura Portuaria Multipropósito en Puerto Williams",
+   "sector": "puertos",
+   "region_id": "magallanes",
+   "region_ids": [
+    "magallanes"
+   ],
+   "comuna": "Puerto Williams",
+   "estado": "ejecucion",
+   "estado_2026_03_11": null,
+   "inversion_musd": null,
+   "inversion_uf": null,
+   "inversion_clp": 12546975000.0,
+   "fecha_inicio": "2020-01-27",
+   "fecha_fin": "2025-12-30",
+   "mandante": "Dirección de Obras Portuarias",
+   "descripcion": "Obras Marítimas Infraestructura Portuaria Multipropósito en Puerto Williams Región: Magallanes Ubicación: Puerto Williams Servicio: Dirección de Obras Portuarias Estado: Ejecución Monto: 12.546.975.000 Fecha de Inicio: 27/01/2020 Fecha de Término: 30/12/2025 Código Bip: 30137224-0 Descripción del Proyecto Esta iniciativa de inversión forma parte del Plan Región, del Plan Especial de Zonas Extremas",
+   "fuente_url": "https://www.mop.gob.cl/project/construccion-obras-maritimas-infraestructura-portuaria-multiproposito-en-puerto-williams/",
+   "fuente": "fuentes.json#mop_obras",
+   "fecha_consulta": "2026-11-23",
+   "verificado": true,
+   "notas": "estado según la ficha (fecha de consulta); código BIP: 30137224-0 Descripción del Proyecto Esta iniciativa de inversión forma parte del Plan Región, del Plan Especial de Zonas Extremas (PEDZE), de los compromisos del Presidente en el discurso del 21 de mayo del 2018 y Plan Legado Bicentenario. La construcción del muelle multipropósito será en 2 etapas : Etapa 1: M$ 19.420.553 (71% Financiamiento FNDR) • El muelle de 150 m de largo, con un cabezo frontal de 130m, Chazas en el puente de acceso, para recibir Tenders. • Una explanada donde ira el terminal de pasajeros/as y para almacenar contenedores y el tránsito en toda la infraestructura de una Grúa Terex RT780 además del Camión de diseño ASSHTO 20-44. Etapa 2: (100% Financiamiento Sectorial) (Obra) • Elemento de apoyo para atraque (Duques de alba y postes de amarre) • Terminación Explanada y Pavimento de la explanada • Circuito de Agua Potable, para el suministro de embarcaciones atracadas. • Estanques y sistema de suministro de combustible para naves. • Edificio para recepción de pasajeros-as, SAG, Aduana y policía Internacional de 1.400 m2. • Edificio anexo para administración de 85 m2. Documentos Buscador de Proyecto Observaciones La obra responde a la necesidad de disponer de infraestructura marítima y terrestre en Puerto Williams, localidad más austral y que permitirá atenderá a las naves que transitan por el canal Beagle, tales como naves científicas y cruceros cuyo destino es la antártica. Financiamiento MOP. Proyectos Relacionados Teleférico Bicentenario Edificación Pública , Metropolitana Habilitación espacio público Nudo Baquedano Arquitectura , Edificación Pública , Metropolitana Construcción Biblioteca Regional de La Araucanía Arquitectura , Edificación Pública , La Araucanía Mejoramiento Borde Costero Buchupureo Cobquecura Bordes Costeros , Ñuble , Obras Portuarias ← Proyecto anterior Proyecto siguiente →; monto en CLP salvo que indique UF/USD"
+  },
+  {
+   "id": "mop-www-14351-mejoramiento-borde-costero-playas-las-machas",
+   "nombre": "Mejoramiento Borde Costero Playas Las Machas",
+   "sector": "puertos",
+   "region_id": "arica",
+   "region_ids": [
+    "arica"
+   ],
+   "comuna": "Arica",
+   "estado": "ejecucion",
+   "estado_2026_03_11": null,
+   "inversion_musd": null,
+   "inversion_uf": null,
+   "inversion_clp": 3670081000.0,
+   "fecha_inicio": "2021-12-01",
+   "fecha_fin": "2023-02-01",
+   "mandante": "Dirección de Obras Portuarias",
+   "descripcion": "Mejoramiento Borde Costero Playas Las Machas Región: Arica y Parinacota Ubicación: Arica Servicio: Dirección de Obras Portuarias Estado: Ejecución Monto: 3.670.081.000 Fecha de Inicio: 01/12/2021 Fecha de Término: 01/02/2023 Código Bip: 40008050-0 Descripción del Proyecto El objetivo es realizar un mejoramiento de la infraestructura del borde costero de la Playa Las Machas que incluirá: - Mejorami",
+   "fuente_url": "https://www.mop.gob.cl/project/mejoramiento-borde-costero-playas-las-machas/",
+   "fuente": "fuentes.json#mop_obras",
+   "fecha_consulta": "2026-11-23",
+   "verificado": true,
+   "notas": "estado según la ficha (fecha de consulta); código BIP: 40008050-0 Descripción del Proyecto El objetivo es realizar un mejoramiento de la infraestructura del borde costero de la Playa Las Machas que incluirá: - Mejoramiento de vereda peatonal. - Generación de ciclobanda con segregador vial. - Instalación de luminarias. - Instalación de mobiliario urbano (basureros, bancas, cicleteros, etc.) - Instalación de decks peatonales en áreas de playa. - Mejoramiento de estacionamientos existentes y creación de dos áreas de estacionamiento anexas. Tal como lo estableció el Plan Maestro del Borde Costero de Arica, para lograr el desarrollo integral de este territorio físico, es necesario unir todo el borde costero de Arica peatonalmente y con ciclo vías. En la actualidad el borde costero de la playa Las Machas es un sector con gran demanda de deportistas que realizan trote y ciclismo. Sin embargo, no cuenta con las condiciones básicas de seguridad como iluminación, pavimento en buen estado y ciclovía. Lo anterior, sumado a la conducción irresponsable, ha provocado lamentables accidentes con consecuencias fatales. Además, surge la necesidad estratégica de revitalizar el sector para fomentar la inversión privada. Actualmente se encuentra planificado para iniciarse el proyecto \"Diseño de Borde Costero de Playa Chinchorro\", por lo tanto es necesario continuar con el paseo hacia el norte y posteriormente, generar la unión de esta vía peatonal y ciclo vía con el futuro diseño del parque humedal Río Lluta. Documentos Buscador Proyectos MOP Observaciones El presupuesto estimado para el total del proyecto es de M$9.277.916 y tiene un plazo estimado de 450 días. Financiamiento MOP Proyectos Relacionados Teleférico Bicentenario Edificación Pública , Metropolitana Habilitación espacio público Nudo Baquedano Arquitectura , Edificación Pública , Metropolitana Construcción Biblioteca Regional de La Araucanía Arquitectura , Edificación Pública , La Araucanía Mejoramiento Borde Costero Buchupureo Cobquecura Bordes Costeros , Ñuble , Obras Portuarias ← Proyecto anterior Proyecto siguiente →; monto en CLP salvo que indique UF/USD"
+  },
+  {
+   "id": "mop-www-14503-construccion-borde-lacustre-huequecura-futrono",
+   "nombre": "Construcción Borde Lacustre Huequecura Futrono",
+   "sector": "puertos",
+   "region_id": "losrios",
+   "region_ids": [
+    "losrios"
+   ],
+   "comuna": "Futrono",
+   "estado": "ejecucion",
+   "estado_2026_03_11": null,
+   "inversion_musd": null,
+   "inversion_uf": null,
+   "inversion_clp": 1355758000.0,
+   "fecha_inicio": "2021-07-08",
+   "fecha_fin": "2022-05-19",
+   "mandante": "Dirección de Obras Portuarias",
+   "descripcion": "Construcción Borde Lacustre Huequecura Futrono Región: Los Ríos Ubicación: Futrono Servicio: Dirección de Obras Portuarias Estado: Ejecución Monto: 1.355.758.000 Fecha de Inicio: 08/07/2021 Fecha de Término: 19/05/2022 Código Bip: 40025408-0 Descripción del Proyecto Consiste en la construcción de obras terrestres y lacustres destinadas a mejorar el espacio público de la playa Huequecura en la loca",
+   "fuente_url": "https://www.mop.gob.cl/project/construccion-borde-lacustre-huequecura-futrono/",
+   "fuente": "fuentes.json#mop_obras",
+   "fecha_consulta": "2026-11-23",
+   "verificado": true,
+   "notas": "estado según la ficha (fecha de consulta); código BIP: 40025408-0 Descripción del Proyecto Consiste en la construcción de obras terrestres y lacustres destinadas a mejorar el espacio público de la playa Huequecura en la localidad de Llifén. Documentos Observaciones La playa de Huequecura es un área de gran afluencia de visitantes y turistas, y un espacio de uso habitual y ancestral por parte de la propia comunidad local, incluyendo comunidades indígenas. , por la falta de infraestructura adecuada para el atraque de naves y para el acceso al lago en condiciones de seguridad. Con este proyecto permite aumentar la oferta de actividades posibles a desarrollar en el lago contribuyendo al desarrollo turístico de la comuna de Futrono y la Región de Los Ríos. Financiamiento MOP. Proyectos Relacionados Teleférico Bicentenario Edificación Pública , Metropolitana Habilitación espacio público Nudo Baquedano Arquitectura , Edificación Pública , Metropolitana Construcción Biblioteca Regional de La Araucanía Arquitectura , Edificación Pública , La Araucanía Mejoramiento Borde Costero Buchupureo Cobquecura Bordes Costeros , Ñuble , Obras Portuarias ← Proyecto anterior Proyecto siguiente →; monto en CLP salvo que indique UF/USD"
+  },
+  {
+   "id": "mop-www-14533-mejoramiento-borde-lacustre-puerto-bertrand",
+   "nombre": "Mejoramiento Borde Lacustre Puerto Bertrand",
+   "sector": "puertos",
+   "region_id": "aysen",
+   "region_ids": [
+    "aysen"
+   ],
+   "comuna": "Chile Chico",
+   "estado": "ejecucion",
+   "estado_2026_03_11": null,
+   "inversion_musd": null,
+   "inversion_uf": null,
+   "inversion_clp": 6338521000.0,
+   "fecha_inicio": "2021-01-01",
+   "fecha_fin": "2027-12-30",
+   "mandante": "Dirección de Obras Portuarias",
+   "descripcion": "Mejoramiento Borde Lacustre Puerto Bertrand Región: Aysén Ubicación: Chile Chico Servicio: Dirección de Obras Portuarias Estado: Ejecución Monto: 6.338.521.000 Fecha de Inicio: 01/01/2021 Fecha de Término: 30/12/2027 Código Bip: 30136601-0 Descripción del Proyecto El proyecto interviene un borde lacustre de 250 metros lineales, que ordenar los usos del espacio, áreas verdes y su respectiva contenc",
+   "fuente_url": "https://www.mop.gob.cl/project/mejoramiento-ruta-7-sur-sector-murta-puerto-rio-tranquilo-2/",
+   "fuente": "fuentes.json#mop_obras",
+   "fecha_consulta": "2026-11-23",
+   "verificado": true,
+   "notas": "estado según la ficha (fecha de consulta); código BIP: 30136601-0 Descripción del Proyecto El proyecto interviene un borde lacustre de 250 metros lineales, que ordenar los usos del espacio, áreas verdes y su respectiva contención, paseos costeros que se conectan con el borde lacustre, juegos infantiles y el potenciamiento de los atractivos escénicos del lugar respetando la naturaleza e identidad local. Se considera la construcción de 3.370 m2 de borde lacustre en el sector norte, centro y sur de Puerto Bertrand, incluye la construcción de un paseo lacustre de 3 plataformas unidas por un paseo/vereda peatonal que las une de norte a sur, donde se ejecutaran 157 m2 de mirador, 30 m2 de espacio concesionable, 61 m2 de bodega de kayaks, 156 m2 de rampa y botadero, 426 m2 de terraza central, 61 m2 de edificación para agencia turística, 126 m2 muelle central, 30 m2 quiosco y artesanía, 123 m2 de terraza sur, 30 m2 servicios básicos, 586 m2 de paseo peatonal, 168 m2 vereda central y vereda sur, 280 m2 estacionamiento y punto limpio, más 46 m2 de mejoramiento muelle existente y 1.090 m2 de áreas verdes. Además, el proyecto considera accesibilidad universal y eficiencia energética. La inversión estimada es de M$ 3.027.600 en el período 2022-2023. Documentos Buscador de Proyectos Observaciones Dada la relevancia de la actividad turística en Puerto Bertrand y las actuales condiciones de operación, se necesita contar con infraestructura de apoyo en el borde lacustre. Financiamiento MOP. Proyectos Relacionados Teleférico Bicentenario Edificación Pública , Metropolitana Habilitación espacio público Nudo Baquedano Arquitectura , Edificación Pública , Metropolitana Construcción Biblioteca Regional de La Araucanía Arquitectura , Edificación Pública , La Araucanía Mejoramiento Borde Costero Buchupureo Cobquecura Bordes Costeros , Ñuble , Obras Portuarias ← Proyecto anterior Proyecto siguiente →; monto en CLP salvo que indique UF/USD"
+  },
+  {
+   "id": "mop-www-14742-mejoramiento-borde-costero-buchupureo-cobquecura",
+   "nombre": "Mejoramiento Borde Costero Buchupureo Cobquecura",
+   "sector": "puertos",
+   "region_id": "nuble",
+   "region_ids": [
+    "nuble"
+   ],
+   "comuna": "Cobquecura",
+   "estado": "ejecucion",
+   "estado_2026_03_11": null,
+   "inversion_musd": null,
+   "inversion_uf": null,
+   "inversion_clp": 1580446000.0,
+   "fecha_inicio": "2021-05-12",
+   "fecha_fin": "2022-03-03",
+   "mandante": "Dirección de Obras Portuarias",
+   "descripcion": "Mejoramiento Borde Costero Buchupureo Cobquecura Región: Ñuble Ubicación: Cobquecura Servicio: Dirección de Obras Portuarias Estado: Ejecución Monto: 1.580.446.000 Fecha de Inicio: 12/05/2021 Fecha de Término: 03/03/2022 Código Bip: 30485805-0 Descripción del Proyecto Se realizaran obras de mejoramiento de borde costero, tanto en el acceso, circulación como su uso universal, dotándole de mobiliari",
+   "fuente_url": "https://www.mop.gob.cl/project/borde-costero-buchupuero-cobquecura/",
+   "fuente": "fuentes.json#mop_obras",
+   "fecha_consulta": "2026-11-23",
+   "verificado": true,
+   "notas": "estado según la ficha (fecha de consulta); código BIP: 30485805-0 Descripción del Proyecto Se realizaran obras de mejoramiento de borde costero, tanto en el acceso, circulación como su uso universal, dotándole de mobiliario urbano. Documentos Buscador de Proyectos Observaciones Buchupureo es una atractiva playa de la comuna de Cobquecura, en donde es predominante el valor paisajístico y los deportes como el surf, a nivel de playa es precario el acceso y la circulación peatonal, no siendo inclusivo en muchos casos, siendo limitado a nivel de vías de evacuación ante riesgos. 200 ml de paseos o bordes costeros construidos. Financiamiento MOP. Proyectos Relacionados Teleférico Bicentenario Edificación Pública , Metropolitana Habilitación espacio público Nudo Baquedano Arquitectura , Edificación Pública , Metropolitana Construcción Biblioteca Regional de La Araucanía Arquitectura , Edificación Pública , La Araucanía Mejoramiento Borde Costero Buchupureo Cobquecura Bordes Costeros , Ñuble , Obras Portuarias ← Proyecto anterior Proyecto siguiente →; monto en CLP salvo que indique UF/USD"
+  }
+ ]
+}

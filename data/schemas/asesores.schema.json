@@ -1,0 +1,67 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "array",
+  "minItems": 10,
+  "items": {
+    "type": "object",
+    "required": [
+      "id",
+      "nombre",
+      "perfil",
+      "ideologia",
+      "efecto_positivo",
+      "efecto_negativo",
+      "fuente",
+      "cifras_ilustrativas"
+    ],
+    "properties": {
+      "id": {
+        "type": "string"
+      },
+      "nombre": {
+        "type": "string"
+      },
+      "perfil": {
+        "type": "string"
+      },
+      "ideologia": {
+        "type": "object",
+        "required": [
+          "eco",
+          "inst"
+        ],
+        "properties": {
+          "eco": {
+            "type": "number",
+            "minimum": -1,
+            "maximum": 1
+          },
+          "inst": {
+            "type": "number",
+            "minimum": -1,
+            "maximum": 1
+          }
+        }
+      },
+      "efecto_positivo": {
+        "type": "object",
+        "required": [
+          "tipo"
+        ]
+      },
+      "efecto_negativo": {
+        "type": "object",
+        "required": [
+          "tipo"
+        ]
+      },
+      "fuente": {
+        "type": "string",
+        "pattern": "^fuentes\\.json#[a-z0-9_]+$"
+      },
+      "cifras_ilustrativas": {
+        "const": true
+      }
+    }
+  }
+}

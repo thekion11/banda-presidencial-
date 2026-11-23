@@ -1,0 +1,106 @@
+{
+ "meta": {
+  "fuente": "metro_santiago",
+  "scraper": "tools/proyectos/prensa_rm.py",
+  "fecha_consulta": "2026-11-23",
+  "nota": "Montos de prensa, sin contraste con documento oficial (verificado=false)."
+ },
+ "proyectos": [
+  {
+   "id": "metro-linea-7",
+   "nombre": "Nueva Línea 7 Metro de Santiago (Renca-Vitacura)",
+   "sector": "metro",
+   "region_id": "metropolitana",
+   "region_ids": [
+    "metropolitana"
+   ],
+   "comuna": "Renca, Cerro Navia, Quinta Normal, Santiago, Recoleta, Providencia, Las Condes, Vitacura",
+   "estado": "ejecucion",
+   "estado_2026_03_11": "ejecucion",
+   "inversion_musd": 2700,
+   "inversion_uf": null,
+   "inversion_clp": null,
+   "fecha_inicio": "2022-02",
+   "fecha_fin": "2028",
+   "mandante": "Metro S.A.",
+   "descripcion": "26 km y 19 estaciones; obras iniciadas en febrero de 2022; ~40% de avance (prensa jun-2026).",
+   "fuente_url": "https://www.metro.cl/nuevos-proyectos/linea-7",
+   "fuente": "fuentes.json#metro_santiago",
+   "fecha_consulta": "2026-11-23",
+   "verificado": false,
+   "notas": "inversión 2.700 (El Dínamo 2025); otras fuentes: 2.528 (2022); fuentes de prensa: https://www.meganoticias.cl/nacional/525617-metro-prepara-mayores-expansiones-cuatro-nuevas-lineas-y-una-extension-en-camino-26-062026.html | https://www.eldinamo.cl/economia/dinero/2025/05/22/metro-anuncia-plan-de-expansion-de-usd-9-300-millones-para-concretar-las-lineas-7-8-y-9/"
+  },
+  {
+   "id": "metro-linea-8",
+   "nombre": "Nueva Línea 8 Metro de Santiago (Providencia-Puente Alto)",
+   "sector": "metro",
+   "region_id": "metropolitana",
+   "region_ids": [
+    "metropolitana"
+   ],
+   "comuna": "Providencia, Ñuñoa, Macul, La Florida, Peñalolén, Puente Alto",
+   "estado": "ejecucion",
+   "estado_2026_03_11": null,
+   "inversion_musd": 2000,
+   "inversion_uf": null,
+   "inversion_clp": null,
+   "fecha_inicio": null,
+   "fecha_fin": "2033",
+   "mandante": "Metro S.A.",
+   "descripcion": "19 km; apertura proyectada 2033 (prensa 2025); obras en inicio según la nota.",
+   "fuente_url": "https://www.metro.cl/nuevos-proyectos/linea-8",
+   "fuente": "fuentes.json#metro_santiago",
+   "fecha_consulta": "2026-11-23",
+   "verificado": false,
+   "notas": "estado y fecha de inicio de obras no contrastados; inversión de prensa 2025; fuentes de prensa: https://www.meganoticias.cl/nacional/525617-metro-prepara-mayores-expansiones-cuatro-nuevas-lineas-y-una-extension-en-camino-26-062026.html | https://www.eldinamo.cl/economia/dinero/2025/05/22/metro-anuncia-plan-de-expansion-de-usd-9-300-millones-para-concretar-las-lineas-7-8-y-9/"
+  },
+  {
+   "id": "metro-linea-9",
+   "nombre": "Nueva Línea 9 Metro de Santiago (Recoleta-La Pintana/Bajos de Mena)",
+   "sector": "metro",
+   "region_id": "metropolitana",
+   "region_ids": [
+    "metropolitana"
+   ],
+   "comuna": "Recoleta, Santiago, San Miguel, San Joaquín, La Granja, San Ramón, La Pintana, Puente Alto",
+   "estado": "diseno",
+   "estado_2026_03_11": null,
+   "inversion_musd": 2733,
+   "inversion_uf": null,
+   "inversion_clp": null,
+   "fecha_inicio": null,
+   "fecha_fin": "2033",
+   "mandante": "Metro S.A.",
+   "descripcion": "27 km en 3 tramos con aperturas previstas 2030, 2031 y 2033; RCA favorable reciente (2026).",
+   "fuente_url": "https://www.metro.cl/nuevos-proyectos/linea-9",
+   "fuente": "fuentes.json#metro_santiago",
+   "fecha_consulta": "2026-11-23",
+   "verificado": false,
+   "notas": "inversión de prensa 2025; estado = diseño/tramitación ambiental; fuentes de prensa: https://www.meganoticias.cl/nacional/525617-metro-prepara-mayores-expansiones-cuatro-nuevas-lineas-y-una-extension-en-camino-26-062026.html | https://www.eldinamo.cl/economia/dinero/2025/05/22/metro-anuncia-plan-de-expansion-de-usd-9-300-millones-para-concretar-las-lineas-7-8-y-9/"
+  },
+  {
+   "id": "metro-linea-a-aeropuerto",
+   "nombre": "Línea A Metro de Santiago al Aeropuerto AMB",
+   "sector": "metro",
+   "region_id": "metropolitana",
+   "region_ids": [
+    "metropolitana"
+   ],
+   "comuna": "Cerro Navia, Pudahuel, Lo Prado",
+   "estado": "diseno",
+   "estado_2026_03_11": null,
+   "inversion_musd": 365,
+   "inversion_uf": null,
+   "inversion_clp": null,
+   "fecha_inicio": null,
+   "fecha_fin": "2032",
+   "mandante": "Metro S.A.",
+   "descripcion": "6,5 km subterráneos, trenes ligeros autónomos, 21 coches; en etapa de ingeniería (jun-2026).",
+   "fuente_url": "https://www.metro.cl/nuevos-proyectos/linea-a",
+   "fuente": "fuentes.json#metro_santiago",
+   "fecha_consulta": "2026-11-23",
+   "verificado": false,
+   "notas": "inversión de prensa (Meganoticias 26-06-2026); fuentes de prensa: https://www.meganoticias.cl/nacional/525617-metro-prepara-mayores-expansiones-cuatro-nuevas-lineas-y-una-extension-en-camino-26-062026.html | https://www.eldinamo.cl/economia/dinero/2025/05/22/metro-anuncia-plan-de-expansion-de-usd-9-300-millones-para-concretar-las-lineas-7-8-y-9/ | https://www.meganoticias.cl/nacional/525530-linea-a-metro-aeropuerto-santiago-detalles-inversion-fecha-2032-26-06-2026.html"
+  }
+ ]
+}

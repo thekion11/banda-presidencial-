@@ -1,0 +1,30 @@
+class_name PantallaGabinete
+extends Control
+## Etapa de configuración, después de fundar el partido y antes de la campaña: el jugador elige su gabinete.
+
+signal listo
+
+var motor: MotorTurno
+var _aviso: Label
+
+
+func _ready() -> void:
+	PanelCoalicion.abierto = ""  # estado de pestañas de la partida anterior
+	PanelGestion.pestana = "gabinete"
+	var m := MarginContainer.new()
+	m.set_anchors_preset(Control.PRESET_FULL_RECT)
+	for lado in ["left", "right"]:
+		m.add_theme_constant_override("margin_" + lado, 16)
+	m.add_theme_constant_override("margin_top", 28)
+	m.add_theme_constant_override("margin_bottom", 16)
+	add_child(m)
+	var v := FilasUI.col(8)
+	m.add_child(v)
+	v.add_child(Tema.etiqueta("CONFIGURACIÓN · PASO 3", 10, Tema.ORO, true))
+	v.add_child(Tema.etiqueta("Forma tu gabinete", 24, Tema.TEXTO, true))
+	v.add_child(Tema.etiqueta("Cada ministro habilita las cartas de su área. Sin ministro de un sector, esas cartas no aparecen en tu mano. Puedes cambiarlo durante la campaña.", 12, Tema.TEXTO_SUAVE))
+	_aviso = Tema.etiqueta("", 12, FilasUI.ROJO_TEXTO, true)
+	v.add_child(_aviso)
+	var sel := PanelGabinete.crear(motor, "Comenzar campaña · 8 semanas", listo.emit, func(t: String) -> void: _aviso.text = t)
+	sel.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	v.add_child(sel)

@@ -95,4 +95,53 @@ func _correr() -> void:
 			h.queue_free()
 	dia._abrir_urbano()
 	await _guardar("cmp_urbano", 1.3)
+	for h in dia._capa.get_children():
+		if h != dia._toast:
+			h.queue_free()
+	await _v2(main, dia, d, partido)
 	quit(0)
+
+
+func _v2(main: Node, dia: Node, d: Dictionary, partido: Dictionary) -> void:
+	## Pantallas de las mecánicas v2 (DISENO_V2): gabinete, movimientos, delegación, asesores, coalición e internos.
+	var m: MotorTurno = main.motor
+	var est: EstadoSimulacion = m.estado
+	est.mano.clear()
+	m.robar_mano(5)
+	est.pa_actual = 4
+	est.bono_mov = {"aprobacion": 2, "asesores": 1}
+	m.contratar_asesor("as_economista")
+	var pids: Array = m.coalicion.partidos.keys()
+	m.unirse_coalicion(pids[0])
+	m.unirse_coalicion(pids[1])
+	est.coalicion[pids[1]]["satisfaccion"] = 22.0
+	est.internos_actual = 3
+	dia._abrir_panel("mapa")
+	dia._sel = 1
+	dia._refrescar()
+	await _guardar("v2_dia_movimientos", 0.9)
+	dia._delegar()
+	await _guardar("v2_delegar", 0.6)
+	for h in dia._capa.get_children():
+		if h != dia._toast:
+			h.queue_free()
+	for par in [["gabinete", "v2_gabinete_cerrado"], ["equipo", "v2_asesores"], ["coalicion", "v2_coalicion"], ["internos", "v2_internos"]]:
+		PanelGestion.pestana = par[0]
+		dia._abrir_panel("gabinete")
+		await _guardar(par[1], 0.5)
+	PanelCoalicion.abierto = pids[0]
+	PanelGestion.pestana = "coalicion"
+	dia._abrir_panel("gabinete")
+	await _guardar("v2_coalicion_cuotas", 0.5)
+	dia._abrir_panel("mapa")
+	est.mano.clear()
+	est.pa_actual = 3
+	var n_reg := est.registro_acciones.size()
+	m.mazo.reposicion()
+	dia._leer_reposicion(n_reg)
+	dia._refrescar()
+	await _guardar("v2_reposicion", 0.12)
+	# etapa de configuración: elección de gabinete antes de la campaña
+	main.motor = Partida.crear(d, 20260415, partido)
+	main.mostrar_gabinete()
+	await _guardar("v2_gabinete_config", 0.5)

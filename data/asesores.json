@@ -1,0 +1,212 @@
+[
+  {
+    "id": "as_economista",
+    "nombre": "La Calculadora Ortodoxa",
+    "perfil": "Economista de mercado, defensor de la regla fiscal.",
+    "ideologia": {
+      "eco": 0.7,
+      "inst": 0.2
+    },
+    "efecto_positivo": {
+      "tipo": "categoria",
+      "categoria": "hacienda",
+      "mult": 0.15
+    },
+    "efecto_negativo": {
+      "tipo": "indicador",
+      "ind": "cohesion",
+      "delta": -0.3
+    },
+    "fuente": "fuentes.json#ficticio_2026",
+    "cifras_ilustrativas": true
+  },
+  {
+    "id": "as_sindicalista",
+    "nombre": "El Delegado Eterno",
+    "perfil": "Dirigente sindical con red en regiones.",
+    "ideologia": {
+      "eco": -0.7,
+      "inst": -0.2
+    },
+    "efecto_positivo": {
+      "tipo": "categoria",
+      "categoria": "social",
+      "mult": 0.15
+    },
+    "efecto_negativo": {
+      "tipo": "indicador",
+      "ind": "fiscal",
+      "delta": -0.3
+    },
+    "fuente": "fuentes.json#ficticio_2026",
+    "cifras_ilustrativas": true
+  },
+  {
+    "id": "as_jurista",
+    "nombre": "La Constitucionalista Prudente",
+    "perfil": "Abogada de derecho público, cuida los plazos.",
+    "ideologia": {
+      "eco": 0.0,
+      "inst": 0.7
+    },
+    "efecto_positivo": {
+      "tipo": "indicador",
+      "ind": "riesgo_ejecucion",
+      "delta": -0.5
+    },
+    "efecto_negativo": {
+      "tipo": "indicador",
+      "ind": "capital",
+      "delta": -0.3
+    },
+    "fuente": "fuentes.json#ficticio_2026",
+    "cifras_ilustrativas": true
+  },
+  {
+    "id": "as_comunicador",
+    "nombre": "El Narrador de Pasillo",
+    "perfil": "Estratega de comunicaciones, gusta de los anuncios.",
+    "ideologia": {
+      "eco": 0.1,
+      "inst": -0.3
+    },
+    "efecto_positivo": {
+      "tipo": "indicador",
+      "ind": "aprobacion",
+      "delta": 0.3
+    },
+    "efecto_negativo": {
+      "tipo": "indicador",
+      "ind": "riesgo_ejecucion",
+      "delta": 0.4
+    },
+    "fuente": "fuentes.json#ficticio_2026",
+    "cifras_ilustrativas": true
+  },
+  {
+    "id": "as_urbanista",
+    "nombre": "La Cartógrafa de Barrios",
+    "perfil": "Urbanista de suelo y vivienda.",
+    "ideologia": {
+      "eco": -0.2,
+      "inst": 0.3
+    },
+    "efecto_positivo": {
+      "tipo": "categoria",
+      "categoria": "vivienda",
+      "mult": 0.15
+    },
+    "efecto_negativo": {
+      "tipo": "categoria",
+      "categoria": "transportes",
+      "mult": -0.1
+    },
+    "fuente": "fuentes.json#ficticio_2026",
+    "cifras_ilustrativas": true
+  },
+  {
+    "id": "as_energetico",
+    "nombre": "El Ingeniero de la Red",
+    "perfil": "Ingeniero eléctrico, impulsa transmisión y renovables.",
+    "ideologia": {
+      "eco": 0.5,
+      "inst": 0.0
+    },
+    "efecto_positivo": {
+      "tipo": "categoria",
+      "categoria": "energia",
+      "mult": 0.15
+    },
+    "efecto_negativo": {
+      "tipo": "categoria",
+      "categoria": "medioambiente",
+      "mult": -0.1
+    },
+    "fuente": "fuentes.json#ficticio_2026",
+    "cifras_ilustrativas": true
+  },
+  {
+    "id": "as_ambientalista",
+    "nombre": "La Guardiana del Humedal",
+    "perfil": "Activista y científica ambiental.",
+    "ideologia": {
+      "eco": -0.4,
+      "inst": -0.5
+    },
+    "efecto_positivo": {
+      "tipo": "categoria",
+      "categoria": "medioambiente",
+      "mult": 0.15
+    },
+    "efecto_negativo": {
+      "tipo": "categoria",
+      "categoria": "economia",
+      "mult": -0.1
+    },
+    "fuente": "fuentes.json#ficticio_2026",
+    "cifras_ilustrativas": true
+  },
+  {
+    "id": "as_legislativo",
+    "nombre": "El Contador de Votos",
+    "perfil": "Operador legislativo con acceso a ambas cámaras.",
+    "ideologia": {
+      "eco": 0.0,
+      "inst": 0.4
+    },
+    "efecto_positivo": {
+      "tipo": "indicador",
+      "ind": "capital",
+      "delta": 0.5
+    },
+    "efecto_negativo": {
+      "tipo": "indicador",
+      "ind": "aprobacion",
+      "delta": -0.2
+    },
+    "fuente": "fuentes.json#ficticio_2026",
+    "cifras_ilustrativas": true
+  },
+  {
+    "id": "as_seguridad",
+    "nombre": "El Coronel Retirado",
+    "perfil": "Experto en seguridad y orden público.",
+    "ideologia": {
+      "eco": 0.4,
+      "inst": 0.6
+    },
+    "efecto_positivo": {
+      "tipo": "categoria",
+      "categoria": "seguridad",
+      "mult": 0.15
+    },
+    "efecto_negativo": {
+      "tipo": "indicador",
+      "ind": "cohesion",
+      "delta": -0.3
+    },
+    "fuente": "fuentes.json#ficticio_2026",
+    "cifras_ilustrativas": true
+  },
+  {
+    "id": "as_salubrista",
+    "nombre": "La Médica de Consultorio",
+    "perfil": "Salubrista de atención primaria.",
+    "ideologia": {
+      "eco": -0.3,
+      "inst": 0.1
+    },
+    "efecto_positivo": {
+      "tipo": "categoria",
+      "categoria": "salud",
+      "mult": 0.15
+    },
+    "efecto_negativo": {
+      "tipo": "indicador",
+      "ind": "fiscal",
+      "delta": -0.2
+    },
+    "fuente": "fuentes.json#ficticio_2026",
+    "cifras_ilustrativas": true
+  }
+]

@@ -1,0 +1,60 @@
+{
+ "meta": {
+  "fuente": "mop_concesiones",
+  "scraper": "tools/proyectos/concesiones_mop.py",
+  "fecha_consulta": "2026-11-23",
+  "nota": "inversion_uf/usd = 'presupuesto oficial' de la ficha; 'terminado' incluye concesiones en operación. Fechas: hito oficial."
+ },
+ "proyectos": [
+  {
+   "id": "conc-ruta-5-tramo-antofagasta-iquique",
+   "nombre": "Ruta 5 Tramo Antofagasta – Iquique",
+   "sector": "otros",
+   "region_id": "tarapaca",
+   "region_ids": [
+    "tarapaca",
+    "antofagasta"
+   ],
+   "comuna": "Pozo Almonte, Sierra Gorda y María Elena",
+   "estado": "perfil",
+   "estado_2026_03_11": null,
+   "inversion_musd": 587.0,
+   "inversion_uf": 15113000.0,
+   "inversion_clp": null,
+   "fecha_inicio": "2025",
+   "fecha_fin": null,
+   "mandante": "MOP - Dirección General de Concesiones",
+   "descripcion": "Detalles El proyecto corresponde a la ampliación a doble calzada de la Ruta 5 en el tramo comprendido entre las ciudades de Antofagasta e Iquique, desde el sector de Carmen Alto, hasta el acceso a Iquique en la ruta 16 sector de Humberstone. La obra considera el desarrollo de nuevos retornos y enlaces y pasos de ferrocarril desnivelados, retornos, áreas de servicios generales y atención de emergen",
+   "fuente_url": "https://concesiones.mop.gob.cl/project/ruta-5-tramo-antofagasta-iquique/",
+   "fuente": "fuentes.json#mop_concesiones",
+   "fecha_consulta": "2026-11-23",
+   "verificado": true,
+   "notas": "categoria_mop=cartera-de-proyectos-a-licitar-2024-2026; plazo_concesion=Variable máximo 45 años"
+  },
+  {
+   "id": "conc-tren-valparaiso-santiago",
+   "nombre": "Tren Valparaíso – Santiago",
+   "sector": "otros",
+   "region_id": "valparaiso",
+   "region_ids": [
+    "valparaiso",
+    "metropolitana"
+   ],
+   "comuna": "Valparaíso, Viña del Mar, Quilpué, Villa Alemana, Limache, Quillota, La Cruz, La Calera, Hijuelas, Llaillay, Til Til, Lampa, Quilicura, Renca, Quinta Normal, Santiago.",
+   "estado": "perfil",
+   "estado_2026_03_11": null,
+   "inversion_musd": 1320.0,
+   "inversion_uf": 34001582.0,
+   "inversion_clp": null,
+   "fecha_inicio": "2026",
+   "fecha_fin": null,
+   "mandante": "MOP - Dirección General de Concesiones",
+   "descripcion": "El proyecto contempla recuperar e impulsar la conectividad ferroviaria entre Valparaíso y Santiago, mediante un desarrollo gradual y vinculando comunas con deficiente accesibilidad como Tiltil, La Calera y Llay Llay con las capitales regionales. Para lograr dicho objetivo, se privilegiará la infraestructura ferroviaria existente, complementando la red ferroviaria con un alto estándar y nivel de se",
+   "fuente_url": "https://concesiones.mop.gob.cl/project/tren-valparaiso-santiago/",
+   "fuente": "fuentes.json#mop_concesiones",
+   "fecha_consulta": "2026-11-23",
+   "verificado": true,
+   "notas": "categoria_mop=cartera-de-proyectos-a-licitar-2024-2026; plazo_concesion=Por definir"
+  }
+ ]
+}

@@ -101,23 +101,3 @@ static func congreso(motor: MotorTurno, al_abrir_obra: Callable = Callable()) ->
 		for pr in est.promesas_campana:
 			col.add_child(Tema.etiqueta(("Cumplida · " if pr["cumplida"] else "Pendiente · ") + String(pr["titulo"]), 12, Tema.SUBE if pr["cumplida"] else Tema.TEXTO))
 	return _scroll(col)
-
-
-static func gabinete(motor: MotorTurno, elegido: String, al_elegir: Callable) -> Control:
-	var col := VBoxContainer.new()
-	col.add_theme_constant_override("separation", 8)
-	col.add_child(Tema.etiqueta("GABINETE · 25 MINISTERIOS", 10, Tema.ORO, true))
-	col.add_child(Tema.etiqueta("Delegar la próxima carta a un ministro baja su costo en PA y mejora la ejecución si es de su área, a cambio de riesgo de escándalo.", 12, Tema.TEXTO_SUAVE))
-	var ninguno := Tema.boton("Sin delegar" + (" (elegido)" if elegido == "" else ""), Tema.OCEANO.lightened(0.14), Tema.TEXTO, 13, 44)
-	ninguno.pressed.connect(func() -> void: al_elegir.call(""))
-	col.add_child(ninguno)
-	var disponible := motor.estado.etapa == "gobierno"
-	if not disponible:
-		col.add_child(Tema.etiqueta("El gabinete se forma al asumir la presidencia.", 12, Tema.ORO))
-	for id in motor.catalogo_ministros.keys():
-		var m: Dictionary = motor.catalogo_ministros[id]
-		var b := Tema.boton("%s · %s%s\n%s" % [m["alias"], m["categoria_afin"], " (elegido)" if elegido == id else "", m["cartera"]], Tema.PANEL, Tema.TEXTO, 12, 56)
-		b.disabled = not disponible
-		b.pressed.connect(func() -> void: al_elegir.call(id))
-		col.add_child(b)
-	return _scroll(col)

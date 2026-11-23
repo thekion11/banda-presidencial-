@@ -8,6 +8,7 @@ const IND_DEFECTO := {
 }
 
 var semilla: int = 20260415
+var ronda_electoral: int = 1  # 1 = primera vuelta, 2 = segunda vuelta (balotaje)
 var etapa: String = "campana"  # campana | gobierno | derrota_electoral | fin_mandato | crisis
 var turno_actual: int = 1
 var dia_actual: int = 1
@@ -23,6 +24,17 @@ var aprobacion_base: Dictionary = {}  # base regional del partido (ancla de camp
 
 var partido: Dictionary = {}
 var promesas_campana: Array[Dictionary] = []
+
+var gabinete: Array[String] = []  # ids de ministros nombrados (data/ministros.json)
+var eventos_ocurridos: Dictionary = {}  # id de evento -> turno en que ocurrió (activa cartas con disponibilidad.evento)
+var metas_cumplidas: Dictionary = {}  # id de meta interna -> turno (data/metas.json)
+var indices_sector: Dictionary = {}  # categoría -> índice sectorial 0..100 (movimiento interno ajustar_sector)
+var asesores: Array[String] = []  # ids de asesores contratados (data/asesores.json)
+var bono_mov: Dictionary = {"aprobacion": 0, "asesores": 0}  # movimientos extra del turno por aprobación y asesores
+var coalicion: Dictionary = {}  # id de partido aliado -> {satisfaccion, ministros[], asesores[]} (data/coalicion.json)
+var apoyo_coalicion: Dictionary = {"senado": 0, "camara": 0}  # escaños aliados que votan con el gobierno
+var delegadas_turno: int = 0  # cartas delegadas en el turno (máximo en leyes.json › delegacion)
+var internos_actual: int = 0  # movimientos internos disponibles en el turno (solo gobierno)
 
 var mazo: Array[String] = []
 var descarte: Array[String] = []
@@ -48,6 +60,7 @@ func configurar(p_semilla: int, p_dias_turno: int = 7, p_leyes: Dictionary = {})
 	turno_actual = 1
 	dia_actual = 1
 	etapa = "campana"
+	ronda_electoral = 1
 	partido = {}
 	var ini: Dictionary = IND_DEFECTO.duplicate()
 	if p_leyes.has("indicadores_iniciales"):
@@ -58,6 +71,16 @@ func configurar(p_semilla: int, p_dias_turno: int = 7, p_leyes: Dictionary = {})
 	if p_leyes.has("mano"):
 		pa_maximo = int(p_leyes["mano"].get("pa_por_turno", 16))
 	pa_actual = pa_maximo
+	gabinete.clear()
+	eventos_ocurridos.clear()
+	metas_cumplidas.clear()
+	indices_sector.clear()
+	asesores.clear()
+	bono_mov = {"aprobacion": 0, "asesores": 0}
+	coalicion.clear()
+	apoyo_coalicion = {"senado": 0, "camara": 0}
+	delegadas_turno = 0
+	internos_actual = 0
 	aprobacion_regional.clear()
 	aprobacion_base.clear()
 	promesas_campana.clear()
@@ -76,6 +99,20 @@ func configurar(p_semilla: int, p_dias_turno: int = 7, p_leyes: Dictionary = {})
 	semanas_en_crisis = 0
 	legado_evaluado.clear()
 	resultado_final = {}
+
+
+static func normalizar(v: Variant) -> Variant:
+	## Redondea a 6 decimales los números del partido: el guardado en JSON los reproduce exactamente (replay idéntico).
+	if v is Dictionary:
+		var d := {}
+		for k in v.keys():
+			d[k] = normalizar(v[k])
+		return d
+	if v is Array:
+		return v.map(normalizar)
+	if v is float:
+		return roundf(v * 1000000.0) / 1000000.0
+	return v
 
 
 func registrar_accion(tipo: String, detalle: Dictionary) -> void:
@@ -106,8 +143,8 @@ func promesas_pendientes() -> Array[Dictionary]:
 	return res
 
 
-func eleccion_pendiente(semanas_campana: int) -> bool:
-	return etapa == "campana" and turno_actual > semanas_campana
+func eleccion_pendiente(semanas_campana: int, semanas_balotaje: int = 4) -> bool:
+	return etapa == "campana" and turno_actual > semanas_campana + (semanas_balotaje if ronda_electoral == 2 else 0)
 
 
 func exportar_resumen() -> Dictionary:
@@ -117,6 +154,16 @@ func exportar_resumen() -> Dictionary:
 		"turno_actual": turno_actual,
 		"dia_actual": dia_actual,
 		"pa_actual": pa_actual,
+		"gabinete": gabinete.duplicate(),
+		"eventos_ocurridos": eventos_ocurridos.duplicate(),
+		"metas_cumplidas": metas_cumplidas.duplicate(),
+		"indices_sector": indices_sector.duplicate(),
+		"asesores": asesores.duplicate(),
+		"bono_mov": bono_mov.duplicate(),
+		"coalicion": coalicion.duplicate(true),
+		"apoyo_coalicion": apoyo_coalicion.duplicate(),
+		"delegadas_turno": delegadas_turno,
+		"internos_actual": internos_actual,
 		"indicadores": indicadores.duplicate(true),
 		"aprobacion_regional": aprobacion_regional.duplicate(true),
 		"partido": partido.duplicate(true),
@@ -128,6 +175,7 @@ func exportar_resumen() -> Dictionary:
 		"proyectos_ley": proyectos_ley.duplicate(true),
 		"cartas_ejecutadas": cartas_ejecutadas.keys(),
 		"sectra": sectra.duplicate(true),
+		"ronda_electoral": ronda_electoral,
 		"propuestas_abiertas": propuestas_abiertas.duplicate(),
 		"propuestas_aprobadas": propuestas_aprobadas.duplicate(),
 		"total_acciones": registro_acciones.size(),
@@ -140,9 +188,9 @@ func calcular_huella() -> String:
 	return JSON.stringify(exportar_resumen(), "", true, true).sha256_text()
 
 
-func exportar_guardado() -> Dictionary:
-	## Guardado por eventos: solo semilla, datos del partido e historial de entradas.
-	return {"version": 1, "semilla": semilla, "partido": partido.duplicate(true), "entradas": entradas.duplicate(true)}
+func exportar_guardado(huella_datos: String = "") -> Dictionary:
+	## Guardado por eventos: semilla, partido, historial de entradas y huella de los datos con que se jugó.
+	return {"version": 2, "huella_datos": huella_datos, "semilla": semilla, "partido": partido.duplicate(true), "entradas": entradas.duplicate(true)}
 
 
 func _ids_mano() -> Array:

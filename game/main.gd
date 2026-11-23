@@ -9,8 +9,12 @@ var motor: MotorTurno
 var _pantalla: Control
 
 
+var _huella_datos: String = ""
+
+
 func _ready() -> void:
 	datos = Datos.cargar_todo()
+	_huella_datos = Datos.huella(datos)  # una sola vez: calcularla en cada guardado costaría ~1 s en un teléfono modesto
 	geo = Datos.leer_json("res://data/geo/regiones_mapa.json")
 	var g := Gradient.new()
 	g.colors = PackedColorArray([Color("#154F7A"), Color("#0B2236"), Color("#07182A")])
@@ -58,13 +62,23 @@ func mostrar_partido() -> void:
 func _iniciar_campana(partido: Dictionary) -> void:
 	var semilla := int(Time.get_unix_time_from_system()) % 2000000000
 	motor = Partida.crear(datos, semilla, partido)
-	guardar()
-	mostrar_dia()
+	mostrar_gabinete()
+
+
+func mostrar_gabinete() -> void:
+	## Etapa de configuración: elección del gabinete antes de la campaña.
+	var g := PantallaGabinete.new()
+	g.motor = motor
+	g.listo.connect(func() -> void:
+		guardar()
+		mostrar_dia())
+	_cambiar(g)
 
 
 func continuar_guardado() -> void:
 	var g: Variant = Datos.leer_json(RUTA_GUARDADO)
-	if g == null:
+	if g == null or String(g.get("huella_datos", "")) != _huella_datos:
+		push_warning("Guardado incompatible con esta versión de los datos: se descarta.")
 		mostrar_menu()
 		return
 	motor = Partida.reproducir(datos, g)
@@ -99,4 +113,4 @@ func guardar() -> void:
 		return
 	var f := FileAccess.open(RUTA_GUARDADO, FileAccess.WRITE)
 	if f != null:
-		f.store_string(JSON.stringify(motor.estado.exportar_guardado()))
+		f.store_string(JSON.stringify(motor.estado.exportar_guardado(_huella_datos)))

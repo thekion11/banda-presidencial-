@@ -1,0 +1,481 @@
+[
+  {
+    "id": "laborismo_austral",
+    "nombre": "Movimiento Laborista Reformista",
+    "sigla": "MLR",
+    "alias_bloque": "Bloque de la Aurora",
+    "ideologia": {
+      "eco": -0.5,
+      "inst": 0.2
+    },
+    "escanos_senado": 7,
+    "escanos_camara": 11,
+    "peticion": {
+      "ministerios": 2,
+      "asesores": 1,
+      "categoria_carta": "social"
+    },
+    "ministerios_pedidos": [
+      "min_trabajo",
+      "min_social"
+    ],
+    "categorias_pedidas": [
+      "social",
+      "salud",
+      "educacion"
+    ],
+    "categorias_rechazadas": [
+      "seguridad"
+    ],
+    "fuente": "fuentes.json#ficticio_2026",
+    "cifras_ilustrativas": true,
+    "nota_escanos": "Partido ficticio; escaños ilustrativos (peso de juego, no datos oficiales)."
+  },
+  {
+    "id": "convergencia_progresista",
+    "nombre": "Convergencia Progresista Cívica",
+    "sigla": "CPC",
+    "alias_bloque": "Bloque de la Aurora",
+    "ideologia": {
+      "eco": -0.2,
+      "inst": 0.35
+    },
+    "escanos_senado": 4,
+    "escanos_camara": 9,
+    "peticion": {
+      "ministerios": 2,
+      "asesores": 1,
+      "categoria_carta": "politica"
+    },
+    "ministerios_pedidos": [
+      "min_segpres",
+      "min_interior"
+    ],
+    "categorias_pedidas": [
+      "politica",
+      "educacion",
+      "medioambiente"
+    ],
+    "categorias_rechazadas": [
+      "hacienda"
+    ],
+    "fuente": "fuentes.json#ficticio_2026",
+    "cifras_ilustrativas": true,
+    "nota_escanos": "Partido ficticio; escaños ilustrativos (peso de juego, no datos oficiales)."
+  },
+  {
+    "id": "comunidad_solidaria",
+    "nombre": "Concordia Comunitaria de Centro",
+    "sigla": "CCC",
+    "alias_bloque": "Bloque de la Aurora",
+    "ideologia": {
+      "eco": -0.1,
+      "inst": 0.45
+    },
+    "escanos_senado": 3,
+    "escanos_camara": 8,
+    "peticion": {
+      "ministerios": 2,
+      "asesores": 1,
+      "categoria_carta": "social"
+    },
+    "ministerios_pedidos": [
+      "min_social",
+      "min_educacion"
+    ],
+    "categorias_pedidas": [
+      "social",
+      "educacion",
+      "descentralizacion"
+    ],
+    "categorias_rechazadas": [
+      "economia"
+    ],
+    "fuente": "fuentes.json#ficticio_2026",
+    "cifras_ilustrativas": true,
+    "nota_escanos": "Partido ficticio; escaños ilustrativos (peso de juego, no datos oficiales)."
+  },
+  {
+    "id": "frente_obrero_popular",
+    "nombre": "Frente Obrero Popular",
+    "sigla": "FOP",
+    "alias_bloque": "Bloque de la Aurora",
+    "ideologia": {
+      "eco": -0.85,
+      "inst": -0.3
+    },
+    "escanos_senado": 3,
+    "escanos_camara": 11,
+    "peticion": {
+      "ministerios": 2,
+      "asesores": 1,
+      "categoria_carta": "social"
+    },
+    "ministerios_pedidos": [
+      "min_trabajo",
+      "min_hacienda"
+    ],
+    "categorias_pedidas": [
+      "social",
+      "salud",
+      "hacienda"
+    ],
+    "categorias_rechazadas": [
+      "seguridad"
+    ],
+    "fuente": "fuentes.json#ficticio_2026",
+    "cifras_ilustrativas": true,
+    "nota_escanos": "Partido ficticio; escaños ilustrativos (peso de juego, no datos oficiales)."
+  },
+  {
+    "id": "horizonte_comun",
+    "nombre": "Movimiento Horizonte Común",
+    "sigla": "MHC",
+    "alias_bloque": "Bloque de la Aurora",
+    "ideologia": {
+      "eco": -0.65,
+      "inst": -0.35
+    },
+    "escanos_senado": 2,
+    "escanos_camara": 17,
+    "peticion": {
+      "ministerios": 2,
+      "asesores": 1,
+      "categoria_carta": "medioambiente"
+    },
+    "ministerios_pedidos": [
+      "min_ambiente",
+      "min_mujer"
+    ],
+    "categorias_pedidas": [
+      "medioambiente",
+      "descentralizacion",
+      "educacion"
+    ],
+    "categorias_rechazadas": [
+      "seguridad"
+    ],
+    "fuente": "fuentes.json#ficticio_2026",
+    "cifras_ilustrativas": true,
+    "nota_escanos": "Partido ficticio; escaños ilustrativos (peso de juego, no datos oficiales)."
+  },
+  {
+    "id": "sociedad_abierta",
+    "nombre": "Sociedad Abierta Ciudadana",
+    "sigla": "SAC",
+    "alias_bloque": "Bloque de la Aurora",
+    "ideologia": {
+      "eco": 0.0,
+      "inst": 0.0
+    },
+    "escanos_senado": 1,
+    "escanos_camara": 3,
+    "peticion": {
+      "ministerios": 2,
+      "asesores": 1,
+      "categoria_carta": "economia"
+    },
+    "ministerios_pedidos": [
+      "min_economia",
+      "min_ciencia"
+    ],
+    "categorias_pedidas": [
+      "economia",
+      "politica"
+    ],
+    "categorias_rechazadas": [
+      "hacienda"
+    ],
+    "fuente": "fuentes.json#ficticio_2026",
+    "cifras_ilustrativas": true,
+    "nota_escanos": "Partido ficticio; escaños ilustrativos (peso de juego, no datos oficiales)."
+  },
+  {
+    "id": "liga_laica",
+    "nombre": "Liga Laica Reformista",
+    "sigla": "LLR",
+    "alias_bloque": "Bloque de la Aurora",
+    "ideologia": {
+      "eco": -0.25,
+      "inst": 0.4
+    },
+    "escanos_senado": 0,
+    "escanos_camara": 2,
+    "peticion": {
+      "ministerios": 2,
+      "asesores": 1,
+      "categoria_carta": "educacion"
+    },
+    "ministerios_pedidos": [
+      "min_educacion",
+      "min_justicia"
+    ],
+    "categorias_pedidas": [
+      "educacion",
+      "politica"
+    ],
+    "categorias_rechazadas": [
+      "economia"
+    ],
+    "fuente": "fuentes.json#ficticio_2026",
+    "cifras_ilustrativas": true,
+    "nota_escanos": "Partido ficticio; escaños ilustrativos (peso de juego, no datos oficiales)."
+  },
+  {
+    "id": "territorios_verdes",
+    "nombre": "Confederación Territorial Ecosocial",
+    "sigla": "CTE",
+    "alias_bloque": "Pacto Costa y Cordillera",
+    "ideologia": {
+      "eco": -0.35,
+      "inst": -0.55
+    },
+    "escanos_senado": 3,
+    "escanos_camara": 2,
+    "peticion": {
+      "ministerios": 2,
+      "asesores": 1,
+      "categoria_carta": "descentralizacion"
+    },
+    "ministerios_pedidos": [
+      "min_ambiente",
+      "min_bienes"
+    ],
+    "categorias_pedidas": [
+      "descentralizacion",
+      "medioambiente",
+      "obras"
+    ],
+    "categorias_rechazadas": [
+      "hacienda"
+    ],
+    "fuente": "fuentes.json#ficticio_2026",
+    "cifras_ilustrativas": true,
+    "nota_escanos": "Partido ficticio; escaños ilustrativos (peso de juego, no datos oficiales)."
+  },
+  {
+    "id": "compromiso_civico",
+    "nombre": "Compromiso Cívico Austral",
+    "sigla": "CCA",
+    "alias_bloque": "Bloque del Faro",
+    "ideologia": {
+      "eco": 0.4,
+      "inst": 0.6
+    },
+    "escanos_senado": 8,
+    "escanos_camara": 13,
+    "peticion": {
+      "ministerios": 2,
+      "asesores": 1,
+      "categoria_carta": "economia"
+    },
+    "ministerios_pedidos": [
+      "min_economia",
+      "min_interior"
+    ],
+    "categorias_pedidas": [
+      "economia",
+      "hacienda",
+      "politica"
+    ],
+    "categorias_rechazadas": [
+      "social"
+    ],
+    "fuente": "fuentes.json#ficticio_2026",
+    "cifras_ilustrativas": true,
+    "nota_escanos": "Partido ficticio; escaños ilustrativos (peso de juego, no datos oficiales)."
+  },
+  {
+    "id": "gremio_solidario",
+    "nombre": "Cuerpo Gremial Solidario",
+    "sigla": "CGS",
+    "alias_bloque": "Bloque del Faro",
+    "ideologia": {
+      "eco": 0.65,
+      "inst": 0.65
+    },
+    "escanos_senado": 5,
+    "escanos_camara": 18,
+    "peticion": {
+      "ministerios": 2,
+      "asesores": 1,
+      "categoria_carta": "seguridad"
+    },
+    "ministerios_pedidos": [
+      "min_seguridad",
+      "min_hacienda"
+    ],
+    "categorias_pedidas": [
+      "seguridad",
+      "hacienda",
+      "economia"
+    ],
+    "categorias_rechazadas": [
+      "social"
+    ],
+    "fuente": "fuentes.json#ficticio_2026",
+    "cifras_ilustrativas": true,
+    "nota_escanos": "Partido ficticio; escaños ilustrativos (peso de juego, no datos oficiales)."
+  },
+  {
+    "id": "vanguardia_civica",
+    "nombre": "Vanguardia Cívica Moderna",
+    "sigla": "VCM",
+    "alias_bloque": "Bloque del Faro",
+    "ideologia": {
+      "eco": 0.55,
+      "inst": 0.45
+    },
+    "escanos_senado": 2,
+    "escanos_camara": 2,
+    "peticion": {
+      "ministerios": 2,
+      "asesores": 1,
+      "categoria_carta": "economia"
+    },
+    "ministerios_pedidos": [
+      "min_ciencia",
+      "min_economia"
+    ],
+    "categorias_pedidas": [
+      "economia",
+      "medioambiente",
+      "educacion"
+    ],
+    "categorias_rechazadas": [
+      "social"
+    ],
+    "fuente": "fuentes.json#ficticio_2026",
+    "cifras_ilustrativas": true,
+    "nota_escanos": "Partido ficticio; escaños ilustrativos (peso de juego, no datos oficiales)."
+  },
+  {
+    "id": "frente_tradicion",
+    "nombre": "Frente por la Tradición y el Orden",
+    "sigla": "FTO",
+    "alias_bloque": "Frente del Roble",
+    "ideologia": {
+      "eco": 0.7,
+      "inst": 0.5
+    },
+    "escanos_senado": 5,
+    "escanos_camara": 31,
+    "peticion": {
+      "ministerios": 2,
+      "asesores": 1,
+      "categoria_carta": "seguridad"
+    },
+    "ministerios_pedidos": [
+      "min_seguridad",
+      "min_defensa"
+    ],
+    "categorias_pedidas": [
+      "seguridad",
+      "hacienda",
+      "economia"
+    ],
+    "categorias_rechazadas": [
+      "social",
+      "medioambiente"
+    ],
+    "fuente": "fuentes.json#ficticio_2026",
+    "cifras_ilustrativas": true,
+    "nota_escanos": "Partido ficticio; escaños ilustrativos (peso de juego, no datos oficiales)."
+  },
+  {
+    "id": "liga_libertad",
+    "nombre": "Liga de la Libertad Individual",
+    "sigla": "LLI",
+    "alias_bloque": "Frente del Roble",
+    "ideologia": {
+      "eco": 0.95,
+      "inst": -0.2
+    },
+    "escanos_senado": 1,
+    "escanos_camara": 8,
+    "peticion": {
+      "ministerios": 2,
+      "asesores": 1,
+      "categoria_carta": "economia"
+    },
+    "ministerios_pedidos": [
+      "min_hacienda",
+      "min_economia"
+    ],
+    "categorias_pedidas": [
+      "economia",
+      "hacienda"
+    ],
+    "categorias_rechazadas": [
+      "social",
+      "politica"
+    ],
+    "fuente": "fuentes.json#ficticio_2026",
+    "cifras_ilustrativas": true,
+    "nota_escanos": "Partido ficticio; escaños ilustrativos (peso de juego, no datos oficiales)."
+  },
+  {
+    "id": "plataforma_voz",
+    "nombre": "Plataforma Voz Directa",
+    "sigla": "PVD",
+    "alias_bloque": "Independiente (sin pacto)",
+    "ideologia": {
+      "eco": 0.15,
+      "inst": -0.5
+    },
+    "escanos_senado": 0,
+    "escanos_camara": 14,
+    "peticion": {
+      "ministerios": 2,
+      "asesores": 1,
+      "categoria_carta": "seguridad"
+    },
+    "ministerios_pedidos": [
+      "min_salud",
+      "min_social"
+    ],
+    "categorias_pedidas": [
+      "seguridad",
+      "salud",
+      "social"
+    ],
+    "categorias_rechazadas": [
+      "hacienda"
+    ],
+    "fuente": "fuentes.json#ficticio_2026",
+    "cifras_ilustrativas": true,
+    "nota_escanos": "Partido ficticio; escaños ilustrativos (peso de juego, no datos oficiales)."
+  },
+  {
+    "id": "concilio_familia",
+    "nombre": "Concilio Cívico por la Familia",
+    "sigla": "CCF",
+    "alias_bloque": "Frente del Roble",
+    "ideologia": {
+      "eco": 0.45,
+      "inst": 0.4
+    },
+    "escanos_senado": 0,
+    "escanos_camara": 0,
+    "peticion": {
+      "ministerios": 2,
+      "asesores": 1,
+      "categoria_carta": "social"
+    },
+    "ministerios_pedidos": [
+      "min_social",
+      "min_educacion"
+    ],
+    "categorias_pedidas": [
+      "social",
+      "educacion",
+      "salud"
+    ],
+    "categorias_rechazadas": [
+      "medioambiente"
+    ],
+    "fuente": "fuentes.json#ficticio_2026",
+    "cifras_ilustrativas": true,
+    "nota_escanos": "Partido ficticio; escaños ilustrativos (peso de juego, no datos oficiales)."
+  }
+]

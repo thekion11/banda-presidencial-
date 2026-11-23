@@ -5,8 +5,10 @@
     "dias_por_turno": 7,
     "duracion_mandato_dias": 1460,
     "semanas_campana": 8,
-    "umbral_victoria_presidencial": 50.0,
-    "bono_aprobacion_promesa": 1.5
+    "umbral_victoria_presidencial": 51.0,
+    "bono_aprobacion_promesa": 1.5,
+    "semanas_balotaje": 4,
+    "umbral_pasa_balotaje": 38.0
   },
   "campana": {
     "aprobacion_base_por_carta": 0.2,
@@ -31,7 +33,12 @@
   },
   "mano": {
     "tamano": 5,
-    "pa_por_turno": 8
+    "pa_por_turno": 5,
+    "descartes_por_turno": 2,
+    "reales_en_mazo": 15,
+    "costo_min": 1,
+    "costo_max": 3,
+    "reposicion_cartas": 3
   },
   "dinamica": {
     "riesgo_umbral": 60.0,
@@ -64,7 +71,9 @@
     "nombres": {
       "camara": "Cámara de Diputados",
       "senado": "Senado"
-    }
+    },
+    "asistencia_presentes": 0.9,
+    "asistencia_nota": "ILUSTRATIVO: fracción de los miembros en ejercicio que se supone presente en una votación; convierte la base 'presentes' en umbral (DISENO_V2 / auditoría C1). No es un dato oficial."
   },
   "tc": {
     "capital_perdido_si_cae": 3.0
@@ -89,40 +98,86 @@
       "id": "decreto_supremo",
       "nombre": "Decreto Supremo (Potestad Reglamentaria)",
       "articulo_constitucional": "Art. 32 N° 6 CPR",
-      "votos_minimos": 1,
       "requiere_votacion": false,
       "dias_tramitacion_base": 7,
       "puede_ir_tc": true,
       "prob_recurso_tc": 0.1,
       "prob_exito_tc": 0.8,
       "fuente": "fuentes.json#cpr_chile_2026",
-      "votos_minimos_camara": 1
+      "base_quorum": "en_ejercicio",
+      "regla": "ninguna",
+      "cita_regla": "Sin votación del Congreso (potestad reglamentaria, Art. 32 N° 6 CPR)."
     },
     {
       "id": "ley_simple",
       "nombre": "Ley Simple",
       "articulo_constitucional": "Art. 66 inc. 4 CPR",
-      "votos_minimos": 26,
       "requiere_votacion": true,
       "dias_tramitacion_base": 28,
       "puede_ir_tc": true,
       "prob_recurso_tc": 0.2,
       "prob_exito_tc": 0.8,
       "fuente": "fuentes.json#cpr_chile_2026",
-      "votos_minimos_camara": 78
+      "base_quorum": "presentes",
+      "regla": "mayoria",
+      "cita_regla": "CPR Art. 66: «demás normas»: mayoría de los diputados y senadores presentes.",
+      "fuente_texto": "data/bcn/normas.json#cpr.articulos_clave[66]",
+      "nota_verificacion": "Regla tomada de la cita en normas.json (texto actualizado de la CPR al 7-oct-2025, BCN); no se declara verificada contra el texto consolidado completo."
     },
     {
       "id": "quorum_calificado",
       "nombre": "Ley de Quórum Calificado",
       "articulo_constitucional": "Art. 66 inc. 3 CPR",
-      "votos_minimos": 26,
       "requiere_votacion": true,
       "dias_tramitacion_base": 35,
       "puede_ir_tc": true,
       "prob_recurso_tc": 0.35,
       "prob_exito_tc": 0.65,
       "fuente": "fuentes.json#cpr_chile_2026",
-      "votos_minimos_camara": 78
+      "base_quorum": "en_ejercicio",
+      "regla": "mayoria",
+      "cita_regla": "CPR Art. 66 (texto en data/bcn/normas.json): quórum calificado = mayoría absoluta de los diputados y senadores en ejercicio.",
+      "fuente_texto": "data/bcn/normas.json#cpr.articulos_clave[66]",
+      "nota_verificacion": "Regla tomada de la cita en normas.json (texto actualizado de la CPR al 7-oct-2025, BCN); no se declara verificada contra el texto consolidado completo."
+    },
+    {
+      "id": "ley_organica_constitucional",
+      "nombre": "Ley Orgánica Constitucional (mayoría absoluta de miembros en ejercicio)",
+      "articulo_constitucional": "Art. 66 inc. 2 CPR (texto vigente tras Ley 21.481)",
+      "requiere_votacion": true,
+      "dias_tramitacion_base": 42,
+      "puede_ir_tc": true,
+      "prob_recurso_tc": 0.5,
+      "prob_exito_tc": 0.6,
+      "fuente": "fuentes.json#cpr_chile_2026",
+      "control_preventivo_tc": true,
+      "verificado": false,
+      "base_quorum": "en_ejercicio",
+      "regla": "mayoria",
+      "cita_regla": "CPR Art. 66 (texto en data/bcn/normas.json): LOC = mayoría absoluta de los en ejercicio. Mismo umbral de votos que el quórum calificado; difiere en el control preventivo obligatorio del TC.",
+      "fuente_texto": "data/bcn/normas.json#cpr.articulos_clave[66]",
+      "nota_verificacion": "Regla tomada de la cita en normas.json (texto actualizado de la CPR al 7-oct-2025, BCN); no se declara verificada contra el texto consolidado completo."
+    },
+    {
+      "id": "reforma_constitucional",
+      "nombre": "Reforma Constitucional (4/7 de los miembros en ejercicio)",
+      "articulo_constitucional": "Art. 127 CPR (4/7, Ley 21.481)",
+      "requiere_votacion": true,
+      "dias_tramitacion_base": 63,
+      "puede_ir_tc": true,
+      "prob_recurso_tc": 0.4,
+      "prob_exito_tc": 0.6,
+      "fuente": "fuentes.json#cpr_chile_2026",
+      "verificado": false,
+      "base_quorum": "en_ejercicio",
+      "regla": "fraccion",
+      "fraccion": {
+        "num": 4,
+        "den": 7
+      },
+      "cita_regla": "CPR Art. 127 (Ley 21.481): 4/7 de los diputados y senadores en ejercicio, en cada Cámara.",
+      "fuente_texto": "data/bcn/normas.json#cpr.articulos_clave[127]",
+      "nota_verificacion": "Regla tomada de la cita en normas.json (texto actualizado de la CPR al 7-oct-2025, BCN); no se declara verificada contra el texto consolidado completo."
     }
   ],
   "escandalo": {
@@ -134,8 +189,12 @@
   },
   "repeticion_promesa": 0.5,
   "calendario": {
-    "fecha_inicio_campana": "2029-09-17",
-    "fecha_inicio_mandato": "2030-03-11"
+    "fecha_inicio_campana": "2025-09-21",
+    "fecha_primera_vuelta": "2025-11-16",
+    "fecha_segunda_vuelta": "2025-12-14",
+    "fecha_inicio_mandato": "2026-03-11",
+    "fuente": "fuentes.json#servel_calendario_2025",
+    "nota": "La transición dic-2025 a mar-2026 no se juega por turnos; el mandato arranca el 11-mar-2026."
   },
   "fases_obra": [
     {
@@ -188,5 +247,112 @@
     "aprobacion_max": 6.0,
     "riesgo_tir_negativa": 2.0,
     "fuente": "fuentes.json#uf_aprox"
+  },
+  "gabinete": {
+    "tamano": 8,
+    "anios_mandato": 4,
+    "categorias_siempre": [
+      "politica",
+      "comite",
+      "estado"
+    ],
+    "categorias_alias": {
+      "descentralizacion": "politica"
+    },
+    "nota": "Reglas de DISENO_V2 §1-2. El alias asigna cartas sin ministerio propio (Subdere depende de Interior)."
+  },
+  "delegacion": {
+    "max_por_turno": 2,
+    "prob_fallo_base": 0.15,
+    "peso_riesgo_escandalo": 1.5,
+    "peso_riesgo_ejecucion": 0.4,
+    "peso_bono_ejecucion": 0.5,
+    "recargo_fuera_de_area": 0.15,
+    "prob_fallo_min": 0.05,
+    "prob_fallo_max": 0.75,
+    "escala_si_falla": 0.5,
+    "prob_escandalo_si_falla": 0.5,
+    "nota": "Probabilidad de fallo = base + riesgo_escandalo*peso + (riesgo_ejecucion/100)*peso - bono_ejecucion*peso (+ recargo fuera de área), acotada. Cifras ilustrativas de balance."
+  },
+  "movimientos_internos": {
+    "por_turno": 3,
+    "ajustar_sector": {
+      "costo": 1,
+      "inicial": 50.0,
+      "paso": 5.0,
+      "min": 0.0,
+      "max": 100.0,
+      "efectos_subir": [
+        {
+          "ind": "aprobacion",
+          "delta": 0.4
+        },
+        {
+          "ind": "fiscal",
+          "delta": -0.8
+        }
+      ],
+      "efectos_bajar": [
+        {
+          "ind": "aprobacion",
+          "delta": -0.3
+        },
+        {
+          "ind": "fiscal",
+          "delta": 0.6
+        }
+      ]
+    },
+    "reducir_errores": {
+      "costo": 1,
+      "delta_riesgo": -4.0
+    },
+    "acelerar_proyecto": {
+      "costo": 1,
+      "dias": 14
+    },
+    "nota": "Movimientos internos de la coalición (DISENO_V2 §6); solo en gobierno. Cifras ilustrativas."
+  },
+  "bono_movimientos": {
+    "tramos": [
+      {
+        "desde": 60.0,
+        "hasta": 80.0,
+        "paso": 5.0,
+        "mov": 1
+      },
+      {
+        "desde": 85.0,
+        "hasta": 100.0,
+        "paso": 5.0,
+        "mov": 2
+      }
+    ],
+    "nota": "DISENO_V2 §11. Por cada umbral de aprobación superado (60,65,70,75,80: +1 c/u; 85,90,95,100: +2 c/u) se suman movimientos al amanecer del turno de gobierno. Cifras ilustrativas."
+  },
+  "asesores": {
+    "max": 3,
+    "movimientos_extra": 1,
+    "distancia_max": 2.0,
+    "mitigacion_afin": 0.5,
+    "nota": "DISENO_V2 §9. Cada asesor da +movimientos_extra por turno (desde el siguiente amanecer) y un efecto positivo y uno negativo. La afinidad ideológica con el partido (distancia en ejes eco/inst) atenúa el efecto negativo hasta en mitigacion_afin. Cifras ilustrativas."
+  },
+  "coalicion": {
+    "max_aliados": 3,
+    "satisfaccion_inicial": 50.0,
+    "convergencia": 0.25,
+    "distancia_max": 2.0,
+    "peso_ideologia": 0.4,
+    "bono_carta_afin": 3.0,
+    "cohesion_por_aliado": 0.6,
+    "umbral_malestar": 35.0,
+    "penal_internos_malestar": 1,
+    "umbral_satisfechos": 75.0,
+    "bono_internos_satisfechos": 1,
+    "umbral_ruptura": 15.0,
+    "penal_ruptura_cohesion": 3.0,
+    "penal_ruptura_capital": 2.0,
+    "nota": "DISENO_V2 §10. Satisfacción 0..100 de cada partido aliado: converge hacia (cuota cumplida) x (1 - peso_ideologia x (1 - afinidad ideológica)). Afecta cohesión por turno, escaños que votan con el gobierno y movimientos internos. Partidos ficticios; cifras ilustrativas.",
+    "penal_carta_rechazada": 2.0
   }
 }

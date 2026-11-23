@@ -17,6 +17,11 @@ var fx := MotorEfectos.new()
 var grafo := GrafoTrazado.new()
 var sectra := MotorSectra.new(self)
 var cartas := MotorCartas.new(self)
+var gabinete := MotorGabinete.new(self)
+var mazo := MotorMazo.new(self)
+var equipo := MotorEquipo.new(self)
+var coalicion := MotorCoalicion.new(self)
+var movimientos := MotorMovimientos.new(self)
 var eventos := MotorEventos.new(self)
 var ultimos_eventos: Array[Dictionary] = []
 var votaciones_semana: Array[Dictionary] = []  # votaciones de leyes resueltas al cerrar el turno (para la UI)
@@ -46,6 +51,11 @@ func inicializar(p_estado: EstadoSimulacion, p_cartas: Array, p_eventos: Array, 
 	fx.configurar(estado, catalogo_leyes, regiones)
 	grafo.cargar(p_extra.get("grafo", {}))
 	sectra.cargar(p_extra.get("sectra", {}))
+	movimientos.cargar(p_extra.get("metas", []))
+	equipo.cargar(p_extra.get("asesores", []))
+	coalicion.cargar(p_extra.get("coalicion", []))
+	if estado.gabinete.is_empty():
+		estado.gabinete = gabinete.por_defecto()
 	if estado.indicadores.is_empty():
 		estado.indicadores = EstadoSimulacion.IND_DEFECTO.duplicate()
 
@@ -59,10 +69,10 @@ func turnos_mandato() -> int:
 
 
 func aplicar_partido_inicial(datos_partido: Dictionary) -> void:
-	estado.partido = datos_partido.duplicate(true)
+	estado.partido = EstadoSimulacion.normalizar(datos_partido)
 	estado.etapa = "campana"
 	estado.promesas_campana.clear()
-	var ind_ini: Dictionary = datos_partido["indicadores_iniciales"]
+	var ind_ini: Dictionary = estado.partido["indicadores_iniciales"]
 	for clave in ind_ini.keys():
 		estado.indicadores[clave] = float(ind_ini[clave])
 	var camp: Dictionary = catalogo_leyes.get("campana", {})
@@ -82,7 +92,7 @@ func iniciar_turno() -> Array[Dictionary]:
 func terminar_turno() -> Array[Dictionary]:
 	## Cierra el turno y, si la partida sigue y no toca elección, inicia el siguiente.
 	cerrar_turno()
-	if estado.eleccion_pendiente(int(_h("semanas_campana"))):
+	if estado.eleccion_pendiente(int(_h("semanas_campana")), int(_h("semanas_balotaje"))):
 		return []
 	if estado.etapa == "campana" or estado.etapa == "gobierno":
 		return iniciar_turno()
@@ -92,9 +102,11 @@ func terminar_turno() -> Array[Dictionary]:
 # ---------------------------------------------------------------- Paso 1
 func ejecutar_amanecer() -> void:
 	estado.pa_actual = estado.pa_maximo
+	movimientos.amanecer()
 	if estado.etapa == "campana":
 		regiones.revertir_a_base(estado, float(catalogo_leyes["campana"]["reversion_semanal"]))
 	if estado.etapa != "gobierno":
+		movimientos.fijar_movimientos()
 		return
 	var d: Dictionary = catalogo_leyes["dinamica"]
 	var ancla := float(d["ancla_base"]) + float(d["ancla_peso_fiscal"]) * (estado.ind("fiscal") - 50.0) \
@@ -113,38 +125,8 @@ func ejecutar_amanecer() -> void:
 		fx.delta_aprobacion(-float(d["penal_aprobacion_riesgo"]), "")
 	fx.sumar_ind("capital", float(d["regen_capital_semanal"]))
 	fx.sumar_ind("cohesion", float(d["regen_cohesion_semanal"]))
+	movimientos.fijar_movimientos()
 
-
-# ---------------------------------------------------------------- Paso 2
-# ---------------------------------------------------------------- Paso 3
-func robar_mano(n: int = 5) -> void:
-	while estado.mano.size() < n:
-		if estado.mazo.is_empty() and not _reponer_mazo():
-			return
-		var id: String = estado.mazo.pop_back()
-		if estado.cartas_ejecutadas.has(id):
-			continue  # carta única ya ejecutada: sale del mazo
-		estado.mano.append(_cartas_por_id[id])
-
-
-func _reponer_mazo() -> bool:
-	if not estado.descarte.is_empty():
-		estado.mazo.assign(estado.descarte)
-		estado.descarte.clear()
-	else:
-		for c in catalogo_cartas:
-			if not estado.mano.any(func(m: Dictionary) -> bool: return m["id"] == c["id"]):
-				estado.mazo.append(String(c["id"]))
-	for i in range(estado.mazo.size() - 1, 0, -1):  # Fisher-Yates con la semilla de la partida
-		var j := rng.randi_range(0, i)
-		var tmp: String = estado.mazo[i]
-		estado.mazo[i] = estado.mazo[j]
-		estado.mazo[j] = tmp
-	return not estado.mazo.is_empty()
-
-
-# ---------------------------------------------------------------- Pasos 4-6
-# ---------------------------------------------------------------- Paso 7-8
 
 func cerrar_turno() -> void:
 	if estado.etapa != "campana" and estado.etapa != "gobierno":
@@ -160,6 +142,7 @@ func cerrar_turno() -> void:
 		mandato.evaluar_crisis()
 	estado.registrar_accion("cierre_turno", {"aprobacion": snappedf(estado.ind("aprobacion"), 0.01), "resumen": resumen.size()})
 	estado.registrar_entrada("cerrar", {})
+	cartas.descartar_mano()
 	if estado.etapa != "gobierno" and estado.etapa != "campana":
 		return
 	estado.turno_actual += 1
@@ -168,28 +151,8 @@ func cerrar_turno() -> void:
 		mandato.finalizar("fin_mandato")
 
 
-func resolver_eleccion_presidencial() -> Dictionary:
-	var umbral := float(_h("umbral_victoria_presidencial"))
-	var ruido := float(catalogo_leyes["campana"]["ruido_eleccion"])
-	var voto_final := clampf(estado.ind("aprobacion") + rng.randf_range(-ruido, ruido), 0.0, 100.0)
-	var electo := voto_final >= umbral
-	estado.registrar_accion("eleccion_presidencial", {
-		"voto_final": voto_final, "umbral": umbral, "electo": electo,
-		"promesas_registradas": estado.promesas_campana.size()
-	})
-	estado.registrar_entrada("eleccion", {})
-	if electo:
-		estado.etapa = "gobierno"
-		estado.turno_actual = 1
-		estado.dia_actual = 1
-		estado.pa_actual = estado.pa_maximo
-	else:
-		estado.etapa = "derrota_electoral"
-		estado.resultado_final = {"motivo": "derrota_electoral", "voto_final": voto_final, "puntaje": 0}
-	return {"electo": electo, "voto_final": voto_final, "umbral": umbral}
+func resolver_eleccion_presidencial() -> Dictionary: return mandato.resolver_eleccion()
 
-
-# ---------------------------------------------------------------- Utilidades de efectos
 
 # ---------------------------------------------------------------- Fachada (la UI y los tests usan estos nombres)
 func procesar_eventos_semana() -> Array[Dictionary]: return eventos.procesar_semana()
@@ -214,3 +177,40 @@ func impulsar_proyecto(pid: String) -> Dictionary: return sectra.impulsar(pid)
 
 
 func calcular_puntaje() -> int: return mandato.calcular_puntaje()
+
+
+func robar_mano(n: int = 5) -> void: mazo.robar(n)
+
+
+func carta_disponible(carta: Dictionary) -> bool: return gabinete.disponible(carta)
+
+
+func elegir_gabinete(ids: Array) -> Dictionary: return gabinete.elegir(ids)
+
+
+func delegar_carta(idx: int, ministro_id: String, region_id: String = "") -> Dictionary: return cartas.jugar_carta(idx, ministro_id, region_id, true)
+
+
+func prob_fallo_delegacion(idx: int, ministro_id: String) -> float: return gabinete.prob_fallo(estado.mano[idx], ministro_id)
+
+
+func buscar_meta(meta_id: String) -> Dictionary: return movimientos.buscar_meta(meta_id)
+
+
+func ajustar_sector(sector: String, direccion: int) -> Dictionary: return movimientos.ajustar_sector(sector, direccion)
+
+
+func reducir_errores() -> Dictionary: return movimientos.reducir_errores()
+
+
+func acelerar_proyecto(idx: int) -> Dictionary: return movimientos.acelerar_proyecto(idx)
+
+
+func contratar_asesor(id: String) -> Dictionary: return equipo.contratar(id)
+
+
+func despedir_asesor(id: String) -> Dictionary: return equipo.despedir(id)
+func unirse_coalicion(id: String) -> Dictionary: return coalicion.unirse(id)
+func salir_coalicion(id: String) -> Dictionary: return coalicion.salir(id)
+func asignar_cuota(id: String, tipo: String, valor: String) -> Dictionary: return coalicion.asignar_cuota(id, tipo, valor)
+func quitar_cuota(id: String, tipo: String, valor: String) -> Dictionary: return coalicion.asignar_cuota(id, tipo, valor, true)

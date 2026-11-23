@@ -8,6 +8,7 @@ from datetime import date, timedelta
 import json
 import math
 import os
+import re
 from pathlib import Path
 import sys
 
@@ -85,6 +86,25 @@ def validar_efectos(efectos: list, contexto: str) -> None:
             raise ValueError(f"{contexto}: delta inválido")
 
 
+def validar_leyes_v2(leyes: dict) -> None:
+    mano, gab, dele, mov = leyes["mano"], leyes["gabinete"], leyes["delegacion"], leyes["movimientos_internos"]
+    if not 1 <= mano["costo_min"] <= mano["costo_max"] <= 3:
+        raise ValueError("mano: costo_min/costo_max deben estar en 1..3")
+    if not 1 <= gab["tamano"] <= 25:
+        raise ValueError("gabinete: tamano fuera de 1..25")
+    if not 0 <= dele["prob_fallo_min"] <= dele["prob_fallo_max"] <= 1:
+        raise ValueError("delegacion: probabilidades de fallo inválidas")
+    if leyes["asesores"]["max"] < 1 or leyes["mano"]["reposicion_cartas"] < 1:
+        raise ValueError("asesores/reposición inválidos")
+    for t in leyes["bono_movimientos"]["tramos"]:
+        if t["paso"] <= 0 or t["hasta"] < t["desde"] or t["mov"] < 0:
+            raise ValueError("bono_movimientos: tramo inválido")
+    if mov["por_turno"] < 1 or mov["ajustar_sector"]["paso"] <= 0:
+        raise ValueError("movimientos_internos inválidos")
+    for clave in ("efectos_subir", "efectos_bajar"):
+        validar_efectos(mov["ajustar_sector"][clave], f"movimientos_internos.{clave}")
+
+
 def validar_leyes(leyes: dict, ids_fuentes: set) -> set:
     h = leyes["hemiciclo"]
     if h["dias_por_turno"] * 208 != h["duracion_mandato_dias"] + 0 and \
@@ -92,15 +112,37 @@ def validar_leyes(leyes: dict, ids_fuentes: set) -> set:
         raise ValueError("hemiciclo: 208 turnos no cubren la duración del mandato")
     if h["total_senadores"] != 50:
         raise ValueError("hemiciclo: el Senado debe tener 50 senadores")
+    validar_leyes_v2(leyes)
     tipos = unicos(leyes["tipos_ley"], "tipos_ley")
     for t in leyes["tipos_ley"]:
         verificar_ref_fuente(t, ids_fuentes, f"tipo_ley {t['id']}")
-        if t["votos_minimos"] > h["total_senadores"]:
-            raise ValueError(f"tipo_ley {t['id']}: votos_minimos excede el Senado")
+        if t["regla"] not in ("ninguna", "mayoria", "fraccion") or t["base_quorum"] not in ("presentes", "en_ejercicio"):
+            raise ValueError(f"tipo_ley {t['id']}: regla o base_quorum inválidas")
+        if t["regla"] == "fraccion" and not (0 < t["fraccion"]["num"] < t["fraccion"]["den"]):
+            raise ValueError(f"tipo_ley {t['id']}: fracción inválida")
+        if not t.get("cita_regla"):
+            raise ValueError(f"tipo_ley {t['id']}: falta cita_regla")
+        if not 0.5 < leyes["congreso"]["asistencia_presentes"] <= 1.0:
+            raise ValueError("congreso.asistencia_presentes fuera de (0.5, 1]")
         for p in ("prob_recurso_tc", "prob_exito_tc"):
             if not 0.0 <= t[p] <= 1.0:
                 raise ValueError(f"tipo_ley {t['id']}: {p} fuera de [0,1]")
     return tipos
+
+
+def validar_disponibilidad(c: dict, ctx: str) -> None:
+    d = c.get("disponibilidad")
+    if d is None:
+        return
+    desde, hasta = d.get("anio_desde"), d.get("anio_hasta")
+    for a in (desde, hasta):
+        if a is not None and not (isinstance(a, int) and 1 <= a <= 4):
+            raise ValueError(f"{ctx}: anio fuera de 1..4")
+    if desde is not None and hasta is not None and desde > hasta:
+        raise ValueError(f"{ctx}: anio_desde > anio_hasta")
+    fm = d.get("fiscal_min")
+    if fm is not None and not 0 <= fm <= 100:
+        raise ValueError(f"{ctx}: fiscal_min fuera de 0..100")
 
 
 def validar_cartas(cartas: list, ids_fuentes: set, tipos: set, props: set) -> None:
@@ -114,6 +156,7 @@ def validar_cartas(cartas: list, ids_fuentes: set, tipos: set, props: set) -> No
                 raise ValueError(f"{ctx}: requisito {k} desconocido '{c['requisitos'][k]}'")
         if c["abre_propuesta_comite"] and c["abre_propuesta_comite"] not in props:
             raise ValueError(f"{ctx}: propuesta inexistente")
+        validar_disponibilidad(c, ctx)
         corr = c["corrector"]
         if corr and corr["meta"] <= 0:
             raise ValueError(f"{ctx}: meta del corrector debe ser positiva")
@@ -237,6 +280,44 @@ def validar_sectra(regiones: set, leyes: dict) -> None:
         raise ValueError("leyes.sectra inválida")
 
 
+def validar_proyectos(regiones: set, ids_fuentes: set) -> None:
+    """data/proyectos/*.json: esquema de registro, regiones, fuentes y ausencia de cifras inventadas."""
+    estados = {"idea", "perfil", "prefactibilidad", "diseno", "licitacion", "ejecucion", "terminado", "abandonado"}
+    claves = {"id", "nombre", "sector", "region_id", "region_ids", "comuna", "estado", "estado_2026_03_11", "inversion_musd",
+              "inversion_uf", "inversion_clp", "fecha_inicio", "fecha_fin", "mandante", "descripcion", "fuente_url", "fuente", "fecha_consulta",
+              "verificado", "notas"}
+    patron_fecha = re.compile(r"^\d{4}(-\d{2}(-\d{2})?|-(Q[1-4]|S[12]))?$")
+    vistos = set()
+    for ruta in sorted((DATA_DIR / "proyectos").glob("*.json")):
+        d = json.loads(ruta.read_text(encoding="utf-8"))
+        for p in d["proyectos"]:
+            ctx = f"{ruta.name}/{p.get('id')}"
+            if set(p) != claves:
+                raise ValueError(f"{ctx}: claves distintas del esquema: {set(p) ^ claves}")
+            if p["id"] in vistos:
+                raise ValueError(f"{ctx}: id duplicado entre archivos")
+            vistos.add(p["id"])
+            if p["estado"] not in estados or (p["estado_2026_03_11"] not in estados and p["estado_2026_03_11"] is not None):
+                raise ValueError(f"{ctx}: estado inválido")
+            if not p["nombre"] or not p["sector"] or not p["fuente_url"].startswith("https://"):
+                raise ValueError(f"{ctx}: nombre, sector o fuente_url inválidos")
+            if p["region_id"] is not None and p["region_id"] not in regiones:
+                raise ValueError(f"{ctx}: región desconocida {p['region_id']}")
+            if any(r not in regiones for r in p["region_ids"]):
+                raise ValueError(f"{ctx}: region_ids desconocida")
+            verificar_ref_fuente(p, ids_fuentes, ctx)
+            for k in ("inversion_musd", "inversion_uf", "inversion_clp"):
+                if p[k] is not None and (not isinstance(p[k], (int, float)) or p[k] < 0):
+                    raise ValueError(f"{ctx}: {k} inválido")
+            for k in ("fecha_inicio", "fecha_fin"):
+                if p[k] is not None and not patron_fecha.match(p[k]):
+                    raise ValueError(f"{ctx}: {k} con formato inválido '{p[k]}'")
+            date.fromisoformat(p["fecha_consulta"])
+            if not isinstance(p["verificado"], bool):
+                raise ValueError(f"{ctx}: verificado debe ser booleano")
+    print(f"[INFO] Proyectos públicos: {len(vistos)} registros válidos")
+
+
 def main() -> int:
     nombres = ("fuentes", "leyes", "ministros", "cartas", "eventos", "ideologia", "regiones", "propuestas")
     datos = {n: cargar_json(f"{n}.json") for n in nombres}
@@ -245,7 +326,36 @@ def main() -> int:
     ids_fuentes = validar_fuentes(datos["fuentes"])
     tipos = validar_leyes(datos["leyes"], ids_fuentes)
     props = unicos(datos["propuestas"], "propuestas")
+    reales = json.loads((DATA_DIR / "cartas_reales.json").read_text(encoding="utf-8"))
+    for c in reales:
+        if "meta" not in c or not c["meta"].get("cifras_ilustrativas"):
+            raise ValueError(f"carta real {c['id']}: debe rotular cifras_ilustrativas")
+        if c["requisitos"]["ley"] and not c["meta"].get("quorum_verificado") and not c["meta"].get("nota_quorum"):
+            raise ValueError(f"carta real {c['id']}: quórum sin verificar debe llevar nota_quorum")
+        if not 1 <= c["costo_pa"] <= 3:
+            raise ValueError(f"carta real {c['id']}: costo 1-3 movimientos")
+        if len(c["titulo"]) > 60 or not c.get("disponibilidad"):
+            raise ValueError(f"carta real {c['id']}: título ≤ 60 y `disponibilidad` obligatoria")
+        if c["meta"]["tipo"] in ("proyecto_de_ley", "reforma_constitucional") and not (c["meta"].get("fecha_corte") and c["meta"].get("titulo_completo") and isinstance(c["meta"].get("verificado"), bool)):
+            raise ValueError(f"carta real {c['id']}: proyecto de ley sin fecha_corte/titulo_completo/verificado")
+    titulos = [c["titulo"] for c in reales]
+    if len(set(titulos)) != len(titulos) or any(t.endswith("…") for t in titulos):
+        raise ValueError("cartas reales: títulos duplicados o truncados con '…'")
+    fuentes_por_id = {f["id"]: f for f in datos["fuentes"]}
+    for c in reales:
+        hecho = c["meta"].get("verificado_hecho")
+        if not isinstance(hecho, bool):
+            raise ValueError(f"carta real {c['id']}: meta.verificado_hecho debe ser booleano (hecho real con fuente primaria; distinto de cifras_ilustrativas)")
+        if hecho and fuentes_por_id[c["fuente"].split("#")[-1]].get("verificado_contra_texto") is False:
+            raise ValueError(f"carta real {c['id']}: verificado_hecho=true con una fuente no verificada contra el texto ({c['fuente']})")
+    validar_schema("cartas.json", reales)
+    datos["cartas"] = datos["cartas"] + reales
     validar_cartas(datos["cartas"], ids_fuentes, tipos, props)
+    from validate_v2 import validar_v2
+    validar_v2(datos, ids_fuentes)
+    datos["eventos"] = datos["eventos"] + json.loads((DATA_DIR / "juego_eventos_reales.json").read_text(encoding="utf-8"))
+    from validate_v2 import validar_disponibilidad_cartas
+    validar_disponibilidad_cartas(datos["cartas"], {e["id"] for e in datos["eventos"]}, {c["categoria"] for c in datos["cartas"]})
     validar_eventos(datos["eventos"], ids_fuentes, tipos, datos["leyes"]["hemiciclo"]["duracion_mandato_dias"])
     validar_ideologia(datos["ideologia"])
     validar_ministros(datos["ministros"], datos["cartas"])
@@ -253,6 +363,11 @@ def main() -> int:
     validar_propuestas(datos["propuestas"], ids_fuentes, {r["id"] for r in datos["regiones"]})
     validar_grafo()
     validar_sectra({r["id"] for r in datos["regiones"]}, datos["leyes"])
+    validar_proyectos({r["id"] for r in datos["regiones"]}, ids_fuentes)
+    from validate_partidos import validar_partidos
+    validar_partidos()
+    from validate_bcn import validar_bcn
+    validar_bcn(ids_fuentes, {r["id"] for r in datos["regiones"]})
     print("OK: Todos los JSON de Fase 0 superaron la validación")
     return 0
 

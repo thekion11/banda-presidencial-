@@ -90,5 +90,221 @@
     "fecha_corte": "2026-11-23",
     "vigencia_dias": 365,
     "es_ilustrativa": true
+  },
+  {
+    "id": "servel_calendario_2025",
+    "institucion": "Servicio Electoral de Chile (Servel)",
+    "titulo": "Calendario de elecciones presidenciales 2025 (1ª vuelta 16-nov-2025, 2ª vuelta 14-dic-2025) y cambio de mando 11-mar-2026",
+    "url": "https://www.servel.cl/",
+    "fecha_corte": "2026-11-23",
+    "vigencia_dias": 365,
+    "es_ilustrativa": false
+  },
+  {
+    "id": "mop_concesiones",
+    "institucion": "MOP - Dirección General de Concesiones",
+    "titulo": "Fichas de proyectos de concesiones (cartera 2026-2030, licitación, construcción, operación, finalizadas)",
+    "url": "https://concesiones.mop.gob.cl/cartera-de-proyectos/",
+    "fecha_corte": "2026-11-23",
+    "vigencia_dias": 180,
+    "es_ilustrativa": false,
+    "verificado_contra_texto": false
+  },
+  {
+    "id": "mop_obras",
+    "institucion": "Ministerio de Obras Públicas (MOP) y sus direcciones",
+    "titulo": "Fichas de obras: Vialidad, DOH, DOP, Arquitectura, Aeropuertos",
+    "url": "https://www.mop.gob.cl/",
+    "fecha_corte": "2026-11-23",
+    "vigencia_dias": 365,
+    "es_ilustrativa": false,
+    "verificado_contra_texto": false
+  },
+  {
+    "id": "efe_proyectos",
+    "institucion": "Empresa de los Ferrocarriles del Estado (EFE Trenes de Chile)",
+    "titulo": "Proyectos del Plan Trenes para Chile y otros desarrollos",
+    "url": "https://www.efe.cl/proyectos/",
+    "fecha_corte": "2026-11-23",
+    "vigencia_dias": 180,
+    "es_ilustrativa": false,
+    "verificado_contra_texto": false
+  },
+  {
+    "id": "metro_santiago",
+    "institucion": "Metro de Santiago y prensa (Meganoticias, El Dínamo, Radio Agricultura)",
+    "titulo": "Nuevas líneas 7, 8, 9 y A: fichas oficiales y cifras de prensa",
+    "url": "https://www.metro.cl/nuevos-proyectos/linea-7",
+    "fecha_corte": "2026-11-23",
+    "vigencia_dias": 180,
+    "es_ilustrativa": false,
+    "verificado_contra_texto": false
+  },
+  {
+    "id": "minsal_inversiones",
+    "institucion": "Ministerio de Salud (MINSAL)",
+    "titulo": "Plan de Inversiones Oncológicas 2026-2030 y cartera de inversión hospitalaria",
+    "url": "https://www.minsal.cl/",
+    "fecha_corte": "2026-11-23",
+    "vigencia_dias": 180,
+    "es_ilustrativa": false,
+    "verificado_contra_texto": false
+  },
+  {
+    "id": "planes_prensa_2026",
+    "institucion": "Prensa chilena (Radio UChile, BioBioChile, La Tercera, El Desconcierto, The Clinic)",
+    "titulo": "Planes nacionales y anuncios del gobierno 2026 (PNIP 2055, plan carcelario, transporte)",
+    "url": "https://www.mop.gob.cl/",
+    "fecha_corte": "2026-11-23",
+    "vigencia_dias": 180,
+    "es_ilustrativa": false,
+    "verificado_contra_texto": false
+  },
+  {
+    "id": "cpr_texto_bcn_2025_10_07",
+    "institucion": "Biblioteca del Congreso Nacional (BCN Ley Chile)",
+    "titulo": "Constitución Política de la República - texto actualizado al 7 de octubre de 2025 (PDF oficial entregado por el equipo)",
+    "url": "https://www.bcn.cl/leychile/navegar?idNorma=242302",
+    "fecha_corte": "2025-10-07",
+    "vigencia_dias": 730,
+    "es_ilustrativa": false,
+    "verificado_contra_texto": true
+  },
+  {
+    "id": "bcn_leychile_pdf",
+    "institucion": "Biblioteca del Congreso Nacional (BCN Ley Chile)",
+    "titulo": "PDF oficiales de normas (Ley 20.955, DFL 1 Justicia 2000 Código Civil) entregados por el equipo",
+    "url": "https://www.bcn.cl/leychile/",
+    "fecha_corte": "2026-11-23",
+    "vigencia_dias": 365,
+    "es_ilustrativa": false,
+    "verificado_contra_texto": true
+  },
+  {
+    "id": "camara_opendata",
+    "institucion": "Cámara de Diputadas y Diputados - Open Data",
+    "titulo": "WSLegislativo: mensajes y mociones por año, proyectos por boletín",
+    "url": "https://opendata.camara.cl/camaradiputados/WServices/WSLegislativo.asmx",
+    "fecha_corte": "2026-11-23",
+    "vigencia_dias": 90,
+    "es_ilustrativa": false
+  },
+  {
+    "id": "senado_tramitacion",
+    "institucion": "Senado de la República - Tramitación",
+    "titulo": "Web service de tramitación de proyectos por boletín (estado, urgencia, ley, Diario Oficial)",
+    "url": "https://tramitacion.senado.cl/wspublico/tramitacion.php",
+    "fecha_corte": "2026-11-23",
+    "vigencia_dias": 90,
+    "es_ilustrativa": false
+  },
+  {
+    "id": "wikipedia_es",
+    "institucion": "Wikipedia en español (fuente secundaria)",
+    "titulo": "Artículos sobre elecciones, plebiscitos y cronologías; remiten a Servel y prensa. Usar sólo para contrastar",
+    "url": "https://es.wikipedia.org/",
+    "fecha_corte": "2026-11-23",
+    "vigencia_dias": 90,
+    "es_ilustrativa": false,
+    "verificado_contra_texto": false
+  },
+  {
+    "id": "servel",
+    "institucion": "Servicio Electoral de Chile (Servel)",
+    "titulo": "Resultados electorales oficiales (presidencial 2025, plebiscitos 2022 y 2023)",
+    "url": "https://www.servel.cl/",
+    "fecha_corte": "2026-11-23",
+    "vigencia_dias": 365,
+    "es_ilustrativa": false
+  },
+  {
+    "id": "tricel_proclamacion_2025",
+    "institucion": "Tribunal Calificador de Elecciones (Tricel)",
+    "titulo": "Sentencia de proclamación del Presidente electo, segunda votación 14-dic-2025 (escrutinio general por región)",
+    "url": "https://tribunalcalificador.cl/wp-content/uploads/2026/01/Sent-de-proclamacion.pdf",
+    "fecha_corte": "2026-11-23",
+    "vigencia_dias": 3650,
+    "es_ilustrativa": false,
+    "verificado_contra_texto": true
+  },
+  {
+    "id": "servel_partidos_constituidos",
+    "institucion": "Servicio Electoral de Chile (Servel)",
+    "titulo": "Partidos políticos constituidos (nómina y fechas; consulta 2026-11-23)",
+    "url": "https://www.servel.cl/partidos-politicos/partidos-constituidos/",
+    "fecha_corte": "2026-11-23",
+    "vigencia_dias": 180,
+    "es_ilustrativa": false,
+    "verificado_contra_texto": true
+  },
+  {
+    "id": "servel_fecha_constitucion_regiones_2026",
+    "institucion": "Servicio Electoral de Chile (Servel)",
+    "titulo": "Partidos legalmente constituidos: fecha de constitución en cada región (actualización 30-sep-2026)",
+    "url": "https://www.servel.cl/wp-content/uploads/2026/10/FECHA-CONSTITUCION-PARTIDOS-POLITICOS-30-DE-SEPTIEMBRE-DE-2026.pdf",
+    "fecha_corte": "2026-11-23",
+    "vigencia_dias": 180,
+    "es_ilustrativa": false,
+    "verificado_contra_texto": true
+  },
+  {
+    "id": "ley_18603_partidos",
+    "institucion": "Biblioteca del Congreso Nacional (BCN Ley Chile)",
+    "titulo": "Ley 18.603 Orgánica Constitucional de los Partidos Políticos (art. 8: nombres, siglas y símbolos; texto leído en copia de Justia Chile, contrastar con versión vigente BCN)",
+    "url": "https://www.bcn.cl/leychile/navegar?idNorma=1107684",
+    "fecha_corte": "2026-11-23",
+    "vigencia_dias": 180,
+    "es_ilustrativa": false,
+    "verificado_contra_texto": false
+  },
+  {
+    "id": "ley_19039_marcas",
+    "institucion": "Biblioteca del Congreso Nacional (BCN Ley Chile) / INAPI",
+    "titulo": "Ley 19.039 de Propiedad Industrial, art. 20 (marcas no registrables; texto leído en copia de Justia Chile, vigente es el DFL 4 de 2022)",
+    "url": "https://chile.justia.com/nacionales/leyes/ley-n-19-039/gdoc",
+    "fecha_corte": "2026-11-23",
+    "vigencia_dias": 180,
+    "es_ilustrativa": false,
+    "verificado_contra_texto": false
+  },
+  {
+    "id": "wikipedia_parlamentarias_2025",
+    "institucion": "Wikipedia (fuente secundaria)",
+    "titulo": "Elecciones parlamentarias de Chile de 2025 (escaños por partido; contrastar con Servel)",
+    "url": "https://es.wikipedia.org/wiki/Elecciones_parlamentarias_de_Chile_de_2025",
+    "fecha_corte": "2026-11-23",
+    "vigencia_dias": 180,
+    "es_ilustrativa": false,
+    "verificado_contra_texto": false
+  },
+  {
+    "id": "wikipedia_parlamentarias_2021",
+    "institucion": "Wikipedia (fuente secundaria)",
+    "titulo": "Elecciones parlamentarias de Chile de 2021 (escaños por partido; contrastar con Servel)",
+    "url": "https://es.wikipedia.org/wiki/Elecciones_parlamentarias_de_Chile_de_2021",
+    "fecha_corte": "2026-11-23",
+    "vigencia_dias": 180,
+    "es_ilustrativa": false,
+    "verificado_contra_texto": false
+  },
+  {
+    "id": "google_play_suplantacion",
+    "institucion": "Google Play Console",
+    "titulo": "Política de suplantación de identidad (Impersonation)",
+    "url": "https://support.google.com/googleplay/android-developer/answer/9888374",
+    "fecha_corte": "2026-11-23",
+    "vigencia_dias": 180,
+    "es_ilustrativa": false,
+    "verificado_contra_texto": true
+  },
+  {
+    "id": "google_play_conducta_enganosa",
+    "institucion": "Google Play Console",
+    "titulo": "Política de comportamiento engañoso (excepción para sátira/parodia evidente, 4.2)",
+    "url": "https://support.google.com/googleplay/android-developer/answer/9888077",
+    "fecha_corte": "2026-11-23",
+    "vigencia_dias": 180,
+    "es_ilustrativa": false,
+    "verificado_contra_texto": true
   }
 ]

@@ -1,0 +1,3549 @@
+{
+ "fecha_corte": "2026-11-23",
+ "total": 179,
+ "normas": [
+  {
+   "id": "cpr",
+   "tipo": "constitucion",
+   "numero": null,
+   "titulo": "Constitución Política de la República de Chile",
+   "organismo_emisor": "Congreso / Poder Constituyente (texto de 1980, última reforma vigente Ley 21.773)",
+   "fecha_publicacion": null,
+   "version": "Texto actualizado al 7 de octubre de 2025 (portada del PDF oficial)",
+   "quorum": "ver articulos_clave",
+   "organo_competente": "Congreso Nacional",
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idNorma=242302",
+   "fuente": "fuentes.json#cpr_texto_bcn_2025_10_07",
+   "verificado": true,
+   "articulos_clave": [
+    {
+     "articulo": 24,
+     "tema": "poderes",
+     "organo_competente": "Presidente de la República",
+     "regla_quorum": "Gobierno y administración del Estado; cuenta pública el 1 de junio ante el Congreso Pleno",
+     "cita_literal": "El Gobierno y la administración del Estado corresponden al Presidente de la República",
+     "verificado_contra_texto": true
+    },
+    {
+     "articulo": 26,
+     "tema": "elecciones",
+     "organo_competente": "Servel / Tribunal Calificador",
+     "regla_quorum": "Elección directa por mayoría absoluta de los sufragios válidamente emitidos",
+     "cita_literal": "mayoría absoluta de los sufragios válidamente emitidos",
+     "verificado_contra_texto": true
+    },
+    {
+     "articulo": 32,
+     "tema": "atribuciones_presidente",
+     "organo_competente": "Presidente de la República",
+     "regla_quorum": "Atribuciones especiales: sancionar y promulgar leyes, DFL con delegación, convocar plebiscito, urgencias, etc.",
+     "cita_literal": "Son atribuciones especiales del Presidente de la República",
+     "verificado_contra_texto": true
+    },
+    {
+     "articulo": 40,
+     "tema": "excepcion",
+     "organo_competente": "Presidente + Congreso Nacional",
+     "regla_quorum": "Estado de asamblea y de sitio: declara el Presidente con acuerdo del Congreso; el Congreso se pronuncia en 5 días o se entiende aprobado; sitio máx. 15 días prorrogables",
+     "cita_literal": "con acuerdo del Congreso Nacional",
+     "verificado_contra_texto": true
+    },
+    {
+     "articulo": 41,
+     "tema": "excepcion",
+     "organo_competente": "Presidente de la República",
+     "regla_quorum": "Estado de catástrofe: lo declara el Presidente; el Congreso puede dejarlo sin efecto tras 180 días si cesaron las razones; más de un año requiere acuerdo del Congreso",
+     "cita_literal": "El estado de catástrofe, en caso de calamidad pública, lo declarará el Presidente de la República",
+     "verificado_contra_texto": true
+    },
+    {
+     "articulo": 42,
+     "tema": "excepcion",
+     "organo_competente": "Presidente + Congreso (prórrogas)",
+     "regla_quorum": "Estado de emergencia: 15 días prorrogables por igual período; prórrogas sucesivas requieren acuerdo del Congreso; desde la sexta prórroga, períodos de 30 días",
+     "cita_literal": "El estado de emergencia, en caso de grave alteración del orden público",
+     "verificado_contra_texto": true
+    },
+    {
+     "articulo": 52,
+     "tema": "congreso",
+     "organo_competente": "Cámara de Diputados",
+     "regla_quorum": "Fiscaliza al Gobierno (acuerdos por mayoría de presentes; antecedentes con un tercio de los presentes); acusaciones constitucionales",
+     "cita_literal": "Son atribuciones exclusivas de la Cámara de Diputados",
+     "verificado_contra_texto": true
+    },
+    {
+     "articulo": 53,
+     "tema": "congreso",
+     "organo_competente": "Senado",
+     "regla_quorum": "Acusación constitucional: culpabilidad por 2/3 de los senadores en ejercicio si es contra el Presidente o un gobernador regional; mayoría de los en ejercicio en los demás casos",
+     "cita_literal": "dos tercios de los senadores en ejercicio cuando se trate de una acusación en contra del Presidente de la República",
+     "verificado_contra_texto": true
+    },
+    {
+     "articulo": 63,
+     "tema": "materias_ley",
+     "organo_competente": "Congreso Nacional",
+     "regla_quorum": "Listado de materias de ley; empréstitos que excedan el período presidencial requieren ley de quórum calificado",
+     "cita_literal": "Sólo son materias de ley",
+     "verificado_contra_texto": true
+    },
+    {
+     "articulo": 64,
+     "tema": "delegacion",
+     "organo_competente": "Congreso Nacional",
+     "regla_quorum": "Delegación de facultades legislativas (DFL) hasta un año; excluye nacionalidad, elecciones, garantías constitucionales, LOC y quórum calificado",
+     "cita_literal": "no superior a un año",
+     "verificado_contra_texto": true
+    },
+    {
+     "articulo": 65,
+     "tema": "iniciativa",
+     "organo_competente": "Presidente / Congreso",
+     "regla_quorum": "Iniciativa exclusiva del Presidente en división político-administrativa, administración financiera, tributos, servicios públicos y empleos, endeudamiento; tributos y presupuestos nacen en la Cámara; mociones máx. 10 diputados o 5 senadores",
+     "cita_literal": "Corresponderá al Presidente de la República la iniciativa exclusiva",
+     "verificado_contra_texto": true
+    },
+    {
+     "articulo": 66,
+     "tema": "quorum",
+     "organo_competente": "Cámara de Diputados y Senado",
+     "regla_quorum": "Interpretativas de la Constitución: 4/7 de los en ejercicio; LOC y quórum calificado: mayoría absoluta de los en ejercicio; demás normas: mayoría de los presentes",
+     "cita_literal": "cuatro séptimas partes",
+     "verificado_contra_texto": true
+    },
+    {
+     "articulo": 67,
+     "tema": "presupuesto",
+     "organo_competente": "Presidente + Congreso",
+     "regla_quorum": "Ley de Presupuestos presentada con 3 meses de antelación; si el Congreso no despacha en 60 días rige el proyecto del Presidente; el Congreso sólo puede reducir gastos",
+     "cita_literal": "regirá el proyecto presentado por el Presidente de la República",
+     "verificado_contra_texto": true
+    },
+    {
+     "articulo": 70,
+     "tema": "tramitacion",
+     "organo_competente": "Comisión mixta",
+     "regla_quorum": "Proyecto desechado en su totalidad por la revisora va a comisión mixta; se aprueba por mayoría de presentes",
+     "cita_literal": "mayoría de los miembros presentes en cada una de ellas",
+     "verificado_contra_texto": true
+    },
+    {
+     "articulo": 73,
+     "tema": "veto",
+     "organo_competente": "Presidente + Congreso",
+     "regla_quorum": "Veto en 30 días; insistencia por 2/3 de los miembros presentes de ambas Cámaras",
+     "cita_literal": "dos tercios de sus miembros presentes",
+     "verificado_contra_texto": true
+    },
+    {
+     "articulo": 74,
+     "tema": "urgencia",
+     "organo_competente": "Presidente de la República",
+     "regla_quorum": "Urgencia: la Cámara debe pronunciarse en máximo 30 días (calificación según LOC del Congreso)",
+     "cita_literal": "deberá pronunciarse dentro del plazo máximo de treinta días",
+     "verificado_contra_texto": true
+    },
+    {
+     "articulo": 92,
+     "tema": "tc",
+     "organo_competente": "Tribunal Constitucional",
+     "regla_quorum": "10 miembros: 3 Presidente, 4 Congreso (2/3 en ejercicio), 3 Corte Suprema",
+     "cita_literal": "Habrá un Tribunal Constitucional integrado por diez miembros",
+     "verificado_contra_texto": true
+    },
+    {
+     "articulo": 93,
+     "tema": "tc",
+     "organo_competente": "Tribunal Constitucional",
+     "regla_quorum": "Control preventivo de LOC/interpretativas; inaplicabilidad por mayoría de miembros en ejercicio; inconstitucionalidad por 4/5",
+     "cita_literal": "cuatro quintos de sus integrantes en ejercicio",
+     "verificado_contra_texto": true
+    },
+    {
+     "articulo": 98,
+     "tema": "contraloria",
+     "organo_competente": "Contraloría General de la República",
+     "regla_quorum": "Control de legalidad de los actos de la Administración; toma de razón",
+     "cita_literal": "ejercerá el control de la legalidad de los actos de la Administración",
+     "verificado_contra_texto": true
+    },
+    {
+     "articulo": 99,
+     "tema": "contraloria",
+     "organo_competente": "Contraloría General de la República",
+     "regla_quorum": "Representa ilegalidad; el Presidente puede insistir con la firma de todos sus Ministros (decreto de insistencia)",
+     "cita_literal": "el Presidente de la República insista con la firma de todos sus Ministros",
+     "verificado_contra_texto": true
+    },
+    {
+     "articulo": 108,
+     "tema": "banco_central",
+     "organo_competente": "Banco Central",
+     "regla_quorum": "Órgano autónomo; su organización se regula por LOC",
+     "cita_literal": "denominado Banco Central",
+     "verificado_contra_texto": true
+    },
+    {
+     "articulo": 111,
+     "tema": "regiones",
+     "organo_competente": "Gobierno regional",
+     "regla_quorum": "Administración superior de la región en un gobierno regional (gobernador regional y consejo regional)",
+     "cita_literal": "La administración superior de cada región reside en un gobierno regional",
+     "verificado_contra_texto": true
+    },
+    {
+     "articulo": 113,
+     "tema": "regiones",
+     "organo_competente": "Consejo regional",
+     "regla_quorum": "Consejo regional normativo, resolutivo y fiscalizador; consejeros elegidos por sufragio universal, 4 años",
+     "cita_literal": "El consejo regional será un órgano de carácter normativo, resolutivo y fiscalizador",
+     "verificado_contra_texto": true
+    },
+    {
+     "articulo": 114,
+     "tema": "regiones",
+     "organo_competente": "Presidente + LOC",
+     "regla_quorum": "Transferencia de competencias a gobiernos regionales según LOC",
+     "cita_literal": "transferirá a uno o más gobiernos regionales",
+     "verificado_contra_texto": true
+    },
+    {
+     "articulo": 118,
+     "tema": "municipios",
+     "organo_competente": "Municipalidad",
+     "regla_quorum": "Administración local en municipalidades (alcalde y concejo); alcaldes 4 años, reelegibles hasta por dos períodos",
+     "cita_literal": "reside en una municipalidad",
+     "verificado_contra_texto": true
+    },
+    {
+     "articulo": 121,
+     "tema": "municipios",
+     "organo_competente": "Municipalidades + Presidente (iniciativa)",
+     "regla_quorum": "Crear o suprimir empleos y fijar remuneraciones dentro de límites fijados por LOC a iniciativa exclusiva del Presidente",
+     "cita_literal": "a iniciativa exclusiva del Presidente de la República",
+     "verificado_contra_texto": true
+    },
+    {
+     "articulo": 127,
+     "tema": "reforma_constitucional",
+     "organo_competente": "Congreso Nacional",
+     "regla_quorum": "Reforma constitucional: 4/7 de los diputados y senadores en ejercicio en cada Cámara (Ley 21.481)",
+     "cita_literal": "las cuatro séptimas partes de los diputados y senadores en ejercicio",
+     "verificado_contra_texto": true
+    },
+    {
+     "articulo": 128,
+     "tema": "reforma_constitucional",
+     "organo_competente": "Presidente + Congreso",
+     "regla_quorum": "Veto total: si ambas Cámaras insisten por 2/3 de los en ejercicio, se promulga salvo plebiscito; veto parcial: observaciones con 4/7",
+     "cita_literal": "dos terceras partes de los miembros en ejercicio de cada Cámara",
+     "verificado_contra_texto": true
+    },
+    {
+     "articulo": 129,
+     "tema": "reforma_constitucional",
+     "organo_competente": "Presidente + Servel/TRICEL",
+     "regla_quorum": "Plebiscito en 120 días tras decreto de convocatoria (domingo)",
+     "cita_literal": "ciento veinte días",
+     "verificado_contra_texto": true
+    }
+   ]
+  },
+  {
+   "id": "loc_congreso",
+   "tipo": "LOC",
+   "numero": "18.918",
+   "titulo": "Orgánica Constitucional del Congreso Nacional",
+   "organismo_emisor": null,
+   "fecha_publicacion": null,
+   "quorum": "mayoría absoluta de diputados y senadores en ejercicio (CPR art. 66 inc. 2)",
+   "organo_competente": "Congreso Nacional",
+   "fundamento_cpr": [
+    55,
+    74
+   ],
+   "fundamento_verificado": {
+    "55": true,
+    "74": true
+   },
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=18918",
+   "fuente": "fuentes.json#cpr_texto_bcn_2025_10_07",
+   "verificado": false,
+   "nota": "Fecha y texto pendientes: LeyChile bloquea descargas automáticas; contrastar con el PDF oficial."
+  },
+  {
+   "id": "loc_municipalidades",
+   "tipo": "LOC",
+   "numero": "18.695",
+   "titulo": "Orgánica Constitucional de Municipalidades",
+   "organismo_emisor": null,
+   "fecha_publicacion": null,
+   "quorum": "mayoría absoluta de diputados y senadores en ejercicio (CPR art. 66 inc. 2)",
+   "organo_competente": "Municipalidades",
+   "fundamento_cpr": [
+    118,
+    121
+   ],
+   "fundamento_verificado": {
+    "118": true,
+    "121": true
+   },
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=18695",
+   "fuente": "fuentes.json#cpr_texto_bcn_2025_10_07",
+   "verificado": false,
+   "nota": "Fecha y texto pendientes: LeyChile bloquea descargas automáticas; contrastar con el PDF oficial."
+  },
+  {
+   "id": "loc_gore",
+   "tipo": "LOC",
+   "numero": "19.175",
+   "titulo": "Orgánica Constitucional sobre Gobierno y Administración Regional",
+   "organismo_emisor": null,
+   "fecha_publicacion": null,
+   "quorum": "mayoría absoluta de diputados y senadores en ejercicio (CPR art. 66 inc. 2)",
+   "organo_competente": "Gobiernos regionales",
+   "fundamento_cpr": [
+    111,
+    113,
+    114
+   ],
+   "fundamento_verificado": {
+    "111": true,
+    "113": true,
+    "114": true
+   },
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=19175",
+   "fuente": "fuentes.json#cpr_texto_bcn_2025_10_07",
+   "verificado": false,
+   "nota": "Fecha y texto pendientes: LeyChile bloquea descargas automáticas; contrastar con el PDF oficial."
+  },
+  {
+   "id": "loc_bases_administracion",
+   "tipo": "LOC",
+   "numero": "18.575",
+   "titulo": "Orgánica Constitucional de Bases Generales de la Administración del Estado",
+   "organismo_emisor": null,
+   "fecha_publicacion": null,
+   "quorum": "mayoría absoluta de diputados y senadores en ejercicio (CPR art. 66 inc. 2)",
+   "organo_competente": "Administración del Estado",
+   "fundamento_cpr": [
+    38
+   ],
+   "fundamento_verificado": {
+    "38": true
+   },
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=18575",
+   "fuente": "fuentes.json#cpr_texto_bcn_2025_10_07",
+   "verificado": false,
+   "nota": "Fecha y texto pendientes: LeyChile bloquea descargas automáticas; contrastar con el PDF oficial."
+  },
+  {
+   "id": "loc_tc",
+   "tipo": "LOC",
+   "numero": "17.997",
+   "titulo": "Orgánica Constitucional del Tribunal Constitucional",
+   "organismo_emisor": null,
+   "fecha_publicacion": null,
+   "quorum": "mayoría absoluta de diputados y senadores en ejercicio (CPR art. 66 inc. 2)",
+   "organo_competente": "Tribunal Constitucional",
+   "fundamento_cpr": [
+    92,
+    93
+   ],
+   "fundamento_verificado": {
+    "92": true,
+    "93": true
+   },
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=17997",
+   "fuente": "fuentes.json#cpr_texto_bcn_2025_10_07",
+   "verificado": false,
+   "nota": "Fecha y texto pendientes: LeyChile bloquea descargas automáticas; contrastar con el PDF oficial."
+  },
+  {
+   "id": "loc_contraloria",
+   "tipo": "LOC",
+   "numero": "10.336",
+   "titulo": "Orgánica de la Contraloría General de la República",
+   "organismo_emisor": null,
+   "fecha_publicacion": null,
+   "quorum": "mayoría absoluta de diputados y senadores en ejercicio (CPR art. 66 inc. 2)",
+   "organo_competente": "Contraloría",
+   "fundamento_cpr": [
+    98,
+    99
+   ],
+   "fundamento_verificado": {
+    "98": true,
+    "99": true
+   },
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=10336",
+   "fuente": "fuentes.json#cpr_texto_bcn_2025_10_07",
+   "verificado": false,
+   "nota": "Fecha y texto pendientes: LeyChile bloquea descargas automáticas; contrastar con el PDF oficial."
+  },
+  {
+   "id": "loc_banco_central",
+   "tipo": "LOC",
+   "numero": "18.840",
+   "titulo": "Orgánica Constitucional del Banco Central de Chile",
+   "organismo_emisor": null,
+   "fecha_publicacion": null,
+   "quorum": "mayoría absoluta de diputados y senadores en ejercicio (CPR art. 66 inc. 2)",
+   "organo_competente": "Banco Central",
+   "fundamento_cpr": [
+    108
+   ],
+   "fundamento_verificado": {
+    "108": true
+   },
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=18840",
+   "fuente": "fuentes.json#cpr_texto_bcn_2025_10_07",
+   "verificado": false,
+   "nota": "Fecha y texto pendientes: LeyChile bloquea descargas automáticas; contrastar con el PDF oficial."
+  },
+  {
+   "id": "loc_estados_excepcion",
+   "tipo": "LOC",
+   "numero": "18.415",
+   "titulo": "Orgánica Constitucional de los Estados de Excepción",
+   "organismo_emisor": null,
+   "fecha_publicacion": null,
+   "quorum": "mayoría absoluta de diputados y senadores en ejercicio (CPR art. 66 inc. 2)",
+   "organo_competente": "Presidente + Congreso",
+   "fundamento_cpr": [
+    39
+   ],
+   "fundamento_verificado": {
+    "39": true
+   },
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=18415",
+   "fuente": "fuentes.json#cpr_texto_bcn_2025_10_07",
+   "verificado": false,
+   "nota": "Fecha y texto pendientes: LeyChile bloquea descargas automáticas; contrastar con el PDF oficial."
+  },
+  {
+   "id": "dl_1263",
+   "tipo": "DL",
+   "numero": "1.263",
+   "titulo": "Orgánico de la Administración Financiera del Estado (DL 1263 de 1975)",
+   "organismo_emisor": null,
+   "fecha_publicacion": null,
+   "quorum": null,
+   "organo_competente": "DIPRES / Hacienda",
+   "fundamento_cpr": [
+    67
+   ],
+   "fundamento_verificado": {
+    "67": true
+   },
+   "url_leychile": null,
+   "fuente": "fuentes.json#cpr_texto_bcn_2025_10_07",
+   "verificado": false,
+   "nota": "Fecha y texto pendientes: LeyChile bloquea descargas automáticas; contrastar con el PDF oficial."
+  },
+  {
+   "id": "ley_20955",
+   "tipo": "ley",
+   "numero": "20.955",
+   "titulo": "Perfecciona el sistema de alta dirección pública y fortalece la dirección nacional del servicio civil",
+   "organismo_emisor": "Ministerio de Hacienda",
+   "fecha_publicacion": "2016-10-20",
+   "fecha_promulgacion": "2016-10-03",
+   "url_corta": "https://bcn.cl/3hqcg",
+   "version": "Única De : 20-OCT-2016",
+   "quorum": null,
+   "organo_competente": null,
+   "url_leychile": null,
+   "fuente": "fuentes.json#bcn_leychile_pdf",
+   "verificado": true,
+   "nota": "metadatos leídos de la cabecera del PDF oficial entregado por el equipo (LeyChile/BCN)"
+  },
+  {
+   "id": "dfl_1_justicia_2000_codigo_civil",
+   "tipo": "dfl",
+   "numero": "DFL 1 (2000)",
+   "titulo": "FIJA TEXTO REFUNDIDO, COORDINADO Y SISTEMATIZADO DEL CODIGO CIVIL; DE LA LEY Nº4.808, SOBRE REGISTRO CIVIL, DE LA LEY Nº17.344, QUE AUTORIZA CAMBIO DE NOMBRES Y APELLIDOS, DE LA LEY Nº 16.618, LEY DE MENORES, DE LA LEY Nº 14.908, SOBRE ABANDONO DE FAMILIA Y PAGO DE PENSIONES ALIMENTICIAS, Y DE LA LEY Nº16.271, DE IMPUESTO A LAS HERENCIAS, ASIGNACIONES Y DONACIONES",
+   "organismo_emisor": "Ministerio de Justicia",
+   "fecha_publicacion": "2000-05-30",
+   "fecha_promulgacion": "2000-05-16",
+   "url_corta": "https://bcn.cl/3cepu",
+   "version": "Última Versión De : 20-MAY-2023",
+   "quorum": null,
+   "organo_competente": null,
+   "url_leychile": null,
+   "fuente": "fuentes.json#bcn_leychile_pdf",
+   "verificado": true,
+   "nota": "metadatos leídos de la cabecera del PDF oficial entregado por el equipo (LeyChile/BCN)"
+  },
+  {
+   "id": "ley_21423",
+   "tipo": "ley",
+   "numero": "21.423",
+   "titulo": "Regula el prorrateo y pago de deudas por servicios sanitarios y eléctricos generadas durante la pandemia por COVID-19, y establece subsidios a los clientes vulnerables para el pago de éstas.",
+   "organismo_emisor": null,
+   "fecha_publicacion": "2022-02-11",
+   "quorum": null,
+   "organo_competente": null,
+   "boletin": "14772-03",
+   "tema": [
+    "hacienda",
+    "energia"
+   ],
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=21423",
+   "fuente": "fuentes.json#senado_tramitacion",
+   "verificado": true,
+   "nota": "Número y fecha de publicación según el WS de tramitación del Senado; quórum no consta en esa fuente"
+  },
+  {
+   "id": "ley_21554",
+   "tipo": "ley",
+   "numero": "21.554",
+   "titulo": "Entrega facilidades de pago para los derechos de aseo municipal y faculta al Servicio de Tesorerías su cobro, en los casos que indica",
+   "organismo_emisor": null,
+   "fecha_publicacion": "2023-04-18",
+   "quorum": null,
+   "organo_competente": null,
+   "boletin": "14797-06",
+   "tema": [
+    "descentralizacion"
+   ],
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=21554",
+   "fuente": "fuentes.json#senado_tramitacion",
+   "verificado": true,
+   "nota": "Número y fecha de publicación según el WS de tramitación del Senado; quórum no consta en esa fuente"
+  },
+  {
+   "id": "ley_21603",
+   "tipo": "ley",
+   "numero": "21.603",
+   "titulo": "Regula el funcionamiento, organización, funciones y atribuciones de la comisión para la fijación de remuneraciones a que alude el artículo 38 bis de la Constitución Política de la República",
+   "organismo_emisor": null,
+   "fecha_publicacion": "2023-09-16",
+   "quorum": null,
+   "organo_competente": null,
+   "boletin": "14819-07",
+   "tema": [
+    "constitucional"
+   ],
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=21603",
+   "fuente": "fuentes.json#senado_tramitacion",
+   "verificado": true,
+   "nota": "Número y fecha de publicación según el WS de tramitación del Senado; quórum no consta en esa fuente"
+  },
+  {
+   "id": "ley_21462",
+   "tipo": "ley",
+   "numero": "21.462",
+   "titulo": "Modifica la ley N° 21.420, que reduce o elimina exenciones tributarias que indica",
+   "organismo_emisor": null,
+   "fecha_publicacion": "2022-07-26",
+   "quorum": null,
+   "organo_competente": null,
+   "boletin": "14830-05",
+   "tema": [
+    "pensiones",
+    "hacienda"
+   ],
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=21462",
+   "fuente": "fuentes.json#senado_tramitacion",
+   "verificado": true,
+   "nota": "Número y fecha de publicación según el WS de tramitación del Senado; quórum no consta en esa fuente"
+  },
+  {
+   "id": "ley_21746",
+   "tipo": "ley",
+   "numero": "21.746",
+   "titulo": "Modifica la ley N° 20.585, sobre otorgamiento y uso de licencias médicas, con el objeto de fortalecer las facultades de los organismos reguladores y fiscalizadores y establecer las sanciones administrativas y penales que indica",
+   "organismo_emisor": null,
+   "fecha_publicacion": "2025-05-24",
+   "quorum": null,
+   "organo_competente": null,
+   "boletin": "14845-11",
+   "tema": [
+    "seguridad",
+    "hacienda"
+   ],
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=21746",
+   "fuente": "fuentes.json#senado_tramitacion",
+   "verificado": true,
+   "nota": "Número y fecha de publicación según el WS de tramitación del Senado; quórum no consta en esa fuente"
+  },
+  {
+   "id": "ley_21607",
+   "tipo": "ley",
+   "numero": "21.607",
+   "titulo": "Posibilita la incorporación de la Escuela de Gendarmería de Chile dentro de aquellas instituciones de educación superior que el Estado reconoce oficialmente e incorpora reglas especiales para su proceso de acreditación",
+   "organismo_emisor": null,
+   "fecha_publicacion": "2023-10-13",
+   "quorum": null,
+   "organo_competente": null,
+   "boletin": "14879-04",
+   "tema": [
+    "educacion"
+   ],
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=21607",
+   "fuente": "fuentes.json#senado_tramitacion",
+   "verificado": true,
+   "nota": "Número y fecha de publicación según el WS de tramitación del Senado; quórum no consta en esa fuente"
+  },
+  {
+   "id": "ley_21663",
+   "tipo": "ley",
+   "numero": "21.663",
+   "titulo": "Establece una Ley Marco sobre Ciberseguridad e Infraestructura Crítica de la Información.",
+   "organismo_emisor": null,
+   "fecha_publicacion": "2024-04-08",
+   "quorum": null,
+   "organo_competente": null,
+   "boletin": "14847-06",
+   "tema": [
+    "seguridad"
+   ],
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=21663",
+   "fuente": "fuentes.json#senado_tramitacion",
+   "verificado": true,
+   "nota": "Número y fecha de publicación según el WS de tramitación del Senado; quórum no consta en esa fuente"
+  },
+  {
+   "id": "ley_21443",
+   "tipo": "ley",
+   "numero": "21.443",
+   "titulo": "Extiende la cobertura del mecanismo de estabilización de precios de los combustibles creado por la ley N°20.765",
+   "organismo_emisor": null,
+   "fecha_publicacion": "2022-04-22",
+   "quorum": null,
+   "organo_competente": null,
+   "boletin": "14851-05",
+   "tema": [
+    "energia"
+   ],
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=21443",
+   "fuente": "fuentes.json#senado_tramitacion",
+   "verificado": true,
+   "nota": "Número y fecha de publicación según el WS de tramitación del Senado; quórum no consta en esa fuente"
+  },
+  {
+   "id": "ley_21456",
+   "tipo": "ley",
+   "numero": "21.456",
+   "titulo": "Reajusta el monto del Ingreso Mínimo Mensual, así como la Asignación Familiar y Maternal, y el Subsidio Familiar, otorga un subsidio temporal a las Micro, Pequeñas y Medianas Empresas en la forma que indica, y establece un aporte compensatorio del aumento del valor de la Canasta Básica de Alimentos",
+   "organismo_emisor": null,
+   "fecha_publicacion": "2022-05-26",
+   "quorum": null,
+   "organo_competente": null,
+   "boletin": "14936-13",
+   "tema": [
+    "social"
+   ],
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=21456",
+   "fuente": "fuentes.json#senado_tramitacion",
+   "verificado": true,
+   "nota": "Número y fecha de publicación según el WS de tramitación del Senado; quórum no consta en esa fuente"
+  },
+  {
+   "id": "ley_21471",
+   "tipo": "ley",
+   "numero": "21.471",
+   "titulo": "Modifica el decreto con fuerza de ley N° 16, de 1986, del Ministerio del Trabajo y Previsión Social, con el objeto de facultar temporalmente al Director(a) General del Crédito Prendario para condonar intereses moratorios de créditos pignoraticios que se hubieren devengado durante el período que indica.",
+   "organismo_emisor": null,
+   "fecha_publicacion": "2022-08-19",
+   "quorum": null,
+   "organo_competente": null,
+   "boletin": "14947-05",
+   "tema": [
+    "trabajo"
+   ],
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=21471",
+   "fuente": "fuentes.json#senado_tramitacion",
+   "verificado": true,
+   "nota": "Número y fecha de publicación según el WS de tramitación del Senado; quórum no consta en esa fuente"
+  },
+  {
+   "id": "ley_21484",
+   "tipo": "ley",
+   "numero": "21.484",
+   "titulo": "Modifica la ley N° 14.908, sobre Abandono de Familia y Pago de Pensiones Alimenticias, en materia de responsabilidad parental y pago efectivo de las deudas por pensiones de alimentos.",
+   "organismo_emisor": null,
+   "fecha_publicacion": "2022-09-07",
+   "quorum": null,
+   "organo_competente": null,
+   "boletin": "14946-07",
+   "tema": [
+    "pensiones",
+    "hacienda",
+    "social"
+   ],
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=21484",
+   "fuente": "fuentes.json#senado_tramitacion",
+   "verificado": true,
+   "nota": "Número y fecha de publicación según el WS de tramitación del Senado; quórum no consta en esa fuente"
+  },
+  {
+   "id": "ley_21452",
+   "tipo": "ley",
+   "numero": "21.452",
+   "titulo": "Modifica la ley N° 19.030, que crea el Fondo de Estabilización de Precios del Petróleo, con el objeto de incrementar sus recursos.",
+   "organismo_emisor": null,
+   "fecha_publicacion": "2022-05-19",
+   "quorum": null,
+   "organo_competente": null,
+   "boletin": "14945-05",
+   "tema": [
+    "otro"
+   ],
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=21452",
+   "fuente": "fuentes.json#senado_tramitacion",
+   "verificado": true,
+   "nota": "Número y fecha de publicación según el WS de tramitación del Senado; quórum no consta en esa fuente"
+  },
+  {
+   "id": "ley_21464",
+   "tipo": "ley",
+   "numero": "21.464",
+   "titulo": "Modifica diversos cuerpos legales, en materia de Transformación Digital del Estado.",
+   "organismo_emisor": null,
+   "fecha_publicacion": "2022-06-09",
+   "quorum": null,
+   "organo_competente": null,
+   "boletin": "14969-06",
+   "tema": [
+    "otro"
+   ],
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=21464",
+   "fuente": "fuentes.json#senado_tramitacion",
+   "verificado": true,
+   "nota": "Número y fecha de publicación según el WS de tramitación del Senado; quórum no consta en esa fuente"
+  },
+  {
+   "id": "ley_21472",
+   "tipo": "ley",
+   "numero": "21.472",
+   "titulo": "Crea un fondo de estabilización y emergencia energética y establece un nuevo mecanismo de estabilización transitorio de precios de la electricidad para clientes sometidos a regulación de precios",
+   "organismo_emisor": null,
+   "fecha_publicacion": "2022-08-02",
+   "quorum": null,
+   "organo_competente": null,
+   "boletin": "14991-08",
+   "tema": [
+    "energia",
+    "transporte"
+   ],
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=21472",
+   "fuente": "fuentes.json#senado_tramitacion",
+   "verificado": true,
+   "nota": "Número y fecha de publicación según el WS de tramitación del Senado; quórum no consta en esa fuente"
+  },
+  {
+   "id": "ley_21485",
+   "tipo": "ley",
+   "numero": "21.485",
+   "titulo": "Modifica el plazo de entrada en vigencia de los aranceles regulados, derechos básicos de matrícula y cobros por concepto de titulación o graduación, establecidos en el Título V de la ley N° 21.091, sobre Educación Superior, para el financiamiento institucional para la gratuidad.",
+   "organismo_emisor": null,
+   "fecha_publicacion": "2022-10-04",
+   "quorum": null,
+   "organo_competente": null,
+   "boletin": "14997-04",
+   "tema": [
+    "educacion"
+   ],
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=21485",
+   "fuente": "fuentes.json#senado_tramitacion",
+   "verificado": true,
+   "nota": "Número y fecha de publicación según el WS de tramitación del Senado; quórum no consta en esa fuente"
+  },
+  {
+   "id": "ley_21465",
+   "tipo": "ley",
+   "numero": "21.465",
+   "titulo": "Aumenta el límite del mecanismo de estabilización de precios de los combustibles creado por la ley N° 20.765 y actualiza el umbral de ajuste semanal",
+   "organismo_emisor": null,
+   "fecha_publicacion": "2022-06-14",
+   "quorum": null,
+   "organo_competente": null,
+   "boletin": "15022-05",
+   "tema": [
+    "energia"
+   ],
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=21465",
+   "fuente": "fuentes.json#senado_tramitacion",
+   "verificado": true,
+   "nota": "Número y fecha de publicación según el WS de tramitación del Senado; quórum no consta en esa fuente"
+  },
+  {
+   "id": "ley_21476",
+   "tipo": "ley",
+   "numero": "21.476",
+   "titulo": "Modifica el Código del Trabajo para asegurar la oferta de servicios de transporte público durante periodo de elecciones populares o plebiscitos",
+   "organismo_emisor": null,
+   "fecha_publicacion": "2022-08-02",
+   "quorum": null,
+   "organo_competente": null,
+   "boletin": "15134-13",
+   "tema": [
+    "trabajo",
+    "transporte"
+   ],
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=21476",
+   "fuente": "fuentes.json#senado_tramitacion",
+   "verificado": true,
+   "nota": "Número y fecha de publicación según el WS de tramitación del Senado; quórum no consta en esa fuente"
+  },
+  {
+   "id": "ley_21692",
+   "tipo": "ley",
+   "numero": "21.692",
+   "titulo": "Establece un nuevo marco de financiamiento e introduce mejoras al transporte público remunerado de pasajeros",
+   "organismo_emisor": null,
+   "fecha_publicacion": "2024-09-12",
+   "quorum": null,
+   "organo_competente": null,
+   "boletin": "15140-15",
+   "tema": [
+    "transporte"
+   ],
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=21692",
+   "fuente": "fuentes.json#senado_tramitacion",
+   "verificado": true,
+   "nota": "Número y fecha de publicación según el WS de tramitación del Senado; quórum no consta en esa fuente"
+  },
+  {
+   "id": "ley_21544",
+   "tipo": "ley",
+   "numero": "21.544",
+   "titulo": "Modifica y complementa las normas que indica respecto del sistema educativo",
+   "organismo_emisor": null,
+   "fecha_publicacion": "2023-02-09",
+   "quorum": null,
+   "organo_competente": null,
+   "boletin": "15153-04",
+   "tema": [
+    "educacion",
+    "trabajo"
+   ],
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=21544",
+   "fuente": "fuentes.json#senado_tramitacion",
+   "verificado": true,
+   "nota": "Número y fecha de publicación según el WS de tramitación del Senado; quórum no consta en esa fuente"
+  },
+  {
+   "id": "ley_21474",
+   "tipo": "ley",
+   "numero": "21.474",
+   "titulo": "Crea un bono extraordinario Chile Apoya Invierno y extiende el permiso postnatal parental",
+   "organismo_emisor": null,
+   "fecha_publicacion": "2022-07-27",
+   "quorum": null,
+   "organo_competente": null,
+   "boletin": "15177-05",
+   "tema": [
+    "hacienda",
+    "social"
+   ],
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=21474",
+   "fuente": "fuentes.json#senado_tramitacion",
+   "verificado": true,
+   "nota": "Número y fecha de publicación según el WS de tramitación del Senado; quórum no consta en esa fuente"
+  },
+  {
+   "id": "ley_21482",
+   "tipo": "ley",
+   "numero": "21.482",
+   "titulo": "Declara feriado nacional el día 16 de septiembre del año 2022",
+   "organismo_emisor": null,
+   "fecha_publicacion": "2022-09-10",
+   "quorum": null,
+   "organo_competente": null,
+   "boletin": "15251-13",
+   "tema": [
+    "otro"
+   ],
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=21482",
+   "fuente": "fuentes.json#senado_tramitacion",
+   "verificado": true,
+   "nota": "Número y fecha de publicación según el WS de tramitación del Senado; quórum no consta en esa fuente"
+  },
+  {
+   "id": "ley_21514",
+   "tipo": "ley",
+   "numero": "21.514",
+   "titulo": "Modifica el Fondo de Garantía para Pequeños y Medianos Empresarios y permite flexibilizar convenios de pago por impuestos adeudados, para apoyar la reactivación de la economía",
+   "organismo_emisor": null,
+   "fecha_publicacion": "2022-12-03",
+   "quorum": null,
+   "organo_competente": null,
+   "boletin": "15259-03",
+   "tema": [
+    "hacienda"
+   ],
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=21514",
+   "fuente": "fuentes.json#senado_tramitacion",
+   "verificado": true,
+   "nota": "Número y fecha de publicación según el WS de tramitación del Senado; quórum no consta en esa fuente"
+  },
+  {
+   "id": "ley_21546",
+   "tipo": "ley",
+   "numero": "21.546",
+   "titulo": "Modifica la ley N°19.993, con el objeto de permitir que el tratamiento de los productos de la pequeña y mediana minería de Enami pueda realizarse por Codelco en instalaciones distintas de la Fundición Ventanas",
+   "organismo_emisor": null,
+   "fecha_publicacion": "2023-04-20",
+   "quorum": null,
+   "organo_competente": null,
+   "boletin": "15265-08",
+   "tema": [
+    "otro"
+   ],
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=21546",
+   "fuente": "fuentes.json#senado_tramitacion",
+   "verificado": true,
+   "nota": "Número y fecha de publicación según el WS de tramitación del Senado; quórum no consta en esa fuente"
+  },
+  {
+   "id": "ley_21503",
+   "tipo": "ley",
+   "numero": "21.503",
+   "titulo": "Modifica el plazo de rendición de cuentas de los aportes para los Cuerpos de Bomberos de Chile.",
+   "organismo_emisor": null,
+   "fecha_publicacion": "2022-11-05",
+   "quorum": null,
+   "organo_competente": null,
+   "boletin": "15313-05",
+   "tema": [
+    "hacienda"
+   ],
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=21503",
+   "fuente": "fuentes.json#senado_tramitacion",
+   "verificado": true,
+   "nota": "Número y fecha de publicación según el WS de tramitación del Senado; quórum no consta en esa fuente"
+  },
+  {
+   "id": "ley_21641",
+   "tipo": "ley",
+   "numero": "21.641",
+   "titulo": "Fortalece la resiliencia del sistema financiero y sus infraestructuras",
+   "organismo_emisor": null,
+   "fecha_publicacion": "2023-12-30",
+   "quorum": null,
+   "organo_competente": null,
+   "boletin": "15322-05",
+   "tema": [
+    "hacienda"
+   ],
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=21641",
+   "fuente": "fuentes.json#senado_tramitacion",
+   "verificado": true,
+   "nota": "Número y fecha de publicación según el WS de tramitación del Senado; quórum no consta en esa fuente"
+  },
+  {
+   "id": "ley_21520",
+   "tipo": "ley",
+   "numero": "21.520",
+   "titulo": "Modifica la ley N° 20.998, que regula los Servicios Sanitarios Rurales, con la finalidad de flexibilizar sus requisitos y plazos de implementación.",
+   "organismo_emisor": null,
+   "fecha_publicacion": "2022-12-14",
+   "quorum": null,
+   "organo_competente": null,
+   "boletin": "15364-09",
+   "tema": [
+    "otro"
+   ],
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=21520",
+   "fuente": "fuentes.json#senado_tramitacion",
+   "verificado": true,
+   "nota": "Número y fecha de publicación según el WS de tramitación del Senado; quórum no consta en esa fuente"
+  },
+  {
+   "id": "ley_21516",
+   "tipo": "ley",
+   "numero": "21.516",
+   "titulo": "Ley de Presupuestos para el Sector Público correspondiente al año 2023",
+   "organismo_emisor": null,
+   "fecha_publicacion": "2022-12-20",
+   "quorum": null,
+   "organo_competente": null,
+   "boletin": "15383-05",
+   "tema": [
+    "hacienda",
+    "energia"
+   ],
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=21516",
+   "fuente": "fuentes.json#senado_tramitacion",
+   "verificado": true,
+   "nota": "Número y fecha de publicación según el WS de tramitación del Senado; quórum no consta en esa fuente"
+  },
+  {
+   "id": "ley_21589",
+   "tipo": "ley",
+   "numero": "21.589",
+   "titulo": "Modifica la ley N° 21.325, Ley de Migración y Extranjería, con el objeto de agregar formas alternativas de notificación del inicio de los procedimientos administrativos de expulsión.",
+   "organismo_emisor": null,
+   "fecha_publicacion": "2023-08-18",
+   "quorum": null,
+   "organo_competente": null,
+   "boletin": "15409-06",
+   "tema": [
+    "seguridad"
+   ],
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=21589",
+   "fuente": "fuentes.json#senado_tramitacion",
+   "verificado": true,
+   "nota": "Número y fecha de publicación según el WS de tramitación del Senado; quórum no consta en esa fuente"
+  },
+  {
+   "id": "ley_21510",
+   "tipo": "ley",
+   "numero": "21.510",
+   "titulo": "Extiende transitoriamente el permiso postnatal parental.",
+   "organismo_emisor": null,
+   "fecha_publicacion": "2022-11-24",
+   "quorum": null,
+   "organo_competente": null,
+   "boletin": "15418-13",
+   "tema": [
+    "hacienda",
+    "trabajo",
+    "transporte"
+   ],
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=21510",
+   "fuente": "fuentes.json#senado_tramitacion",
+   "verificado": true,
+   "nota": "Número y fecha de publicación según el WS de tramitación del Senado; quórum no consta en esa fuente"
+  },
+  {
+   "id": "ley_21735",
+   "tipo": "ley",
+   "numero": "21.735",
+   "titulo": "Crea un nuevo Sistema Mixto de Pensiones y un Seguro Social en el pilar contributivo, mejora la Pensión Garantizada Universal y establece beneficios y modificaciones regulatorias que indica",
+   "organismo_emisor": null,
+   "fecha_publicacion": "2025-03-26",
+   "quorum": null,
+   "organo_competente": null,
+   "boletin": "15480-13",
+   "tema": [
+    "pensiones",
+    "hacienda"
+   ],
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=21735",
+   "fuente": "fuentes.json#senado_tramitacion",
+   "verificado": true,
+   "nota": "Número y fecha de publicación según el WS de tramitación del Senado; quórum no consta en esa fuente"
+  },
+  {
+   "id": "ley_21621",
+   "tipo": "ley",
+   "numero": "21.621",
+   "titulo": "Fortalece el vínculo entre el Hospital Clínico de la Universidad de Chile `Dr. José Joaquín Aguirre´ y el Sistema Nacional de Servicios de Salud",
+   "organismo_emisor": null,
+   "fecha_publicacion": "2023-11-24",
+   "quorum": null,
+   "organo_competente": null,
+   "boletin": "15486-11",
+   "tema": [
+    "salud"
+   ],
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=21621",
+   "fuente": "fuentes.json#senado_tramitacion",
+   "verificado": true,
+   "nota": "Número y fecha de publicación según el WS de tramitación del Senado; quórum no consta en esa fuente"
+  },
+  {
+   "id": "ley_21536",
+   "tipo": "ley",
+   "numero": "21.536",
+   "titulo": "Pospone, para el sector minero, los efectos de la ley N°21.420, que reduce o elimina exenciones tributarias que indica",
+   "organismo_emisor": null,
+   "fecha_publicacion": "2023-01-26",
+   "quorum": null,
+   "organo_competente": null,
+   "boletin": "15511-08",
+   "tema": [
+    "pensiones",
+    "hacienda"
+   ],
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=21536",
+   "fuente": "fuentes.json#senado_tramitacion",
+   "verificado": true,
+   "nota": "Número y fecha de publicación según el WS de tramitación del Senado; quórum no consta en esa fuente"
+  },
+  {
+   "id": "ley_21649",
+   "tipo": "ley",
+   "numero": "21.649",
+   "titulo": "Modifica disposiciones del Código de Minería; la ley N°21.420, que reduce o elimina exenciones tributarias que indica; la ley orgánica constitucional de Concesiones Mineras; la ley N°18.097 y el decreto ley N° 3.525, de 1980, que crea el Servicio Nacional de Geología y Minería",
+   "organismo_emisor": null,
+   "fecha_publicacion": "2023-12-30",
+   "quorum": null,
+   "organo_competente": null,
+   "boletin": "15510-08",
+   "tema": [
+    "hacienda",
+    "constitucional"
+   ],
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=21649",
+   "fuente": "fuentes.json#senado_tramitacion",
+   "verificado": true,
+   "nota": "Número y fecha de publicación según el WS de tramitación del Senado; quórum no consta en esa fuente"
+  },
+  {
+   "id": "ley_21757",
+   "tipo": "ley",
+   "numero": "21.757",
+   "titulo": "Establece un mecanismo para aumentar la participación de mujeres en los directorios de las sociedades anónimas abiertas y sociedades anónimas especiales",
+   "organismo_emisor": null,
+   "fecha_publicacion": "2025-08-19",
+   "quorum": null,
+   "organo_competente": null,
+   "boletin": "15516-34",
+   "tema": [
+    "social"
+   ],
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=21757",
+   "fuente": "fuentes.json#senado_tramitacion",
+   "verificado": true,
+   "nota": "Número y fecha de publicación según el WS de tramitación del Senado; quórum no consta en esa fuente"
+  },
+  {
+   "id": "ley_21566",
+   "tipo": "ley",
+   "numero": "21.566",
+   "titulo": "Modifica el D.F.L N° 1, de 2005, del Ministerio de Salud, que fija texto refundido, coordinado y sistematizado del D.L N° 2.763, de 1979 y de las leyes N° 18.933 y N° 18.469, en cuanto a las denominaciones de los Servicios de Salud",
+   "organismo_emisor": null,
+   "fecha_publicacion": "2023-05-11",
+   "quorum": null,
+   "organo_competente": null,
+   "boletin": "15551-11",
+   "tema": [
+    "salud",
+    "descentralizacion"
+   ],
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=21566",
+   "fuente": "fuentes.json#senado_tramitacion",
+   "verificado": true,
+   "nota": "Número y fecha de publicación según el WS de tramitación del Senado; quórum no consta en esa fuente"
+  },
+  {
+   "id": "ley_21558",
+   "tipo": "ley",
+   "numero": "21.558",
+   "titulo": "Modifica diversos cuerpos normativos para adecuarlos al plan de emergencia habitacional y facilitar la ejecución de obras urbanas",
+   "organismo_emisor": null,
+   "fecha_publicacion": "2023-04-25",
+   "quorum": null,
+   "organo_competente": null,
+   "boletin": "15552-14",
+   "tema": [
+    "vivienda",
+    "descentralizacion"
+   ],
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=21558",
+   "fuente": "fuentes.json#senado_tramitacion",
+   "verificado": true,
+   "nota": "Número y fecha de publicación según el WS de tramitación del Senado; quórum no consta en esa fuente"
+  },
+  {
+   "id": "ley_21557",
+   "tipo": "ley",
+   "numero": "21.557",
+   "titulo": "Modifica el Código Penal para agravar la pena del delito de secuestro en el caso que indica",
+   "organismo_emisor": null,
+   "fecha_publicacion": "2023-04-10",
+   "quorum": null,
+   "organo_competente": null,
+   "boletin": "15558-07",
+   "tema": [
+    "seguridad"
+   ],
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=21557",
+   "fuente": "fuentes.json#senado_tramitacion",
+   "verificado": true,
+   "nota": "Número y fecha de publicación según el WS de tramitación del Senado; quórum no consta en esa fuente"
+  },
+  {
+   "id": "ley_21555",
+   "tipo": "ley",
+   "numero": "21.555",
+   "titulo": "Refuerza las competencias de Gendarmería de Chile y crea un delito general de extorsión",
+   "organismo_emisor": null,
+   "fecha_publicacion": "2023-04-10",
+   "quorum": null,
+   "organo_competente": null,
+   "boletin": "15561-07",
+   "tema": [
+    "seguridad"
+   ],
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=21555",
+   "fuente": "fuentes.json#senado_tramitacion",
+   "verificado": true,
+   "nota": "Número y fecha de publicación según el WS de tramitación del Senado; quórum no consta en esa fuente"
+  },
+  {
+   "id": "ley_21556",
+   "tipo": "ley",
+   "numero": "21.556",
+   "titulo": "Modifica la ley N°17.798, sobre control de armas, para aumentar la pena del delito de porte de armas en lugares altamente concurridos",
+   "organismo_emisor": null,
+   "fecha_publicacion": "2023-04-10",
+   "quorum": null,
+   "organo_competente": null,
+   "boletin": "15560-07",
+   "tema": [
+    "seguridad"
+   ],
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=21556",
+   "fuente": "fuentes.json#senado_tramitacion",
+   "verificado": true,
+   "nota": "Número y fecha de publicación según el WS de tramitación del Senado; quórum no consta en esa fuente"
+  },
+  {
+   "id": "ley_21571",
+   "tipo": "ley",
+   "numero": "21.571",
+   "titulo": "Modifica el Código Penal para sancionar la conspiración para cometer el delito de homicidio calificado por premio, promesa remuneratoria o ánimo de lucro",
+   "organismo_emisor": null,
+   "fecha_publicacion": "2023-05-11",
+   "quorum": null,
+   "organo_competente": null,
+   "boletin": "15559-07",
+   "tema": [
+    "seguridad"
+   ],
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=21571",
+   "fuente": "fuentes.json#senado_tramitacion",
+   "verificado": true,
+   "nota": "Número y fecha de publicación según el WS de tramitación del Senado; quórum no consta en esa fuente"
+  },
+  {
+   "id": "ley_21526",
+   "tipo": "ley",
+   "numero": "21.526",
+   "titulo": "Otorga reajuste de remuneraciones a las y los trabajadores del sector público, concede aguinaldos que señala, concede otros beneficios que indica, y modifica diversos cuerpos legales",
+   "organismo_emisor": null,
+   "fecha_publicacion": "2022-12-28",
+   "quorum": null,
+   "organo_competente": null,
+   "boletin": "15557-05",
+   "tema": [
+    "trabajo"
+   ],
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=21526",
+   "fuente": "fuentes.json#senado_tramitacion",
+   "verificado": true,
+   "nota": "Número y fecha de publicación según el WS de tramitación del Senado; quórum no consta en esa fuente"
+  },
+  {
+   "id": "ley_21564",
+   "tipo": "ley",
+   "numero": "21.564",
+   "titulo": "Deroga la ley N° 8.834, de 1947, y regula beneficios para promover la realización en Chile de eventos deportivos oficiales de relevancia internacional",
+   "organismo_emisor": null,
+   "fecha_publicacion": "2023-05-09",
+   "quorum": null,
+   "organo_competente": null,
+   "boletin": "15567-29",
+   "tema": [
+    "hacienda"
+   ],
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=21564",
+   "fuente": "fuentes.json#senado_tramitacion",
+   "verificado": true,
+   "nota": "Número y fecha de publicación según el WS de tramitación del Senado; quórum no consta en esa fuente"
+  },
+  {
+   "id": "ley_21537",
+   "tipo": "ley",
+   "numero": "21.537",
+   "titulo": "Modifica el Mecanismo de Estabilización de Precios de los Combustibles para evitar fluctuaciones semanales, y extiende el beneficio de reintegro parcial del impuesto específico a los combustibles para transportistas de carga",
+   "organismo_emisor": null,
+   "fecha_publicacion": "2023-01-24",
+   "quorum": null,
+   "organo_competente": null,
+   "boletin": "15586-05",
+   "tema": [
+    "hacienda",
+    "energia",
+    "transporte"
+   ],
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=21537",
+   "fuente": "fuentes.json#senado_tramitacion",
+   "verificado": true,
+   "nota": "Número y fecha de publicación según el WS de tramitación del Senado; quórum no consta en esa fuente"
+  },
+  {
+   "id": "ley_21538",
+   "tipo": "ley",
+   "numero": "21.538",
+   "titulo": "Modifica la ley N°21.419, que crea la Pensión Garantizada Universal y modifica los cuerpos legales que indica",
+   "organismo_emisor": null,
+   "fecha_publicacion": "2023-01-26",
+   "quorum": null,
+   "organo_competente": null,
+   "boletin": "15625-13",
+   "tema": [
+    "pensiones"
+   ],
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=21538",
+   "fuente": "fuentes.json#senado_tramitacion",
+   "verificado": true,
+   "nota": "Número y fecha de publicación según el WS de tramitación del Senado; quórum no consta en esa fuente"
+  },
+  {
+   "id": "ley_21540",
+   "tipo": "ley",
+   "numero": "21.540",
+   "titulo": "Repone el tratamiento tributario para los contratos de arrendamiento con opción de compra de bienes que impliquen una operación de financiamiento o leasing financieros, previo a la ley N°21.420, que reduce o elimina exenciones tributarias",
+   "organismo_emisor": null,
+   "fecha_publicacion": "2023-02-15",
+   "quorum": null,
+   "organo_competente": null,
+   "boletin": "15637-05",
+   "tema": [
+    "hacienda"
+   ],
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=21540",
+   "fuente": "fuentes.json#senado_tramitacion",
+   "verificado": true,
+   "nota": "Número y fecha de publicación según el WS de tramitación del Senado; quórum no consta en esa fuente"
+  },
+  {
+   "id": "ley_21543",
+   "tipo": "ley",
+   "numero": "21.543",
+   "titulo": "Crea un Fondo de Garantías Especiales",
+   "organismo_emisor": null,
+   "fecha_publicacion": "2023-02-13",
+   "quorum": null,
+   "organo_competente": null,
+   "boletin": "15654-05",
+   "tema": [
+    "vivienda",
+    "hacienda"
+   ],
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=21543",
+   "fuente": "fuentes.json#senado_tramitacion",
+   "verificado": true,
+   "nota": "Número y fecha de publicación según el WS de tramitación del Senado; quórum no consta en esa fuente"
+  },
+  {
+   "id": "ley_21550",
+   "tipo": "ley",
+   "numero": "21.550",
+   "titulo": "Impulsa medidas para la seguridad económica, incluyendo un aporte extraordinario para duplicar el Aporte Familiar Permanente en 2023; un incremento permanente en la Asignación Familiar y Maternal y en el Subsidio Único Familiar, y su automatización para las personas que indica, y la creación del Bolsillo Familiar Electrónico",
+   "organismo_emisor": null,
+   "fecha_publicacion": "2023-03-25",
+   "quorum": null,
+   "organo_competente": null,
+   "boletin": "15665-05",
+   "tema": [
+    "seguridad",
+    "social"
+   ],
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=21550",
+   "fuente": "fuentes.json#senado_tramitacion",
+   "verificado": true,
+   "nota": "Número y fecha de publicación según el WS de tramitación del Senado; quórum no consta en esa fuente"
+  },
+  {
+   "id": "ley_21614",
+   "tipo": "ley",
+   "numero": "21.614",
+   "titulo": "Introduce modificaciones en la ley N°21.063, que crea un seguro para el acompañamiento de niños y niñas que padezcan las enfermedades que indica y modifica el Código del Trabajo para estos efectos",
+   "organismo_emisor": null,
+   "fecha_publicacion": "2023-09-28",
+   "quorum": null,
+   "organo_competente": null,
+   "boletin": "15708-13",
+   "tema": [
+    "trabajo",
+    "constitucional",
+    "social"
+   ],
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=21614",
+   "fuente": "fuentes.json#senado_tramitacion",
+   "verificado": true,
+   "nota": "Número y fecha de publicación según el WS de tramitación del Senado; quórum no consta en esa fuente"
+  },
+  {
+   "id": "ley_21625",
+   "tipo": "ley",
+   "numero": "21.625",
+   "titulo": "Consolida el sistema de reconocimiento y promoción del desarrollo profesional docente como único sistema general de evaluación y fortalece los procesos de inducción y acompañamiento",
+   "organismo_emisor": null,
+   "fecha_publicacion": "2023-10-24",
+   "quorum": null,
+   "organo_competente": null,
+   "boletin": "15715-04",
+   "tema": [
+    "educacion"
+   ],
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=21625",
+   "fuente": "fuentes.json#senado_tramitacion",
+   "verificado": true,
+   "nota": "Número y fecha de publicación según el WS de tramitación del Senado; quórum no consta en esa fuente"
+  },
+  {
+   "id": "ley_21623",
+   "tipo": "ley",
+   "numero": "21.623",
+   "titulo": "Modifica la ley N°21.075, que regula la recolección, reutilización y disposición de aguas grises, para fomentar la reutilización de aguas grises en la agricultura",
+   "organismo_emisor": null,
+   "fecha_publicacion": "2023-11-27",
+   "quorum": null,
+   "organo_competente": null,
+   "boletin": "15765-12",
+   "tema": [
+    "ambiente",
+    "agro_pesca"
+   ],
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=21623",
+   "fuente": "fuentes.json#senado_tramitacion",
+   "verificado": true,
+   "nota": "Número y fecha de publicación según el WS de tramitación del Senado; quórum no consta en esa fuente"
+  },
+  {
+   "id": "ley_21573",
+   "tipo": "ley",
+   "numero": "21.573",
+   "titulo": "Modifica la ley N°21.516, de Presupuesto de Ingresos y Gastos del Sector Público para el año 2023, y el DFL N°262, de 1977, del Ministerio de Hacienda, que Aprueba el Reglamento de Viáticos para el Personal de la Administración Pública",
+   "organismo_emisor": null,
+   "fecha_publicacion": "2023-05-04",
+   "quorum": null,
+   "organo_competente": null,
+   "boletin": "15793-05",
+   "tema": [
+    "hacienda",
+    "energia"
+   ],
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=21573",
+   "fuente": "fuentes.json#senado_tramitacion",
+   "verificado": true,
+   "nota": "Número y fecha de publicación según el WS de tramitación del Senado; quórum no consta en esa fuente"
+  },
+  {
+   "id": "ley_21569",
+   "tipo": "ley",
+   "numero": "21.569",
+   "titulo": "Permite el uso de cédulas de identidad y pasaportes que señala para efectos de identificar a los electores en las elecciones y plebiscitos que indica",
+   "organismo_emisor": null,
+   "fecha_publicacion": "2023-05-03",
+   "quorum": null,
+   "organo_competente": null,
+   "boletin": "15824-06",
+   "tema": [
+    "constitucional"
+   ],
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=21569",
+   "fuente": "fuentes.json#senado_tramitacion",
+   "verificado": true,
+   "nota": "Número y fecha de publicación según el WS de tramitación del Senado; quórum no consta en esa fuente"
+  },
+  {
+   "id": "ley_21578",
+   "tipo": "ley",
+   "numero": "21.578",
+   "titulo": "Reajusta el monto del ingreso mínimo mensual, aumenta el universo de beneficiarios y beneficiarias de la asignación familiar y maternal, y extiende el ingreso mínimo garantizado y el subsidio temporal a las micro, pequeñas y medianas empresas en la forma que indica",
+   "organismo_emisor": null,
+   "fecha_publicacion": "2023-05-30",
+   "quorum": null,
+   "organo_competente": null,
+   "boletin": "15864-13",
+   "tema": [
+    "social"
+   ],
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=21578",
+   "fuente": "fuentes.json#senado_tramitacion",
+   "verificado": true,
+   "nota": "Número y fecha de publicación según el WS de tramitación del Senado; quórum no consta en esa fuente"
+  },
+  {
+   "id": "ley_21590",
+   "tipo": "ley",
+   "numero": "21.590",
+   "titulo": "Modifica la ley N°21.325 para ampliar el plazo de privación de libertad para la materialización de las expulsiones administrativas",
+   "organismo_emisor": null,
+   "fecha_publicacion": "2023-08-07",
+   "quorum": null,
+   "organo_competente": null,
+   "boletin": "15879-06",
+   "tema": [
+    "seguridad"
+   ],
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=21590",
+   "fuente": "fuentes.json#senado_tramitacion",
+   "verificado": true,
+   "nota": "Número y fecha de publicación según el WS de tramitación del Senado; quórum no consta en esa fuente"
+  },
+  {
+   "id": "ley_21637",
+   "tipo": "ley",
+   "numero": "21.637",
+   "titulo": "Modifica el procedimiento de fijación tarifaria de concesionarias de telefonía fija, y corrige y actualiza referencias en la ley N° 18.168 General de Telecomunicaciones",
+   "organismo_emisor": null,
+   "fecha_publicacion": "2024-01-09",
+   "quorum": null,
+   "organo_competente": null,
+   "boletin": "15891-15",
+   "tema": [
+    "otro"
+   ],
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=21637",
+   "fuente": "fuentes.json#senado_tramitacion",
+   "verificado": true,
+   "nota": "Número y fecha de publicación según el WS de tramitación del Senado; quórum no consta en esa fuente"
+  },
+  {
+   "id": "ley_21674",
+   "tipo": "ley",
+   "numero": "21.674",
+   "titulo": "Modifica el decreto con fuerza de ley N° 1, de 2005, del Ministerio de Salud, que fija el texto refundido, coordinado y sistematizado del decreto ley N°2.763, de 1979, y de las leyes N° 18.933 y N° 18.469, en las materias que indica, crea un nuevo modelo de atención en el FONASA, otorga facultades y atribuciones a la Superintendencia de Salud y modifica normas relativas a las instituciones de salud previsional",
+   "organismo_emisor": null,
+   "fecha_publicacion": "2024-05-24",
+   "quorum": null,
+   "organo_competente": null,
+   "boletin": "15896-11",
+   "tema": [
+    "pensiones",
+    "salud"
+   ],
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=21674",
+   "fuente": "fuentes.json#senado_tramitacion",
+   "verificado": true,
+   "nota": "Número y fecha de publicación según el WS de tramitación del Senado; quórum no consta en esa fuente"
+  },
+  {
+   "id": "ley_21581",
+   "tipo": "ley",
+   "numero": "21.581",
+   "titulo": "Exime del impuesto al valor agregado a los servicios sanitarios rurales a que se refiere la ley N° 20.998",
+   "organismo_emisor": null,
+   "fecha_publicacion": "2023-07-17",
+   "quorum": null,
+   "organo_competente": null,
+   "boletin": "15901-05",
+   "tema": [
+    "hacienda"
+   ],
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=21581",
+   "fuente": "fuentes.json#senado_tramitacion",
+   "verificado": true,
+   "nota": "Número y fecha de publicación según el WS de tramitación del Senado; quórum no consta en esa fuente"
+  },
+  {
+   "id": "ley_21620",
+   "tipo": "ley",
+   "numero": "21.620",
+   "titulo": "Modifica el Código Penal y el Código Procesal Penal para sancionar como falta el porte injustificado de combustibles aptos para la comisión de atentados contra las personas o para ocasionar daño en las cosas durante reuniones en lugares públicos",
+   "organismo_emisor": null,
+   "fecha_publicacion": "2023-10-25",
+   "quorum": null,
+   "organo_competente": null,
+   "boletin": "15956-25",
+   "tema": [
+    "seguridad",
+    "energia"
+   ],
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=21620",
+   "fuente": "fuentes.json#senado_tramitacion",
+   "verificado": true,
+   "nota": "Número y fecha de publicación según el WS de tramitación del Senado; quórum no consta en esa fuente"
+  },
+  {
+   "id": "ley_21628",
+   "tipo": "ley",
+   "numero": "21.628",
+   "titulo": "Flexibiliza los requisitos de acceso, incrementa el monto de las prestaciones al seguro de desempleo de la ley Nº 19.728 y establece otras modificaciones que indica",
+   "organismo_emisor": null,
+   "fecha_publicacion": "2023-10-31",
+   "quorum": null,
+   "organo_competente": null,
+   "boletin": "15990-13",
+   "tema": [
+    "trabajo",
+    "constitucional"
+   ],
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=21628",
+   "fuente": "fuentes.json#senado_tramitacion",
+   "verificado": true,
+   "nota": "Número y fecha de publicación según el WS de tramitación del Senado; quórum no consta en esa fuente"
+  },
+  {
+   "id": "ley_21584",
+   "tipo": "ley",
+   "numero": "21.584",
+   "titulo": "Establece un aporte extraordinario para incrementar el Bono Invierno 2023",
+   "organismo_emisor": null,
+   "fecha_publicacion": "2023-06-22",
+   "quorum": null,
+   "organo_competente": null,
+   "boletin": "16000-13",
+   "tema": [
+    "pensiones"
+   ],
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=21584",
+   "fuente": "fuentes.json#senado_tramitacion",
+   "verificado": true,
+   "nota": "Número y fecha de publicación según el WS de tramitación del Senado; quórum no consta en esa fuente"
+  },
+  {
+   "id": "ley_21622",
+   "tipo": "ley",
+   "numero": "21.622",
+   "titulo": "Establece requisitos para asimilar las entidades que prestan servicios culturales a las sociedades de profesionales",
+   "organismo_emisor": null,
+   "fecha_publicacion": "2023-11-17",
+   "quorum": null,
+   "organo_competente": null,
+   "boletin": "16003-24",
+   "tema": [
+    "hacienda"
+   ],
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=21622",
+   "fuente": "fuentes.json#senado_tramitacion",
+   "verificado": true,
+   "nota": "Número y fecha de publicación según el WS de tramitación del Senado; quórum no consta en esa fuente"
+  },
+  {
+   "id": "ley_21618",
+   "tipo": "ley",
+   "numero": "21.618",
+   "titulo": "Homologa la ley N° 19.712, del Deporte, a los estándares y disposiciones del nuevo Código Mundial Antidopaje",
+   "organismo_emisor": null,
+   "fecha_publicacion": "2023-10-13",
+   "quorum": null,
+   "organo_competente": null,
+   "boletin": "16005-37",
+   "tema": [
+    "otro"
+   ],
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=21618",
+   "fuente": "fuentes.json#senado_tramitacion",
+   "verificado": true,
+   "nota": "Número y fecha de publicación según el WS de tramitación del Senado; quórum no consta en esa fuente"
+  },
+  {
+   "id": "ley_21588",
+   "tipo": "ley",
+   "numero": "21.588",
+   "titulo": "Suspende excepcionalmente la declaración de caducidades del registro pesquero artesanal con el fin de mitigar sus consecuencias económicas y sociales en el sector",
+   "organismo_emisor": null,
+   "fecha_publicacion": "2023-07-21",
+   "quorum": null,
+   "organo_competente": null,
+   "boletin": "16024-21",
+   "tema": [
+    "agro_pesca"
+   ],
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=21588",
+   "fuente": "fuentes.json#senado_tramitacion",
+   "verificado": true,
+   "nota": "Número y fecha de publicación según el WS de tramitación del Senado; quórum no consta en esa fuente"
+  },
+  {
+   "id": "ley_21602",
+   "tipo": "ley",
+   "numero": "21.602",
+   "titulo": "Modifica diversos cuerpos legales, en materia de requisitos para ser llamado al servicio en Carabineros de Chile .",
+   "organismo_emisor": null,
+   "fecha_publicacion": "2023-09-07",
+   "quorum": null,
+   "organo_competente": null,
+   "boletin": "16038-25",
+   "tema": [
+    "seguridad"
+   ],
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=21602",
+   "fuente": "fuentes.json#senado_tramitacion",
+   "verificado": true,
+   "nota": "Número y fecha de publicación según el WS de tramitación del Senado; quórum no consta en esa fuente"
+  },
+  {
+   "id": "ley_21636",
+   "tipo": "ley",
+   "numero": "21.636",
+   "titulo": "Establece reglas especiales tratándose de la alteración, ampliación, reparación o reconstrucción de establecimientos penitenciarios y modifica otros cuerpos legales",
+   "organismo_emisor": null,
+   "fecha_publicacion": "2023-12-14",
+   "quorum": null,
+   "organo_competente": null,
+   "boletin": "16037-07",
+   "tema": [
+    "seguridad"
+   ],
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=21636",
+   "fuente": "fuentes.json#senado_tramitacion",
+   "verificado": true,
+   "nota": "Número y fecha de publicación según el WS de tramitación del Senado; quórum no consta en esa fuente"
+  },
+  {
+   "id": "ley_21655",
+   "tipo": "ley",
+   "numero": "21.655",
+   "titulo": "Modifica la ley N° 20.430, para establecer una etapa inicial del procedimiento de determinación de la condición de refugiado, y la ley N° 21.325, en relación con la medida de reconducción o devolución inmediata de personas extranjeras que ingresen de forma irregular al territorio nacional",
+   "organismo_emisor": null,
+   "fecha_publicacion": "2024-02-20",
+   "quorum": null,
+   "organo_competente": null,
+   "boletin": "16034-06",
+   "tema": [
+    "seguridad"
+   ],
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=21655",
+   "fuente": "fuentes.json#senado_tramitacion",
+   "verificado": true,
+   "nota": "Número y fecha de publicación según el WS de tramitación del Senado; quórum no consta en esa fuente"
+  },
+  {
+   "id": "ley_21721",
+   "tipo": "ley",
+   "numero": "21.721",
+   "titulo": "Modifica la Ley General de Servicios Eléctricos, en materia de transición energética que posiciona a la transmisión eléctrica como un sector habilitante para la carbono neutralidad",
+   "organismo_emisor": null,
+   "fecha_publicacion": "2024-12-27",
+   "quorum": null,
+   "organo_competente": null,
+   "boletin": "16078-08",
+   "tema": [
+    "energia"
+   ],
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=21721",
+   "fuente": "fuentes.json#senado_tramitacion",
+   "verificado": true,
+   "nota": "Número y fecha de publicación según el WS de tramitación del Senado; quórum no consta en esa fuente"
+  },
+  {
+   "id": "ley_21604",
+   "tipo": "ley",
+   "numero": "21.604",
+   "titulo": "Autoriza única y excepcionalmente el tránsito de los vehículos oficiales de los XIX Juegos Panamericanos y VII Parapanamericanos Santiago 2023, dentro del país",
+   "organismo_emisor": null,
+   "fecha_publicacion": "2023-09-15",
+   "quorum": null,
+   "organo_competente": null,
+   "boletin": "16088-15",
+   "tema": [
+    "transporte"
+   ],
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=21604",
+   "fuente": "fuentes.json#senado_tramitacion",
+   "verificado": true,
+   "nota": "Número y fecha de publicación según el WS de tramitación del Senado; quórum no consta en esa fuente"
+  },
+  {
+   "id": "ley_21645",
+   "tipo": "ley",
+   "numero": "21.645",
+   "titulo": "Modifica el Título II del Libro II del Código del Trabajo &quot;De la protección a la maternidad, paternidad y vida familiar&quot; y regula un régimen de trabajo a distancia y teletrabajo en las condiciones que indica.",
+   "organismo_emisor": null,
+   "fecha_publicacion": "2023-12-29",
+   "quorum": null,
+   "organo_competente": null,
+   "boletin": "16092-13",
+   "tema": [
+    "educacion",
+    "trabajo",
+    "social"
+   ],
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=21645",
+   "fuente": "fuentes.json#senado_tramitacion",
+   "verificado": true,
+   "nota": "Número y fecha de publicación según el WS de tramitación del Senado; quórum no consta en esa fuente"
+  },
+  {
+   "id": "ley_21599",
+   "tipo": "ley",
+   "numero": "21.599",
+   "titulo": "Sustituye el reajuste de las remuneraciones del sector público fijado en los incisos quinto y noveno del artículo 1 de la ley N° 21.526 para el personal que indica y modifica otros cuerpos legales",
+   "organismo_emisor": null,
+   "fecha_publicacion": "2023-08-24",
+   "quorum": null,
+   "organo_competente": null,
+   "boletin": "16133-05",
+   "tema": [
+    "otro"
+   ],
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=21599",
+   "fuente": "fuentes.json#senado_tramitacion",
+   "verificado": true,
+   "nota": "Número y fecha de publicación según el WS de tramitación del Senado; quórum no consta en esa fuente"
+  },
+  {
+   "id": "ley_21598",
+   "tipo": "ley",
+   "numero": "21.598",
+   "titulo": "Declara feriado el día 10 de agosto de 2023 para las regiones de Tarapacá y Atacama",
+   "organismo_emisor": null,
+   "fecha_publicacion": "2023-08-09",
+   "quorum": null,
+   "organo_competente": null,
+   "boletin": "16142-06",
+   "tema": [
+    "descentralizacion"
+   ],
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=21598",
+   "fuente": "fuentes.json#senado_tramitacion",
+   "verificado": true,
+   "nota": "Número y fecha de publicación según el WS de tramitación del Senado; quórum no consta en esa fuente"
+  },
+  {
+   "id": "ley_21732",
+   "tipo": "ley",
+   "numero": "21.732",
+   "titulo": "Determina conductas terroristas, fija su penalidad y actualiza la legislación vigente en la materia",
+   "organismo_emisor": null,
+   "fecha_publicacion": "2025-02-12",
+   "quorum": null,
+   "organo_competente": null,
+   "boletin": "16210-25",
+   "tema": [
+    "seguridad"
+   ],
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=21732",
+   "fuente": "fuentes.json#senado_tramitacion",
+   "verificado": true,
+   "nota": "Número y fecha de publicación según el WS de tramitación del Senado; quórum no consta en esa fuente"
+  },
+  {
+   "id": "ley_21616",
+   "tipo": "ley",
+   "numero": "21.616",
+   "titulo": "Crea convenios de pago para alivianar la deuda asociada a los préstamos solidarios para transportistas contemplados en las leyes N° 21.256 y N° 21.323",
+   "organismo_emisor": null,
+   "fecha_publicacion": "2023-10-18",
+   "quorum": null,
+   "organo_competente": null,
+   "boletin": "16218-05",
+   "tema": [
+    "hacienda",
+    "transporte"
+   ],
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=21616",
+   "fuente": "fuentes.json#senado_tramitacion",
+   "verificado": true,
+   "nota": "Número y fecha de publicación según el WS de tramitación del Senado; quórum no consta en esa fuente"
+  },
+  {
+   "id": "ley_21609",
+   "tipo": "ley",
+   "numero": "21.609",
+   "titulo": "Declara feriado el día 8 de septiembre de 2023 para la región de Antofagasta, con motivo de la fiesta religiosa de la Virgen de Guadalupe de Ayquina, y el día 20 de septiembre de 2023 para la región de Coquimbo, con motivo de la Fiesta de la Pampilla",
+   "organismo_emisor": null,
+   "fecha_publicacion": "2023-09-07",
+   "quorum": null,
+   "organo_competente": null,
+   "boletin": "16234-06",
+   "tema": [
+    "energia",
+    "descentralizacion"
+   ],
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=21609",
+   "fuente": "fuentes.json#senado_tramitacion",
+   "verificado": true,
+   "nota": "Número y fecha de publicación según el WS de tramitación del Senado; quórum no consta en esa fuente"
+  },
+  {
+   "id": "ley_21644",
+   "tipo": "ley",
+   "numero": "21.644",
+   "titulo": "Modifica la Carta Fundamental, para crear la Fiscalía Supraterritorial, especializada en crimen organizado y delitos de alta complejidad, al interior del Ministerio Público",
+   "organismo_emisor": null,
+   "fecha_publicacion": "2024-02-02",
+   "quorum": null,
+   "organo_competente": null,
+   "boletin": "16301-07",
+   "tema": [
+    "seguridad",
+    "hacienda",
+    "constitucional"
+   ],
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=21644",
+   "fuente": "fuentes.json#senado_tramitacion",
+   "verificado": true,
+   "nota": "Número y fecha de publicación según el WS de tramitación del Senado; quórum no consta en esa fuente"
+  },
+  {
+   "id": "ley_21661",
+   "tipo": "ley",
+   "numero": "21.661",
+   "titulo": "Modifica la ley N° 21.094, sobre Universidades Estatales, y la ley N° 18.744, que crea la Universidad del Bío-Bío, para autorizar la birregionalidad de las universidades del Estado",
+   "organismo_emisor": null,
+   "fecha_publicacion": "2024-04-26",
+   "quorum": null,
+   "organo_competente": null,
+   "boletin": "16302-04",
+   "tema": [
+    "descentralizacion"
+   ],
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=21661",
+   "fuente": "fuentes.json#senado_tramitacion",
+   "verificado": true,
+   "nota": "Número y fecha de publicación según el WS de tramitación del Senado; quórum no consta en esa fuente"
+  },
+  {
+   "id": "ley_21717",
+   "tipo": "ley",
+   "numero": "21.717",
+   "titulo": "Establece normas para la realización de funerales de riesgo y modifica otros cuerpos legales",
+   "organismo_emisor": null,
+   "fecha_publicacion": "2024-11-25",
+   "quorum": null,
+   "organo_competente": null,
+   "boletin": "16323-25",
+   "tema": [
+    "otro"
+   ],
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=21717",
+   "fuente": "fuentes.json#senado_tramitacion",
+   "verificado": true,
+   "nota": "Número y fecha de publicación según el WS de tramitación del Senado; quórum no consta en esa fuente"
+  },
+  {
+   "id": "ley_21769",
+   "tipo": "ley",
+   "numero": "21.769",
+   "titulo": "Crea el Servicio de Auditoría Interna de Gobierno",
+   "organismo_emisor": null,
+   "fecha_publicacion": "2025-10-17",
+   "quorum": null,
+   "organo_competente": null,
+   "boletin": "16316-05",
+   "tema": [
+    "otro"
+   ],
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=21769",
+   "fuente": "fuentes.json#senado_tramitacion",
+   "verificado": true,
+   "nota": "Número y fecha de publicación según el WS de tramitación del Senado; quórum no consta en esa fuente"
+  },
+  {
+   "id": "ley_21640",
+   "tipo": "ley",
+   "numero": "21.640",
+   "titulo": "Ley de Presupuestos del Sector Público correspondiente al año 2024",
+   "organismo_emisor": null,
+   "fecha_publicacion": "2023-12-18",
+   "quorum": null,
+   "organo_competente": null,
+   "boletin": "16330-05",
+   "tema": [
+    "hacienda",
+    "energia"
+   ],
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=21640",
+   "fuente": "fuentes.json#senado_tramitacion",
+   "verificado": true,
+   "nota": "Número y fecha de publicación según el WS de tramitación del Senado; quórum no consta en esa fuente"
+  },
+  {
+   "id": "ley_21631",
+   "tipo": "ley",
+   "numero": "21.631",
+   "titulo": "Establece un beneficio tributario transitorio y extraordinario a la compra de viviendas nuevas adquiridas con créditos con garantía hipotecaria",
+   "organismo_emisor": null,
+   "fecha_publicacion": "2023-10-31",
+   "quorum": null,
+   "organo_competente": null,
+   "boletin": "16365-05",
+   "tema": [
+    "vivienda",
+    "hacienda",
+    "transporte"
+   ],
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=21631",
+   "fuente": "fuentes.json#senado_tramitacion",
+   "verificado": true,
+   "nota": "Número y fecha de publicación según el WS de tramitación del Senado; quórum no consta en esa fuente"
+  },
+  {
+   "id": "ley_21639",
+   "tipo": "ley",
+   "numero": "21.639",
+   "titulo": "Modifica normas que indica para permitir el desarrollo de proyectos de infraestructura hídrica y de desalinización, con el fin de destinar el agua que se obtenga para el cumplimiento de la función de subsistencia y de riego",
+   "organismo_emisor": null,
+   "fecha_publicacion": "2023-12-27",
+   "quorum": null,
+   "organo_competente": null,
+   "boletin": "16364-09",
+   "tema": [
+    "ambiente",
+    "agro_pesca"
+   ],
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=21639",
+   "fuente": "fuentes.json#senado_tramitacion",
+   "verificado": true,
+   "nota": "Número y fecha de publicación según el WS de tramitación del Senado; quórum no consta en esa fuente"
+  },
+  {
+   "id": "ley_21666",
+   "tipo": "ley",
+   "numero": "21.666",
+   "titulo": "Modifica la ley N° 20.267, que crea el Sistema Nacional de Certificación de Competencias Laborales y perfecciona el Estatuto de Capacitación y Empleo, y otros cuerpos legales",
+   "organismo_emisor": null,
+   "fecha_publicacion": "2024-04-20",
+   "quorum": null,
+   "organo_competente": null,
+   "boletin": "16366-13",
+   "tema": [
+    "trabajo"
+   ],
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=21666",
+   "fuente": "fuentes.json#senado_tramitacion",
+   "verificado": true,
+   "nota": "Número y fecha de publicación según el WS de tramitación del Senado; quórum no consta en esa fuente"
+  },
+  {
+   "id": "ley_21812",
+   "tipo": "ley",
+   "numero": "21.812",
+   "titulo": "Modifica diversos cuerpos legales, en materia de fortalecimiento del Ministerio Público",
+   "organismo_emisor": null,
+   "fecha_publicacion": "2026-04-01",
+   "quorum": null,
+   "organo_competente": null,
+   "boletin": "16374-07",
+   "tema": [
+    "otro"
+   ],
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=21812",
+   "fuente": "fuentes.json#senado_tramitacion",
+   "verificado": true,
+   "nota": "Número y fecha de publicación según el WS de tramitación del Senado; quórum no consta en esa fuente"
+  },
+  {
+   "id": "ley_21788",
+   "tipo": "ley",
+   "numero": "21.788",
+   "titulo": "Dicta normas sobre protección y fomento de la artesanía",
+   "organismo_emisor": null,
+   "fecha_publicacion": "2025-12-12",
+   "quorum": null,
+   "organo_competente": null,
+   "boletin": "16371-24",
+   "tema": [
+    "otro"
+   ],
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=21788",
+   "fuente": "fuentes.json#senado_tramitacion",
+   "verificado": true,
+   "nota": "Número y fecha de publicación según el WS de tramitación del Senado; quórum no consta en esa fuente"
+  },
+  {
+   "id": "ley_21658",
+   "tipo": "ley",
+   "numero": "21.658",
+   "titulo": "Crea la Secretaría de Gobierno Digital en la Subsecretaría de Hacienda, y adecúa los cuerpos legales que indica",
+   "organismo_emisor": null,
+   "fecha_publicacion": "2024-02-09",
+   "quorum": null,
+   "organo_competente": null,
+   "boletin": "16399-05",
+   "tema": [
+    "hacienda"
+   ],
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=21658",
+   "fuente": "fuentes.json#senado_tramitacion",
+   "verificado": true,
+   "nota": "Número y fecha de publicación según el WS de tramitación del Senado; quórum no consta en esa fuente"
+  },
+  {
+   "id": "ley_21673",
+   "tipo": "ley",
+   "numero": "21.673",
+   "titulo": "Modifica diversos cuerpos legales, con el objeto de adoptar medidas para combatir el sobreendeudamiento",
+   "organismo_emisor": null,
+   "fecha_publicacion": "2024-05-30",
+   "quorum": null,
+   "organo_competente": null,
+   "boletin": "16408-05",
+   "tema": [
+    "hacienda"
+   ],
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=21673",
+   "fuente": "fuentes.json#senado_tramitacion",
+   "verificado": true,
+   "nota": "Número y fecha de publicación según el WS de tramitación del Senado; quórum no consta en esa fuente"
+  },
+  {
+   "id": "ley_21647",
+   "tipo": "ley",
+   "numero": "21.647",
+   "titulo": "Otorga reajuste general de remuneraciones a las y los trabajadores del sector público, concede aguinaldos que señala, concede otros beneficios que indica y modifica diversos cuerpos legales",
+   "organismo_emisor": null,
+   "fecha_publicacion": "2023-12-23",
+   "quorum": null,
+   "organo_competente": null,
+   "boletin": "16463-05",
+   "tema": [
+    "trabajo"
+   ],
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=21647",
+   "fuente": "fuentes.json#senado_tramitacion",
+   "verificado": true,
+   "nota": "Número y fecha de publicación según el WS de tramitación del Senado; quórum no consta en esa fuente"
+  },
+  {
+   "id": "ley_21648",
+   "tipo": "ley",
+   "numero": "21.648",
+   "titulo": "Modifica el Código Tributario, con el objeto de establecer la obligatoriedad de iniciación de actividades para personas que operan en el comercio exterior",
+   "organismo_emisor": null,
+   "fecha_publicacion": "2024-02-05",
+   "quorum": null,
+   "organo_competente": null,
+   "boletin": "16466-05",
+   "tema": [
+    "hacienda"
+   ],
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=21648",
+   "fuente": "fuentes.json#senado_tramitacion",
+   "verificado": true,
+   "nota": "Número y fecha de publicación según el WS de tramitación del Senado; quórum no consta en esa fuente"
+  },
+  {
+   "id": "ley_21747",
+   "tipo": "ley",
+   "numero": "21.747",
+   "titulo": "Introduce modificaciones a la ley N° 19.169, que establece normas sobre otorgamiento de premios nacionales, para otorgar anualmente el Premio Nacional de Literatura",
+   "organismo_emisor": null,
+   "fecha_publicacion": "2025-06-11",
+   "quorum": null,
+   "organo_competente": null,
+   "boletin": "16491-37",
+   "tema": [
+    "otro"
+   ],
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=21747",
+   "fuente": "fuentes.json#senado_tramitacion",
+   "verificado": true,
+   "nota": "Número y fecha de publicación según el WS de tramitación del Senado; quórum no consta en esa fuente"
+  },
+  {
+   "id": "ley_21652",
+   "tipo": "ley",
+   "numero": "21.652",
+   "titulo": "Prorroga para el año 2024, la facultad establecida en el artículo 66 de la ley Nº 21.526, y regula otra materia que indica",
+   "organismo_emisor": null,
+   "fecha_publicacion": "2024-01-16",
+   "quorum": null,
+   "organo_competente": null,
+   "boletin": "16498-13",
+   "tema": [
+    "ambiente",
+    "trabajo"
+   ],
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=21652",
+   "fuente": "fuentes.json#senado_tramitacion",
+   "verificado": true,
+   "nota": "Número y fecha de publicación según el WS de tramitación del Senado; quórum no consta en esa fuente"
+  },
+  {
+   "id": "ley_21653",
+   "tipo": "ley",
+   "numero": "21.653",
+   "titulo": "Modifica la ley Nº 21.040 en materia de suplencia de los directores ejecutivos y adelanta la entrada en funcionamiento del Servicio Local de Educación Pública de Chiloé",
+   "organismo_emisor": null,
+   "fecha_publicacion": "2024-01-19",
+   "quorum": null,
+   "organo_competente": null,
+   "boletin": "16505-04",
+   "tema": [
+    "educacion"
+   ],
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=21653",
+   "fuente": "fuentes.json#senado_tramitacion",
+   "verificado": true,
+   "nota": "Número y fecha de publicación según el WS de tramitación del Senado; quórum no consta en esa fuente"
+  },
+  {
+   "id": "ley_21740",
+   "tipo": "ley",
+   "numero": "21.740",
+   "titulo": "Modifica el Código de Aguas en lo relativo al procedimiento de fiscalización y vigilancia por parte de la Dirección General de Aguas",
+   "organismo_emisor": null,
+   "fecha_publicacion": "2025-04-23",
+   "quorum": null,
+   "organo_competente": null,
+   "boletin": "16504-33",
+   "tema": [
+    "hacienda",
+    "ambiente"
+   ],
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=21740",
+   "fuente": "fuentes.json#senado_tramitacion",
+   "verificado": true,
+   "nota": "Número y fecha de publicación según el WS de tramitación del Senado; quórum no consta en esa fuente"
+  },
+  {
+   "id": "ley_21770",
+   "tipo": "ley",
+   "numero": "21.770",
+   "titulo": "Establece una Ley Marco de Autorizaciones Sectoriales e introduce modificaciones en cuerpos legales que indica",
+   "organismo_emisor": null,
+   "fecha_publicacion": "2025-09-29",
+   "quorum": null,
+   "organo_competente": null,
+   "boletin": "16566-03",
+   "tema": [
+    "otro"
+   ],
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=21770",
+   "fuente": "fuentes.json#senado_tramitacion",
+   "verificado": true,
+   "nota": "Número y fecha de publicación según el WS de tramitación del Senado; quórum no consta en esa fuente"
+  },
+  {
+   "id": "ley_21667",
+   "tipo": "ley",
+   "numero": "21.667",
+   "titulo": "Modifica diversos cuerpos legales, en materia de estabilización tarifaria",
+   "organismo_emisor": null,
+   "fecha_publicacion": "2024-04-30",
+   "quorum": null,
+   "organo_competente": null,
+   "boletin": "16576-08",
+   "tema": [
+    "energia"
+   ],
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=21667",
+   "fuente": "fuentes.json#senado_tramitacion",
+   "verificado": true,
+   "nota": "Número y fecha de publicación según el WS de tramitación del Senado; quórum no consta en esa fuente"
+  },
+  {
+   "id": "ley_21720",
+   "tipo": "ley",
+   "numero": "21.720",
+   "titulo": "Prohíbe la fabricación, comercialización, importación, exportación, utilización, tenencia y porte de dispositivos electrónicos aptos para interceptar, interferir o interrumpir cualquier tipo de señal que se emita a través de un servicio de telecomunicaciones, y establece sanciones en caso de incumplimiento",
+   "organismo_emisor": null,
+   "fecha_publicacion": "2024-12-17",
+   "quorum": null,
+   "organo_competente": null,
+   "boletin": "16598-15",
+   "tema": [
+    "otro"
+   ],
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=21720",
+   "fuente": "fuentes.json#senado_tramitacion",
+   "verificado": true,
+   "nota": "Número y fecha de publicación según el WS de tramitación del Senado; quórum no consta en esa fuente"
+  },
+  {
+   "id": "ley_21713",
+   "tipo": "ley",
+   "numero": "21.713",
+   "titulo": "Dicta normas para asegurar el cumplimiento de las obligaciones tributarias dentro del Pacto por el Crecimiento Económico, el Progreso Social y la Responsabilidad Fiscal",
+   "organismo_emisor": null,
+   "fecha_publicacion": "2024-10-24",
+   "quorum": null,
+   "organo_competente": null,
+   "boletin": "16621-05",
+   "tema": [
+    "hacienda"
+   ],
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=21713",
+   "fuente": "fuentes.json#senado_tramitacion",
+   "verificado": true,
+   "nota": "Número y fecha de publicación según el WS de tramitación del Senado; quórum no consta en esa fuente"
+  },
+  {
+   "id": "ley_21669",
+   "tipo": "ley",
+   "numero": "21.669",
+   "titulo": "Modifica la planta de Oficiales de la Armada, en el Escalafón del Litoral",
+   "organismo_emisor": null,
+   "fecha_publicacion": "2024-05-18",
+   "quorum": null,
+   "organo_competente": null,
+   "boletin": "16619-02",
+   "tema": [
+    "otro"
+   ],
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=21669",
+   "fuente": "fuentes.json#senado_tramitacion",
+   "verificado": true,
+   "nota": "Número y fecha de publicación según el WS de tramitación del Senado; quórum no consta en esa fuente"
+  },
+  {
+   "id": "ley_21795",
+   "tipo": "ley",
+   "numero": "21.795",
+   "titulo": "Condona la deuda originada en pagos en exceso, realizados erróneamente por las municipalidades, a funcionarios y exfuncionarios",
+   "organismo_emisor": null,
+   "fecha_publicacion": "2026-01-26",
+   "quorum": null,
+   "organo_competente": null,
+   "boletin": "16620-06",
+   "tema": [
+    "hacienda",
+    "descentralizacion"
+   ],
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=21795",
+   "fuente": "fuentes.json#senado_tramitacion",
+   "verificado": true,
+   "nota": "Número y fecha de publicación según el WS de tramitación del Senado; quórum no consta en esa fuente"
+  },
+  {
+   "id": "ley_21804",
+   "tipo": "ley",
+   "numero": "21.804",
+   "titulo": "Perfecciona los sistemas medianos en la Ley General de Servicios Eléctricos",
+   "organismo_emisor": null,
+   "fecha_publicacion": "2026-02-13",
+   "quorum": null,
+   "organo_competente": null,
+   "boletin": "16627-08",
+   "tema": [
+    "energia"
+   ],
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=21804",
+   "fuente": "fuentes.json#senado_tramitacion",
+   "verificado": true,
+   "nota": "Número y fecha de publicación según el WS de tramitación del Senado; quórum no consta en esa fuente"
+  },
+  {
+   "id": "ley_21671",
+   "tipo": "ley",
+   "numero": "21.671",
+   "titulo": "Modifica el Código de Aguas para agilizar la entrada en vigencia de los decretos de declaración de zona de escasez hídrica e incorporar a las obras estatales de desarrollo del recurso",
+   "organismo_emisor": null,
+   "fecha_publicacion": "2024-05-30",
+   "quorum": null,
+   "organo_competente": null,
+   "boletin": "16653-33",
+   "tema": [
+    "ambiente"
+   ],
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=21671",
+   "fuente": "fuentes.json#senado_tramitacion",
+   "verificado": true,
+   "nota": "Número y fecha de publicación según el WS de tramitación del Senado; quórum no consta en esa fuente"
+  },
+  {
+   "id": "ley_21838",
+   "tipo": "ley",
+   "numero": "21.838",
+   "titulo": "Dicta normas sobre transferencia de tecnología y conocimiento",
+   "organismo_emisor": null,
+   "fecha_publicacion": "2026-09-17",
+   "quorum": null,
+   "organo_competente": null,
+   "boletin": "16686-19",
+   "tema": [
+    "otro"
+   ],
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=21838",
+   "fuente": "fuentes.json#senado_tramitacion",
+   "verificado": true,
+   "nota": "Número y fecha de publicación según el WS de tramitación del Senado; quórum no consta en esa fuente"
+  },
+  {
+   "id": "ley_21819",
+   "tipo": "ley",
+   "numero": "21.819",
+   "titulo": "Modifica la ley Nº 21.040 y otros cuerpos legales, fortaleciendo la gestión educativa y mejorando las normas sobre administración e instalación del Sistema de Educación Pública.",
+   "organismo_emisor": null,
+   "fecha_publicacion": "2026-05-25",
+   "quorum": null,
+   "organo_competente": null,
+   "boletin": "16705-04",
+   "tema": [
+    "educacion"
+   ],
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=21819",
+   "fuente": "fuentes.json#senado_tramitacion",
+   "verificado": true,
+   "nota": "Número y fecha de publicación según el WS de tramitación del Senado; quórum no consta en esa fuente"
+  },
+  {
+   "id": "ley_21681",
+   "tipo": "ley",
+   "numero": "21.681",
+   "titulo": "Crea el Fondo de Emergencia Transitorio por Incendios y establece otras medidas para la reconstrucción",
+   "organismo_emisor": null,
+   "fecha_publicacion": "2024-07-01",
+   "quorum": null,
+   "organo_competente": null,
+   "boletin": "16704-05",
+   "tema": [
+    "hacienda",
+    "transporte",
+    "agro_pesca"
+   ],
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=21681",
+   "fuente": "fuentes.json#senado_tramitacion",
+   "verificado": true,
+   "nota": "Número y fecha de publicación según el WS de tramitación del Senado; quórum no consta en esa fuente"
+  },
+  {
+   "id": "ley_21693",
+   "tipo": "ley",
+   "numero": "21.693",
+   "titulo": "Modifica diversos cuerpos legales, para perfeccionar el sistema electoral y realizar las elecciones municipales y regionales del año 2024 en dos días",
+   "organismo_emisor": null,
+   "fecha_publicacion": "2024-08-26",
+   "quorum": null,
+   "organo_competente": null,
+   "boletin": "16729-06",
+   "tema": [
+    "pensiones",
+    "energia",
+    "descentralizacion"
+   ],
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=21693",
+   "fuente": "fuentes.json#senado_tramitacion",
+   "verificado": true,
+   "nota": "Número y fecha de publicación según el WS de tramitación del Senado; quórum no consta en esa fuente"
+  },
+  {
+   "id": "ley_21756",
+   "tipo": "ley",
+   "numero": "21.756",
+   "titulo": "Modifica la ley N° 14.908, sobre abandono de familia y pago de pensiones alimenticias, estableciendo la imposibilidad de adjudicación de programas o instrumentos financiados por la agencia nacional de investigación y desarrollo, en el caso que indica",
+   "organismo_emisor": null,
+   "fecha_publicacion": "2025-08-28",
+   "quorum": null,
+   "organo_competente": null,
+   "boletin": "16762-34",
+   "tema": [
+    "pensiones",
+    "social"
+   ],
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=21756",
+   "fuente": "fuentes.json#senado_tramitacion",
+   "verificado": true,
+   "nota": "Número y fecha de publicación según el WS de tramitación del Senado; quórum no consta en esa fuente"
+  },
+  {
+   "id": "ley_21741",
+   "tipo": "ley",
+   "numero": "21.741",
+   "titulo": "Modifica diversos cuerpos legales con el objeto de atender fenómenos urbanos consolidados en el territorio, urgentes, que afectan a la población",
+   "organismo_emisor": null,
+   "fecha_publicacion": "2025-04-26",
+   "quorum": null,
+   "organo_competente": null,
+   "boletin": "16772-14",
+   "tema": [
+    "vivienda"
+   ],
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=21741",
+   "fuente": "fuentes.json#senado_tramitacion",
+   "verificado": true,
+   "nota": "Número y fecha de publicación según el WS de tramitación del Senado; quórum no consta en esa fuente"
+  },
+  {
+   "id": "ley_21753",
+   "tipo": "ley",
+   "numero": "21.753",
+   "titulo": "Moderniza la oferta en la educación parvularia",
+   "organismo_emisor": null,
+   "fecha_publicacion": "2025-07-18",
+   "quorum": null,
+   "organo_competente": null,
+   "boletin": "16811-04",
+   "tema": [
+    "educacion"
+   ],
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=21753",
+   "fuente": "fuentes.json#senado_tramitacion",
+   "verificado": true,
+   "nota": "Número y fecha de publicación según el WS de tramitación del Senado; quórum no consta en esa fuente"
+  },
+  {
+   "id": "ley_21689",
+   "tipo": "ley",
+   "numero": "21.689",
+   "titulo": "Incorpora a la Provincia de Chiloé entre las beneficiarias del programa especial de becas establecido en el artículo 56 de la ley N° 18.681",
+   "organismo_emisor": null,
+   "fecha_publicacion": "2024-09-17",
+   "quorum": null,
+   "organo_competente": null,
+   "boletin": "16835-04",
+   "tema": [
+    "otro"
+   ],
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=21689",
+   "fuente": "fuentes.json#senado_tramitacion",
+   "verificado": true,
+   "nota": "Número y fecha de publicación según el WS de tramitación del Senado; quórum no consta en esa fuente"
+  },
+  {
+   "id": "ley_21776",
+   "tipo": "ley",
+   "numero": "21.776",
+   "titulo": "Reconoce la función de las y los recolectores de residuos domiciliarios y establece obligaciones para la protección de su salud y seguridad en el trabajo",
+   "organismo_emisor": null,
+   "fecha_publicacion": "2025-10-30",
+   "quorum": null,
+   "organo_competente": null,
+   "boletin": "16846-13",
+   "tema": [
+    "salud",
+    "seguridad",
+    "ambiente",
+    "trabajo"
+   ],
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=21776",
+   "fuente": "fuentes.json#senado_tramitacion",
+   "verificado": true,
+   "nota": "Número y fecha de publicación según el WS de tramitación del Senado; quórum no consta en esa fuente"
+  },
+  {
+   "id": "ley_21771",
+   "tipo": "ley",
+   "numero": "21.771",
+   "titulo": "Incorpora la Fiscalía Supraterritorial en la ley N° 19.640, orgánica constitucional del Ministerio Público, y modifica otros cuerpos legales que regulan actuaciones de los fiscales y de las fiscalías regionales",
+   "organismo_emisor": null,
+   "fecha_publicacion": "2025-10-01",
+   "quorum": null,
+   "organo_competente": null,
+   "boletin": "16850-07",
+   "tema": [
+    "hacienda",
+    "constitucional",
+    "descentralizacion"
+   ],
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=21771",
+   "fuente": "fuentes.json#senado_tramitacion",
+   "verificado": true,
+   "nota": "Número y fecha de publicación según el WS de tramitación del Senado; quórum no consta en esa fuente"
+  },
+  {
+   "id": "ley_21809",
+   "tipo": "ley",
+   "numero": "21.809",
+   "titulo": "Establece normas sobre convivencia, buen trato y bienestar de los equipos educativos, con el objeto de prevenir y erradicar el acoso escolar, la discriminación y todo tipo de violencia en los establecimientos educacionales",
+   "organismo_emisor": null,
+   "fecha_publicacion": "2026-04-01",
+   "quorum": null,
+   "organo_competente": null,
+   "boletin": "16901-04",
+   "tema": [
+    "educacion"
+   ],
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=21809",
+   "fuente": "fuentes.json#senado_tramitacion",
+   "verificado": true,
+   "nota": "Número y fecha de publicación según el WS de tramitación del Senado; quórum no consta en esa fuente"
+  },
+  {
+   "id": "ley_21805",
+   "tipo": "ley",
+   "numero": "21.805",
+   "titulo": "Reconoce el derecho al cuidado y crea el Sistema Nacional de Apoyos y Cuidados",
+   "organismo_emisor": null,
+   "fecha_publicacion": "2026-02-16",
+   "quorum": null,
+   "organo_competente": null,
+   "boletin": "16905-31",
+   "tema": [
+    "otro"
+   ],
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=21805",
+   "fuente": "fuentes.json#senado_tramitacion",
+   "verificado": true,
+   "nota": "Número y fecha de publicación según el WS de tramitación del Senado; quórum no consta en esa fuente"
+  },
+  {
+   "id": "ley_21685",
+   "tipo": "ley",
+   "numero": "21.685",
+   "titulo": "Reajusta los valores del Subsidio Único Familiar y la Asignación Familiar, otorga un aporte pagado a través del Bolsillo Familiar Electrónico por los meses de invierno de 2024, e inyecta recursos al Fondo de Estabilización de Precios del Petróleo",
+   "organismo_emisor": null,
+   "fecha_publicacion": "2024-07-13",
+   "quorum": null,
+   "organo_competente": null,
+   "boletin": "16933-05",
+   "tema": [
+    "social"
+   ],
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=21685",
+   "fuente": "fuentes.json#senado_tramitacion",
+   "verificado": true,
+   "nota": "Número y fecha de publicación según el WS de tramitación del Senado; quórum no consta en esa fuente"
+  },
+  {
+   "id": "ley_21758",
+   "tipo": "ley",
+   "numero": "21.758",
+   "titulo": "Modifica la ley Nº 18.450, que aprueba normas para el fomento de la inversión privada de obras de riego y drenaje, para facilitar su aplicación en casos de catástrofes y emergencias que se indican",
+   "organismo_emisor": null,
+   "fecha_publicacion": "2025-08-09",
+   "quorum": null,
+   "organo_competente": null,
+   "boletin": "16932-01",
+   "tema": [
+    "agro_pesca"
+   ],
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=21758",
+   "fuente": "fuentes.json#senado_tramitacion",
+   "verificado": true,
+   "nota": "Número y fecha de publicación según el WS de tramitación del Senado; quórum no consta en esa fuente"
+  },
+  {
+   "id": "ley_21687",
+   "tipo": "ley",
+   "numero": "21.687",
+   "titulo": "Modifica la ley N° 21.643, que modifica el Código del Trabajo y otros cuerpos legales, en materia de prevención, investigación y sanción del acoso laboral, sexual o de violencia en el trabajo",
+   "organismo_emisor": null,
+   "fecha_publicacion": "2024-07-31",
+   "quorum": null,
+   "organo_competente": null,
+   "boletin": "16947-13",
+   "tema": [
+    "trabajo",
+    "descentralizacion"
+   ],
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=21687",
+   "fuente": "fuentes.json#senado_tramitacion",
+   "verificado": true,
+   "nota": "Número y fecha de publicación según el WS de tramitación del Senado; quórum no consta en esa fuente"
+  },
+  {
+   "id": "ley_21834",
+   "tipo": "ley",
+   "numero": "21.834",
+   "titulo": "Amplía la penalización dispuesta en el artículo 304 bis del Código Penal, para fortalecer la seguridad perimetral de los recintos penales",
+   "organismo_emisor": null,
+   "fecha_publicacion": "2026-08-20",
+   "quorum": null,
+   "organo_competente": null,
+   "boletin": "16984-25",
+   "tema": [
+    "seguridad"
+   ],
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=21834",
+   "fuente": "fuentes.json#senado_tramitacion",
+   "verificado": true,
+   "nota": "Número y fecha de publicación según el WS de tramitación del Senado; quórum no consta en esa fuente"
+  },
+  {
+   "id": "ley_21823",
+   "tipo": "ley",
+   "numero": "21.823",
+   "titulo": "Establece, para el personal de Gendarmería de Chile, la obligación de efectuar declaraciones de intereses y patrimonio, en conformidad con lo dispuesto en la ley N° 20.880, sobre probidad en la función pública y prevención de los conflictos de intereses",
+   "organismo_emisor": null,
+   "fecha_publicacion": "2026-06-05",
+   "quorum": null,
+   "organo_competente": null,
+   "boletin": "16985-06",
+   "tema": [
+    "otro"
+   ],
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=21823",
+   "fuente": "fuentes.json#senado_tramitacion",
+   "verificado": true,
+   "nota": "Número y fecha de publicación según el WS de tramitación del Senado; quórum no consta en esa fuente"
+  },
+  {
+   "id": "ley_21688",
+   "tipo": "ley",
+   "numero": "21.688",
+   "titulo": "Facilita la ejecución de proyectos de inversión de interés social en áreas rurales y proyectos de agua potable y saneamiento rural por parte de los gobiernos regionales",
+   "organismo_emisor": null,
+   "fecha_publicacion": "2024-08-09",
+   "quorum": null,
+   "organo_competente": null,
+   "boletin": "16993-05",
+   "tema": [
+    "hacienda",
+    "ambiente",
+    "descentralizacion"
+   ],
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=21688",
+   "fuente": "fuentes.json#senado_tramitacion",
+   "verificado": true,
+   "nota": "Número y fecha de publicación según el WS de tramitación del Senado; quórum no consta en esa fuente"
+  },
+  {
+   "id": "ley_21789",
+   "tipo": "ley",
+   "numero": "21.789",
+   "titulo": "Crea el contrato de buceo y actividades conexas",
+   "organismo_emisor": null,
+   "fecha_publicacion": "2026-01-20",
+   "quorum": null,
+   "organo_competente": null,
+   "boletin": "17005-13",
+   "tema": [
+    "otro"
+   ],
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=21789",
+   "fuente": "fuentes.json#senado_tramitacion",
+   "verificado": true,
+   "nota": "Número y fecha de publicación según el WS de tramitación del Senado; quórum no consta en esa fuente"
+  },
+  {
+   "id": "ley_21745",
+   "tipo": "ley",
+   "numero": "21.745",
+   "titulo": "Modifica el decreto ley N° 825, de 1974, sobre Impuesto a las Ventas y Servicios, para establecer un régimen tributario especial para comerciantes de ferias libres",
+   "organismo_emisor": null,
+   "fecha_publicacion": "2025-05-22",
+   "quorum": null,
+   "organo_competente": null,
+   "boletin": "17040-05",
+   "tema": [
+    "hacienda"
+   ],
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=21745",
+   "fuente": "fuentes.json#senado_tramitacion",
+   "verificado": true,
+   "nota": "Número y fecha de publicación según el WS de tramitación del Senado; quórum no consta en esa fuente"
+  },
+  {
+   "id": "ley_21704",
+   "tipo": "ley",
+   "numero": "21.704",
+   "titulo": "Declara feriado el día 21 de septiembre de 2024 para la Región de Magallanes y la Antártica Chilena, y para la Provincia de Chiloé, con motivo de la conmemoración de la toma de posesión del Estrecho de Magallanes por la goleta `Ancud´",
+   "organismo_emisor": null,
+   "fecha_publicacion": "2024-09-14",
+   "quorum": null,
+   "organo_competente": null,
+   "boletin": "17069-06",
+   "tema": [
+    "descentralizacion"
+   ],
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=21704",
+   "fuente": "fuentes.json#senado_tramitacion",
+   "verificado": true,
+   "nota": "Número y fecha de publicación según el WS de tramitación del Senado; quórum no consta en esa fuente"
+  },
+  {
+   "id": "ley_21726",
+   "tipo": "ley",
+   "numero": "21.726",
+   "titulo": "Otorga una asignación especial técnica del área de la salud, a funcionarios que indica",
+   "organismo_emisor": null,
+   "fecha_publicacion": "2025-03-07",
+   "quorum": null,
+   "organo_competente": null,
+   "boletin": "17075-11",
+   "tema": [
+    "salud"
+   ],
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=21726",
+   "fuente": "fuentes.json#senado_tramitacion",
+   "verificado": true,
+   "nota": "Número y fecha de publicación según el WS de tramitación del Senado; quórum no consta en esa fuente"
+  },
+  {
+   "id": "ley_21752",
+   "tipo": "ley",
+   "numero": "21.752",
+   "titulo": "Fija un nuevo fraccionamiento entre el sector pesquero artesanal e industrial",
+   "organismo_emisor": null,
+   "fecha_publicacion": "2025-06-25",
+   "quorum": null,
+   "organo_competente": null,
+   "boletin": "17096-21",
+   "tema": [
+    "otro"
+   ],
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=21752",
+   "fuente": "fuentes.json#senado_tramitacion",
+   "verificado": true,
+   "nota": "Número y fecha de publicación según el WS de tramitación del Senado; quórum no consta en esa fuente"
+  },
+  {
+   "id": "ley_21815",
+   "tipo": "ley",
+   "numero": "21.815",
+   "titulo": "Reconoce y fortalece a las ferias libres como pilar de la alimentación y el desarrollo local, otorgando un marco jurídico integral para ellas",
+   "organismo_emisor": null,
+   "fecha_publicacion": "2026-06-17",
+   "quorum": null,
+   "organo_competente": null,
+   "boletin": "17117-03",
+   "tema": [
+    "otro"
+   ],
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=21815",
+   "fuente": "fuentes.json#senado_tramitacion",
+   "verificado": true,
+   "nota": "Número y fecha de publicación según el WS de tramitación del Senado; quórum no consta en esa fuente"
+  },
+  {
+   "id": "ley_21722",
+   "tipo": "ley",
+   "numero": "21.722",
+   "titulo": "Ley de Presupuestos para el Sector Público correspondiente al año 2025",
+   "organismo_emisor": null,
+   "fecha_publicacion": "2024-12-13",
+   "quorum": null,
+   "organo_competente": null,
+   "boletin": "17142-05",
+   "tema": [
+    "hacienda",
+    "energia"
+   ],
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=21722",
+   "fuente": "fuentes.json#senado_tramitacion",
+   "verificado": true,
+   "nota": "Número y fecha de publicación según el WS de tramitación del Senado; quórum no consta en esa fuente"
+  },
+  {
+   "id": "ley_21731",
+   "tipo": "ley",
+   "numero": "21.731",
+   "titulo": "Modifica diversos cuerpos legales, con el objeto de modernizar el escalafón de los agentes policiales de la Policía de Investigaciones de Chile y su Estatuto del Personal",
+   "organismo_emisor": null,
+   "fecha_publicacion": "2025-03-11",
+   "quorum": null,
+   "organo_competente": null,
+   "boletin": "17195-25",
+   "tema": [
+    "seguridad"
+   ],
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=21731",
+   "fuente": "fuentes.json#senado_tramitacion",
+   "verificado": true,
+   "nota": "Número y fecha de publicación según el WS de tramitación del Senado; quórum no consta en esa fuente"
+  },
+  {
+   "id": "ley_21716",
+   "tipo": "ley",
+   "numero": "21.716",
+   "titulo": "Modifica la ley N° 21.713 en relación al concepto de abuso en materia tributaria y a la vigencia de algunas de sus disposiciones",
+   "organismo_emisor": null,
+   "fecha_publicacion": "2024-11-13",
+   "quorum": null,
+   "organo_competente": null,
+   "boletin": "17205-05",
+   "tema": [
+    "hacienda"
+   ],
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=21716",
+   "fuente": "fuentes.json#senado_tramitacion",
+   "verificado": true,
+   "nota": "Número y fecha de publicación según el WS de tramitación del Senado; quórum no consta en esa fuente"
+  },
+  {
+   "id": "ley_21723",
+   "tipo": "ley",
+   "numero": "21.723",
+   "titulo": "Otorga una nueva asignación de estímulo para el servicio militar a los soldados conscriptos",
+   "organismo_emisor": null,
+   "fecha_publicacion": "2025-01-31",
+   "quorum": null,
+   "organo_competente": null,
+   "boletin": "17217-02",
+   "tema": [
+    "defensa"
+   ],
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=21723",
+   "fuente": "fuentes.json#senado_tramitacion",
+   "verificado": true,
+   "nota": "Número y fecha de publicación según el WS de tramitación del Senado; quórum no consta en esa fuente"
+  },
+  {
+   "id": "ley_21793",
+   "tipo": "ley",
+   "numero": "21.793",
+   "titulo": "Modifica la ley N° 18.290, de Tránsito, con el objeto de facultar al Ministerio de Transportes y Telecomunicaciones para autorizar establecimientos o talleres que realicen transformación de sistemas de propulsión de combustión interna a eléctricos, y otras adaptaciones, a vehículos motorizados en uso",
+   "organismo_emisor": null,
+   "fecha_publicacion": "2026-01-14",
+   "quorum": null,
+   "organo_competente": null,
+   "boletin": "17242-15",
+   "tema": [
+    "energia",
+    "transporte"
+   ],
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=21793",
+   "fuente": "fuentes.json#senado_tramitacion",
+   "verificado": true,
+   "nota": "Número y fecha de publicación según el WS de tramitación del Senado; quórum no consta en esa fuente"
+  },
+  {
+   "id": "ley_21807",
+   "tipo": "ley",
+   "numero": "21.807",
+   "titulo": "Modifica diversos cuerpos legales con el objeto de fortalecer y modernizar el sistema de planificación territorial del país",
+   "organismo_emisor": null,
+   "fecha_publicacion": "2026-02-16",
+   "quorum": null,
+   "organo_competente": null,
+   "boletin": "17251-14",
+   "tema": [
+    "otro"
+   ],
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=21807",
+   "fuente": "fuentes.json#senado_tramitacion",
+   "verificado": true,
+   "nota": "Número y fecha de publicación según el WS de tramitación del Senado; quórum no consta en esa fuente"
+  },
+  {
+   "id": "ley_21728",
+   "tipo": "ley",
+   "numero": "21.728",
+   "titulo": "Otorga un aporte único a los profesionales de la educación que indica",
+   "organismo_emisor": null,
+   "fecha_publicacion": "2025-02-06",
+   "quorum": null,
+   "organo_competente": null,
+   "boletin": "17269-04",
+   "tema": [
+    "educacion"
+   ],
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=21728",
+   "fuente": "fuentes.json#senado_tramitacion",
+   "verificado": true,
+   "nota": "Número y fecha de publicación según el WS de tramitación del Senado; quórum no consta en esa fuente"
+  },
+  {
+   "id": "ley_21724",
+   "tipo": "ley",
+   "numero": "21.724",
+   "titulo": "Otorga reajuste general de remuneraciones a las y los trabajadores del sector público, concede aguinaldos que señala, concede otros beneficios que indica, y modifica diversos cuerpos legales",
+   "organismo_emisor": null,
+   "fecha_publicacion": "2025-01-03",
+   "quorum": null,
+   "organo_competente": null,
+   "boletin": "17286-05",
+   "tema": [
+    "trabajo"
+   ],
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=21724",
+   "fuente": "fuentes.json#senado_tramitacion",
+   "verificado": true,
+   "nota": "Número y fecha de publicación según el WS de tramitación del Senado; quórum no consta en esa fuente"
+  },
+  {
+   "id": "ley_21783",
+   "tipo": "ley",
+   "numero": "21.783",
+   "titulo": "Exime de trámites y reduce plazos para la ampliación y construcción de nuevos establecimientos penitenciarios",
+   "organismo_emisor": null,
+   "fecha_publicacion": "2025-12-11",
+   "quorum": null,
+   "organo_competente": null,
+   "boletin": "17312-07",
+   "tema": [
+    "otro"
+   ],
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=21783",
+   "fuente": "fuentes.json#senado_tramitacion",
+   "verificado": true,
+   "nota": "Número y fecha de publicación según el WS de tramitación del Senado; quórum no consta en esa fuente"
+  },
+  {
+   "id": "ley_21755",
+   "tipo": "ley",
+   "numero": "21.755",
+   "titulo": "Modifica cuerpos legales que indica, en materia de simplificación regulatoria y promoción de la actividad económica",
+   "organismo_emisor": null,
+   "fecha_publicacion": "2025-07-11",
+   "quorum": null,
+   "organo_competente": null,
+   "boletin": "17322-03",
+   "tema": [
+    "otro"
+   ],
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=21755",
+   "fuente": "fuentes.json#senado_tramitacion",
+   "verificado": true,
+   "nota": "Número y fecha de publicación según el WS de tramitación del Senado; quórum no consta en esa fuente"
+  },
+  {
+   "id": "ley_21748",
+   "tipo": "ley",
+   "numero": "21.748",
+   "titulo": "Establece subsidio a la tasa de interés hipotecaria para la adquisición de viviendas nuevas y modifica normas que indica",
+   "organismo_emisor": null,
+   "fecha_publicacion": "2025-05-29",
+   "quorum": null,
+   "organo_competente": null,
+   "boletin": "17368-05",
+   "tema": [
+    "vivienda"
+   ],
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=21748",
+   "fuente": "fuentes.json#senado_tramitacion",
+   "verificado": true,
+   "nota": "Número y fecha de publicación según el WS de tramitación del Senado; quórum no consta en esa fuente"
+  },
+  {
+   "id": "ley_21749",
+   "tipo": "ley",
+   "numero": "21.749",
+   "titulo": "Establece un bono transitorio para la Policía de Investigaciones de Chile",
+   "organismo_emisor": null,
+   "fecha_publicacion": "2025-07-19",
+   "quorum": null,
+   "organo_competente": null,
+   "boletin": "17374-05",
+   "tema": [
+    "seguridad",
+    "transporte"
+   ],
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=21749",
+   "fuente": "fuentes.json#senado_tramitacion",
+   "verificado": true,
+   "nota": "Número y fecha de publicación según el WS de tramitación del Senado; quórum no consta en esa fuente"
+  },
+  {
+   "id": "ley_21816",
+   "tipo": "ley",
+   "numero": "21.816",
+   "titulo": "Establece medidas y nuevos mecanismos para enfrentar la evasión del pago de tarifa en los sistemas de transporte público del país",
+   "organismo_emisor": null,
+   "fecha_publicacion": "2026-06-02",
+   "quorum": null,
+   "organo_competente": null,
+   "boletin": "17441-15",
+   "tema": [
+    "hacienda",
+    "transporte"
+   ],
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=21816",
+   "fuente": "fuentes.json#senado_tramitacion",
+   "verificado": true,
+   "nota": "Número y fecha de publicación según el WS de tramitación del Senado; quórum no consta en esa fuente"
+  },
+  {
+   "id": "ley_21799",
+   "tipo": "ley",
+   "numero": "21.799",
+   "titulo": "Modifica la ley N° 20.129, con el objeto de regular nuevas exigencias para ingresar a las carreras y programas de pedagogía",
+   "organismo_emisor": null,
+   "fecha_publicacion": "2025-12-30",
+   "quorum": null,
+   "organo_competente": null,
+   "boletin": "17442-04",
+   "tema": [
+    "otro"
+   ],
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=21799",
+   "fuente": "fuentes.json#senado_tramitacion",
+   "verificado": true,
+   "nota": "Número y fecha de publicación según el WS de tramitación del Senado; quórum no consta en esa fuente"
+  },
+  {
+   "id": "ley_21751",
+   "tipo": "ley",
+   "numero": "21.751",
+   "titulo": "Reajusta el monto del ingreso mínimo mensual, la asignación familiar y maternal, el subsidio único familiar, y modifica otras leyes que indica",
+   "organismo_emisor": null,
+   "fecha_publicacion": "2025-06-28",
+   "quorum": null,
+   "organo_competente": null,
+   "boletin": "17508-05",
+   "tema": [
+    "social"
+   ],
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=21751",
+   "fuente": "fuentes.json#senado_tramitacion",
+   "verificado": true,
+   "nota": "Número y fecha de publicación según el WS de tramitación del Senado; quórum no consta en esa fuente"
+  },
+  {
+   "id": "ley_21787",
+   "tipo": "ley",
+   "numero": "21.787",
+   "titulo": "Fortalece las facultades de fiscalización y sanción del Ministerio de Transportes y Telecomunicaciones en materia de transporte ilegal de pasajeros",
+   "organismo_emisor": null,
+   "fecha_publicacion": "2025-12-20",
+   "quorum": null,
+   "organo_competente": null,
+   "boletin": "17553-15",
+   "tema": [
+    "hacienda",
+    "transporte"
+   ],
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=21787",
+   "fuente": "fuentes.json#senado_tramitacion",
+   "verificado": true,
+   "nota": "Número y fecha de publicación según el WS de tramitación del Senado; quórum no consta en esa fuente"
+  },
+  {
+   "id": "ley_21808",
+   "tipo": "ley",
+   "numero": "21.808",
+   "titulo": "Crea un nuevo sistema de subsidio unificado al empleo",
+   "organismo_emisor": null,
+   "fecha_publicacion": "2026-03-13",
+   "quorum": null,
+   "organo_competente": null,
+   "boletin": "17641-13",
+   "tema": [
+    "trabajo"
+   ],
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=21808",
+   "fuente": "fuentes.json#senado_tramitacion",
+   "verificado": true,
+   "nota": "Número y fecha de publicación según el WS de tramitación del Senado; quórum no consta en esa fuente"
+  },
+  {
+   "id": "ley_21786",
+   "tipo": "ley",
+   "numero": "21.786",
+   "titulo": "Establece una bonificación por retiro anticipado a los funcionarios pertenecientes a la planta II de Suboficiales y Gendarmes de Gendarmería de Chile",
+   "organismo_emisor": null,
+   "fecha_publicacion": "2025-11-26",
+   "quorum": null,
+   "organo_competente": null,
+   "boletin": "17642-05",
+   "tema": [
+    "otro"
+   ],
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=21786",
+   "fuente": "fuentes.json#senado_tramitacion",
+   "verificado": true,
+   "nota": "Número y fecha de publicación según el WS de tramitación del Senado; quórum no consta en esa fuente"
+  },
+  {
+   "id": "ley_21818",
+   "tipo": "ley",
+   "numero": "21.818",
+   "titulo": "Reemplaza el artículo 5 bis del decreto ley N° 3.500, de 1980",
+   "organismo_emisor": null,
+   "fecha_publicacion": "2026-06-17",
+   "quorum": null,
+   "organo_competente": null,
+   "boletin": "17724-34",
+   "tema": [
+    "otro"
+   ],
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=21818",
+   "fuente": "fuentes.json#senado_tramitacion",
+   "verificado": true,
+   "nota": "Número y fecha de publicación según el WS de tramitación del Senado; quórum no consta en esa fuente"
+  },
+  {
+   "id": "ley_21773",
+   "tipo": "ley",
+   "numero": "21.773",
+   "titulo": "Modifica la Carta Fundamental, en materia de derecho de sufragio de personas extranjeras",
+   "organismo_emisor": null,
+   "fecha_publicacion": "2025-10-07",
+   "quorum": null,
+   "organo_competente": null,
+   "boletin": "17823-07",
+   "tema": [
+    "seguridad",
+    "constitucional"
+   ],
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=21773",
+   "fuente": "fuentes.json#senado_tramitacion",
+   "verificado": true,
+   "nota": "Número y fecha de publicación según el WS de tramitación del Senado; quórum no consta en esa fuente"
+  },
+  {
+   "id": "ley_21796",
+   "tipo": "ley",
+   "numero": "21.796",
+   "titulo": "Ley de Presupuestos del Sector Público correspondiente al año 2026",
+   "organismo_emisor": null,
+   "fecha_publicacion": "2025-12-12",
+   "quorum": null,
+   "organo_competente": null,
+   "boletin": "17870-05",
+   "tema": [
+    "hacienda"
+   ],
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=21796",
+   "fuente": "fuentes.json#senado_tramitacion",
+   "verificado": true,
+   "nota": "Número y fecha de publicación según el WS de tramitación del Senado; quórum no consta en esa fuente"
+  },
+  {
+   "id": "ley_21839",
+   "tipo": "ley",
+   "numero": "21.839",
+   "titulo": "Crea un nuevo Juzgado de Letras del Trabajo en Santiago y fortalece los juzgados de letras del trabajo que indica",
+   "organismo_emisor": null,
+   "fecha_publicacion": "2026-09-14",
+   "quorum": null,
+   "organo_competente": null,
+   "boletin": "17880-13",
+   "tema": [
+    "trabajo"
+   ],
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=21839",
+   "fuente": "fuentes.json#senado_tramitacion",
+   "verificado": true,
+   "nota": "Número y fecha de publicación según el WS de tramitación del Senado; quórum no consta en esa fuente"
+  },
+  {
+   "id": "ley_21810",
+   "tipo": "ley",
+   "numero": "21.810",
+   "titulo": "Modifica la Carta Fundamental para incorporar a Gendarmería de Chile dentro de las Fuerzas de Orden y Seguridad Pública",
+   "organismo_emisor": null,
+   "fecha_publicacion": "2026-04-16",
+   "quorum": null,
+   "organo_competente": null,
+   "boletin": "18032-07",
+   "tema": [
+    "seguridad",
+    "constitucional"
+   ],
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=21810",
+   "fuente": "fuentes.json#senado_tramitacion",
+   "verificado": true,
+   "nota": "Número y fecha de publicación según el WS de tramitación del Senado; quórum no consta en esa fuente"
+  },
+  {
+   "id": "ley_21806",
+   "tipo": "ley",
+   "numero": "21.806",
+   "titulo": "Otorga reajuste general de remuneraciones a las y los trabajadores del sector público, concede aguinaldos que señala, concede otros beneficios que indica y modifica diversos cuerpos legales",
+   "organismo_emisor": null,
+   "fecha_publicacion": "2026-02-05",
+   "quorum": null,
+   "organo_competente": null,
+   "boletin": "18036-05",
+   "tema": [
+    "trabajo"
+   ],
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=21806",
+   "fuente": "fuentes.json#senado_tramitacion",
+   "verificado": true,
+   "nota": "Número y fecha de publicación según el WS de tramitación del Senado; quórum no consta en esa fuente"
+  },
+  {
+   "id": "ley_21842",
+   "tipo": "ley",
+   "numero": "21.842",
+   "titulo": "Modifica la ley N° 21.442, que aprueba Nueva Ley de Copropiedad Inmobiliaria, con el objeto de garantizar el derecho de los copropietarios a implementar medidas de seguridad en sus unidades de dominio exclusivo",
+   "organismo_emisor": null,
+   "fecha_publicacion": "2026-09-23",
+   "quorum": null,
+   "organo_competente": null,
+   "boletin": "18037-14",
+   "tema": [
+    "seguridad"
+   ],
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=21842",
+   "fuente": "fuentes.json#senado_tramitacion",
+   "verificado": true,
+   "nota": "Número y fecha de publicación según el WS de tramitación del Senado; quórum no consta en esa fuente"
+  },
+  {
+   "id": "ley_21811",
+   "tipo": "ley",
+   "numero": "21.811",
+   "titulo": "Adopta medidas transitorias para contener el precio del kerosene doméstico en el contexto de la emergencia energética internacional, y otras medidas que indica",
+   "organismo_emisor": null,
+   "fecha_publicacion": "2026-03-26",
+   "quorum": null,
+   "organo_competente": null,
+   "boletin": "18137-05",
+   "tema": [
+    "energia",
+    "transporte"
+   ],
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=21811",
+   "fuente": "fuentes.json#senado_tramitacion",
+   "verificado": true,
+   "nota": "Número y fecha de publicación según el WS de tramitación del Senado; quórum no consta en esa fuente"
+  },
+  {
+   "id": "ley_21841",
+   "tipo": "ley",
+   "numero": "21.841",
+   "titulo": "Prorroga el plazo para la regularización e inscripción de derechos de aprovechamiento de aguas hasta el año 2030",
+   "organismo_emisor": null,
+   "fecha_publicacion": "2026-10-09",
+   "quorum": null,
+   "organo_competente": null,
+   "boletin": "18157-33",
+   "tema": [
+    "ambiente"
+   ],
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=21841",
+   "fuente": "fuentes.json#senado_tramitacion",
+   "verificado": true,
+   "nota": "Número y fecha de publicación según el WS de tramitación del Senado; quórum no consta en esa fuente"
+  },
+  {
+   "id": "ley_21827",
+   "tipo": "ley",
+   "numero": "21.827",
+   "titulo": "Establece medidas de seguridad, orden y respeto para la comunidad educativa",
+   "organismo_emisor": null,
+   "fecha_publicacion": "2026-08-12",
+   "quorum": null,
+   "organo_competente": null,
+   "boletin": "18156-04",
+   "tema": [
+    "seguridad"
+   ],
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=21827",
+   "fuente": "fuentes.json#senado_tramitacion",
+   "verificado": true,
+   "nota": "Número y fecha de publicación según el WS de tramitación del Senado; quórum no consta en esa fuente"
+  },
+  {
+   "id": "ley_21850",
+   "tipo": "ley",
+   "numero": "21.850",
+   "titulo": "Para la reconstrucción nacional y el desarrollo económico y social",
+   "organismo_emisor": null,
+   "fecha_publicacion": "2026-10-17",
+   "quorum": null,
+   "organo_competente": null,
+   "boletin": "18216-05",
+   "tema": [
+    "otro"
+   ],
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=21850",
+   "fuente": "fuentes.json#senado_tramitacion",
+   "verificado": true,
+   "nota": "Número y fecha de publicación según el WS de tramitación del Senado; quórum no consta en esa fuente"
+  },
+  {
+   "id": "ley_21830",
+   "tipo": "ley",
+   "numero": "21.830",
+   "titulo": "Reajusta el monto del ingreso mínimo mensual, así como de la asignación familiar y maternal y del subsidio familiar",
+   "organismo_emisor": null,
+   "fecha_publicacion": "2026-06-22",
+   "quorum": null,
+   "organo_competente": null,
+   "boletin": "18230-13",
+   "tema": [
+    "social"
+   ],
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=21830",
+   "fuente": "fuentes.json#senado_tramitacion",
+   "verificado": true,
+   "nota": "Número y fecha de publicación según el WS de tramitación del Senado; quórum no consta en esa fuente"
+  },
+  {
+   "id": "ley_21846",
+   "tipo": "ley",
+   "numero": "21.846",
+   "titulo": "Establece el Día Nacional de la Teletón y el Día Nacional del Encuentro Familiar",
+   "organismo_emisor": null,
+   "fecha_publicacion": "2026-11-05",
+   "quorum": null,
+   "organo_competente": null,
+   "boletin": "18231-35",
+   "tema": [
+    "social"
+   ],
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=21846",
+   "fuente": "fuentes.json#senado_tramitacion",
+   "verificado": true,
+   "nota": "Número y fecha de publicación según el WS de tramitación del Senado; quórum no consta en esa fuente"
+  },
+  {
+   "id": "ley_21825",
+   "tipo": "ley",
+   "numero": "21.825",
+   "titulo": "Modifica la ley N° 21.659, sobre seguridad privada, para aumentar el plazo de presentación y pronunciamiento sobre los estudios de seguridad que dispone, y extiende la prórroga de vigencia de la última autorización del personal de seguridad privada que indica",
+   "organismo_emisor": null,
+   "fecha_publicacion": "2026-05-28",
+   "quorum": null,
+   "organo_competente": null,
+   "boletin": "18232-25",
+   "tema": [
+    "seguridad"
+   ],
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=21825",
+   "fuente": "fuentes.json#senado_tramitacion",
+   "verificado": true,
+   "nota": "Número y fecha de publicación según el WS de tramitación del Senado; quórum no consta en esa fuente"
+  },
+  {
+   "id": "ley_21853",
+   "tipo": "ley",
+   "numero": "21.853",
+   "titulo": "Modifica el Código de Minería y las leyes números 21.420 y 21.649, en materia de amparo minero y otras materias que indica",
+   "organismo_emisor": null,
+   "fecha_publicacion": "2026-11-05",
+   "quorum": null,
+   "organo_competente": null,
+   "boletin": "18259-08",
+   "tema": [
+    "otro"
+   ],
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=21853",
+   "fuente": "fuentes.json#senado_tramitacion",
+   "verificado": true,
+   "nota": "Número y fecha de publicación según el WS de tramitación del Senado; quórum no consta en esa fuente"
+  },
+  {
+   "id": "ley_21831",
+   "tipo": "ley",
+   "numero": "21.831",
+   "titulo": "Autoriza mayor endeudamiento del gobierno central durante el año 2026",
+   "organismo_emisor": null,
+   "fecha_publicacion": "2026-07-10",
+   "quorum": null,
+   "organo_competente": null,
+   "boletin": "18296-05",
+   "tema": [
+    "hacienda"
+   ],
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=21831",
+   "fuente": "fuentes.json#senado_tramitacion",
+   "verificado": true,
+   "nota": "Número y fecha de publicación según el WS de tramitación del Senado; quórum no consta en esa fuente"
+  },
+  {
+   "id": "ley_21847",
+   "tipo": "ley",
+   "numero": "21.847",
+   "titulo": "Modifica la ley N° 21.368, con el objeto de prorrogar la entrada en vigencia de su reglamento y flexibilizar la aplicación de las disposiciones que indica",
+   "organismo_emisor": null,
+   "fecha_publicacion": "2026-11-09",
+   "quorum": null,
+   "organo_competente": null,
+   "boletin": "18337-12",
+   "tema": [
+    "otro"
+   ],
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=21847",
+   "fuente": "fuentes.json#senado_tramitacion",
+   "verificado": true,
+   "nota": "Número y fecha de publicación según el WS de tramitación del Senado; quórum no consta en esa fuente"
+  },
+  {
+   "id": "ley_21833",
+   "tipo": "ley",
+   "numero": "21.833",
+   "titulo": "Ley de protección tarifaria eléctrica",
+   "organismo_emisor": null,
+   "fecha_publicacion": "2026-07-31",
+   "quorum": null,
+   "organo_competente": null,
+   "boletin": "18384-08",
+   "tema": [
+    "energia"
+   ],
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=21833",
+   "fuente": "fuentes.json#senado_tramitacion",
+   "verificado": true,
+   "nota": "Número y fecha de publicación según el WS de tramitación del Senado; quórum no consta en esa fuente"
+  },
+  {
+   "id": "ley_21840",
+   "tipo": "ley",
+   "numero": "21.840",
+   "titulo": "Entrega un bono extraordinario de apoyo a la niñez",
+   "organismo_emisor": null,
+   "fecha_publicacion": "2026-09-04",
+   "quorum": null,
+   "organo_competente": null,
+   "boletin": "18401-31",
+   "tema": [
+    "social"
+   ],
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=21840",
+   "fuente": "fuentes.json#senado_tramitacion",
+   "verificado": true,
+   "nota": "Número y fecha de publicación según el WS de tramitación del Senado; quórum no consta en esa fuente"
+  },
+  {
+   "id": "ley_21835",
+   "tipo": "ley",
+   "numero": "21.835",
+   "titulo": "Modifica la ley N° 21.805, que reconoce el derecho al cuidado y crea el Sistema Nacional de Apoyos y Cuidados, y otros cuerpos normativos que indica",
+   "organismo_emisor": null,
+   "fecha_publicacion": "2026-08-14",
+   "quorum": null,
+   "organo_competente": null,
+   "boletin": "18431-31",
+   "tema": [
+    "otro"
+   ],
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=21835",
+   "fuente": "fuentes.json#senado_tramitacion",
+   "verificado": true,
+   "nota": "Número y fecha de publicación según el WS de tramitación del Senado; quórum no consta en esa fuente"
+  },
+  {
+   "id": "ley_21836",
+   "tipo": "ley",
+   "numero": "21.836",
+   "titulo": "Extiende vigencia y aumenta cobertura de la ley N° 21.748 y modifica normas que indica",
+   "organismo_emisor": null,
+   "fecha_publicacion": "2026-08-17",
+   "quorum": null,
+   "organo_competente": null,
+   "boletin": "18524-05",
+   "tema": [
+    "otro"
+   ],
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=21836",
+   "fuente": "fuentes.json#senado_tramitacion",
+   "verificado": true,
+   "nota": "Número y fecha de publicación según el WS de tramitación del Senado; quórum no consta en esa fuente"
+  },
+  {
+   "id": "ley_21855",
+   "tipo": "ley",
+   "numero": "21.855",
+   "titulo": "Modifica la ley N° 21.719, que regula la protección y el tratamiento de los datos personales y crea la Agencia de Protección de Datos Personales, en el sentido que indica",
+   "organismo_emisor": null,
+   "fecha_publicacion": "2026-11-23",
+   "quorum": null,
+   "organo_competente": null,
+   "boletin": "18623-07",
+   "tema": [
+    "otro"
+   ],
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=21855",
+   "fuente": "fuentes.json#senado_tramitacion",
+   "verificado": true,
+   "nota": "Número y fecha de publicación según el WS de tramitación del Senado; quórum no consta en esa fuente"
+  },
+  {
+   "id": "ley_21848",
+   "tipo": "ley",
+   "numero": "21.848",
+   "titulo": "Extiende la vigencia de los bonos establecidos en la ley N° 21.811, concede bono a pescadores artesanales y modifica el plazo para realizar aportes al Fondo de Garantías para Pequeños Empresarios (FOGAPE)",
+   "organismo_emisor": null,
+   "fecha_publicacion": "2026-10-17",
+   "quorum": null,
+   "organo_competente": null,
+   "boletin": "18684-05",
+   "tema": [
+    "agro_pesca"
+   ],
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=21848",
+   "fuente": "fuentes.json#senado_tramitacion",
+   "verificado": true,
+   "nota": "Número y fecha de publicación según el WS de tramitación del Senado; quórum no consta en esa fuente"
+  },
+  {
+   "id": "ley_21854",
+   "tipo": "ley",
+   "numero": "21.854",
+   "titulo": "Modifica la ley N° 21.780, que crea el Servicio Nacional de Acceso a la Justicia y la Defensoría de Víctimas, con el objeto de otorgar mayor eficiencia al proceso de implementación del servicio",
+   "organismo_emisor": null,
+   "fecha_publicacion": "2026-11-13",
+   "quorum": null,
+   "organo_competente": null,
+   "boletin": "18709-07",
+   "tema": [
+    "otro"
+   ],
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=21854",
+   "fuente": "fuentes.json#senado_tramitacion",
+   "verificado": true,
+   "nota": "Número y fecha de publicación según el WS de tramitación del Senado; quórum no consta en esa fuente"
+  },
+  {
+   "id": "ley_21857",
+   "tipo": "ley",
+   "numero": "21.857",
+   "titulo": "Establece medidas para contener las alzas de los precios de la gasolina automotriz y el petróleo diesel, y aliviar la carga financiera de las empresas de transporte de carga",
+   "organismo_emisor": null,
+   "fecha_publicacion": "2026-11-17",
+   "quorum": null,
+   "organo_competente": null,
+   "boletin": "18885-05",
+   "tema": [
+    "energia",
+    "transporte"
+   ],
+   "url_leychile": "https://www.bcn.cl/leychile/navegar?idLey=21857",
+   "fuente": "fuentes.json#senado_tramitacion",
+   "verificado": true,
+   "nota": "Número y fecha de publicación según el WS de tramitación del Senado; quórum no consta en esa fuente"
+  }
+ ]
+}
