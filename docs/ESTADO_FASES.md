@@ -158,3 +158,8 @@ Ninguna carta carece de fuente (`validate_data.py` lo exige); los efectos de jue
 
 ### Estado de la fase (una línea)
 Contenido y mecánicas v2 integrados con pruebas en verde; para cerrar la fase faltan: prueba en teléfono real (30 fps/RAM), contraste con LeyChile de los quórums y de 14 eventos reales, y la decisión del usuario sobre maqueta Figma y revisión legal; la prueba cerrada de Play está en pausa por instrucción del usuario.
+
+### Estado de los tres puntos del chequeo (23-nov-2026, 19:40)
+1. **test_ui_humo:** en verde tras el commit `5de3b24`: CI headless, corrida 86 = success; local en headless y en xvfb, 6 semillas, botón de fundación y de gabinete ambos en (16, 739) 358×52. Estuvo en rojo en los commits `a6f8a71` y `3112e0c` (y=722 vs 739 en el CI headless) y en `34fb880` (corrida 85); el PR #6 se fusionó (19:31:52) sobre una base en rojo, corregido después.
+2. **PR #6:** fusionado en `ccr-ec102a3c-giitie` (base del PR; `merged_by` thekion11, 19:31:52). `main` NO existe en el repositorio (ramas remotas: ccr-ec102a3c-giitie, datos/*, feat/*, revision/auditoria); nada fue subido a `main`.
+3. **Explicación 1.276 frente a 1.040 y citas CPR art. 66 y 127:** NO están pendientes; están escritas en este archivo, secciones "Cartas: composición, fuentes y fechas de corte" y "Quórums: texto y citas (CPR art. 66 y 127)". Lo que sigue pendiente es el contraste con el texto consolidado de LeyChile (acceso 401).
