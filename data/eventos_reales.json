@@ -745,7 +745,8 @@
    ],
    "nivel_verificacion": "secundaria_coherente",
    "verificado": false,
-   "id": "real_20251116_043"
+   "id": "real_20251116_043",
+   "nota_verificacion": "Servel confirma la fecha y que Jara y Kast pasan a segunda vuelta; el boletín parcial de las 20:30 (62,76 % de mesas) muestra Jara 26,63 %, Kast 24,25 %, Parisi 19,05 %, Kaiser 13,94 %, Matthei 13,04 %: los porcentajes finales de este evento NO se contrastaron con el escrutinio final (sigue verificado:false)."
   },
   {
    "fecha": "2025-11-26",
@@ -902,7 +903,8 @@
    ],
    "nivel_verificacion": "secundaria_coherente",
    "verificado": false,
-   "id": "real_20260105_052"
+   "id": "real_20260105_052",
+   "nota_verificacion": "El Diario de Sesiones del Senado confirma que el Tricel proclamó al presidente electo para el período que inicia el 11-mar-2026; la fecha exacta (5-ene-2026) no se contrastó (sigue verificado:false)."
   },
   {
    "fecha": "2026-01-14",
@@ -1050,21 +1052,22 @@
    ],
    "fuentes": [
     {
-     "titulo": "Gobierno de José Antonio Kast",
-     "url": "https://es.wikipedia.org/wiki/Gobierno_de_José_Antonio_Kast"
+     "titulo": "Ante Congreso Pleno: José Antonio Kast asumió como presidente de la República (Senado)",
+     "url": "https://www.senado.cl/comunicaciones/noticias/ante-congreso-pleno-jose-antonio-kast-asumio-como-presidente-de-la"
     },
     {
-     "titulo": "Elección presidencial de Chile de 2025",
-     "url": "https://es.wikipedia.org/wiki/Elección_presidencial_de_Chile_de_2025"
+     "titulo": "José Antonio Kast asume como nuevo Presidente de la República de Chile (Gob.cl)",
+     "url": "https://www.gob.cl/noticias/jose-antonio-kast-asume-como-nuevo-presidente-republica-chile/"
     },
     {
-     "titulo": "Gobierno de Gabriel Boric",
-     "url": "https://es.wikipedia.org/wiki/Gobierno_de_Gabriel_Boric"
+     "titulo": "BCN: Kast asumió como nuevo Presidente de la República",
+     "url": "https://www.bcn.cl/portal/api-servicios/servicio/ObtenerNoticiaPorIdNoticiaHTML?id=jose-antonio-kast-rist-asumio-como-nuevo-presidente-de-la-republica"
     }
    ],
-   "nivel_verificacion": "secundaria_multiple",
-   "verificado": false,
-   "id": "real_20260311_061"
+   "nivel_verificacion": "primaria",
+   "verificado": true,
+   "id": "real_20260311_061",
+   "nota_verificacion": "Verificado el 23-nov-2026 con búsqueda en senado.cl, gob.cl y bcn.cl (cambio de mando el 11-mar-2026 en el Congreso Nacional, Valparaíso)."
   },
   {
    "fecha": "2026-03-13",
