@@ -38,7 +38,8 @@ func votar(estado: EstadoSimulacion, tipo_id: String, votos_firmes_senado: int =
 	var n_sen := int(h["total_senadores"])
 	var n_dip := int(h.get("total_diputados", 155))
 	var propios_sen := int(estado.partido.get("escanos_propios", 16))
-	var propios_dip := roundi(float(propios_sen) * float(n_dip) / float(n_sen))
+	var propios_dip := roundi(float(propios_sen) * float(n_dip) / float(n_sen)) + int(estado.apoyo_coalicion["camara"])
+	propios_sen += int(estado.apoyo_coalicion["senado"])  # partidos aliados satisfechos (MotorCoalicion)
 	var ruido := int(c["ruido_votos"])
 	var sen: int
 	if votos_firmes_senado >= 0:
@@ -68,8 +69,8 @@ func composicion(estado: EstadoSimulacion, camara: bool) -> Dictionary:
 	if camara:
 		propios = roundi(float(propios) * float(total) / float(h["total_senadores"]))
 	var apoyo := clampf(float(c["apoyo_base"]) + float(c["peso_capital"]) * estado.ind("capital") + float(c["peso_cohesion"]) * estado.ind("cohesion"), 0.0, 1.0)
-	var aliados := roundi(float(total - propios) * apoyo)
-	return {"total": total, "propios": propios, "aliados": aliados, "oposicion": total - propios - aliados}
+	var aliados := roundi(float(total - propios) * apoyo) + int(estado.apoyo_coalicion["camara" if camara else "senado"])
+	return {"total": total, "propios": propios, "aliados": aliados, "oposicion": maxi(0, total - propios - aliados)}
 
 
 func resolver_tc(tipo_id: String, prob_exito_override: float = -1.0) -> Dictionary:

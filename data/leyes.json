@@ -37,7 +37,8 @@
     "descartes_por_turno": 2,
     "reales_en_mazo": 15,
     "costo_min": 1,
-    "costo_max": 3
+    "costo_max": 3,
+    "reposicion_cartas": 3
   },
   "dinamica": {
     "riesgo_umbral": 60.0,
@@ -292,5 +293,46 @@
       "dias": 14
     },
     "nota": "Movimientos internos de la coalición (DISENO_V2 §6); solo en gobierno. Cifras ilustrativas."
+  },
+  "bono_movimientos": {
+    "tramos": [
+      {
+        "desde": 60.0,
+        "hasta": 80.0,
+        "paso": 5.0,
+        "mov": 1
+      },
+      {
+        "desde": 85.0,
+        "hasta": 100.0,
+        "paso": 5.0,
+        "mov": 2
+      }
+    ],
+    "nota": "DISENO_V2 §11. Por cada umbral de aprobación superado (60,65,70,75,80: +1 c/u; 85,90,95,100: +2 c/u) se suman movimientos al amanecer del turno de gobierno. Cifras ilustrativas."
+  },
+  "asesores": {
+    "max": 3,
+    "movimientos_extra": 1,
+    "distancia_max": 2.0,
+    "mitigacion_afin": 0.5,
+    "nota": "DISENO_V2 §9. Cada asesor da +movimientos_extra por turno (desde el siguiente amanecer) y un efecto positivo y uno negativo. La afinidad ideológica con el partido (distancia en ejes eco/inst) atenúa el efecto negativo hasta en mitigacion_afin. Cifras ilustrativas."
+  },
+  "coalicion": {
+    "max_aliados": 3,
+    "satisfaccion_inicial": 50.0,
+    "convergencia": 0.25,
+    "distancia_max": 2.0,
+    "peso_ideologia": 0.4,
+    "bono_carta_afin": 3.0,
+    "cohesion_por_aliado": 0.6,
+    "umbral_malestar": 35.0,
+    "penal_internos_malestar": 1,
+    "umbral_satisfechos": 75.0,
+    "bono_internos_satisfechos": 1,
+    "umbral_ruptura": 15.0,
+    "penal_ruptura_cohesion": 3.0,
+    "penal_ruptura_capital": 2.0,
+    "nota": "DISENO_V2 §10. Satisfacción 0..100 de cada partido aliado: converge hacia (cuota cumplida) x (1 - peso_ideologia x (1 - afinidad ideológica)). Afecta cohesión por turno, escaños que votan con el gobierno y movimientos internos. Partidos ficticios; cifras ilustrativas."
   }
 }

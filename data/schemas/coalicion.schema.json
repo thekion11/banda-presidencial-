@@ -1,0 +1,75 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "array",
+  "minItems": 4,
+  "items": {
+    "type": "object",
+    "required": [
+      "id",
+      "nombre",
+      "sigla",
+      "ideologia",
+      "escanos_senado",
+      "escanos_camara",
+      "peticion",
+      "fuente",
+      "cifras_ilustrativas"
+    ],
+    "properties": {
+      "id": {
+        "type": "string"
+      },
+      "nombre": {
+        "type": "string"
+      },
+      "sigla": {
+        "type": "string",
+        "maxLength": 4
+      },
+      "ideologia": {
+        "type": "object",
+        "required": [
+          "eco",
+          "inst"
+        ],
+        "properties": {
+          "eco": {
+            "type": "number",
+            "minimum": -1,
+            "maximum": 1
+          },
+          "inst": {
+            "type": "number",
+            "minimum": -1,
+            "maximum": 1
+          }
+        }
+      },
+      "escanos_senado": {
+        "type": "integer",
+        "minimum": 0,
+        "maximum": 50
+      },
+      "escanos_camara": {
+        "type": "integer",
+        "minimum": 0,
+        "maximum": 155
+      },
+      "peticion": {
+        "type": "object",
+        "required": [
+          "ministerios",
+          "asesores",
+          "categoria_carta"
+        ]
+      },
+      "fuente": {
+        "type": "string",
+        "pattern": "^fuentes\\.json#[a-z0-9_]+$"
+      },
+      "cifras_ilustrativas": {
+        "const": true
+      }
+    }
+  }
+}

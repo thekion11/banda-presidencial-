@@ -94,7 +94,9 @@ func jugar_carta(idx: int, ministro_id: String = "", region_id: String = "", del
 		res = _jugar_en_campana(carta, region_id)
 	else:
 		res = _jugar_en_gobierno(carta, ministro_id, region_id, delegada)
+	m.coalicion.carta_jugada(carta)
 	m.robar_mano(int(m.catalogo_leyes["mano"]["tamano"]))  # mano continua: entra otra carta al instante
+	m.mazo.reposicion()
 	res["ok"] = true
 	res["costo"] = costo
 	m.estado.registrar_accion("carta", {"id": carta["id"], "costo": costo, "ministro": ministro_id, "region": region_id, "delegada": delegada})
@@ -122,7 +124,7 @@ func _jugar_en_gobierno(carta: Dictionary, ministro_id: String, region_id: Strin
 	var res := {"escandalo": false, "fallo": false, "corrector": {}, "proyecto": null, "propuesta": null}
 	var corr := m.legal.corregir(carta, m.estado)
 	res["corrector"] = corr
-	var escala := float(corr["ratio"])
+	var escala := float(corr["ratio"]) * m.equipo.mult_categoria(String(carta["categoria"]))  # asesores
 	if delegada:
 		var d := m.gabinete.resolver_delegacion(carta, ministro_id)
 		escala *= float(d["escala"])

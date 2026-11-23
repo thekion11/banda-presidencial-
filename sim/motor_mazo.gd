@@ -94,3 +94,30 @@ func ids_con_disponibilidad(clave: String, valor: Variant, solo_no_reales: bool 
 		if d != null and d.get(clave, null) == valor and not (solo_no_reales and m.cartas.es_real(c)):
 			res.append(String(c["id"]))
 	return res
+
+
+func reposicion() -> Array[String]:
+	## DISENO_V2 §12: si la mano quedó vacía y quedan movimientos, entran más cartas disponibles (incluidas las que
+	## el sorteo del mazo dejó fuera). Registra la acción `reposicion` con los ids nuevos para que la UI la anime.
+	var e := m.estado
+	var nuevas: Array[String] = []
+	if not e.mano.is_empty() or (e.pa_actual <= 0 and e.delegadas_turno >= int(m.catalogo_leyes["delegacion"]["max_por_turno"])):
+		return nuevas
+	var cand: Array[String] = []
+	for c in m.catalogo_cartas:
+		var id := String(c["id"])
+		if not e.cartas_ejecutadas.has(id) and m.gabinete.disponible(c):
+			cand.append(id)
+	for i in range(cand.size() - 1, 0, -1):
+		var j := m.rng.randi_range(0, i)
+		var tmp := cand[i]
+		cand[i] = cand[j]
+		cand[j] = tmp
+	for id in cand.slice(0, int(m.catalogo_leyes["mano"]["reposicion_cartas"])):
+		e.mazo.erase(id)
+		e.descarte.erase(id)
+		e.mano.append(m._cartas_por_id[id])
+		nuevas.append(id)
+	if not nuevas.is_empty():
+		e.registrar_accion("reposicion", {"ids": nuevas})
+	return nuevas
