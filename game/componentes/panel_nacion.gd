@@ -11,6 +11,7 @@ func configurar(geo: Dictionary, regiones: Array, aprobacion: Dictionary, obras:
 	_mapa = MapaChile.new()
 	_mapa.leyenda = false
 	_mapa.ciudades_visibles = false
+	_mapa.estirar_x = 1.8
 	_mapa.x_centro_rel = 0.27
 	_mapa.set_anchors_preset(Control.PRESET_FULL_RECT)
 	_mapa.cargar_geo(geo)

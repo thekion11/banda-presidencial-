@@ -95,7 +95,7 @@ func ejecutar_amanecer() -> void:
 	if regiones.pesos.is_empty():
 		_sumar_ind("aprobacion", (ancla - estado.ind("aprobacion")) * float(d["reversion_semanal"]))
 	else:
-		regiones.revertir(estado, ancla, float(d["reversion_semanal"]))
+		regiones.revertir(estado, ancla, float(d["reversion_semanal"]), float(d.get("sesgo_regional_persistente", 0.0)))
 	_delta_aprobacion(-float(d["desgaste_aprobacion_semanal"]), "")
 	_sumar_ind("fiscal", float(d["regen_fiscal_semanal"]))
 	var extra := maxi(0, estado.obras_en_curso.size() - int(d["max_obras_concurrentes"]))

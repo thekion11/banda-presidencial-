@@ -10,6 +10,8 @@ var datos: Dictionary = {}
 var geo: Dictionary = {}
 
 var _sel: int = 0
+var _sel_prev: int = -1
+var _firma_mano: String = ""
 var _ministro: String = ""
 var _region: String = ""
 var _r: Dictionary = {}  # referencias de Barras
@@ -86,13 +88,13 @@ func _construir_cuerpo() -> Control:
 	mm.add_theme_constant_override("margin_right", 14)
 	mm.add_child(cab_mano)
 	cab_mano.add_child(Tema.etiqueta_corta("Tu mano", 13, Tema.TEXTO, true))
-	var tip := Tema.etiqueta_corta("Toca una carta · %d en mano" % motor.estado.mano.size(), 11, Tema.TEXTO_SUAVE)
+	var tip := Tema.etiqueta_corta("%d en mano" % motor.estado.mano.size(), 11, Tema.TEXTO_SUAVE)
 	tip.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	tip.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
 	cab_mano.add_child(tip)
 	vista.add_child(mm)
 	_mano = Control.new()
-	_mano.custom_minimum_size = Vector2(0, 186)
+	_mano.custom_minimum_size = Vector2(0, 200)
 	_mano.clip_contents = false
 	vista.add_child(_mano)
 	var corr := PanelContainer.new()
@@ -163,7 +165,10 @@ func _refrescar() -> void:
 	for o in est.obras_en_curso:
 		obras[o["region"]] = int(obras.get(o["region"], 0)) + 1
 	_mapa.bastion = String(est.partido.get("region_bastion", ""))
-	_mapa.actualizar(est.aprobacion_regional, obras)
+	var props: Dictionary = {}
+	for pid in est.propuestas_abiertas:
+		props[String(motor.catalogo_propuestas[pid].get("region", ""))] = true
+	_mapa.actualizar(est.aprobacion_regional, obras, props)
 	_actualizar_evento()
 	_actualizar_region()
 	_pintar_mano()
@@ -233,6 +238,11 @@ func _pintar_mano() -> void:
 	var alto := 150.0
 	var paso := 0.0 if n < 2 else minf(ancho * 0.8, (Tema.ANCHO - 20.0 - ancho) / float(n - 1))
 	var x0 := (Tema.ANCHO - (ancho + paso * float(n - 1))) * 0.5
+	var firma := ",".join(est.mano.map(func(c: Dictionary) -> String: return String(c["id"])))
+	var repartir := firma != _firma_mano
+	_firma_mano = firma
+	var anima_sel := _sel != _sel_prev and not repartir
+	_sel_prev = _sel
 	var orden: Array[int] = []
 	for i in range(n):
 		if i != _sel:
@@ -248,12 +258,33 @@ func _pintar_mano() -> void:
 		c.pivot_offset = Vector2(ancho * 0.5, alto)
 		c.position = Vector2(x0 + paso * float(i), 44.0)
 		c.rotation_degrees = float(i - (n - 1) * 0.5) * 6.0
+		var destino_pos := c.position
+		var destino_rot := c.rotation_degrees
+		var destino_esc := Vector2.ONE
 		if i == _sel:
-			c.scale = Vector2(1.16, 1.16)
-			c.position.y = 22.0
-			c.rotation_degrees = 0.0
+			destino_esc = Vector2(1.3, 1.3)
+			destino_pos.y = 30.0
+			destino_rot = 0.0
 		c.tocada.connect(_on_carta.bind(i))
 		_mano.add_child(c)
+		if repartir:  # las cartas entran desde abajo, una tras otra
+			c.position = Vector2(destino_pos.x, 260.0)
+			c.rotation_degrees = 0.0
+			var tw := c.create_tween().set_parallel(true).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+			var demora := 0.05 * float(i)
+			tw.tween_property(c, "position", destino_pos, 0.38).set_delay(demora)
+			tw.tween_property(c, "rotation_degrees", destino_rot, 0.38).set_delay(demora)
+			tw.tween_property(c, "scale", destino_esc, 0.38).set_delay(demora)
+		elif anima_sel and i == _sel:  # la elegida se levanta con rebote
+			c.position = Vector2(destino_pos.x, destino_pos.y + 26.0)
+			c.scale = Vector2(1.0, 1.0)
+			var tw2 := c.create_tween().set_parallel(true).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+			tw2.tween_property(c, "position", destino_pos, 0.22)
+			tw2.tween_property(c, "scale", destino_esc, 0.22)
+		else:
+			c.position = destino_pos
+			c.rotation_degrees = destino_rot
+			c.scale = destino_esc
 	var v := motor.vista_carta(_sel, _ministro)
 	if est.etapa == "campana":
 		_lbl_corrector.text = "[b]Campaña:[/b] cada carta es una promesa. Sube la aprobación de la región elegida (+50 %) y queda como meta de legado."
@@ -377,16 +408,12 @@ func _abrir_panel(cual: String) -> void:
 		"comite":
 			contenido = PanelesDia.comite(motor, _aprobar)
 		"nacion":
-			var pn := PanelNacion.new()
-			pn.size_flags_vertical = Control.SIZE_EXPAND_FILL
-			pn.custom_minimum_size = Vector2(0, 560)
-			contenido = pn
-			var obras_n: Dictionary = {}
-			for o in motor.estado.obras_en_curso:
-				obras_n[o["region"]] = int(obras_n.get(o["region"], 0)) + 1
-			pn.configurar(geo, datos["regiones"], motor.estado.aprobacion_regional, obras_n)
+			contenido = PanelNacionCompleto.crear(motor, geo, datos["regiones"], "%s · %s" % [_r["ev_hora"].text.replace("● ", ""), _r["ev_titulo"].text],
+					func() -> void:
+						_abrir_panel("mapa")
+						_terminar_turno())
 		"congreso":
-			contenido = PanelesDia.congreso(motor)
+			contenido = PanelesDia.congreso(motor, _abrir_hito)
 		_:
 			contenido = PanelesDia.gabinete(motor, _ministro, _elegir_ministro)
 	var m := MarginContainer.new()
@@ -416,3 +443,7 @@ func _elegir_ministro(id: String) -> void:
 	_ministro = id
 	_abrir_panel("mapa")
 	_refrescar()
+
+
+func _abrir_hito(obra: Dictionary) -> void:
+	_capa.add_child(PanelesDia.hito(obra, datos["leyes"]["fases_obra"], func() -> void: pass))

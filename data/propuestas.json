@@ -30,7 +30,30 @@
             "delta": 4
           }
         ],
-        "corrector_texto": "El costo ocupa casi todo el espacio fiscal del año. Te ofrezco construirla por tramos: el primero abre en 4 años."
+        "corrector_texto": "El costo ocupa casi todo el espacio fiscal del año. Te ofrezco construirla por tramos: el primero abre en 4 años.",
+        "trazado": [
+          [
+            0.14,
+            0.2
+          ],
+          [
+            0.34,
+            0.38
+          ],
+          [
+            0.52,
+            0.52
+          ],
+          [
+            0.7,
+            0.7
+          ],
+          [
+            0.84,
+            0.86
+          ]
+        ],
+        "elevada": false
       },
       {
         "id": "B",
@@ -54,7 +77,34 @@
             "delta": 9
           }
         ],
-        "corrector_texto": "Un viaducto con 210 expropiaciones casi seguro se judicializa. Puedo bajar el riesgo si aceptas ceder un poquito en el plazo."
+        "corrector_texto": "Un viaducto con 210 expropiaciones casi seguro se judicializa. Puedo bajar el riesgo si aceptas ceder un poquito en el plazo.",
+        "trazado": [
+          [
+            0.14,
+            0.2
+          ],
+          [
+            0.3,
+            0.3
+          ],
+          [
+            0.36,
+            0.5
+          ],
+          [
+            0.56,
+            0.56
+          ],
+          [
+            0.62,
+            0.74
+          ],
+          [
+            0.84,
+            0.86
+          ]
+        ],
+        "elevada": true
       },
       {
         "id": "C",
@@ -78,7 +128,30 @@
             "delta": 6
           }
         ],
-        "corrector_texto": "Combina tramos subterráneos y elevados; equilibra costo y conflicto."
+        "corrector_texto": "Combina tramos subterráneos y elevados; equilibra costo y conflicto.",
+        "trazado": [
+          [
+            0.14,
+            0.2
+          ],
+          [
+            0.32,
+            0.34
+          ],
+          [
+            0.5,
+            0.46
+          ],
+          [
+            0.6,
+            0.66
+          ],
+          [
+            0.84,
+            0.86
+          ]
+        ],
+        "elevada": false
       }
     ]
   },
@@ -113,7 +186,26 @@
             "delta": 7
           }
         ],
-        "corrector_texto": "Excede por mucho la capacidad fiscal: propongo construir el primer tramo."
+        "corrector_texto": "Excede por mucho la capacidad fiscal: propongo construir el primer tramo.",
+        "trazado": [
+          [
+            0.1,
+            0.14
+          ],
+          [
+            0.3,
+            0.34
+          ],
+          [
+            0.55,
+            0.52
+          ],
+          [
+            0.8,
+            0.8
+          ]
+        ],
+        "elevada": true
       },
       {
         "id": "B",
@@ -137,7 +229,26 @@
             "delta": 4
           }
         ],
-        "corrector_texto": "Usa el corredor existente; menor riesgo de ejecución."
+        "corrector_texto": "Usa el corredor existente; menor riesgo de ejecución.",
+        "trazado": [
+          [
+            0.1,
+            0.14
+          ],
+          [
+            0.34,
+            0.3
+          ],
+          [
+            0.52,
+            0.56
+          ],
+          [
+            0.8,
+            0.8
+          ]
+        ],
+        "elevada": true
       },
       {
         "id": "C",
@@ -161,7 +272,26 @@
             "delta": 2
           }
         ],
-        "corrector_texto": "La opción más barata y rápida, con menor impacto en el largo plazo."
+        "corrector_texto": "La opción más barata y rápida, con menor impacto en el largo plazo.",
+        "trazado": [
+          [
+            0.1,
+            0.14
+          ],
+          [
+            0.28,
+            0.4
+          ],
+          [
+            0.6,
+            0.6
+          ],
+          [
+            0.8,
+            0.8
+          ]
+        ],
+        "elevada": false
       }
     ]
   }

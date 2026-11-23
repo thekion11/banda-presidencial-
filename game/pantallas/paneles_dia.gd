@@ -42,16 +42,44 @@ static func comite(motor: MotorTurno, al_aprobar: Callable) -> Control:
 		var prop: Dictionary = motor.catalogo_propuestas[pid]
 		col.add_child(Tema.etiqueta(String(prop["titulo"]), 20, Tema.TEXTO, true))
 		col.add_child(Tema.etiqueta("Presenta la " + String(prop["presenta"]) + " · cifras ilustrativas", 11, Tema.TEXTO_SUAVE))
+		var mapa := ComiteMapa.new()
+		mapa.custom_minimum_size = Vector2(0, 210)
+		mapa.semilla = hash(pid) % 1000
+		var pila := Control.new()
+		pila.custom_minimum_size = Vector2(0, 210)
+		mapa.set_anchors_preset(Control.PRESET_FULL_RECT)
+		pila.add_child(mapa)
+		var tog := HBoxContainer.new()
+		tog.anchor_left = 1.0
+		tog.anchor_right = 1.0
+		tog.offset_left = -96.0
+		tog.offset_right = -8.0
+		tog.offset_top = 8.0
+		var b2 := Tema.boton("2D", Tema.CREMA, Tema.TINTA, 12, 36)
+		var b3 := Tema.boton("3D", Tema.OCEANO, Tema.TEXTO, 12, 36)
+		b2.custom_minimum_size = Vector2(44, 36)
+		b3.custom_minimum_size = Vector2(44, 36)
+		b2.pressed.connect(func() -> void: mapa.modo_3d(false))
+		b3.pressed.connect(func() -> void: mapa.modo_3d(true))
+		tog.add_child(b2)
+		tog.add_child(b3)
+		pila.add_child(tog)
+		col.add_child(pila)
 		var detalle := VBoxContainer.new()
 		var fila_v := HBoxContainer.new()
 		for v in prop["variantes"]:
 			var b := Tema.boton("Variante " + String(v["id"]), Tema.OCEANO.lightened(0.14), Tema.TEXTO, 13, 44)
 			b.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-			b.pressed.connect(_mostrar_variante.bind(detalle, pid, v, prop, motor, al_aprobar))
+			b.pressed.connect(func() -> void:
+				mapa.poner_variante(v["trazado"], bool(v["elevada"]))
+				_mostrar_variante(detalle, pid, v, prop, motor, al_aprobar))
 			fila_v.add_child(b)
 		col.add_child(fila_v)
 		col.add_child(detalle)
-		_mostrar_variante(detalle, pid, prop["variantes"][0], prop, motor, al_aprobar)
+		var v0: Dictionary = prop["variantes"][0]
+		mapa.trazado = v0["trazado"]
+		mapa.elevada = bool(v0["elevada"])
+		_mostrar_variante(detalle, pid, v0, prop, motor, al_aprobar)
 	return _scroll(col)
 
 
@@ -86,7 +114,7 @@ static func _mostrar_variante(detalle: VBoxContainer, pid: String, v: Dictionary
 	detalle.add_child(ok)
 
 
-static func congreso(motor: MotorTurno) -> Control:
+static func congreso(motor: MotorTurno, al_abrir_obra: Callable = Callable()) -> Control:
 	var est := motor.estado
 	var col := VBoxContainer.new()
 	col.add_theme_constant_override("separation", 10)
@@ -109,7 +137,11 @@ static func congreso(motor: MotorTurno) -> Control:
 		col.add_child(Tema.etiqueta("Sin obras en curso.", 12, Tema.TEXTO_SUAVE))
 	for o in est.obras_en_curso:
 		var fase := MotorObras.fase_de(o)
-		col.add_child(_tarjeta(Tema.etiqueta("%s\nFase %d de 5: %s · %d %%" % [o["nombre"], fase, MotorObras.FASES[fase - 1], roundi(100.0 * float(o["dias_avanzados"]) / float(o["dias_totales"]))], 12, Tema.TEXTO)))
+		var bo := Tema.boton("%s\nFase %d de 5: %s · %d %% · ver hito" % [o["nombre"], fase, MotorObras.FASES[fase - 1], roundi(100.0 * float(o["dias_avanzados"]) / float(o["dias_totales"]))], Tema.PANEL, Tema.TEXTO, 12, 56)
+		bo.pressed.connect(func() -> void:
+			if al_abrir_obra.is_valid():
+				al_abrir_obra.call(o))
+		col.add_child(bo)
 	if not est.promesas_campana.is_empty():
 		col.add_child(Tema.etiqueta("Metas de legado (promesas de campaña)", 15, Tema.TEXTO, true))
 		for pr in est.promesas_campana:
@@ -190,6 +222,7 @@ static func evento(ev: Dictionary, al_continuar: Callable, total_senadores: int,
 		h.custom_minimum_size = Vector2(0, 230)
 		h.configurar(total_senadores, int(voto["senado"]), int(voto["en_contra_senado"]) - abst, abst, true)
 		col.add_child(h)
+		h.animar(1.3)
 		var leyenda := HBoxContainer.new()
 		leyenda.alignment = BoxContainer.ALIGNMENT_CENTER
 		leyenda.add_theme_constant_override("separation", 12)
@@ -219,6 +252,11 @@ static func evento(ev: Dictionary, al_continuar: Callable, total_senadores: int,
 		caja.pivot_offset = Vector2(100, 24)
 		sc.add_child(caja)
 		caja.set_deferred("rotation_degrees", -4.0)
+		caja.modulate.a = 0.0
+		caja.scale = Vector2(2.2, 2.2)
+		var tws := caja.create_tween().set_parallel(true)
+		tws.tween_property(caja, "modulate:a", 1.0, 0.12).set_delay(1.35)
+		tws.tween_property(caja, "scale", Vector2.ONE, 0.32).set_delay(1.35).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
 		sc.custom_minimum_size = Vector2(0, 70)
 		col.add_child(sc)
 	var efectos: Variant = ev.get("efectos", null)
@@ -258,4 +296,86 @@ static func evento(ev: Dictionary, al_continuar: Callable, total_senadores: int,
 		capa.queue_free()
 		al_continuar.call())
 	col.add_child(b)
+	return capa
+
+
+static func hito(obra: Dictionary, fases: Array, al_cerrar: Callable) -> Control:
+	var capa := Control.new()
+	capa.set_anchors_preset(Control.PRESET_FULL_RECT)
+	capa.add_child(_fondo_radial())
+	var col := VBoxContainer.new()
+	col.set_anchors_preset(Control.PRESET_FULL_RECT)
+	col.offset_left = 18
+	col.offset_right = -18
+	col.offset_top = 44
+	col.offset_bottom = -24
+	col.add_theme_constant_override("separation", 10)
+	capa.add_child(col)
+	col.add_child(Tema.etiqueta("OBRA EN CURSO · HITO", 10, Tema.ORO, true))
+	col.add_child(Tema.etiqueta(String(obra["nombre"]), 22, Tema.TEXTO, true))
+	var iso := ObraIso.new()
+	iso.custom_minimum_size = Vector2(0, 250)
+	iso.fase = float(MotorObras.fase_de(obra))
+	col.add_child(iso)
+	var info := Tema.etiqueta("", 12, Tema.TEXTO_SUAVE)
+	var nom := Tema.etiqueta("", 16, Tema.TEXTO, true)
+	var fila := HBoxContainer.new()
+	fila.add_theme_constant_override("separation", 6)
+	var actualizar := func(f: int) -> void:
+		nom.text = "Fase %d · %s" % [f, fases[f - 1]["nombre"]]
+		info.text = String(fases[f - 1]["descripcion"])
+	for i in range(5):
+		var b := Tema.boton(str(i + 1), Tema.PANEL, Tema.TEXTO, 15, 44)
+		b.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		b.pressed.connect(func() -> void:
+			iso.ir_a(i + 1)
+			actualizar.call(i + 1))
+		fila.add_child(b)
+	col.add_child(fila)
+	var barra := ProgressBar.new()
+	barra.show_percentage = false
+	barra.custom_minimum_size = Vector2(0, 8)
+	barra.value = 100.0 * float(obra["dias_avanzados"]) / float(obra["dias_totales"])
+	barra.add_theme_stylebox_override("background", Tema.caja(Color("#274A66"), 4))
+	barra.add_theme_stylebox_override("fill", Tema.caja(Tema.ROJO, 4))
+	col.add_child(barra)
+	col.add_child(Tema.etiqueta("Día %d de %d · retrasos: %d" % [int(obra["dias_avanzados"]), int(obra["dias_totales"]), int(obra["retrasos"])], 11, Tema.TEXTO_SUAVE))
+	var tarjeta := PanelContainer.new()
+	tarjeta.add_theme_stylebox_override("panel", Tema.caja(Tema.CREMA, 14))
+	var tv := VBoxContainer.new()
+	nom.add_theme_color_override("font_color", Tema.TINTA)
+	info.add_theme_color_override("font_color", Tema.TINTA)
+	tv.add_child(nom)
+	tv.add_child(info)
+	var chips := HBoxContainer.new()
+	var emp := roundi(float(obra["dias_totales"]) * 1.6 / 10.0) * 10
+	var ap := 0.0
+	for ef in obra["efectos_final"]:
+		ap += float(ef["delta"])
+	chips.add_child(_chip("Empleo (ilustrativo)", "+%d" % emp, Color("#DDF1E6")))
+	chips.add_child(_chip("Aprobación local", Tema.signo(ap), Color("#FBEFD2")))
+	chips.add_child(_chip("Riesgo de retraso", "Bajo" if int(obra["retrasos"]) == 0 else "Medio", Color("#F7D9D5")))
+	tv.add_child(chips)
+	tarjeta.add_child(tv)
+	col.add_child(tarjeta)
+	actualizar.call(MotorObras.fase_de(obra))
+	var esp := Control.new()
+	esp.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	col.add_child(esp)
+	var botones := HBoxContainer.new()
+	botones.add_theme_constant_override("separation", 8)
+	var rep := Tema.boton("Reproducir obra", Tema.PANEL, Tema.TEXTO, 14, 52)
+	rep.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	rep.pressed.connect(func() -> void:
+		iso.reproducir()
+		actualizar.call(5))
+	var cer := Barras.boton_jugar()
+	cer.text = "Volver"
+	cer.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	cer.pressed.connect(func() -> void:
+		capa.queue_free()
+		al_cerrar.call())
+	botones.add_child(rep)
+	botones.add_child(cer)
+	col.add_child(botones)
 	return capa

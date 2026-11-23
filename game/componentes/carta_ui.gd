@@ -31,23 +31,102 @@ func _gui_input(event: InputEvent) -> void:
 		tocada.emit(self)
 
 
+func _cielo(arte: Rect2, base: Color) -> void:
+	var arriba := base.lightened(0.28)
+	var abajo := base.darkened(0.12).lerp(Color("#F0B27A"), 0.18)
+	draw_polygon(PackedVector2Array([arte.position, Vector2(arte.end.x, arte.position.y), arte.end, Vector2(arte.position.x, arte.end.y)]),
+			PackedColorArray([arriba, arriba, abajo, abajo]))
+	draw_circle(arte.position + Vector2(arte.size.x * 0.8, arte.size.y * 0.27), arte.size.y * 0.15, Color(1, 0.88, 0.55, 0.75))
+	draw_rect(Rect2(arte.position.x, arte.end.y - 10, arte.size.x, 10), base.darkened(0.55))
+
+
 func _escena(arte: Rect2, base: Color) -> void:
-	var c := arte.get_center()
-	var cat := String(carta.get("categoria", ""))
-	draw_circle(arte.position + Vector2(arte.size.x * 0.78, arte.size.y * 0.28), arte.size.y * 0.16, Color(1, 0.86, 0.5, 0.55))
-	draw_rect(Rect2(arte.position.x, arte.end.y - 12, arte.size.x, 12), base.darkened(0.45))
-	if cat == "vivienda":
-		var casas := [[0.12, 0.52, Color("#D9A441")], [0.38, 0.38, Color("#F2EEE4")], [0.66, 0.52, Color("#3FA39B")]]
-		for k in casas:
-			var x := arte.position.x + arte.size.x * float(k[0])
-			var w := arte.size.x * 0.24
-			var top := arte.position.y + arte.size.y * float(k[1])
-			var base_y := arte.end.y - 8
-			draw_rect(Rect2(x, top + 8, w, base_y - top - 8), k[2])
-			draw_colored_polygon(PackedVector2Array([Vector2(x - 3, top + 9), Vector2(x + w * 0.5, top - 4), Vector2(x + w + 3, top + 9)]), Color("#B5473A"))
-			draw_rect(Rect2(x + w * 0.38, base_y - 12, w * 0.24, 12), Color(0, 0, 0, 0.35))
-	else:
-		_icono(c + Vector2(0, 2), Tema.CREMA)
+	_cielo(arte, base)
+	var o := arte.position
+	var w := arte.size.x
+	var h := arte.size.y
+	var suelo := arte.end.y - 10.0
+	var claro := Tema.CREMA
+	match String(carta.get("categoria", "")):
+		"vivienda":
+			for k in [[0.10, 0.50, Color("#D9A441")], [0.36, 0.34, Color("#F2EEE4")], [0.64, 0.50, Color("#3FA39B")]]:
+				var x := o.x + w * float(k[0])
+				var an := w * 0.26
+				var top := o.y + h * float(k[1])
+				draw_rect(Rect2(x, top + 8, an, suelo - top - 8), k[2])
+				draw_colored_polygon(PackedVector2Array([Vector2(x - 3, top + 9), Vector2(x + an * 0.5, top - 5), Vector2(x + an + 3, top + 9)]), Color("#B5473A"))
+				draw_rect(Rect2(x + an * 0.36, suelo - 12, an * 0.28, 12), Color(0, 0, 0, 0.35))
+				draw_rect(Rect2(x + an * 0.12, top + 16, 6, 6), Color(1, 0.95, 0.7, 0.9))
+		"transportes":
+			for k in range(3):
+				draw_line(Vector2(o.x + w * (0.2 + 0.3 * float(k)), suelo), Vector2(o.x + w * (0.42 + 0.08 * float(k)), o.y + h * 0.62), Color(0, 0, 0, 0.35), 1.5)
+			var tx := o.x + w * 0.14
+			draw_style_box(Tema.caja(claro, 5), Rect2(tx, o.y + h * 0.42, w * 0.72, h * 0.32))
+			draw_rect(Rect2(tx, o.y + h * 0.62, w * 0.72, h * 0.04), Tema.ROJO)
+			for k in range(4):
+				draw_rect(Rect2(tx + 6 + float(k) * w * 0.17, o.y + h * 0.47, w * 0.12, h * 0.12), Color("#244B6B"))
+		"comite":
+			for g in range(1, 6):
+				draw_line(Vector2(o.x, o.y + h * float(g) / 6.0), Vector2(arte.end.x, o.y + h * float(g) / 6.0), Color(1, 1, 1, 0.14), 1.0)
+				draw_line(Vector2(o.x + w * float(g) / 6.0, o.y), Vector2(o.x + w * float(g) / 6.0, suelo), Color(1, 1, 1, 0.14), 1.0)
+			var ruta := PackedVector2Array([Vector2(o.x + w * 0.1, o.y + h * 0.7), Vector2(o.x + w * 0.38, o.y + h * 0.4), Vector2(o.x + w * 0.6, o.y + h * 0.55), Vector2(o.x + w * 0.9, o.y + h * 0.2)])
+			draw_polyline(ruta, Tema.ROJO, 3.5, true)
+			for q in ruta:
+				draw_circle(q, 4.5, claro)
+				draw_circle(q, 2.5, Tema.ROJO)
+		"energia":
+			for k in range(3):
+				var x := o.x + w * (0.12 + 0.28 * float(k))
+				draw_colored_polygon(PackedVector2Array([Vector2(x, o.y + h * 0.52), Vector2(x + w * 0.26, o.y + h * 0.45), Vector2(x + w * 0.22, suelo - 6), Vector2(x - 0.04 * w, suelo - 4)]), Color("#2A5D8F"))
+				draw_line(Vector2(x + w * 0.11, o.y + h * 0.5), Vector2(x + w * 0.09, suelo - 5), Color(1, 1, 1, 0.5), 1.0)
+				draw_line(Vector2(x, o.y + h * 0.62), Vector2(x + w * 0.24, o.y + h * 0.56), Color(1, 1, 1, 0.5), 1.0)
+		"hacienda", "economia":
+			for k in range(4):
+				var bx := o.x + w * (0.14 + 0.19 * float(k))
+				var bh := h * (0.22 + 0.13 * float(k))
+				draw_rect(Rect2(bx, suelo - bh, w * 0.13, bh), Tema.ORO if k % 2 == 0 else claro)
+			draw_polyline(PackedVector2Array([Vector2(o.x + w * 0.1, o.y + h * 0.62), Vector2(o.x + w * 0.4, o.y + h * 0.46), Vector2(o.x + w * 0.6, o.y + h * 0.5), Vector2(o.x + w * 0.9, o.y + h * 0.2)]), Tema.ROJO, 2.5, true)
+		"salud":
+			draw_rect(Rect2(o.x + w * 0.2, o.y + h * 0.3, w * 0.6, suelo - o.y - h * 0.3), claro)
+			draw_rect(Rect2(o.x + w * 0.46, o.y + h * 0.36, w * 0.08, h * 0.3), Tema.ROJO)
+			draw_rect(Rect2(o.x + w * 0.37, o.y + h * 0.47, w * 0.26, h * 0.08), Tema.ROJO)
+			for k in range(3):
+				draw_rect(Rect2(o.x + w * (0.26 + 0.17 * float(k)), suelo - 14, 7, 14), Color("#8FB3CF"))
+		"educacion":
+			draw_rect(Rect2(o.x + w * 0.18, o.y + h * 0.42, w * 0.64, suelo - o.y - h * 0.42), Color("#E8C27A"))
+			draw_colored_polygon(PackedVector2Array([Vector2(o.x + w * 0.12, o.y + h * 0.44), Vector2(o.x + w * 0.5, o.y + h * 0.18), Vector2(o.x + w * 0.88, o.y + h * 0.44)]), Color("#7E3B3B"))
+			draw_circle(Vector2(o.x + w * 0.5, o.y + h * 0.36), 5.0, claro)
+			for k in range(3):
+				draw_rect(Rect2(o.x + w * (0.26 + 0.2 * float(k)), o.y + h * 0.56, 8, 12), Color("#244B6B"))
+		"seguridad":
+			var cx := o.x + w * 0.5
+			draw_colored_polygon(PackedVector2Array([Vector2(cx - w * 0.2, o.y + h * 0.2), Vector2(cx + w * 0.2, o.y + h * 0.2), Vector2(cx + w * 0.2, o.y + h * 0.55), Vector2(cx, suelo - 2), Vector2(cx - w * 0.2, o.y + h * 0.55)]), Color("#2B4C6B"))
+			draw_colored_polygon(PackedVector2Array([Vector2(cx - w * 0.15, o.y + h * 0.26), Vector2(cx + w * 0.15, o.y + h * 0.26), Vector2(cx + w * 0.15, o.y + h * 0.52), Vector2(cx, suelo - 10), Vector2(cx - w * 0.15, o.y + h * 0.52)]), Tema.ORO)
+		"social":
+			for k in range(3):
+				var px := o.x + w * (0.25 + 0.25 * float(k))
+				draw_circle(Vector2(px, o.y + h * 0.4), h * 0.09, claro)
+				draw_style_box(Tema.caja([Tema.ROJO, Tema.SUBE, Tema.ORO][k], 10), Rect2(px - w * 0.08, o.y + h * 0.5, w * 0.16, suelo - o.y - h * 0.5))
+		"politica":
+			draw_style_box(Tema.caja(Color("#3A2A4F"), 4), Rect2(o.x + w * 0.3, o.y + h * 0.5, w * 0.4, suelo - o.y - h * 0.5))
+			draw_line(Vector2(o.x + w * 0.5, o.y + h * 0.5), Vector2(o.x + w * 0.5, o.y + h * 0.16), claro, 2.0)
+			draw_colored_polygon(PackedVector2Array([Vector2(o.x + w * 0.5, o.y + h * 0.16), Vector2(o.x + w * 0.74, o.y + h * 0.26), Vector2(o.x + w * 0.5, o.y + h * 0.36)]), Tema.ROJO)
+			draw_circle(Vector2(o.x + w * 0.5, o.y + h * 0.66), 5.0, Tema.ORO)
+		"medioambiente":
+			for k in range(4):
+				var tx2 := o.x + w * (0.14 + 0.22 * float(k))
+				draw_rect(Rect2(tx2 + 4, suelo - 14, 4, 14), Color("#5A3B2A"))
+				draw_circle(Vector2(tx2 + 6, suelo - 24 - float(k % 2) * 6.0), 10.0, Color("#3E8E4D"))
+		"descentralizacion":
+			for k in [[0.25, 0.6], [0.5, 0.35], [0.75, 0.62]]:
+				var c := Vector2(o.x + w * float(k[0]), o.y + h * float(k[1]))
+				draw_circle(c, 8.0, claro)
+				draw_colored_polygon(PackedVector2Array([c + Vector2(-5, 3), c + Vector2(5, 3), c + Vector2(0, 14)]), claro)
+				draw_circle(c, 3.5, Tema.ROJO)
+		_:
+			draw_arc(Vector2(o.x + w * 0.1, suelo), w * 0.4, PI * 1.1, PI * 1.9, 14, claro, 4.0)
+			draw_line(Vector2(o.x + w * 0.74, suelo), Vector2(o.x + w * 0.74, o.y + h * 0.15), Tema.ORO, 3.0)
+			draw_line(Vector2(o.x + w * 0.74, o.y + h * 0.15), Vector2(o.x + w * 0.48, o.y + h * 0.22), Tema.ORO, 3.0)
 
 
 func _icono(c: Vector2, col: Color) -> void:
@@ -109,9 +188,7 @@ func _draw() -> void:
 			draw_style_box(Tema.caja(Color(Tema.ORO, 0.07), 16 + k * 2), Rect2(-g, -g, w + g * 2.0, h + g * 2.0))
 	var borde := Tema.ORO if elegida else Color("#7C8EA0")
 	draw_style_box(Tema.caja(Color("#0E2A44"), 13, borde, 3 if elegida else 2), Rect2(Vector2.ZERO, size))
-	var arte := Rect2(5, 5, w - 10, h * 0.43)
-	draw_style_box(Tema.caja(base.lightened(0.1), 9), arte)
-	draw_style_box(Tema.caja(Color(0.04, 0.12, 0.2, 0.28), 9), Rect2(arte.position.x, arte.position.y + arte.size.y * 0.5, arte.size.x, arte.size.y * 0.5))
+	var arte := Rect2(5, 5, w - 10, h * 0.40)
 	_escena(arte, base)
 	var cat: String = NOMBRES_CAT.get(String(carta["categoria"]), String(carta["categoria"]).to_upper())
 	var cinta := Rect2(w - 68.0, 9, 62, 16)
@@ -120,7 +197,7 @@ func _draw() -> void:
 	_gema(Vector2(21, 21), 14.0)
 	draw_multiline_string(Tema.fuente_titulo(), Vector2(8, arte.end.y + 17), String(carta["titulo"]),
 			HORIZONTAL_ALIGNMENT_LEFT, w - 14, 12 if elegida else 11, 2, Tema.TEXTO)
-	var y := h - 42.0
+	var y := h - 41.0
 	var n := 0
 	for ef in carta["efectos"]:
 		if n >= 2:

@@ -55,10 +55,14 @@ func aplicar_delta(estado: EstadoSimulacion, delta: float, region: String, derra
 	recalcular(estado)
 
 
-func revertir(estado: EstadoSimulacion, ancla: float, tasa: float) -> void:
+func revertir(estado: EstadoSimulacion, ancla: float, tasa: float, persistencia: float = 0.0) -> void:
+	var media_base := 0.0
+	for id in pesos.keys():
+		media_base += float(estado.aprobacion_base.get(id, 0.0)) * float(pesos[id])
 	for id in pesos.keys():
 		var a := float(estado.aprobacion_regional[id])
-		estado.aprobacion_regional[id] = clampf(a + (ancla - a) * tasa, 0.0, 100.0)
+		var sesgo := (float(estado.aprobacion_base.get(id, media_base)) - media_base) * persistencia  # cada región conserva su carácter
+		estado.aprobacion_regional[id] = clampf(a + (ancla + sesgo - a) * tasa, 0.0, 100.0)
 	recalcular(estado)
 
 

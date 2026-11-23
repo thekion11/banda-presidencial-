@@ -4,7 +4,7 @@ extends Control
 
 signal region_tocada(id: String)
 
-const ESTIRAR_X := 2.0  # licencia gráfica: Chile es muy angosto para una pantalla vertical
+var estirar_x: float = 2.3  # licencia gráfica: Chile es muy angosto para una pantalla vertical
 
 var _piezas: Dictionary = {}  # id -> Array[PackedVector2Array] normalizadas (contornos)
 var _mallas: Dictionary = {}  # id -> ArrayMesh pretriangulada
@@ -15,6 +15,10 @@ var seleccion: String = ""
 var obras: Dictionary = {}  # id -> cantidad de obras en curso
 var bastion: String = ""
 var _ciudades: Array = []
+var _este: PackedVector2Array = PackedVector2Array()  # borde oriental (Cordillera) por franjas de latitud
+var propuestas: Dictionary = {}
+var _decor: Control
+var animar: bool = true
 var x_centro_rel: float = 0.5
 var leyenda: bool = true
 var ciudades_visibles: bool = true
@@ -57,19 +61,43 @@ func cargar_geo(geo: Dictionary) -> void:
 			malla.add_surface_from_arrays(Mesh.PRIMITIVE_TRIANGLES, arrays)
 			_mallas[id] = malla
 		_banda_y[id] = Vector2(y0, y1)
+	_calcular_borde_este()
+	if animar and _decor == null:
+		_decor = MapaDecor.new()
+		_decor.mapa = self
+		_decor.set_anchors_preset(Control.PRESET_FULL_RECT)
+		_decor.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		add_child(_decor)
 	queue_redraw()
 
 
-func actualizar(p_valores: Dictionary, p_obras: Dictionary = {}) -> void:
+func _calcular_borde_este() -> void:
+	var bins := 110
+	var xmax: Array[float] = []
+	xmax.resize(bins)
+	xmax.fill(-1.0)
+	for id in _piezas.keys():
+		for pieza in _piezas[id]:
+			for p in pieza:
+				var b := clampi(int(p.y * float(bins)), 0, bins - 1)
+				xmax[b] = maxf(xmax[b], p.x)
+	_este.clear()
+	for b in range(bins):
+		if xmax[b] >= 0.0:
+			_este.append(Vector2(xmax[b], (float(b) + 0.5) / float(bins)))
+
+
+func actualizar(p_valores: Dictionary, p_obras: Dictionary = {}, p_propuestas: Dictionary = {}) -> void:
 	valores = p_valores
 	obras = p_obras
+	propuestas = p_propuestas
 	queue_redraw()
 
 
 func _transformar(p: Vector2) -> Vector2:
 	var h := size.y - 16.0
-	var ancho := _ancho_rel * h * ESTIRAR_X
-	return Vector2(size.x * x_centro_rel - ancho * 0.5 + p.x * h * ESTIRAR_X, 8.0 + p.y * h)
+	var ancho := _ancho_rel * h * estirar_x
+	return Vector2(size.x * x_centro_rel - ancho * 0.5 + p.x * h * estirar_x, 8.0 + p.y * h)
 
 
 func _draw() -> void:
@@ -79,6 +107,11 @@ func _draw() -> void:
 		draw_line(Vector2(gx, 0), Vector2(gx, size.y), Color(1, 1, 1, 0.035), 1.0)
 	for gy in range(0, int(size.y), 26):
 		draw_line(Vector2(0, gy), Vector2(size.x, gy), Color(1, 1, 1, 0.035), 1.0)
+	var fila := 0
+	for gy in range(14, int(size.y), 20):
+		for gx in range(int(fila % 2) * 15, int(size.x), 30):
+			draw_arc(Vector2(gx, gy), 4.5, PI * 0.15, PI * 0.85, 6, Color(0.55, 0.78, 1.0, 0.10), 1.2)
+		fila += 1
 	for id in _piezas.keys():
 		var col := Tema.color_aprobacion(float(valores.get(id, 50.0)))
 		if id == seleccion:
@@ -86,7 +119,7 @@ func _draw() -> void:
 		if _mallas.has(id):
 			var h := size.y - 16.0
 			var origen := _transformar(Vector2.ZERO)
-			draw_set_transform(origen, 0.0, Vector2(h * ESTIRAR_X, h))
+			draw_set_transform(origen, 0.0, Vector2(h * estirar_x, h))
 			draw_mesh(_mallas[id], null, Transform2D.IDENTITY, col)
 			draw_set_transform(Vector2.ZERO, 0.0, Vector2.ONE)
 		for pieza in _piezas[id]:
@@ -96,6 +129,13 @@ func _draw() -> void:
 			var borde := Tema.ORO if id == seleccion else Color(1, 0.97, 0.9, 0.55)
 			pts.append(pts[0])
 			draw_polyline(pts, borde, 2.0 if id == seleccion else 1.0, true)
+	for i in range(0, _este.size(), 2):
+		var q := _transformar(_este[i] + Vector2(0.004, 0.0))
+		var h := 5.0 + float((i * 7) % 4)
+		draw_colored_polygon(PackedVector2Array([q + Vector2(-5, h * 0.6), q + Vector2(0, -h), q + Vector2(5, h * 0.6)]), Color("#2F6288", 0.65))
+		draw_colored_polygon(PackedVector2Array([q + Vector2(-2.2, -h * 0.35), q + Vector2(0, -h), q + Vector2(2.2, -h * 0.35)]), Color(1, 1, 1, 0.55))
+		var q2 := q + Vector2(9.0, 7.0)
+		draw_colored_polygon(PackedVector2Array([q2 + Vector2(-3.5, 3), q2 + Vector2(0, -3.5), q2 + Vector2(3.5, 3)]), Color("#2F6288", 0.35))
 	var fuente := Tema.fuente_texto(600)
 	for c in (_ciudades if ciudades_visibles else []):
 		if c["nombre"] == "Santiago":
@@ -114,12 +154,19 @@ func _draw() -> void:
 			draw_rect(Rect2(r.position.x + 74.0 + float(k) * 1.4, r.position.y + 9.0, 1.6, 8.0), Tema.color_aprobacion(30.0 + float(k) / 59.0 * 30.0))
 	for id in obras.keys():
 		if int(obras[id]) > 0 and _banda_y.has(id):
-			var c := _transformar(Vector2(_ancho_rel * 0.5, (_banda_y[id].x + _banda_y[id].y) * 0.5))
-			draw_circle(c, 7.0, Tema.OCEANO)
-			draw_circle(c, 5.0, Tema.ORO)
+			var c := centro(id) + Vector2(10.0, 0.0)
+			draw_circle(c, 11.0, Tema.OCEANO)
+			draw_circle(c, 9.5, Tema.ORO)
+			draw_string(Tema.fuente_titulo(), c + Vector2(-9.5, 4.5), str(int(obras[id])), HORIZONTAL_ALIGNMENT_CENTER, 19.0, 13, Tema.TINTA)
+	for id in propuestas.keys():
+		if bool(propuestas[id]) and _banda_y.has(id):
+			var c2 := centro(id) + Vector2(-12.0, -2.0)
+			draw_circle(c2, 11.0, Tema.CREMA)
+			draw_circle(c2, 9.5, Tema.ROJO)
+			draw_colored_polygon(PackedVector2Array([c2 + Vector2(-5, 1), c2 + Vector2(0, -5), c2 + Vector2(5, 1)]), Tema.TEXTO)
+			draw_rect(Rect2(c2 + Vector2(-3.5, 1), Vector2(7, 5)), Tema.TEXTO)
 	if bastion != "" and _banda_y.has(bastion):
-		var cb := _transformar(Vector2(_ancho_rel * 0.5, (_banda_y[bastion].x + _banda_y[bastion].y) * 0.5))
-		draw_arc(cb, 10.0, 0.0, TAU, 20, Tema.CREMA, 1.5)
+		pass
 
 
 func centro(id: String) -> Vector2:

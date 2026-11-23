@@ -14,7 +14,7 @@
     "bono_bastion": 8.0,
     "derrame_regional": 0.15,
     "reversion_semanal": 0.34,
-    "variacion_regional_inicial": 6.0
+    "variacion_regional_inicial": 9.0
   },
   "indicadores_iniciales": {
     "aprobacion": 90.0,
@@ -51,7 +51,8 @@
     "max_obras_concurrentes": 5,
     "riesgo_por_obra_extra": 1.5,
     "fiscal_critico": 30.0,
-    "penal_fiscal_critico": 0.6
+    "penal_fiscal_critico": 0.6,
+    "sesgo_regional_persistente": 0.6
   },
   "congreso": {
     "apoyo_base": 0.25,
@@ -130,5 +131,32 @@
   "calendario": {
     "fecha_inicio_campana": "2029-09-17",
     "fecha_inicio_mandato": "2030-03-11"
-  }
+  },
+  "fases_obra": [
+    {
+      "id": "licitacion",
+      "nombre": "Licitación",
+      "descripcion": "Se publican las bases y se adjudica el contrato a la empresa constructora."
+    },
+    {
+      "id": "faena",
+      "nombre": "Faena",
+      "descripcion": "Instalación de faena, movimiento de tierras y desvíos de tránsito."
+    },
+    {
+      "id": "estructura",
+      "nombre": "Estructura",
+      "descripcion": "Se levantan las columnas, losas y la estructura principal de la obra."
+    },
+    {
+      "id": "terminacion",
+      "nombre": "Terminación",
+      "descripcion": "Instalación de señalización, escaleras y accesibilidad universal."
+    },
+    {
+      "id": "inauguracion",
+      "nombre": "Inauguración",
+      "descripcion": "Corte de cinta, puesta en marcha y primeros usuarios."
+    }
+  ]
 }

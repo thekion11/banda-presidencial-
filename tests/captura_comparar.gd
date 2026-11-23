@@ -55,4 +55,20 @@ func _correr() -> void:
 	await process_frame
 	dia._abrir_panel("nacion")
 	await _guardar("cmp_nacion")
+	dia._abrir_panel("mapa")
+	m.estado.propuestas_abiertas.append("prop_metro_suroriente")
+	dia._refrescar()
+	await _guardar("cmp_dia2")
+	dia._abrir_panel("comite")
+	await _guardar("cmp_comite_2d")
+	for h in dia._zona_panel.get_children():
+		pass
+	var mc: Node = dia._zona_panel.find_children("*", "ComiteMapa", true, false)[0]
+	mc.modo_3d(true)
+	await create_timer(0.9).timeout
+	await _guardar("cmp_comite_3d")
+	dia._abrir_panel("mapa")
+	var obra := {"nombre": "Estación terminal, nueva línea de Metro", "dias_totales": 960, "dias_avanzados": 760, "retrasos": 0, "efectos_final": [{"ind": "aprobacion", "delta": 4}]}
+	dia._abrir_hito(obra)
+	await _guardar("cmp_hito")
 	quit(0)

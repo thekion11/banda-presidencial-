@@ -177,6 +177,9 @@ def validar_propuestas(props: list, ids_fuentes: set, regiones: set) -> None:
         unicos(p["variantes"], f"variantes de {p['id']}")
         for v in p["variantes"]:
             validar_efectos(v["efectos"], f"variante {p['id']}/{v['id']}")
+            tz = v.get("trazado", [])
+            if len(tz) < 2 or any(not (0.0 <= x <= 1.0 and 0.0 <= y <= 1.0) for x, y in tz):
+                raise ValueError(f"variante {p['id']}/{v['id']}: trazado inválido")
 
 
 def main() -> int:
