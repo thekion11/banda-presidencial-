@@ -57,7 +57,12 @@ func _ready() -> void:
 	_franja_escanos = Tema.etiqueta("", 11, Tema.TINTA)
 	fv.add_child(_franja_perfil)
 	fv.add_child(_franja_escanos)
-	raiz.add_child(franja)
+	var pie := Control.new()  # alto fijo: el botón principal queda en la misma posición sea cual sea la métrica del texto
+	pie.custom_minimum_size = Vector2(0, 53)
+	pie.clip_contents = true
+	franja.set_anchors_preset(Control.PRESET_FULL_RECT)
+	pie.add_child(franja)
+	raiz.add_child(pie)
 	_mostrar_pregunta()
 
 
