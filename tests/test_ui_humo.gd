@@ -14,7 +14,20 @@ func _init() -> void:
 	_correr.call_deferred()
 
 
+const SEMILLAS := [7, 11, 20260415, 31337, 99991, 123456]
+
+
 func _correr() -> void:
+	## Recorre la UI con varias semillas: el layout no debe depender del contenido de la mano.
+	for sem in SEMILLAS:
+		print("semilla ", sem)
+		await _una(sem)
+	if _fallos == 0:
+		print("HUMO DE UI OK (%d semillas)" % SEMILLAS.size())
+	quit(0 if _fallos == 0 else 1)
+
+
+func _una(semilla: int) -> void:
 	var main: Node = load("res://game/main.tscn").instantiate()
 	root.add_child(main)
 	await process_frame
@@ -26,7 +39,9 @@ func _correr() -> void:
 	await process_frame
 	pp._fundar()
 	await process_frame
-	main.motor = Partida.crear(main.datos, 11, main.motor.estado.partido)  # semilla fija: la prueba no depende del reloj
+	var partido: Dictionary = main.motor.estado.partido.duplicate(true)
+	partido["indicadores_iniciales"]["aprobacion"] = 90.0  # la prueba recorre el gobierno: que la campaña no la pierda al azar
+	main.motor = Partida.crear(main.datos, semilla, partido)  # semilla fija: la prueba no depende del reloj
 	main.mostrar_gabinete()
 	await process_frame
 	_check(main._pantalla is PantallaGabinete, "tras fundar el partido debe venir la elección de gabinete")
@@ -79,9 +94,8 @@ func _correr() -> void:
 	_check(rep0.estado.calcular_huella() == main.motor.estado.calcular_huella(), "guardado no reproduce la partida de la UI")
 	await _recorrer_v2(main, dia)
 	_check(not main.motor.estado.partido.is_empty(), "partido vacío")
-	if _fallos == 0:
-		print("HUMO DE UI OK")
-	quit(0 if _fallos == 0 else 1)
+	main.queue_free()
+	await process_frame
 
 
 func _botones(dia: Node, texto: String) -> Array:
@@ -99,18 +113,23 @@ func _recorrer_v2(main: Node, dia: Node) -> void:
 	await process_frame
 	await process_frame
 	# maqueta: el mapa ocupa más de un tercio y el botón principal no se mueve (mapa, otra carta, panel Gabinete)
+	for _k in range(4):
+		await process_frame
 	var base: Rect2 = dia._btn_jugar.get_global_rect()
 	_check(dia._mapa.size.y > dia.size.y / 3.0, "el mapa debe ocupar más de un tercio de la pantalla (%d de %d)" % [dia._mapa.size.y, dia.size.y])
-	dia._sel = 3
-	dia._refrescar()
-	await process_frame
-	_check(dia._btn_jugar.get_global_rect() == base, "el botón principal debe quedar en la misma posición al cambiar de carta")
+	for i in range(est.mano.size()):  # cualquier carta elegida (título largo, corrector de varias líneas): el botón no se mueve
+		dia._sel = i
+		dia._refrescar()
+		for _k in range(4):
+			await process_frame
+		_check(dia._btn_jugar.get_global_rect() == base, "el botón principal debe quedar en la misma posición con la carta %d (%s vs %s)" % [i, dia._btn_jugar.get_global_rect(), base])
+		_check(dia._mapa.size.y > dia.size.y / 3.0, "el mapa debe seguir ocupando más de un tercio con la carta %d" % i)
 	dia._sel = 0
 	for pest in ["gabinete", "equipo", "coalicion", "internos"]:
 		PanelGestion.pestana = pest
 		dia._abrir_panel("gabinete")
-		await process_frame
-		await process_frame
+		for _k in range(4):
+			await process_frame
 		_check(dia._btn_jugar.get_global_rect() == base, "el botón principal debe quedar en el mismo sitio con la pestaña " + pest)
 		_check(dia._zona_panel.get_global_rect().end.y <= base.position.y + 1.0, "el panel no debe tapar el botón principal (" + pest + ")")
 	dia._abrir_panel("mapa")
