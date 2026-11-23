@@ -871,6 +871,30 @@
    "notas": "Nota 4-jun-2026: adjudicado, obras sin comenzar (se usa 'licitacion')."
   },
   {
+   "id": "cur-loslagos-construccion-ascensores-interterrazas-de-puerto-montt",
+   "nombre": "Construcción ascensores interterrazas de Puerto Montt",
+   "sector": "transporte",
+   "region_id": "loslagos",
+   "region_ids": [
+    "loslagos"
+   ],
+   "comuna": "Puerto Montt",
+   "estado": "diseno",
+   "estado_2026_03_11": null,
+   "inversion_musd": null,
+   "inversion_uf": null,
+   "inversion_clp": 11224000000.0,
+   "fecha_inicio": "2024-07",
+   "fecha_fin": "2027-S1",
+   "mandante": "Gobierno Regional de Los Lagos / SERVIU",
+   "descripcion": "Ascensor inclinado (115 m) y ascensor vertical con pasarela cubierta que conectan las terrazas de la ciudad.",
+   "fuente_url": "https://www.subtrans.gob.cl/mtt-y-gobierno-regional-de-los-lagos-anuncian-financiamiento-para-construccion-de-ascensores-interterrazas-de-puerto-montt/",
+   "fuente": "fuentes.json#curados_oficiales_2026",
+   "fecha_consulta": "2026-11-23",
+   "verificado": true,
+   "notas": "Nota jul-2024: convenio mandato Serviu-GORE; expropiaciones aún no inician; término esperado 1er semestre 2027 (estado actual no verificado)."
+  },
+  {
    "id": "cur-loslagos-predio-baquedano-540-viviendas-y-parque-osorno",
    "nombre": "Predio Baquedano: 540 viviendas y parque, Osorno",
    "sector": "vivienda_urbana",
