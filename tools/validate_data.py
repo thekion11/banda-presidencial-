@@ -332,6 +332,16 @@ def main() -> int:
             raise ValueError(f"carta real {c['id']}: título ≤ 60 y `disponibilidad` obligatoria")
         if c["meta"]["tipo"] in ("proyecto_de_ley", "reforma_constitucional") and not (c["meta"].get("fecha_corte") and c["meta"].get("titulo_completo") and isinstance(c["meta"].get("verificado"), bool)):
             raise ValueError(f"carta real {c['id']}: proyecto de ley sin fecha_corte/titulo_completo/verificado")
+    titulos = [c["titulo"] for c in reales]
+    if len(set(titulos)) != len(titulos) or any(t.endswith("…") for t in titulos):
+        raise ValueError("cartas reales: títulos duplicados o truncados con '…'")
+    fuentes_por_id = {f["id"]: f for f in datos["fuentes"]}
+    for c in reales:
+        hecho = c["meta"].get("verificado_hecho")
+        if not isinstance(hecho, bool):
+            raise ValueError(f"carta real {c['id']}: meta.verificado_hecho debe ser booleano (hecho real con fuente primaria; distinto de cifras_ilustrativas)")
+        if hecho and fuentes_por_id[c["fuente"].split("#")[-1]].get("verificado_contra_texto") is False:
+            raise ValueError(f"carta real {c['id']}: verificado_hecho=true con una fuente no verificada contra el texto ({c['fuente']})")
     validar_schema("cartas.json", reales)
     datos["cartas"] = datos["cartas"] + reales
     validar_cartas(datos["cartas"], ids_fuentes, tipos, props)
