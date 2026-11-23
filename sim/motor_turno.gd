@@ -133,8 +133,9 @@ func _reponer_mazo() -> bool:
 		estado.descarte.clear()
 	else:
 		for c in catalogo_cartas:
-			if not estado.mano.any(func(m: Dictionary) -> bool: return m["id"] == c["id"]):
+			if not estado.mano.any(func(m: Dictionary) -> bool: return m["id"] == c["id"]) and not cartas.es_real(c):
 				estado.mazo.append(String(c["id"]))
+	estado.mazo.append_array(cartas.reales_para_mazo())
 	for i in range(estado.mazo.size() - 1, 0, -1):  # Fisher-Yates con la semilla de la partida
 		var j := rng.randi_range(0, i)
 		var tmp: String = estado.mazo[i]

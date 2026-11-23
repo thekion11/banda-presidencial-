@@ -34,7 +34,8 @@
   "mano": {
     "tamano": 5,
     "pa_por_turno": 8,
-    "descartes_por_turno": 2
+    "descartes_por_turno": 2,
+    "reales_en_mazo": 15
   },
   "dinamica": {
     "riesgo_umbral": 60.0,

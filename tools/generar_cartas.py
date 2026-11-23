@@ -44,27 +44,34 @@ def musd(p: dict):
 
 
 def carta_obra(p: dict) -> dict:
+    """Una carta por proyecto, según su estado real al arrancar el juego: idea/perfil/diseño/licitación = obra completa;
+    en ejecución = acelerar (tramo final); terminado = inauguración (efecto inmediato, sin obra)."""
     inv = musd(p)
     grande = inv is not None and inv >= 500
-    dias = 100 if inv is None else int(min(240, 90 + inv * 0.2))
+    est = p["estado"]
     fiscal = -1.0 if inv is None else -round(min(2.0, max(0.5, inv / 600.0)), 1)
+    meta = {"tipo": "proyecto_publico", "proyecto_id": p["id"], "region_id": p.get("region_id"), "estado_real": est,
+            "inversion_musd": None if inv is None else round(inv, 1), "mandante": p.get("mandante"),
+            "verificado": bool(p.get("verificado")), "fuente_url": p.get("fuente_url"), "cifras_ilustrativas": True}
+    base = {"id": "real_obra_" + p["id"].replace("-", "_").replace(".", "_"), "categoria": SECTOR_CAT.get(p["sector"], "obras"),
+            "requisitos": {"ley": None, "quorum": None}, "corrector": None, "abre_propuesta_comite": None, "fuente": p["fuente"], "meta": meta}
+    if est == "terminado":
+        meta["modo"] = "inauguracion"
+        return dict(base, costo_pa=1, titulo=recortar("Inaugurar: " + p["nombre"]), efectos=[{"ind": "aprobacion", "delta": 1.5}, {"ind": "capital", "delta": 0.5}])
+    if est == "ejecucion":
+        meta["modo"] = "acelerar"
+        return dict(base, costo_pa=2, titulo=recortar("Acelerar: " + p["nombre"]), efectos=[{"ind": "aprobacion", "delta": 2.5}, {"ind": "fiscal", "delta": fiscal}],
+                    obra={"nombre": recortar(p["nombre"], 80), "dias_totales": 90})
+    meta["modo"] = "obra"
+    dias = 100 if inv is None else int(min(240, 90 + inv * 0.2))
     efectos = [{"ind": "aprobacion", "delta": 4 if grande else 3}, {"ind": "fiscal", "delta": fiscal}]
     if grande:
         efectos.append({"ind": "riesgo_ejecucion", "delta": 1})
-    return {"id": "real_obra_" + p["id"].replace("-", "_").replace(".", "_"), "categoria": SECTOR_CAT.get(p["sector"], "obras"),
-            "costo_pa": 3 if grande else 2, "titulo": recortar(p["nombre"]), "efectos": efectos,
-            "requisitos": {"ley": None, "quorum": None}, "corrector": None, "abre_propuesta_comite": None,
-            "obra": {"nombre": recortar(p["nombre"], 80), "dias_totales": dias}, "fuente": p["fuente"],
-            "meta": {"tipo": "proyecto_publico", "proyecto_id": p["id"], "region_id": p.get("region_id"), "estado_real": p["estado"],
-                     "inversion_musd": None if inv is None else round(inv, 1), "mandante": p.get("mandante"),
-                     "verificado": bool(p.get("verificado")), "fuente_url": p.get("fuente_url"), "cifras_ilustrativas": True}}
+    return dict(base, costo_pa=3 if grande else 2, titulo=recortar(p["nombre"]), efectos=efectos, obra={"nombre": recortar(p["nombre"], 80), "dias_totales": dias})
 
 
 def seleccionar_obras(proys: list) -> list:
-    pre = [p for p in proys if p["estado"] in PRE_EJECUCION]
-    eje = sorted((p for p in proys if p["estado"] == "ejecucion"), key=lambda p: (-(musd(p) or 0), p["id"]))[:MAX_EJECUCION]
-    pre.sort(key=lambda p: (-(musd(p) or 0), p["id"]))
-    return [carta_obra(p) for p in pre[:MAX_PRE] + eje]
+    return [carta_obra(p) for p in proys]  # TODAS: el mazo limita cuántas circulan a la vez (leyes.json › mano.reales_en_mazo)
 
 
 def carta_ley(b: dict, tipo: str, cat: str, verificado_quorum: bool) -> dict:

@@ -28,8 +28,30 @@ func descartar_mano() -> void:
 		m.estado.descarte.append(String(m.estado.mano.pop_front()["id"]))
 
 
+func es_real(carta: Dictionary) -> bool:
+	return carta.get("meta", {}).get("tipo", "") == "proyecto_publico"
+
+
+func reales_para_mazo() -> Array[String]:
+	## Una carta por proyecto público real: en cada mazo circula un subconjunto sorteado con la semilla (leyes.json › mano.reales_en_mazo).
+	var libres: Array[String] = []
+	for c in m.catalogo_cartas:
+		var id := String(c["id"])
+		if es_real(c) and not m.estado.cartas_ejecutadas.has(id) and not m.estado.descarte.has(id) \
+				and not m.estado.mano.any(func(x: Dictionary) -> bool: return x["id"] == id):
+			libres.append(id)
+	for i in range(libres.size() - 1, 0, -1):
+		var j := m.rng.randi_range(0, i)
+		var tmp := libres[i]
+		libres[i] = libres[j]
+		libres[j] = tmp
+	var res: Array[String] = []
+	res.assign(libres.slice(0, int(m.catalogo_leyes["mano"].get("reales_en_mazo", 15))))
+	return res
+
+
 func es_unica(carta: Dictionary) -> bool:
-	return carta["requisitos"]["ley"] != null or carta.has("obra") or carta.get("abre_propuesta_comite", null) != null
+	return carta["requisitos"]["ley"] != null or carta.has("obra") or es_real(carta) or carta.get("abre_propuesta_comite", null) != null
 
 
 func vista_carta(idx: int, ministro_id: String = "") -> Dictionary:

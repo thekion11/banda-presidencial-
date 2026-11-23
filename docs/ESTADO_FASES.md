@@ -38,3 +38,8 @@ Las comparaciones fotograma a fotograma contra el PDF están en `docs/comparacio
 - Pendiente: las 177 obras restantes y ~1.250 boletines quedan en la base de datos, no como cartas (con >110 cartas el balance se rompía: ver `test_balance`). Opción: desbloquearlas por fecha/temporada.
 - Balance: umbral de victoria 51 y `umbral_pasa_balotaje` 38; descarte de 2 cartas por turno (`mano.descartes_por_turno`) para que la mano no se atasque; bots no saturan la capacidad de ejecución.
 - Revisado el merge de `fuentes.json` y `validate_data.py`: unión por id (24 fuentes), todas las validaciones de ambas ramas activas.
+
+### Una carta por proyecto público (actualiza la sección anterior)
+- `tools/generar_cartas.py` genera ahora UNA carta por cada uno de los 230 proyectos públicos, según su estado real al arrancar: idea/perfil/diseño/licitación = obra completa; en ejecución = "Acelerar" (tramo final, 90 días); terminado = "Inaugurar" (efecto inmediato). Más 20 proyectos de ley y 8 reformas constitucionales. Total 258 cartas reales.
+- Para no romper el balance, cada mazo incluye solo `mano.reales_en_mazo` (15) proyectos sorteados con la semilla; todos terminan circulando. Las cartas de proyecto son únicas (se ejecutan una vez por partida).
+- Pendiente: cartas por proyecto de ley (1.044 en tramitación) y filtrado por región/ministerio de cada proyecto; ilustraciones con Canva por sector.
