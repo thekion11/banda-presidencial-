@@ -42,7 +42,7 @@ static func fuente_texto(peso: int = 400) -> Font:
 
 static func color_aprobacion(v: float) -> Color:
 	## Escala de aprobación de mayor a menor: verde -> naranja/rojo.
-	var t := clampf((v - 30.0) / 40.0, 0.0, 1.0) * 4.0
+	var t := clampf((v - 30.0) / 30.0, 0.0, 1.0) * 4.0
 	var i := int(floor(t))
 	if i >= 4:
 		return ESCALA_APROBACION[4]

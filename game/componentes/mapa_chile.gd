@@ -14,10 +14,15 @@ var valores: Dictionary = {}
 var seleccion: String = ""
 var obras: Dictionary = {}  # id -> cantidad de obras en curso
 var bastion: String = ""
+var _ciudades: Array = []
+var x_centro_rel: float = 0.5
+var leyenda: bool = true
+var ciudades_visibles: bool = true
 
 
 func cargar_geo(geo: Dictionary) -> void:
 	_ancho_rel = float(geo["ancho_rel"])
+	_ciudades = geo.get("ciudades", [])
 	for id in geo["regiones"].keys():
 		var lista: Array[PackedVector2Array] = []
 		var vertices := PackedVector2Array()
@@ -64,11 +69,16 @@ func actualizar(p_valores: Dictionary, p_obras: Dictionary = {}) -> void:
 func _transformar(p: Vector2) -> Vector2:
 	var h := size.y - 16.0
 	var ancho := _ancho_rel * h * ESTIRAR_X
-	return Vector2(8.0 + (size.x - ancho) * 0.5 + p.x * h * ESTIRAR_X, 8.0 + p.y * h)
+	return Vector2(size.x * x_centro_rel - ancho * 0.5 + p.x * h * ESTIRAR_X, 8.0 + p.y * h)
 
 
 func _draw() -> void:
-	draw_rect(Rect2(Vector2.ZERO, size), Tema.OCEANO)
+	var fondo := PackedColorArray([Color("#0E2B45"), Color("#0E2B45"), Color("#0A1E31"), Color("#0A1E31")])
+	draw_polygon(PackedVector2Array([Vector2.ZERO, Vector2(size.x, 0), size, Vector2(0, size.y)]), fondo)
+	for gx in range(0, int(size.x), 26):
+		draw_line(Vector2(gx, 0), Vector2(gx, size.y), Color(1, 1, 1, 0.035), 1.0)
+	for gy in range(0, int(size.y), 26):
+		draw_line(Vector2(0, gy), Vector2(size.x, gy), Color(1, 1, 1, 0.035), 1.0)
 	for id in _piezas.keys():
 		var col := Tema.color_aprobacion(float(valores.get(id, 50.0)))
 		if id == seleccion:
@@ -83,9 +93,25 @@ func _draw() -> void:
 			var pts := PackedVector2Array()
 			for p in pieza:
 				pts.append(_transformar(p))
-			var borde := Tema.ORO if id == seleccion else Color(0.04, 0.13, 0.21, 0.9)
+			var borde := Tema.ORO if id == seleccion else Color(1, 0.97, 0.9, 0.55)
 			pts.append(pts[0])
 			draw_polyline(pts, borde, 2.0 if id == seleccion else 1.0, true)
+	var fuente := Tema.fuente_texto(600)
+	for c in (_ciudades if ciudades_visibles else []):
+		if c["nombre"] == "Santiago":
+			continue
+		var pc := _transformar(Vector2(float(c["x"]), float(c["y"])))
+		draw_circle(pc, 3.6, Tema.CREMA)
+		draw_circle(pc, 2.0, Tema.OCEANO)
+		var nombre := String(c["nombre"])
+		var ancho_txt := fuente.get_string_size(nombre, HORIZONTAL_ALIGNMENT_LEFT, -1, 10).x
+		draw_string(fuente, Vector2(pc.x - 8.0 - ancho_txt, pc.y + 3.5), nombre, HORIZONTAL_ALIGNMENT_LEFT, -1, 10, Tema.TEXTO)
+	if leyenda:
+		var r := Rect2(size.x - 178.0, size.y - 34.0, 168.0, 26.0)
+		draw_style_box(Tema.caja(Color(0.04, 0.13, 0.21, 0.85), 10), r)
+		draw_string(Tema.fuente_texto(500), r.position + Vector2(8, 17), "Aprobación", HORIZONTAL_ALIGNMENT_LEFT, -1, 10, Tema.TEXTO_SUAVE)
+		for k in range(60):
+			draw_rect(Rect2(r.position.x + 74.0 + float(k) * 1.4, r.position.y + 9.0, 1.6, 8.0), Tema.color_aprobacion(30.0 + float(k) / 59.0 * 30.0))
 	for id in obras.keys():
 		if int(obras[id]) > 0 and _banda_y.has(id):
 			var c := _transformar(Vector2(_ancho_rel * 0.5, (_banda_y[id].x + _banda_y[id].y) * 0.5))
@@ -94,6 +120,20 @@ func _draw() -> void:
 	if bastion != "" and _banda_y.has(bastion):
 		var cb := _transformar(Vector2(_ancho_rel * 0.5, (_banda_y[bastion].x + _banda_y[bastion].y) * 0.5))
 		draw_arc(cb, 10.0, 0.0, TAU, 20, Tema.CREMA, 1.5)
+
+
+func centro(id: String) -> Vector2:
+	## Centroide aproximado (en píxeles del control) de la pieza más grande de la región.
+	var mejor: PackedVector2Array = PackedVector2Array()
+	for pieza in _piezas.get(id, []):
+		if pieza.size() > mejor.size():
+			mejor = pieza
+	if mejor.is_empty():
+		return Vector2.ZERO
+	var acc := Vector2.ZERO
+	for p in mejor:
+		acc += p
+	return _transformar(acc / float(mejor.size()))
 
 
 func _gui_input(event: InputEvent) -> void:

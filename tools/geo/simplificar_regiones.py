@@ -13,6 +13,9 @@ from pathlib import Path
 COD_A_ID = {15: "arica", 1: "tarapaca", 2: "antofagasta", 3: "atacama", 4: "coquimbo", 5: "valparaiso",
             13: "metropolitana", 6: "ohiggins", 7: "maule", 16: "nuble", 8: "biobio", 9: "araucania",
             14: "losrios", 10: "loslagos", 11: "aysen", 12: "magallanes"}
+CIUDADES = [("Arica", -18.48, -70.31), ("Iquique", -20.21, -70.15), ("Antofagasta", -23.65, -70.40),
+           ("La Serena", -29.90, -71.25), ("Valparaíso", -33.05, -71.62), ("Santiago", -33.45, -70.67),
+           ("Concepción", -36.83, -73.05), ("Pto. Montt", -41.47, -72.94), ("Punta Arenas", -53.16, -70.91)]
 LON_MIN, LON_MAX, LAT_MIN = -76.8, -66.0, -56.6  # solo territorio continental (sin Antártica ni islas oceánicas)
 
 
@@ -86,6 +89,9 @@ def main() -> int:
     for rid, polys in salida["regiones"].items():
         salida["regiones"][rid] = [[[round((x * coslat - x0) / alto, 4), round((y1 - y) / alto, 4)] for x, y in poly] for poly in polys]
     salida["ancho_rel"] = round((x1 - x0) / alto, 4)  # alto normalizado = 1.0
+    salida["ciudades"] = [
+        {"nombre": n, "x": round((lon * coslat - x0) / alto, 4), "y": round((y1 - lat) / alto, 4)}
+        for n, lat, lon in CIUDADES]
     destino = Path(__file__).resolve().parents[2] / "data" / "geo" / "regiones_mapa.json"
     destino.write_text(json.dumps(salida, separators=(",", ":")), encoding="utf-8")
     pts = sum(len(p) for polys in salida["regiones"].values() for p in polys)

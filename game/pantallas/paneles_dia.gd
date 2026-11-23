@@ -137,51 +137,123 @@ static func gabinete(motor: MotorTurno, elegido: String, al_elegir: Callable) ->
 	return _scroll(col)
 
 
-static func evento(ev: Dictionary, al_continuar: Callable, total_senadores: int) -> Control:
-	var capa := ColorRect.new()
-	capa.color = Color(0.043, 0.133, 0.212, 1.0)
+static func _fondo_radial() -> TextureRect:
+	var g := Gradient.new()
+	g.colors = PackedColorArray([Color("#154F7A"), Color("#0B2236"), Color("#081A2B")])
+	g.offsets = PackedFloat32Array([0.0, 0.55, 1.0])
+	var t := GradientTexture2D.new()
+	t.gradient = g
+	t.fill = GradientTexture2D.FILL_RADIAL
+	t.fill_from = Vector2(0.5, 0.22)
+	t.fill_to = Vector2(0.5, 1.05)
+	t.width = 390
+	t.height = 844
+	var r := TextureRect.new()
+	r.texture = t
+	r.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	r.set_anchors_preset(Control.PRESET_FULL_RECT)
+	r.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	return r
+
+
+static func _centrada(texto: String, tam: int, color: Color, titulo: bool = false, peso: int = 400) -> Label:
+	var l := Tema.etiqueta(texto, tam, color, titulo, peso)
+	l.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	return l
+
+
+static func evento(ev: Dictionary, al_continuar: Callable, total_senadores: int, dia: int = 0) -> Control:
+	var capa := Control.new()
 	capa.set_anchors_preset(Control.PRESET_FULL_RECT)
+	capa.add_child(_fondo_radial())
 	var col := VBoxContainer.new()
 	col.set_anchors_preset(Control.PRESET_FULL_RECT)
 	col.offset_left = 20
 	col.offset_right = -20
-	col.offset_top = 80
-	col.offset_bottom = -30
-	col.add_theme_constant_override("separation", 12)
+	col.offset_top = 46
+	col.offset_bottom = -26
+	col.add_theme_constant_override("separation", 10)
 	capa.add_child(col)
-	col.add_child(Tema.etiqueta("EVENTO · %s" % String(ev["hora"]), 11, Tema.ORO, true))
-	col.add_child(Tema.etiqueta(String(ev["titulo"]), 24, Tema.TEXTO, true))
-	col.add_child(Tema.etiqueta(String(ev["descripcion"]), 14, Tema.TEXTO_SUAVE))
-	var efectos: Variant = ev.get("efectos", null)
-	if efectos != null and not efectos.is_empty():
-		var fila := HBoxContainer.new()
-		var nombres := {"aprobacion": "Aprobación", "capital": "Capital", "cohesion": "Cohesión", "fiscal": "Fiscal", "riesgo_ejecucion": "Riesgo", "viviendas_anio": "Viviendas/año"}
-		for ef in efectos:
-			var d := float(ef["delta"])
-			var ok := d >= 0.0 if ef["ind"] != "riesgo_ejecucion" else d <= 0.0
-			fila.add_child(_chip(String(nombres[ef["ind"]]), Tema.signo(d), Color("#DDF1E6") if ok else Color("#F7D9D5")))
-		col.add_child(fila)
 	var v: Variant = ev.get("votacion", null)
+	var cab := ("SENADO · %s" % String(ev["hora"])) if v != null else ("EVENTO · %s" % String(ev["hora"]))
+	if dia > 0:
+		cab += " · DÍA %d" % dia
+	col.add_child(_centrada(cab, 11, Tema.ORO, true))
+	col.add_child(_centrada(String(ev["titulo"]), 25, Tema.TEXTO, true))
+	col.add_child(_centrada(String(ev["descripcion"]), 13, Tema.TEXTO_SUAVE))
+	var consecuencia := ""
+	var sello := ""
 	if v != null:
 		var voto: Dictionary = v["voto"]
+		var abst := roundi(0.35 * float(voto["en_contra_senado"]))
 		var h := Hemiciclo.new()
-		h.custom_minimum_size = Vector2(0, 170)
-		h.configurar(total_senadores, int(voto["senado"]), int(voto["en_contra_senado"]))
+		h.custom_minimum_size = Vector2(0, 230)
+		h.configurar(total_senadores, int(voto["senado"]), int(voto["en_contra_senado"]) - abst, abst, true)
 		col.add_child(h)
-		col.add_child(Tema.etiqueta("%d votos a favor · mínimo %d (Cámara: %d, mínimo %d)" % [voto["senado"], voto["min_senado"], voto["camara"], voto["min_camara"]], 14, Tema.TEXTO, true))
-		var aprobada: bool = v["aprobada"]
+		var leyenda := HBoxContainer.new()
+		leyenda.alignment = BoxContainer.ALIGNMENT_CENTER
+		leyenda.add_theme_constant_override("separation", 12)
+		for par in [[Tema.SUBE, "A favor %d" % int(voto["senado"])], [Color("#9AA9C0"), "Abstención %d" % abst], [Tema.BAJA, "En contra %d" % (int(voto["en_contra_senado"]) - abst)]]:
+			leyenda.add_child(Icono.crear("dot", par[0], 12.0))
+			leyenda.add_child(Tema.etiqueta_corta(par[1], 11, Tema.TEXTO_SUAVE))
+		col.add_child(leyenda)
+		sello = "APROBADA" if voto["aprobada"] else "RECHAZADA"
 		var tc: Dictionary = v["tc"]
-		var sello := "APROBADA" if voto["aprobada"] else "RECHAZADA"
-		col.add_child(Tema.etiqueta(sello, 30, Tema.SUBE if voto["aprobada"] else Tema.BAJA, true))
-		if bool(tc["recurso"]):
-			var resultado := "El Tribunal Constitucional acoge el recurso: la norma cae y pierdes capital político." if tc["cae"] else "La oposición recurrió al Tribunal Constitucional, pero fue rechazado: la norma se promulga."
-			col.add_child(Tema.etiqueta(resultado, 12, Tema.TEXTO))
-		elif not aprobada:
-			col.add_child(Tema.etiqueta("El proyecto no alcanzó el quórum: pierdes capital político.", 12, Tema.TEXTO))
+		if not bool(voto["aprobada"]):
+			consecuencia = "El proyecto no alcanzó el quórum (Cámara: %d de %d requeridos): pierdes capital político." % [int(voto["camara"]), int(voto["min_camara"])]
+		elif bool(tc["recurso"]) and bool(tc["cae"]):
+			consecuencia = "El Tribunal Constitucional acoge el recurso de la oposición: la norma cae y pierdes capital político."
+		elif bool(tc["recurso"]):
+			consecuencia = "La oposición recurrió al Tribunal Constitucional, pero fue rechazado: la norma se promulga."
+		else:
+			consecuencia = "Aprobada en ambas cámaras (Cámara: %d votos, mínimo %d). Se promulga sin reparos." % [int(voto["camara"]), int(voto["min_camara"])]
+	if sello != "":
+		var ok: bool = v["voto"]["aprobada"]
+		var color := Tema.SUBE if ok else Tema.BAJA
+		var sc := CenterContainer.new()
+		var caja := PanelContainer.new()
+		caja.add_theme_stylebox_override("panel", Tema.caja(Color(color, 0.12), 10, color, 3))
+		var lt := Tema.etiqueta_corta(sello, 30, color, true)
+		lt.add_theme_constant_override("outline_size", 0)
+		caja.add_child(lt)
+		caja.pivot_offset = Vector2(100, 24)
+		sc.add_child(caja)
+		caja.set_deferred("rotation_degrees", -4.0)
+		sc.custom_minimum_size = Vector2(0, 70)
+		col.add_child(sc)
+	var efectos: Variant = ev.get("efectos", null)
+	if (efectos != null and not efectos.is_empty()) or consecuencia != "":
+		var tarjeta := PanelContainer.new()
+		tarjeta.add_theme_stylebox_override("panel", Tema.caja(Color(0.06, 0.18, 0.3, 0.55), 14, Color("#2B5D86"), 1))
+		var cv := VBoxContainer.new()
+		cv.add_theme_constant_override("separation", 8)
+		cv.add_child(Tema.etiqueta("Consecuencias", 14, Tema.TEXTO, true))
+		if efectos != null and not efectos.is_empty():
+			var fila := HBoxContainer.new()
+			fila.add_theme_constant_override("separation", 8)
+			var nombres := {"aprobacion": "Aprobación", "capital": "Capital político", "cohesion": "Cohesión", "fiscal": "Credibilidad fiscal", "riesgo_ejecucion": "Riesgo de ejecución", "viviendas_anio": "Viviendas/año"}
+			for ef in efectos:
+				var d := float(ef["delta"])
+				var bueno := d >= 0.0 if ef["ind"] != "riesgo_ejecucion" else d <= 0.0
+				var cp := PanelContainer.new()
+				cp.add_theme_stylebox_override("panel", Tema.caja(Color("#14405F"), 10))
+				cp.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+				var cvv := VBoxContainer.new()
+				cvv.add_theme_constant_override("separation", 0)
+				cvv.add_child(Tema.etiqueta(String(nombres[ef["ind"]]), 10, Tema.TEXTO_SUAVE))
+				cvv.add_child(Tema.etiqueta(Tema.signo(d), 16, Tema.SUBE if bueno else Tema.BAJA, true))
+				cp.add_child(cvv)
+				fila.add_child(cp)
+			cv.add_child(fila)
+		if consecuencia != "":
+			cv.add_child(Tema.etiqueta(consecuencia, 12, Tema.TEXTO))
+		tarjeta.add_child(cv)
+		col.add_child(tarjeta)
 	var esp := Control.new()
 	esp.size_flags_vertical = Control.SIZE_EXPAND_FILL
 	col.add_child(esp)
-	var b := Tema.boton("Continuar", Tema.ROJO)
+	var b := Barras.boton_jugar()
+	b.text = "Continuar"
 	b.pressed.connect(func() -> void:
 		capa.queue_free()
 		al_continuar.call())
