@@ -329,11 +329,11 @@
     },
     "reducir_errores": {
       "costo": 1,
-      "delta_riesgo": -4.0
+      "delta_riesgo": -2.0
     },
     "acelerar_proyecto": {
       "costo": 1,
-      "dias": 14
+      "dias": 5
     },
     "nota": "Movimientos internos de la coalición (DISENO_V2 §6); solo en gobierno. Cifras ilustrativas."
   },
