@@ -123,6 +123,35 @@
       "prob_exito_tc": 0.65,
       "fuente": "fuentes.json#cpr_chile_2026",
       "votos_minimos_camara": 78
+    },
+    {
+      "id": "ley_organica_constitucional",
+      "nombre": "Ley Orgánica Constitucional (mayoría absoluta de miembros en ejercicio)",
+      "articulo_constitucional": "Art. 66 inc. 2 CPR (texto vigente tras Ley 21.481)",
+      "votos_minimos": 26,
+      "requiere_votacion": true,
+      "dias_tramitacion_base": 42,
+      "puede_ir_tc": true,
+      "prob_recurso_tc": 0.5,
+      "prob_exito_tc": 0.6,
+      "fuente": "fuentes.json#cpr_chile_2026",
+      "votos_minimos_camara": 78,
+      "control_preventivo_tc": true,
+      "verificado": false
+    },
+    {
+      "id": "reforma_constitucional",
+      "nombre": "Reforma Constitucional (4/7 de los miembros en ejercicio)",
+      "articulo_constitucional": "Art. 127 CPR (4/7, Ley 21.481)",
+      "votos_minimos": 29,
+      "requiere_votacion": true,
+      "dias_tramitacion_base": 63,
+      "puede_ir_tc": true,
+      "prob_recurso_tc": 0.4,
+      "prob_exito_tc": 0.6,
+      "fuente": "fuentes.json#cpr_chile_2026",
+      "votos_minimos_camara": 89,
+      "verificado": false
     }
   ],
   "escandalo": {
