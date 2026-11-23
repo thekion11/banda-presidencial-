@@ -26,7 +26,7 @@
    "2026-11-23 (ronda 2): sigue sin cita literal de principios para PCCh, FA, PR, FRVS, UDI, PNL, PDG y Cristiano (sitios con desafío anti-bot, 404 o inaccesibles; extractos de estatutos del Servel son escaneos sin texto).",
    "Senado y Cámara 2022-2026 por partido: sin fuente primaria utilizable (opendata de la Cámara no trae militancias).",
    "Se retiró del PNL una cita que correspondía al Partido Libertario de Chile (otra organización).",
-   "Votaciones del Senado: totales verificados en el XML oficial; el desglose por partido no se publica porque la afiliación de cada senador por fecha no está en una fuente accesible."
+   "Votaciones por partido: Cámara calculadas (opendata.camara.cl); Senado solo totales. Faltan la Ley 21.455 (el servicio devuelve error), la Ley 21.560 y la reforma de pensiones 2025 en la Cámara."
   ]
  },
  "partidos": [
@@ -133,6 +133,54 @@
       "hecho": "Ley 21.030 (despenalización del aborto en tres causales): el Senado aprobó el proyecto 22 a 13 en agosto de 2017 según una fuente, el Tribunal Constitucional rechazó los requerimientos el 21-08-2017 y la ley se publicó el 23-09-2017. No se obtuvo desglose por partido.",
       "fecha": "2017-09-23",
       "fuente_url": "https://www.cnnchile.com/pais/camara-baja-aprobo-informe-de-la-comision-mixta-y-proyecto-de-aborto-pasara-al/"
+     },
+     {
+      "tema": "tributaria",
+      "hecho": "Cámara, 2014-05-14 (Reforma tributaria 2014 (primer tramite, primer voto 2014-05-14); Camara de Diputados, votacion Id 18718 (Proyecto de Ley)): 16 a favor, 0 en contra y 0 abstenciones de sus diputados (total de la sala 72-48-0).",
+      "fecha": "2014-05-14",
+      "fuente_url": "https://opendata.camara.cl/camaradiputados/WServices/WSLegislativo.asmx"
+     },
+     {
+      "tema": "tributaria",
+      "hecho": "Cámara, 2014-09-10 (Reforma tributaria 2014 (tercer tramite 2014-09-10, voto 69/34/4); Camara de Diputados, votacion Id 18298 (Proyecto de Ley)): 16 a favor, 0 en contra y 0 abstenciones de sus diputados (total de la sala 69-34-4).",
+      "fecha": "2014-09-10",
+      "fuente_url": "https://opendata.camara.cl/camaradiputados/WServices/WSLegislativo.asmx"
+     },
+     {
+      "tema": "tributaria",
+      "hecho": "Cámara, 2023-03-08 (Proyecto tributario 2023 (idea de legislar); Camara de Diputados, votacion Id 38703 (Proyecto de Ley)): 13 a favor, 0 en contra y 0 abstenciones de sus diputados (total de la sala 73-71-3).",
+      "fecha": "2023-03-08",
+      "fuente_url": "https://opendata.camara.cl/camaradiputados/WServices/WSLegislativo.asmx"
+     },
+     {
+      "tema": "derechos",
+      "hecho": "Cámara, 2021-11-23 (Matrimonio igualitario (2021-11-23, primer voto); Camara de Diputados, votacion Id 26001 (Proyecto de Ley)): 16 a favor, 0 en contra y 0 abstenciones de sus diputados (total de la sala 101-30-2).",
+      "fecha": "2021-11-23",
+      "fuente_url": "https://opendata.camara.cl/camaradiputados/WServices/WSLegislativo.asmx"
+     },
+     {
+      "tema": "derechos",
+      "hecho": "Cámara, 2021-12-07 (Matrimonio igualitario (2021-12-07); Camara de Diputados, votacion Id 32562 (Proyecto de Ley)): 15 a favor, 0 en contra y 0 abstenciones de sus diputados (total de la sala 82-20-2).",
+      "fecha": "2021-12-07",
+      "fuente_url": "https://opendata.camara.cl/camaradiputados/WServices/WSLegislativo.asmx"
+     },
+     {
+      "tema": "derechos",
+      "hecho": "Cámara, 2016-03-17 (Aborto tres causales (2016-03-17, primer voto); Camara de Diputados, votacion Id 37112 (Proyecto de Ley)): 15 a favor, 0 en contra y 0 abstenciones de sus diputados (total de la sala 66-44-0).",
+      "fecha": "2016-03-17",
+      "fuente_url": "https://opendata.camara.cl/camaradiputados/WServices/WSLegislativo.asmx"
+     },
+     {
+      "tema": "derechos",
+      "hecho": "Cámara, 2017-08-02 (Aborto tres causales (2017-08-02); Camara de Diputados, votacion Id 30642 (Proyecto de Ley)): 16 a favor, 0 en contra y 0 abstenciones de sus diputados (total de la sala 70-45-1).",
+      "fecha": "2017-08-02",
+      "fuente_url": "https://opendata.camara.cl/camaradiputados/WServices/WSLegislativo.asmx"
+     },
+     {
+      "tema": "seguridad",
+      "hecho": "Cámara, 2026-10-07 (Uso de la fuerza (RUF), seguridad (2026-10-07); Camara de Diputados, votacion Id 90328 (Proyecto de Ley)): 4 a favor, 2 en contra y 4 abstenciones de sus diputados (total de la sala 111-23-5).",
+      "fecha": "2026-10-07",
+      "fuente_url": "https://opendata.camara.cl/camaradiputados/WServices/WSLegislativo.asmx"
      }
     ]
    },
@@ -287,6 +335,54 @@
       "hecho": "Ley 21.030 (despenalización del aborto en tres causales): el Senado aprobó el proyecto 22 a 13 en agosto de 2017 según una fuente, el Tribunal Constitucional rechazó los requerimientos el 21-08-2017 y la ley se publicó el 23-09-2017. No se obtuvo desglose por partido.",
       "fecha": "2017-09-23",
       "fuente_url": "https://www.cnnchile.com/pais/camara-baja-aprobo-informe-de-la-comision-mixta-y-proyecto-de-aborto-pasara-al/"
+     },
+     {
+      "tema": "tributaria",
+      "hecho": "Cámara, 2014-05-14 (Reforma tributaria 2014 (primer tramite, primer voto 2014-05-14); Camara de Diputados, votacion Id 18718 (Proyecto de Ley)): 15 a favor, 0 en contra y 0 abstenciones de sus diputados (total de la sala 72-48-0).",
+      "fecha": "2014-05-14",
+      "fuente_url": "https://opendata.camara.cl/camaradiputados/WServices/WSLegislativo.asmx"
+     },
+     {
+      "tema": "tributaria",
+      "hecho": "Cámara, 2014-09-10 (Reforma tributaria 2014 (tercer tramite 2014-09-10, voto 69/34/4); Camara de Diputados, votacion Id 18298 (Proyecto de Ley)): 12 a favor, 0 en contra y 1 abstenciones de sus diputados (total de la sala 69-34-4).",
+      "fecha": "2014-09-10",
+      "fuente_url": "https://opendata.camara.cl/camaradiputados/WServices/WSLegislativo.asmx"
+     },
+     {
+      "tema": "tributaria",
+      "hecho": "Cámara, 2023-03-08 (Proyecto tributario 2023 (idea de legislar); Camara de Diputados, votacion Id 38703 (Proyecto de Ley)): 3 a favor, 0 en contra y 0 abstenciones de sus diputados (total de la sala 73-71-3).",
+      "fecha": "2023-03-08",
+      "fuente_url": "https://opendata.camara.cl/camaradiputados/WServices/WSLegislativo.asmx"
+     },
+     {
+      "tema": "derechos",
+      "hecho": "Cámara, 2021-11-23 (Matrimonio igualitario (2021-11-23, primer voto); Camara de Diputados, votacion Id 26001 (Proyecto de Ley)): 7 a favor, 0 en contra y 0 abstenciones de sus diputados (total de la sala 101-30-2).",
+      "fecha": "2021-11-23",
+      "fuente_url": "https://opendata.camara.cl/camaradiputados/WServices/WSLegislativo.asmx"
+     },
+     {
+      "tema": "derechos",
+      "hecho": "Cámara, 2021-12-07 (Matrimonio igualitario (2021-12-07); Camara de Diputados, votacion Id 32562 (Proyecto de Ley)): 4 a favor, 0 en contra y 0 abstenciones de sus diputados (total de la sala 82-20-2).",
+      "fecha": "2021-12-07",
+      "fuente_url": "https://opendata.camara.cl/camaradiputados/WServices/WSLegislativo.asmx"
+     },
+     {
+      "tema": "derechos",
+      "hecho": "Cámara, 2016-03-17 (Aborto tres causales (2016-03-17, primer voto); Camara de Diputados, votacion Id 37112 (Proyecto de Ley)): 12 a favor, 0 en contra y 0 abstenciones de sus diputados (total de la sala 66-44-0).",
+      "fecha": "2016-03-17",
+      "fuente_url": "https://opendata.camara.cl/camaradiputados/WServices/WSLegislativo.asmx"
+     },
+     {
+      "tema": "derechos",
+      "hecho": "Cámara, 2017-08-02 (Aborto tres causales (2017-08-02); Camara de Diputados, votacion Id 30642 (Proyecto de Ley)): 14 a favor, 0 en contra y 0 abstenciones de sus diputados (total de la sala 70-45-1).",
+      "fecha": "2017-08-02",
+      "fuente_url": "https://opendata.camara.cl/camaradiputados/WServices/WSLegislativo.asmx"
+     },
+     {
+      "tema": "seguridad",
+      "hecho": "Cámara, 2026-10-07 (Uso de la fuerza (RUF), seguridad (2026-10-07); Camara de Diputados, votacion Id 90328 (Proyecto de Ley)): 3 a favor, 0 en contra y 0 abstenciones de sus diputados (total de la sala 111-23-5).",
+      "fecha": "2026-10-07",
+      "fuente_url": "https://opendata.camara.cl/camaradiputados/WServices/WSLegislativo.asmx"
      }
     ]
    },
@@ -445,6 +541,54 @@
       "hecho": "BCN registra que el PDC, el 28-11-2021, apoyó a Gabriel Boric en segunda vuelta y 'no se propone ingresar a su gobierno'.",
       "fecha": "2021-11-28",
       "fuente_url": "https://www.bcn.cl/historiapolitica/partidos_politicos/wiki/Partido_Dem%C3%B3crata_Cristiano"
+     },
+     {
+      "tema": "tributaria",
+      "hecho": "Cámara, 2014-05-14 (Reforma tributaria 2014 (primer tramite, primer voto 2014-05-14); Camara de Diputados, votacion Id 18718 (Proyecto de Ley)): 20 a favor, 0 en contra y 0 abstenciones de sus diputados (total de la sala 72-48-0).",
+      "fecha": "2014-05-14",
+      "fuente_url": "https://opendata.camara.cl/camaradiputados/WServices/WSLegislativo.asmx"
+     },
+     {
+      "tema": "tributaria",
+      "hecho": "Cámara, 2014-09-10 (Reforma tributaria 2014 (tercer tramite 2014-09-10, voto 69/34/4); Camara de Diputados, votacion Id 18298 (Proyecto de Ley)): 5 a favor, 13 en contra y 1 abstenciones de sus diputados (total de la sala 69-34-4).",
+      "fecha": "2014-09-10",
+      "fuente_url": "https://opendata.camara.cl/camaradiputados/WServices/WSLegislativo.asmx"
+     },
+     {
+      "tema": "tributaria",
+      "hecho": "Cámara, 2023-03-08 (Proyecto tributario 2023 (idea de legislar); Camara de Diputados, votacion Id 38703 (Proyecto de Ley)): 4 a favor, 1 en contra y 0 abstenciones de sus diputados (total de la sala 73-71-3).",
+      "fecha": "2023-03-08",
+      "fuente_url": "https://opendata.camara.cl/camaradiputados/WServices/WSLegislativo.asmx"
+     },
+     {
+      "tema": "derechos",
+      "hecho": "Cámara, 2021-11-23 (Matrimonio igualitario (2021-11-23, primer voto); Camara de Diputados, votacion Id 26001 (Proyecto de Ley)): 7 a favor, 1 en contra y 0 abstenciones de sus diputados (total de la sala 101-30-2).",
+      "fecha": "2021-11-23",
+      "fuente_url": "https://opendata.camara.cl/camaradiputados/WServices/WSLegislativo.asmx"
+     },
+     {
+      "tema": "derechos",
+      "hecho": "Cámara, 2021-12-07 (Matrimonio igualitario (2021-12-07); Camara de Diputados, votacion Id 32562 (Proyecto de Ley)): 7 a favor, 1 en contra y 0 abstenciones de sus diputados (total de la sala 82-20-2).",
+      "fecha": "2021-12-07",
+      "fuente_url": "https://opendata.camara.cl/camaradiputados/WServices/WSLegislativo.asmx"
+     },
+     {
+      "tema": "derechos",
+      "hecho": "Cámara, 2016-03-17 (Aborto tres causales (2016-03-17, primer voto); Camara de Diputados, votacion Id 37112 (Proyecto de Ley)): 15 a favor, 4 en contra y 0 abstenciones de sus diputados (total de la sala 66-44-0).",
+      "fecha": "2016-03-17",
+      "fuente_url": "https://opendata.camara.cl/camaradiputados/WServices/WSLegislativo.asmx"
+     },
+     {
+      "tema": "derechos",
+      "hecho": "Cámara, 2017-08-02 (Aborto tres causales (2017-08-02); Camara de Diputados, votacion Id 30642 (Proyecto de Ley)): 17 a favor, 2 en contra y 0 abstenciones de sus diputados (total de la sala 70-45-1).",
+      "fecha": "2017-08-02",
+      "fuente_url": "https://opendata.camara.cl/camaradiputados/WServices/WSLegislativo.asmx"
+     },
+     {
+      "tema": "seguridad",
+      "hecho": "Cámara, 2026-10-07 (Uso de la fuerza (RUF), seguridad (2026-10-07); Camara de Diputados, votacion Id 90328 (Proyecto de Ley)): 6 a favor, 0 en contra y 0 abstenciones de sus diputados (total de la sala 111-23-5).",
+      "fecha": "2026-10-07",
+      "fuente_url": "https://opendata.camara.cl/camaradiputados/WServices/WSLegislativo.asmx"
      }
     ]
    },
@@ -576,6 +720,54 @@
       "hecho": "La Cámara aprobó el proyecto de matrimonio igualitario (Ley 21.400) con 101 votos a favor, 30 en contra y 2 abstenciones; la ley se promulgó el 09-12-2021 y se publicó el 10-12-2021. No se obtuvo desglose por partido.",
       "fecha": "2021-11-23",
       "fuente_url": "https://es.wikipedia.org/wiki/Matrimonio_entre_personas_del_mismo_sexo_en_Chile"
+     },
+     {
+      "tema": "tributaria",
+      "hecho": "Cámara, 2014-05-14 (Reforma tributaria 2014 (primer tramite, primer voto 2014-05-14); Camara de Diputados, votacion Id 18718 (Proyecto de Ley)): 6 a favor, 0 en contra y 0 abstenciones de sus diputados (total de la sala 72-48-0).",
+      "fecha": "2014-05-14",
+      "fuente_url": "https://opendata.camara.cl/camaradiputados/WServices/WSLegislativo.asmx"
+     },
+     {
+      "tema": "tributaria",
+      "hecho": "Cámara, 2014-09-10 (Reforma tributaria 2014 (tercer tramite 2014-09-10, voto 69/34/4); Camara de Diputados, votacion Id 18298 (Proyecto de Ley)): 5 a favor, 0 en contra y 1 abstenciones de sus diputados (total de la sala 69-34-4).",
+      "fecha": "2014-09-10",
+      "fuente_url": "https://opendata.camara.cl/camaradiputados/WServices/WSLegislativo.asmx"
+     },
+     {
+      "tema": "tributaria",
+      "hecho": "Cámara, 2023-03-08 (Proyecto tributario 2023 (idea de legislar); Camara de Diputados, votacion Id 38703 (Proyecto de Ley)): 12 a favor, 0 en contra y 0 abstenciones de sus diputados (total de la sala 73-71-3).",
+      "fecha": "2023-03-08",
+      "fuente_url": "https://opendata.camara.cl/camaradiputados/WServices/WSLegislativo.asmx"
+     },
+     {
+      "tema": "derechos",
+      "hecho": "Cámara, 2021-11-23 (Matrimonio igualitario (2021-11-23, primer voto); Camara de Diputados, votacion Id 26001 (Proyecto de Ley)): 8 a favor, 0 en contra y 0 abstenciones de sus diputados (total de la sala 101-30-2).",
+      "fecha": "2021-11-23",
+      "fuente_url": "https://opendata.camara.cl/camaradiputados/WServices/WSLegislativo.asmx"
+     },
+     {
+      "tema": "derechos",
+      "hecho": "Cámara, 2021-12-07 (Matrimonio igualitario (2021-12-07); Camara de Diputados, votacion Id 32562 (Proyecto de Ley)): 7 a favor, 0 en contra y 0 abstenciones de sus diputados (total de la sala 82-20-2).",
+      "fecha": "2021-12-07",
+      "fuente_url": "https://opendata.camara.cl/camaradiputados/WServices/WSLegislativo.asmx"
+     },
+     {
+      "tema": "derechos",
+      "hecho": "Cámara, 2016-03-17 (Aborto tres causales (2016-03-17, primer voto); Camara de Diputados, votacion Id 37112 (Proyecto de Ley)): 6 a favor, 0 en contra y 0 abstenciones de sus diputados (total de la sala 66-44-0).",
+      "fecha": "2016-03-17",
+      "fuente_url": "https://opendata.camara.cl/camaradiputados/WServices/WSLegislativo.asmx"
+     },
+     {
+      "tema": "derechos",
+      "hecho": "Cámara, 2017-08-02 (Aborto tres causales (2017-08-02); Camara de Diputados, votacion Id 30642 (Proyecto de Ley)): 6 a favor, 0 en contra y 0 abstenciones de sus diputados (total de la sala 70-45-1).",
+      "fecha": "2017-08-02",
+      "fuente_url": "https://opendata.camara.cl/camaradiputados/WServices/WSLegislativo.asmx"
+     },
+     {
+      "tema": "seguridad",
+      "hecho": "Cámara, 2026-10-07 (Uso de la fuerza (RUF), seguridad (2026-10-07); Camara de Diputados, votacion Id 90328 (Proyecto de Ley)): 0 a favor, 5 en contra y 0 abstenciones de sus diputados (total de la sala 111-23-5).",
+      "fecha": "2026-10-07",
+      "fuente_url": "https://opendata.camara.cl/camaradiputados/WServices/WSLegislativo.asmx"
      }
     ]
    },
@@ -683,6 +875,12 @@
       "hecho": "El proyecto de reforma tributaria del gobierno de Gabriel Boric, en cuya Alianza de Gobierno participó el FA, fue rechazado en la idea de legislar en la Cámara (73 a favor, 71 en contra, 3 abstenciones).",
       "fecha": "2023-03-08",
       "fuente_url": "https://www.radioagricultura.cl/economia/2023/03/08/camara-rechaza-en-general-el-proyecto-de-reforma-tributaria/"
+     },
+     {
+      "tema": "seguridad",
+      "hecho": "Cámara, 2026-10-07 (Uso de la fuerza (RUF), seguridad (2026-10-07); Camara de Diputados, votacion Id 90328 (Proyecto de Ley)): 1 a favor, 10 en contra y 1 abstenciones de sus diputados (total de la sala 111-23-5).",
+      "fecha": "2026-10-07",
+      "fuente_url": "https://opendata.camara.cl/camaradiputados/WServices/WSLegislativo.asmx"
      }
     ]
    },
@@ -831,6 +1029,54 @@
       "hecho": "El manifiesto incluye laicidad: neutralidad del Estado frente a opciones religiosas (resumen BCN del manifiesto, actualizado oct-dic 2019).",
       "fecha": "2019",
       "fuente_url": "https://www.bcn.cl/historiapolitica/partidos_politicos/wiki/Partido_Liberal_de_Chile"
+     },
+     {
+      "tema": "tributaria",
+      "hecho": "Cámara, 2014-05-14 (Reforma tributaria 2014 (primer tramite, primer voto 2014-05-14); Camara de Diputados, votacion Id 18718 (Proyecto de Ley)): 1 a favor, 0 en contra y 0 abstenciones de sus diputados (total de la sala 72-48-0).",
+      "fecha": "2014-05-14",
+      "fuente_url": "https://opendata.camara.cl/camaradiputados/WServices/WSLegislativo.asmx"
+     },
+     {
+      "tema": "tributaria",
+      "hecho": "Cámara, 2014-09-10 (Reforma tributaria 2014 (tercer tramite 2014-09-10, voto 69/34/4); Camara de Diputados, votacion Id 18298 (Proyecto de Ley)): 0 a favor, 1 en contra y 0 abstenciones de sus diputados (total de la sala 69-34-4).",
+      "fecha": "2014-09-10",
+      "fuente_url": "https://opendata.camara.cl/camaradiputados/WServices/WSLegislativo.asmx"
+     },
+     {
+      "tema": "tributaria",
+      "hecho": "Cámara, 2023-03-08 (Proyecto tributario 2023 (idea de legislar); Camara de Diputados, votacion Id 38703 (Proyecto de Ley)): 3 a favor, 0 en contra y 0 abstenciones de sus diputados (total de la sala 73-71-3).",
+      "fecha": "2023-03-08",
+      "fuente_url": "https://opendata.camara.cl/camaradiputados/WServices/WSLegislativo.asmx"
+     },
+     {
+      "tema": "derechos",
+      "hecho": "Cámara, 2021-11-23 (Matrimonio igualitario (2021-11-23, primer voto); Camara de Diputados, votacion Id 26001 (Proyecto de Ley)): 2 a favor, 0 en contra y 0 abstenciones de sus diputados (total de la sala 101-30-2).",
+      "fecha": "2021-11-23",
+      "fuente_url": "https://opendata.camara.cl/camaradiputados/WServices/WSLegislativo.asmx"
+     },
+     {
+      "tema": "derechos",
+      "hecho": "Cámara, 2021-12-07 (Matrimonio igualitario (2021-12-07); Camara de Diputados, votacion Id 32562 (Proyecto de Ley)): 1 a favor, 0 en contra y 0 abstenciones de sus diputados (total de la sala 82-20-2).",
+      "fecha": "2021-12-07",
+      "fuente_url": "https://opendata.camara.cl/camaradiputados/WServices/WSLegislativo.asmx"
+     },
+     {
+      "tema": "derechos",
+      "hecho": "Cámara, 2016-03-17 (Aborto tres causales (2016-03-17, primer voto); Camara de Diputados, votacion Id 37112 (Proyecto de Ley)): 1 a favor, 0 en contra y 0 abstenciones de sus diputados (total de la sala 66-44-0).",
+      "fecha": "2016-03-17",
+      "fuente_url": "https://opendata.camara.cl/camaradiputados/WServices/WSLegislativo.asmx"
+     },
+     {
+      "tema": "derechos",
+      "hecho": "Cámara, 2017-08-02 (Aborto tres causales (2017-08-02); Camara de Diputados, votacion Id 30642 (Proyecto de Ley)): 1 a favor, 0 en contra y 0 abstenciones de sus diputados (total de la sala 70-45-1).",
+      "fecha": "2017-08-02",
+      "fuente_url": "https://opendata.camara.cl/camaradiputados/WServices/WSLegislativo.asmx"
+     },
+     {
+      "tema": "seguridad",
+      "hecho": "Cámara, 2026-10-07 (Uso de la fuerza (RUF), seguridad (2026-10-07); Camara de Diputados, votacion Id 90328 (Proyecto de Ley)): 2 a favor, 0 en contra y 0 abstenciones de sus diputados (total de la sala 111-23-5).",
+      "fecha": "2026-10-07",
+      "fuente_url": "https://opendata.camara.cl/camaradiputados/WServices/WSLegislativo.asmx"
      }
     ]
    },
@@ -932,7 +1178,56 @@
       "fuente_url": "https://es.wikipedia.org/wiki/Partido_Radical_de_Chile"
      }
     ],
-    "posiciones": []
+    "posiciones": [
+     {
+      "tema": "tributaria",
+      "hecho": "Cámara, 2014-05-14 (Reforma tributaria 2014 (primer tramite, primer voto 2014-05-14); Camara de Diputados, votacion Id 18718 (Proyecto de Ley)): 6 a favor, 0 en contra y 0 abstenciones de sus diputados (total de la sala 72-48-0).",
+      "fecha": "2014-05-14",
+      "fuente_url": "https://opendata.camara.cl/camaradiputados/WServices/WSLegislativo.asmx"
+     },
+     {
+      "tema": "tributaria",
+      "hecho": "Cámara, 2014-09-10 (Reforma tributaria 2014 (tercer tramite 2014-09-10, voto 69/34/4); Camara de Diputados, votacion Id 18298 (Proyecto de Ley)): 5 a favor, 0 en contra y 0 abstenciones de sus diputados (total de la sala 69-34-4).",
+      "fecha": "2014-09-10",
+      "fuente_url": "https://opendata.camara.cl/camaradiputados/WServices/WSLegislativo.asmx"
+     },
+     {
+      "tema": "tributaria",
+      "hecho": "Cámara, 2023-03-08 (Proyecto tributario 2023 (idea de legislar); Camara de Diputados, votacion Id 38703 (Proyecto de Ley)): 2 a favor, 0 en contra y 0 abstenciones de sus diputados (total de la sala 73-71-3).",
+      "fecha": "2023-03-08",
+      "fuente_url": "https://opendata.camara.cl/camaradiputados/WServices/WSLegislativo.asmx"
+     },
+     {
+      "tema": "derechos",
+      "hecho": "Cámara, 2021-11-23 (Matrimonio igualitario (2021-11-23, primer voto); Camara de Diputados, votacion Id 26001 (Proyecto de Ley)): 2 a favor, 0 en contra y 0 abstenciones de sus diputados (total de la sala 101-30-2).",
+      "fecha": "2021-11-23",
+      "fuente_url": "https://opendata.camara.cl/camaradiputados/WServices/WSLegislativo.asmx"
+     },
+     {
+      "tema": "derechos",
+      "hecho": "Cámara, 2021-12-07 (Matrimonio igualitario (2021-12-07); Camara de Diputados, votacion Id 32562 (Proyecto de Ley)): 2 a favor, 1 en contra y 0 abstenciones de sus diputados (total de la sala 82-20-2).",
+      "fecha": "2021-12-07",
+      "fuente_url": "https://opendata.camara.cl/camaradiputados/WServices/WSLegislativo.asmx"
+     },
+     {
+      "tema": "derechos",
+      "hecho": "Cámara, 2016-03-17 (Aborto tres causales (2016-03-17, primer voto); Camara de Diputados, votacion Id 37112 (Proyecto de Ley)): 5 a favor, 0 en contra y 0 abstenciones de sus diputados (total de la sala 66-44-0).",
+      "fecha": "2016-03-17",
+      "fuente_url": "https://opendata.camara.cl/camaradiputados/WServices/WSLegislativo.asmx"
+     },
+     {
+      "tema": "derechos",
+      "hecho": "Cámara, 2017-08-02 (Aborto tres causales (2017-08-02); Camara de Diputados, votacion Id 30642 (Proyecto de Ley)): 6 a favor, 0 en contra y 0 abstenciones de sus diputados (total de la sala 70-45-1).",
+      "fecha": "2017-08-02",
+      "fuente_url": "https://opendata.camara.cl/camaradiputados/WServices/WSLegislativo.asmx"
+     },
+     {
+      "tema": "seguridad",
+      "hecho": "Cámara, 2026-10-07 (Uso de la fuerza (RUF), seguridad (2026-10-07); Camara de Diputados, votacion Id 90328 (Proyecto de Ley)): 1 a favor, 0 en contra y 0 abstenciones de sus diputados (total de la sala 111-23-5).",
+      "fecha": "2026-10-07",
+      "fuente_url": "https://opendata.camara.cl/camaradiputados/WServices/WSLegislativo.asmx"
+     }
+    ]
    },
    "congreso": {
     "2022_2026": {
@@ -1051,6 +1346,30 @@
       "hecho": "Eslogan registrado: 'Regionalizar para desarrollar'; ideologia declarada regionalismo y descentralizacion (Wikipedia).",
       "fecha": "sin fecha",
       "fuente_url": "https://es.wikipedia.org/wiki/Federaci%C3%B3n_Regionalista_Verde_Social"
+     },
+     {
+      "tema": "tributaria",
+      "hecho": "Cámara, 2023-03-08 (Proyecto tributario 2023 (idea de legislar); Camara de Diputados, votacion Id 38703 (Proyecto de Ley)): 2 a favor, 0 en contra y 0 abstenciones de sus diputados (total de la sala 73-71-3).",
+      "fecha": "2023-03-08",
+      "fuente_url": "https://opendata.camara.cl/camaradiputados/WServices/WSLegislativo.asmx"
+     },
+     {
+      "tema": "derechos",
+      "hecho": "Cámara, 2021-11-23 (Matrimonio igualitario (2021-11-23, primer voto); Camara de Diputados, votacion Id 26001 (Proyecto de Ley)): 1 a favor, 0 en contra y 0 abstenciones de sus diputados (total de la sala 101-30-2).",
+      "fecha": "2021-11-23",
+      "fuente_url": "https://opendata.camara.cl/camaradiputados/WServices/WSLegislativo.asmx"
+     },
+     {
+      "tema": "derechos",
+      "hecho": "Cámara, 2021-12-07 (Matrimonio igualitario (2021-12-07); Camara de Diputados, votacion Id 32562 (Proyecto de Ley)): 1 a favor, 0 en contra y 0 abstenciones de sus diputados (total de la sala 82-20-2).",
+      "fecha": "2021-12-07",
+      "fuente_url": "https://opendata.camara.cl/camaradiputados/WServices/WSLegislativo.asmx"
+     },
+     {
+      "tema": "seguridad",
+      "hecho": "Cámara, 2026-10-07 (Uso de la fuerza (RUF), seguridad (2026-10-07); Camara de Diputados, votacion Id 90328 (Proyecto de Ley)): 1 a favor, 0 en contra y 0 abstenciones de sus diputados (total de la sala 111-23-5).",
+      "fecha": "2026-10-07",
+      "fuente_url": "https://opendata.camara.cl/camaradiputados/WServices/WSLegislativo.asmx"
      }
     ]
    },
@@ -1213,6 +1532,54 @@
       "hecho": "Wikipedia informa que tras la segunda vuelta de 2025 (Kast, 58% según esa fuente) RN integra el gobierno de José Antonio Kast desde el 11-mar-2026.",
       "fecha": "2026-03-11",
       "fuente_url": "https://es.wikipedia.org/wiki/Renovación_Nacional"
+     },
+     {
+      "tema": "tributaria",
+      "hecho": "Cámara, 2014-05-14 (Reforma tributaria 2014 (primer tramite, primer voto 2014-05-14); Camara de Diputados, votacion Id 18718 (Proyecto de Ley)): 0 a favor, 15 en contra y 0 abstenciones de sus diputados (total de la sala 72-48-0).",
+      "fecha": "2014-05-14",
+      "fuente_url": "https://opendata.camara.cl/camaradiputados/WServices/WSLegislativo.asmx"
+     },
+     {
+      "tema": "tributaria",
+      "hecho": "Cámara, 2014-09-10 (Reforma tributaria 2014 (tercer tramite 2014-09-10, voto 69/34/4); Camara de Diputados, votacion Id 18298 (Proyecto de Ley)): 0 a favor, 13 en contra y 0 abstenciones de sus diputados (total de la sala 69-34-4).",
+      "fecha": "2014-09-10",
+      "fuente_url": "https://opendata.camara.cl/camaradiputados/WServices/WSLegislativo.asmx"
+     },
+     {
+      "tema": "tributaria",
+      "hecho": "Cámara, 2023-03-08 (Proyecto tributario 2023 (idea de legislar); Camara de Diputados, votacion Id 38703 (Proyecto de Ley)): 0 a favor, 17 en contra y 0 abstenciones de sus diputados (total de la sala 73-71-3).",
+      "fecha": "2023-03-08",
+      "fuente_url": "https://opendata.camara.cl/camaradiputados/WServices/WSLegislativo.asmx"
+     },
+     {
+      "tema": "derechos",
+      "hecho": "Cámara, 2021-11-23 (Matrimonio igualitario (2021-11-23, primer voto); Camara de Diputados, votacion Id 26001 (Proyecto de Ley)): 12 a favor, 16 en contra y 1 abstenciones de sus diputados (total de la sala 101-30-2).",
+      "fecha": "2021-11-23",
+      "fuente_url": "https://opendata.camara.cl/camaradiputados/WServices/WSLegislativo.asmx"
+     },
+     {
+      "tema": "derechos",
+      "hecho": "Cámara, 2021-12-07 (Matrimonio igualitario (2021-12-07); Camara de Diputados, votacion Id 32562 (Proyecto de Ley)): 12 a favor, 8 en contra y 0 abstenciones de sus diputados (total de la sala 82-20-2).",
+      "fecha": "2021-12-07",
+      "fuente_url": "https://opendata.camara.cl/camaradiputados/WServices/WSLegislativo.asmx"
+     },
+     {
+      "tema": "derechos",
+      "hecho": "Cámara, 2016-03-17 (Aborto tres causales (2016-03-17, primer voto); Camara de Diputados, votacion Id 37112 (Proyecto de Ley)): 1 a favor, 11 en contra y 0 abstenciones de sus diputados (total de la sala 66-44-0).",
+      "fecha": "2016-03-17",
+      "fuente_url": "https://opendata.camara.cl/camaradiputados/WServices/WSLegislativo.asmx"
+     },
+     {
+      "tema": "derechos",
+      "hecho": "Cámara, 2017-08-02 (Aborto tres causales (2017-08-02); Camara de Diputados, votacion Id 30642 (Proyecto de Ley)): 0 a favor, 12 en contra y 1 abstenciones de sus diputados (total de la sala 70-45-1).",
+      "fecha": "2017-08-02",
+      "fuente_url": "https://opendata.camara.cl/camaradiputados/WServices/WSLegislativo.asmx"
+     },
+     {
+      "tema": "seguridad",
+      "hecho": "Cámara, 2026-10-07 (Uso de la fuerza (RUF), seguridad (2026-10-07); Camara de Diputados, votacion Id 90328 (Proyecto de Ley)): 10 a favor, 0 en contra y 0 abstenciones de sus diputados (total de la sala 111-23-5).",
+      "fecha": "2026-10-07",
+      "fuente_url": "https://opendata.camara.cl/camaradiputados/WServices/WSLegislativo.asmx"
      }
     ]
    },
@@ -1350,6 +1717,54 @@
       "hecho": "BCN: la declaración confirma adscripción a una economía de mercado basada en el principio de subsidiariedad.",
       "fecha": "1991",
       "fuente_url": "https://www.bcn.cl/historiapolitica/partidos_politicos/wiki/Partido_Unión_Demócrata_Independiente"
+     },
+     {
+      "tema": "tributaria",
+      "hecho": "Cámara, 2014-05-14 (Reforma tributaria 2014 (primer tramite, primer voto 2014-05-14); Camara de Diputados, votacion Id 18718 (Proyecto de Ley)): 0 a favor, 29 en contra y 0 abstenciones de sus diputados (total de la sala 72-48-0).",
+      "fecha": "2014-05-14",
+      "fuente_url": "https://opendata.camara.cl/camaradiputados/WServices/WSLegislativo.asmx"
+     },
+     {
+      "tema": "tributaria",
+      "hecho": "Cámara, 2014-09-10 (Reforma tributaria 2014 (tercer tramite 2014-09-10, voto 69/34/4); Camara de Diputados, votacion Id 18298 (Proyecto de Ley)): 24 a favor, 0 en contra y 1 abstenciones de sus diputados (total de la sala 69-34-4).",
+      "fecha": "2014-09-10",
+      "fuente_url": "https://opendata.camara.cl/camaradiputados/WServices/WSLegislativo.asmx"
+     },
+     {
+      "tema": "tributaria",
+      "hecho": "Cámara, 2023-03-08 (Proyecto tributario 2023 (idea de legislar); Camara de Diputados, votacion Id 38703 (Proyecto de Ley)): 0 a favor, 20 en contra y 0 abstenciones de sus diputados (total de la sala 73-71-3).",
+      "fecha": "2023-03-08",
+      "fuente_url": "https://opendata.camara.cl/camaradiputados/WServices/WSLegislativo.asmx"
+     },
+     {
+      "tema": "derechos",
+      "hecho": "Cámara, 2021-11-23 (Matrimonio igualitario (2021-11-23, primer voto); Camara de Diputados, votacion Id 26001 (Proyecto de Ley)): 14 a favor, 11 en contra y 1 abstenciones de sus diputados (total de la sala 101-30-2).",
+      "fecha": "2021-11-23",
+      "fuente_url": "https://opendata.camara.cl/camaradiputados/WServices/WSLegislativo.asmx"
+     },
+     {
+      "tema": "derechos",
+      "hecho": "Cámara, 2021-12-07 (Matrimonio igualitario (2021-12-07); Camara de Diputados, votacion Id 32562 (Proyecto de Ley)): 8 a favor, 8 en contra y 2 abstenciones de sus diputados (total de la sala 82-20-2).",
+      "fecha": "2021-12-07",
+      "fuente_url": "https://opendata.camara.cl/camaradiputados/WServices/WSLegislativo.asmx"
+     },
+     {
+      "tema": "derechos",
+      "hecho": "Cámara, 2016-03-17 (Aborto tres causales (2016-03-17, primer voto); Camara de Diputados, votacion Id 37112 (Proyecto de Ley)): 0 a favor, 28 en contra y 0 abstenciones de sus diputados (total de la sala 66-44-0).",
+      "fecha": "2016-03-17",
+      "fuente_url": "https://opendata.camara.cl/camaradiputados/WServices/WSLegislativo.asmx"
+     },
+     {
+      "tema": "derechos",
+      "hecho": "Cámara, 2017-08-02 (Aborto tres causales (2017-08-02); Camara de Diputados, votacion Id 30642 (Proyecto de Ley)): 0 a favor, 27 en contra y 0 abstenciones de sus diputados (total de la sala 70-45-1).",
+      "fecha": "2017-08-02",
+      "fuente_url": "https://opendata.camara.cl/camaradiputados/WServices/WSLegislativo.asmx"
+     },
+     {
+      "tema": "seguridad",
+      "hecho": "Cámara, 2026-10-07 (Uso de la fuerza (RUF), seguridad (2026-10-07); Camara de Diputados, votacion Id 90328 (Proyecto de Ley)): 12 a favor, 0 en contra y 0 abstenciones de sus diputados (total de la sala 111-23-5).",
+      "fecha": "2026-10-07",
+      "fuente_url": "https://opendata.camara.cl/camaradiputados/WServices/WSLegislativo.asmx"
      }
     ]
    },
@@ -1644,6 +2059,30 @@
       "hecho": "Segunda vuelta 2025: Kast ganó (58% según Wikipedia en ficha de RN); Matthei y Kaiser anunciaron su respaldo.",
       "fecha": "2025-12-14",
       "fuente_url": "https://radio.uchile.cl/2025/12/14/kast-agradecio-respaldos-de-matthei-y-kaiser-y-llamo-a-convivencia-democratica/"
+     },
+     {
+      "tema": "tributaria",
+      "hecho": "Cámara, 2023-03-08 (Proyecto tributario 2023 (idea de legislar); Camara de Diputados, votacion Id 38703 (Proyecto de Ley)): 0 a favor, 9 en contra y 0 abstenciones de sus diputados (total de la sala 73-71-3).",
+      "fecha": "2023-03-08",
+      "fuente_url": "https://opendata.camara.cl/camaradiputados/WServices/WSLegislativo.asmx"
+     },
+     {
+      "tema": "derechos",
+      "hecho": "Cámara, 2021-11-23 (Matrimonio igualitario (2021-11-23, primer voto); Camara de Diputados, votacion Id 26001 (Proyecto de Ley)): 0 a favor, 2 en contra y 0 abstenciones de sus diputados (total de la sala 101-30-2).",
+      "fecha": "2021-11-23",
+      "fuente_url": "https://opendata.camara.cl/camaradiputados/WServices/WSLegislativo.asmx"
+     },
+     {
+      "tema": "derechos",
+      "hecho": "Cámara, 2021-12-07 (Matrimonio igualitario (2021-12-07); Camara de Diputados, votacion Id 32562 (Proyecto de Ley)): 0 a favor, 2 en contra y 0 abstenciones de sus diputados (total de la sala 82-20-2).",
+      "fecha": "2021-12-07",
+      "fuente_url": "https://opendata.camara.cl/camaradiputados/WServices/WSLegislativo.asmx"
+     },
+     {
+      "tema": "seguridad",
+      "hecho": "Cámara, 2026-10-07 (Uso de la fuerza (RUF), seguridad (2026-10-07); Camara de Diputados, votacion Id 90328 (Proyecto de Ley)): 26 a favor, 0 en contra y 0 abstenciones de sus diputados (total de la sala 111-23-5).",
+      "fecha": "2026-10-07",
+      "fuente_url": "https://opendata.camara.cl/camaradiputados/WServices/WSLegislativo.asmx"
      }
     ]
    },
@@ -1727,6 +2166,12 @@
       "hecho": "24horas titula que el PNL decidió no ser parte del gobierno de Kast (no se leyó el cuerpo del artículo).",
       "fecha": "2025-12",
       "fuente_url": "https://www.24horas.cl/actualidad/politica/partido-nacional-libertario-decide-no-ser-parte-del-gobierno-de-kast"
+     },
+     {
+      "tema": "seguridad",
+      "hecho": "Cámara, 2026-10-07 (Uso de la fuerza (RUF), seguridad (2026-10-07); Camara de Diputados, votacion Id 90328 (Proyecto de Ley)): 7 a favor, 0 en contra y 0 abstenciones de sus diputados (total de la sala 111-23-5).",
+      "fecha": "2026-10-07",
+      "fuente_url": "https://opendata.camara.cl/camaradiputados/WServices/WSLegislativo.asmx"
      }
     ]
    },
@@ -1841,6 +2286,18 @@
       "hecho": "Al 19-jul-2026 la bancada mantenía en reserva su voto sobre la 'megarreforma' del Gobierno en la Camara (necesitaba 2 votos para ratificar modificaciones del Senado); el contenido tributario no se detalla en la nota.",
       "fecha": "2026-07-19",
       "fuente_url": "https://www.biobiochile.cl/noticias/nacional/chile/2026/07/19/futuro-de-la-megarreforma-del-gobierno-vuelve-a-quedar-en-manos-del-pdg.shtml"
+     },
+     {
+      "tema": "tributaria",
+      "hecho": "Cámara, 2023-03-08 (Proyecto tributario 2023 (idea de legislar); Camara de Diputados, votacion Id 38703 (Proyecto de Ley)): 1 a favor, 4 en contra y 1 abstenciones de sus diputados (total de la sala 73-71-3).",
+      "fecha": "2023-03-08",
+      "fuente_url": "https://opendata.camara.cl/camaradiputados/WServices/WSLegislativo.asmx"
+     },
+     {
+      "tema": "seguridad",
+      "hecho": "Cámara, 2026-10-07 (Uso de la fuerza (RUF), seguridad (2026-10-07); Camara de Diputados, votacion Id 90328 (Proyecto de Ley)): 14 a favor, 0 en contra y 0 abstenciones de sus diputados (total de la sala 111-23-5).",
+      "fecha": "2026-10-07",
+      "fuente_url": "https://opendata.camara.cl/camaradiputados/WServices/WSLegislativo.asmx"
      }
     ]
    },
@@ -2201,6 +2658,868 @@
     },
     "fuente_url": "https://tramitacion.senado.cl/wspublico/votaciones.php?boletin=13191"
    }
-  ]
+  ],
+  "camara": {
+   "fuente": "https://opendata.camara.cl/camaradiputados/WServices/WSLegislativo.asmx",
+   "afiliacion": "partido vigente en la fecha de cada votacion segun Militancias de WSDiputado",
+   "fecha_consulta": "2026-11-23",
+   "nota": "Conteos por partido calculados desde la votación nominal del servicio de datos abiertos de la Cámara (afiliación vigente en la fecha de cada voto). El servicio lista solo a quienes votaron. Se omitió la reforma de pensiones del 2025-01-29: el servicio no etiqueta las ~50 votaciones del día y los totales obtenidos (113-18-17 y 104-37-7) no coinciden con el 110-38 informado por Hacienda.",
+   "votaciones": [
+    {
+     "tema": "Reforma tributaria 2014 (primer tramite, primer voto 2014-05-14)",
+     "boletin": "9290-05",
+     "fecha": "2014-05-14T00:26:59",
+     "instancia": "Camara de Diputados, votacion Id 18718 (Proyecto de Ley)",
+     "total": {
+      "favor": 72,
+      "contra": 48,
+      "abst": 0
+     },
+     "por_partido": {
+      "PPD": {
+       "favor": 15,
+       "contra": 0,
+       "abst": 0,
+       "ausente": 0
+      },
+      "IC": {
+       "favor": 1,
+       "contra": 0,
+       "abst": 0,
+       "ausente": 0
+      },
+      "UDI": {
+       "favor": 0,
+       "contra": 29,
+       "abst": 0,
+       "ausente": 0
+      },
+      "RN": {
+       "favor": 0,
+       "contra": 15,
+       "abst": 0,
+       "ausente": 0
+      },
+      "PR": {
+       "favor": 6,
+       "contra": 0,
+       "abst": 0,
+       "ausente": 0
+      },
+      "PS": {
+       "favor": 16,
+       "contra": 0,
+       "abst": 0,
+       "ausente": 0
+      },
+      "AMPL": {
+       "favor": 0,
+       "contra": 2,
+       "abst": 0,
+       "ausente": 0
+      },
+      "DC": {
+       "favor": 20,
+       "contra": 0,
+       "abst": 0,
+       "ausente": 0
+      },
+      "IND": {
+       "favor": 5,
+       "contra": 1,
+       "abst": 0,
+       "ausente": 0
+      },
+      "PC": {
+       "favor": 6,
+       "contra": 0,
+       "abst": 0,
+       "ausente": 0
+      },
+      "SIN_MILITANCIA_REGISTRADA": {
+       "favor": 1,
+       "contra": 0,
+       "abst": 0,
+       "ausente": 0
+      },
+      "RD": {
+       "favor": 1,
+       "contra": 0,
+       "abst": 0,
+       "ausente": 0
+      },
+      "EVOP": {
+       "favor": 0,
+       "contra": 1,
+       "abst": 0,
+       "ausente": 0
+      },
+      "PL": {
+       "favor": 1,
+       "contra": 0,
+       "abst": 0,
+       "ausente": 0
+      }
+     }
+    },
+    {
+     "tema": "Reforma tributaria 2014 (tercer tramite 2014-09-10, voto 69/34/4)",
+     "boletin": "9290-05",
+     "fecha": "2014-09-10T20:56:39",
+     "instancia": "Camara de Diputados, votacion Id 18298 (Proyecto de Ley)",
+     "total": {
+      "favor": 69,
+      "contra": 34,
+      "abst": 4
+     },
+     "por_partido": {
+      "PPD": {
+       "favor": 12,
+       "contra": 0,
+       "abst": 1,
+       "ausente": 0
+      },
+      "IC": {
+       "favor": 1,
+       "contra": 0,
+       "abst": 0,
+       "ausente": 0
+      },
+      "UDI": {
+       "favor": 24,
+       "contra": 0,
+       "abst": 1,
+       "ausente": 0
+      },
+      "RN": {
+       "favor": 0,
+       "contra": 13,
+       "abst": 0,
+       "ausente": 0
+      },
+      "PR": {
+       "favor": 5,
+       "contra": 0,
+       "abst": 0,
+       "ausente": 0
+      },
+      "PS": {
+       "favor": 16,
+       "contra": 0,
+       "abst": 0,
+       "ausente": 0
+      },
+      "AMPL": {
+       "favor": 0,
+       "contra": 2,
+       "abst": 0,
+       "ausente": 0
+      },
+      "DC": {
+       "favor": 5,
+       "contra": 13,
+       "abst": 1,
+       "ausente": 0
+      },
+      "IND": {
+       "favor": 1,
+       "contra": 3,
+       "abst": 0,
+       "ausente": 0
+      },
+      "PC": {
+       "favor": 5,
+       "contra": 0,
+       "abst": 1,
+       "ausente": 0
+      },
+      "RD": {
+       "favor": 0,
+       "contra": 1,
+       "abst": 0,
+       "ausente": 0
+      },
+      "EVOP": {
+       "favor": 0,
+       "contra": 1,
+       "abst": 0,
+       "ausente": 0
+      },
+      "PL": {
+       "favor": 0,
+       "contra": 1,
+       "abst": 0,
+       "ausente": 0
+      }
+     }
+    },
+    {
+     "tema": "Proyecto tributario 2023 (idea de legislar)",
+     "boletin": "15170-05",
+     "fecha": "2023-03-08T13:37:04",
+     "instancia": "Camara de Diputados, votacion Id 38703 (Proyecto de Ley)",
+     "total": {
+      "favor": 73,
+      "contra": 71,
+      "abst": 3
+     },
+     "por_partido": {
+      "PS": {
+       "favor": 13,
+       "contra": 0,
+       "abst": 0,
+       "ausente": 0
+      },
+      "IND": {
+       "favor": 17,
+       "contra": 17,
+       "abst": 1,
+       "ausente": 0
+      },
+      "UDI": {
+       "favor": 0,
+       "contra": 20,
+       "abst": 0,
+       "ausente": 0
+      },
+      "FRVS": {
+       "favor": 2,
+       "contra": 0,
+       "abst": 0,
+       "ausente": 0
+      },
+      "PDG": {
+       "favor": 1,
+       "contra": 4,
+       "abst": 1,
+       "ausente": 0
+      },
+      "RN": {
+       "favor": 0,
+       "contra": 17,
+       "abst": 0,
+       "ausente": 0
+      },
+      "PC": {
+       "favor": 12,
+       "contra": 0,
+       "abst": 0,
+       "ausente": 0
+      },
+      "LIBERAL": {
+       "favor": 3,
+       "contra": 0,
+       "abst": 0,
+       "ausente": 0
+      },
+      "RD": {
+       "favor": 6,
+       "contra": 0,
+       "abst": 0,
+       "ausente": 0
+      },
+      "DC": {
+       "favor": 4,
+       "contra": 1,
+       "abst": 0,
+       "ausente": 0
+      },
+      "PEV": {
+       "favor": 1,
+       "contra": 0,
+       "abst": 0,
+       "ausente": 0
+      },
+      "PAH": {
+       "favor": 2,
+       "contra": 0,
+       "abst": 0,
+       "ausente": 0
+      },
+      "PCS": {
+       "favor": 6,
+       "contra": 0,
+       "abst": 0,
+       "ausente": 0
+      },
+      "PPD": {
+       "favor": 3,
+       "contra": 0,
+       "abst": 0,
+       "ausente": 0
+      },
+      "PR": {
+       "favor": 2,
+       "contra": 0,
+       "abst": 0,
+       "ausente": 0
+      },
+      "COMUNES": {
+       "favor": 1,
+       "contra": 0,
+       "abst": 0,
+       "ausente": 0
+      },
+      "EVOP": {
+       "favor": 0,
+       "contra": 2,
+       "abst": 0,
+       "ausente": 0
+      },
+      "PREP": {
+       "favor": 0,
+       "contra": 9,
+       "abst": 0,
+       "ausente": 0
+      },
+      "PCC": {
+       "favor": 0,
+       "contra": 1,
+       "abst": 0,
+       "ausente": 0
+      },
+      "PRI": {
+       "favor": 0,
+       "contra": 0,
+       "abst": 1,
+       "ausente": 0
+      }
+     }
+    },
+    {
+     "tema": "Matrimonio igualitario (2021-11-23, primer voto)",
+     "boletin": "11422-07",
+     "fecha": "2021-11-23T13:10:44",
+     "instancia": "Camara de Diputados, votacion Id 26001 (Proyecto de Ley)",
+     "total": {
+      "favor": 101,
+      "contra": 30,
+      "abst": 2
+     },
+     "por_partido": {
+      "PS": {
+       "favor": 16,
+       "contra": 0,
+       "abst": 0,
+       "ausente": 0
+      },
+      "RN": {
+       "favor": 12,
+       "contra": 16,
+       "abst": 1,
+       "ausente": 0
+      },
+      "DC": {
+       "favor": 7,
+       "contra": 1,
+       "abst": 0,
+       "ausente": 0
+      },
+      "UDI": {
+       "favor": 14,
+       "contra": 11,
+       "abst": 1,
+       "ausente": 0
+      },
+      "IND": {
+       "favor": 15,
+       "contra": 0,
+       "abst": 0,
+       "ausente": 0
+      },
+      "PPD": {
+       "favor": 7,
+       "contra": 0,
+       "abst": 0,
+       "ausente": 0
+      },
+      "FRVS": {
+       "favor": 1,
+       "contra": 0,
+       "abst": 0,
+       "ausente": 0
+      },
+      "PREP": {
+       "favor": 0,
+       "contra": 2,
+       "abst": 0,
+       "ausente": 0
+      },
+      "PC": {
+       "favor": 8,
+       "contra": 0,
+       "abst": 0,
+       "ausente": 0
+      },
+      "PCS": {
+       "favor": 4,
+       "contra": 0,
+       "abst": 0,
+       "ausente": 0
+      },
+      "RD": {
+       "favor": 5,
+       "contra": 0,
+       "abst": 0,
+       "ausente": 0
+      },
+      "LIBERAL": {
+       "favor": 2,
+       "contra": 0,
+       "abst": 0,
+       "ausente": 0
+      },
+      "EVOP": {
+       "favor": 5,
+       "contra": 0,
+       "abst": 0,
+       "ausente": 0
+      },
+      "PEV": {
+       "favor": 1,
+       "contra": 0,
+       "abst": 0,
+       "ausente": 0
+      },
+      "PH": {
+       "favor": 1,
+       "contra": 0,
+       "abst": 0,
+       "ausente": 0
+      },
+      "PR": {
+       "favor": 2,
+       "contra": 0,
+       "abst": 0,
+       "ausente": 0
+      },
+      "COMUNES": {
+       "favor": 1,
+       "contra": 0,
+       "abst": 0,
+       "ausente": 0
+      }
+     }
+    },
+    {
+     "tema": "Matrimonio igualitario (2021-12-07)",
+     "boletin": "11422-07",
+     "fecha": "2021-12-07T13:20:38",
+     "instancia": "Camara de Diputados, votacion Id 32562 (Proyecto de Ley)",
+     "total": {
+      "favor": 82,
+      "contra": 20,
+      "abst": 2
+     },
+     "por_partido": {
+      "PS": {
+       "favor": 15,
+       "contra": 0,
+       "abst": 0,
+       "ausente": 0
+      },
+      "RN": {
+       "favor": 12,
+       "contra": 8,
+       "abst": 0,
+       "ausente": 0
+      },
+      "DC": {
+       "favor": 7,
+       "contra": 1,
+       "abst": 0,
+       "ausente": 0
+      },
+      "IND": {
+       "favor": 10,
+       "contra": 0,
+       "abst": 0,
+       "ausente": 0
+      },
+      "UDI": {
+       "favor": 8,
+       "contra": 8,
+       "abst": 2,
+       "ausente": 0
+      },
+      "PPD": {
+       "favor": 4,
+       "contra": 0,
+       "abst": 0,
+       "ausente": 0
+      },
+      "FRVS": {
+       "favor": 1,
+       "contra": 0,
+       "abst": 0,
+       "ausente": 0
+      },
+      "PR": {
+       "favor": 2,
+       "contra": 1,
+       "abst": 0,
+       "ausente": 0
+      },
+      "PREP": {
+       "favor": 0,
+       "contra": 2,
+       "abst": 0,
+       "ausente": 0
+      },
+      "PC": {
+       "favor": 7,
+       "contra": 0,
+       "abst": 0,
+       "ausente": 0
+      },
+      "LIBERAL": {
+       "favor": 1,
+       "contra": 0,
+       "abst": 0,
+       "ausente": 0
+      },
+      "RD": {
+       "favor": 5,
+       "contra": 0,
+       "abst": 0,
+       "ausente": 0
+      },
+      "EVOP": {
+       "favor": 3,
+       "contra": 0,
+       "abst": 0,
+       "ausente": 0
+      },
+      "PEV": {
+       "favor": 1,
+       "contra": 0,
+       "abst": 0,
+       "ausente": 0
+      },
+      "PCS": {
+       "favor": 3,
+       "contra": 0,
+       "abst": 0,
+       "ausente": 0
+      },
+      "PH": {
+       "favor": 1,
+       "contra": 0,
+       "abst": 0,
+       "ausente": 0
+      },
+      "COMUNES": {
+       "favor": 2,
+       "contra": 0,
+       "abst": 0,
+       "ausente": 0
+      }
+     }
+    },
+    {
+     "tema": "Aborto tres causales (2016-03-17, primer voto)",
+     "boletin": "9895-11",
+     "fecha": "2016-03-17T14:48:47",
+     "instancia": "Camara de Diputados, votacion Id 37112 (Proyecto de Ley)",
+     "total": {
+      "favor": 66,
+      "contra": 44,
+      "abst": 0
+     },
+     "por_partido": {
+      "IC": {
+       "favor": 1,
+       "contra": 0,
+       "abst": 0,
+       "ausente": 0
+      },
+      "PPD": {
+       "favor": 12,
+       "contra": 0,
+       "abst": 0,
+       "ausente": 0
+      },
+      "PR": {
+       "favor": 5,
+       "contra": 0,
+       "abst": 0,
+       "ausente": 0
+      },
+      "PS": {
+       "favor": 15,
+       "contra": 0,
+       "abst": 0,
+       "ausente": 0
+      },
+      "AMPL": {
+       "favor": 2,
+       "contra": 0,
+       "abst": 0,
+       "ausente": 0
+      },
+      "UDI": {
+       "favor": 0,
+       "contra": 28,
+       "abst": 0,
+       "ausente": 0
+      },
+      "DC": {
+       "favor": 15,
+       "contra": 4,
+       "abst": 0,
+       "ausente": 0
+      },
+      "RN": {
+       "favor": 1,
+       "contra": 11,
+       "abst": 0,
+       "ausente": 0
+      },
+      "IND": {
+       "favor": 7,
+       "contra": 0,
+       "abst": 0,
+       "ausente": 0
+      },
+      "PC": {
+       "favor": 6,
+       "contra": 0,
+       "abst": 0,
+       "ausente": 0
+      },
+      "RD": {
+       "favor": 1,
+       "contra": 0,
+       "abst": 0,
+       "ausente": 0
+      },
+      "EVOP": {
+       "favor": 0,
+       "contra": 1,
+       "abst": 0,
+       "ausente": 0
+      },
+      "PL": {
+       "favor": 1,
+       "contra": 0,
+       "abst": 0,
+       "ausente": 0
+      }
+     }
+    },
+    {
+     "tema": "Aborto tres causales (2017-08-02)",
+     "boletin": "9895-11",
+     "fecha": "2017-08-02T13:07:46",
+     "instancia": "Camara de Diputados, votacion Id 30642 (Proyecto de Ley)",
+     "total": {
+      "favor": 70,
+      "contra": 45,
+      "abst": 1
+     },
+     "por_partido": {
+      "PPD": {
+       "favor": 14,
+       "contra": 0,
+       "abst": 0,
+       "ausente": 0
+      },
+      "IC": {
+       "favor": 1,
+       "contra": 0,
+       "abst": 0,
+       "ausente": 0
+      },
+      "UDI": {
+       "favor": 0,
+       "contra": 27,
+       "abst": 0,
+       "ausente": 0
+      },
+      "RN": {
+       "favor": 0,
+       "contra": 12,
+       "abst": 1,
+       "ausente": 0
+      },
+      "PR": {
+       "favor": 6,
+       "contra": 0,
+       "abst": 0,
+       "ausente": 0
+      },
+      "PS": {
+       "favor": 16,
+       "contra": 0,
+       "abst": 0,
+       "ausente": 0
+      },
+      "AMPL": {
+       "favor": 1,
+       "contra": 0,
+       "abst": 0,
+       "ausente": 0
+      },
+      "IND": {
+       "favor": 7,
+       "contra": 3,
+       "abst": 0,
+       "ausente": 0
+      },
+      "DC": {
+       "favor": 17,
+       "contra": 2,
+       "abst": 0,
+       "ausente": 0
+      },
+      "PC": {
+       "favor": 6,
+       "contra": 0,
+       "abst": 0,
+       "ausente": 0
+      },
+      "RD": {
+       "favor": 1,
+       "contra": 0,
+       "abst": 0,
+       "ausente": 0
+      },
+      "EVOP": {
+       "favor": 0,
+       "contra": 1,
+       "abst": 0,
+       "ausente": 0
+      },
+      "PL": {
+       "favor": 1,
+       "contra": 0,
+       "abst": 0,
+       "ausente": 0
+      }
+     }
+    },
+    {
+     "tema": "Uso de la fuerza (RUF), seguridad (2026-10-07)",
+     "boletin": "15805-07",
+     "fecha": "2026-10-07T13:18:43",
+     "instancia": "Camara de Diputados, votacion Id 90328 (Proyecto de Ley)",
+     "total": {
+      "favor": 111,
+      "contra": 23,
+      "abst": 5
+     },
+     "por_partido": {
+      "IND": {
+       "favor": 19,
+       "contra": 5,
+       "abst": 0,
+       "ausente": 2
+      },
+      "UDI": {
+       "favor": 12,
+       "contra": 0,
+       "abst": 0,
+       "ausente": 1
+      },
+      "RN": {
+       "favor": 10,
+       "contra": 0,
+       "abst": 0,
+       "ausente": 1
+      },
+      "FRVS": {
+       "favor": 1,
+       "contra": 0,
+       "abst": 0,
+       "ausente": 0
+      },
+      "PNL": {
+       "favor": 7,
+       "contra": 0,
+       "abst": 0,
+       "ausente": 1
+      },
+      "PR": {
+       "favor": 1,
+       "contra": 0,
+       "abst": 0,
+       "ausente": 0
+      },
+      "PC": {
+       "favor": 0,
+       "contra": 5,
+       "abst": 0,
+       "ausente": 3
+      },
+      "PL": {
+       "favor": 2,
+       "contra": 0,
+       "abst": 0,
+       "ausente": 0
+      },
+      "FA": {
+       "favor": 1,
+       "contra": 10,
+       "abst": 1,
+       "ausente": 4
+      },
+      "PREP": {
+       "favor": 26,
+       "contra": 0,
+       "abst": 0,
+       "ausente": 2
+      },
+      "PS": {
+       "favor": 4,
+       "contra": 2,
+       "abst": 4,
+       "ausente": 0
+      },
+      "PDG": {
+       "favor": 14,
+       "contra": 0,
+       "abst": 0,
+       "ausente": 0
+      },
+      "PCCH": {
+       "favor": 2,
+       "contra": 0,
+       "abst": 0,
+       "ausente": 0
+      },
+      "PPD": {
+       "favor": 3,
+       "contra": 0,
+       "abst": 0,
+       "ausente": 1
+      },
+      "DEM": {
+       "favor": 1,
+       "contra": 0,
+       "abst": 0,
+       "ausente": 0
+      },
+      "DC": {
+       "favor": 6,
+       "contra": 0,
+       "abst": 0,
+       "ausente": 1
+      },
+      "PAH": {
+       "favor": 0,
+       "contra": 1,
+       "abst": 0,
+       "ausente": 0
+      },
+      "EVOP": {
+       "favor": 2,
+       "contra": 0,
+       "abst": 0,
+       "ausente": 0
+      }
+     }
+    }
+   ]
+  }
  }
 }
