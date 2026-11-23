@@ -16,13 +16,92 @@ var carta: Dictionary = {}
 var costo: int = 0
 var elegida: bool = false
 var atenuada: bool = false
+var _arte: TextureRect
+var _sup: Control  # capa superior: gema y cinta por encima de la ilustración
+static var _texturas: Dictionary = {}
+
+const SHADER_REDONDEADO := """
+shader_type canvas_item;
+uniform vec2 tam = vec2(100.0, 80.0);
+uniform float radio = 9.0;
+uniform float atenuar = 0.0;
+void fragment() {
+	vec2 p = UV * tam;
+	vec2 q = abs(p - tam * 0.5) - (tam * 0.5 - vec2(radio));
+	float d = length(max(q, 0.0)) + min(max(q.x, q.y), 0.0) - radio;
+	vec4 c = texture(TEXTURE, UV);
+	c.rgb *= (1.0 - atenuar);
+	float v = distance(UV, vec2(0.5)) * 0.55;  // viñeta suave
+	c.rgb *= 1.0 - v * v;
+	COLOR = vec4(c.rgb, c.a * clamp(0.5 - d, 0.0, 1.0));
+}
+"""
 
 
 func configurar(p_carta: Dictionary, p_costo: int) -> void:
 	carta = p_carta
 	costo = p_costo
 	mouse_filter = Control.MOUSE_FILTER_STOP
+	_preparar_arte()
 	queue_redraw()
+
+
+static func _textura(categoria: String) -> Texture2D:
+	if not _texturas.has(categoria):
+		var ruta := "res://game/arte/cartas/%s.jpg" % categoria
+		_texturas[categoria] = load(ruta) if ResourceLoader.exists(ruta) else null
+	return _texturas[categoria]
+
+
+func _notification(what: int) -> void:
+	if what == NOTIFICATION_RESIZED:
+		_ajustar_arte()
+
+
+func _ajustar_arte() -> void:
+	if _arte == null:
+		return
+	if size.x < 1.0:
+		return
+	var r := Rect2(5, 5, size.x - 10, size.y * 0.50)
+	_arte.position = r.position
+	_arte.size = r.size
+	var m := _arte.material as ShaderMaterial
+	m.set_shader_parameter("tam", r.size)
+	m.set_shader_parameter("atenuar", 0.28 if atenuada else 0.0)
+
+
+func _preparar_arte() -> void:
+	var tex := _textura(String(carta["categoria"]))
+	if tex == null or _arte != null:
+		return
+	_arte = TextureRect.new()
+	_arte.texture = tex
+	_arte.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	_arte.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_COVERED
+	_arte.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	var sh := Shader.new()
+	sh.code = SHADER_REDONDEADO
+	var mat := ShaderMaterial.new()
+	mat.shader = sh
+	_arte.material = mat
+	add_child(_arte)
+	_sup = Control.new()
+	_sup.set_anchors_preset(Control.PRESET_FULL_RECT)
+	_sup.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	_sup.draw.connect(_dibujar_sup)
+	add_child(_sup)
+	_ajustar_arte()
+
+
+func _dibujar_sup() -> void:
+	## Cinta de categoría y gema de PA, sobre la ilustración.
+	var base: Color = COLORES_CATEGORIA.get(String(carta["categoria"]), Tema.PANEL)
+	var cat: String = NOMBRES_CAT.get(String(carta["categoria"]), String(carta["categoria"]).to_upper())
+	var cinta := Rect2(size.x - 68.0, 9, 62, 16)
+	_sup.draw_style_box(Tema.caja_degradada(Tema.ROJO if elegida else base.darkened(0.25), Tema.ROJO.darkened(0.25) if elegida else base.darkened(0.5), 5), cinta)
+	_sup.draw_string(Tema.fuente_texto(800), cinta.position + Vector2(0, 11.5), cat, HORIZONTAL_ALIGNMENT_CENTER, 62, 9, Tema.CREMA)
+	_gema_en(_sup, Vector2(21, 21), 14.0)
 
 
 func _gui_input(event: InputEvent) -> void:
@@ -183,11 +262,16 @@ func _icono(c: Vector2, col: Color) -> void:
 
 
 func _gema(c: Vector2, r: float) -> void:
-	draw_circle(c, r + 2.0, Tema.OCEANO)
-	draw_circle(c, r, Color("#C9921F"))
-	draw_circle(c + Vector2(0, -0.8), r - 2.0, Tema.ORO)
-	draw_arc(c, r - 3.5, PI * 1.1, PI * 1.7, 10, Color(1, 1, 1, 0.55), 2.0)
-	draw_string(Tema.fuente_titulo(), c + Vector2(-r, r * 0.42), str(costo), HORIZONTAL_ALIGNMENT_CENTER, r * 2.0, int(r * 1.25), Tema.TINTA)
+	_gema_en(self, c, r)
+
+
+func _gema_en(ci: CanvasItem, c: Vector2, r: float) -> void:
+	ci.draw_circle(c + Vector2(0, 1.5), r + 2.0, Color(0, 0, 0, 0.35))
+	ci.draw_circle(c, r + 2.0, Tema.OCEANO)
+	ci.draw_circle(c, r, Color("#C9921F"))
+	ci.draw_circle(c + Vector2(0, -0.8), r - 2.0, Tema.ORO)
+	ci.draw_arc(c, r - 3.5, PI * 1.1, PI * 1.7, 10, Color(1, 1, 1, 0.55), 2.0)
+	ci.draw_string(Tema.fuente_titulo(), c + Vector2(-r, r * 0.42), str(costo), HORIZONTAL_ALIGNMENT_CENTER, r * 2.0, int(r * 1.25), Tema.TINTA)
 
 
 func _chip_efecto(r: Rect2, delta: float, texto: String) -> void:
@@ -205,6 +289,8 @@ func _chip_efecto(r: Rect2, delta: float, texto: String) -> void:
 func _draw() -> void:
 	if carta.is_empty():
 		return
+	if _arte != null and _arte.size.x < 1.0:
+		_ajustar_arte.call_deferred()  # el tamaño de la carta se fija después de configurar()
 	var w := size.x
 	var h := size.y
 	var base: Color = COLORES_CATEGORIA.get(String(carta["categoria"]), Tema.PANEL)
@@ -216,16 +302,18 @@ func _draw() -> void:
 	var marco := Tema.caja_degradada(Color("#FFE08A"), Color("#B8851A"), 13) if elegida else Tema.caja_degradada(Color("#AEBCCB"), Color("#5D6E80"), 13)
 	draw_style_box(marco, Rect2(Vector2.ZERO, size))
 	draw_style_box(Tema.caja_degradada(Color("#12395C"), Color("#0A2037"), 11), Rect2(Vector2(2.5, 2.5), size - Vector2(5, 5)))
-	var arte := Rect2(5, 5, w - 10, h * 0.47)
-	_escena(arte, base)
+	var arte := Rect2(5, 5, w - 10, h * 0.50)
+	if _arte == null:
+		_escena(arte, base)
 	var cat: String = NOMBRES_CAT.get(String(carta["categoria"]), String(carta["categoria"]).to_upper())
-	var cinta := Rect2(w - 68.0, 9, 62, 16)
-	draw_style_box(Tema.caja(Tema.ROJO if elegida else base.darkened(0.35), 4), cinta)
-	draw_string(Tema.fuente_texto(800), cinta.position + Vector2(0, 11.5), cat, HORIZONTAL_ALIGNMENT_CENTER, 62, 9, Tema.CREMA)
-	_gema(Vector2(21, 21), 14.0)
+	if _arte == null:
+		var cinta := Rect2(w - 68.0, 9, 62, 16)
+		draw_style_box(Tema.caja(Tema.ROJO if elegida else base.darkened(0.35), 4), cinta)
+		draw_string(Tema.fuente_texto(800), cinta.position + Vector2(0, 11.5), cat, HORIZONTAL_ALIGNMENT_CENTER, 62, 9, Tema.CREMA)
+		_gema(Vector2(21, 21), 14.0)
 	draw_multiline_string(Tema.fuente_titulo(), Vector2(8, arte.end.y + 17), String(carta["titulo"]),
 			HORIZONTAL_ALIGNMENT_LEFT, w - 14, 12 if elegida else 11, 2, Tema.TEXTO)
-	var y := h - 42.0
+	var y := h - 40.0
 	var n := 0
 	for ef in carta["efectos"]:
 		if n >= 2:

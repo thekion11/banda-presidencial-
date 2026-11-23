@@ -10,6 +10,7 @@ Todo dato real vive en `data/` y apunta a `data/fuentes.json` con enlace y fecha
 | Presupuesto, vivienda | DIPRES, MINVU | Ilustrativas (fecha de corte 2026-04-15). |
 | Eventos inventados | `ficticio_2026` | No representan hechos reales. |
 | Calles y relieve (Fase 2+) | OpenStreetMap (ODbL, vía Geofabrik) y Copernicus DEM GLO-30 | Pendiente; la atribución ya está en Créditos. |
+| Ilustraciones de cartas (`game/arte/cartas/*.jpg`) | Generadas con IA (modelo de imágenes de Figma, 2026-11-23) a partir de prompts propios; 14 categorías, 512×410 | Declarar el uso de IA en la ficha de Google Play. Algunas escenas incluyen la bandera chilena. Revisar derechos de uso comercial según los términos de Figma AI. Los prompts están en el historial del proyecto. |
 | Tipografías | Space Grotesk e Inter (SIL OFL 1.1) | Licencias en `game/fuentes/`. |
 
 Regenerar el mapa:
