@@ -95,7 +95,8 @@ func jugar_carta(idx: int, ministro_id: String = "", region_id: String = "", del
 	else:
 		res = _jugar_en_gobierno(carta, ministro_id, region_id, delegada)
 	m.coalicion.carta_jugada(carta)
-	m.robar_mano(int(m.catalogo_leyes["mano"]["tamano"]))  # mano continua: entra otra carta al instante
+	if bool(m.catalogo_leyes["mano"]["continua"]):
+		m.robar_mano(int(m.catalogo_leyes["mano"]["tamano"]))  # mano continua: entra otra carta al instante
 	m.mazo.reposicion()
 	res["ok"] = true
 	res["costo"] = costo
@@ -131,6 +132,10 @@ func _jugar_en_gobierno(carta: Dictionary, ministro_id: String, region_id: Strin
 		res["fallo"] = d["fallo"]
 		res["escandalo"] = d["escandalo"]
 		res["prob_fallo"] = d["prob_fallo"]
+		res["anulada"] = d["anulada"]
+		if bool(d["anulada"]):
+			m.estado.registrar_accion("delegacion_anulada", {"carta": carta["id"], "ministro": ministro_id})
+			return res
 	elif ministro_id != "":
 		var mi: Dictionary = m.catalogo_ministros[ministro_id]
 		if mi["categoria_afin"] == carta["categoria"]:
