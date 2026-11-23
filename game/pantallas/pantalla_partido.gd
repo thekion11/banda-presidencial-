@@ -192,7 +192,7 @@ func _mostrar_fundacion() -> void:
 	var esp := Control.new()
 	esp.size_flags_vertical = Control.SIZE_EXPAND_FILL
 	_contenido.add_child(esp)
-	var ir := Tema.boton("Iniciar Campaña · 8 Semanas", Tema.ROJO)
+	var ir := Tema.boton("Iniciar Campaña · %d Semanas" % int(datos["leyes"]["hemiciclo"]["semanas_campana"]), Tema.ROJO)
 	ir.pressed.connect(_fundar)
 	_contenido.add_child(ir)
 

@@ -92,7 +92,7 @@ func iniciar_turno() -> Array[Dictionary]:
 func terminar_turno() -> Array[Dictionary]:
 	## Cierra el turno y, si la partida sigue y no toca elección, inicia el siguiente.
 	cerrar_turno()
-	if estado.eleccion_pendiente(int(_h("semanas_campana")), int(_h("semanas_balotaje"))):
+	if estado.eleccion_pendiente(int(_h("semanas_campana"))):
 		return []
 	if estado.etapa == "campana" or estado.etapa == "gobierno":
 		return iniciar_turno()

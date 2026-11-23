@@ -346,7 +346,7 @@ func _resolver_eleccion() -> void:
 	accion_hecha.emit()
 	var ev := {"titulo": "Elección presidencial", "hora": "20:00", "votacion": null,
 		"descripcion": "Obtuviste %.1f %% de los votos con un umbral de %.0f %%. %s" % [float(res["voto_final"]), float(res["umbral"]),
-			"¡Eres el nuevo Presidente de Chile! Asumes el gobierno con tus promesas como metas de legado." if res["electo"] else ("Pasas a segunda vuelta: tienes 4 semanas más de campaña." if res["balotaje"] else "No alcanzaste la presidencia.")]}
+			"¡Eres el nuevo Presidente de Chile! Asumes el gobierno con tus promesas como metas de legado." if res["electo"] else ("Pasas a segunda vuelta: tienes %d semanas más de campaña." % motor.estado.semanas_balotaje if res["balotaje"] else "No alcanzaste la presidencia.")]}
 	_capa.add_child(OverlaysDia.evento(ev, func() -> void:
 		if res["electo"] or res["balotaje"]:
 			_cola_eventos = motor.ultimos_eventos.duplicate()

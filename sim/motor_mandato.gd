@@ -56,7 +56,7 @@ func finalizar(motivo: String) -> void:
 
 
 func resolver_eleccion() -> Dictionary:
-	## 1ª vuelta: gana quien supera el umbral; si no, pasa a la 2ª vuelta (4 semanas más de campaña) con el piso configurado.
+	## 1ª vuelta: gana quien supera el umbral; si no, pasa a la 2ª vuelta (semanas_balotaje más de campaña) con el piso configurado.
 	var h: Dictionary = m.catalogo_leyes["hemiciclo"]
 	var umbral := float(h["umbral_victoria_presidencial"])
 	var ruido := float(m.catalogo_leyes["campana"]["ruido_eleccion"])

@@ -30,3 +30,6 @@ Veto presidencial, urgencias legislativas (suma urgencia, discusión inmediata),
 4. El documento lista 3 preguntas de ideología pero exige 8; se redactaron 8 (las 3 originales intactas, con una errata corregida: "Plebisicitar" → "Plebiscitar").
 5. La suma de 8 respuestas satura fácilmente ±1.0; las 5 preguntas nuevas usan deltas menores (±0.10 a ±0.30) para no aplastar el rango.
 6. `aprobacion` empieza en 90 en la maqueta (cifra ilustrativa) pero la fórmula del partido la fija entre 32 y 46; se usa la de la fórmula.
+
+
+> **Actualización 23-nov-2026:** la segunda vuelta presidencial YA está modelada (4 semanas de campaña adicionales; ver `docs/ESTADO_FASES.md` y `docs/DISENO_V2.md`).

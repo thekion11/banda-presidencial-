@@ -8,6 +8,7 @@ const IND_DEFECTO := {
 }
 
 var semilla: int = 20260415
+var semanas_balotaje: int = 0  # se carga de leyes.json › hemiciclo.semanas_balotaje en configurar()
 var ronda_electoral: int = 1  # 1 = primera vuelta, 2 = segunda vuelta (balotaje)
 var etapa: String = "campana"  # campana | gobierno | derrota_electoral | fin_mandato | crisis
 var turno_actual: int = 1
@@ -68,6 +69,7 @@ func configurar(p_semilla: int, p_dias_turno: int = 7, p_leyes: Dictionary = {})
 	indicadores = ini
 	if p_leyes.has("hemiciclo"):
 		duracion_mandato_dias = int(p_leyes["hemiciclo"].get("duracion_mandato_dias", 1460))
+		semanas_balotaje = int(p_leyes["hemiciclo"].get("semanas_balotaje", 0))
 	if p_leyes.has("mano"):
 		pa_maximo = int(p_leyes["mano"].get("pa_por_turno", 16))
 	pa_actual = pa_maximo
@@ -143,7 +145,7 @@ func promesas_pendientes() -> Array[Dictionary]:
 	return res
 
 
-func eleccion_pendiente(semanas_campana: int, semanas_balotaje: int = 4) -> bool:
+func eleccion_pendiente(semanas_campana: int) -> bool:
 	return etapa == "campana" and turno_actual > semanas_campana + (semanas_balotaje if ronda_electoral == 2 else 0)
 
 

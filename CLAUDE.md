@@ -19,6 +19,7 @@ Ninguna tarea cierra sin pruebas en verde y captura comparada (`tests/captura.gd
 - En el Turno 8 de campaña se vota la elección presidencial. Si el jugador no supera el umbral de `data/leyes.json`, pierde.
   Si gana, inicia el Turno 1 de Gobierno (208 semanas).
 - ALCANCE CONGELADO: prohibido agregar nuevas mecánicas o pantallas fuera de los documentos hasta completar la Fase 4 y la prueba cerrada.
+- **AMPLIACIÓN AUTORIZADA POR EL USUARIO (23-nov-2026)**, documentada en `docs/DISENO_V2.md` y `docs/ESTADO_FASES.md`: calendario real (campaña desde el 21-sep-2025, 1ª vuelta 16-nov-2025, 2ª vuelta 14-dic-2025 si se supera `umbral_pasa_balotaje`, mandato desde el 11-mar-2026: en el Turno 8 se vota; si no se alcanza el umbral se pasa a segunda vuelta o se pierde), gabinete de 8 ministros (reemplaza el Acto 2 de los 25 ministros), 5 movimientos por turno con mano continua, delegación, movimientos internos, asesores, coalición con 15 partidos ficticios, cartas por proyecto real y eventos reales. Toda mecánica o pantalla nueva debe citar su fuente y su commit.
 
 ## 3. Arquitectura y Separación de Capas
 - Motor: Godot 4 con GDScript. C++ solo vía GDExtension en bucles con cuello de botella comprobado.
