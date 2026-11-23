@@ -41,7 +41,7 @@ static func crear(motor: MotorTurno, texto_boton: String, al_confirmar: Callable
 	raiz.add_theme_constant_override("separation", 8)
 	var resumen := Tema.etiqueta("", 12, Tema.TEXTO_SUAVE)
 	var contador := Tema.etiqueta("", 15, Tema.ORO, true)
-	var boton := Tema.boton(texto_boton, Tema.ROJO, Tema.TEXTO, 15, 48)
+	var boton := Tema.boton(texto_boton, Tema.ROJO, Tema.TEXTO, 15, 52)
 	var lista := FilasUI.col(6)
 	var cuenta := _conteo_por_categoria(motor)
 	var botones := {}

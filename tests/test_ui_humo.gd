@@ -36,7 +36,13 @@ func _una(semilla: int) -> void:
 	var pp: Node = main._pantalla
 	for p in main.datos["ideologia"]["preguntas"]:
 		pp._responder(p["opciones"][1])
-	await process_frame
+	for _k in range(4):
+		await process_frame
+	var r_fundar := Rect2()
+	var ir_b: Array = pp.find_children("*", "Button", true, false).filter(func(b: Button) -> bool: return b.text.begins_with("Iniciar Campaña"))
+	_check(ir_b.size() == 1, "la pantalla de fundación debe tener su botón principal")
+	if ir_b.size() == 1:
+		r_fundar = (ir_b[0] as Button).get_global_rect()
 	pp._fundar()
 	await process_frame
 	var partido: Dictionary = main.motor.estado.partido.duplicate(true)
@@ -47,6 +53,10 @@ func _una(semilla: int) -> void:
 	_check(main._pantalla is PantallaGabinete, "tras fundar el partido debe venir la elección de gabinete")
 	var sel_g: Array = main._pantalla.find_children("*", "Button", true, false)
 	var conf: Button = sel_g.filter(func(b: Button) -> bool: return b.text.begins_with("Comenzar campaña"))[0]
+	for _k in range(4):
+		await process_frame
+	print("  botón fundación: %s · botón gabinete: %s" % [r_fundar, conf.get_global_rect()])
+	_check(conf.get_global_rect() == r_fundar, "el botón principal del gabinete debe estar donde el de la fundación (%s vs %s)" % [conf.get_global_rect(), r_fundar])
 	_check(not conf.disabled, "el gabinete por defecto (8 ministros) debe poder confirmarse")
 	var filas: Array = sel_g.filter(func(b: Button) -> bool: return b.text == "" and b.get_child_count() > 0)
 	_check(filas.size() == 25, "deben listarse los 25 ministros, hay %d" % filas.size())

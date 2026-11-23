@@ -59,3 +59,6 @@ Verificación automática (`tests/test_ui_humo.gd`): el botón principal conserv
 | 123456 | (74, 710) 242×54 | 5 |
 
 La prueba falla si la posición cambia: la sesión de UI revirtió la corrección del corrector (alto fijo) y obtuvo 9 `FALLO UI`. Captura comparada de la pantalla de juego: `docs/comparacion/v2_dia_maqueta_vs_juego.png` (lado a lado con la maqueta del día del PDF del Documento Maestro; referencia = PDF, no existe maqueta en Figma; fecha 23-nov-2026).
+
+### Corrección: botón principal de la configuración de gabinete (23-nov-2026)
+La diferencia que quedaba abierta ("Comenzar campaña" fijo al pie vs botón de fundación al final del contenido) está CORREGIDA: ambos botones miden 358×52 y están en (16, 739) a 390×844. `tests/test_ui_humo.gd` lo exige en las 6 semillas (compara el rectángulo del botón de la fundación con el del gabinete).

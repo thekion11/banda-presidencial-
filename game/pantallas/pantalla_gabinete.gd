@@ -16,7 +16,7 @@ func _ready() -> void:
 	for lado in ["left", "right"]:
 		m.add_theme_constant_override("margin_" + lado, 16)
 	m.add_theme_constant_override("margin_top", 28)
-	m.add_theme_constant_override("margin_bottom", 16)
+	m.add_theme_constant_override("margin_bottom", 53)  # el botón principal queda donde el de la fundación del partido
 	add_child(m)
 	var v := FilasUI.col(8)
 	m.add_child(v)

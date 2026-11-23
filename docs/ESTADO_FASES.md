@@ -128,3 +128,33 @@ Las comparaciones fotograma a fotograma contra el PDF están en `docs/comparacio
 ### Ilustraciones con Canva (23-nov-2026)
 - `game/arte/cartas/estado.jpg`: ilustración de la categoría `estado` (empresas públicas, privatización, expropiación), generada con Canva (`generate-image`, media id `MAHbwnvLDqo`, original 2336×1760 en Canva). **Provisoria:** la herramienta solo entrega una miniatura de 200×150, ampliada a 512×410 (algo blanda). Para resolución completa hay que exportarla desde Canva (crear diseño con la imagen y exportar) o descargarla manualmente desde el enlace de Canva.
 - Las otras 13 categorías ya tenían arte (Figma, antes de que se agotara la cuota). Derechos del arte generado con IA: pendiente de confirmar.
+
+### Respuestas al chequeo de monitoreo (23-nov-2026, tarde)
+- **Ilustración Canva (`game/arte/cartas/estado.jpg`):** licencia de uso de las imágenes generadas con Canva (IA) **no confirmada** por mí; queda **PROVISORIA** y no debe usarse en material público ni en una ficha de tienda hasta revisar los términos de Canva y sus derechos de uso comercial. Fuente: Canva `generate-image`, media id `MAHbwnvLDqo`.
+- **APK de prueba:** se entregó solo al usuario (único destinatario) mediante el canal de archivos de esta sesión el 23-nov-2026; no hay correo ni enlace público. Es un APK de depuración (`build/presidente-debug.apk`, ignorado por git), sin firma de publicación.
+- **Evidencia del botón principal y captura 390×844:** `docs/DIFERENCIAS_MAQUETA.md` (sección "Evidencia del botón principal fijo", 6 semillas con rectángulo idéntico) y `docs/comparacion/v2_dia_maqueta_vs_juego.png` (captura lado a lado con la maqueta del día del PDF; fecha 23-nov-2026).
+- **1.276 vs 1.040 y citas CPR 66/127:** ver "Cierre verificado" más arriba en este archivo.
+
+- **Figma:** no es un bloqueo técnico. El plan Starter limita las llamadas de herramienta (20 al mes) y generar imágenes con IA consume créditos; el usuario decidió el 23-nov-2026 usar **solo Canva** para ilustraciones. Una maqueta en Figma sigue siendo decisión pendiente del usuario (no se hace sin su aprobación).
+- **Rendimiento en teléfono real (30 fps, RAM ≤ 800 MB):** PENDIENTE; mediciones en escritorio (RAM estática 47–62 MB) no sustituyen la prueba en Android. APK de depuración entregado al usuario para probar.
+
+### Cartas: composición, fuentes y fechas de corte (cierre solicitado por monitoreo, 23-nov-2026)
+Total 1.276 cartas por proyecto frente al objetivo de ~1.040 del usuario (los ~1.044 proyectos de ley en tramitación + proyectos públicos). La diferencia es que el objetivo se tomó como la suma de ambos grupos y quedó por encima; no se eliminó ningún proyecto para ajustarse a 1.040. Cada grupo y su fuente (ids de `data/fuentes.json`, todos con fecha de corte 2026-11-23):
+
+| Grupo | Cartas | Fuente(s) | Fecha de corte | Estado de verificación |
+|---|---|---|---|---|
+| Proyectos públicos (obras) | 230 | `mop_concesiones`, `mop_obras`, `efe_proyectos`, `metro_santiago`, `minsal_inversiones`, `planes_prensa_2026` | 2026-11-23 | 162 verificados; el resto (prensa, Metro, MINSAL estimados) `verificado_hecho:false` |
+| Proyectos de ley (mensajes y mociones) | 935 | `senado_tramitacion` (+ `camara_opendata`) | 2026-11-23 | Hecho verificado en el Senado; quórum y efectos ILUSTRATIVOS (rotulados) |
+| Reformas constitucionales en tramitación | 109 | `senado_tramitacion` | 2026-11-23 | Hecho verificado; quórum 4/7 según CPR art. 127 |
+| Propuestas de plebiscitos 2022/2023 | 2 | `wikipedia_es` | 2026-11-23 | Sin verificar (fuente secundaria), rotulado |
+
+Ninguna carta carece de fuente (`validate_data.py` lo exige); los efectos de juego de TODAS son ilustrativos (`meta.cifras_ilustrativas`).
+
+### Quórums: texto y citas (CPR art. 66 y 127)
+- Fuente: `data/bcn/normas.json` → norma `cpr`, «Constitución Política de la República de Chile», texto actualizado al 7-oct-2025 (BCN), consulta 2026-11-23. IMPORTANTE: `articulos_clave` contiene RESÚMENES redactados por la sesión de datos a partir del PDF oficial de ese texto (no transcripciones literales); LeyChile no es accesible desde el entorno (401), así que el contraste con el texto consolidado queda PENDIENTE.
+- **Art. 66** (resumen en `normas.json`, `articulos_clave[11]`): «Interpretativas de la Constitución: 4/7 de los en ejercicio; LOC y quórum calificado: mayoría absoluta de los en ejercicio; demás normas: mayoría de los presentes». Usado en `leyes.json › tipos_ley` (`ley_simple`, `quorum_calificado`, `ley_organica_constitucional`; campo `cita_regla`).
+- **Art. 127** (`articulos_clave[26]`): «Reforma constitucional: 4/7 de los diputados y senadores en ejercicio en cada Cámara (Ley 21.481)». Usado en `tipos_ley.reforma_constitucional` (29/89).
+- Las leyes interpretativas de la Constitución (4/7 según el art. 66) no están modeladas como tipo.
+
+### Estado de la fase (una línea)
+Contenido y mecánicas v2 integrados con pruebas en verde; para cerrar la fase faltan: prueba en teléfono real (30 fps/RAM), contraste con LeyChile de los quórums y de 14 eventos reales, y la decisión del usuario sobre maqueta Figma y revisión legal; la prueba cerrada de Play está en pausa por instrucción del usuario.
