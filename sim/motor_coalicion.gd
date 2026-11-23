@@ -106,10 +106,14 @@ func objetivo(id: String) -> float:
 
 
 func carta_jugada(carta: Dictionary) -> void:
-	## Jugar cartas de la categoría que pide un aliado mejora su satisfacción.
+	## Jugar cartas de las categorías que pide un aliado mejora su satisfacción.
+	## Y las de una categoría que rechaza la empeoran.
 	for id in m.estado.coalicion.keys():
-		if partidos[id]["peticion"]["categoria_carta"] == carta["categoria"]:
-			m.estado.coalicion[id]["satisfaccion"] = minf(100.0, float(m.estado.coalicion[id]["satisfaccion"]) + float(_cfg()["bono_carta_afin"]))
+		var c: Dictionary = m.estado.coalicion[id]
+		if partidos[id]["categorias_pedidas"].has(carta["categoria"]):
+			c["satisfaccion"] = minf(100.0, float(c["satisfaccion"]) + float(_cfg()["bono_carta_afin"]))
+		elif partidos[id]["categorias_rechazadas"].has(carta["categoria"]):
+			c["satisfaccion"] = maxf(0.0, float(c["satisfaccion"]) - float(_cfg()["penal_carta_rechazada"]))
 	_recalcular_apoyo()
 
 

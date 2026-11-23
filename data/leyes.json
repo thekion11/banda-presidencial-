@@ -333,6 +333,7 @@
     "umbral_ruptura": 15.0,
     "penal_ruptura_cohesion": 3.0,
     "penal_ruptura_capital": 2.0,
-    "nota": "DISENO_V2 §10. Satisfacción 0..100 de cada partido aliado: converge hacia (cuota cumplida) x (1 - peso_ideologia x (1 - afinidad ideológica)). Afecta cohesión por turno, escaños que votan con el gobierno y movimientos internos. Partidos ficticios; cifras ilustrativas."
+    "nota": "DISENO_V2 §10. Satisfacción 0..100 de cada partido aliado: converge hacia (cuota cumplida) x (1 - peso_ideologia x (1 - afinidad ideológica)). Afecta cohesión por turno, escaños que votan con el gobierno y movimientos internos. Partidos ficticios; cifras ilustrativas.",
+    "penal_carta_rechazada": 2.0
   }
 }
