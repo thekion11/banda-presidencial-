@@ -33,8 +33,8 @@ Ninguna tarea cierra sin pruebas en verde y captura comparada (`tests/captura.gd
 ## 4. Ciclo Fijo del Turno Semanal (8 pasos)
 1. Amanecer: actualiza indicadores (aprobación, capital, cohesión, fiscal, riesgo de ejecución) y regenera PA.
 2. Eventos: programados en la ventana de 7 días y sorteados con la semilla.
-3. Mano: roba hasta 5 cartas con costo en PA, categoría y efectos.
-4. Jugar cartas: con PA o delegando a uno de los 25 ministros.
+3. Mano: 5 cartas con costo de 1 a 3 movimientos (los PA pasan a llamarse movimientos); al jugar una carta entra otra al instante. Solo circulan las cartas habilitadas por el gabinete y su ventana (docs/DISENO_V2.md).
+4. Jugar cartas: con movimientos, delegando hasta 2 por turno en un ministro del gabinete de 8 (sin gastar movimientos, con riesgo de fallo), o con los 3 movimientos internos de la coalición.
 5. Validación legal: competencia, ley, quórum (Senado y Cámara), plazos y Tribunal Constitucional.
 6. Corrector de realismo: nunca responde con un "no" seco; ofrece versión viable o por tramos.
 7. Resolución: votaciones, efectos y avance de +7 días en las obras.

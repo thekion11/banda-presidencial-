@@ -9,8 +9,12 @@ var motor: MotorTurno
 var _pantalla: Control
 
 
+var _huella_datos: String = ""
+
+
 func _ready() -> void:
 	datos = Datos.cargar_todo()
+	_huella_datos = Datos.huella(datos)  # una sola vez: calcularla en cada guardado costaría ~1 s en un teléfono modesto
 	geo = Datos.leer_json("res://data/geo/regiones_mapa.json")
 	var g := Gradient.new()
 	g.colors = PackedColorArray([Color("#154F7A"), Color("#0B2236"), Color("#07182A")])
@@ -73,7 +77,7 @@ func mostrar_gabinete() -> void:
 
 func continuar_guardado() -> void:
 	var g: Variant = Datos.leer_json(RUTA_GUARDADO)
-	if g == null or String(g.get("huella_datos", "")) != Datos.huella(datos):
+	if g == null or String(g.get("huella_datos", "")) != _huella_datos:
 		push_warning("Guardado incompatible con esta versión de los datos: se descarta.")
 		mostrar_menu()
 		return
@@ -109,4 +113,4 @@ func guardar() -> void:
 		return
 	var f := FileAccess.open(RUTA_GUARDADO, FileAccess.WRITE)
 	if f != null:
-		f.store_string(JSON.stringify(motor.estado.exportar_guardado(Datos.huella(datos))))
+		f.store_string(JSON.stringify(motor.estado.exportar_guardado(_huella_datos)))
