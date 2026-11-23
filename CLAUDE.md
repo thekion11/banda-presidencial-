@@ -61,8 +61,9 @@ python3 tools/check_limits.py
 godot --headless --import --path .
 godot --headless --path . -s tests/test_prueba_oro_4_semanas.gd
 godot --headless --path . -s tests/test_prueba_oro_completa.gd
+godot --headless --path . -s tests/test_congreso.gd
 godot --headless --path . -s tests/test_balance.gd
 godot --headless --path . -s tests/test_ui_humo.gd
 godot --headless --path . -s tests/montecarlo.gd -- 200        # informe de balance
-xvfb-run -a godot --path . --rendering-method gl_compatibility --resolution 390x844 -s tests/captura.gd -- /tmp/capturas
+xvfb-run -a godot --path . --rendering-method gl_compatibility --resolution 390x844 -s tests/captura_comparar.gd -- /tmp/capturas   # estados de la maqueta
 ```

@@ -179,3 +179,28 @@ static func nav(al_pulsar: Callable) -> Control:
 	fondo.add_theme_stylebox_override("panel", sb)
 	fondo.add_child(fila)
 	return fondo
+
+
+static func actualizar_evento(refs: Dictionary, motor: MotorTurno) -> void:
+	var est := motor.estado
+	var ev: Dictionary = {}
+	if not motor.ultimos_eventos.is_empty():
+		ev = motor.ultimos_eventos[0]
+		refs["ev_hora"].text = "● EVENTO · %s" % String(ev["hora"])
+		refs["ev_titulo"].text = String(ev["titulo"])
+		refs["ev_sub"].text = String(ev["descripcion"])
+		return
+	var prox: Dictionary = {}
+	for e in motor.catalogo_eventos:
+		if e["tipo"] == "programado" and String(e.get("etapa", "gobierno")) == est.etapa and int(e["dia_objetivo"]) >= est.dia_actual:
+			if prox.is_empty() or int(e["dia_objetivo"]) < int(prox["dia_objetivo"]):
+				prox = e
+	if prox.is_empty():
+		refs["ev_hora"].text = "● SIN EVENTOS"
+		refs["ev_titulo"].text = "Semana tranquila"
+		refs["ev_sub"].text = "No hay eventos programados."
+		return
+	refs["ev_hora"].text = "● PRÓXIMO · %s · DÍA %d" % [String(prox["hora_etiqueta"]), int(prox["dia_objetivo"])]
+	refs["ev_titulo"].text = String(prox["titulo"])
+	var v: Variant = prox.get("votacion", null)
+	refs["ev_sub"].text = ("%d votos firmes · mínimo %d" % [int(v["votos_firmes_base"]), int(motor.legal.tipo(String(v["tipo_ley"]))["votos_minimos"])]) if v != null else String(prox["descripcion"])

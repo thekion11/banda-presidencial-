@@ -50,37 +50,35 @@ func _prog(desde: float, hasta: float) -> float:
 
 
 func _draw() -> void:
-	draw_style_box(Tema.caja(Color("#CFE3EF"), 16), Rect2(Vector2.ZERO, size))
-	draw_polygon(PackedVector2Array([Vector2(0, size.y * 0.55), Vector2(size.x, size.y * 0.55), Vector2(size.x, size.y), Vector2(0, size.y)]), PackedColorArray([Color("#B7CFDC"), Color("#B7CFDC"), Color("#9DBBCB"), Color("#9DBBCB")]))
-	_caja(-0.5, -0.5, 8.0, 7.0, 0.25, Color("#D8D2C4"))  # terreno
-	_caja(0.6, 3.6, 6.2, 0.9, 0.12, Color("#8C99A6"))  # calle
+	_caja(-0.5, -0.5, 8.0, 7.0, 0.25, Color("#DDD3BA"))  # terreno
+	_caja(0.6, 3.6, 6.2, 0.9, 0.12, Color("#BDB39A"))  # calle
 	# Fase 1: licitación (cartel de obra)
 	var a1 := 1.0 - _prog(1.6, 2.2)
 	_caja(0.2, 0.3, 0.2, 0.2, 1.6 * a1, Color("#8B5E3C"), 0.25)
 	_caja(0.0, 0.3, 1.2 * a1, 0.12, 0.7 * a1, Tema.ORO, 1.2)
 	# Fase 2: faena (excavación + grúa)
 	var f2 := _prog(1.6, 2.6)
-	_caja(1.6, 0.8, 4.6, 3.0, 0.1 * f2, Color("#8A6B4A"), 0.25)
+	_caja(1.6, 0.8, 4.6, 3.0, 0.1 * f2, Color("#B8A98A"), 0.25)
 	if fase > 1.7:
-		var g := _prog(1.7, 2.4) * (1.0 - _prog(3.8, 4.4) * 0.0)
-		_caja(6.2, 0.6, 0.25, 0.25, 4.2 * g, Tema.ORO, 0.25)
-		_caja(3.2, 0.6, 3.3 * g, 0.18, 0.18, Tema.ORO, 4.4 * g)
+		var g := _prog(1.7, 2.4)
+		_caja(6.2, 0.6, 0.25, 0.25, 4.2 * g, Tema.ROJO, 0.25)
+		_caja(3.2, 0.6, 3.3 * g, 0.18, 0.18, Tema.ROJO, 4.4 * g)
 		if g > 0.9:
-			draw_line(_p(3.6, 0.7, 4.5), _p(3.6, 0.7, 2.2 + 0.5 * sin(_t)), Color("#444"), 1.5)
+			draw_line(_p(3.6, 0.7, 4.5), _p(3.6, 0.7, 2.2 + 0.5 * sin(_t)), Color("#555"), 1.5)
 	# Fase 3: estructura
 	var f3 := _prog(2.6, 3.6)
 	for i in range(3):
 		for j in range(2):
-			_caja(1.8 + float(i) * 2.0, 0.9 + float(j) * 2.0, 0.34, 0.34, 3.0 * f3, Color("#B8B2A6"), 0.25)
-	_caja(1.7, 0.8, 4.6, 2.6, 0.3 * _prog(3.2, 3.9), Color("#CFC9BC"), 3.25)
-	# Fase 4: terminación (muros, vidrio, accesos)
+			_caja(1.8 + float(i) * 2.0, 0.9 + float(j) * 2.0, 0.34, 0.34, 3.0 * f3, Color("#C9BFA5"), 0.25)
+	_caja(1.7, 0.8, 4.6, 2.6, 0.3 * _prog(3.2, 3.9), Color("#D8CFB8"), 3.25)
+	# Fase 4: terminación (muros y accesos)
 	var f4 := _prog(3.7, 4.6)
-	_caja(1.8, 0.9, 4.4, 0.18, 2.9 * f4, Color("#9CC7DD"), 0.3)
-	_caja(1.8, 0.9, 0.18, 2.4, 2.9 * f4, Color("#9CC7DD"), 0.3)
-	_caja(2.4, 3.4, 1.4, 0.7, 0.14 * f4, Color("#E5E1D6"), 0.25)
+	_caja(1.8, 0.9, 4.4, 0.18, 2.9 * f4, Color("#E6DFCD"), 0.3)
+	_caja(1.8, 0.9, 0.18, 2.4, 2.9 * f4, Color("#E6DFCD"), 0.3)
+	_caja(2.4, 3.4, 1.4, 0.7, 0.14 * f4, Color("#EFEAD9"), 0.25)
 	# Fase 5: inauguración (techo, mástil y cinta)
 	var f5 := _prog(4.5, 5.0)
-	_caja(1.6, 0.7, 4.9, 2.8, 0.4 * f5, Tema.ROJO, 3.55)
+	_caja(1.6, 0.7, 4.9, 2.8, 0.4 * f5, Color("#F2EEE2"), 3.55)
 	_caja(5.9, 3.3, 0.08, 0.08, 2.4 * f5, Color("#EEE"), 3.9)
 	if f5 > 0.2:
 		_poli(PackedVector2Array([_p(5.9, 3.3, 6.2), _p(5.9, 3.3, 5.6), _p(5.9 + 1.1, 3.3 + 0.2, 5.9)]), Tema.ROJO)

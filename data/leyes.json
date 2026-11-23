@@ -141,27 +141,32 @@
     {
       "id": "licitacion",
       "nombre": "Licitación",
-      "descripcion": "Se publican las bases y se adjudica el contrato a la empresa constructora."
+      "descripcion": "Se publican las bases y se adjudica el contrato a la empresa constructora.",
+      "titulo": "Licitación y adjudicación"
     },
     {
       "id": "faena",
       "nombre": "Faena",
-      "descripcion": "Instalación de faena, movimiento de tierras y desvíos de tránsito."
+      "descripcion": "Instalación de faena, movimiento de tierras y desvíos de tránsito.",
+      "titulo": "Instalación de faena"
     },
     {
       "id": "estructura",
       "nombre": "Estructura",
-      "descripcion": "Se levantan las columnas, losas y la estructura principal de la obra."
+      "descripcion": "Se levantan las columnas, losas y la estructura principal de la obra.",
+      "titulo": "Estructura principal"
     },
     {
       "id": "terminacion",
       "nombre": "Terminación",
-      "descripcion": "Instalación de señalización, escaleras y accesibilidad universal."
+      "descripcion": "Instalación de señalización, escaleras y accesibilidad universal.",
+      "titulo": "Terminaciones y sistemas"
     },
     {
       "id": "inauguracion",
       "nombre": "Inauguración",
-      "descripcion": "Corte de cinta, puesta en marcha y primeros usuarios."
+      "descripcion": "Corte de cinta, puesta en marcha y primeros usuarios.",
+      "titulo": "Inauguración y puesta en marcha"
     }
   ]
 }

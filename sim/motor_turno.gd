@@ -318,7 +318,7 @@ func aprobar_propuesta(prop_id: String, variante_id: String, region_id: String =
 		else:
 			_aplicar_efecto(ef, ratio, "")
 	var dias := roundi(float(variante["plazo_anios"]) * 365.0 * ratio)
-	obras.iniciar(estado, "%s · %s" % [prop["titulo"], variante["nombre"]], dias, region, "", final, {"propuesta": prop_id})
+	obras.iniciar(estado, "%s · %s" % [prop["titulo"], variante["nombre"]], dias, region, "", final, {"propuesta": prop_id, "variante": variante_id})
 	estado.propuestas_abiertas.erase(prop_id)
 	estado.propuestas_aprobadas.append(prop_id)
 	for c in catalogo_cartas:

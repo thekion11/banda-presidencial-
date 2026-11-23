@@ -73,7 +73,14 @@ func _correr() -> void:
 	await create_timer(0.9).timeout
 	await _guardar("cmp_comite_3d")
 	dia._abrir_panel("mapa")
-	var obra := {"nombre": "Estación terminal, nueva línea de Metro", "dias_totales": 960, "dias_avanzados": 760, "retrasos": 0, "efectos_final": [{"ind": "aprobacion", "delta": 4}]}
+	var obra := {"nombre": "Estación terminal, nueva línea de Metro", "variante": "A", "dias_totales": 960, "dias_avanzados": 760, "retrasos": 0, "carta_id": "", "propuesta": "prop_metro_suroriente", "region": "metropolitana", "efectos_final": [{"ind": "aprobacion", "delta": 4}]}
+	m.estado.obras_en_curso.append(obra)
+	m.estado.obras_en_curso.append({"nombre": "Conjunto de vivienda social", "dias_totales": 400, "dias_avanzados": 120, "retrasos": 0, "carta_id": "viv_campamentos", "region": "metropolitana", "efectos_final": []})
 	dia._abrir_hito(obra)
 	await _guardar("cmp_hito")
+	for h in dia._capa.get_children():
+		if h is ColorRect:
+			h.queue_free()
+	dia._abrir_urbano()
+	await _guardar("cmp_urbano", 1.3)
 	quit(0)

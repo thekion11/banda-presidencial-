@@ -79,7 +79,10 @@ func _construir_cuerpo() -> Control:
 	var tr := Barras.tarjeta_region(_r)
 	tr.gui_input.connect(func(ev: InputEvent) -> void:
 		if ev is InputEventMouseButton and ev.pressed:
-			_abrir_panel("nacion"))
+			if _region == "metropolitana":
+				_abrir_urbano()
+			else:
+				_abrir_panel("nacion"))
 	col_tarjetas.add_child(tr)
 	_mapa.add_child(col_tarjetas)
 	var cab_mano := HBoxContainer.new()
@@ -169,35 +172,10 @@ func _refrescar() -> void:
 	for pid in est.propuestas_abiertas:
 		props[String(motor.catalogo_propuestas[pid].get("region", ""))] = true
 	_mapa.actualizar(est.aprobacion_regional, obras, props)
-	_actualizar_evento()
+	Barras.actualizar_evento(_r, motor)
 	_actualizar_region()
 	_pintar_mano()
 	_actualizar_botones()
-
-
-func _actualizar_evento() -> void:
-	var est := motor.estado
-	var ev: Dictionary = {}
-	if not motor.ultimos_eventos.is_empty():
-		ev = motor.ultimos_eventos[0]
-		_r["ev_hora"].text = "● EVENTO · %s" % String(ev["hora"])
-		_r["ev_titulo"].text = String(ev["titulo"])
-		_r["ev_sub"].text = String(ev["descripcion"])
-		return
-	var prox: Dictionary = {}
-	for e in motor.catalogo_eventos:
-		if e["tipo"] == "programado" and String(e.get("etapa", "gobierno")) == est.etapa and int(e["dia_objetivo"]) >= est.dia_actual:
-			if prox.is_empty() or int(e["dia_objetivo"]) < int(prox["dia_objetivo"]):
-				prox = e
-	if prox.is_empty():
-		_r["ev_hora"].text = "● SIN EVENTOS"
-		_r["ev_titulo"].text = "Semana tranquila"
-		_r["ev_sub"].text = "No hay eventos programados."
-		return
-	_r["ev_hora"].text = "● PRÓXIMO · %s · DÍA %d" % [String(prox["hora_etiqueta"]), int(prox["dia_objetivo"])]
-	_r["ev_titulo"].text = String(prox["titulo"])
-	var v: Variant = prox.get("votacion", null)
-	_r["ev_sub"].text = ("%d votos firmes · mínimo %d" % [int(v["votos_firmes_base"]), int(motor.legal.tipo(String(v["tipo_ley"]))["votos_minimos"])]) if v != null else String(prox["descripcion"])
 
 
 func _actualizar_region() -> void:
@@ -447,4 +425,10 @@ func _elegir_ministro(id: String) -> void:
 
 
 func _abrir_hito(obra: Dictionary) -> void:
-	_capa.add_child(OverlaysDia.hito(obra, datos["leyes"]["fases_obra"], func() -> void: pass))
+	_capa.add_child(PantallaHito.crear(obra, datos["leyes"]["fases_obra"], func() -> void: pass, _abrir_urbano))
+
+
+func _abrir_urbano() -> void:
+	var urbano: Variant = Datos.leer_json("res://data/geo/urbano_santiago.json")
+	if urbano != null:
+		_capa.add_child(PantallaUrbano.crear(motor, urbano, func() -> void: pass, _abrir_hito))
