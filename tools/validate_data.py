@@ -13,6 +13,7 @@ from pathlib import Path
 import sys
 
 ROOT = Path(__file__).resolve().parents[1]
+ROOT_GAME = Path(__file__).resolve().parents[1] / "game" / "arte" / "cartas"
 DATA_DIR = ROOT / "data"
 INDICADORES = {"aprobacion", "capital", "cohesion", "fiscal", "riesgo_ejecucion", "viviendas_anio"}
 MAX_CARTAS_CAMPANA_PA = 16
@@ -349,6 +350,9 @@ def main() -> int:
         if hecho and fuentes_por_id[c["fuente"].split("#")[-1]].get("verificado_contra_texto") is False:
             raise ValueError(f"carta real {c['id']}: verificado_hecho=true con una fuente no verificada contra el texto ({c['fuente']})")
     validar_schema("cartas.json", reales)
+    faltan = sorted({c["arte"] for c in reales if c.get("arte") and not (ROOT_GAME / f"{c['arte']}.jpg").exists()})
+    if faltan:
+        print(f"[AVISO] Arte sin archivo en game/arte/cartas (las cartas usan el de su categoría): {', '.join(faltan)}")
     datos["cartas"] = datos["cartas"] + reales
     validar_cartas(datos["cartas"], ids_fuentes, tipos, props)
     from validate_v2 import validar_v2

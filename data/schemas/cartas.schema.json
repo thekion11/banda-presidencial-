@@ -156,6 +156,11 @@
             "pattern": "^meta_[a-z]+_[1-3]$"
           }
         }
+      },
+      "arte": {
+        "type": "string",
+        "pattern": "^[a-z0-9_]+$",
+        "description": "Ilustración específica game/arte/cartas/<arte>.jpg; si falta el archivo se usa la de la categoría."
       }
     }
   }

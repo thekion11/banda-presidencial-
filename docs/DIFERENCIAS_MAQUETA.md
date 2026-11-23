@@ -41,6 +41,21 @@ Regla del proyecto: la maqueta manda. Esta lista deja explícito dónde el juego
 
 Verificación automática (`tests/test_ui_humo.gd`): el botón principal conserva su rectángulo al cambiar de carta y con cada pestaña del panel Gabinete abierta, y el panel nunca lo cubre.
 
+## Pantallas para las primeras pruebas con personas — 23-nov-2026
+Sin maqueta (ni en Figma ni en el PDF): se construyeron con los componentes congelados (paleta, Space Grotesk / Inter, zonas táctiles ≥ 44 px, sin emojis) y el botón principal a pantalla completa en el mismo rectángulo que el de fundación y gabinete (16, 739, 358 × 52). Capturas a 390×844 en `docs/comparacion/v3_*.png` (`tests/captura_comparar.gd`).
+
+| Pantalla | Archivo | Qué hace |
+|---|---|---|
+| Tutorial (5 pasos: mano, movimientos, delegación, gabinete, turno) | `game/componentes/tutorial.gd` | Aparece en la semana 1 de la primera partida con un marco dorado sobre el elemento explicado. Saltable; solo guarda la preferencia local `user://preferencias.json` (`tutorial_visto`). |
+| Resultado de la elección (1ª y 2ª vuelta) | `game/pantallas/pantalla_eleccion.gd` | Aprobación del día de la elección frente al umbral (y al piso de 2ª vuelta), desglose por región y aviso de segunda vuelta. El texto dice «aprobación», no «votos»: el motor mide aprobación con un margen de la jornada. |
+| Fin de partida | `game/pantallas/pantalla_fin.gd` | Puntaje, promesas cumplidas, leyes aprobadas, obras terminadas y línea de tiempo de los eventos reales vividos (fecha y fuente). |
+| Cartera de proyectos | `game/pantallas/pantalla_cartera.gd` | Las 1.276 cartas reales con fuente, estado real y estado en la partida; filtros por tipo, región y sector y paginación. Solo lectura: no llama a ninguna acción del motor. Entradas: menú principal y panel Congreso. |
+
+Diferencias y límites conocidos:
+- La derrota en elección mostraba «% de los votos»; ahora dice aprobación (resultado y fin de partida).
+- La cartera lista los proyectos reales; el estado «en tu mazo / bloqueada» solo existe con una partida en curso.
+- Los chips de filtro se desplazan con el dedo (barra oculta); con muchas regiones hay que deslizar.
+
 ## Pendiente
 - Trazado propio (estaciones sobre grafo + sliders): extensión de la Fase 3 del Documento Maestro (niveles 2 y 3), sobre el grafo real de calles principales de Gran Santiago (2.459 nodos). Costos y expropiaciones son ilustrativos.
 - Reflejar estas mejoras en la maqueta de Figma (no se hizo: requiere gastar créditos de IA del plan y decisión del usuario).

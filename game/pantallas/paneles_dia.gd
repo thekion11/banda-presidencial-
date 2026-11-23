@@ -56,7 +56,7 @@ static func _camara_bloques(motor: MotorTurno, camara: bool, titulo: String, col
 	col.add_child(Tema.etiqueta("Mayoría necesaria para leyes de quórum calificado: %d votos." % minimo, 11, Tema.TEXTO_SUAVE))
 
 
-static func congreso(motor: MotorTurno, al_abrir_obra: Callable = Callable()) -> Control:
+static func congreso(motor: MotorTurno, al_abrir_obra: Callable = Callable(), al_cartera: Callable = Callable()) -> Control:
 	var est := motor.estado
 	var nombres: Dictionary = motor.catalogo_leyes["congreso"]["nombres"]
 	var col := VBoxContainer.new()
@@ -100,4 +100,8 @@ static func congreso(motor: MotorTurno, al_abrir_obra: Callable = Callable()) ->
 		col.add_child(Tema.etiqueta("Metas de legado (promesas de campaña)", 15, Tema.TEXTO, true))
 		for pr in est.promesas_campana:
 			col.add_child(Tema.etiqueta(("Cumplida · " if pr["cumplida"] else "Pendiente · ") + String(pr["titulo"]), 12, Tema.SUBE if pr["cumplida"] else Tema.TEXTO))
+	if al_cartera.is_valid():
+		var bc := Tema.boton("Cartera de proyectos reales", Tema.PANEL.lightened(0.1), Tema.TEXTO, 13, 48)
+		bc.pressed.connect(al_cartera)
+		col.add_child(bc)
 	return _scroll(col)

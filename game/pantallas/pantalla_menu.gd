@@ -5,6 +5,7 @@ signal nueva
 signal continuar
 
 var hay_guardado: bool = false
+var datos: Dictionary = {}
 var _creditos: PanelContainer
 
 
@@ -33,6 +34,9 @@ func _ready() -> void:
 	n.text = "Nueva partida"
 	n.pressed.connect(func() -> void: nueva.emit())
 	col.add_child(n)
+	var ca := Tema.boton("Cartera de proyectos", Tema.OCEANO.lightened(0.1), Tema.TEXTO, 13, 44)
+	ca.pressed.connect(func() -> void: add_child(PantallaCartera.crear(datos)))
+	col.add_child(ca)
 	var cr := Tema.boton("Créditos", Tema.OCEANO.lightened(0.1), Tema.TEXTO_SUAVE, 13, 44)
 	cr.pressed.connect(_mostrar_creditos)
 	col.add_child(cr)
