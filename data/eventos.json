@@ -421,5 +421,483 @@
     ],
     "etapa": "campana",
     "fuente": "fuentes.json#ficticio_2026"
+  },
+  {
+    "id": "evt_ola_calor",
+    "tipo": "aleatorio_semilla",
+    "dia_objetivo": null,
+    "hora_etiqueta": "14:00",
+    "peso_sorteo": 0.07,
+    "titulo": "Ola de calor extrema",
+    "descripcion": "Alerta sanitaria y presión sobre el sistema de salud.",
+    "votacion": null,
+    "efectos_base": [
+      {
+        "ind": "aprobacion",
+        "delta": -1
+      },
+      {
+        "ind": "riesgo_ejecucion",
+        "delta": 2
+      }
+    ],
+    "etapa": "gobierno",
+    "fuente": "fuentes.json#ficticio_2026"
+  },
+  {
+    "id": "evt_marejadas",
+    "tipo": "aleatorio_semilla",
+    "dia_objetivo": null,
+    "hora_etiqueta": "08:00",
+    "peso_sorteo": 0.05,
+    "titulo": "Marejadas en el litoral",
+    "descripcion": "Daños en caletas y borde costero.",
+    "votacion": null,
+    "efectos_base": [
+      {
+        "ind": "aprobacion",
+        "delta": -1
+      },
+      {
+        "ind": "fiscal",
+        "delta": -1
+      }
+    ],
+    "etapa": "gobierno",
+    "fuente": "fuentes.json#ficticio_2026"
+  },
+  {
+    "id": "evt_paro_salud",
+    "tipo": "aleatorio_semilla",
+    "dia_objetivo": null,
+    "hora_etiqueta": "09:30",
+    "peso_sorteo": 0.06,
+    "titulo": "Paro de trabajadores de la salud",
+    "descripcion": "Se resienten las atenciones en hospitales.",
+    "votacion": null,
+    "efectos_base": [
+      {
+        "ind": "aprobacion",
+        "delta": -2
+      },
+      {
+        "ind": "cohesion",
+        "delta": -1
+      }
+    ],
+    "etapa": "gobierno",
+    "fuente": "fuentes.json#ficticio_2026"
+  },
+  {
+    "id": "evt_huelga_mineria",
+    "tipo": "aleatorio_semilla",
+    "dia_objetivo": null,
+    "hora_etiqueta": "07:00",
+    "peso_sorteo": 0.05,
+    "titulo": "Huelga en una gran minera",
+    "descripcion": "Cae la producción de cobre por unas semanas.",
+    "votacion": null,
+    "efectos_base": [
+      {
+        "ind": "fiscal",
+        "delta": -2
+      },
+      {
+        "ind": "aprobacion",
+        "delta": -1
+      }
+    ],
+    "etapa": "gobierno",
+    "fuente": "fuentes.json#ficticio_2026"
+  },
+  {
+    "id": "evt_inflacion_baja",
+    "tipo": "aleatorio_semilla",
+    "dia_objetivo": null,
+    "hora_etiqueta": "10:30",
+    "peso_sorteo": 0.07,
+    "titulo": "La inflación sorprende a la baja",
+    "descripcion": "Mejoran las expectativas de hogares y mercados.",
+    "votacion": null,
+    "efectos_base": [
+      {
+        "ind": "aprobacion",
+        "delta": 2
+      },
+      {
+        "ind": "fiscal",
+        "delta": 1
+      }
+    ],
+    "etapa": "gobierno",
+    "fuente": "fuentes.json#ficticio_2026"
+  },
+  {
+    "id": "evt_dolar_alto",
+    "tipo": "aleatorio_semilla",
+    "dia_objetivo": null,
+    "hora_etiqueta": "11:00",
+    "peso_sorteo": 0.06,
+    "titulo": "El dólar se dispara",
+    "descripcion": "Encarecen las importaciones y los combustibles.",
+    "votacion": null,
+    "efectos_base": [
+      {
+        "ind": "aprobacion",
+        "delta": -1
+      },
+      {
+        "ind": "fiscal",
+        "delta": -1
+      }
+    ],
+    "etapa": "gobierno",
+    "fuente": "fuentes.json#ficticio_2026"
+  },
+  {
+    "id": "evt_inversion_privada",
+    "tipo": "aleatorio_semilla",
+    "dia_objetivo": null,
+    "hora_etiqueta": "12:00",
+    "peso_sorteo": 0.07,
+    "titulo": "Anuncio de inversión privada",
+    "descripcion": "Una gran empresa anuncia un proyecto en regiones.",
+    "votacion": null,
+    "efectos_base": [
+      {
+        "ind": "aprobacion",
+        "delta": 2
+      },
+      {
+        "ind": "fiscal",
+        "delta": 1
+      }
+    ],
+    "etapa": "gobierno",
+    "fuente": "fuentes.json#ficticio_2026"
+  },
+  {
+    "id": "evt_acusacion",
+    "tipo": "aleatorio_semilla",
+    "dia_objetivo": null,
+    "hora_etiqueta": "16:30",
+    "peso_sorteo": 0.03,
+    "titulo": "Acusación constitucional contra un ministro",
+    "descripcion": "La oposición presiona al gabinete.",
+    "votacion": null,
+    "efectos_base": [
+      {
+        "ind": "capital",
+        "delta": -3
+      },
+      {
+        "ind": "cohesion",
+        "delta": -1
+      }
+    ],
+    "etapa": "gobierno",
+    "fuente": "fuentes.json#ficticio_2026"
+  },
+  {
+    "id": "evt_cumbre",
+    "tipo": "aleatorio_semilla",
+    "dia_objetivo": null,
+    "hora_etiqueta": "17:00",
+    "peso_sorteo": 0.05,
+    "titulo": "Cumbre regional de presidentes",
+    "descripcion": "Chile gana visibilidad internacional.",
+    "votacion": null,
+    "efectos_base": [
+      {
+        "ind": "capital",
+        "delta": 2
+      },
+      {
+        "ind": "aprobacion",
+        "delta": 1
+      }
+    ],
+    "etapa": "gobierno",
+    "fuente": "fuentes.json#ficticio_2026"
+  },
+  {
+    "id": "evt_lluvias",
+    "tipo": "aleatorio_semilla",
+    "dia_objetivo": null,
+    "hora_etiqueta": "06:00",
+    "peso_sorteo": 0.06,
+    "titulo": "Sistema frontal con lluvias intensas",
+    "descripcion": "Desbordes y cortes de camino en el sur.",
+    "votacion": null,
+    "efectos_base": [
+      {
+        "ind": "aprobacion",
+        "delta": -1
+      },
+      {
+        "ind": "riesgo_ejecucion",
+        "delta": 2
+      }
+    ],
+    "etapa": "gobierno",
+    "fuente": "fuentes.json#ficticio_2026"
+  },
+  {
+    "id": "evt_fiestas_patrias_a1",
+    "tipo": "programado",
+    "dia_objetivo": 191,
+    "hora_etiqueta": "12:00",
+    "peso_sorteo": 1.0,
+    "titulo": "Fiestas Patrias",
+    "descripcion": "Celebración nacional que mejora el ánimo.",
+    "votacion": null,
+    "efectos_base": [
+      {
+        "ind": "aprobacion",
+        "delta": 1
+      },
+      {
+        "ind": "cohesion",
+        "delta": 2
+      }
+    ],
+    "etapa": "gobierno",
+    "fuente": "fuentes.json#ficticio_2026"
+  },
+  {
+    "id": "evt_fiestas_patrias_a2",
+    "tipo": "programado",
+    "dia_objetivo": 556,
+    "hora_etiqueta": "12:00",
+    "peso_sorteo": 1.0,
+    "titulo": "Fiestas Patrias",
+    "descripcion": "Celebración nacional que mejora el ánimo.",
+    "votacion": null,
+    "efectos_base": [
+      {
+        "ind": "aprobacion",
+        "delta": 1
+      },
+      {
+        "ind": "cohesion",
+        "delta": 2
+      }
+    ],
+    "etapa": "gobierno",
+    "fuente": "fuentes.json#ficticio_2026"
+  },
+  {
+    "id": "evt_fiestas_patrias_a3",
+    "tipo": "programado",
+    "dia_objetivo": 921,
+    "hora_etiqueta": "12:00",
+    "peso_sorteo": 1.0,
+    "titulo": "Fiestas Patrias",
+    "descripcion": "Celebración nacional que mejora el ánimo.",
+    "votacion": null,
+    "efectos_base": [
+      {
+        "ind": "aprobacion",
+        "delta": 1
+      },
+      {
+        "ind": "cohesion",
+        "delta": 2
+      }
+    ],
+    "etapa": "gobierno",
+    "fuente": "fuentes.json#ficticio_2026"
+  },
+  {
+    "id": "evt_fiestas_patrias_a4",
+    "tipo": "programado",
+    "dia_objetivo": 1286,
+    "hora_etiqueta": "12:00",
+    "peso_sorteo": 1.0,
+    "titulo": "Fiestas Patrias",
+    "descripcion": "Celebración nacional que mejora el ánimo.",
+    "votacion": null,
+    "efectos_base": [
+      {
+        "ind": "aprobacion",
+        "delta": 1
+      },
+      {
+        "ind": "cohesion",
+        "delta": 2
+      }
+    ],
+    "etapa": "gobierno",
+    "fuente": "fuentes.json#ficticio_2026"
+  },
+  {
+    "id": "evt_vota_presupuesto_a1",
+    "tipo": "programado",
+    "dia_objetivo": 262,
+    "hora_etiqueta": "18:00",
+    "peso_sorteo": 1.0,
+    "titulo": "Se vota la Ley de Presupuestos",
+    "descripcion": "Votación del gasto público del próximo año.",
+    "votacion": {
+      "tipo_ley": "ley_simple",
+      "votos_firmes_base": null,
+      "prob_exito_tc": 0.85,
+      "origen": "camara"
+    },
+    "efectos_base": [
+      {
+        "ind": "fiscal",
+        "delta": 2
+      },
+      {
+        "ind": "capital",
+        "delta": 1
+      }
+    ],
+    "etapa": "gobierno",
+    "fuente": "fuentes.json#dipres_2026"
+  },
+  {
+    "id": "evt_vota_presupuesto_a2",
+    "tipo": "programado",
+    "dia_objetivo": 627,
+    "hora_etiqueta": "18:00",
+    "peso_sorteo": 1.0,
+    "titulo": "Se vota la Ley de Presupuestos",
+    "descripcion": "Votación del gasto público del próximo año.",
+    "votacion": {
+      "tipo_ley": "ley_simple",
+      "votos_firmes_base": null,
+      "prob_exito_tc": 0.85,
+      "origen": "camara"
+    },
+    "efectos_base": [
+      {
+        "ind": "fiscal",
+        "delta": 2
+      },
+      {
+        "ind": "capital",
+        "delta": 1
+      }
+    ],
+    "etapa": "gobierno",
+    "fuente": "fuentes.json#dipres_2026"
+  },
+  {
+    "id": "evt_vota_presupuesto_a3",
+    "tipo": "programado",
+    "dia_objetivo": 992,
+    "hora_etiqueta": "18:00",
+    "peso_sorteo": 1.0,
+    "titulo": "Se vota la Ley de Presupuestos",
+    "descripcion": "Votación del gasto público del próximo año.",
+    "votacion": {
+      "tipo_ley": "ley_simple",
+      "votos_firmes_base": null,
+      "prob_exito_tc": 0.85,
+      "origen": "camara"
+    },
+    "efectos_base": [
+      {
+        "ind": "fiscal",
+        "delta": 2
+      },
+      {
+        "ind": "capital",
+        "delta": 1
+      }
+    ],
+    "etapa": "gobierno",
+    "fuente": "fuentes.json#dipres_2026"
+  },
+  {
+    "id": "evt_vota_presupuesto_a4",
+    "tipo": "programado",
+    "dia_objetivo": 1357,
+    "hora_etiqueta": "18:00",
+    "peso_sorteo": 1.0,
+    "titulo": "Se vota la Ley de Presupuestos",
+    "descripcion": "Votación del gasto público del próximo año.",
+    "votacion": {
+      "tipo_ley": "ley_simple",
+      "votos_firmes_base": null,
+      "prob_exito_tc": 0.85,
+      "origen": "camara"
+    },
+    "efectos_base": [
+      {
+        "ind": "fiscal",
+        "delta": 2
+      },
+      {
+        "ind": "capital",
+        "delta": 1
+      }
+    ],
+    "etapa": "gobierno",
+    "fuente": "fuentes.json#dipres_2026"
+  },
+  {
+    "id": "evt_encuesta_camp",
+    "tipo": "aleatorio_semilla",
+    "dia_objetivo": null,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 0.15,
+    "titulo": "Nueva encuesta presidencial",
+    "descripcion": "Un sondeo mueve el ánimo del comando.",
+    "votacion": null,
+    "efectos_base": [
+      {
+        "ind": "cohesion",
+        "delta": 1
+      }
+    ],
+    "etapa": "campana",
+    "fuente": "fuentes.json#ficticio_2026"
+  },
+  {
+    "id": "evt_apoyo_gremio",
+    "tipo": "aleatorio_semilla",
+    "dia_objetivo": null,
+    "hora_etiqueta": "15:00",
+    "peso_sorteo": 0.05,
+    "titulo": "Un gremio respalda tu candidatura",
+    "descripcion": "Suma credibilidad en regiones.",
+    "votacion": null,
+    "efectos_base": [
+      {
+        "ind": "aprobacion",
+        "delta": 2
+      },
+      {
+        "ind": "cohesion",
+        "delta": 1
+      }
+    ],
+    "etapa": "campana",
+    "fuente": "fuentes.json#ficticio_2026"
+  },
+  {
+    "id": "evt_cadena_falsa",
+    "tipo": "aleatorio_semilla",
+    "dia_objetivo": null,
+    "hora_etiqueta": "22:00",
+    "peso_sorteo": 0.08,
+    "titulo": "Circula una noticia falsa sobre tu campaña",
+    "descripcion": "Hay que desmentir con rapidez.",
+    "votacion": null,
+    "efectos_base": [
+      {
+        "ind": "aprobacion",
+        "delta": -2
+      },
+      {
+        "ind": "capital",
+        "delta": -1
+      }
+    ],
+    "etapa": "campana",
+    "fuente": "fuentes.json#ficticio_2026"
   }
 ]

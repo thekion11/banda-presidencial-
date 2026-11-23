@@ -9,11 +9,11 @@
     "bono_aprobacion_promesa": 1.5
   },
   "campana": {
-    "aprobacion_base_por_carta": 0.5,
+    "aprobacion_base_por_carta": 0.2,
     "ruido_eleccion": 2.0,
     "bono_bastion": 8.0,
     "derrame_regional": 0.15,
-    "reversion_semanal": 0.34,
+    "reversion_semanal": 0.38,
     "variacion_regional_inicial": 9.0
   },
   "indicadores_iniciales": {
@@ -36,12 +36,12 @@
   "dinamica": {
     "riesgo_umbral": 60.0,
     "penal_aprobacion_riesgo": 1.0,
-    "desgaste_aprobacion_semanal": 0.3,
+    "desgaste_aprobacion_semanal": 0.35,
     "regen_capital_semanal": 0.5,
     "regen_cohesion_semanal": 0.2,
     "umbral_crisis_aprobacion": 12.0,
     "semanas_crisis_para_caida": 3,
-    "ancla_base": 24.0,
+    "ancla_base": 6.0,
     "ancla_peso_fiscal": 0.18,
     "ancla_peso_cohesion": 0.1,
     "ancla_peso_capital": 0.06,

@@ -563,5 +563,857 @@
       "dias_totales": 210
     },
     "fuente": "fuentes.json#ficticio_2026"
+  },
+  {
+    "id": "viv_subsidio_arriendo",
+    "categoria": "vivienda",
+    "costo_pa": 2,
+    "titulo": "Subsidio de arriendo ampliado",
+    "efectos": [
+      {
+        "ind": "viviendas_anio",
+        "delta": 3000
+      },
+      {
+        "ind": "aprobacion",
+        "delta": 2
+      },
+      {
+        "ind": "fiscal",
+        "delta": -1
+      }
+    ],
+    "requisitos": {
+      "ley": null,
+      "quorum": null
+    },
+    "corrector": null,
+    "abre_propuesta_comite": null,
+    "fuente": "fuentes.json#minvu_2026"
+  },
+  {
+    "id": "viv_regeneracion",
+    "categoria": "vivienda",
+    "costo_pa": 2,
+    "titulo": "Regeneración de barrios críticos",
+    "efectos": [
+      {
+        "ind": "aprobacion",
+        "delta": 3
+      },
+      {
+        "ind": "fiscal",
+        "delta": -2
+      }
+    ],
+    "requisitos": {
+      "ley": null,
+      "quorum": null
+    },
+    "corrector": null,
+    "abre_propuesta_comite": null,
+    "fuente": "fuentes.json#minvu_2026",
+    "obra": {
+      "nombre": "Regeneración de barrios",
+      "dias_totales": 380
+    }
+  },
+  {
+    "id": "viv_suelo_publico",
+    "categoria": "vivienda",
+    "costo_pa": 3,
+    "titulo": "Ley de suelo público para vivienda",
+    "efectos": [
+      {
+        "ind": "viviendas_anio",
+        "delta": 6000
+      },
+      {
+        "ind": "aprobacion",
+        "delta": 2
+      },
+      {
+        "ind": "capital",
+        "delta": -1
+      }
+    ],
+    "requisitos": {
+      "ley": "ley_simple",
+      "quorum": "ley_simple"
+    },
+    "corrector": null,
+    "abre_propuesta_comite": null,
+    "fuente": "fuentes.json#minvu_2026"
+  },
+  {
+    "id": "sal_listas_espera",
+    "categoria": "salud",
+    "costo_pa": 2,
+    "titulo": "Plan contra las listas de espera",
+    "efectos": [
+      {
+        "ind": "aprobacion",
+        "delta": 3
+      },
+      {
+        "ind": "riesgo_ejecucion",
+        "delta": -2
+      },
+      {
+        "ind": "fiscal",
+        "delta": -1
+      }
+    ],
+    "requisitos": {
+      "ley": null,
+      "quorum": null
+    },
+    "corrector": null,
+    "abre_propuesta_comite": null,
+    "fuente": "fuentes.json#ficticio_2026"
+  },
+  {
+    "id": "sal_atencion_primaria",
+    "categoria": "salud",
+    "costo_pa": 1,
+    "titulo": "Refuerzo de la atención primaria",
+    "efectos": [
+      {
+        "ind": "aprobacion",
+        "delta": 2
+      },
+      {
+        "ind": "fiscal",
+        "delta": -1
+      }
+    ],
+    "requisitos": {
+      "ley": null,
+      "quorum": null
+    },
+    "corrector": null,
+    "abre_propuesta_comite": null,
+    "fuente": "fuentes.json#ficticio_2026"
+  },
+  {
+    "id": "sal_reforma_isapres",
+    "categoria": "salud",
+    "costo_pa": 3,
+    "titulo": "Reforma al sistema de salud",
+    "efectos": [
+      {
+        "ind": "aprobacion",
+        "delta": 4
+      },
+      {
+        "ind": "cohesion",
+        "delta": -1
+      },
+      {
+        "ind": "fiscal",
+        "delta": -2
+      }
+    ],
+    "requisitos": {
+      "ley": "quorum_calificado",
+      "quorum": "quorum_calificado"
+    },
+    "corrector": null,
+    "abre_propuesta_comite": null,
+    "fuente": "fuentes.json#cpr_chile_2026"
+  },
+  {
+    "id": "edu_salas_cuna",
+    "categoria": "educacion",
+    "costo_pa": 3,
+    "titulo": "Ley de salas cuna universal",
+    "efectos": [
+      {
+        "ind": "aprobacion",
+        "delta": 4
+      },
+      {
+        "ind": "fiscal",
+        "delta": -3
+      }
+    ],
+    "requisitos": {
+      "ley": "ley_simple",
+      "quorum": "ley_simple"
+    },
+    "corrector": null,
+    "abre_propuesta_comite": null,
+    "fuente": "fuentes.json#ficticio_2026"
+  },
+  {
+    "id": "edu_infra_escolar",
+    "categoria": "educacion",
+    "costo_pa": 2,
+    "titulo": "Reposición de escuelas",
+    "efectos": [
+      {
+        "ind": "aprobacion",
+        "delta": 3
+      },
+      {
+        "ind": "fiscal",
+        "delta": -2
+      }
+    ],
+    "requisitos": {
+      "ley": null,
+      "quorum": null
+    },
+    "corrector": null,
+    "abre_propuesta_comite": null,
+    "fuente": "fuentes.json#ficticio_2026",
+    "obra": {
+      "nombre": "Reposición de escuelas",
+      "dias_totales": 300
+    }
+  },
+  {
+    "id": "edu_becas",
+    "categoria": "educacion",
+    "costo_pa": 1,
+    "titulo": "Becas de continuidad de estudios",
+    "efectos": [
+      {
+        "ind": "aprobacion",
+        "delta": 2
+      },
+      {
+        "ind": "fiscal",
+        "delta": -1
+      },
+      {
+        "ind": "cohesion",
+        "delta": 1
+      }
+    ],
+    "requisitos": {
+      "ley": null,
+      "quorum": null
+    },
+    "corrector": null,
+    "abre_propuesta_comite": null,
+    "fuente": "fuentes.json#ficticio_2026"
+  },
+  {
+    "id": "seg_inteligencia",
+    "categoria": "seguridad",
+    "costo_pa": 2,
+    "titulo": "Coordinación de inteligencia policial",
+    "efectos": [
+      {
+        "ind": "aprobacion",
+        "delta": 2
+      },
+      {
+        "ind": "capital",
+        "delta": 1
+      },
+      {
+        "ind": "cohesion",
+        "delta": 1
+      }
+    ],
+    "requisitos": {
+      "ley": null,
+      "quorum": null
+    },
+    "corrector": null,
+    "abre_propuesta_comite": null,
+    "fuente": "fuentes.json#ficticio_2026"
+  },
+  {
+    "id": "seg_carceles",
+    "categoria": "seguridad",
+    "costo_pa": 2,
+    "titulo": "Recintos penitenciarios modulares",
+    "efectos": [
+      {
+        "ind": "aprobacion",
+        "delta": 2
+      },
+      {
+        "ind": "riesgo_ejecucion",
+        "delta": 2
+      },
+      {
+        "ind": "fiscal",
+        "delta": -2
+      }
+    ],
+    "requisitos": {
+      "ley": null,
+      "quorum": null
+    },
+    "corrector": null,
+    "abre_propuesta_comite": null,
+    "fuente": "fuentes.json#ficticio_2026",
+    "obra": {
+      "nombre": "Recinto penitenciario modular",
+      "dias_totales": 420
+    }
+  },
+  {
+    "id": "seg_frontera",
+    "categoria": "seguridad",
+    "costo_pa": 2,
+    "titulo": "Control inteligente de fronteras",
+    "efectos": [
+      {
+        "ind": "aprobacion",
+        "delta": 3
+      },
+      {
+        "ind": "fiscal",
+        "delta": -1
+      },
+      {
+        "ind": "capital",
+        "delta": -1
+      }
+    ],
+    "requisitos": {
+      "ley": null,
+      "quorum": null
+    },
+    "corrector": null,
+    "abre_propuesta_comite": null,
+    "fuente": "fuentes.json#ficticio_2026"
+  },
+  {
+    "id": "tra_licitacion_buses",
+    "categoria": "transportes",
+    "costo_pa": 2,
+    "titulo": "Nueva licitación de buses urbanos",
+    "efectos": [
+      {
+        "ind": "aprobacion",
+        "delta": 2
+      },
+      {
+        "ind": "fiscal",
+        "delta": -1
+      },
+      {
+        "ind": "riesgo_ejecucion",
+        "delta": -1
+      }
+    ],
+    "requisitos": {
+      "ley": null,
+      "quorum": null
+    },
+    "corrector": null,
+    "abre_propuesta_comite": null,
+    "fuente": "fuentes.json#ficticio_2026"
+  },
+  {
+    "id": "tra_ciclovias",
+    "categoria": "transportes",
+    "costo_pa": 1,
+    "titulo": "Red de ciclovías regionales",
+    "efectos": [
+      {
+        "ind": "aprobacion",
+        "delta": 2
+      },
+      {
+        "ind": "cohesion",
+        "delta": 1
+      }
+    ],
+    "requisitos": {
+      "ley": null,
+      "quorum": null
+    },
+    "corrector": null,
+    "abre_propuesta_comite": null,
+    "fuente": "fuentes.json#ficticio_2026"
+  },
+  {
+    "id": "ene_litio",
+    "categoria": "energia",
+    "costo_pa": 3,
+    "titulo": "Estrategia nacional del litio",
+    "efectos": [
+      {
+        "ind": "fiscal",
+        "delta": 4
+      },
+      {
+        "ind": "cohesion",
+        "delta": -1
+      },
+      {
+        "ind": "aprobacion",
+        "delta": 1
+      }
+    ],
+    "requisitos": {
+      "ley": "quorum_calificado",
+      "quorum": "quorum_calificado"
+    },
+    "corrector": null,
+    "abre_propuesta_comite": null,
+    "fuente": "fuentes.json#cpr_chile_2026"
+  },
+  {
+    "id": "ene_eficiencia",
+    "categoria": "energia",
+    "costo_pa": 1,
+    "titulo": "Eficiencia energética en edificios públicos",
+    "efectos": [
+      {
+        "ind": "fiscal",
+        "delta": 2
+      },
+      {
+        "ind": "aprobacion",
+        "delta": 1
+      }
+    ],
+    "requisitos": {
+      "ley": null,
+      "quorum": null
+    },
+    "corrector": null,
+    "abre_propuesta_comite": null,
+    "fuente": "fuentes.json#ficticio_2026"
+  },
+  {
+    "id": "ene_hidrogeno",
+    "categoria": "energia",
+    "costo_pa": 2,
+    "titulo": "Polo de hidrógeno verde",
+    "efectos": [
+      {
+        "ind": "aprobacion",
+        "delta": 2
+      },
+      {
+        "ind": "fiscal",
+        "delta": -1
+      }
+    ],
+    "requisitos": {
+      "ley": null,
+      "quorum": null
+    },
+    "corrector": null,
+    "abre_propuesta_comite": null,
+    "fuente": "fuentes.json#ficticio_2026",
+    "obra": {
+      "nombre": "Polo de hidrógeno verde",
+      "dias_totales": 400
+    }
+  },
+  {
+    "id": "hac_reforma_tributaria",
+    "categoria": "hacienda",
+    "costo_pa": 3,
+    "titulo": "Reforma tributaria gradual",
+    "efectos": [
+      {
+        "ind": "fiscal",
+        "delta": 6
+      },
+      {
+        "ind": "aprobacion",
+        "delta": -2
+      },
+      {
+        "ind": "capital",
+        "delta": -1
+      }
+    ],
+    "requisitos": {
+      "ley": "quorum_calificado",
+      "quorum": "quorum_calificado"
+    },
+    "corrector": null,
+    "abre_propuesta_comite": null,
+    "fuente": "fuentes.json#dipres_2026"
+  },
+  {
+    "id": "hac_fondo_soberano",
+    "categoria": "hacienda",
+    "costo_pa": 2,
+    "titulo": "Refuerzo del fondo soberano",
+    "efectos": [
+      {
+        "ind": "fiscal",
+        "delta": 3
+      },
+      {
+        "ind": "capital",
+        "delta": 1
+      }
+    ],
+    "requisitos": {
+      "ley": null,
+      "quorum": null
+    },
+    "corrector": null,
+    "abre_propuesta_comite": null,
+    "fuente": "fuentes.json#dipres_2026"
+  },
+  {
+    "id": "hac_evasion",
+    "categoria": "hacienda",
+    "costo_pa": 2,
+    "titulo": "Plan contra la evasión",
+    "efectos": [
+      {
+        "ind": "fiscal",
+        "delta": 3
+      },
+      {
+        "ind": "aprobacion",
+        "delta": 1
+      },
+      {
+        "ind": "riesgo_ejecucion",
+        "delta": 1
+      }
+    ],
+    "requisitos": {
+      "ley": null,
+      "quorum": null
+    },
+    "corrector": null,
+    "abre_propuesta_comite": null,
+    "fuente": "fuentes.json#dipres_2026"
+  },
+  {
+    "id": "eco_exportaciones",
+    "categoria": "economia",
+    "costo_pa": 2,
+    "titulo": "Apoyo a exportadores",
+    "efectos": [
+      {
+        "ind": "aprobacion",
+        "delta": 2
+      },
+      {
+        "ind": "fiscal",
+        "delta": 1
+      }
+    ],
+    "requisitos": {
+      "ley": null,
+      "quorum": null
+    },
+    "corrector": null,
+    "abre_propuesta_comite": null,
+    "fuente": "fuentes.json#ficticio_2026"
+  },
+  {
+    "id": "eco_riego",
+    "categoria": "economia",
+    "costo_pa": 2,
+    "titulo": "Embalses y riego para el agro",
+    "efectos": [
+      {
+        "ind": "aprobacion",
+        "delta": 2
+      },
+      {
+        "ind": "fiscal",
+        "delta": -2
+      }
+    ],
+    "requisitos": {
+      "ley": null,
+      "quorum": null
+    },
+    "corrector": null,
+    "abre_propuesta_comite": null,
+    "fuente": "fuentes.json#ficticio_2026",
+    "obra": {
+      "nombre": "Embalses de riego",
+      "dias_totales": 360
+    }
+  },
+  {
+    "id": "eco_ciencia",
+    "categoria": "economia",
+    "costo_pa": 1,
+    "titulo": "Fondo de ciencia e innovación",
+    "efectos": [
+      {
+        "ind": "aprobacion",
+        "delta": 1
+      },
+      {
+        "ind": "fiscal",
+        "delta": -1
+      },
+      {
+        "ind": "cohesion",
+        "delta": 1
+      }
+    ],
+    "requisitos": {
+      "ley": null,
+      "quorum": null
+    },
+    "corrector": null,
+    "abre_propuesta_comite": null,
+    "fuente": "fuentes.json#ficticio_2026"
+  },
+  {
+    "id": "soc_cultura",
+    "categoria": "social",
+    "costo_pa": 1,
+    "titulo": "Programa de cultura y patrimonio",
+    "efectos": [
+      {
+        "ind": "aprobacion",
+        "delta": 1
+      },
+      {
+        "ind": "cohesion",
+        "delta": 2
+      }
+    ],
+    "requisitos": {
+      "ley": null,
+      "quorum": null
+    },
+    "corrector": null,
+    "abre_propuesta_comite": null,
+    "fuente": "fuentes.json#ficticio_2026"
+  },
+  {
+    "id": "soc_deporte",
+    "categoria": "social",
+    "costo_pa": 1,
+    "titulo": "Infraestructura deportiva barrial",
+    "efectos": [
+      {
+        "ind": "aprobacion",
+        "delta": 2
+      },
+      {
+        "ind": "fiscal",
+        "delta": -1
+      }
+    ],
+    "requisitos": {
+      "ley": null,
+      "quorum": null
+    },
+    "corrector": null,
+    "abre_propuesta_comite": null,
+    "fuente": "fuentes.json#ficticio_2026"
+  },
+  {
+    "id": "soc_mujer_empleo",
+    "categoria": "social",
+    "costo_pa": 2,
+    "titulo": "Plan de empleo y corresponsabilidad",
+    "efectos": [
+      {
+        "ind": "aprobacion",
+        "delta": 3
+      },
+      {
+        "ind": "fiscal",
+        "delta": -1
+      }
+    ],
+    "requisitos": {
+      "ley": null,
+      "quorum": null
+    },
+    "corrector": null,
+    "abre_propuesta_comite": null,
+    "fuente": "fuentes.json#ficticio_2026"
+  },
+  {
+    "id": "soc_adulto_mayor",
+    "categoria": "social",
+    "costo_pa": 2,
+    "titulo": "Cuidados para personas mayores",
+    "efectos": [
+      {
+        "ind": "aprobacion",
+        "delta": 3
+      },
+      {
+        "ind": "fiscal",
+        "delta": -2
+      }
+    ],
+    "requisitos": {
+      "ley": null,
+      "quorum": null
+    },
+    "corrector": null,
+    "abre_propuesta_comite": null,
+    "fuente": "fuentes.json#ficticio_2026"
+  },
+  {
+    "id": "amb_incendios",
+    "categoria": "medioambiente",
+    "costo_pa": 2,
+    "titulo": "Plan nacional de prevención de incendios",
+    "efectos": [
+      {
+        "ind": "aprobacion",
+        "delta": 1
+      },
+      {
+        "ind": "riesgo_ejecucion",
+        "delta": -2
+      },
+      {
+        "ind": "fiscal",
+        "delta": -1
+      }
+    ],
+    "requisitos": {
+      "ley": null,
+      "quorum": null
+    },
+    "corrector": null,
+    "abre_propuesta_comite": null,
+    "fuente": "fuentes.json#ficticio_2026"
+  },
+  {
+    "id": "amb_glaciares",
+    "categoria": "medioambiente",
+    "costo_pa": 3,
+    "titulo": "Ley de protección de glaciares",
+    "efectos": [
+      {
+        "ind": "cohesion",
+        "delta": 2
+      },
+      {
+        "ind": "aprobacion",
+        "delta": 2
+      },
+      {
+        "ind": "capital",
+        "delta": -1
+      }
+    ],
+    "requisitos": {
+      "ley": "ley_simple",
+      "quorum": "ley_simple"
+    },
+    "corrector": null,
+    "abre_propuesta_comite": null,
+    "fuente": "fuentes.json#ficticio_2026"
+  },
+  {
+    "id": "pol_acuerdo",
+    "categoria": "politica",
+    "costo_pa": 2,
+    "titulo": "Acuerdo legislativo amplio",
+    "efectos": [
+      {
+        "ind": "capital",
+        "delta": 3
+      },
+      {
+        "ind": "cohesion",
+        "delta": -1
+      }
+    ],
+    "requisitos": {
+      "ley": null,
+      "quorum": null
+    },
+    "corrector": null,
+    "abre_propuesta_comite": null,
+    "fuente": "fuentes.json#ficticio_2026"
+  },
+  {
+    "id": "pol_gira",
+    "categoria": "politica",
+    "costo_pa": 1,
+    "titulo": "Gira internacional de inversiones",
+    "efectos": [
+      {
+        "ind": "capital",
+        "delta": 1
+      },
+      {
+        "ind": "aprobacion",
+        "delta": 1
+      },
+      {
+        "ind": "fiscal",
+        "delta": 1
+      }
+    ],
+    "requisitos": {
+      "ley": null,
+      "quorum": null
+    },
+    "corrector": null,
+    "abre_propuesta_comite": null,
+    "fuente": "fuentes.json#ficticio_2026"
+  },
+  {
+    "id": "des_gobernadores",
+    "categoria": "descentralizacion",
+    "costo_pa": 3,
+    "titulo": "Ley de gobernadores regionales con más atribuciones",
+    "efectos": [
+      {
+        "ind": "cohesion",
+        "delta": 2
+      },
+      {
+        "ind": "aprobacion",
+        "delta": 2
+      },
+      {
+        "ind": "capital",
+        "delta": -1
+      }
+    ],
+    "requisitos": {
+      "ley": "ley_simple",
+      "quorum": "ley_simple"
+    },
+    "corrector": null,
+    "abre_propuesta_comite": null,
+    "fuente": "fuentes.json#ficticio_2026",
+    "camara_origen": "senado"
+  },
+  {
+    "id": "des_zonas_extremas",
+    "categoria": "descentralizacion",
+    "costo_pa": 2,
+    "titulo": "Plan zonas extremas",
+    "efectos": [
+      {
+        "ind": "aprobacion",
+        "delta": 3
+      },
+      {
+        "ind": "fiscal",
+        "delta": -1
+      }
+    ],
+    "requisitos": {
+      "ley": null,
+      "quorum": null
+    },
+    "corrector": null,
+    "abre_propuesta_comite": null,
+    "fuente": "fuentes.json#ficticio_2026",
+    "obra": {
+      "nombre": "Conectividad zonas extremas",
+      "dias_totales": 330
+    }
   }
 ]

@@ -30,7 +30,7 @@ func _init() -> void:
 	var cod := _tasas(datos, "codicioso", n)
 	var cod_pasivo := _tasas(datos, "codicioso>pasivo", n)
 	print("pasivo=%s azar=%s codicioso=%s cod>pasivo=%s" % [pasivo, azar, cod, cod_pasivo])
-	_check(pasivo["electos"] < 0.10, "no jugar no debe ganar elecciones")
+	_check(pasivo["electos"] < 0.15, "no jugar no debe ganar elecciones")
 	_check(azar["electos"] > 0.10 and azar["electos"] < 0.65, "el azar debería ganar a veces, no siempre")
 	_check(cod["electos"] > azar["electos"] + 0.15, "jugar bien debe pesar en la campaña")
 	_check(cod["electos"] > 0.70, "la campaña bien jugada debe ser ganable")

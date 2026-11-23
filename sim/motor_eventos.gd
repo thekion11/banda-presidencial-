@@ -35,7 +35,7 @@ func aplicar_evento(evt: Dictionary) -> Dictionary:
 	var aplicar := true
 	var v: Variant = evt.get("votacion", null)
 	if v != null:
-		var voto := m.legal.votar(m.estado, String(v["tipo_ley"]), int(v.get("votos_firmes_base", -1)))
+		var voto := m.legal.votar(m.estado, String(v["tipo_ley"]), int(v["votos_firmes_base"]) if v.get("votos_firmes_base", null) != null else -1)
 		var tc := m.legal.resolver_tc(String(v["tipo_ley"]), float(v.get("prob_exito_tc", -1.0)))
 		aplicar = bool(voto["aprobada"]) and not bool(tc["cae"])
 		res["votacion"] = {"voto": voto, "tc": tc, "aprobada": aplicar, "origen": String(v.get("origen", "camara"))}

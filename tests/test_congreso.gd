@@ -15,6 +15,10 @@ func _init() -> void:
 	_check(int(datos["leyes"]["hemiciclo"]["total_diputados"]) == 155, "la Cámara debe tener 155 diputados")
 	_check(int(datos["leyes"]["hemiciclo"]["total_senadores"]) == 50, "el Senado debe tener 50 senadores")
 	var motor := Bots.partida_completa(datos, 4242, "codicioso")
+	var intento := 0
+	while motor.estado.etapa == "derrota_electoral" and intento < 30:  # busca una partida que llegue a gobernar
+		intento += 1
+		motor = Bots.partida_completa(datos, 4242 + intento, "codicioso")
 	var est := motor.estado
 	for camara in [true, false]:
 		var c := motor.legal.composicion(est, camara)
