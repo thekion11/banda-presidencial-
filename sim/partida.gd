@@ -8,7 +8,7 @@ static func crear(datos: Dictionary, semilla: int, partido: Dictionary) -> Motor
 	estado.configurar(semilla, int(datos["leyes"]["hemiciclo"]["dias_por_turno"]), datos["leyes"])
 	var motor := MotorTurno.new()
 	motor.inicializar(estado, datos["cartas"], datos["eventos"], datos["leyes"], datos["ministros"],
-			{"regiones": datos["regiones"], "propuestas": datos["propuestas"], "grafo": datos.get("grafo", {}), "sectra": datos.get("sectra", {})})
+			{"regiones": datos["regiones"], "propuestas": datos["propuestas"], "grafo": datos.get("grafo", {}), "sectra": datos.get("sectra", {}), "metas": datos.get("metas", [])})
 	motor.aplicar_partido_inicial(partido)
 	motor.iniciar_turno()
 	return motor
@@ -20,7 +20,17 @@ static func reproducir(datos: Dictionary, guardado: Dictionary) -> MotorTurno:
 	for e in guardado["entradas"]:
 		match String(e["tipo"]):
 			"jugar":
-				motor.jugar_carta(int(e["idx"]), String(e["ministro"]), String(e["region"]))
+				motor.cartas.jugar_carta(int(e["idx"]), String(e["ministro"]), String(e["region"]), bool(e.get("delegada", false)))
+			"gabinete":
+				motor.elegir_gabinete(e["ids"])
+			"meta":
+				motor.buscar_meta(String(e["meta"]))
+			"sector":
+				motor.ajustar_sector(String(e["sector"]), int(e["dir"]))
+			"errores":
+				motor.reducir_errores()
+			"acelerar":
+				motor.acelerar_proyecto(int(e["idx"]))
 			"aprobar_propuesta":
 				motor.aprobar_propuesta(String(e["prop"]), String(e["variante"]), String(e["region"]), e.get("custom", {}))
 			"sectra":

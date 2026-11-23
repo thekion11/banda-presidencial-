@@ -18,7 +18,8 @@ func costo_carta(carta: Dictionary, ministro_id: String = "") -> int:
 		var mi: Dictionary = m.catalogo_ministros[ministro_id]
 		if mi["categoria_afin"] == carta["categoria"]:
 			costo -= int(mi["reduccion_costo_pa"])
-	return maxi(1, costo)
+	var mano: Dictionary = m.catalogo_leyes["mano"]
+	return clampi(costo, int(mano["costo_min"]), int(mano["costo_max"]))  # DISENO_V2 §4: cada carta cuesta de 1 a 3 movimientos
 
 
 func descartar_mano() -> void:
@@ -37,7 +38,7 @@ func reales_para_mazo() -> Array[String]:
 	var libres: Array[String] = []
 	for c in m.catalogo_cartas:
 		var id := String(c["id"])
-		if es_real(c) and not m.estado.cartas_ejecutadas.has(id) and not m.estado.descarte.has(id) \
+		if es_real(c) and not m.estado.cartas_ejecutadas.has(id) and not m.estado.descarte.has(id) and m.gabinete.disponible(c) \
 				and not m.estado.mano.any(func(x: Dictionary) -> bool: return x["id"] == id):
 			libres.append(id)
 	for i in range(libres.size() - 1, 0, -1):
@@ -63,7 +64,8 @@ func vista_carta(idx: int, ministro_id: String = "") -> Dictionary:
 			"alcanza": costo_carta(carta, ministro_id) <= m.estado.pa_actual}
 
 
-func jugar_carta(idx: int, ministro_id: String = "", region_id: String = "") -> Dictionary:
+func jugar_carta(idx: int, ministro_id: String = "", region_id: String = "", delegada: bool = false) -> Dictionary:
+	## `delegada`: la carta la ejecuta un ministro del gabinete sin gastar movimientos, pero puede salir mal (DISENO_V2 §5).
 	if m.estado.etapa != "campana" and m.estado.etapa != "gobierno":
 		return {"ok": false, "razon": "partida_terminada"}
 	if idx < 0 or idx >= m.estado.mano.size():
@@ -72,24 +74,30 @@ func jugar_carta(idx: int, ministro_id: String = "", region_id: String = "") -> 
 		return {"ok": false, "razon": "ministro_no_disponible"}
 	if region_id != "" and not m.regiones.existe(region_id):
 		return {"ok": false, "razon": "region_invalida"}
+	if delegada:
+		var v := m.gabinete.validar_delegacion(ministro_id)
+		if not bool(v["ok"]):
+			return v
 	var carta: Dictionary = m.estado.mano[idx]
-	var costo := costo_carta(carta, ministro_id)
+	var costo := 0 if delegada else costo_carta(carta, ministro_id)
 	if costo > m.estado.pa_actual:
 		return {"ok": false, "razon": "pa_insuficiente", "costo": costo}
 	if m.estado.etapa == "gobierno" and es_unica(carta) and m.estado.cartas_ejecutadas.has(String(carta["id"])):
 		return {"ok": false, "razon": "ya_ejecutada"}
-	m.estado.registrar_entrada("jugar", {"idx": idx, "ministro": ministro_id, "region": region_id})
+	m.estado.registrar_entrada("jugar", {"idx": idx, "ministro": ministro_id, "region": region_id, "delegada": delegada})
 	m.estado.pa_actual -= costo
+	m.estado.delegadas_turno += 1 if delegada else 0
 	m.estado.mano.remove_at(idx)
 	m.estado.descarte.append(String(carta["id"]))
 	var res: Dictionary
 	if m.estado.etapa == "campana":
 		res = _jugar_en_campana(carta, region_id)
 	else:
-		res = _jugar_en_gobierno(carta, ministro_id, region_id)
+		res = _jugar_en_gobierno(carta, ministro_id, region_id, delegada)
+	m.robar_mano(int(m.catalogo_leyes["mano"]["tamano"]))  # mano continua: entra otra carta al instante
 	res["ok"] = true
 	res["costo"] = costo
-	m.estado.registrar_accion("carta", {"id": carta["id"], "costo": costo, "ministro": ministro_id, "region": region_id})
+	m.estado.registrar_accion("carta", {"id": carta["id"], "costo": costo, "ministro": ministro_id, "region": region_id, "delegada": delegada})
 	return res
 
 
@@ -110,12 +118,18 @@ func _jugar_en_campana(carta: Dictionary, region_id: String) -> Dictionary:
 	return {"promesa": true, "delta_aprobacion": delta, "repetida": ya}
 
 
-func _jugar_en_gobierno(carta: Dictionary, ministro_id: String, region_id: String) -> Dictionary:
-	var res := {"escandalo": false, "corrector": {}, "proyecto": null, "propuesta": null}
+func _jugar_en_gobierno(carta: Dictionary, ministro_id: String, region_id: String, delegada: bool = false) -> Dictionary:
+	var res := {"escandalo": false, "fallo": false, "corrector": {}, "proyecto": null, "propuesta": null}
 	var corr := m.legal.corregir(carta, m.estado)
 	res["corrector"] = corr
 	var escala := float(corr["ratio"])
-	if ministro_id != "":
+	if delegada:
+		var d := m.gabinete.resolver_delegacion(carta, ministro_id)
+		escala *= float(d["escala"])
+		res["fallo"] = d["fallo"]
+		res["escandalo"] = d["escandalo"]
+		res["prob_fallo"] = d["prob_fallo"]
+	elif ministro_id != "":
 		var mi: Dictionary = m.catalogo_ministros[ministro_id]
 		if mi["categoria_afin"] == carta["categoria"]:
 			escala *= 1.0 + float(mi["bono_ejecucion"])

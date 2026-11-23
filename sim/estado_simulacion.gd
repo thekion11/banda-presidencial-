@@ -25,6 +25,13 @@ var aprobacion_base: Dictionary = {}  # base regional del partido (ancla de camp
 var partido: Dictionary = {}
 var promesas_campana: Array[Dictionary] = []
 
+var gabinete: Array[String] = []  # ids de ministros nombrados (data/ministros.json)
+var eventos_ocurridos: Dictionary = {}  # id de evento -> turno en que ocurrió (activa cartas con disponibilidad.evento)
+var metas_cumplidas: Dictionary = {}  # id de meta interna -> turno (data/metas.json)
+var indices_sector: Dictionary = {}  # categoría -> índice sectorial 0..100 (movimiento interno ajustar_sector)
+var delegadas_turno: int = 0  # cartas delegadas en el turno (máximo en leyes.json › delegacion)
+var internos_actual: int = 0  # movimientos internos disponibles en el turno (solo gobierno)
+
 var mazo: Array[String] = []
 var descarte: Array[String] = []
 var mano: Array[Dictionary] = []
@@ -60,6 +67,12 @@ func configurar(p_semilla: int, p_dias_turno: int = 7, p_leyes: Dictionary = {})
 	if p_leyes.has("mano"):
 		pa_maximo = int(p_leyes["mano"].get("pa_por_turno", 16))
 	pa_actual = pa_maximo
+	gabinete.clear()
+	eventos_ocurridos.clear()
+	metas_cumplidas.clear()
+	indices_sector.clear()
+	delegadas_turno = 0
+	internos_actual = 0
 	aprobacion_regional.clear()
 	aprobacion_base.clear()
 	promesas_campana.clear()
@@ -78,6 +91,20 @@ func configurar(p_semilla: int, p_dias_turno: int = 7, p_leyes: Dictionary = {})
 	semanas_en_crisis = 0
 	legado_evaluado.clear()
 	resultado_final = {}
+
+
+static func normalizar(v: Variant) -> Variant:
+	## Redondea a 6 decimales los números del partido: el guardado en JSON los reproduce exactamente (replay idéntico).
+	if v is Dictionary:
+		var d := {}
+		for k in v.keys():
+			d[k] = normalizar(v[k])
+		return d
+	if v is Array:
+		return v.map(normalizar)
+	if v is float:
+		return roundf(v * 1000000.0) / 1000000.0
+	return v
 
 
 func registrar_accion(tipo: String, detalle: Dictionary) -> void:
@@ -119,6 +146,12 @@ func exportar_resumen() -> Dictionary:
 		"turno_actual": turno_actual,
 		"dia_actual": dia_actual,
 		"pa_actual": pa_actual,
+		"gabinete": gabinete.duplicate(),
+		"eventos_ocurridos": eventos_ocurridos.duplicate(),
+		"metas_cumplidas": metas_cumplidas.duplicate(),
+		"indices_sector": indices_sector.duplicate(),
+		"delegadas_turno": delegadas_turno,
+		"internos_actual": internos_actual,
 		"indicadores": indicadores.duplicate(true),
 		"aprobacion_regional": aprobacion_regional.duplicate(true),
 		"partido": partido.duplicate(true),
