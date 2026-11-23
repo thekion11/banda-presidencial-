@@ -29,6 +29,8 @@ var gabinete: Array[String] = []  # ids de ministros nombrados (data/ministros.j
 var eventos_ocurridos: Dictionary = {}  # id de evento -> turno en que ocurrió (activa cartas con disponibilidad.evento)
 var metas_cumplidas: Dictionary = {}  # id de meta interna -> turno (data/metas.json)
 var indices_sector: Dictionary = {}  # categoría -> índice sectorial 0..100 (movimiento interno ajustar_sector)
+var asesores: Array[String] = []  # ids de asesores contratados (data/asesores.json)
+var bono_mov: Dictionary = {"aprobacion": 0, "asesores": 0}  # movimientos extra del turno por aprobación y asesores
 var delegadas_turno: int = 0  # cartas delegadas en el turno (máximo en leyes.json › delegacion)
 var internos_actual: int = 0  # movimientos internos disponibles en el turno (solo gobierno)
 
@@ -71,6 +73,8 @@ func configurar(p_semilla: int, p_dias_turno: int = 7, p_leyes: Dictionary = {})
 	eventos_ocurridos.clear()
 	metas_cumplidas.clear()
 	indices_sector.clear()
+	asesores.clear()
+	bono_mov = {"aprobacion": 0, "asesores": 0}
 	delegadas_turno = 0
 	internos_actual = 0
 	aprobacion_regional.clear()
@@ -150,6 +154,8 @@ func exportar_resumen() -> Dictionary:
 		"eventos_ocurridos": eventos_ocurridos.duplicate(),
 		"metas_cumplidas": metas_cumplidas.duplicate(),
 		"indices_sector": indices_sector.duplicate(),
+		"asesores": asesores.duplicate(),
+		"bono_mov": bono_mov.duplicate(),
 		"delegadas_turno": delegadas_turno,
 		"internos_actual": internos_actual,
 		"indicadores": indicadores.duplicate(true),

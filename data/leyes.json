@@ -37,7 +37,8 @@
     "descartes_por_turno": 2,
     "reales_en_mazo": 15,
     "costo_min": 1,
-    "costo_max": 3
+    "costo_max": 3,
+    "reposicion_cartas": 3
   },
   "dinamica": {
     "riesgo_umbral": 60.0,
@@ -292,5 +293,29 @@
       "dias": 14
     },
     "nota": "Movimientos internos de la coalición (DISENO_V2 §6); solo en gobierno. Cifras ilustrativas."
+  },
+  "bono_movimientos": {
+    "tramos": [
+      {
+        "desde": 60.0,
+        "hasta": 80.0,
+        "paso": 5.0,
+        "mov": 1
+      },
+      {
+        "desde": 85.0,
+        "hasta": 100.0,
+        "paso": 5.0,
+        "mov": 2
+      }
+    ],
+    "nota": "DISENO_V2 §11. Por cada umbral de aprobación superado (60,65,70,75,80: +1 c/u; 85,90,95,100: +2 c/u) se suman movimientos al amanecer del turno de gobierno. Cifras ilustrativas."
+  },
+  "asesores": {
+    "max": 3,
+    "movimientos_extra": 1,
+    "distancia_max": 2.0,
+    "mitigacion_afin": 0.5,
+    "nota": "DISENO_V2 §9. Cada asesor da +movimientos_extra por turno (desde el siguiente amanecer) y un efecto positivo y uno negativo. La afinidad ideológica con el partido (distancia en ejes eco/inst) atenúa el efecto negativo hasta en mitigacion_afin. Cifras ilustrativas."
   }
 }

@@ -70,6 +70,7 @@ godot --headless --path . -s tests/test_guardado.gd
 godot --headless --path . -s tests/test_gabinete.gd
 godot --headless --path . -s tests/test_delegacion.gd
 godot --headless --path . -s tests/test_movimientos.gd
+godot --headless --path . -s tests/test_equipo.gd
 godot --headless --path . -s tests/test_presupuesto.gd
 godot --headless --path . -s tests/test_balance.gd
 godot --headless --path . -s tests/test_ui_humo.gd

@@ -10,7 +10,7 @@ static func gobierno(datos: Dictionary, semilla: int, cartas_extra: Array = []) 
 	estado.etapa = "gobierno"
 	var motor := MotorTurno.new()
 	motor.inicializar(estado, Array(datos["cartas"]) + cartas_extra, datos["eventos"], datos["leyes"], datos["ministros"],
-			{"regiones": datos["regiones"], "propuestas": datos["propuestas"], "metas": datos["metas"]})
+			{"regiones": datos["regiones"], "propuestas": datos["propuestas"], "metas": datos["metas"], "asesores": datos["asesores"]})
 	motor.regiones.inicializar(estado, estado.ind("aprobacion"), "", 0.0)
 	motor.iniciar_turno()
 	return motor

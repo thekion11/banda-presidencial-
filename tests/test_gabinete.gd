@@ -17,7 +17,7 @@ func _init() -> void:
 	var est := motor.estado
 	_check(est.gabinete.size() == tam, "gabinete por defecto con el tamaño de leyes.json")
 	_check(est.mano.size() == int(datos["leyes"]["mano"]["tamano"]) and est.mano.size() == 5, "mano inicial de 5 cartas")
-	_check(est.pa_maximo == 5 and est.pa_actual == 5, "5 movimientos por turno")
+	_check(est.pa_maximo == 5 and est.pa_actual == 5 + int(est.bono_mov["aprobacion"]), "5 movimientos base por turno (más el bono por aprobación)")
 	_check(est.mano.all(func(c: Dictionary) -> bool: return motor.carta_disponible(c)), "la mano solo tiene cartas disponibles")
 	for c in datos["cartas"]:
 		var costo := motor.costo_carta(c)

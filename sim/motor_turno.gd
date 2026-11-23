@@ -19,6 +19,7 @@ var sectra := MotorSectra.new(self)
 var cartas := MotorCartas.new(self)
 var gabinete := MotorGabinete.new(self)
 var mazo := MotorMazo.new(self)
+var equipo := MotorEquipo.new(self)
 var movimientos := MotorMovimientos.new(self)
 var eventos := MotorEventos.new(self)
 var ultimos_eventos: Array[Dictionary] = []
@@ -50,6 +51,7 @@ func inicializar(p_estado: EstadoSimulacion, p_cartas: Array, p_eventos: Array, 
 	grafo.cargar(p_extra.get("grafo", {}))
 	sectra.cargar(p_extra.get("sectra", {}))
 	movimientos.cargar(p_extra.get("metas", []))
+	equipo.cargar(p_extra.get("asesores", []))
 	if estado.gabinete.is_empty():
 		estado.gabinete = gabinete.por_defecto()
 	if estado.indicadores.is_empty():
@@ -102,6 +104,7 @@ func ejecutar_amanecer() -> void:
 	if estado.etapa == "campana":
 		regiones.revertir_a_base(estado, float(catalogo_leyes["campana"]["reversion_semanal"]))
 	if estado.etapa != "gobierno":
+		movimientos.fijar_movimientos()
 		return
 	var d: Dictionary = catalogo_leyes["dinamica"]
 	var ancla := float(d["ancla_base"]) + float(d["ancla_peso_fiscal"]) * (estado.ind("fiscal") - 50.0) \
@@ -120,6 +123,7 @@ func ejecutar_amanecer() -> void:
 		fx.delta_aprobacion(-float(d["penal_aprobacion_riesgo"]), "")
 	fx.sumar_ind("capital", float(d["regen_capital_semanal"]))
 	fx.sumar_ind("cohesion", float(d["regen_cohesion_semanal"]))
+	movimientos.fijar_movimientos()
 
 
 func cerrar_turno() -> void:
@@ -198,3 +202,9 @@ func reducir_errores() -> Dictionary: return movimientos.reducir_errores()
 
 
 func acelerar_proyecto(idx: int) -> Dictionary: return movimientos.acelerar_proyecto(idx)
+
+
+func contratar_asesor(id: String) -> Dictionary: return equipo.contratar(id)
+
+
+func despedir_asesor(id: String) -> Dictionary: return equipo.despedir(id)

@@ -31,6 +31,28 @@ func amanecer() -> void:
 			m.mazo.incorporar(m.mazo.ids_con_disponibilidad("anio_desde", m.gabinete.anio_gobierno(), true))
 
 
+func bono_aprobacion() -> int:
+	## DISENO_V2 §11: movimientos extra por cada umbral de aprobación superado (tramos en leyes.json › bono_movimientos).
+	var total := 0
+	var apr := m.estado.ind("aprobacion")
+	for t in m.catalogo_leyes["bono_movimientos"]["tramos"]:
+		var u := float(t["desde"])
+		while u <= float(t["hasta"]) + 0.0001:
+			if apr >= u:
+				total += int(t["mov"])
+			u += float(t["paso"])
+	return total
+
+
+func fijar_movimientos() -> void:
+	## Fin del amanecer: movimientos del turno = base + bono por aprobación (solo gobierno) + asesores; y efectos de asesores.
+	var e := m.estado
+	e.bono_mov = {"aprobacion": bono_aprobacion() if e.etapa == "gobierno" else 0, "asesores": m.equipo.movimientos_extra()}
+	e.pa_actual = e.pa_maximo + int(e.bono_mov["aprobacion"]) + int(e.bono_mov["asesores"])
+	if e.etapa == "gobierno":
+		m.equipo.efectos_amanecer()
+
+
 func _cobrar(costo: int) -> Dictionary:
 	if m.estado.etapa != "gobierno":
 		return {"ok": false, "razon": "solo_en_gobierno"}

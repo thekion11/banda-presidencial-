@@ -94,6 +94,11 @@ def validar_leyes_v2(leyes: dict) -> None:
         raise ValueError("gabinete: tamano fuera de 1..25")
     if not 0 <= dele["prob_fallo_min"] <= dele["prob_fallo_max"] <= 1:
         raise ValueError("delegacion: probabilidades de fallo inválidas")
+    if leyes["asesores"]["max"] < 1 or leyes["mano"]["reposicion_cartas"] < 1:
+        raise ValueError("asesores/reposición inválidos")
+    for t in leyes["bono_movimientos"]["tramos"]:
+        if t["paso"] <= 0 or t["hasta"] < t["desde"] or t["mov"] < 0:
+            raise ValueError("bono_movimientos: tramo inválido")
     if mov["por_turno"] < 1 or mov["ajustar_sector"]["paso"] <= 0:
         raise ValueError("movimientos_internos inválidos")
     for clave in ("efectos_subir", "efectos_bajar"):
@@ -177,6 +182,27 @@ def validar_metas(metas: list, cartas: list, ids_fuentes: set) -> None:
         d = c.get("disponibilidad") or {}
         if d.get("meta") and d["meta"] not in ids:
             raise ValueError(f"carta {c['id']}: disponibilidad.meta inexistente '{d['meta']}'")
+
+
+def validar_asesores(asesores: list, cartas: list, ids_fuentes: set) -> None:
+    unicos(asesores, "asesores")
+    cats = {c["categoria"] for c in cartas}
+    for a in asesores:
+        ctx = f"asesor {a['id']}"
+        verificar_ref_fuente(a, ids_fuentes, ctx)
+        pos, neg = a["efecto_positivo"], a["efecto_negativo"]
+        for ef, signo in ((pos, 1), (neg, -1)):
+            if ef["tipo"] == "indicador":
+                validar_efectos([ef], ctx)
+                val = -ef["delta"] if ef["ind"] == "riesgo_ejecucion" else ef["delta"]  # menos riesgo = bueno
+            elif ef["tipo"] == "categoria":
+                if ef["categoria"] not in cats:
+                    raise ValueError(f"{ctx}: categoría sin cartas '{ef['categoria']}'")
+                val = ef["mult"]
+            else:
+                raise ValueError(f"{ctx}: tipo de efecto desconocido")
+            if val * signo <= 0:
+                raise ValueError(f"{ctx}: el efecto {'positivo' if signo > 0 else 'negativo'} tiene el signo contrario")
 
 
 def validar_eventos(eventos: list, ids_fuentes: set, tipos: set, dias_mandato: int) -> None:
@@ -354,6 +380,9 @@ def main() -> int:
     datos["metas"] = cargar_json("metas.json")
     validar_schema("metas.json", datos["metas"])
     validar_metas(datos["metas"], datos["cartas"], ids_fuentes)
+    datos["asesores"] = cargar_json("asesores.json")
+    validar_schema("asesores.json", datos["asesores"])
+    validar_asesores(datos["asesores"], datos["cartas"], ids_fuentes)
     datos["eventos"] = datos["eventos"] + json.loads((DATA_DIR / "juego_eventos_reales.json").read_text(encoding="utf-8"))
     validar_eventos(datos["eventos"], ids_fuentes, tipos, datos["leyes"]["hemiciclo"]["duracion_mandato_dias"])
     validar_ideologia(datos["ideologia"])
