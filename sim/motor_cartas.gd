@@ -95,7 +95,7 @@ func jugar_carta(idx: int, ministro_id: String = "", region_id: String = "", del
 	else:
 		res = _jugar_en_gobierno(carta, ministro_id, region_id, delegada)
 	m.coalicion.carta_jugada(carta)
-	if bool(m.catalogo_leyes["mano"].get("continua", true)):
+	if bool(m.catalogo_leyes["mano"]["continua"]):
 		m.robar_mano(int(m.catalogo_leyes["mano"]["tamano"]))  # mano continua: entra otra carta al instante
 	m.mazo.reposicion()
 	res["ok"] = true

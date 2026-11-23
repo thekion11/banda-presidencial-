@@ -89,6 +89,8 @@ def validar_efectos(efectos: list, contexto: str) -> None:
 
 def validar_leyes_v2(leyes: dict) -> None:
     mano, gab, dele, mov = leyes["mano"], leyes["gabinete"], leyes["delegacion"], leyes["movimientos_internos"]
+    if not isinstance(mano.get("continua"), bool):
+        raise ValueError("mano.continua debe existir en leyes.json y ser booleano (sin valor por defecto en código)")
     if not 1 <= mano["costo_min"] <= mano["costo_max"] <= 3:
         raise ValueError("mano: costo_min/costo_max deben estar en 1..3")
     if not 1 <= gab["tamano"] <= 25:
