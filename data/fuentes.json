@@ -90,5 +90,15 @@
     "fecha_corte": "2026-11-23",
     "vigencia_dias": 365,
     "es_ilustrativa": true
+  },
+  {
+    "id": "mop_concesiones",
+    "institucion": "MOP - Dirección General de Concesiones",
+    "titulo": "Fichas de proyectos de concesiones (cartera 2026-2030, licitación, construcción, operación, finalizadas)",
+    "url": "https://concesiones.mop.gob.cl/cartera-de-proyectos/",
+    "fecha_corte": "2026-11-23",
+    "vigencia_dias": 180,
+    "es_ilustrativa": false,
+    "verificado_contra_texto": false
   }
 ]

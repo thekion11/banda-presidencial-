@@ -1,0 +1,146 @@
+{
+ "meta": {
+  "fuente": "mop_concesiones",
+  "scraper": "tools/proyectos/concesiones_mop.py",
+  "fecha_consulta": "2026-11-23",
+  "nota": "inversion_uf/usd = 'presupuesto oficial' de la ficha; 'terminado' incluye concesiones en operación. Fechas: hito oficial."
+ },
+ "proyectos": [
+  {
+   "id": "conc-concesion-embalse-convento-viejo-ii-etapa-vi-region",
+   "nombre": "Concesión Embalse Convento Viejo II Etapa, VI Región",
+   "sector": "agua",
+   "region_id": "ohiggins",
+   "region_ids": [
+    "ohiggins"
+   ],
+   "comuna": "Nancagua, Chépica, Santa Cruz, Palmilla, Peralillo, Marchigue, Lolol y Chimbarongo",
+   "estado": "terminado",
+   "estado_2026_03_11": "terminado",
+   "inversion_musd": null,
+   "inversion_uf": 4200000.0,
+   "fecha_inicio": "2005-07-04",
+   "fecha_fin": null,
+   "mandante": "MOP - Dirección General de Concesiones",
+   "descripcion": "El Embalse Convento Viejo se ubica en la cuenta del Estero Chimbarongo, en las provincias de Colchagua y Cardenal Caro, en la región de O’Higgins, 160 kilómetros al sur de la Región Metropolitana. La obra actualmente en operación, consideró la ampliación del Embalse Convento Viejo (Etapa I), de capacidad 27 millones de m3 preexistente, a uno de capacidad de 237 millones de m3 (Etapa II), más una r",
+   "fuente_url": "https://concesiones.mop.gob.cl/project/concesion-embalse-convento-viejo-ii-etapa-vi-region/",
+   "fuente": "fuentes.json#mop_concesiones",
+   "fecha_consulta": "2026-11-23",
+   "verificado": true,
+   "notas": "categoria_mop=concesiones-en-operacion; plazo_concesion=304 meses según Convenio Complementario 1; concesión en operación (obras construidas)"
+  },
+  {
+   "id": "conc-concesion-embalse-la-punilla",
+   "nombre": "Concesión Embalse La Punilla",
+   "sector": "agua",
+   "region_id": "nuble",
+   "region_ids": [
+    "nuble"
+   ],
+   "comuna": "Coihueco y San Fabián",
+   "estado": "terminado",
+   "estado_2026_03_11": "terminado",
+   "inversion_musd": 385.1,
+   "inversion_uf": 9410000.0,
+   "fecha_inicio": "2016-06-22",
+   "fecha_fin": null,
+   "mandante": "MOP - Dirección General de Concesiones",
+   "descripcion": "Esta concesión comenzó en marzo de 2016 y finalizó el 9 de octubre de 2021, a través de un Convenio de Extinción de contrato por mutuo acuerdo. El proyecto consideraba el desarrollo de un embalse multipropósito, ubicado en la Provincia de Punilla, a 30 km aguas arriba de San Fabián de Alico, para mejorar la seguridad del riego para los usuarios del Río Ñuble, como también responder a requerimiento",
+   "fuente_url": "https://concesiones.mop.gob.cl/project/concesion-embalse-la-punilla/",
+   "fuente": "fuentes.json#mop_concesiones",
+   "fecha_consulta": "2026-11-23",
+   "verificado": true,
+   "notas": "categoria_mop=concesiones-finalizadas; plazo_concesion=Plazo fijo, 45 años (540 meses). Contrato finalizado de manera anticipada el 9 de octubre de 2021"
+  },
+  {
+   "id": "conc-concesion-embalse-las-palmas",
+   "nombre": "Concesión Embalse Las Palmas",
+   "sector": "agua",
+   "region_id": "valparaiso",
+   "region_ids": [
+    "valparaiso"
+   ],
+   "comuna": "Petorca",
+   "estado": "ejecucion",
+   "estado_2026_03_11": "ejecucion",
+   "inversion_musd": 158.8,
+   "inversion_uf": 3880000.0,
+   "fecha_inicio": "2018-05-04",
+   "fecha_fin": null,
+   "mandante": "MOP - Dirección General de Concesiones",
+   "descripcion": "El Embalse Las Palmas, ubicado en el estero Las Palmas, a unos 17 kilómetros al oeste de la localidad de Petorca, comuna de Petorca, Región de Valparaíso, será un embalse destinado a abastecer principalmente las necesidades de riego con un volumen total de 55 millones de m3 de capacidad, inundando una superficie total de aproximadamente 252 hectáreas. Esta obra mejorará las condiciones de riego en",
+   "fuente_url": "https://concesiones.mop.gob.cl/project/concesion-embalse-las-palmas/",
+   "fuente": "fuentes.json#mop_concesiones",
+   "fecha_consulta": "2026-11-23",
+   "verificado": true,
+   "notas": "categoria_mop=proyectos-en-construccion; plazo_concesion=Plazo fijo 19 años (228 meses)"
+  },
+  {
+   "id": "conc-concesion-embalse-nueva-la-punilla",
+   "nombre": "Concesión Embalse Nueva La Punilla",
+   "sector": "agua",
+   "region_id": "nuble",
+   "region_ids": [
+    "nuble"
+   ],
+   "comuna": "San Fabián y Coihueco",
+   "estado": "terminado",
+   "estado_2026_03_11": null,
+   "inversion_musd": 410.0,
+   "inversion_uf": null,
+   "fecha_inicio": null,
+   "fecha_fin": null,
+   "mandante": "MOP - Dirección General de Concesiones",
+   "descripcion": "El proyecto se emplaza en las comunas de San Fabián y Coihueco, en la Provincia de Punilla, Región de Ñuble, y consiste en el desarrollo de un embalse multipropósito con un volumen útil de 540 hm3. La obra permitirá abordar las necesidades de riego y de manera complementaria aportar a la generación de energía hidroeléctrica y la reserva de agua para consumo humano. El nuevo embalse beneficiará a l",
+   "fuente_url": "https://concesiones.mop.gob.cl/project/embalse-nueva-la-punilla/",
+   "fuente": "fuentes.json#mop_concesiones",
+   "fecha_consulta": "2026-11-23",
+   "verificado": true,
+   "notas": "categoria_mop=concesiones-finalizadas; plazo_concesion=Plazo fijo, 40 años (480 meses)"
+  },
+  {
+   "id": "conc-concesion-planta-desaladora-para-la-region-de-coquimbo",
+   "nombre": "Concesión Planta Desaladora para la Región de Coquimbo",
+   "sector": "agua",
+   "region_id": "coquimbo",
+   "region_ids": [
+    "coquimbo"
+   ],
+   "comuna": "Coquimbo",
+   "estado": "ejecucion",
+   "estado_2026_03_11": null,
+   "inversion_musd": 325.0,
+   "inversion_uf": 8195000.0,
+   "fecha_inicio": null,
+   "fecha_fin": null,
+   "mandante": "MOP - Dirección General de Concesiones",
+   "descripcion": "Detalle El proyecto considera la construcción y operación de una Planta Desaladora de agua de mar ubicada en el sector del Panul, junto con sus respectivas obras de conducción de agua para la Región de Coquimbo, la cual tiene por objetivo el abastecimiento de agua potable para el consumo humano de las comunas de Coquimbo y La Serena, con potencial expansión hacia otros sistemas. La iniciativa plan",
+   "fuente_url": "https://concesiones.mop.gob.cl/project/planta-desaladora-para-la-region-de-coquimbo/",
+   "fuente": "fuentes.json#mop_concesiones",
+   "fecha_consulta": "2026-11-23",
+   "verificado": true,
+   "notas": "categoria_mop=proyectos-en-construccion; plazo_concesion=21 años desde PSP"
+  },
+  {
+   "id": "conc-concesion-sistema-nacional-de-alerta-temprana-de-tsunami",
+   "nombre": "Concesión Sistema Nacional de Alerta Temprana de Tsunami",
+   "sector": "agua",
+   "region_id": null,
+   "region_ids": [],
+   "comuna": "Territorio nacional",
+   "estado": "licitacion",
+   "estado_2026_03_11": null,
+   "inversion_musd": 115.0,
+   "inversion_uf": null,
+   "fecha_inicio": null,
+   "fecha_fin": null,
+   "mandante": "MOP - Dirección General de Concesiones",
+   "descripcion": "Detalle El proyecto consiste en la construcción e implementación de un sistema de alerta y notificación de eventuales riesgos y procesos de evacuación por tsunami basado en una red de estaciones de alarma sonora y visual, que incluye sistema de comunicación redundante y centros de control a nivel regional y central. El proyecto será un complemento a la red de emergencia preventiva que ya existe en",
+   "fuente_url": "https://concesiones.mop.gob.cl/project/sistema-alerta-de-tsunami/",
+   "fuente": "fuentes.json#mop_concesiones",
+   "fecha_consulta": "2026-11-23",
+   "verificado": false,
+   "notas": "categoria_mop=concesiones-en-proceso-de-licitacion;hidricos-licitacion; plazo_concesion=20 años"
+  }
+ ]
+}
