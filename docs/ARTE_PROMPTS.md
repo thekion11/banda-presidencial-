@@ -66,3 +66,24 @@ Hoy miden 512×410 (salvo `estado`, ya en 1024×820). Mismo bloque de estilo.
 - Sin texto, logos, banderas ni personas reconocibles.
 - Legible a 200 px de ancho; mismo trazo y grosor entre piezas.
 - Si una pieza desentona, se pide regenerar con el mismo bloque de estilo y una frase de corrección.
+
+## Registro de avance (24-nov-2026)
+Todo recortado a 1024×820 e integrado en `game/arte/cartas/`; originales de Gemini recibidos por el chat de la sesión.
+| Bloque | Estado |
+|---|---|
+| Tabla A: 22 temáticas | **22 de 22 integradas** (cubren 1.304 de 1.343 cartas) |
+| Tabla B: `portada` | Recibida en vertical 572×1024 (`game/arte/marca/portada.jpg`; original en `docs/arte_originales/`). **Aún no está conectada al menú** (rediseño de portada pendiente) y es de baja resolución para pantalla completa: hay que reescalarla o regenerarla. |
+| Tabla B: `comite` | Recibida en vertical 572×1024; se recortó el centro a 5:4 y se amplió a 1024×820 (`game/arte/cartas/comite.jpg`). Original en `docs/arte_originales/`. Si se ve borrosa en el teléfono, regenerar en horizontal. |
+| Tabla B: 13 categorías restantes | Pendientes (`descentralizacion`, `economia`, `educacion`, `energia`, `hacienda`, `medioambiente`, `obras`, `politica`, `salud`, `seguridad`, `social`, `transportes`, `vivienda`). Hoy 512×410. |
+| Límite diario de Gemini | Alcanzado el 24-nov-2026; se retoma cuando se renueve. |
+
+### Pendientes de calidad conocidos
+- `descentralizacion_municipal`: árboles verdes (fuera de paleta) y un detalle borroso al sur del mapa; regenerar con «solo estos cinco colores, sin verde».
+- `social_pensiones`: muy oscura (silueta azul sobre fondo azul); revisar a tamaño de carta.
+- `seguridad_defensa` y `trabajo`: muy cargadas; revisar a tamaño de carta.
+- Ninguna ilustración se ha visto aún dentro de la carta en el teléfono: falta APK de revisión.
+- Licencia de uso comercial de las imágenes de Gemini: sin confirmar.
+
+### Lecciones del estilo (para las que faltan)
+- Añadir al bloque de estilo: «sin marco ni borde; la ilustración llega hasta el filo» y «pocos elementos, grandes».
+- Pedir **horizontal 5:4** para las categorías; la vertical 9:16 solo para la portada.

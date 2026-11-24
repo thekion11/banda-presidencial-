@@ -280,3 +280,7 @@ El conjunto de propuestas (PR-01 a PR-24) es de **meses de trabajo**; el juego a
 - Ya conectados y con créditos limitados o desconocidos: **Canva** (agotado), **Figma** (plan gratuito con pocas llamadas), **Adobe Firefly** (créditos por consultar).
 **Alternativas sin costo en créditos:** retratos modulares **generados por código** (coherentes y gratis) y paquetes de efectos de sonido/arte de dominio público (CC0) para sonido y elementos de interfaz.
 **Decisión pendiente:** ¿se prueba el conector de Hugging Face (el usuario lo activa y Claude hace una prueba con 2-3 imágenes para evaluar estilo, cupo y licencia)?
+
+### D-03c — Avance real del arte con Gemini (24-nov-2026) · estado: en curso
+El usuario aceptó el flujo manual de D-03 y generó las imágenes en Gemini; las envió por el chat. Resultado: **22 de 22 ilustraciones temáticas** integradas, más `portada` y `comite` (vertical). El estilo se mantuvo coherente entre piezas sin ajustar nada. El usuario llegó al **límite diario de Gemini** el 24-nov-2026; faltan 13 categorías (512×410 hoy) y revisar la portada. Detalle en `docs/ARTE_PROMPTS.md` (registro de avance). El conector de Hugging Face quedó autenticado pero con `invoke` desactivado (`gradio=none`): no sirve para generar por ahora.
+**Decisiones pendientes:** conectar la portada al menú (rediseño de portada); regenerar `descentralizacion_municipal`; generar un APK de revisión para ver el arte en el teléfono.

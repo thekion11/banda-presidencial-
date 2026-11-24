@@ -251,3 +251,6 @@ Si el usuario las revoca o matiza, se actualiza este registro.
 - `game/componentes/registro_prueba.gd` + `game/pantallas/pantalla_informe.gd`: registro LOCAL (`user://registro_prueba.jsonl`, máx. 1.500 líneas) con turno, aprobación, movimientos, fps y memoria por acción; menú → «Informe de prueba» → «Copiar informe» (portapapeles). No se envía nada automáticamente ni se guardan datos personales. `data/version.json` (generado por `tools/generar_version.py`) da versión de prueba, commit y fecha. Probado en `tests/test_ui_humo.gd`.
 - `docs/GUIA_PRUEBA.md`: instalación, qué hacer en 10-15 minutos y 6 preguntas para los testers.
 - APK de prueba `0.9.0-prueba1` entregado al usuario por el canal de archivos de la sesión (único destinatario).
+
+### Arte de cartas con Gemini (24-nov-2026)
+- 22 ilustraciones temáticas integradas en `game/arte/cartas/` (1024×820) más `comite`; `portada` guardada en `game/arte/marca/portada.jpg` (sin conectar al menú). Originales verticales en `docs/arte_originales/`. Registro y pendientes de calidad en `docs/ARTE_PROMPTS.md`. Fuente de las imágenes: Gemini (cuenta del usuario); licencia comercial sin confirmar.
