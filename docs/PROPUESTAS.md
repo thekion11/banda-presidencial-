@@ -191,3 +191,18 @@ Resumen de opinión: casi todo es bueno para el juego, pero **es mucho más de l
 2. PR-06: ¿mapa 2D con pines y zoom + 3D solo en obras/Comité (recomendado), o 3D nacional pese al costo?
 3. PR-12: ¿reelección como carta jugable (recomendado como idea) y qué variantes (inmediata una vez, indefinida, plazos)?
 4. PR-13: ¿Modo Oposición se planifica después de validar el gobierno?
+
+### PR-06c — Mapa del continente en 2D/2,5D (24-nov-2026) · estado: hablada (dirección aceptada por el usuario; sin implementar)
+
+**Dicho por el usuario:** «por lo menos todo el continente»; mejor **2D y 2,5D** que 3D completo.
+
+**Opinión de Claude:** de acuerdo. Propongo **un solo mapa con niveles de zoom**: *continente (Sudamérica)* → *Chile* → *región* → *proyecto/obra* (el 3D actual del hito y del Comité queda en el último nivel). **2,5D** = relieve y sombras prerenderizados, una leve inclinación y capas con paralaje (cordillera, mar, nubes): luce, cuesta poco y mantiene los 30 fps.
+- *Datos públicos:* fronteras de Natural Earth (dominio público) y relieve de teselas públicas (ya usamos Terrarium para Chile); atribuciones en créditos y en `fuentes.json`.
+- *Sensibilidad:* las fronteras y reclamos (salida al mar de Bolivia, límites con Argentina, Antártica) son delicados; usar la capa estándar de Natural Earth con aviso de «mapa ilustrativo» y revisarlo en la revisión legal.
+- *Costo:* medio (arte/relieve del continente y navegación con zoom); no necesita 3D nuevo.
+
+**Preguntas que le haría al usuario (sin urgencia):**
+1. ¿Solo **Sudamérica** o también un anillo de **potencias** (EE. UU., China, Brasil como ícono fuera del mapa)?
+2. ¿Qué **hace** el jugador en el mapa del continente: solo ver relaciones y proyectos, o también **actuar** (p. ej. arrastrar una carta de política exterior sobre un país, igual que se arrastran las demás cartas al mapa de Chile)? Yo recomiendo lo segundo.
+3. ¿Los vecinos son **«vivos»** (sus propias crisis y elecciones, con efectos de contagio hacia Chile) o solo cifras de relación?
+4. ¿Los **proyectos internacionales** se muestran como líneas/pines entre países (pasos fronterizos, corredores, gas, litio)? Yo recomiendo sí, con los reales como primera lista.
