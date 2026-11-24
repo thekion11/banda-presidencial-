@@ -101,6 +101,8 @@ func mostrar_dia() -> void:
 
 func mostrar_fin() -> void:
 	guardar()
+	var rf: Dictionary = motor.estado.resultado_final
+	RegistroPrueba.anotar("fin", motor, _huella_datos, {"motivo": str(rf.get("motivo", motor.estado.etapa)), "puntaje": int(rf.get("puntaje", 0))})
 	var f := PantallaFin.new()
 	f.motor = motor
 	f.datos = datos
@@ -116,3 +118,4 @@ func guardar() -> void:
 	var f := FileAccess.open(RUTA_GUARDADO, FileAccess.WRITE)
 	if f != null:
 		f.store_string(JSON.stringify(motor.estado.exportar_guardado(_huella_datos)))
+	RegistroPrueba.anotar("accion", motor, _huella_datos)

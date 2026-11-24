@@ -27,6 +27,7 @@ func _correr() -> void:
 		await _una(sem, idx)
 		idx += 1
 	DirAccess.remove_absolute(ProjectSettings.globalize_path(Tutorial.ruta))
+	await _informe()
 	if _fallos == 0:
 		print("HUMO DE UI OK (%d semillas)" % SEMILLAS.size())
 	quit(0 if _fallos == 0 else 1)
@@ -395,3 +396,25 @@ func _fin_y_cartera(main: Node, dia: Node) -> void:
 	for _k in range(3):
 		await process_frame
 	_check(_textos(main._pantalla).contains("aprobación"), "la derrota debe hablar de aprobación, no de votos")
+
+
+func _informe() -> void:
+	## Informe de prueba: se abre desde el menú, resume el registro local y es táctil.
+	var main: Node = load("res://game/main.tscn").instantiate()
+	root.add_child(main)
+	await process_frame
+	main.mostrar_menu()
+	await process_frame
+	var menu: Node = main._pantalla
+	var b: Array = menu.find_children("*", "Button", true, false).filter(func(x: Button) -> bool: return x.text == "Informe de prueba")
+	_check(b.size() == 1, "el menú debe tener el botón «Informe de prueba»")
+	if b.size() == 1:
+		(b[0] as Button).pressed.emit()
+		for _k in range(3):
+			await process_frame
+		var inf: Array = menu.get_children().filter(func(x: Node) -> bool: return x is PantallaInforme)
+		_check(inf.size() == 1, "el informe de prueba debe abrirse")
+		if inf.size() == 1:
+			_check_tactil(inf[0], "informe de prueba")
+	var t := RegistroPrueba.informe()
+	_check(t.contains("informe de prueba") and t.contains("versión") and t.contains("partidas registradas"), "el informe debe traer versión y resumen")
