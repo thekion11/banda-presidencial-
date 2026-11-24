@@ -15,6 +15,7 @@ var _titulo: Label
 var _nombre: LineEdit
 var _sigla: LineEdit
 var _region: OptionButton
+var _dificultad: OptionButton
 
 
 func _ready() -> void:
@@ -194,6 +195,22 @@ func _mostrar_fundacion() -> void:
 		if r["id"] == "metropolitana":
 			_region.select(_region.item_count - 1)
 	_contenido.add_child(_region)
+	_contenido.add_child(Tema.etiqueta("Dificultad", 12, Tema.TEXTO_SUAVE))
+	_dificultad = OptionButton.new()
+	_dificultad.custom_minimum_size = Vector2(0, 48)
+	var niveles: Dictionary = datos["leyes"]["dificultad"]["niveles"]
+	for k in niveles:
+		_dificultad.add_item(String(niveles[k]["nombre"]))
+		_dificultad.set_item_metadata(_dificultad.item_count - 1, String(k))
+		if k == datos["leyes"]["dificultad"]["defecto"]:
+			_dificultad.select(_dificultad.item_count - 1)
+	_contenido.add_child(_dificultad)
+	var desc := Tema.etiqueta("", 11, Tema.TEXTO_SUAVE)
+	desc.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	var _mostrar := func(_i: int = 0) -> void: desc.text = String(niveles[String(_dificultad.get_item_metadata(_dificultad.selected))]["descripcion"])
+	_dificultad.item_selected.connect(_mostrar)
+	_mostrar.call()
+	_contenido.add_child(desc)
 	var esp := Control.new()
 	esp.size_flags_vertical = Control.SIZE_EXPAND_FILL
 	_contenido.add_child(esp)
@@ -210,4 +227,6 @@ func _fundar() -> void:
 	if sigla == "":
 		sigla = nombre.substr(0, 3)
 	var region := String(_region.get_item_metadata(_region.selected))
-	fundado.emit(GeneradorPartido.construir_partido(nombre, sigla, region, _respuestas, datos["ideologia"]))
+	var partido := GeneradorPartido.construir_partido(nombre, sigla, region, _respuestas, datos["ideologia"])
+	partido["dificultad"] = String(_dificultad.get_item_metadata(_dificultad.selected))
+	fundado.emit(partido)

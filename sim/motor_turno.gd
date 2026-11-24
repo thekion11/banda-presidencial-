@@ -75,6 +75,7 @@ func aplicar_partido_inicial(datos_partido: Dictionary) -> void:
 	var ind_ini: Dictionary = estado.partido["indicadores_iniciales"]
 	for clave in ind_ini.keys():
 		estado.indicadores[clave] = float(ind_ini[clave])
+	estado.indicadores["aprobacion"] = clampf(estado.ind("aprobacion") + float(mandato.nivel()["aprobacion_inicial"]), 0.0, 100.0)  # dificultad (PR-01)
 	var camp: Dictionary = catalogo_leyes.get("campana", {})
 	regiones.inicializar(estado, estado.ind("aprobacion"), String(datos_partido.get("region_bastion", "")),
 			float(camp.get("bono_bastion", 0.0)), float(camp.get("variacion_regional_inicial", 0.0)))
@@ -117,7 +118,7 @@ func ejecutar_amanecer() -> void:
 		fx.sumar_ind("aprobacion", (ancla - estado.ind("aprobacion")) * float(d["reversion_semanal"]))
 	else:
 		regiones.revertir(estado, ancla, float(d["reversion_semanal"]), float(d.get("sesgo_regional_persistente", 0.0)))
-	fx.delta_aprobacion(-float(d["desgaste_aprobacion_semanal"]), "")
+	fx.delta_aprobacion(-float(d["desgaste_aprobacion_semanal"]) * float(mandato.nivel()["desgaste"]), "")
 	fx.sumar_ind("fiscal", float(d["regen_fiscal_semanal"]))
 	var extra := maxi(0, estado.obras_en_curso.size() - int(d["max_obras_concurrentes"]))
 	fx.sumar_ind("riesgo_ejecucion", float(extra) * float(d["riesgo_por_obra_extra"]) - float(d["riesgo_regen_semanal"]))

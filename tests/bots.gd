@@ -142,7 +142,7 @@ static func _region_objetivo(motor: MotorTurno) -> String:
 	return mejor
 
 
-static func partida_completa(datos: Dictionary, semilla: int, politica: String) -> MotorTurno:
+static func partida_completa(datos: Dictionary, semilla: int, politica: String, dificultad: String = "") -> MotorTurno:
 	## politica = "campaña" o "campaña>gobierno" (p. ej. "codicioso>pasivo").
 	var partes := politica.split(">")
 	var pol_camp := partes[0]
@@ -153,6 +153,8 @@ static func partida_completa(datos: Dictionary, semilla: int, politica: String) 
 	for p in datos["ideologia"]["preguntas"]:
 		respuestas.append(p["opciones"][rng.randi_range(0, 2)])
 	var partido := GeneradorPartido.construir_partido("Partido Prueba", "PRU", "metropolitana", respuestas, datos["ideologia"])
+	if dificultad != "":
+		partido["dificultad"] = dificultad
 	var motor := Partida.crear(datos, semilla, partido)
 	var est := motor.estado
 	for _s in range(int(datos["leyes"]["hemiciclo"]["semanas_campana"])):

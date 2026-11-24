@@ -22,3 +22,8 @@ Este archivo lo mantiene Claude. Lo que depende del usuario queda en «Necesito 
 3. Del audit del plan: portada conectada al menú (créditos ya al día); títulos cortos para los eventos legales largos (P11); estado vacío del informe (P3); cartera con buscador y sin «Fuera de partida» (P2); texto «Tus 8 ministros» desde `leyes.json`.
 4. Propuestas ACEPTADAS sin implementar: PR-01 (dificultad y afiliación), PR-05 (rellenar el gabinete), PR-06c (mapa de Sudamérica).
 5. Ideas del análisis de mercado (solo proponer y registrar): consecuencias visibles por carta, finales variados, resumen de sesión con hitos, tutorial corto, medición D1 y D7.
+
+## PR-01 Dificultad (implementada con valores por defecto, ajustable)
+- Fuente: `docs/PROPUESTAS.md` PR-01; presets en `data/leyes.json` bloque `dificultad` (umbral_delta, aprobacion_inicial, desgaste). Selector en la pantalla de fundación del partido; se guarda en `partido["dificultad"]` y se reproduce.
+- Calibración vs bot codicioso (24 semillas, elección ganada): fácil 24, normal 18, difícil 12 (`tests/test_dificultad.gd`). Un humano suele ser peor que el bot: confirmar con prueba real (U1).
+- Pendiente de decidir (usuario): beneficio de jugar "independiente" y afiliación a partido existente (siguiente paso de PR-01).
