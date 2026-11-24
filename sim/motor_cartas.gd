@@ -212,6 +212,7 @@ func aprobar_propuesta(prop_id: String, variante_id: String, region_id: String =
 			m.fx.aplicar_efecto(ef, ratio, "")
 	var dias := roundi(float(variante["plazo_anios"]) * 365.0 * ratio)
 	m.obras.iniciar(m.estado, "%s · %s" % [prop["titulo"], variante["nombre"]], dias, region, "", final, {"propuesta": prop_id, "variante": variante_id})
+	_registrar_linea(prop, prop_id, variante, variante_id, custom)
 	m.estado.propuestas_abiertas.erase(prop_id)
 	m.estado.propuestas_aprobadas.append(prop_id)
 	for c in m.catalogo_cartas:
@@ -221,6 +222,22 @@ func aprobar_propuesta(prop_id: String, variante_id: String, region_id: String =
 	return {"ok": true, "ratio": ratio, "dias": dias, "costo": costo}
 
 
+
+
+func _registrar_linea(prop: Dictionary, prop_id: String, variante: Dictionary, variante_id: String, custom: Dictionary) -> void:
+	## La línea aprobada (variante A/B/C o trazado propio) queda en el estado como línea del jugador: se dibuja en el mapa
+	## en construcción y pasa a operativa al terminar su obra. Se reconstruye al reproducir el guardado (por eventos).
+	var estaciones: Array = []
+	if m.grafo.listo():
+		var ids: Array = custom["estaciones"] if not custom.is_empty() else m.grafo.estaciones_base(variante)
+		for id in ids:
+			if m.grafo.pos.has(id):
+				estaciones.append([snappedf(m.grafo.pos[id].x, 0.0001), snappedf(m.grafo.pos[id].y, 0.0001)])
+	var trazado: Array = []
+	for q in variante["trazado"]:
+		trazado.append([snappedf(float(q[0]), 0.0001), snappedf(float(q[1]), 0.0001)])
+	m.estado.lineas_jugador.append({"id": "P%d" % (m.estado.lineas_jugador.size() + 1), "nombre": String(prop["titulo"]), "prop": prop_id,
+			"variante": variante_id, "trazado": trazado, "estaciones": estaciones, "estado": "en_construccion", "dia_aprobacion": m.estado.dia_actual})
 
 
 func resolver_proyectos() -> Array[Dictionary]:

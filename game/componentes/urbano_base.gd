@@ -12,6 +12,8 @@ static var _elev: PackedByteArray = PackedByteArray()
 static var _datos: Dictionary = {}
 static var _cache_clave: String = ""
 static var _cache: Dictionary = {}
+const COLOR_PROPIA := Color("#D6336C")  # líneas creadas por el jugador (P1, P2…): distinto de todas las reales
+static var propias: Array = []  # estado.lineas_jugador de la partida abierta (las pantallas lo asignan antes de dibujar)
 static var ocultas: Dictionary = {}  # ids de líneas de Metro ocultas (se comparte entre los mapas de la partida)
 
 
@@ -134,6 +136,8 @@ static func preparar(tam: Vector2, margen: Vector2) -> Dictionary:
 		c["estaciones"].append(a_px(e["p"], tam, margen))
 		c["est_lineas"].append(e.get("l", []))
 		c["est_nombres"].append(String(e["n"]))
+	c["_tam"] = tam
+	c["_margen"] = margen
 	_cache_clave = clave
 	_cache = c
 	return c
@@ -237,6 +241,23 @@ static func ids_lineas() -> Array:
 	var res: Array = []
 	for l in datos().get("metro", []):
 		res.append({"id": String(l["id"]), "color": Color(String(l["color"]))})
+	for ln in propias:
+		res.append({"id": String(ln["id"]), "color": COLOR_PROPIA})
+	return res
+
+
+static func _propias_px(c: Dictionary) -> Array:
+	var res: Array = []
+	for ln in propias:
+		if ocultas.has(ln["id"]):
+			continue
+		var pts := PackedVector2Array()
+		for q in ln["trazado"]:
+			pts.append(a_px(q, c["_tam"], c["_margen"]))
+		var est := PackedVector2Array()
+		for q in ln["estaciones"]:
+			est.append(a_px(q, c["_tam"], c["_margen"]))
+		res.append({"id": String(ln["id"]), "pts": pts, "est": est, "operativa": String(ln["estado"]) == "operativa"})
 	return res
 
 
@@ -249,6 +270,19 @@ static func _dibujar_metro(ci: CanvasItem, c: Dictionary, esc: float) -> void:
 		if ocultas.has(l["id"]) or l["seg"].size() < 2:
 			continue
 		ci.draw_multiline(l["seg"], l["color"], 4.6 * esc, true)
+	for pl in _propias_px(c):
+		var pts: PackedVector2Array = pl["pts"]
+		if pts.size() < 2:
+			continue
+		ci.draw_polyline(pts, Color(1, 1, 1, 0.95), 8.0 * esc, true)
+		if pl["operativa"]:
+			ci.draw_polyline(pts, COLOR_PROPIA, 4.8 * esc, true)
+		else:  # en construcción: trazo discontinuo
+			for k in range(pts.size() - 1):
+				ci.draw_dashed_line(pts[k], pts[k + 1], COLOR_PROPIA, 4.8 * esc, 9.0 * esc, true)
+		for e in pl["est"]:
+			ci.draw_circle(e, 4.4 * esc, COLOR_PROPIA)
+			ci.draw_circle(e, 2.6 * esc, Color.WHITE)
 	for i in range(c["estaciones"].size()):
 		var lineas: Array = c["est_lineas"][i]
 		var visibles := 0
@@ -291,6 +325,16 @@ static func fichas(ci: CanvasItem, tam: Vector2, margen: Vector2, zoom: float, p
 				ci.draw_circle(p, 8.4, l["color"])
 				ci.draw_string(f, p + Vector2(-8, 4.2), nombre_corto(l["id"]), HORIZONTAL_ALIGNMENT_CENTER, 16.0, 10, tinta)
 				usados.append(Rect2(p - Vector2(11, 11), Vector2(22, 22)))
+	for pl in _propias_px(c):
+		var pts2: PackedVector2Array = pl["pts"]
+		for q in ([pts2[0], pts2[pts2.size() - 1]] if pts2.size() >= 2 else []):
+			var p2: Vector2 = q * zoom + pan
+			if p2.x < -12.0 or p2.y < -12.0 or p2.x > tam.x + 12.0 or p2.y > tam.y + 12.0:
+				continue
+			ci.draw_circle(p2, 10.0, Color.WHITE)
+			ci.draw_circle(p2, 8.4, COLOR_PROPIA)
+			ci.draw_string(f, p2 + Vector2(-8, 4.2), String(pl["id"]), HORIZONTAL_ALIGNMENT_CENTER, 16.0, 10, Color.WHITE)
+			usados.append(Rect2(p2 - Vector2(11, 11), Vector2(22, 22)))
 	return usados
 
 
@@ -299,6 +343,13 @@ static func linea_en(pos: Vector2, tam: Vector2, margen: Vector2, umbral: float 
 	var c := preparar(tam, margen)
 	var mejor := umbral
 	var res := ""
+	for pl in _propias_px(c):
+		var pp: PackedVector2Array = pl["pts"]
+		for i in range(pp.size() - 1):
+			var qq := Geometry2D.get_closest_point_to_segment(pos, pp[i], pp[i + 1])
+			if qq.distance_to(pos) < mejor:
+				mejor = qq.distance_to(pos)
+				res = String(pl["id"])
 	for l in c.get("metro", []):
 		if ocultas.has(l["id"]):
 			continue

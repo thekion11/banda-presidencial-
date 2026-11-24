@@ -14,12 +14,7 @@ static func _categoria_de(motor: MotorTurno, obra: Dictionary) -> String:
 
 
 static func _trazado_propuesta(motor: MotorTurno) -> Array:
-	for o in motor.estado.obras_en_curso:
-		var pid := String(o.get("propuesta", ""))
-		if pid != "" and motor.catalogo_propuestas.has(pid):
-			for v in motor.catalogo_propuestas[pid]["variantes"]:
-				if v["id"] == o.get("variante", "A"):
-					return v["trazado"]
+	## Vista previa de una propuesta abierta (aún sin aprobar). Las líneas ya aprobadas se dibujan como líneas del jugador.
 	for pid in motor.estado.propuestas_abiertas:
 		return motor.catalogo_propuestas[pid]["variantes"][0]["trazado"]
 	return []
@@ -73,6 +68,7 @@ static func crear(motor: MotorTurno, urbano: Dictionary, al_volver: Callable, al
 		botones.append(b)
 		chips.add_child(b)
 	col.add_child(chips)
+	UrbanoBase.propias = motor.estado.lineas_jugador
 	var leyenda := LeyendaMetro.new()
 	leyenda.cambiado.connect(mapa.queue_redraw)
 	col.add_child(leyenda)
@@ -136,9 +132,10 @@ static func crear(motor: MotorTurno, urbano: Dictionary, al_volver: Callable, al
 			var v := VBoxContainer.new()
 			v.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 			v.mouse_filter = Control.MOUSE_FILTER_IGNORE
-			var nom := Tema.etiqueta(String(o["nombre"]), 13, Tema.TINTA, false, 700)
-			nom.max_lines_visible = 2
-			nom.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
+			var nom := Tema.etiqueta_corta(String(o["nombre"]), 13, Tema.TINTA, false, 700)
+			nom.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS  # el nombre largo termina en «…» según el ancho disponible
+			nom.custom_minimum_size = Vector2(10, 0)
+			nom.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 			v.add_child(nom)
 			var barra := ProgressBar.new()
 			barra.show_percentage = false

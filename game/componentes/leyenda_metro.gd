@@ -8,6 +8,7 @@ signal cambiado
 var _fichas: Dictionary = {}  # id -> Button
 var _todas: Button
 var _nota: Label
+var oscuro: bool = false  # true sobre fondo oscuro (Comité)
 
 
 func _init() -> void:
@@ -16,7 +17,7 @@ func _init() -> void:
 
 func _ready() -> void:
 	var cab := HBoxContainer.new()
-	_nota = Tema.etiqueta_corta("Toca: ocultar · mantén: solo esa", 11, Color("#6A7684"), false, 600)
+	_nota = Tema.etiqueta_corta("Toca: ocultar · mantén: solo esa", 11, Tema.TEXTO_SUAVE if oscuro else Color("#6A7684"), false, 600)
 	_nota.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	_nota.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 	cab.add_child(_nota)
@@ -25,12 +26,12 @@ func _ready() -> void:
 	_todas.pressed.connect(_alternar_todas)
 	cab.add_child(_todas)
 	add_child(cab)
-	var fila := HBoxContainer.new()
-	fila.add_theme_constant_override("separation", 4)
+	var fila := HFlowContainer.new()  # si hay más de 7 líneas (las del jugador), las fichas pasan a una segunda fila
+	fila.add_theme_constant_override("h_separation", 2)
+	fila.add_theme_constant_override("v_separation", 4)
 	for l in UrbanoBase.ids_lineas():
 		var b := Button.new()
-		b.custom_minimum_size = Vector2(46, 44)
-		b.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		b.custom_minimum_size = Vector2(44, 44)
 		b.text = UrbanoBase.nombre_corto(String(l["id"]))
 		b.add_theme_font_override("font", Tema.fuente_titulo())
 		b.add_theme_font_size_override("font_size", 14)
@@ -55,6 +56,9 @@ func _ready() -> void:
 		_fichas[id] = b
 		fila.add_child(b)
 	add_child(fila)
+	for ln in UrbanoBase.propias:  # estado de cada línea creada por el jugador
+		var txt := "%s · %s · %s" % [ln["id"], String(ln["nombre"]), "operativa" if ln["estado"] == "operativa" else "en construcción"]
+		add_child(Tema.etiqueta(txt, 10, Tema.TEXTO_SUAVE if oscuro else Color("#6A7684"), false, 600))
 	_pintar()
 
 

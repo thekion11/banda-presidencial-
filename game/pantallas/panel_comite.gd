@@ -52,7 +52,9 @@ static func _propuesta(col: VBoxContainer, motor: MotorTurno, pid: String, al_ap
 	var b3 := Tema.boton("3D", Tema.OCEANO, Tema.TEXTO, 12, 44)
 	b2.custom_minimum_size = Vector2(48, 44)
 	b3.custom_minimum_size = Vector2(48, 44)
+	UrbanoBase.propias = motor.estado.lineas_jugador
 	var leyenda := LeyendaMetro.new()
+	leyenda.oscuro = true
 	leyenda.cambiado.connect(mapa.queue_redraw)
 	mapa.cambio_linea.connect(leyenda.refrescar)
 	var marcar := func(en_3d: bool) -> void:

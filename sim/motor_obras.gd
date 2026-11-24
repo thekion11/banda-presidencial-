@@ -57,6 +57,10 @@ func avanzar(estado: EstadoSimulacion, dias: int, aplicar_efecto: Callable, marc
 				aplicar_efecto.call(ef, 1.0, String(obra["region"]))
 			if String(obra["carta_id"]) != "":
 				marcar_cumplida.call(String(obra["carta_id"]))
+			for ln in estado.lineas_jugador:  # la línea de Metro del jugador pasa a operativa al terminar su obra
+				if String(obra.get("propuesta", "")) != "" and ln["prop"] == obra["propuesta"] and ln["estado"] == "en_construccion":
+					ln["estado"] = "operativa"
+					ln["dia_apertura"] = estado.dia_actual
 			estado.registrar_accion("obra_terminada", {"obra": obra["id"], "nombre": obra["nombre"], "retrasos": obra["retrasos"]})
 		else:
 			restantes.append(obra)

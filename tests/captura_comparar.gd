@@ -103,6 +103,13 @@ func _correr() -> void:
 	for h in dia._capa.get_children():
 		if h is ColorRect:
 			h.queue_free()
+	m.estado.pa_actual = 8  # líneas del jugador: una en construcción (P1) y otra ya operativa (P2)
+	for pid in ["prop_metro_suroriente", "prop_metro_norte"]:
+		if not m.estado.propuestas_abiertas.has(pid):
+			m.estado.propuestas_abiertas.append(pid)
+	m.aprobar_propuesta("prop_metro_suroriente", "A", "")
+	m.aprobar_propuesta("prop_metro_norte", "A", "")
+	m.estado.lineas_jugador[1]["estado"] = "operativa"
 	dia._abrir_urbano()
 	await _guardar("cmp_urbano", 1.3)
 	var um: UrbanoMapa = _buscar_mapa(dia._capa)

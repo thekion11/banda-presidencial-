@@ -42,6 +42,7 @@ var descarte: Array[String] = []
 var mano: Array[Dictionary] = []
 var obras_en_curso: Array[Dictionary] = []
 var obras_terminadas: Array[Dictionary] = []
+var lineas_jugador: Array[Dictionary] = []  # líneas de Metro creadas por el jugador (se reconstruyen al reproducir el guardado)
 var proyectos_ley: Array[Dictionary] = []
 var propuestas_abiertas: Array[String] = []
 var sectra: Dictionary = {}  # proyectos del Plan Maestro de SECTRA: id -> {etapa, hasta}
@@ -91,6 +92,7 @@ func configurar(p_semilla: int, p_dias_turno: int = 7, p_leyes: Dictionary = {})
 	mano.clear()
 	obras_en_curso.clear()
 	obras_terminadas.clear()
+	lineas_jugador.clear()
 	proyectos_ley.clear()
 	propuestas_abiertas.clear()
 	sectra.clear()
@@ -174,6 +176,7 @@ func exportar_resumen() -> Dictionary:
 		"mazo": mazo.size(),
 		"obras_en_curso": obras_en_curso.duplicate(true),
 		"obras_terminadas": obras_terminadas.size(),
+		"lineas_jugador": lineas_jugador.duplicate(true),
 		"proyectos_ley": proyectos_ley.duplicate(true),
 		"cartas_ejecutadas": cartas_ejecutadas.keys(),
 		"sectra": sectra.duplicate(true),
