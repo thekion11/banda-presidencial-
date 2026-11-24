@@ -12,7 +12,7 @@ Este archivo lo mantiene Claude. Lo que depende del usuario queda en «Necesito 
 | U5 | Confirmar con Metro S.A. (metro.cl bloquea consultas automáticas): colores oficiales de L7, L8 y L9 y nombres definitivos de sus estaciones | Hoy salen de OSM y Wikipedia/Wikidata, sin confirmar | Pendiente |
 | U6 | Licencias de uso comercial del arte: Gemini, Canva, Figma, Copernicus/OSM (atribuciones) | No se publica arte sin licencia confirmada | Pendiente |
 | U7 | Generar en Gemini las 13 categorías y la portada vertical cuando renueve el cupo (prompts en `docs/ARTE_PROMPTS.md`) | Estilo mezclado entre el arte antiguo y el nuevo | Pendiente (cupo) |
-| U8 | Poner `main` como rama por defecto en GitHub (Settings → Branches) y decidir si se protege | Desde aquí no puedo cambiar ajustes del repositorio | Pendiente |
+| U8 | `main` ya existe (creada el 24-nov-2026 con todo el trabajo); falta ponerla como rama por defecto en GitHub (Settings → Branches) y decidir si se protege | Desde aquí no puedo cambiar ajustes del repositorio | Pendiente |
 | U9 | Elegir modelo de monetización (premium barato, anuncios recompensados, packs de escenarios) | Condiciona qué datos se recolectan (Ley 21.719) y la ficha de Play | Pendiente |
 | U10 | Google Play, prueba cerrada con 12+ testers y keystore de release | En pausa por instrucción del usuario | Pausado |
 
