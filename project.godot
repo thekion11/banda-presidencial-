@@ -6,6 +6,10 @@ config/name="Presidente de Chile"
 config/features=PackedStringArray("4.3", "Mobile")
 run/main_scene="res://game/main.tscn"
 config/icon="res://icon.svg"
+boot_splash/bg_color=Color(0.043, 0.133, 0.208, 1)
+boot_splash/image="res://game/arte/marca/splash.png"
+boot_splash/fullsize=true
+boot_splash/use_filter=true
 
 [autoload]
 
