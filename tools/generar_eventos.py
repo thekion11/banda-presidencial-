@@ -15,6 +15,13 @@ FUENTE = {"legislativo": "fuentes.json#senado_tramitacion", "institucional": "fu
 EFECTOS = {"legislativo": [{"ind": "capital", "delta": 1}], "institucional": [{"ind": "cohesion", "delta": 1}]}
 
 
+def corto(texto: str, maximo: int) -> str:
+    """Corta en límite de palabra y añade puntos suspensivos (los textos legales largos se repiten en pantalla completa)."""
+    if len(texto) <= maximo:
+        return texto
+    return texto[:maximo].rsplit(" ", 1)[0].rstrip(",;:") + "…"
+
+
 def main() -> None:
     reales = json.load(open(ROOT / "data" / "eventos_reales.json", encoding="utf-8"))["eventos"]
     res = []
@@ -29,11 +36,11 @@ def main() -> None:
         else:
             continue
         texto = " ".join(e["descripcion"].split())
-        titulo = texto.split(":")[0][:80] if texto.startswith("Se publica la Ley") else texto[:80]
+        titulo = texto.split(":")[0] if texto.startswith("Se publica la Ley") else corto(texto, 60)
         res.append({"id": "evt_" + e["id"], "tipo": "programado", "dia_objetivo": dia, "hora_etiqueta": "09:00", "peso_sorteo": 1.0,
-                    "titulo": titulo, "descripcion": texto[:240], "votacion": None, "efectos_base": EFECTOS[e["categoria"]],
+                    "titulo": titulo, "descripcion": corto(texto, 120), "votacion": None, "efectos_base": EFECTOS[e["categoria"]],
                     "etapa": etapa, "fuente": FUENTE[e["categoria"]],
-                    "meta": {"fecha_real": e["fecha"], "fuentes": e["fuentes"], "categoria": e["categoria"], "cifras_ilustrativas": True}})
+                    "meta": {"fecha_real": e["fecha"], "fuentes": e["fuentes"], "categoria": e["categoria"], "texto_completo": texto[:240], "cifras_ilustrativas": True}})
     json.dump(res, open(ROOT / "data" / "juego_eventos_reales.json", "w", encoding="utf-8"), ensure_ascii=False, indent=1)
     print(len(res), "eventos reales jugables;", sum(1 for r in res if r["etapa"] == "campana"), "en campaña")
 
