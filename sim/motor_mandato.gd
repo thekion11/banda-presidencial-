@@ -55,6 +55,30 @@ func finalizar(motivo: String) -> void:
 
 
 
+func epilogo() -> Dictionary:
+	## Final variado (solo texto, no toca el estado): primer epílogo de data/leyes.json «finales» cuyas condiciones se cumplen.
+	var e := m.estado
+	var total := e.promesas_campana.size()
+	var legado := float(total - e.promesas_pendientes().size()) / float(total) if total > 0 else 1.0
+	for f in m.catalogo_leyes["finales"]["lista"]:
+		if String(f["motivo"]) != e.etapa:
+			continue
+		if f.has("aprobacion_min") and e.ind("aprobacion") < float(f["aprobacion_min"]):
+			continue
+		if f.has("aprobacion_max") and e.ind("aprobacion") > float(f["aprobacion_max"]):
+			continue
+		if f.has("obras_min") and e.obras_terminadas.size() < int(f["obras_min"]):
+			continue
+		if f.has("legado_min") and legado < float(f["legado_min"]):
+			continue
+		if f.has("fiscal_min") and e.ind("fiscal") < float(f["fiscal_min"]):
+			continue
+		if f.has("fiscal_max") and e.ind("fiscal") > float(f["fiscal_max"]):
+			continue
+		return f
+	return {"id": "", "titulo": "Fin de partida", "texto": ""}
+
+
 func nivel() -> Dictionary:
 	## Preset de dificultad de la partida (PR-01): fácil, normal o difícil, según estado.partido["dificultad"]; sin dato usa el defecto.
 	var d: Dictionary = m.catalogo_leyes["dificultad"]

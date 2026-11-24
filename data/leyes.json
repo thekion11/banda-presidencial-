@@ -226,6 +226,20 @@
       "existente": {"nombre": "Entrar a un partido", "descripcion": "Hereda su ideología y su bancada; basta confirmar 3 posturas.", "aprobacion": 0.0, "cohesion": 5.0, "escanos_mult": 2.0, "escanos_min": 6, "peso_postura": 0.5, "preguntas": 3}
     }
   },
+  "finales": {
+    "nota": "Epílogos del mandato. Se evalúan en orden y gana el primero que cumpla todas sus condiciones (motivo, aprobacion_min/max, obras_min, legado_min = proporción de promesas cumplidas, fiscal_min/max). Solo texto: no cambia el estado ni el puntaje.",
+    "lista": [
+      {"id": "derrota", "motivo": "derrota_electoral", "titulo": "La Moneda quedó lejos", "texto": "Tu campaña no convenció a suficientes votantes. La historia te recordará como quien casi llegó."},
+      {"id": "caida", "motivo": "crisis", "titulo": "Un gobierno que no resistió", "texto": "La crisis política superó a tu administración. Tus reformas quedaron a medias y tu sucesor deberá retomarlas."},
+      {"id": "estadista", "motivo": "fin_mandato", "aprobacion_min": 60.0, "legado_min": 0.75, "obras_min": 3, "titulo": "El mandato del estadista", "texto": "Cumpliste tus promesas, dejaste obras visibles y terminaste con aprobación alta. Te recuerdan como un presidente que gobernó."},
+      {"id": "popular", "motivo": "fin_mandato", "aprobacion_min": 60.0, "titulo": "Un presidente querido", "texto": "Terminaste con el cariño de la gente, aunque no todas tus promesas llegaron a puerto."},
+      {"id": "constructor", "motivo": "fin_mandato", "obras_min": 5, "titulo": "El presidente constructor", "texto": "Tu legado se ve en el paisaje: puentes, hospitales y líneas de Metro llevan tu sello."},
+      {"id": "austero", "motivo": "fin_mandato", "fiscal_min": 75.0, "titulo": "El presidente austero", "texto": "Entregaste las cuentas más ordenadas en años. Los mercados aplauden; la calle, a veces, no tanto."},
+      {"id": "endeudado", "motivo": "fin_mandato", "fiscal_max": 40.0, "titulo": "Gastaste más de lo que había", "texto": "Tus programas fueron generosos, pero dejaste una caja fiscal frágil a quien te suceda."},
+      {"id": "impopular", "motivo": "fin_mandato", "aprobacion_max": 35.0, "titulo": "Un cierre difícil", "texto": "Llegaste al final con poco respaldo. Resististe el mandato completo, y eso ya es algo."},
+      {"id": "transicion", "motivo": "fin_mandato", "titulo": "Un mandato de transición", "texto": "Gobernaste cuatro años sin grandes sobresaltos. Ni héroe ni villano: la historia lo juzgará."}
+    ]
+  },
   "dificultad": {
     "defecto": "normal",
     "nota": "PR-01: presets de dificultad. umbral_delta se suma al umbral de victoria de hemiciclo; aprobacion_inicial se suma a la aprobación con la que parte el partido; desgaste multiplica el desgaste semanal de aprobación.",

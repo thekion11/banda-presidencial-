@@ -68,7 +68,10 @@ func _ready() -> void:
 	add_child(col)
 	var titulos := {"fin_mandato": "Fin del mandato", "crisis": "Caída del gobierno", "derrota_electoral": "Derrota electoral"}
 	col.add_child(Tema.etiqueta("FIN DE PARTIDA", 10, Tema.ORO, true))
+	var epi := motor.mandato.epilogo()
 	col.add_child(Tema.etiqueta(String(titulos.get(est.etapa, "Fin")), 30, Tema.TEXTO, true))
+	if String(epi["id"]) != "":
+		col.add_child(Tema.etiqueta(String(epi["titulo"]), 16, Tema.ORO, true))
 	var umbral := float(motor.catalogo_leyes["hemiciclo"]["umbral_victoria_presidencial"]) + float(motor.mandato.nivel()["umbral_delta"])
 	var detalle := ""
 	match est.etapa:
@@ -79,6 +82,10 @@ func _ready() -> void:
 		_:
 			detalle = "Completaste los 4 años con %.1f %% de aprobación." % float(r.get("aprobacion", 0.0))
 	col.add_child(Tema.etiqueta(detalle, 13, Tema.TEXTO_SUAVE))
+	if String(epi["texto"]) != "":
+		var et := Tema.etiqueta(String(epi["texto"]), 12, Tema.TEXTO)
+		et.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+		col.add_child(et)
 	var lista := FilasUI.col(8)
 	var total_prom := est.promesas_campana.size()
 	var leyes := leyes_aprobadas()
