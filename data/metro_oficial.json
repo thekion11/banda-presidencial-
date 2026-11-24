@@ -1,7 +1,7 @@
 {
  "fuente": "Wikipedia en español, artículos de cada línea del Metro de Santiago (https://es.wikipedia.org/wiki/Línea_1_del_Metro_de_Santiago y análogos L2, L3, L4, L4A, L5, L6)",
  "corte": "2026-11-24",
- "verificacion": "NO oficial: metro.cl respondió 403 y el anexo de estaciones 404; cotejar con metro.cl antes de publicar. Fechas de edición de L1 a L3, L5 y L6 no visibles.",
+ "verificacion": "Lista de Wikipedia en español cotejada contra el GTFS oficial de la Red Metropolitana (DTPM, V171.20261114): coincide en nombres y orden en las 7 líneas (solo difiere la abreviatura «Pdte.» de L6). metro.cl respondió 403.",
  "lineas": {
   "L1": {
    "color": "#cc0000",

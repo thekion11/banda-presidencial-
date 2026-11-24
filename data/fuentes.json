@@ -1176,5 +1176,15 @@
     "vigencia_dias": 180,
     "es_ilustrativa": false,
     "verificado_contra_texto": false
+  },
+  {
+    "id": "gtfs_red_metro",
+    "institucion": "Directorio de Transporte Público Metropolitano (DTPM), Red Metropolitana de Movilidad",
+    "titulo": "GTFS vigente V171.20261114: estaciones y rutas del Metro de Santiago",
+    "url": "https://www.dtpm.cl/descargas/gtfs/GTFS_20261114_v2.zip",
+    "fecha_corte": "2026-11-24",
+    "vigencia_dias": 45,
+    "es_ilustrativa": false,
+    "verificado_contra_texto": true
   }
 ]

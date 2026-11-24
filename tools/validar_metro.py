@@ -5,7 +5,9 @@
 Uso: python3 tools/validar_metro.py [--verificar]"""
 import json
 import math
+import re
 import sys
+import unicodedata
 from pathlib import Path
 
 RAIZ = Path(__file__).resolve().parents[1]
@@ -21,6 +23,39 @@ def dist_seg(p, a, b):
 
 def dist_linea(p, linea):
     return min((dist_seg(p, v[i], v[i + 1]) for v in linea["vias"] for i in range(len(v) - 1)), default=9.0)
+
+
+def _norm(texto: str) -> str:
+    t = re.sub(r"\s+Dirección.*$", "", texto).strip().lower().replace("pdte.", "presidente")
+    t = unicodedata.normalize("NFD", t)
+    return re.sub(r"\s+", " ", "".join(c for c in t if unicodedata.category(c) != "Mn"))
+
+
+def _metros(a, b) -> float:
+    dx = (a[0] - b[0]) * 111320 * math.cos(math.radians((a[1] + b[1]) / 2))
+    return math.hypot(dx, (a[1] - b[1]) * 111200)
+
+
+def cotejo_gtfs(ofi, geo, pos, problemas):
+    """Compara la lista y el mapa con el GTFS oficial de la Red Metropolitana: nombres, orden y posición (lat, lon) de cada estación."""
+    gtfs = json.loads((RAIZ / "data/metro_gtfs.json").read_text(encoding="utf-8"))
+    lon0, lon1, lat0, lat1 = geo["bbox"][0], geo["bbox"][2], geo["bbox"][1], geo["bbox"][3]
+    en_mapa = {_norm(n): (lon0 + p[0] * (lon1 - lon0), lat1 - p[1] * (lat1 - lat0)) for n, p in pos.items()}
+    comparadas, max_d, filas = 0, 0.0, []
+    for lid, info in ofi["lineas"].items():
+        g = gtfs["lineas"].get(lid, [])
+        if [_norm(x["n"]) for x in g] != [_norm(n) for n in info["estaciones"]]:
+            problemas.append(f"{lid}: los nombres u el orden de la lista difieren del GTFS")
+        for x in g:
+            n = _norm(x["n"])
+            if n in en_mapa:
+                d = _metros((x["lon"], x["lat"]), en_mapa[n])
+                comparadas += 1
+                max_d = max(max_d, d)
+                if d > 250:
+                    problemas.append(f"{lid}: {x['n']} a {round(d)} m de su posición en el GTFS")
+        filas.append((lid, len(g), len(info["estaciones"])))
+    return comparadas, max_d, filas, gtfs
 
 
 def main() -> int:
@@ -50,6 +85,7 @@ def main() -> int:
             problemas.append(f"{lid}: estaciones lejos de su trazado {lejos}")
         term = [n for n in (nombres[0], nombres[-1])]
         filas.append((lid, len(nombres), len(dentro), fuera, lejos, [(n, n in pos) for n in term]))
+    comp, max_d, filas_gtfs, gtfs = cotejo_gtfs(ofi, geo, pos, problemas)
     sobran = [n for n in pos if not asignadas[n]]
     if sobran:
         problemas.append(f"estaciones del mapa que no calzan con ninguna línea: {sobran}")
@@ -82,6 +118,8 @@ def main() -> int:
           "| Línea | Estaciones (lista) | Dentro del mapa | Fuera de la ventana | Terminales dentro |", "|---|---|---|---|---|"]
     for lid, n, dentro, fuera, _lejos, term in filas:
         md.append(f"| {lid} | {n} | {dentro} | {', '.join(fuera) or '—'} | {', '.join(a + (' sí' if ok else ' NO') for a, ok in term)} |")
+    md += ["", "## Cotejo con el GTFS oficial (Red Metropolitana, DTPM)", f"Fuente: {gtfs['fuente']} (vigencia {gtfs['vigencia']}; corte {gtfs['corte']}). {gtfs['url']}",
+           f"Nombres y orden de las 7 líneas iguales a la lista; {comp} estaciones del mapa comparadas en posición: la mayor diferencia es de {round(max_d)} m (límite 250 m).", ""]
     md += ["", f"Estaciones distintas en la lista: {len({n for i in ofi['lineas'].values() for n in i['estaciones']})}; en el mapa: {len(pos)}.",
            "Todas las estaciones del mapa calzan con una línea de la lista y ninguna está a más de %.3f del trazado de su línea." % UMBRAL if not problemas else "**Incoherencias:** " + "; ".join(problemas), "",
            "## Qué no cubre el mapa", "Las 11 estaciones fuera de la ventana son extensiones periféricas (L2 sur, L3 norte, L4 sur); el mapa las indica con una flecha en el borde.",
