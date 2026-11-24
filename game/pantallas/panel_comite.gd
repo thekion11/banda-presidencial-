@@ -52,18 +52,35 @@ static func _propuesta(col: VBoxContainer, motor: MotorTurno, pid: String, al_ap
 	var b3 := Tema.boton("3D", Tema.OCEANO, Tema.TEXTO, 12, 44)
 	b2.custom_minimum_size = Vector2(48, 44)
 	b3.custom_minimum_size = Vector2(48, 44)
+	var leyenda := LeyendaMetro.new()
+	leyenda.cambiado.connect(mapa.queue_redraw)
+	mapa.cambio_linea.connect(leyenda.refrescar)
+	var marcar := func(en_3d: bool) -> void:
+		## El modo activo va relleno en crema con borde dorado; el inactivo, oscuro y sin borde.
+		for par in [[b2, not en_3d], [b3, en_3d]]:
+			var b: Button = par[0]
+			var activo: bool = par[1]
+			for e in ["normal", "hover", "pressed", "focus"]:
+				b.add_theme_stylebox_override(e, Tema.caja(Tema.CREMA if activo else Tema.OCEANO, 14, Tema.ORO, 3) if activo else Tema.caja(Tema.OCEANO, 14, Color("#5D7A94"), 1))
+			for e in ["font_color", "font_hover_color", "font_pressed_color", "font_focus_color"]:
+				b.add_theme_color_override(e, Tema.TINTA if activo else Tema.TEXTO)
+		leyenda.visible = not en_3d
 	b2.pressed.connect(func() -> void:
 		m3d.visible = false
-		mapa.visible = true)
+		mapa.visible = true
+		marcar.call(false))
 	b3.pressed.connect(func() -> void:
 		if not mapa.editando:
 			m3d.poner_trazado(estado["v"]["trazado"], bool(estado["v"]["elevada"]))
 			m3d.visible = true
-			mapa.visible = false)
+			mapa.visible = false
+			marcar.call(true))
+	marcar.call(false)
 	tog.add_child(b2)
 	tog.add_child(b3)
 	pila.add_child(tog)
 	col.add_child(pila)
+	col.add_child(leyenda)
 	var detalle := VBoxContainer.new()
 	var edicion := VBoxContainer.new()
 	edicion.visible = false
@@ -128,20 +145,38 @@ static func _activar_edicion(mapa: ComiteMapa, edicion: VBoxContainer, detalle: 
 			var vm := motor.grafo.variante_modificada(base, custom["estaciones"], custom["ritmo"], custom["cobertura"])
 			vm["corrector_texto"] = " ".join(motor.grafo.advertencias(vm, prop))
 			_ficha(detalle, pid, vm, prop, motor, al_aprobar, custom, Callable())
-	for par in [["ritmo", "Ritmo de construcción: más lento y barato ↔ más rápido y caro"], ["cobertura", "Cobertura: menos población y conflicto ↔ más población y expropiaciones"]]:
-		edicion.add_child(Tema.etiqueta(String(par[1]), 11, Tema.TEXTO_SUAVE))
+	for par in [["ritmo", "Ritmo de construcción", "más lento y barato", "más rápido y caro"], ["cobertura", "Cobertura", "menos población y conflicto", "más población y expropiaciones"]]:
+		var cab := HBoxContainer.new()
+		var tit := Tema.etiqueta_corta(String(par[1]), 12, Tema.TEXTO, false, 700)
+		tit.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		var valor := Tema.etiqueta_corta("0 %", 12, Tema.ORO, true)
+		cab.add_child(tit)
+		cab.add_child(valor)
+		edicion.add_child(cab)
 		var sl := HSlider.new()
 		sl.min_value = 0.0
 		sl.max_value = 1.0
 		sl.step = 0.05
+		sl.tick_count = 5
+		sl.ticks_on_borders = true
 		sl.custom_minimum_size = Vector2(0, 44)
-		sl.add_theme_stylebox_override("slider", Tema.caja(Color("#274A66"), 4))
-		sl.add_theme_stylebox_override("grabber_area", Tema.caja(Tema.ORO, 4))
-		sl.add_theme_stylebox_override("grabber_area_highlight", Tema.caja(Tema.ORO.lightened(0.2), 4))
+		sl.add_theme_stylebox_override("slider", Tema.caja(Color("#274A66"), 6))
+		sl.add_theme_stylebox_override("grabber_area", Tema.caja(Tema.ORO, 6))
+		sl.add_theme_stylebox_override("grabber_area_highlight", Tema.caja(Tema.ORO.lightened(0.2), 6))
+		sl.add_theme_icon_override("grabber", Tema.perilla(15.0, Tema.CREMA, Tema.ORO))
+		sl.add_theme_icon_override("grabber_highlight", Tema.perilla(17.0, Color.WHITE, Tema.ORO))
+		sl.add_theme_icon_override("tick", Tema.perilla(2.5, Color("#5D7A94"), Color("#5D7A94")))
 		sl.value_changed.connect(func(v: float) -> void:
 			ctrl[par[0]] = v
+			valor.text = "%d %%" % roundi(v * 100.0)
 			actualizar.call())
 		edicion.add_child(sl)
+		var extremos := HBoxContainer.new()
+		var izq := Tema.etiqueta_corta(String(par[2]), 10, Tema.TEXTO_SUAVE)
+		izq.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		extremos.add_child(izq)
+		extremos.add_child(Tema.etiqueta_corta(String(par[3]), 10, Tema.TEXTO_SUAVE))
+		edicion.add_child(extremos)
 	mapa.estaciones_cambiadas.connect(func(_e: Array) -> void: actualizar.call())
 	mapa.iniciar_edicion(motor.grafo, ests)
 
@@ -181,7 +216,7 @@ static func _ficha(detalle: VBoxContainer, pid: String, v: Dictionary, prop: Dic
 		mod.pressed.connect(al_modificar)
 		fila.add_child(mod)
 	var ok := Barras.boton_jugar()
-	ok.text = "Aprobar · %d PA" % int(prop["costo_pa"])
+	ok.text = "Aprobar · %d mov" % int(prop["costo_pa"])
 	ok.add_theme_font_size_override("font_size", 14)
 	ok.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	ok.disabled = int(prop["costo_pa"]) > motor.estado.pa_actual

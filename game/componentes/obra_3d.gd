@@ -69,6 +69,8 @@ func _construir() -> void:
 	_pieza("pozo", Vector3(4.6, 0.05, 3.0), Vector2(0, -0.2), 0.0, Color("#B8A98A"), 1.6, 2.6)
 	_pieza("grua_mastil", Vector3(0.25, 4.4, 0.25), Vector2(3.1, -2.4), 0.0, Tema.ROJO, 1.7, 2.4)
 	_pieza("grua_brazo", Vector3(3.4, 0.18, 0.18), Vector2(1.5, -2.4), 4.3, Tema.ROJO, 1.9, 2.5)
+	_pieza("grua_contrapeso", Vector3(0.8, 0.5, 0.5), Vector2(3.6, -2.4), 3.9, Color("#8C99A6"), 1.9, 2.5)  # contrapeso: da lectura de grúa torre
+	_pieza("grua_cable", Vector3(0.05, 1.4, 0.05), Vector2(0.4, -2.4), 2.9, Color("#3A4652"), 2.0, 2.5)
 	for i in range(3):
 		for j in range(2):
 			_pieza("col_%d_%d" % [i, j], Vector3(0.34, 3.0, 0.34), Vector2(-1.8 + float(i) * 1.8, -1.1 + float(j) * 2.0), 0.0, Color("#C9BFA5"), 2.6, 3.6)

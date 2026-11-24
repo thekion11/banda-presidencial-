@@ -54,7 +54,8 @@ static func crear(motor: MotorTurno, urbano: Dictionary, al_volver: Callable, al
 	cab.add_child(atras)
 	col.add_child(cab)
 	var mapa := UrbanoMapa.new()
-	mapa.custom_minimum_size = Vector2(0, 300)
+	mapa.custom_minimum_size = Vector2(0, 250)
+	mapa.size_flags_vertical = Control.SIZE_EXPAND_FILL  # el mapa se agranda en vez de dejar un hueco bajo las obras
 	var hoja := VBoxContainer.new()
 	hoja.add_theme_constant_override("separation", 8)
 	var estado := {"filtro": 0}
@@ -72,12 +73,15 @@ static func crear(motor: MotorTurno, urbano: Dictionary, al_volver: Callable, al
 		botones.append(b)
 		chips.add_child(b)
 	col.add_child(chips)
+	var leyenda := LeyendaMetro.new()
+	leyenda.cambiado.connect(mapa.queue_redraw)
+	col.add_child(leyenda)
 	col.add_child(mapa)
 	var panel := PanelContainer.new()
 	var sb := Tema.caja(Color.WHITE, 22, Tema.BORDE_CLARO, 1)
 	sb.content_margin_bottom = 20
 	panel.add_theme_stylebox_override("panel", sb)
-	panel.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	panel.size_flags_vertical = Control.SIZE_SHRINK_END
 	panel.add_child(hoja)
 	col.add_child(panel)
 	mapa.cargar(urbano)
@@ -90,6 +94,7 @@ static func crear(motor: MotorTurno, urbano: Dictionary, al_volver: Callable, al
 			for e in ["font_color", "font_hover_color", "font_pressed_color", "font_focus_color"]:
 				botones[i].add_theme_color_override(e, Tema.TEXTO if sel else Tema.TINTA)
 		mapa.mostrar_metro = int(estado["filtro"]) == 0
+		leyenda.visible = mapa.mostrar_metro
 		mapa.propuesta = _trazado_propuesta(motor) if int(estado["filtro"]) == 0 else []
 		mapa.queue_redraw()
 		for h in hoja.get_children():
@@ -114,7 +119,7 @@ static func crear(motor: MotorTurno, urbano: Dictionary, al_volver: Callable, al
 		for o in lista.slice(0, 3):
 			var fila := Button.new()
 			fila.flat = true
-			fila.custom_minimum_size = Vector2(0, 52)
+			fila.custom_minimum_size = Vector2(0, 60)
 			for e in ["normal", "hover", "pressed", "focus"]:
 				fila.add_theme_stylebox_override(e, StyleBoxEmpty.new())
 			var h := HBoxContainer.new()
@@ -130,7 +135,10 @@ static func crear(motor: MotorTurno, urbano: Dictionary, al_volver: Callable, al
 			var v := VBoxContainer.new()
 			v.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 			v.mouse_filter = Control.MOUSE_FILTER_IGNORE
-			v.add_child(Tema.etiqueta_corta(String(o["nombre"]) if String(o["nombre"]).length() <= 30 else String(o["nombre"]).left(29) + "…", 13, Tema.TINTA, false, 700))
+			var nom := Tema.etiqueta(String(o["nombre"]), 13, Tema.TINTA, false, 700)
+			nom.max_lines_visible = 2
+			nom.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
+			v.add_child(nom)
 			var barra := ProgressBar.new()
 			barra.show_percentage = false
 			barra.custom_minimum_size = Vector2(0, 6)

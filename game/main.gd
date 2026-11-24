@@ -109,6 +109,9 @@ func mostrar_fin() -> void:
 	f.otra_vez.connect(func() -> void:
 		DirAccess.remove_absolute(ProjectSettings.globalize_path(RUTA_GUARDADO))
 		mostrar_menu())
+	f.reintentar.connect(func() -> void:
+		DirAccess.remove_absolute(ProjectSettings.globalize_path(RUTA_GUARDADO))
+		mostrar_partido())
 	_cambiar(f)
 
 

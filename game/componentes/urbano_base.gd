@@ -12,6 +12,7 @@ static var _elev: PackedByteArray = PackedByteArray()
 static var _datos: Dictionary = {}
 static var _cache_clave: String = ""
 static var _cache: Dictionary = {}
+static var ocultas: Dictionary = {}  # ids de líneas de Metro ocultas (se comparte entre los mapas de la partida)
 
 
 static func datos() -> Dictionary:
@@ -106,7 +107,7 @@ static func preparar(tam: Vector2, margen: Vector2) -> Dictionary:
 	if clave == _cache_clave:
 		return _cache
 	var d := datos()
-	var c: Dictionary = {"calles": [], "metro": [], "rio": PackedVector2Array(), "parques": [], "estaciones": PackedVector2Array()}
+	var c: Dictionary = {"calles": [], "metro": [], "rio": PackedVector2Array(), "parques": [], "estaciones": PackedVector2Array(), "est_lineas": []}
 	if d.is_empty():
 		return c
 	var por_clase: Array = [[], [], [], [], []]
@@ -116,7 +117,10 @@ static func preparar(tam: Vector2, margen: Vector2) -> Dictionary:
 		c["calles"].append(_segmentos(por_clase[cl], tam, margen))
 	c["rio"] = _segmentos(d["rio"], tam, margen)
 	for l in d["metro"]:
-		c["metro"].append({"color": Color(String(l["color"])), "seg": _segmentos(l["vias"], tam, margen)})
+		var cabos: Array = []
+		for cb in l.get("cabos", []):
+			cabos.append({"p": a_px(cb["p"], tam, margen), "d": Vector2(float(cb["d"][0]), float(cb["d"][1])), "sigue": bool(cb["sigue"])})
+		c["metro"].append({"id": String(l["id"]), "color": Color(String(l["color"])), "seg": _segmentos(l["vias"], tam, margen), "cabos": cabos})
 	for pk in d["parques"]:
 		var poly := PackedVector2Array()
 		for p in pk:
@@ -124,14 +128,16 @@ static func preparar(tam: Vector2, margen: Vector2) -> Dictionary:
 		var tri := Geometry2D.triangulate_polygon(poly)
 		if not tri.is_empty():
 			c["parques"].append({"poly": poly, "tri": tri})
+	c["est_lineas"] = []
 	for e in d["estaciones"]:
 		c["estaciones"].append(a_px(e["p"], tam, margen))
+		c["est_lineas"].append(e.get("l", []))
 	_cache_clave = clave
 	_cache = c
 	return c
 
 
-static func dibujar(ci: CanvasItem, tam: Vector2, margen: Vector2 = Vector2(8, 8), con_metro: bool = true, escala_linea: float = 1.0, con_lugares: bool = false) -> void:
+static func dibujar(ci: CanvasItem, tam: Vector2, margen: Vector2 = Vector2(8, 8), con_metro: bool = true, escala_linea: float = 1.0, con_lugares: bool = false, reservados: Array[Rect2] = []) -> void:
 	var c := preparar(tam, margen)
 	if c["calles"].is_empty():
 		return
@@ -149,21 +155,18 @@ static func dibujar(ci: CanvasItem, tam: Vector2, margen: Vector2 = Vector2(8, 8
 		if c["calles"][cl].size() > 1:
 			ci.draw_multiline(c["calles"][cl], COLORES_CALLE[cl], ANCHOS_CALLE[cl] * escala_linea, true)
 	if con_metro:
-		for l in c["metro"]:
-			if l["seg"].size() > 1:
-				ci.draw_multiline(l["seg"], l["color"], 3.2 * escala_linea, true)
-		for p in c["estaciones"]:
-			ci.draw_circle(p, 3.4 * escala_linea, Tema.TINTA)
-			ci.draw_circle(p, 2.2 * escala_linea, Color.WHITE)
+		_dibujar_metro(ci, c, escala_linea)
 	if con_lugares:
 		var f := Tema.fuente_texto(700)
-		var ocupados: Array[Rect2] = []
+		var ocupados: Array[Rect2] = reservados.duplicate()
 		for l in datos().get("lugares", []):
 			var p := a_px(l["p"], tam, margen)
 			ci.draw_circle(p, 3.0, Tema.ROJO)
 			var txt := String(l["n"]).replace("Parque Metropolitano de Santiago", "Parque Metropolitano")
 			var ancho_txt := f.get_string_size(txt, HORIZONTAL_ALIGNMENT_LEFT, -1, 10).x
-			var x := minf(p.x + 5.0, tam.x - ancho_txt - 4.0)
+			var x := p.x + 5.0
+			if x + ancho_txt > tam.x - 4.0:
+				x = maxf(4.0, p.x - 5.0 - ancho_txt)  # no cabe a la derecha: la etiqueta pasa a la izquierda del punto
 			var caja := Rect2(x - 2.0, p.y - 7.0, ancho_txt + 4.0, 13.0)
 			var choca := false
 			for r in ocupados:
@@ -175,3 +178,83 @@ static func dibujar(ci: CanvasItem, tam: Vector2, margen: Vector2 = Vector2(8, 8
 			ocupados.append(caja)
 			ci.draw_string_outline(f, Vector2(x, p.y + 3.0), txt, HORIZONTAL_ALIGNMENT_LEFT, -1, 10, 4, Color(0.94, 0.92, 0.87, 0.95))
 			ci.draw_string(f, Vector2(x, p.y + 3.0), txt, HORIZONTAL_ALIGNMENT_LEFT, -1, 10, Tema.TINTA)
+
+
+static func nombre_corto(id: String) -> String:
+	return id.trim_prefix("L")
+
+
+static func alternar_linea(id: String) -> void:
+	if ocultas.has(id):
+		ocultas.erase(id)
+	else:
+		ocultas[id] = true
+
+
+static func ids_lineas() -> Array:
+	var res: Array = []
+	for l in datos().get("metro", []):
+		res.append({"id": String(l["id"]), "color": Color(String(l["color"]))})
+	return res
+
+
+static func _dibujar_metro(ci: CanvasItem, c: Dictionary, esc: float) -> void:
+	for l in c["metro"]:
+		if ocultas.has(l["id"]) or l["seg"].size() < 2:
+			continue
+		ci.draw_multiline(l["seg"], Color(1, 1, 1, 0.85), 6.0 * esc, true)
+	for l in c["metro"]:
+		if ocultas.has(l["id"]) or l["seg"].size() < 2:
+			continue
+		ci.draw_multiline(l["seg"], l["color"], 3.6 * esc, true)
+	for i in range(c["estaciones"].size()):
+		var lineas: Array = c["est_lineas"][i]
+		var visibles := 0
+		for lid in lineas:
+			if not ocultas.has(lid):
+				visibles += 1
+		if not lineas.is_empty() and visibles == 0:
+			continue
+		var p: Vector2 = c["estaciones"][i]
+		if lineas.size() > 1:  # combinación: círculo más grande con anillo oscuro
+			ci.draw_circle(p, 5.4 * esc, Tema.TINTA)
+			ci.draw_circle(p, 3.8 * esc, Color.WHITE)
+		else:
+			ci.draw_circle(p, 3.4 * esc, Tema.TINTA)
+			ci.draw_circle(p, 2.2 * esc, Color.WHITE)
+	var f := Tema.fuente_titulo()
+	for l in c["metro"]:
+		if ocultas.has(l["id"]):
+			continue
+		var tinta: Color = Tema.TINTA if l["id"] == "L2" else Color.WHITE
+		for cb in l["cabos"]:
+			var p: Vector2 = cb["p"]
+			if cb["sigue"]:  # la línea continúa fuera de la ventana del mapa: flecha en el borde
+				var d: Vector2 = cb["d"]
+				var n := Vector2(-d.y, d.x)
+				var pt := p + d * 16.0
+				ci.draw_colored_polygon(PackedVector2Array([pt + d * 8.0, pt + n * 6.0, pt - n * 6.0]), Color(1, 1, 1, 0.9))
+				ci.draw_colored_polygon(PackedVector2Array([pt + d * 6.0, pt + n * 4.2, pt - n * 4.2]), l["color"])
+			else:  # terminal dentro del mapa: ficha con el número de la línea
+				ci.draw_circle(p, 9.0 * esc, Color.WHITE)
+				ci.draw_circle(p, 7.6 * esc, l["color"])
+				var t := nombre_corto(l["id"])
+				ci.draw_string(f, p + Vector2(-8, 4.2), t, HORIZONTAL_ALIGNMENT_CENTER, 16.0, 10, tinta)
+
+
+static func linea_en(pos: Vector2, tam: Vector2, margen: Vector2, umbral: float = 14.0) -> String:
+	## Id de la línea visible de Metro más cercana al punto tocado (dentro del umbral en px) o "" si no hay.
+	var c := preparar(tam, margen)
+	var mejor := umbral
+	var res := ""
+	for l in c.get("metro", []):
+		if ocultas.has(l["id"]):
+			continue
+		var seg: PackedVector2Array = l["seg"]
+		for i in range(0, seg.size() - 1, 2):
+			var q := Geometry2D.get_closest_point_to_segment(pos, seg[i], seg[i + 1])
+			var d := q.distance_to(pos)
+			if d < mejor:
+				mejor = d
+				res = l["id"]
+	return res

@@ -376,7 +376,7 @@ func _siguiente_evento() -> void:
 
 
 func _poner_nav(nacion: bool) -> void:
-	var nuevo := Barras.nav(_abrir_panel, nacion, "Día %d" % (motor.estado.dia_actual + motor.estado.dias_por_turno), func() -> void:
+	var nuevo := Barras.nav(_abrir_panel, nacion, "al día %d" % (motor.estado.dia_actual + motor.estado.dias_por_turno), func() -> void:
 		_abrir_panel("mapa")
 		_terminar_turno())
 	_raiz.add_child(nuevo)

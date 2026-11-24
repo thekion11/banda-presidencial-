@@ -161,10 +161,15 @@ static func _boton_central(texto: String, al_avanzar: Callable) -> Control:
 	var vc := VBoxContainer.new()
 	vc.add_theme_constant_override("separation", -2)
 	vc.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	var ip := Icono.crear("play", Tema.TEXTO, 20.0)
+	var ip := Icono.crear("play", Tema.TEXTO, 16.0)
 	ip.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
 	vc.add_child(ip)
-	vc.add_child(Tema.etiqueta_corta(texto, 10, Tema.TEXTO, true))
+	var l1 := Tema.etiqueta_corta("Avanzar", 10, Tema.TEXTO, true)
+	l1.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	vc.add_child(l1)
+	var l2 := Tema.etiqueta_corta(texto, 10, Tema.TEXTO, false, 600)  # destino: "al día 43" (la cabecera muestra el día actual)
+	l2.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	vc.add_child(l2)
 	cc.add_child(vc)
 	b.add_child(cc)
 	b.pressed.connect(al_avanzar)

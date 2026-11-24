@@ -8,7 +8,7 @@ const M_POR_U := 100.0  # 1 unidad 3D = 100 m
 const REAL_W_M := 26003.0
 const REAL_H_M := 21128.0
 const EXAG_RELIEVE := 1.8
-const MAX_EDIFICIOS := 12000
+const MAX_EDIFICIOS := 4500  # menos edificios: el trazado debe destacar sobre el relieve
 
 var semilla: int = 7
 var _vp: SubViewport
@@ -20,7 +20,7 @@ var _ventana: Rect2 = Rect2()
 var _centro: Vector2 = Vector2(0.5, 0.5)
 var _base_m: float = 500.0
 var _angulo: float = 0.7
-var _elevacion: float = 0.95
+var _elevacion: float = 1.05
 var _distancia: float = 60.0
 var _lod: float = 1.0
 var _arrastrando: bool = false
@@ -42,9 +42,9 @@ func _init() -> void:
 	_vp.add_child(_cam)
 	var env := Environment.new()
 	env.background_mode = Environment.BG_COLOR
-	env.background_color = Color("#A9D2E8")
+	env.background_color = Color("#0B2236")  # océano de la paleta del juego (antes celeste, fuera de paleta)
 	env.ambient_light_source = Environment.AMBIENT_SOURCE_COLOR
-	env.ambient_light_color = Color("#BFD3E6")
+	env.ambient_light_color = Color("#C9D6E4")
 	env.ambient_light_energy = 0.75
 	var we := WorldEnvironment.new()
 	we.environment = env
@@ -175,14 +175,14 @@ func _construir(ventana: Rect2) -> void:
 		for i in range(pl.size() - 1):
 			if _en_ventana(pl[i]) or _en_ventana(pl[i + 1]):
 				rio.append(_tramo(_pos(pl[i], 0.05), _pos(pl[i + 1], 0.05), 0.55, 0.06))
-	_escena.add_child(_multi(rio, _material(Color("#8CC4E8"))))
+	_escena.add_child(_multi(rio, _material(Color("#7FB5D6"))))
 	var metro: Array[Transform3D] = []
 	var col_m: Array[Color] = []
 	for l in d.get("metro", []):
 		for via in l["vias"]:
 			for i in range(via.size() - 1):
 				if _en_ventana(via[i]) or _en_ventana(via[i + 1]):
-					metro.append(_tramo(_pos(via[i], 0.09), _pos(via[i + 1], 0.09), 0.2, 0.05))
+					metro.append(_tramo(_pos(via[i], 0.09), _pos(via[i + 1], 0.09), 0.32 * _lod, 0.05))
 					col_m.append(Color(String(l["color"])))
 	_escena.add_child(_multi(metro, _material(Color.WHITE, 0.0, true), col_m))
 	var blds: Array[Transform3D] = []
@@ -196,9 +196,9 @@ func _construir(ventana: Rect2) -> void:
 		var dd := maxf(float(e["d"]), 6.0) / M_POR_U * 1.6 * lod
 		var base := Basis(Vector3.UP, deg_to_rad(float(e["ang"]))).scaled(Vector3(w, alto, dd))
 		blds.append(Transform3D(base, _pos([e["x"], e["y"]], alto * 0.5)))
-		col_b.append(Color("#F2EEE4") if h % 3 != 0 else Color("#E8D9A8"))
+		col_b.append(Color("#CFC7B3") if h % 3 != 0 else Color("#C4B999"))  # tonos apagados para no competir con el trazado
 		if pisos >= 10:
-			col_b[col_b.size() - 1] = Color("#C9D6E4")
+			col_b[col_b.size() - 1] = Color("#A9BBCE")
 	_escena.add_child(_multi(blds, _material(Color.WHITE, 0.0, true), col_b))
 	_distancia = maxf(ventana.size.x * REAL_W_M, ventana.size.y * REAL_H_M) / M_POR_U * 1.05
 	_actualizar_camara()
@@ -214,17 +214,20 @@ func poner_trazado(trazado: Array, elevada: bool) -> void:
 	for q in trazado:
 		mn = mn.min(Vector2(q[0], q[1]))
 		mx = mx.max(Vector2(q[0], q[1]))
-	var ven := Rect2(mn - Vector2(0.022, 0.03), (mx - mn) + Vector2(0.044, 0.06))
+	# Ventana cuadrada (en metros) centrada en el trazado: un trazado largo y delgado ya no deja un terreno en cinta.
+	var lado_m := maxf((mx.x - mn.x) * REAL_W_M, (mx.y - mn.y) * REAL_H_M) * 1.25 + 3000.0
+	var tam := Vector2(lado_m / REAL_W_M, lado_m / REAL_H_M)
+	var ven := Rect2((mn + mx) * 0.5 - tam * 0.5, tam).intersection(Rect2(0, 0, 1, 1))
 	if _escena == null or not _ventana.encloses(Rect2(mn, mx - mn)):
 		_construir(ven)
 	var extra := 0.9 if elevada else 0.35
 	var tramos: Array[Transform3D] = []
 	for k in range(trazado.size() - 1):
-		tramos.append(_tramo(_pos(trazado[k], extra), _pos(trazado[k + 1], extra), 0.55 * _lod, 0.3 * _lod))
+		tramos.append(_tramo(_pos(trazado[k], extra), _pos(trazado[k + 1], extra), 1.0 * _lod, 0.4 * _lod))
 	_trazado_nodo.add_child(_multi(tramos, _material(Tema.ROJO, 0.4)))
 	var estaciones: Array[Transform3D] = []
 	for k in range(0, trazado.size(), maxi(1, trazado.size() / 6)):
-		estaciones.append(Transform3D(Basis().scaled(Vector3(1.1, 0.5, 1.1) * _lod), _pos(trazado[k], extra + 0.1)))
+		estaciones.append(Transform3D(Basis().scaled(Vector3(1.9, 0.7, 1.9) * _lod), _pos(trazado[k], extra + 0.1)))
 	_trazado_nodo.add_child(_multi(estaciones, _material(Color("#FBF7EC"), 0.3)))
 	if elevada:
 		var pil: Array[Transform3D] = []

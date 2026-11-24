@@ -3,6 +3,8 @@ extends Control
 ## Mapa urbano de Gran Santiago con cartografía real de OpenStreetMap (tema claro): calles, río, parques, Metro,
 ## propuesta punteada y obras con porcentaje.
 
+signal cambio_linea
+
 const MARGEN := Vector2(8, 8)
 
 var datos: Dictionary = {}
@@ -19,6 +21,18 @@ func _init() -> void:
 	clip_contents = true
 
 
+func _gui_input(event: InputEvent) -> void:
+	if not mostrar_metro:
+		return
+	var toque: bool = (event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT) or (event is InputEventScreenTouch and event.pressed)
+	if toque:
+		var id := UrbanoBase.linea_en(event.position, size, MARGEN)
+		if id != "":
+			UrbanoBase.alternar_linea(id)
+			queue_redraw()
+			cambio_linea.emit()
+
+
 func cargar(_p_datos: Dictionary = {}) -> void:
 	datos = UrbanoBase.datos()
 	trazo = 0.0
@@ -29,7 +43,12 @@ func _draw() -> void:
 	draw_style_box(Tema.caja(Color("#EFEADF"), 16, Tema.BORDE_CLARO, 1), Rect2(Vector2.ZERO, size))
 	if datos.is_empty():
 		return
-	UrbanoBase.dibujar(self, size, MARGEN, mostrar_metro, 1.0, true)
+	var reservados: Array[Rect2] = []
+	var mk0: Array = datos["marcadores"]
+	for i in range(mini(mk0.size(), marcadores.size())):
+		var c0 := UrbanoBase.a_px(mk0[i], size, MARGEN)
+		reservados.append(Rect2(c0 - Vector2(18, 18), Vector2(36, 36)))  # los nombres de lugares no tapan los marcadores de obras
+	UrbanoBase.dibujar(self, size, MARGEN, mostrar_metro, 1.0, true, reservados)
 	if propuesta.size() >= 2:
 		var pp := PackedVector2Array()
 		for q in propuesta:
@@ -45,10 +64,9 @@ func _draw() -> void:
 		draw_circle(c, 15.0, Color(1, 1, 1, 0.92))
 		draw_circle(c, 13.0, m["color"])
 		draw_string(Tema.fuente_titulo(), c + Vector2(-13, 4.5), "%d%%" % int(m["pct"]), HORIZONTAL_ALIGNMENT_CENTER, 26.0, 11, Tema.TEXTO)
-	var leyenda := Rect2(10, size.y - 34, 150, 24)
-	draw_style_box(Tema.caja(Color("#FBF7EC"), 8, Tema.BORDE_CLARO, 1), leyenda)
-	draw_line(leyenda.position + Vector2(8, 12), leyenda.position + Vector2(24, 12), Tema.ROJO, 3.0)
-	draw_string(Tema.fuente_texto(500), leyenda.position + Vector2(28, 16), "Líneas", HORIZONTAL_ALIGNMENT_LEFT, -1, 10, Tema.TINTA)
-	draw_dashed_line(leyenda.position + Vector2(74, 12), leyenda.position + Vector2(92, 12), Color("#2B4BA8"), 3.0, 4.0)
-	draw_string(Tema.fuente_texto(500), leyenda.position + Vector2(96, 16), "Propuesta", HORIZONTAL_ALIGNMENT_LEFT, -1, 10, Tema.TINTA)
+	if propuesta.size() >= 2:
+		var leyenda := Rect2(10, size.y - 34, 92, 24)
+		draw_style_box(Tema.caja(Color("#FBF7EC"), 8, Tema.BORDE_CLARO, 1), leyenda)
+		draw_dashed_line(leyenda.position + Vector2(8, 12), leyenda.position + Vector2(26, 12), Color("#2B4BA8"), 3.0, 4.0)
+		draw_string(Tema.fuente_texto(500), leyenda.position + Vector2(30, 16), "Propuesta", HORIZONTAL_ALIGNMENT_LEFT, -1, 10, Tema.TINTA)
 	draw_string(Tema.fuente_texto(400), Vector2(size.x - 232, size.y - 14), "© colaboradores de OpenStreetMap (ODbL)", HORIZONTAL_ALIGNMENT_RIGHT, 222, 9, Color("#6A7684"))

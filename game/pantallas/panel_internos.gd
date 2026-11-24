@@ -30,7 +30,7 @@ static func crear(motor: MotorTurno, avisar: Callable, cambio: Callable) -> Cont
 		v.add_child(Tema.etiqueta("%s · %s" % [meta["nombre"], meta["sector_nombre"]], 13, Tema.TEXTO, true))
 		v.add_child(Tema.etiqueta(String(meta["descripcion"]), 11, Tema.TEXTO_SUAVE))
 		var n_des: int = Array(meta["desbloquea"]).size()
-		v.add_child(Tema.etiqueta("Costo %d mov. interno(s)%s" % [int(meta["costo_mov"]), " · desbloquea %d carta(s)" % n_des if n_des > 0 else ""], 11, Tema.ORO))
+		v.add_child(Tema.etiqueta("Costo %d mov. interno%s%s" % [int(meta["costo_mov"]), "" if int(meta["costo_mov"]) == 1 else "s", " · desbloquea %d carta(s)" % n_des if n_des > 0 else ""], 11, Tema.ORO))
 		var id := String(meta["id"])
 		v.add_child(_boton("Buscar meta", Tema.ROJO, func() -> void: ejecutar.call(motor.buscar_meta(id), "Meta cumplida: %s." % meta["nombre"])))
 		col.add_child(FilasUI.tarjeta(v))

@@ -4,6 +4,7 @@ extends Control
 ## (estaciones arrastrables que se ajustan a los cruces del grafo; el camino entre ellas lo calcula Dijkstra).
 
 signal estaciones_cambiadas(estaciones: Array)
+signal cambio_linea
 
 const MARGEN := Vector2(8, 8)
 
@@ -84,7 +85,16 @@ func _plano(px: Vector2) -> Vector2:
 
 
 func _gui_input(event: InputEvent) -> void:
-	if not editando or grafo == null:
+	if not editando:
+		var toque: bool = (event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT) or (event is InputEventScreenTouch and event.pressed)
+		if toque:
+			var id := UrbanoBase.linea_en(event.position, size, MARGEN)
+			if id != "":
+				UrbanoBase.alternar_linea(id)
+				queue_redraw()
+				cambio_linea.emit()
+		return
+	if grafo == null:
 		return
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		if event.pressed:

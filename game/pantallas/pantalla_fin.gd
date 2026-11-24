@@ -4,6 +4,7 @@ extends Control
 ## de los eventos reales vividos (fecha y fuente). Solo lee el estado.
 
 signal otra_vez
+signal reintentar  # solo tras una derrota electoral: nueva partida directa
 
 var motor: MotorTurno
 var datos: Dictionary = {}
@@ -108,6 +109,21 @@ func _ready() -> void:
 		lista.add_child(FilasUI.tarjeta(v, Tema.PANEL))
 	lista.add_child(Tema.etiqueta("Huella de la partida (para reproducirla): " + est.calcular_huella().substr(0, 16), 10, Tema.TEXTO_SUAVE))
 	col.add_child(FilasUI.scroll(lista))
-	var b := FilasUI.boton_pie("Volver al inicio")
-	b.pressed.connect(func() -> void: otra_vez.emit())
+	var derrota := est.etapa == "derrota_electoral"
+	var b := FilasUI.boton_pie("Intentar de nuevo" if derrota else "Volver al inicio")
+	b.pressed.connect(func() -> void: (reintentar if derrota else otra_vez).emit())
 	add_child(b)
+	if derrota:
+		col.offset_bottom = -163.0
+		var sec := Tema.boton("Volver al inicio", Color.TRANSPARENT, Tema.TEXTO, 13, 44)
+		for e in ["normal", "hover", "pressed", "focus"]:
+			sec.add_theme_stylebox_override(e, Tema.caja(Color(0, 0, 0, 0), 22, Color("#5D7A94"), 1))
+		sec.anchor_top = 1.0
+		sec.anchor_bottom = 1.0
+		sec.anchor_right = 1.0
+		sec.offset_left = 16.0
+		sec.offset_right = -16.0
+		sec.offset_top = -157.0
+		sec.offset_bottom = -113.0
+		sec.pressed.connect(func() -> void: otra_vez.emit())
+		add_child(sec)

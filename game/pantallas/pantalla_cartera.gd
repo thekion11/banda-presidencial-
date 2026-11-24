@@ -21,6 +21,7 @@ var _lista: VBoxContainer
 var _conteo: Label
 var _lbl_pag: Label
 var _chips: Dictionary = {}  # "tipo"/"region"/"sector" -> {valor: Button}
+var _scrolls: Dictionary = {}  # clave -> ScrollContainer de la fila de chips
 
 
 static func crear(p_datos: Dictionary, p_motor: MotorTurno = null) -> PantallaCartera:
@@ -95,6 +96,7 @@ func _chip_fila(clave: String, titulo: String, opciones: Array) -> Control:
 	h.add_theme_constant_override("separation", 6)
 	sc.add_child(h)
 	_chips[clave] = {}
+	_scrolls[clave] = sc
 	for op in opciones:
 		var b := Tema.boton(String(op[1]), Tema.PANEL, Tema.TEXTO, 12, 44)
 		b.pressed.connect(func() -> void:
@@ -190,6 +192,8 @@ func _pintar() -> void:
 				b.add_theme_stylebox_override(e, Tema.caja(fondo, 18))
 			for e in ["font_color", "font_hover_color", "font_pressed_color", "font_focus_color"]:
 				b.add_theme_color_override(e, Tema.TINTA if on else Tema.TEXTO)
+			if on and _scrolls.has(clave):
+				_scrolls[clave].ensure_control_visible.call_deferred(b)  # el chip activo nunca queda fuera de pantalla
 	for h in _lista.get_children():
 		h.queue_free()
 	var total := filtrados.size()

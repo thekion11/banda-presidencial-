@@ -1166,5 +1166,15 @@
     "vigencia_dias": 180,
     "es_ilustrativa": false,
     "verificado_contra_texto": false
+  },
+  {
+    "id": "metro_estaciones_wikipedia",
+    "institucion": "Wikipedia en español (artículos de cada línea del Metro de Santiago)",
+    "titulo": "Estaciones por línea del Metro de Santiago, cotejo del mapa (NO oficial: metro.cl respondió 403)",
+    "url": "https://es.wikipedia.org/wiki/Metro_de_Santiago",
+    "fecha_corte": "2026-11-24",
+    "vigencia_dias": 180,
+    "es_ilustrativa": false,
+    "verificado_contra_texto": false
   }
 ]

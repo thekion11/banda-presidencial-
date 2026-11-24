@@ -108,6 +108,7 @@ void fragment() {
 
 
 static var _tex_arte: Dictionary = {}
+static var _cache_perilla: Dictionary = {}
 
 
 static func textura_arte(ruta: String) -> Texture2D:
@@ -179,6 +180,23 @@ static func fondo_hero(categoria: String, fraccion: float = 0.62, oscurecer: flo
 	vel.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	raiz.add_child(vel)
 	return raiz
+
+
+static func perilla(radio: float, relleno: Color, borde: Color) -> ImageTexture:
+	## Círculo con borde para la perilla de un deslizador (se genera una vez por combinación).
+	var clave := "%s|%s|%s" % [str(radio), relleno.to_html(), borde.to_html()]
+	if not _cache_perilla.has(clave):
+		var n := int(ceil(radio * 2.0)) + 2
+		var img := Image.create(n, n, false, Image.FORMAT_RGBA8)
+		var c := Vector2(n, n) * 0.5
+		for y in range(n):
+			for x in range(n):
+				var d := Vector2(x + 0.5, y + 0.5).distance_to(c)
+				var a := clampf(radio - d + 0.5, 0.0, 1.0)
+				var col := relleno if d < radio - 2.5 else borde
+				img.set_pixel(x, y, Color(col.r, col.g, col.b, a))
+		_cache_perilla[clave] = ImageTexture.create_from_image(img)
+	return _cache_perilla[clave]
 
 
 static func caja(color: Color, radio: int = 14, borde: Color = Color(0, 0, 0, 0), grosor: int = 0) -> StyleBoxFlat:
