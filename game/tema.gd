@@ -151,12 +151,12 @@ static func imagen(categoria: String, alto: float, radio: float = 14.0, oscurece
 	return tr
 
 
-static func fondo_hero(categoria: String, fraccion: float = 0.62, oscurecer: float = 0.0) -> Control:
+static func fondo_hero(categoria: String, fraccion: float = 0.62, oscurecer: float = 0.0, ruta_propia: String = "") -> Control:
 	## Fondo de pantalla completa: ilustración arriba que se funde con el océano hacia abajo.
 	var raiz := Control.new()
 	raiz.set_anchors_preset(Control.PRESET_FULL_RECT)
 	raiz.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	var ruta := "res://game/arte/cartas/%s.jpg" % categoria
+	var ruta := ruta_propia if ruta_propia != "" else "res://game/arte/cartas/%s.jpg" % categoria
 	if ResourceLoader.exists(ruta):
 		var hero := TextureRect.new()
 		hero.texture = textura_arte(ruta)

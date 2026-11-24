@@ -34,7 +34,7 @@ jobs:
         run: godot --headless --import --path . || true
       - name: Pruebas de oro, balance y humo de UI
         run: |
-          for t in test_prueba_oro_4_semanas test_prueba_oro_30_dias test_prueba_oro_completa test_enmienda test_congreso test_grafo test_metro_lineas test_mapa_entrada test_lineas_guardado test_validaciones test_guardado_danado test_sectra test_guardado test_gabinete test_delegacion test_movimientos test_equipo test_coalicion test_presupuesto test_balance test_ui_humo; do
+          for t in test_prueba_oro_4_semanas test_prueba_oro_30_dias test_prueba_oro_completa test_enmienda test_congreso test_grafo test_metro_lineas test_mapa_entrada test_lineas_guardado test_validaciones test_guardado_danado test_cartera test_sectra test_guardado test_gabinete test_delegacion test_movimientos test_equipo test_coalicion test_presupuesto test_balance test_ui_humo; do
             echo "== $t"
             godot --headless --path . -s "tests/$t.gd"
           done

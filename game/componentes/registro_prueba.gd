@@ -67,6 +67,8 @@ static func informe() -> String:
 	for s in por_semilla.keys():
 		var p: Dictionary = por_semilla[s]
 		cab.append("- semilla %s: %d acciones, turno máx %d, etapa %s, aprobación %s, duración %d min" % [s, p["acciones"], p["turno_max"], p["etapa"], p["ap"], int((int(p["t1"]) - int(p["t0"])) / 60)])
+	if por_semilla.is_empty():
+		cab.append("Todavía no hay partidas registradas: juega una partida y vuelve aquí; el informe se llena solo con tus acciones (turno, aprobación, fps y memoria).")
 	for f in finales:
 		cab.append("  fin · " + f)
 	cab.append("")

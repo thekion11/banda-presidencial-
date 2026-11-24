@@ -11,7 +11,7 @@ var _creditos: PanelContainer
 
 
 func _ready() -> void:
-	add_child(Tema.fondo_hero("politica"))
+	add_child(Tema.fondo_hero("politica", 0.78, 0.22, "res://game/arte/marca/portada.jpg"))  # portada nueva (vector plano); si falta, usa la de la categoría
 	var col := VBoxContainer.new()
 	col.set_anchors_preset(Control.PRESET_FULL_RECT)
 	col.offset_left = 24

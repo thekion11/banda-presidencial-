@@ -367,7 +367,7 @@ func _fin_y_cartera(main: Node, dia: Node) -> void:
 	dia._capa.add_child(libre)
 	for _k in range(3):
 		await process_frame
-	_check(_textos(libre).contains("Fuera de partida"), "la cartera sin partida debe decirlo")
+	_check(_textos(libre).contains("Sin partida abierta"), "la cartera sin partida debe decirlo")
 	libre.queue_free()
 	await process_frame
 	# Fin de partida con resumen (se cierra la partida: va al final)
