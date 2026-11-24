@@ -1,6 +1,8 @@
 name: Android (debug)
 on:
   workflow_dispatch:
+  push:
+    branches: [ccr-ec102a3c-giitie]  # cada push deja un APK de depuración como artefacto
 
 jobs:
   apk:
@@ -36,8 +38,11 @@ jobs:
       - name: Exportar APK de depuración
         run: |
           mkdir -p build
+          python3 tools/generar_version.py
+          godot --headless --import --path . || true
           godot --headless --path . --export-debug "Android" build/presidente-debug.apk
       - uses: actions/upload-artifact@v4
         with:
           name: presidente-debug-apk
+          retention-days: 30
           path: build/presidente-debug.apk
