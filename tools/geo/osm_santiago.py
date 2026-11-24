@@ -63,6 +63,17 @@ def dp(puntos, tol):
     return [p for p, k in zip(puntos, mant) if k]
 
 
+def dp_anillo(anillo, tol):
+    """Anillo cerrado: se parte en el punto más lejano al primero (con primer y último punto iguales, dp() deja solo esos dos)."""
+    pts = list(anillo[:-1]) if anillo[0] == anillo[-1] else list(anillo)
+    if len(pts) < 4:
+        return pts
+    k = max(range(len(pts)), key=lambda i: (pts[i][0] - pts[0][0]) ** 2 + (pts[i][1] - pts[0][1]) ** 2)
+    a = dp(pts[:k + 1], tol)
+    b = dp(pts[k:] + [pts[0]], tol)
+    return a[:-1] + b[:-1]
+
+
 def segmentos_cruzan(p1, p2, p3, p4):
     def o(a, b, c):
         return (b[0] - a[0]) * (c[1] - a[1]) - (b[1] - a[1]) * (c[0] - a[0])
@@ -278,7 +289,7 @@ def main():
     pk = []
     for pts in parques:
         if area_km2(pts) > 0.12 and all(dentro(*p) for p in pts[::5]):
-            p = dp([plano(*q) for q in pts], 0.0006)
+            p = dp_anillo([plano(*q) for q in pts], 0.0006)
             pk.append([[round(x, 4), round(y, 4)] for x, y in p])
     marcadores = [plano(-70.6080, -33.4180), plano(-70.5800, -33.5100), plano(-70.7200, -33.4900), plano(-70.6300, -33.5500), plano(-70.6900, -33.4000)]
     real = {"atribucion": "© colaboradores de OpenStreetMap (ODbL)", "bbox": [LON0, LAT0, LON1, LAT1],

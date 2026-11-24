@@ -153,8 +153,21 @@ static func aspecto() -> float:
 	return float(datos().get("aspecto", 1.2))
 
 
+static func area(tam: Vector2, margen: Vector2) -> Rect2:
+	## Rectángulo donde se dibuja el plano: conserva el aspecto real de Gran Santiago (1,229) centrado en el espacio disponible,
+	## en vez de estirarlo al tamaño del control (con 358×250 se deformaba un 16 %).
+	var libre := tam - margen * 2.0
+	var w := libre.x
+	var h := w / aspecto()
+	if h > libre.y:
+		h = libre.y
+		w = h * aspecto()
+	return Rect2(margen + (libre - Vector2(w, h)) * 0.5, Vector2(w, h))
+
+
 static func a_px(p: Array, tam: Vector2, margen: Vector2) -> Vector2:
-	return Vector2(margen.x + float(p[0]) * (tam.x - 2.0 * margen.x), margen.y + float(p[1]) * (tam.y - 2.0 * margen.y))
+	var r := area(tam, margen)
+	return r.position + Vector2(float(p[0]) * r.size.x, float(p[1]) * r.size.y)
 
 
 static func _segmentos(lista: Array, tam: Vector2, margen: Vector2) -> PackedVector2Array:
@@ -238,12 +251,10 @@ static func dibujar(ci: CanvasItem, tam: Vector2, margen: Vector2 = Vector2(8, 8
 	var limpio := suave >= 0.99  # modo "Metro": sin relieve (su imagen es de baja resolución) y solo avenidas principales, muy tenues
 	var rel := relieve()
 	if rel != null and not limpio:
-		ci.draw_texture_rect(rel, Rect2(margen, tam - margen * 2.0), false, Color(1, 1, 1, lerpf(0.75, 0.32, suave)))
+		ci.draw_texture_rect(rel, area(tam, margen), false, Color(1, 1, 1, lerpf(0.75, 0.32, suave)))
+	var color_parque := Color("#C4DDB8").lerp(fondo, suave * 0.5)
 	for pk in c["parques"]:
-		var poly: PackedVector2Array = pk["poly"]
-		var tri: PackedInt32Array = pk["tri"]
-		for i in range(0, tri.size(), 3):
-			ci.draw_colored_polygon(PackedVector2Array([poly[tri[i]], poly[tri[i + 1]], poly[tri[i + 2]]]), Color("#C4DDB8").lerp(fondo, suave * 0.5))
+		ci.draw_colored_polygon(pk["poly"], color_parque)
 	if c["rio"].size() > 1:
 		ci.draw_multiline(c["rio"], Color("#A9CFE4").lerp(fondo, suave * 0.4), 5.0 * escala_linea, true)
 	for cl in [4, 3, 2, 1, 0]:
