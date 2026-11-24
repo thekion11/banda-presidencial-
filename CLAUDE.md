@@ -70,6 +70,7 @@ godot --headless --path . -s tests/test_metro_lineas.gd
 godot --headless --path . -s tests/test_mapa_entrada.gd
 godot --headless --path . -s tests/test_lineas_guardado.gd
 godot --headless --path . -s tests/test_validaciones.gd
+godot --headless --path . -s tests/test_guardado_danado.gd
 godot --headless --path . -s tests/fuzz_acciones.gd -- 60 7000     # fuzzing: acciones aleatorias e inválidas, invariantes y replay idéntico
 godot --headless --path . -s tests/test_sectra.gd
 godot --headless --path . -s tests/test_guardado.gd
