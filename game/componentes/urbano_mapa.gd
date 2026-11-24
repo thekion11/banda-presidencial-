@@ -135,19 +135,20 @@ func _draw() -> void:
 		var pp := PackedVector2Array()
 		for q in propuesta:
 			pp.append(UrbanoBase.a_px(q, size, MARGEN))
+		pp = UrbanoTrazo.redondear(pp, UrbanoTrazo.metros_a_px(300.0, size, MARGEN), 5)
 		var hasta := maxi(2, int(ceil(float(pp.size()) * trazo)))
-		draw_polyline(pp.slice(0, hasta), Color.WHITE, 6.6 * esc, true)
-		for k in range(hasta - 1):
-			draw_dashed_line(pp[k], pp[k + 1], Tema.TINTA, 4.2 * esc, 9.0 * esc, true)  # tinta oscura: no se confunde con ninguna línea
+		var vis := pp.slice(0, hasta)
+		UrbanoTrazo.trazo(self, vis, Color.WHITE, 6.6 * esc)
+		UrbanoTrazo.discontinua(self, vis, Tema.TINTA, 4.2 * esc, 10.0 * esc, 7.0 * esc)  # tinta oscura: no se confunde con ninguna línea
 	draw_set_transform(Vector2.ZERO, 0.0, Vector2.ONE)
 	var reservados: Array[Rect2] = []
 	if mostrar_metro:
-		reservados.append_array(UrbanoBase.fichas(self, size, MARGEN, zoom, pan))
+		reservados.append_array(UrbanoRotulos.fichas(self, size, MARGEN, zoom, pan))
 	var mk: Array = datos["marcadores"]
 	for i in range(mini(mk.size(), marcadores.size())):
 		var c := UrbanoBase.a_px(mk[i], size, MARGEN) * zoom + pan
 		reservados.append(Rect2(c - Vector2(18, 18), Vector2(36, 36)))
-	UrbanoBase.etiquetas(self, size, MARGEN, zoom, pan, reservados)
+	UrbanoRotulos.etiquetas(self, size, MARGEN, zoom, pan, reservados)
 	for i in range(mini(mk.size(), marcadores.size())):
 		var c2 := UrbanoBase.a_px(mk[i], size, MARGEN) * zoom + pan
 		var m: Dictionary = marcadores[i]

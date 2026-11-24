@@ -120,6 +120,7 @@ func _linea(puntos: Array, hasta: float) -> void:
 	var pts := PackedVector2Array()
 	for q in puntos:
 		pts.append(_px(Vector2(q[0], q[1])))
+	pts = UrbanoTrazo.redondear(pts, UrbanoTrazo.metros_a_px(300.0, size, MARGEN), 5)
 	var largo := 0.0
 	for i in range(pts.size() - 1):
 		largo += pts[i].distance_to(pts[i + 1])
@@ -135,14 +136,14 @@ func _linea(puntos: Array, hasta: float) -> void:
 			break
 		acum += d
 	if vis.size() >= 2:
-		draw_polyline(vis, Tema.CREMA, 9.0, true)
-		draw_polyline(vis, Tema.ROJO, 5.5, true)
+		UrbanoTrazo.trazo(self, vis, Tema.CREMA, 9.0)
+		UrbanoTrazo.trazo(self, vis, Tema.ROJO, 5.5)
 
 
 func _draw() -> void:
 	draw_style_box(Tema.caja(Color("#EFEADF"), 14, Tema.BORDE_CLARO, 1), Rect2(Vector2.ZERO, size))
 	UrbanoBase.dibujar(self, size, MARGEN, true, 0.9, 0.45)
-	UrbanoBase.fichas(self, size, MARGEN, 1.0, Vector2.ZERO)
+	UrbanoRotulos.fichas(self, size, MARGEN, 1.0, Vector2.ZERO)
 	if editando and grafo != null:
 		if _ruta_edicion.size() >= 2:
 			_linea(_ruta_edicion, 1.0)
