@@ -109,6 +109,7 @@ def main() -> int:
                 real = nombres[0] if k == 0 else nombres[-1]
                 cabos.append({"n": n, "p": pos[n], "d": [round(dx / m, 3), round(dy / m, 3)], "sigue": real not in pos})
             l["cabos"] = cabos
+            l["orden"] = en_mapa  # estaciones de la línea dentro del mapa, en orden de terminal a terminal (vista esquemática)
             l.pop("term", None)
             l.pop("continua", None)
     geo_ruta.write_text(json.dumps(geo, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")

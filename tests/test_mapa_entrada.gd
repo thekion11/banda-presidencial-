@@ -81,6 +81,7 @@ func _run() -> void:
 	b.pressed.emit()
 	chk(UrbanoBase.ocultas.size() == 6, "soltar tras la pulsación larga no debe alternar otra vez")
 	UrbanoBase.ocultas.clear()
+	_esquema()
 	await _comite_con_zoom()
 	print("MAPA ENTRADA ", "OK" if fallos == 0 else "CON FALLOS")
 	quit(0 if fallos == 0 else 1)
@@ -126,3 +127,36 @@ func _comite_con_zoom() -> void:
 		m._gui_input(mv2)
 		m._gui_input(_mouse(true, vacio + Vector2(-30, -20), false))
 		chk(m.pan != pan0, "arrastrar en un sitio vacío debe mover el mapa")
+
+
+func _esquema() -> void:
+	## Vista esquemática: 7 líneas de Metro, tramos a 0°/45°/90° y toque sobre una línea.
+	UrbanoBase.ocultas.clear()
+	UrbanoBase.propias = []
+	var tam := Vector2(358, 480)
+	var c := UrbanoEsquema.preparar(tam, UrbanoVista.MARGEN, [])
+	chk(c["lineas"].size() == 7, "el esquema trae las 7 líneas reales")
+	var torcidos := 0
+	var total := 0
+	for l in c["lineas"]:
+		var r: PackedVector2Array = l["ruta"]
+		for i in range(r.size() - 1):
+			var d := r[i + 1] - r[i]
+			if d.length() < 6.0:
+				continue  # los arcos de los codos son cortos y curvos
+			total += 1
+			var ang := fposmod(rad_to_deg(d.angle()), 45.0)
+			if minf(ang, 45.0 - ang) > 6.0:
+				torcidos += 1
+	chk(total > 0 and float(torcidos) / float(total) < 0.2, "los tramos largos del esquema van a 0°, 45° o 90° (%d de %d fuera)" % [torcidos, total])
+	var l5: Array = c["lineas"].filter(func(l: Dictionary) -> bool: return l["id"] == "L5")
+	var p: Vector2 = (l5[0]["ruta"] as PackedVector2Array)[(l5[0]["ruta"] as PackedVector2Array).size() / 2]
+	chk(UrbanoEsquema.linea_en(p, tam, UrbanoVista.MARGEN, [], 10.0) != "", "tocar una línea en el esquema la encuentra")
+	var m := UrbanoMapa.new()
+	m.size = tam
+	root.add_child(m)
+	m.datos = UrbanoBase.datos()
+	m.modo_esquema = true
+	m._vista_toque(p)
+	chk(UrbanoBase.ocultas.size() == 1, "un toque en el esquema oculta la línea")
+	UrbanoBase.ocultas.clear()

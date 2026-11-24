@@ -10,6 +10,11 @@ var datos: Dictionary = {}
 var propuesta: Array = []  # trazado de la propuesta abierta/aprobada (plano 0..1)
 var marcadores: Array = []  # [{"pct": int, "color": Color}]
 var mostrar_metro: bool = true
+var modo_esquema: bool = false:  # vista esquemática del Metro (plano de líneas) en vez del mapa de calles
+	set(v):
+		modo_esquema = v
+		_estacion = {}
+		queue_redraw()
 var trazo: float = 1.0:
 	set(v):
 		trazo = v
@@ -29,6 +34,13 @@ func _vista_toque(pos: Vector2) -> void:
 	if not mostrar_metro:
 		return
 	var local := (pos - pan) / zoom
+	if modo_esquema:
+		var ide := UrbanoEsquema.linea_en(local, size, MARGEN, UrbanoBase.propias, 16.0 / zoom)
+		if ide != "":
+			UrbanoBase.alternar_linea(ide)
+			queue_redraw()
+			cambio_linea.emit()
+		return
 	var est := UrbanoBase.estacion_en(local, size, MARGEN, 12.0 / zoom) if zoom >= 1.8 else {}  # sin zoom las estaciones quedan a ~13 px y taparían toda la línea
 	if not est.is_empty():  # un toque sobre una estación muestra su nombre y sus líneas
 		_estacion = est if _estacion.is_empty() or _estacion["n"] != est["n"] else {}
@@ -53,6 +65,11 @@ func cargar(_p_datos: Dictionary = {}) -> void:
 func _draw() -> void:
 	draw_style_box(Tema.caja(Color("#EFEADF"), 16, Tema.BORDE_CLARO, 1), Rect2(Vector2.ZERO, size))
 	if datos.is_empty():
+		return
+	if modo_esquema and mostrar_metro:
+		draw_style_box(Tema.caja(Color("#FBF7EC"), 16, Tema.BORDE_CLARO, 1), Rect2(Vector2.ZERO, size))
+		UrbanoEsquema.dibujar(self, size, MARGEN, zoom, pan, UrbanoBase.propias, not _en_movimiento)
+		draw_string(Tema.fuente_texto(400), Vector2(10, size.y - 8), "Esquema: posiciones relativas, no a escala", HORIZONTAL_ALIGNMENT_LEFT, size.x - 20, 9, Color("#6A7684"))
 		return
 	var esc := (1.0 + 0.35 * (zoom - 1.0)) / zoom  # el grosor crece menos que el mapa: las líneas no se vuelven brochazos
 	draw_set_transform(pan, 0.0, Vector2(zoom, zoom))

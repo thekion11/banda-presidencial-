@@ -169,6 +169,17 @@ func _correr() -> void:
 		UrbanoBase.ocultas.clear()
 		um.zoom = 1.0
 		um.pan = Vector2.ZERO
+		um.modo_esquema = true
+		var panel_obras := um.get_parent().get_child(um.get_index() + 1)
+		panel_obras.visible = false
+		await _guardar("cmp_esquema", 0.4)
+		um._zoom_en(2.2, Vector2(um.size.x * 0.5, um.size.y * 0.45))
+		await _guardar("cmp_esquema_zoom", 0.4)
+		um.modo_esquema = false
+		panel_obras.visible = true
+		UrbanoBase.ocultas.clear()
+		um.zoom = 1.0
+		um.pan = Vector2.ZERO
 		um.queue_redraw()
 	for h in dia._capa.get_children():
 		if h != dia._toast:

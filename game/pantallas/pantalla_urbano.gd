@@ -46,6 +46,11 @@ static func crear(motor: MotorTurno, urbano: Dictionary, al_volver: Callable, al
 	atras.pressed.connect(func() -> void:
 		capa.queue_free()
 		al_volver.call())
+	var vista := Tema.boton("Esquema", Color.WHITE, Tema.TINTA, 12, 44)
+	for e in ["normal", "hover", "pressed"]:
+		vista.add_theme_stylebox_override(e, Tema.caja(Color.WHITE, 12, Tema.TINTA, 2))
+	vista.custom_minimum_size = Vector2(88, 44)
+	cab.add_child(vista)
 	cab.add_child(atras)
 	col.add_child(cab)
 	var mapa := UrbanoMapa.new()
@@ -80,6 +85,10 @@ static func crear(motor: MotorTurno, urbano: Dictionary, al_volver: Callable, al
 	panel.size_flags_vertical = Control.SIZE_SHRINK_END
 	panel.add_child(hoja)
 	col.add_child(panel)
+	vista.pressed.connect(func() -> void:  # alterna entre el mapa de calles y el plano esquemático del Metro
+		mapa.modo_esquema = not mapa.modo_esquema
+		panel.visible = not mapa.modo_esquema  # el esquema usa todo el alto disponible
+		vista.text = "Mapa" if mapa.modo_esquema else "Esquema")
 	mapa.cargar(urbano)
 	refs["f"] = func() -> void:
 		var f: Array = FILTROS[int(estado["filtro"])]
@@ -91,6 +100,7 @@ static func crear(motor: MotorTurno, urbano: Dictionary, al_volver: Callable, al
 				botones[i].add_theme_color_override(e, Tema.TEXTO if sel else Tema.TINTA)
 		mapa.mostrar_metro = int(estado["filtro"]) == 0
 		leyenda.visible = mapa.mostrar_metro
+		vista.visible = mapa.mostrar_metro
 		mapa.propuesta = _trazado_propuesta(motor) if int(estado["filtro"]) == 0 else []
 		mapa.queue_redraw()
 		for h in hoja.get_children():
