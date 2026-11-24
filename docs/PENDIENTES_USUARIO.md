@@ -32,7 +32,7 @@ Este archivo lo mantiene Claude. Lo que depende del usuario queda en «Necesito 
 
 ## PR-01 Afiliación (implementada con valores por defecto, ajustable en `data/leyes.json` bloque `afiliacion`)
 - Tres caminos: fundar partido propio (flujo anterior), candidatura independiente (+4 aprobación, bancada ×0,6, mínimo 4) o entrar a un partido ficticio (hereda ideología desplazada por 3 posturas, bancada = escaños del Senado ×2, cohesión +5; ese partido deja de ser aliado). `test_afiliacion.gd`.
-- Falta decidir (usuario): si el partido existente debe «pedir poder y castigar» (mecánica nueva, no implementada), el beneficio definitivo del independiente, y balance 3×3 con bots por afiliación (hoy solo la dificultad está calibrada). «Continuar como la última vez» sigue pendiente.
+- Falta decidir (usuario): si el partido existente debe «pedir poder y castigar» (mecánica nueva, no implementada), el beneficio definitivo del independiente, y balance 3×3 con bots por afiliación (hoy solo la dificultad está calibrada). «Continuar como la última vez»: hecho (botón «Nueva partida como la última vez» en el menú; guarda el último partido fundado en user://ultima_config.json).
 - Interfaz: ya no muestra conteos ni números de página internos (cartera, gabinete, SECTRA) ni el número de boletín.
 
 ## PR-05 Rellenar el gabinete (hecho el 24-nov-2026 tras tu «hazlo»)

@@ -2,6 +2,7 @@ extends Control
 ## Enrutador de pantallas + guardado por eventos (semilla + historial de entradas).
 
 const RUTA_GUARDADO := "user://guardado.json"
+const RUTA_ULTIMA := "user://ultima_config.json"  # último partido fundado: «Nueva partida como la última vez»
 
 var datos: Dictionary = {}
 var geo: Dictionary = {}
@@ -50,6 +51,8 @@ func mostrar_menu(aviso: String = "") -> void:
 	m.hay_guardado = FileAccess.file_exists(RUTA_GUARDADO)
 	m.datos = datos
 	m.nueva.connect(mostrar_afiliacion)
+	m.hay_ultima = FileAccess.file_exists(RUTA_ULTIMA)
+	m.repetir.connect(_repetir_ultima)
 	m.continuar.connect(continuar_guardado)
 	_cambiar(m)
 
@@ -70,7 +73,19 @@ func mostrar_partido(afiliacion: String = "propio", base: Dictionary = {}) -> vo
 	_cambiar(p)
 
 
+func _repetir_ultima() -> void:
+	var p: Variant = Datos.leer_json(RUTA_ULTIMA)
+	if p is Dictionary and p.has("indicadores_iniciales"):
+		_iniciar_campana(p)
+	else:
+		DirAccess.remove_absolute(ProjectSettings.globalize_path(RUTA_ULTIMA))  # archivo dañado: se descarta y se vuelve al menú
+		mostrar_menu("No se pudo repetir la configuración anterior.")
+
+
 func _iniciar_campana(partido: Dictionary) -> void:
+	var f := FileAccess.open(RUTA_ULTIMA, FileAccess.WRITE)
+	if f != null:
+		f.store_string(JSON.stringify(partido))
 	var semilla := int(Time.get_unix_time_from_system()) % 2000000000
 	motor = Partida.crear(datos, semilla, partido)
 	UrbanoBase.reiniciar()  # líneas ocultas y líneas del jugador de la partida anterior no pasan a la nueva
