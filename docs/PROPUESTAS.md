@@ -145,3 +145,49 @@ El usuario aclaró que esos dos mensajes («Lo Jugadas accidentales.» y «Propo
 3. Sin apodo conocido, o con apodo dudoso: **alias inventado** (estilo de los actuales).
 4. El perfil (ideología, partido, estudios, experiencia) es real, público y verificable; las cifras de juego salen de datos neutros; aviso de ficción satírica; **revisión legal antes de que lo jueguen terceros**.
 Siguen pendientes de PR-05: modo de relleno (equilibrado / máxima eficacia), de qué gobiernos salen los candidatos y cuántos por ministerio. Nada se implementa hasta que el usuario diga «hazlo».
+
+# Lote de propuestas del 24-nov-2026 (usuario: «ahora viene lo más caótico») — todas en estado «hablada», sin implementar
+
+Resumen de opinión: casi todo es bueno para el juego, pero **es mucho más de lo que cabe en un solo ciclo** y el juego aún no tiene datos de prueba con personas. Orden sugerido por **impacto en la sensación de juego por costo**: (1) estadísticas y claridad de cartas + arrastrar + sonido (PR-02) → (2) ministros con rostro, eventos y peticiones (PR-08) → (3) eventos externos y sorpresa (PR-03) → (4) campaña narrativa con entrevistas (PR-07) → (5) cierre del mandato, reelección y oposición (PR-11 a PR-13) → (6) mundo exterior (PR-01x) → (7) apariencia y habilidades (PR-05x) → (8) mapa 3D completo (el más caro y de menos retorno). Decidir con la primera tanda de pruebas con personas.
+
+## PR-06 — Mapa 3D de proyectos sobre la geografía real
+**Opinión:** el 3D completo de todo Chile en una pantalla vertical es un mal ajuste: el país es una franja de 4.300 km × 200 km; en un teléfono vertical queda diminuto y tiene un costo alto en rendimiento (meta: 30 fps y 800 MB de RAM) para una sesión casual de ~20 minutos. **Recomiendo:** mantener el mapa 2D estilizado (ya con relieve real) con **zoom a la región** y **pines de proyectos** (cartera real), y dejar el 3D donde ya existe y luce: el **hito de obra** y el **Comité** (ciudad real con 83.574 edificios). Costo de un 3D nacional: alto (semanas), con riesgo de rendimiento. Prioridad: baja.
+
+## PR-06b — Vecinos y proyectos internacionales
+**Opinión:** sí, pero como **panel «Mundo»**, no como otro mapa completo: Argentina, Perú, Bolivia (vecinos) y 2-3 potencias (EE. UU., China, Brasil) con **barras de relación**, proyectos binacionales reales (pasos fronterizos, corredor bioceánico, gas y litio, acuerdos comerciales) y la **Cancillería** como ministerio clave. Alimenta eventos externos y las cartas de política exterior. Costo medio; datos por investigación con fuentes. Prioridad: media-baja.
+
+## PR-07 — Eventos externos que «estallan» y sensación de sorpresa
+**Opinión:** hoy los eventos son un aviso con un efecto; la sorpresa nace de **consecuencias encadenadas y decisiones**, no del evento en sí. Propongo: eventos **con opciones** (2-3 respuestas con costo/beneficio, sin gastar movimientos), **cadenas** (una decisión de hoy desencadena algo 3-6 semanas después), **crisis con cuenta regresiva** (terremoto, alza del cobre, conflicto vecino), **«ventanas de oportunidad»** limitadas y un aviso breve y legible (no párrafos legales: el problema de P11 del video). Datos reales (eventos 2025-2026) mezclados con eventos ficticios para que no sea predecible. Todo con la semilla (determinista). Costo medio. Prioridad alta.
+
+## PR-08 — Ministros con rostro, eventos y peticiones
+**Opinión:** muy buena: es lo que convierte a los ministros de «filas de una lista» en **personajes**. Cada ministro con retrato ilustrado (estilo coherente con las cartas), **peticiones periódicas** (presupuesto, apoyo ante una crisis, un proyecto), **eventos propios** (renuncia, escándalo, conflicto con un aliado) y **respuestas con opciones que no gastan movimientos** (usan capital político, cohesión o relación). Conecta con PR-04/05 (25 ministros, perfiles, cuotas de coalición) y con la delegación. Riesgo: contenido (25 × varios eventos) y retratos (cuota de Canva): empezar con 6 ministerios clave. Costo medio-alto. Prioridad alta.
+
+## PR-09 — Estadísticas de las cartas
+**Opinión:** coincido: hoy casi todas dicen «+2 aprobación, −1 fiscal» y los efectos de las 1.044 leyes se generan por plantilla. Mejoras: (a) efectos **diferenciados por sector** y por **tipo de carta** (reforma, obra, decreto, política exterior), (b) **riesgos y plazos visibles**, (c) **efectos secundarios y a futuro** (una ley sube cohesión hoy y baja fiscal en 8 semanas), (d) **rareza/impacto** para que haya cartas «grandes» y «chicas», (e) cada carta con **un texto corto de sabor**. Se mide con los bots. Costo medio, mucho impacto. Prioridad alta.
+
+## PR-10 — Carrera por la presidencia como pantallas distintas (entrevistas, debates…)
+**Opinión:** es lo que más diferenciaría la campaña del gobierno: hoy se juega con la misma interfaz, y se nota (video, P10). **Propongo** escenas narrativas: **entrevistas** (respuestas con efectos en regiones y grupos), **debates** (turnos), **primarias/pactos con partidos**, **cierre de campaña**, y **sondeos** como pantalla propia. *Sobre la pregunta del nombre:* «1D» no existe; sería **2D**: pantallas con **personajes ilustrados** y diálogo con opciones, lo que se suele llamar **novela visual** o **ficción interactiva**; si se agrega movimiento sutil de capas (parallax) se le llama **2,5D**. Es contenido nuevo (guiones, retratos, opciones) y requiere sistema de escenas en datos. Costo alto. Prioridad media-alta (la mejor apuesta de diferenciación).
+
+## PR-11 — Qué pasa cuando termina el gobierno
+**Opinión:** hoy termina con pantalla de fin y puntaje. Falta un **cierre con sentido**: **epílogo** (cómo te recordará la historia, según leyes, obras, aprobación y promesas), **resultado de la sucesión** (¿gana tu candidato o la oposición?), **puntaje y «legado»** que se traspase a una próxima partida (p. ej. bono) y **la puerta a la oposición o a una nueva candidatura**. Costo medio. Prioridad media.
+
+## PR-12 — Reelección: ¿carta para reformar la Constitución?
+**Opinión:** idea muy buena porque usa el sistema que ya existe (reformas constitucionales con quórum 4/7, TC, plebiscito) y es **jugada con riesgo político real**. Según recuerdo del art. 25 de la Constitución, el Presidente **no puede ser reelegido para el período siguiente** (sí puede volver a postular después de un período) — **por contrastar con el texto oficial** (no está en `data/bcn/normas.json`). Variantes jugables: reelección **inmediata por una vez**, **indefinida** o **con plazos**; cada una con costo de legitimidad (ruido en la oposición, protestas, cohesión, TC) y mayor dificultad cuanto más amplia. Por qué conviene: da **rejugabilidad** (segundo mandato) y una decisión moral. Riesgo: duplicar la duración de la partida; solución: segundo mandato como **sesión nueva con el estado heredado**. Costo medio-alto. Prioridad media.
+
+## PR-13 — ¿Podremos ser oposición?
+**Opinión:** sí, y mejoraría el juego: hoy perder la elección es **fin de partida** (frustrante). Un **Modo Oposición** (tras perder la elección o al terminar el mandato) cambiaría el verbo: **bloquear o negociar leyes, fiscalizar, acusaciones constitucionales, reconstruir el partido y preparar la próxima candidatura** — con las mismas cartas y el Congreso, pero con otras metas. Es un modo casi nuevo: costo alto. Prioridad media-baja hasta validar el modo de gobierno.
+
+## PR-14 — Movimientos internos: cómo se gestionan
+**Hoy:** 3 por turno, solo en gobierno; se gestionan desde la pestaña «Internos» del panel Gabinete; hay 4 tipos (buscar meta, ajustar sector, reducir errores, acelerar proyecto), cada uno gasta 1 y tiene sus razones de rechazo. **Opinión:** son útiles pero **poco visibles** y su efecto es difícil de percibir (pesan −4,7 % de puntaje en el informe de balance). Propongo conectarlos a **personas** (cada acción la ejecuta un ministro o partido: sube su afinidad/satisfacción) y mostrarlos con **un efecto visible** en el mapa/indicadores. Costo bajo-medio. Prioridad media.
+
+## PR-15 — Apariencia física del personaje
+**Opinión:** útil para **identificación** y para **escenas narrativas** (PR-10 y PR-08 necesitan un protagonista visible). Recomiendo **pocas opciones, buen arte** (6-8 retratos base con vestimenta/pelo/accesorios modulares y colores) antes que un editor libre. Costo medio (arte con Canva sujeto a cuota). Prioridad media-baja; depende de PR-10.
+
+## PR-16 — Habilidades del personaje
+**Opinión:** con cuidado: ya existen **perfil ideológico, partido, gabinete, asesores y coalición**; sumar «habilidades» puede **duplicar mecánicas** y confundir. Si se hace, que sean **pocos rasgos con trade-offs** (p. ej. «orador», «negociador», «técnico»), que afecten **entrevistas, votos del Congreso o ministros** y que **sustituyan** parte de lo existente. Prioridad baja hasta tener datos de prueba.
+
+## Decisiones pendientes (no urgentes)
+1. ¿Se acepta el orden de prioridad sugerido, o el usuario quiere otro?
+2. PR-06: ¿mapa 2D con pines y zoom + 3D solo en obras/Comité (recomendado), o 3D nacional pese al costo?
+3. PR-12: ¿reelección como carta jugable (recomendado como idea) y qué variantes (inmediata una vez, indefinida, plazos)?
+4. PR-13: ¿Modo Oposición se planifica después de validar el gobierno?
