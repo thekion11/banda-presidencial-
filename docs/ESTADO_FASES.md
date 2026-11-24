@@ -259,3 +259,15 @@ Si el usuario las revoca o matiza, se actualiza este registro.
 - Batería completa en verde (16 pruebas, validate_data, check_limits). Revisión visual de 12 de 30 capturas de la maqueta más una captura de cartas con arte nuevo.
 - Corregido: títulos de carta cortados (ahora bajan a 10 pt y, si no caben en 2 líneas, terminan en «…»); mensaje del Corrector cortado (10 pt, prefijo «Corrector:», se corta por palabra con «…» y el panel mide 66 px); carta elegida más pequeña (×1,15) para no tapar «Tu mano»; mipmaps generados al cargar el arte (los `.import` no se versionan).
 - Pendiente (no corregido): estilo mezclado entre el arte antiguo de categorías (pintado) y el nuevo (vector plano) — depende de la tabla B de `docs/ARTE_PROMPTS.md`; cinta de categoría de las cartas no elegidas queda parcialmente tapada por la carta vecina; 18 capturas sin revisar; rendimiento real en teléfono sin medir.
+
+### Revisión visual de las 18 capturas restantes (24-nov-2026) — hallazgos sin corregir
+1. **Término «PA» visible:** `panel_comite.gd:184` («Aprobar · 2 PA») y `panel_sectra.gd:80` («Impulsar … · N PA»). Deben decir «mov» (CLAUDE.md §4: los PA pasan a llamarse movimientos).
+2. **Interruptor 2D/3D del Comité:** se ve igual en ambos modos (2D claro, 3D oscuro); no indica cuál está activo.
+3. **Comité en 3D:** el mapa se ve caótico (edificios diminutos, trazado rojo poco legible, agua celeste fuera de paleta). Coincide con PR-06 (3D no recomendado).
+4. **Mapa urbano (Gran Santiago):** las etiquetas se pisan («Cerro Santa Lucía», «Estación Central», «San Cristóbal» cortada); gran espacio vacío bajo «Obras en curso»; título de la obra truncado.
+5. **Pantalla Nación:** el botón central dice «Día 43» mientras la cabecera dice «Día 36»; es ambiguo (relacionado con P7 del video).
+6. **Cartera:** si el filtro activo está fuera de pantalla (fila de chips con scroll), ningún chip aparece seleccionado; conviene desplazar la fila hasta el chip activo.
+7. **Hito de obra (3D):** una viga roja suelta junto a la estación parece un fallo de la maqueta 3D.
+8. **Sliders de la edición de trazado:** barra oscura con la perilla al extremo izquierdo; no se entiende el valor (falta marca de posición o etiqueta numérica).
+9. Menores: «Costo 1 mov. interno(s)» (plural forzado); pantalla de derrota sin opción de reintentar.
+- Revisadas sin hallazgos: votación (ambas páginas), asesores, coalición con cuotas, delegar, gabinete cerrado, movimientos internos, elección (balotaje y derrota), tutorial.
