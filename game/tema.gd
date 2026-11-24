@@ -107,6 +107,22 @@ void fragment() {
 """
 
 
+static var _tex_arte: Dictionary = {}
+
+
+static func textura_arte(ruta: String) -> Texture2D:
+	## Carga una ilustración y le genera mipmaps en ejecución (los .import no van al repositorio, así que no se puede fijar allí).
+	if not _tex_arte.has(ruta):
+		var t: Texture2D = load(ruta) if ResourceLoader.exists(ruta) else null
+		if t != null:
+			var img := t.get_image()
+			if img != null and not img.has_mipmaps():
+				img.generate_mipmaps()
+				t = ImageTexture.create_from_image(img)
+		_tex_arte[ruta] = t
+	return _tex_arte[ruta]
+
+
 static func imagen(categoria: String, alto: float, radio: float = 14.0, oscurecer: float = 0.0) -> Control:
 	## Ilustración de res://game/arte/cartas con esquinas redondeadas y viñeta. Devuelve un Control vacío si falta la imagen.
 	var ruta := "res://game/arte/cartas/%s.jpg" % categoria
@@ -115,8 +131,9 @@ static func imagen(categoria: String, alto: float, radio: float = 14.0, oscurece
 	tr.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	if not ResourceLoader.exists(ruta):
 		return tr
-	tr.texture = load(ruta)
+	tr.texture = textura_arte(ruta)
 	tr.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	tr.texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR_WITH_MIPMAPS
 	tr.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_COVERED
 	var sh := Shader.new()
 	sh.code = SHADER_IMAGEN
@@ -137,8 +154,9 @@ static func fondo_hero(categoria: String, fraccion: float = 0.62, oscurecer: flo
 	var ruta := "res://game/arte/cartas/%s.jpg" % categoria
 	if ResourceLoader.exists(ruta):
 		var hero := TextureRect.new()
-		hero.texture = load(ruta)
+		hero.texture = textura_arte(ruta)
 		hero.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+		hero.texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR_WITH_MIPMAPS
 		hero.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_COVERED
 		hero.set_anchors_preset(Control.PRESET_FULL_RECT)
 		hero.anchor_bottom = fraccion

@@ -62,8 +62,8 @@ func pintar(motor: MotorTurno, sel: int, ministro: String = "", nuevas: Array = 
 		var esc := Vector2.ONE
 		var destino := reposo
 		if i == sel:
-			esc = Vector2(1.2, 1.2)
-			destino.y = 40.0  # sube y crece sin tapar la cabecera "Tu mano"
+			esc = Vector2(1.15, 1.15)
+			destino.y = 44.0  # sube y crece sin tapar la cabecera "Tu mano"
 			rot = 0.0
 		_pos_prev[id] = destino
 		c.tocada.connect(func(_c: CartaUI) -> void: tocada.emit(i))

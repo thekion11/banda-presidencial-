@@ -49,7 +49,7 @@ func configurar(p_carta: Dictionary, p_costo: int) -> void:
 static func _textura(categoria: String) -> Texture2D:
 	if not _texturas.has(categoria):
 		var ruta := "res://game/arte/cartas/%s.jpg" % categoria
-		_texturas[categoria] = load(ruta) if ResourceLoader.exists(ruta) else null
+		_texturas[categoria] = Tema.textura_arte(ruta)
 	return _texturas[categoria]
 
 
@@ -82,6 +82,7 @@ func _preparar_arte() -> void:
 	_arte.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 	_arte.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_COVERED
 	_arte.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	_arte.texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR_WITH_MIPMAPS  # arte de 1024 px reducido a ~100: sin mipmaps se ve dentado
 	var sh := Shader.new()
 	sh.code = SHADER_REDONDEADO
 	var mat := ShaderMaterial.new()
@@ -313,8 +314,10 @@ func _draw() -> void:
 		draw_style_box(Tema.caja(Tema.ROJO if elegida else base.darkened(0.35), 4), cinta)
 		draw_string(Tema.fuente_texto(800), cinta.position + Vector2(0, 11.5), cat, HORIZONTAL_ALIGNMENT_CENTER, 62, 9, Tema.CREMA)
 		_gema(Vector2(21, 21), 14.0)
-	draw_multiline_string(Tema.fuente_titulo(), Vector2(8, arte.end.y + 17), String(carta["titulo"]),
-			HORIZONTAL_ALIGNMENT_LEFT, w - 14, 12 if elegida else 11, 2, Tema.TEXTO)
+	var tam_tit := 12 if elegida else 11
+	var tit := _titulo_ajustado(String(carta["titulo"]), w - 14.0, tam_tit)
+	draw_multiline_string(Tema.fuente_titulo(), Vector2(8, arte.end.y + 17), tit[0],
+			HORIZONTAL_ALIGNMENT_LEFT, w - 14, int(tit[1]), 2, Tema.TEXTO)
 	var y := h - 40.0
 	var n := 0
 	for ef in carta["efectos"]:
@@ -326,6 +329,26 @@ func _draw() -> void:
 		n += 1
 	if atenuada:
 		draw_style_box(Tema.caja(Color(0.03, 0.09, 0.15, 0.22), 13), Rect2(Vector2.ZERO, size))
+
+
+static func _titulo_ajustado(texto: String, ancho: float, tam: int) -> Array:
+	## Devuelve [texto, tamaño] para que el título quepa en 2 líneas: baja a 10 pt y, si aún no cabe, corta en una palabra y añade "…".
+	var f := Tema.fuente_titulo()
+	for t in [tam, maxi(10, tam - 1), 10]:
+		if _lineas(f, texto, ancho, t) <= 2:
+			return [texto, t]
+	var palabras := texto.split(" ")
+	while palabras.size() > 1:
+		palabras.remove_at(palabras.size() - 1)
+		var cand := " ".join(palabras) + "…"
+		if _lineas(f, cand, ancho, 10) <= 2:
+			return [cand, 10]
+	return [texto, 10]
+
+
+static func _lineas(f: Font, texto: String, ancho: float, tam: int) -> int:
+	var h := f.get_multiline_string_size(texto, HORIZONTAL_ALIGNMENT_LEFT, ancho, tam).y
+	return roundi(h / maxf(1.0, f.get_height(tam)))
 
 
 static func _nombre_ind(ind: String) -> String:

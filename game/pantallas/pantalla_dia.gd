@@ -106,7 +106,7 @@ func _construir_cuerpo() -> Control:
 	cab_mano.add_child(_lbl_mov)
 	vista.add_child(mm)
 	_mano = ManoUI.new()
-	_mano.custom_minimum_size = Vector2(0, 218)
+	_mano.custom_minimum_size = Vector2(0, 214)
 	_mano.clip_contents = false
 	_mano.tocada.connect(_on_carta)
 	vista.add_child(_mano)
@@ -114,16 +114,16 @@ func _construir_cuerpo() -> Control:
 	corr.add_theme_stylebox_override("panel", Tema.caja(Tema.CREMA, 10, Color("#E8D9A8"), 1))
 	_lbl_corrector = RichTextLabel.new()
 	_lbl_corrector.bbcode_enabled = true
-	_lbl_corrector.fit_content = false  # alto fijo (62 px del panel): el texto largo se recorta, nunca empuja el botón principal
+	_lbl_corrector.fit_content = false  # alto fijo (66 px del panel): el texto largo se recorta, nunca empuja el botón principal
 	_lbl_corrector.scroll_active = false
 	_lbl_corrector.custom_minimum_size = Vector2(330, 0)
 	_lbl_corrector.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	_lbl_corrector.add_theme_color_override("default_color", Tema.TINTA)
 	_lbl_corrector.add_theme_font_override("normal_font", Tema.fuente_texto(400))
 	_lbl_corrector.add_theme_font_override("bold_font", Tema.fuente_texto(800))
-	_lbl_corrector.add_theme_font_size_override("normal_font_size", 11)
-	_lbl_corrector.add_theme_font_size_override("bold_font_size", 11)
-	corr.custom_minimum_size = Vector2(0, 62)  # alto fijo: el botón principal no se mueve
+	_lbl_corrector.add_theme_font_size_override("normal_font_size", 10)
+	_lbl_corrector.add_theme_font_size_override("bold_font_size", 10)
+	corr.custom_minimum_size = Vector2(0, 66)  # alto fijo: el botón principal no se mueve
 	corr.add_child(_lbl_corrector)
 	var mc := MarginContainer.new()
 	mc.add_theme_constant_override("margin_left", 12)
@@ -234,9 +234,19 @@ func _pintar_mano() -> void:
 	if est.etapa == "campana":
 		_lbl_corrector.text = cabeza + "[b]Campaña:[/b] cada carta es una promesa: sube la aprobación de la región elegida y queda como meta de legado."
 	elif v["corrector"]["aplica"]:
-		_lbl_corrector.text = cabeza + "[b]Corrector de realismo:[/b] " + String(v["corrector"]["mensaje"])
+		_lbl_corrector.text = cabeza + "[b]Corrector:[/b] " + _caber(String(v["corrector"]["mensaje"]))
 	else:
-		_lbl_corrector.text = cabeza + "[b]Corrector de realismo:[/b] sin observaciones; la meta es viable."
+		_lbl_corrector.text = cabeza + "[b]Corrector:[/b] sin observaciones; la meta es viable."
+
+
+func _caber(msg: String) -> String:
+	## El panel del corrector mide 66 px (cabecera + 3 líneas de 10 pt): si el mensaje no cabe se corta en una palabra y termina en "…".
+	var f := Tema.fuente_texto(400)
+	var palabras := msg.split(" ")
+	while palabras.size() > 1 and f.get_multiline_string_size("Corrector: " + " ".join(palabras), HORIZONTAL_ALIGNMENT_LEFT, 304, 10).y > f.get_height(10) * 3.05:
+		palabras.remove_at(palabras.size() - 1)
+		palabras[palabras.size() - 1] = palabras[palabras.size() - 1].rstrip(".,;:") + "…"
+	return " ".join(palabras)
 
 
 func _actualizar_botones() -> void:
