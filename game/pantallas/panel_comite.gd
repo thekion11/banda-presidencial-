@@ -214,8 +214,14 @@ static func _ficha(detalle: VBoxContainer, pid: String, v: Dictionary, prop: Dic
 		n_est = (custom["estaciones"] as Array).size()
 	elif motor.grafo.listo():
 		n_est = motor.grafo.estaciones_base(v).size()
+	var posiciones: Array = []
+	if n_est > 0 and motor.grafo.listo():
+		var ids: Array = custom["estaciones"] if not custom.is_empty() else motor.grafo.estaciones_base(v)
+		for id in ids:
+			if motor.grafo.pos.has(id):
+				posiciones.append([motor.grafo.pos[id].x, motor.grafo.pos[id].y])
 	if not estado.is_empty() and n_est > 0:
-		detalle.add_child(_nombrar(estado, prop, n_est))
+		detalle.add_child(_nombrar(estado, prop, n_est, posiciones))
 	var fila := HBoxContainer.new()
 	fila.add_theme_constant_override("separation", 8)
 	if al_modificar.is_valid():
@@ -232,13 +238,18 @@ static func _ficha(detalle: VBoxContainer, pid: String, v: Dictionary, prop: Dic
 	ok.disabled = int(prop["costo_pa"]) > motor.estado.pa_actual
 	var nombres_linea := {"linea": "", "estaciones": []}
 	if not estado.is_empty():
-		nombres_linea = {"linea": String(estado["nombre"]), "estaciones": (estado["est"] as Array).slice(0, n_est)}
+		var sug := NombresEstacion.sugerir(posiciones)
+		var fin: Array = []
+		for i in range(n_est):  # lo que el jugador dejó vacío toma la sugerencia (la que ve en gris)
+			var t := String((estado["est"] as Array)[i]) if i < (estado["est"] as Array).size() else ""
+			fin.append(t if t.strip_edges() != "" else (sug[i] if i < sug.size() else ""))
+		nombres_linea = {"linea": String(estado["nombre"]), "estaciones": fin}
 	ok.pressed.connect(func() -> void: al_aprobar.call(pid, String(v["id"]), custom, nombres_linea))
 	fila.add_child(ok)
 	detalle.add_child(fila)
 
 
-static func _nombrar(estado: Dictionary, prop: Dictionary, n_est: int) -> Control:
+static func _nombrar(estado: Dictionary, prop: Dictionary, n_est: int, posiciones: Array = []) -> Control:
 	## Nombre de la línea y de sus estaciones: solo se pueden poner ahora, mientras se planifica (después quedan fijos).
 	var col := VBoxContainer.new()
 	col.add_theme_constant_override("separation", 6)
@@ -258,10 +269,20 @@ static func _nombrar(estado: Dictionary, prop: Dictionary, n_est: int) -> Contro
 	var campo_linea := Tema.campo(String(prop["titulo"]), 30, String(estado["nombre"]))
 	campo_linea.text_changed.connect(func(t: String) -> void: estado["nombre"] = t)
 	cuerpo.add_child(campo_linea)
-	cuerpo.add_child(Tema.etiqueta("Estaciones, en orden", 12, Tema.TEXTO, false, 700))
+	cuerpo.add_child(Tema.etiqueta("Estaciones, en orden · lo que dejes vacío usa el nombre sugerido en gris", 12, Tema.TEXTO, false, 700))
+	var sug := NombresEstacion.sugerir(posiciones)
+	var campos: Array[LineEdit] = []
 	for i in range(n_est):
-		var c := Tema.campo("Estación %d" % (i + 1), 26, String(est[i]))
+		var c := Tema.campo(sug[i] if i < sug.size() else "Estación %d" % (i + 1), 26, String(est[i]))
 		c.text_changed.connect(func(t: String) -> void: est[i] = t)
 		cuerpo.add_child(c)
+		campos.append(c)
+	var llenar := Tema.boton("Escribir los nombres sugeridos", Tema.PANEL, Tema.TEXTO, 12, 44)
+	llenar.pressed.connect(func() -> void:  # rellena solo los vacíos; los que el jugador escribió no se tocan
+		for i in range(campos.size()):
+			if String(est[i]).strip_edges() == "" and i < sug.size():
+				est[i] = sug[i]
+				campos[i].text = sug[i])
+	cuerpo.add_child(llenar)
 	col.add_child(cuerpo)
 	return col

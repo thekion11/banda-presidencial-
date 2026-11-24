@@ -81,5 +81,48 @@ func _run() -> void:
 	b.pressed.emit()
 	chk(UrbanoBase.ocultas.size() == 6, "soltar tras la pulsación larga no debe alternar otra vez")
 	UrbanoBase.ocultas.clear()
+	await _comite_con_zoom()
 	print("MAPA ENTRADA ", "OK" if fallos == 0 else "CON FALLOS")
 	quit(0 if fallos == 0 else 1)
+
+
+func _comite_con_zoom() -> void:
+	## Mapa del Comité con zoom: arrastrar una estación la mueve (no el mapa); arrastrar en otro sitio mueve el mapa; el zoom se mantiene.
+	var datos := Datos.cargar_todo()
+	var g := GrafoTrazado.new()
+	g.cargar(datos["grafo"])
+	var v: Dictionary = datos["propuestas"][0]["variantes"][0]
+	var ests: Array = g.estaciones_base(v)
+	var m := ComiteMapa.new()
+	m.size = Vector2(358, 270)
+	root.add_child(m)
+	await process_frame
+	m.poner_variante(v["trazado"], bool(v["elevada"]))
+	m.iniciar_edicion(g, ests)
+	m._zoom_en(2.0, m.size * 0.5)
+	chk(absf(m.zoom - 2.0) < 0.001, "el mapa del Comité acepta zoom")
+	var punto: Vector2 = m._px(g.pos[ests[1]])
+	var antes: String = ests[1]
+	var pan0 := m.pan
+	m._gui_input(_mouse(true, punto, true))
+	chk(m.seleccion == 1, "pulsar sobre una estación (con zoom) la selecciona")
+	var mv := InputEventMouseMotion.new()
+	mv.position = punto + Vector2(50, 0)
+	mv.relative = Vector2(50, 0)
+	m._gui_input(mv)
+	m._gui_input(_mouse(true, punto + Vector2(50, 0), false))
+	chk(m.estaciones[1] != antes, "arrastrar la estación debe moverla a otro cruce")
+	chk(m.pan == pan0, "arrastrar una estación no debe mover el mapa")
+	var vacio := Vector2(m.size.x - 20, m.size.y - 20)
+	var lejos := true
+	for id in m.estaciones:
+		if m._px(g.pos[id]).distance_to(vacio) < 40.0:
+			lejos = false
+	if lejos:
+		m._gui_input(_mouse(true, vacio, true))
+		var mv2 := InputEventMouseMotion.new()
+		mv2.position = vacio + Vector2(-30, -20)
+		mv2.relative = Vector2(-30, -20)
+		m._gui_input(mv2)
+		m._gui_input(_mouse(true, vacio + Vector2(-30, -20), false))
+		chk(m.pan != pan0, "arrastrar en un sitio vacío debe mover el mapa")

@@ -28,6 +28,16 @@ func _buscar_mapa(n: Node) -> UrbanoMapa:
 	return null
 
 
+func _buscar_nodo(n: Node, clase: String) -> Node:
+	if n.get_class() == clase or (n.get_script() != null and n.get_script().get_global_name() == clase):
+		return n
+	for h in n.get_children():
+		var r := _buscar_nodo(h, clase)
+		if r != null:
+			return r
+	return null
+
+
 func _buscar_boton(n: Node, prefijo: String) -> Button:
 	if n is Button and n.text.begins_with(prefijo):
 		return n
@@ -86,6 +96,13 @@ func _correr() -> void:
 	await _guardar("cmp_dia2")
 	dia._abrir_panel("comite")
 	await _guardar("cmp_comite_2d")
+	var cm: ComiteMapa = _buscar_nodo(dia, "ComiteMapa")
+	if cm != null:  # acercamiento del mapa del Comité
+		cm._zoom_en(2.6, Vector2(cm.size.x * 0.55, cm.size.y * 0.5))
+		await _guardar("cmp_comite_zoom", 0.4)
+		cm.zoom = 1.0
+		cm.pan = Vector2.ZERO
+		cm.queue_redraw()
 	var btn_nombres: Button = _buscar_boton(dia, "Nombrar la línea")
 	if btn_nombres != null:
 		btn_nombres.pressed.emit()

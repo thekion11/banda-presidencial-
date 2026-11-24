@@ -1,12 +1,10 @@
 class_name ComiteMapa
-extends Control
+extends UrbanoVista
 ## Mapa 2D del Comité sobre calles reales de Gran Santiago: trazado de la variante con animación y modo edición
 ## (estaciones arrastrables que se ajustan a los cruces del grafo; el camino entre ellas lo calcula Dijkstra).
 
 signal estaciones_cambiadas(estaciones: Array)
 signal cambio_linea
-
-const MARGEN := Vector2(8, 8)
 
 var trazado: Array = []  # polilínea en coordenadas del plano (0..1)
 var estaciones_pos: Array = []  # posiciones (plano) de las estaciones de la variante mostrada
@@ -26,6 +24,10 @@ var _ruta_edicion: Array = []
 
 func _init() -> void:
 	clip_contents = true
+
+
+func _ready() -> void:
+	_iniciar_vista()
 
 
 func poner_variante(p_trazado: Array, p_elevada: bool, p_estaciones: Array = []) -> void:
@@ -77,50 +79,58 @@ func quitar_estacion() -> void:
 
 
 func _px(p: Vector2) -> Vector2:
-	return UrbanoBase.a_px([p.x, p.y], size, MARGEN)
+	return UrbanoBase.a_px([p.x, p.y], size, MARGEN) * zoom + pan  # coordenadas de pantalla (con zoom y desplazamiento)
 
 
 func _plano(px: Vector2) -> Vector2:
-	return Vector2((px.x - MARGEN.x) / (size.x - 2.0 * MARGEN.x), (px.y - MARGEN.y) / (size.y - 2.0 * MARGEN.y))
+	var l := a_local(px)
+	return Vector2((l.x - MARGEN.x) / (size.x - 2.0 * MARGEN.x), (l.y - MARGEN.y) / (size.y - 2.0 * MARGEN.y))
 
 
-func _gui_input(event: InputEvent) -> void:
-	if not editando:
-		var toque: bool = (event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT) or (event is InputEventScreenTouch and event.pressed)
-		if toque:
-			var id := UrbanoBase.linea_en(event.position, size, MARGEN)
-			if id != "":
-				UrbanoBase.alternar_linea(id)
-				queue_redraw()
-				cambio_linea.emit()
+func _vista_empieza(pos: Vector2) -> bool:
+	## En edición, pulsar cerca de una estación (30 px) la selecciona y se queda con el arrastre; en otro sitio el arrastre mueve el mapa.
+	if not editando or grafo == null:
+		return false
+	_arrastre = -1
+	var mejor := 30.0
+	for i in range(estaciones.size()):
+		var d := _px(grafo.pos[estaciones[i]]).distance_to(pos)
+		if d < mejor:
+			mejor = d
+			_arrastre = i
+	seleccion = _arrastre
+	queue_redraw()
+	return _arrastre >= 0
+
+
+func _vista_mueve(event: InputEventMouseMotion) -> void:
+	if _arrastre < 0:
 		return
-	if grafo == null:
+	var id := grafo.nodo_cercano(_plano(event.position))
+	if id != String(estaciones[_arrastre]) and not estaciones.has(id):
+		estaciones[_arrastre] = id
+		_recalcular_ruta()
+
+
+func _vista_suelta(_pos: Vector2) -> void:
+	_arrastre = -1
+
+
+func _vista_toque(pos: Vector2) -> void:
+	if editando:
 		return
-	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
-		if event.pressed:
-			_arrastre = -1
-			var mejor := 30.0
-			for i in range(estaciones.size()):
-				var d := _px(grafo.pos[estaciones[i]]).distance_to(event.position)
-				if d < mejor:
-					mejor = d
-					_arrastre = i
-			seleccion = _arrastre
-			queue_redraw()
-		else:
-			_arrastre = -1
-	elif event is InputEventMouseMotion and _arrastre >= 0:
-		var id := grafo.nodo_cercano(_plano(event.position))
-		if id != String(estaciones[_arrastre]) and not estaciones.has(id):
-			estaciones[_arrastre] = id
-			_recalcular_ruta()
+	var id := UrbanoBase.linea_en(a_local(pos), size, MARGEN, 16.0 / zoom)
+	if id != "":
+		UrbanoBase.alternar_linea(id)
+		queue_redraw()
+		cambio_linea.emit()
 
 
 func _linea(puntos: Array, hasta: float) -> void:
 	var pts := PackedVector2Array()
 	for q in puntos:
 		pts.append(_px(Vector2(q[0], q[1])))
-	pts = UrbanoTrazo.redondear(pts, UrbanoTrazo.metros_a_px(300.0, size, MARGEN), 5)
+	pts = UrbanoTrazo.redondear(pts, UrbanoTrazo.metros_a_px(300.0, size, MARGEN) * zoom, 5)
 	var largo := 0.0
 	for i in range(pts.size() - 1):
 		largo += pts[i].distance_to(pts[i + 1])
@@ -142,8 +152,11 @@ func _linea(puntos: Array, hasta: float) -> void:
 
 func _draw() -> void:
 	draw_style_box(Tema.caja(Color("#EFEADF"), 14, Tema.BORDE_CLARO, 1), Rect2(Vector2.ZERO, size))
-	UrbanoBase.dibujar(self, size, MARGEN, true, 0.9, 0.45)
-	UrbanoRotulos.fichas(self, size, MARGEN, 1.0, Vector2.ZERO)
+	var esc := (1.0 + 0.35 * (zoom - 1.0)) / zoom
+	draw_set_transform(pan, 0.0, Vector2(zoom, zoom))
+	UrbanoBase.dibujar(self, size, MARGEN, true, 0.9 * esc, 0.45, not _en_movimiento)
+	draw_set_transform(Vector2.ZERO, 0.0, Vector2.ONE)
+	UrbanoRotulos.fichas(self, size, MARGEN, zoom, pan)
 	if editando and grafo != null:
 		if _ruta_edicion.size() >= 2:
 			_linea(_ruta_edicion, 1.0)

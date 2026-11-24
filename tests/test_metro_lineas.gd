@@ -44,6 +44,7 @@ func _init() -> void:
 	UrbanoBase.alternar_linea("L5")
 	_check(not UrbanoBase.ocultas.has("L5"), "alternar de nuevo debe mostrarla")
 	UrbanoBase.ocultas.clear()
+	_sugerencias()
 	_lineas_del_jugador()
 	if _fallos == 0:
 		print("METRO OK (7 líneas, %d estaciones, 17 combinaciones; ocultar y tocar línea)" % d["estaciones"].size())
@@ -87,3 +88,25 @@ func _lineas_del_jugador() -> void:
 			_check(l["estado"] == "operativa", "al terminar la obra la línea debe quedar operativa")
 		huellas.append(m.estado.calcular_huella())
 	_check(huellas[0] == huellas[1], "las líneas del jugador deben ser reproducibles (misma huella, incluso pasando por JSON)")
+
+
+func _sugerencias() -> void:
+	## Sugerencias de nombre para estaciones nuevas: según lo cercano, sin repetirse ni coincidir con una estación real.
+	var d := UrbanoBase.datos()
+	var plaza: Array = []
+	var bicentenario: Array = []
+	for l in d["lugares"]:
+		if l["n"] == "Plaza de Armas":
+			plaza = l["p"]
+		if l["n"] == "Parque Bicentenario":
+			bicentenario = l["p"]
+	var s := NombresEstacion.sugerir([bicentenario, plaza, plaza, [0.0, 0.0]])
+	_check(s.size() == 4 and s[0] == "Parque Bicentenario", "una posición sobre un lugar conocido toma su nombre: %s" % [s])
+	_check(s[1] != "" and s[1] != s[2], "los nombres de una línea no se repiten: %s" % [s])
+	_check(s[3] == "Estación 4", "sin nada cerca toma «Estación N»: %s" % s[3])
+	var reales := {}
+	for e in d["estaciones"]:
+		reales[String(e["n"])] = true
+	for n in s:
+		_check(not reales.has(n), "una sugerencia no debe coincidir con una estación real: %s" % n)
+	_check(NombresEstacion.sugerir([bicentenario, plaza]) == NombresEstacion.sugerir([bicentenario, plaza]), "las sugerencias son deterministas")
