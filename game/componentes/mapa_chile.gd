@@ -4,6 +4,9 @@ extends Control
 
 signal region_tocada(id: String)
 
+## Geometría triangulada una sola vez por ejecución (la geografía no cambia): abrir Día/Nación ya no la recalcula.
+static var _cache: Dictionary = {}
+
 var estirar_x: float = 2.3  # licencia gráfica: Chile es muy angosto para una pantalla vertical
 
 var _piezas: Dictionary = {}  # id -> Array[PackedVector2Array] normalizadas (contornos)
@@ -30,6 +33,24 @@ func cargar_geo(geo: Dictionary) -> void:
 	_ciudades = geo.get("ciudades", [])
 	if ResourceLoader.exists("res://data/geo/relieve.png"):
 		_relieve = load("res://data/geo/relieve.png")
+	if _cache.has("piezas"):
+		_piezas = _cache["piezas"]
+		_mallas = _cache["mallas"]
+		_banda_y = _cache["banda_y"]
+	else:
+		_triangular(geo)
+		_cache = {"piezas": _piezas, "mallas": _mallas, "banda_y": _banda_y}
+	_calcular_borde_este()
+	if animar and _decor == null:
+		_decor = MapaDecor.new()
+		_decor.mapa = self
+		_decor.set_anchors_preset(Control.PRESET_FULL_RECT)
+		_decor.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		add_child(_decor)
+	queue_redraw()
+
+
+func _triangular(geo: Dictionary) -> void:
 	for id in geo["regiones"].keys():
 		var lista: Array[PackedVector2Array] = []
 		var vertices := PackedVector2Array()
@@ -67,14 +88,6 @@ func cargar_geo(geo: Dictionary) -> void:
 			malla.add_surface_from_arrays(Mesh.PRIMITIVE_TRIANGLES, arrays)
 			_mallas[id] = malla
 		_banda_y[id] = Vector2(y0, y1)
-	_calcular_borde_este()
-	if animar and _decor == null:
-		_decor = MapaDecor.new()
-		_decor.mapa = self
-		_decor.set_anchors_preset(Control.PRESET_FULL_RECT)
-		_decor.mouse_filter = Control.MOUSE_FILTER_IGNORE
-		add_child(_decor)
-	queue_redraw()
 
 
 func _calcular_borde_este() -> void:
