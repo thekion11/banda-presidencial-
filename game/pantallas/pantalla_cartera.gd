@@ -223,9 +223,7 @@ func _pintar() -> void:
 		v.add_child(Tema.etiqueta(String(c["titulo"]), 13, Tema.TEXTO, true))
 		v.add_child(Tema.etiqueta("%s · %s · %s" % [NOMBRE_TIPO[String(m["tipo"])], _nombre_region(_s(m.get("region_id"))), BloqueoCarta.nombre_cat(String(c["categoria"]))], 11, Tema.TEXTO_SUAVE))
 		var real := "Estado real: %s" % (_s(m.get("estado_real")) if m.get("estado_real") != null else "sin dato")
-		if m.get("boletin") != null:
-			real += " · boletín %s" % m["boletin"]
-		elif m.get("inversion_musd") != null:
+		if m.get("inversion_musd") != null:  # el número de boletín es interno: no se muestra al jugador
 			real += " · inversión US$ %d millones (cifra ilustrativa)" % roundi(float(m["inversion_musd"]))
 		v.add_child(Tema.etiqueta(real, 11, Tema.TEXTO))
 		var ep := _estado_partida(c)
