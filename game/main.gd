@@ -63,6 +63,7 @@ func mostrar_partido() -> void:
 func _iniciar_campana(partido: Dictionary) -> void:
 	var semilla := int(Time.get_unix_time_from_system()) % 2000000000
 	motor = Partida.crear(datos, semilla, partido)
+	UrbanoBase.reiniciar()  # líneas ocultas y líneas del jugador de la partida anterior no pasan a la nueva
 	mostrar_gabinete()
 
 
@@ -83,6 +84,7 @@ func continuar_guardado() -> void:
 		mostrar_menu()
 		return
 	motor = Partida.reproducir(datos, g)
+	UrbanoBase.reiniciar()
 	mostrar_dia()
 
 

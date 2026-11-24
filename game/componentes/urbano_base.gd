@@ -167,7 +167,7 @@ static func preparar(tam: Vector2, margen: Vector2) -> Dictionary:
 	return c
 
 
-static func dibujar(ci: CanvasItem, tam: Vector2, margen: Vector2 = Vector2(8, 8), con_metro: bool = true, escala_linea: float = 1.0, suave: float = 0.0) -> void:
+static func dibujar(ci: CanvasItem, tam: Vector2, margen: Vector2 = Vector2(8, 8), con_metro: bool = true, escala_linea: float = 1.0, suave: float = 0.0, detalle: bool = true) -> void:
 	## `suave` (0..1) atenúa el mapa base (relieve, calles, parques) para que el Metro y la propuesta destaquen.
 	var c := preparar(tam, margen)
 	if c["calles"].is_empty():
@@ -185,12 +185,18 @@ static func dibujar(ci: CanvasItem, tam: Vector2, margen: Vector2 = Vector2(8, 8
 	if c["rio"].size() > 1:
 		ci.draw_multiline(c["rio"], Color("#A9CFE4").lerp(fondo, suave * 0.4), 5.0 * escala_linea, true)
 	for cl in [4, 3, 2, 1, 0]:
-		if limpio and cl > 2:
-			continue
+		if (limpio and cl > 2) or (not detalle and cl > 1):
+			continue  # en modo limpio solo avenidas; mientras se arrastra o se hace zoom, solo las vías mayores (fluidez en el teléfono)
 		if c["calles"][cl].size() > 1:
 			ci.draw_multiline(c["calles"][cl], COLORES_CALLE[cl].lerp(fondo, suave * (0.62 if limpio else 0.6)), ANCHOS_CALLE[cl] * escala_linea * (0.8 if limpio else 1.0), true)
 	if con_metro:
 		_dibujar_metro(ci, c, escala_linea)
+
+
+static func reiniciar() -> void:
+	## Estado de los mapas ligado a la partida: se limpia al empezar o cargar otra.
+	ocultas.clear()
+	propias = []
 
 
 static func nombre_corto(id: String) -> String:

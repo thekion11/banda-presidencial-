@@ -25,6 +25,8 @@ var _movido: bool = false
 var _origen: Vector2 = Vector2.ZERO
 var _ultimo_toque: float = -10.0
 var _pos_ultimo_toque: Vector2 = Vector2.ZERO
+var _en_movimiento: bool = false  # mientras se arrastra o se acerca se dibuja con menos detalle
+var _fin_movimiento: Timer
 var _estacion: Dictionary = {}  # estación tocada (burbuja con nombre y líneas)
 
 
@@ -33,6 +35,13 @@ func _init() -> void:
 
 
 func _ready() -> void:
+	_fin_movimiento = Timer.new()
+	_fin_movimiento.one_shot = true
+	_fin_movimiento.wait_time = 0.18
+	_fin_movimiento.timeout.connect(func() -> void:
+		_en_movimiento = false
+		queue_redraw())
+	add_child(_fin_movimiento)
 	var col := VBoxContainer.new()
 	col.offset_left = 8.0
 	col.offset_right = 52.0
@@ -52,6 +61,9 @@ func _ready() -> void:
 func _limitar() -> void:
 	zoom = clampf(zoom, 1.0, ZOOM_MAX)
 	pan = Vector2(clampf(pan.x, size.x - size.x * zoom, 0.0), clampf(pan.y, size.y - size.y * zoom, 0.0))
+	_en_movimiento = true
+	if _fin_movimiento != null:
+		_fin_movimiento.start()
 	queue_redraw()
 
 
@@ -103,7 +115,7 @@ func _toque(pos: Vector2) -> void:
 	if not mostrar_metro:
 		return
 	var local := (pos - pan) / zoom
-	var est := UrbanoBase.estacion_en(local, size, MARGEN, 15.0 / zoom)
+	var est := UrbanoBase.estacion_en(local, size, MARGEN, 12.0 / zoom) if zoom >= 1.8 else {}  # sin zoom las estaciones quedan a ~13 px y taparían toda la línea
 	if not est.is_empty():  # un toque sobre una estación muestra su nombre y sus líneas
 		_estacion = est if _estacion.is_empty() or _estacion["n"] != est["n"] else {}
 		queue_redraw()
@@ -130,7 +142,7 @@ func _draw() -> void:
 		return
 	var esc := (1.0 + 0.35 * (zoom - 1.0)) / zoom  # el grosor crece menos que el mapa: las líneas no se vuelven brochazos
 	draw_set_transform(pan, 0.0, Vector2(zoom, zoom))
-	UrbanoBase.dibujar(self, size, MARGEN, mostrar_metro, esc, 1.0 if mostrar_metro else 0.0)
+	UrbanoBase.dibujar(self, size, MARGEN, mostrar_metro, esc, 1.0 if mostrar_metro else 0.0, not _en_movimiento)
 	if propuesta.size() >= 2:
 		var pp := PackedVector2Array()
 		for q in propuesta:

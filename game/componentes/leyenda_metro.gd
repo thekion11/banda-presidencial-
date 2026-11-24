@@ -37,18 +37,21 @@ func _ready() -> void:
 		b.add_theme_font_size_override("font_size", 14)
 		b.focus_mode = Control.FOCUS_NONE
 		var id := String(l["id"])
-		var estado := {"largo": false}
+		var estado := {"largo": false, "abajo": false}
 		b.button_down.connect(func() -> void:
 			estado["largo"] = false
+			estado["abajo"] = true
 			var t := get_tree().create_timer(0.45)
 			t.timeout.connect(func() -> void:
-				if b.button_pressed:  # pulsación larga: deja visible solo esta línea
+				if estado["abajo"]:  # pulsación larga: deja visible solo esta línea
 					estado["largo"] = true
 					UrbanoBase.solo_linea(id)
 					_pintar()
 					cambiado.emit()))
+		b.button_up.connect(func() -> void: estado["abajo"] = false)
 		b.pressed.connect(func() -> void:
 			if estado["largo"]:
+				estado["largo"] = false
 				return
 			UrbanoBase.alternar_linea(id)
 			_pintar()
