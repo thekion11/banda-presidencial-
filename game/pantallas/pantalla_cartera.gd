@@ -212,8 +212,8 @@ func _pintar() -> void:
 	var total := filtrados.size()
 	var ini := pagina * POR_PAGINA
 	var fin := mini(total, ini + POR_PAGINA)
-	_conteo.text = "Mostrando %d a %d de %d proyectos" % [ini + 1 if total > 0 else 0, fin, total]
-	_lbl_pag.text = "%d / %d" % [pagina + 1, maxi(1, (total + POR_PAGINA - 1) / POR_PAGINA)]
+	_conteo.visible = false  # los conteos y números de página son internos: el jugador no los ve
+	_lbl_pag.text = ""
 	if total == 0:
 		_lista.add_child(Tema.etiqueta("Ningún proyecto coincide con esos filtros.", 12, Tema.TEXTO_SUAVE))
 	for i in range(ini, fin):

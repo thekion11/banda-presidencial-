@@ -10,29 +10,6 @@ static func puede_editar(motor: MotorTurno) -> bool:
 	return e.etapa == "campana" or (e.etapa == "gobierno" and e.turno_actual == 1)
 
 
-static func _conteo_por_categoria(motor: MotorTurno) -> Dictionary:
-	var alias: Dictionary = motor.catalogo_leyes["gabinete"]["categorias_alias"]
-	var cuenta := {}
-	for c in motor.catalogo_cartas:
-		var cat := String(alias.get(c["categoria"], c["categoria"]))
-		cuenta[cat] = int(cuenta.get(cat, 0)) + 1
-	return cuenta
-
-
-static func cartas_habilitadas(motor: MotorTurno, ids: Array) -> int:
-	## Cartas del catálogo cuya categoría quedaría activa con ese gabinete (sin contar año, evento, fiscal ni meta).
-	var cats := {}
-	for c in motor.catalogo_leyes["gabinete"]["categorias_siempre"]:
-		cats[String(c)] = true
-	for id in ids:
-		cats[String(motor.catalogo_ministros[id]["categoria_afin"])] = true
-	var total := 0
-	var cuenta := _conteo_por_categoria(motor)
-	for cat in cats.keys():
-		total += int(cuenta.get(cat, 0))
-	return total
-
-
 static func crear(motor: MotorTurno, texto_boton: String, al_confirmar: Callable, al_error: Callable = Callable(), con_bloqueadas: bool = false) -> Control:
 	var tam := int(motor.catalogo_leyes["gabinete"]["tamano"])
 	var editable := puede_editar(motor)
@@ -43,12 +20,10 @@ static func crear(motor: MotorTurno, texto_boton: String, al_confirmar: Callable
 	var contador := Tema.etiqueta("", 15, Tema.ORO, true)
 	var boton := Tema.boton(texto_boton, Tema.ROJO, Tema.TEXTO, 15, 52)
 	var lista := FilasUI.col(6)
-	var cuenta := _conteo_por_categoria(motor)
 	var botones := {}
 	var refrescar := func() -> void:
 		contador.text = "Gabinete: %d de %d ministros" % [elegidos.size(), tam]
-		resumen.text = "Habilita %d de %d cartas del catálogo. Política, Comité y Estado siempre están habilitadas." % [
-				cartas_habilitadas(motor, elegidos), motor.catalogo_cartas.size()]
+		resumen.text = "Cada ministro habilita las cartas de su área. Política, Comité y Estado siempre están habilitadas."  # sin conteos de catálogo: son internos
 		boton.disabled = elegidos.size() != tam
 		boton.visible = editable
 		for id in botones.keys():
@@ -66,7 +41,7 @@ static func crear(motor: MotorTurno, texto_boton: String, al_confirmar: Callable
 		var m: Dictionary = motor.catalogo_ministros[id]
 		var cat := String(m["categoria_afin"])
 		var b := FilasUI.fila_boton([[m["alias"], 13, Tema.TEXTO, true], [m["cartera"], 11, Tema.TEXTO_SUAVE],
-				["Habilita %s · %d cartas" % [BloqueoCarta.nombre_cat(cat), int(cuenta.get(cat, 0))], 11, Tema.ORO]], Tema.PANEL, 66.0)
+				["Habilita cartas de %s" % BloqueoCarta.nombre_cat(cat), 11, Tema.ORO]], Tema.PANEL, 66.0)
 		botones[id] = b
 		b.pressed.connect(func() -> void:
 			if not editable:
@@ -79,7 +54,7 @@ static func crear(motor: MotorTurno, texto_boton: String, al_confirmar: Callable
 		lista.add_child(b)
 	if con_bloqueadas:
 		var bloq := BloqueoCarta.bloqueadas(motor)
-		lista.add_child(Tema.etiqueta("Cartas bloqueadas con tu gabinete actual: %d" % bloq.size(), 14, Tema.TEXTO, true))
+		lista.add_child(Tema.etiqueta("Cartas bloqueadas con tu gabinete actual", 14, Tema.TEXTO, true))
 		for e in bloq.slice(0, 30):
 			var v := FilasUI.col(0)
 			v.add_child(Tema.etiqueta(String(e["carta"]["titulo"]), 12, Tema.TEXTO, false, 600))
