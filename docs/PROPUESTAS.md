@@ -127,7 +127,7 @@ El usuario aclaró que esos dos mensajes («Lo Jugadas accidentales.» y «Propo
 
 **Decisiones pendientes:** (1) ¿relleno por defecto «equilibrado» y modo «máxima eficacia» con costo? (2) ¿alias + perfil real (recomendado) o apellido real con revisión legal? (3) ¿candidatos de varios gobiernos, solo vivos, o también ficticios para completar? (4) ¿cuántos candidatos por ministerio?
 
-### PR-05b — Sin apellido: solo sobrenombre si lo tienen (24-nov-2026) · estado: hablada
+### PR-05b — Sin apellido: solo sobrenombre si lo tienen (24-nov-2026) · estado: CRITERIO ACEPTADO por el usuario (sin implementar)
 
 **Propuesta del usuario:** ni nombre ni apellido; solo el **sobrenombre**, para quienes tengan uno conocido.
 
@@ -138,3 +138,10 @@ El usuario aclaró que esos dos mensajes («Lo Jugadas accidentales.» y «Propo
 - Se mantiene lo ya recomendado: perfil real **público y verificable** (ideología, partido, estudios, años de experiencia) y cifras de juego derivadas de datos neutros, nunca de juicios sobre la persona; aviso de ficción satírica; revisión legal antes de que lo jueguen terceros.
 - *Decisión de proceso:* la investigación de candidatos anota por persona `apodo_real` (con fuente) o `alias_inventado`, y marca si el apodo es neutral; el relleno automático y la interfaz solo muestran el alias.
 **Pendiente de decisión del usuario:** (1) ¿se acepta este criterio de apodos (neutros, documentados, igual trato a todos)? (2) ¿qué hacer con apodos dudosos: inventar un alias en su lugar (propuesta de Claude)?
+
+**Decisión del usuario (24-nov-2026):** «Sí, acepto ese criterio». Queda vigente, para cuando se implemente PR-05:
+1. Solo **alias o sobrenombre**; nunca nombre ni apellido de personas reales vivas.
+2. Se usa el **apodo real** únicamente si está **documentado en fuentes públicas** (enlace y fecha de corte en `fuentes.json`) y es de **uso neutro o afectuoso**; nunca despectivo; **mismo criterio para todos los sectores políticos**.
+3. Sin apodo conocido, o con apodo dudoso: **alias inventado** (estilo de los actuales).
+4. El perfil (ideología, partido, estudios, experiencia) es real, público y verificable; las cifras de juego salen de datos neutros; aviso de ficción satírica; **revisión legal antes de que lo jueguen terceros**.
+Siguen pendientes de PR-05: modo de relleno (equilibrado / máxima eficacia), de qué gobiernos salen los candidatos y cuántos por ministerio. Nada se implementa hasta que el usuario diga «hazlo».
