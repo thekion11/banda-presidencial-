@@ -106,3 +106,23 @@ El usuario aclaró que esos dos mensajes («Lo Jugadas accidentales.» y «Propo
 - *Costo de interfaz:* la pantalla de gabinete pasa a dos niveles (núcleo elegido + vista de los 25 con propuesta automática editable).
 
 **Decisiones pendientes:** (1) ¿A, B o C? (2) ¿cómo se conserva el peso de «mis ministros habilitan cartas»? (3) ¿cuántos ministerios son «núcleo»? (4) ¿cambiar un ministro cuesta capital político?
+
+## PR-05 — Gabinete completo con «rellenar» y ministros recreados desde personas reales (24-nov-2026) · estado: hablada
+
+**Idea del usuario (resumen fiel):** poder **escoger los 25** o usar un **botón que rellene los que falten** (si relleno 24, rellena el último «en base al equilibrio o a lo más beneficioso»; si escojo uno, se rellenan los otros 24), **sin reemplazar nunca lo ya escogido**. Los candidatos serían **ministros reales que sigan vivos** (sean quienes sean), **recreados dejando su apellido pero no su nombre**, con su **ideología, experiencia, partido y estudios** reales.
+
+**Opinión de Claude, parte 1 — escoger todos o rellenar: me gusta y reemplaza mi opción C de PR-04.** Así las 25 decisiones son **opcionales**: quien quiere control total elige todo; quien quiere rapidez elige 1-7 y rellena el resto. Cómo lo haría:
+- Las elecciones del jugador quedan **bloqueadas** (candado visible); «Rellenar» solo toca los vacíos y nunca pisa una elección. Un ministerio se puede **vaciar** de uno en uno.
+- El relleno es **determinista** (misma partida → mismo relleno, para que el replay y el guardado sigan exactos): puntúa a cada candidato por (a) afinidad con tu ideología y coalición, (b) ajuste entre sus estudios/experiencia y el ministerio, (c) cuotas prometidas a aliados y (d) equilibrio del conjunto (que no queden todos del mismo partido ni todo el gabinete sin experiencia); desempata por id.
+- Mostrar **por qué** se rellenó así («Hacienda: economista, 12 años de experiencia, afín a tu perfil») y permitir **deshacer** el relleno.
+- Si el objetivo del relleno es «lo más beneficioso», conviene decirlo con claridad en pantalla y que no sea «el mejor posible» siempre (si no, nadie elegiría a mano); por ejemplo, un modo **equilibrado** por defecto y uno **máxima eficacia** que cueste capital político o cohesión.
+
+**Opinión de Claude, parte 2 — personas reales vivas con solo el apellido: me gusta el realismo, pero lo cambiaría.**
+- *Lo que gana:* un gabinete creíble, perfiles verificables y variedad (candidatos de varios gobiernos), y encaja con el test ideológico (los mismos ejes que los partidos).
+- *Problema 1:* **el apellido no anonimiza.** «Quiroz» + su partido + sus estudios + su trayectoria identifica a una persona viva sin ambigüedad. Y el juego le asigna números (competencia, riesgo de escándalo, probabilidad de fallar una delegación): eso es una **valoración de una persona real**, que es lo más delicado (honra, reclamo por injurias, políticas de Google Play sobre personas reales). La sátira ayuda, pero un número «de escándalo» sobre alguien identificable no es sátira evidente.
+- *Problema 2:* contradice la regla vigente de `CLAUDE.md` («políticos reales con **alias satíricos**»); el apellido no es un alias.
+- *Mi recomendación:* **alias + perfil real público y verificable.** Conservar lo que sí aporta realismo (ideología documentada, partido, estudios, años y tipo de experiencia) tomado de **fuentes públicas oficiales** (BCN reseñas biográficas, gob.cl), con fuente y fecha de corte, pero con **nombre ficticio o alias** (como los alias de los ministros actuales). Las **cifras de juego** (competencia, riesgo de escándalo) se derivarían de datos **neutros y verificables** (años de experiencia, coincidencia estudios-cartera), nunca de juicios subjetivos sobre la persona. Y un **aviso de ficción satírica** más revisión legal antes de publicar, como ya está anotado para los partidos.
+- *Si el usuario prefiere mantener el apellido,* sería una decisión suya con riesgo asumido, que exigiría revisión de un abogado chileno **antes** de que lo jueguen terceros, y excluir de las cifras todo juicio de valor.
+- *Costo de datos:* ~75 candidatos (3 por ministerio) con perfil verificado: una sesión de investigación por búsqueda web, con fuentes y fecha de corte; más el diseño de la puntuación del relleno y la pantalla de dos niveles de PR-04.
+
+**Decisiones pendientes:** (1) ¿relleno por defecto «equilibrado» y modo «máxima eficacia» con costo? (2) ¿alias + perfil real (recomendado) o apellido real con revisión legal? (3) ¿candidatos de varios gobiernos, solo vivos, o también ficticios para completar? (4) ¿cuántos candidatos por ministerio?
