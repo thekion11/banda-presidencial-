@@ -217,6 +217,15 @@
     ,"tope_prob_retraso": 0.5
   },
   "repeticion_promesa": 0.5,
+  "dificultad": {
+    "defecto": "normal",
+    "nota": "PR-01: presets de dificultad. umbral_delta se suma al umbral de victoria de hemiciclo; aprobacion_inicial se suma a la aprobación con la que parte el partido; desgaste multiplica el desgaste semanal de aprobación.",
+    "niveles": {
+      "facil": {"nombre": "Fácil", "descripcion": "Más aprobación de partida y menos desgaste. Para aprender el juego.", "umbral_delta": -5.0, "aprobacion_inicial": 6.0, "desgaste": 0.85},
+      "normal": {"nombre": "Normal", "descripcion": "La experiencia pensada para el juego.", "umbral_delta": 0.0, "aprobacion_inicial": 0.0, "desgaste": 1.0},
+      "dificil": {"nombre": "Difícil", "descripcion": "Parte con menos apoyo, el cargo desgasta más y ganar exige más votos.", "umbral_delta": 0.5, "aprobacion_inicial": -2.0, "desgaste": 1.05}
+    }
+  },
   "calendario": {
     "fecha_inicio_campana": "2025-09-21",
     "fecha_primera_vuelta": "2025-11-16",

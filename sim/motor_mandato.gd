@@ -55,10 +55,16 @@ func finalizar(motivo: String) -> void:
 
 
 
+func nivel() -> Dictionary:
+	## Preset de dificultad de la partida (PR-01): fácil, normal o difícil, según estado.partido["dificultad"]; sin dato usa el defecto.
+	var d: Dictionary = m.catalogo_leyes["dificultad"]
+	return d["niveles"].get(String(m.estado.partido.get("dificultad", d["defecto"])), d["niveles"][d["defecto"]])
+
+
 func resolver_eleccion() -> Dictionary:
 	## 1ª vuelta: gana quien supera el umbral; si no, pasa a la 2ª vuelta (semanas_balotaje más de campaña) con el piso configurado.
 	var h: Dictionary = m.catalogo_leyes["hemiciclo"]
-	var umbral := float(h["umbral_victoria_presidencial"])
+	var umbral := float(h["umbral_victoria_presidencial"]) + float(nivel()["umbral_delta"])
 	if not m.estado.eleccion_pendiente(int(h["semanas_campana"])):  # solo se vota cuando la campaña terminó (nada se registra ni cambia)
 		return {"ok": false, "electo": false, "balotaje": false, "ronda": m.estado.ronda_electoral, "voto_final": 0.0, "umbral": umbral}
 	var ruido := float(m.catalogo_leyes["campana"]["ruido_eleccion"])

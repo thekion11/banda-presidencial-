@@ -69,7 +69,7 @@ func _ready() -> void:
 	var titulos := {"fin_mandato": "Fin del mandato", "crisis": "Caída del gobierno", "derrota_electoral": "Derrota electoral"}
 	col.add_child(Tema.etiqueta("FIN DE PARTIDA", 10, Tema.ORO, true))
 	col.add_child(Tema.etiqueta(String(titulos.get(est.etapa, "Fin")), 30, Tema.TEXTO, true))
-	var umbral := float(motor.catalogo_leyes["hemiciclo"]["umbral_victoria_presidencial"])
+	var umbral := float(motor.catalogo_leyes["hemiciclo"]["umbral_victoria_presidencial"]) + float(motor.mandato.nivel()["umbral_delta"])
 	var detalle := ""
 	match est.etapa:
 		"derrota_electoral":
