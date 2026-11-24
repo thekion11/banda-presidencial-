@@ -190,7 +190,7 @@ func exportar_resumen() -> Dictionary:
 
 
 func calcular_huella() -> String:
-	return JSON.stringify(exportar_resumen(), "", true, true).sha256_text()
+	return Huella.sha(exportar_resumen())
 
 
 func exportar_guardado(huella_datos: String = "") -> Dictionary:

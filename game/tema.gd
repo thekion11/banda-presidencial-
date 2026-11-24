@@ -23,7 +23,8 @@ const TACTIL := 44.0  # zona táctil mínima
 const TAG_WGHT := 2003265652  # etiqueta OpenType "wght"
 
 static var _fuente_titulo: FontVariation
-static var _fuente_texto: FontVariation
+static var _fuentes_texto: Dictionary = {}
+static var _shader_imagen: Shader
 
 
 static func fuente_titulo() -> Font:
@@ -36,11 +37,12 @@ static func fuente_titulo() -> Font:
 
 
 static func fuente_texto(peso: int = 400) -> Font:
-	var base := load("res://game/fuentes/Inter.ttf") as FontFile
-	var f := FontVariation.new()
-	f.base_font = base
-	f.variation_opentype = {TAG_WGHT: peso}
-	return f
+	if not _fuentes_texto.has(peso):  # una sola fuente por peso: se pide dentro de _draw en cada cuadro
+		var f := FontVariation.new()
+		f.base_font = load("res://game/fuentes/Inter.ttf") as FontFile
+		f.variation_opentype = {TAG_WGHT: peso}
+		_fuentes_texto[peso] = f
+	return _fuentes_texto[peso]
 
 
 static func color_aprobacion(v: float) -> Color:
@@ -137,10 +139,11 @@ static func imagen(categoria: String, alto: float, radio: float = 14.0, oscurece
 	tr.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 	tr.texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR_WITH_MIPMAPS
 	tr.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_COVERED
-	var sh := Shader.new()
-	sh.code = SHADER_IMAGEN
+	if _shader_imagen == null:
+		_shader_imagen = Shader.new()
+		_shader_imagen.code = SHADER_IMAGEN
 	var mat := ShaderMaterial.new()
-	mat.shader = sh
+	mat.shader = _shader_imagen
 	mat.set_shader_parameter("radio", radio)
 	mat.set_shader_parameter("oscurecer", oscurecer)
 	tr.material = mat

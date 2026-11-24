@@ -4,12 +4,17 @@ on:
   push:
     branches: [ccr-ec102a3c-giitie]  # cada push deja un APK de depuración como artefacto
 
+concurrency:
+  group: android-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   apk:
     runs-on: ubuntu-latest
     timeout-minutes: 40
     env:
-      GODOT_VERSION: "4.3-stable"
+      GODOT_VERSION: "4.7.2-stable"
+      GODOT_TPL: "4.7.2.stable"  # nombre de la carpeta de plantillas de exportación
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-java@v4
@@ -18,20 +23,23 @@ jobs:
           java-version: "17"
       - name: Instalar Godot y plantillas
         run: |
-          curl -sL -o godot.zip "https://github.com/godotengine/godot/releases/download/${GODOT_VERSION}/Godot_v${GODOT_VERSION}_linux.x86_64.zip"
-          curl -sL -o tpl.tpz "https://github.com/godotengine/godot/releases/download/${GODOT_VERSION}/Godot_v${GODOT_VERSION}_export_templates.tpz"
+          curl -fsSL -o godot.zip "https://github.com/godotengine/godot/releases/download/${GODOT_VERSION}/Godot_v${GODOT_VERSION}_linux.x86_64.zip"
+          curl -fsSL -o tpl.tpz "https://github.com/godotengine/godot/releases/download/${GODOT_VERSION}/Godot_v${GODOT_VERSION}_export_templates.tpz"
           unzip -q godot.zip && sudo mv "Godot_v${GODOT_VERSION}_linux.x86_64" /usr/local/bin/godot
-          mkdir -p ~/.local/share/godot/export_templates/4.3.stable
-          unzip -q tpl.tpz -d tpl && cp -r tpl/templates/* ~/.local/share/godot/export_templates/4.3.stable/
+          mkdir -p ~/.local/share/godot/export_templates/${GODOT_TPL}
+          unzip -q tpl.tpz -d tpl && cp -r tpl/templates/* ~/.local/share/godot/export_templates/${GODOT_TPL}/
       - name: Android SDK y keystore de depuración
         run: |
           SDKM="$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager"
           if [ ! -x "$SDKM" ]; then SDKM="$(ls $ANDROID_HOME/cmdline-tools/*/bin/sdkmanager | head -n 1)"; fi
           yes | "$SDKM" --licenses > /dev/null || true
-          "$SDKM" --install "platform-tools" "build-tools;34.0.0" "platforms;android-34" > /dev/null
+          "$SDKM" --install "platform-tools" "build-tools;35.0.1" "build-tools;36.0.0" "platforms;android-35" "platforms;android-36" > /dev/null
           keytool -genkeypair -keystore "$RUNNER_TEMP/debug.keystore" -alias androiddebugkey -storepass android -keypass android -keyalg RSA -keysize 2048 -validity 10000 -dname "CN=Android Debug,O=Android,C=US"
           godot --headless --import --path . || true
-          cat >> ~/.config/godot/editor_settings-4.3.tres <<EOF2
+          ES="$HOME/.config/godot/editor_settings-4.7.tres"
+          mkdir -p "$HOME/.config/godot"
+          if [ ! -f "$ES" ]; then printf '[gd_resource type="EditorSettings" format=3]\n\n[resource]\n' > "$ES"; fi
+          cat >> "$ES" <<EOF2
           export/android/android_sdk_path = "$ANDROID_HOME"
           export/android/java_sdk_path = "$JAVA_HOME"
           export/android/debug_keystore = "$RUNNER_TEMP/debug.keystore"
@@ -44,8 +52,13 @@ jobs:
           python3 tools/generar_version.py
           godot --headless --import --path . || true
           godot --headless --path . --export-debug "Android" build/presidente-debug.apk
+      - name: Comprobar el tamaño del APK (límite 150 MB)
+        run: |
+          ls -l build/presidente-debug.apk
+          test "$(stat -c %s build/presidente-debug.apk)" -lt 157286400
       - uses: actions/upload-artifact@v4
         with:
           name: presidente-debug-apk
           retention-days: 30
+          if-no-files-found: error
           path: build/presidente-debug.apk

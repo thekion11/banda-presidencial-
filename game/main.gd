@@ -41,7 +41,7 @@ func _cambiar(p: Control) -> void:
 	p.set_anchors_preset(Control.PRESET_FULL_RECT)
 	p.modulate.a = 0.0
 	add_child(p)
-	create_tween().tween_property(p, "modulate:a", 1.0, 0.22)
+	p.create_tween().tween_property(p, "modulate:a", 1.0, 0.22)  # el tween muere con la pantalla (antes: aviso «Target object freed»)
 
 
 func mostrar_menu() -> void:

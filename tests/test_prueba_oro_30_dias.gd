@@ -11,6 +11,9 @@ func _check(cond: bool, msg: String) -> void:
 		print("FALLO: ", msg)
 
 
+const ORO := "8dad6c302e198e5f5d7ade4b9c6053d5acc143d95b60056143b4ef26f3a13dcc"  # idéntica en Godot 4.3 y 4.7.2; si el cambio es intencional, actualízala
+
+
 func _init() -> void:
 	var datos := Datos.cargar_todo()
 	var a := _simular(datos, 20260415)
@@ -18,6 +21,7 @@ func _init() -> void:
 	var c := _simular(datos, 31415926)
 	_check(a == b, "misma semilla dio distinto resultado en 30 días")
 	_check(a != c, "semilla distinta dio igual resultado en 30 días")
+	_check(a == ORO, "la huella ya no es la de referencia (%s); si el cambio es intencional, actualiza ORO" % a)
 	if _fallos == 0:
 		print("PRUEBA DE ORO 30 DÍAS SUPERADA")
 		print("Huella: ", a)

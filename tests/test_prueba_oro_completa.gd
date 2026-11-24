@@ -1,6 +1,10 @@
 extends SceneTree
 ## Prueba de oro integral: Partido -> Campaña -> Gobierno completo, determinista y reproducible por guardado.
 
+## Huella de referencia: es idéntica en Godot 4.3 y 4.7.2 (Huella escribe los números igual en todas las versiones). Si un cambio de reglas o de datos
+## es intencional, actualízala con el valor que imprime el fallo.
+const ORO := "558c2d89fbbb85d521bd3a049111052f6ada7e6c1fe337de19fe3abfc10c242f"
+
 var _fallos: int = 0
 
 
@@ -14,7 +18,8 @@ func _init() -> void:
 	var rep := Partida.reproducir(datos, m1.estado.exportar_guardado())
 	_check(rep.estado.calcular_huella() == m1.estado.calcular_huella(), "La reproducción desde guardado difiere")
 	_check(m1.estado.registro_acciones.size() > 100, "El registro de acciones es demasiado corto")
-	_check(m1.estado.etapa in ["fin_mandato", "crisis", "derrota_electoral"], "La partida no terminó: " + m1.estado.etapa)
+	_check(m1.estado.etapa in ["fin_mandato", "crisis"], "La partida debe llegar a gobernar y terminar (fin de mandato o crisis): " + m1.estado.etapa)
+	_check(m1.estado.calcular_huella() == ORO, "La huella ya no es la de referencia (%s); si el cambio es intencional, actualiza ORO" % m1.estado.calcular_huella())
 	_check(not m1.estado.resultado_final.is_empty(), "Sin resultado final")
 	print("Etapa final: %s | turno %d | resultado %s" % [m1.estado.etapa, m1.estado.turno_actual, m1.estado.resultado_final])
 	if _fallos == 0:

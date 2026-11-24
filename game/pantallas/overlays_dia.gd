@@ -143,10 +143,10 @@ static func evento(ev: Dictionary, al_continuar: Callable, nombres: Dictionary, 
 	capa.add_child(_fondo_radial())
 	var col := VBoxContainer.new()
 	col.set_anchors_preset(Control.PRESET_FULL_RECT)
-	col.offset_left = 20
-	col.offset_right = -20
+	col.offset_left = 16
+	col.offset_right = -16
 	col.offset_top = 46
-	col.offset_bottom = -26
+	col.offset_bottom = -53  # el botón principal queda en (16, 739, 358×52), igual que en las demás pantallas
 	col.add_theme_constant_override("separation", 10)
 	capa.add_child(col)
 	var boton := Barras.boton_jugar()
@@ -186,10 +186,12 @@ static func evento(ev: Dictionary, al_continuar: Callable, nombres: Dictionary, 
 		esp.size_flags_vertical = Control.SIZE_EXPAND_FILL
 		col.add_child(esp)
 		var b := Barras.boton_jugar()
+		b.custom_minimum_size = Vector2(0, 52)
 		var ultima := v == null or int(estado["i"]) == 1 or not _pasa(v, paginas, int(estado["i"]))
 		b.text = "Continuar" if ultima else "Pasa a la %s" % nombres[paginas[1]]
 		b.pressed.connect(func() -> void:
 			if ultima:
+				estado.erase("armar")  # rompe el ciclo diccionario -> lambda -> diccionario (si no, la pantalla nunca se libera)
 				capa.queue_free()
 				al_continuar.call()
 			else:

@@ -47,11 +47,12 @@ static func sugerir(posiciones: Array) -> Array[String]:
 					base = "%s %s" % [e["n"], _cardinal(e["p"], p)]
 		if base == "":
 			base = "Estación %d" % (k + 1)
+		base = base.left(22)  # deja sitio para el número que desambigua
 		var nombre := base
 		var n := 2
 		while usados.has(nombre):
 			nombre = "%s %d" % [base, n]
 			n += 1
 		usados[nombre] = true
-		res.append(nombre.left(26))
+		res.append(nombre)
 	return res

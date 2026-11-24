@@ -37,13 +37,15 @@ func _ready() -> void:
 		b.add_theme_font_size_override("font_size", 14)
 		b.focus_mode = Control.FOCUS_NONE
 		var id := String(l["id"])
-		var estado := {"largo": false, "abajo": false}
+		var estado := {"largo": false, "abajo": false, "n": 0}
 		b.button_down.connect(func() -> void:
 			estado["largo"] = false
 			estado["abajo"] = true
+			estado["n"] = int(estado["n"]) + 1
+			var mi_pulsacion: int = estado["n"]  # un temporizador de una pulsación anterior no debe actuar sobre la actual
 			var t := get_tree().create_timer(0.45)
 			t.timeout.connect(func() -> void:
-				if estado["abajo"]:  # pulsación larga: deja visible solo esta línea
+				if estado["abajo"] and int(estado["n"]) == mi_pulsacion:  # pulsación larga: deja visible solo esta línea
 					estado["largo"] = true
 					UrbanoBase.solo_linea(id)
 					_pintar()

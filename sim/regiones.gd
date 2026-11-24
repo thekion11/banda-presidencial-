@@ -25,8 +25,8 @@ func inicializar(estado: EstadoSimulacion, aprobacion: float, bastion: String, b
 	estado.aprobacion_regional.clear()
 	for r in catalogo:
 		# Variación territorial determinista (semilla + id de región); ilustrativa, no representa encuestas reales.
-		var h := hash("%d:%s" % [estado.semilla, r["id"]])
-		var u := float(absi(h) % 10001) / 10000.0 * 2.0 - 1.0
+		var h := Huella.fnv32("%d:%s" % [estado.semilla, r["id"]])  # estable entre versiones de Godot
+		var u := float(h % 10001) / 10000.0 * 2.0 - 1.0
 		var v := aprobacion + (bono_bastion if r["id"] == bastion else 0.0) + u * variacion
 		estado.aprobacion_regional[r["id"]] = clampf(v, 0.0, 100.0)
 	estado.aprobacion_base = estado.aprobacion_regional.duplicate()

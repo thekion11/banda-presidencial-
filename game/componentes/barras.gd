@@ -150,7 +150,7 @@ static func boton_redondo(tipo: String) -> Button:
 
 static func boton_jugar() -> Button:
 	var b := Tema.boton("Jugar", Tema.ROJO, Tema.TEXTO, 18, 54)
-	b.add_theme_stylebox_override("normal", Tema.caja_degradada(Color("#E8705A"), Color("#B7332A"), 27, Color("#F2A08F"), 2))
+	b.add_theme_stylebox_override("normal", Tema.caja_degradada(Color("#D65545"), Color("#B7332A"), 27, Color("#F2A08F"), 2))
 	b.add_theme_stylebox_override("hover", Tema.caja_degradada(Color("#F07C66"), Color("#C23B2E"), 27, Color("#F2A08F"), 2))
 	b.add_theme_stylebox_override("pressed", Tema.caja_degradada(Color("#A92F27"), Color("#C23B2E"), 27, Color("#E8806F"), 2))
 	b.add_theme_stylebox_override("disabled", Tema.caja_degradada(Color("#6B3A3A"), Color("#4C2A2A"), 27))
@@ -162,7 +162,7 @@ static func _boton_central(texto: String, al_avanzar: Callable) -> Control:
 	b.custom_minimum_size = Vector2(64, 64)
 	b.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
 	for e in ["normal", "hover", "pressed"]:
-		b.add_theme_stylebox_override(e, Tema.caja_degradada(Color("#E8705A") if e != "pressed" else Color("#A92F27"), Color("#B7332A"), 32, Color("#F4F0E4"), 3))
+		b.add_theme_stylebox_override(e, Tema.caja_degradada(Color("#D65545") if e != "pressed" else Color("#A92F27"), Color("#B7332A"), 32, Color("#F4F0E4"), 3))
 	b.add_theme_stylebox_override("focus", StyleBoxEmpty.new())
 	var cc := CenterContainer.new()
 	cc.set_anchors_preset(Control.PRESET_FULL_RECT)

@@ -84,7 +84,8 @@ func _px(p: Vector2) -> Vector2:
 
 func _plano(px: Vector2) -> Vector2:
 	var l := a_local(px)
-	return Vector2((l.x - MARGEN.x) / (size.x - 2.0 * MARGEN.x), (l.y - MARGEN.y) / (size.y - 2.0 * MARGEN.y))
+	var r := UrbanoBase.area(size, MARGEN)
+	return Vector2((l.x - r.position.x) / r.size.x, (l.y - r.position.y) / r.size.y)
 
 
 func _vista_empieza(pos: Vector2) -> bool:

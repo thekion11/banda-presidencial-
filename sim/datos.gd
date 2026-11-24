@@ -30,8 +30,7 @@ static func cargar_todo(base: String = "res://data/") -> Dictionary:
 
 static func huella(d: Dictionary) -> String:
 	## SHA-256 de los datos que afectan al resultado de la simulación. Un guardado solo es reproducible con la misma huella.
-	var hc := HashingContext.new()
-	hc.start(HashingContext.HASH_SHA256)
+	var partes := {}
 	for n in ["cartas", "eventos", "leyes", "ministros", "ideologia", "regiones", "propuestas", "sectra", "grafo", "metas", "asesores", "coalicion"]:
-		hc.update(JSON.stringify(d.get(n, {}), "", true).to_utf8_buffer())
-	return hc.finish().hex_encode()
+		partes[n] = d.get(n, {})
+	return Huella.sha(partes)

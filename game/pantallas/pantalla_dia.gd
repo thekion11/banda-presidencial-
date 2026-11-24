@@ -21,6 +21,7 @@ var _r: Dictionary = {}  # referencias de Barras
 var _mapa: MapaChile
 var _mano: ManoUI
 var _lbl_corrector: RichTextLabel
+var _tw_toast: Tween
 var _btn_jugar: Button
 var _btn_fin: Button
 var _btn_deleg: Button
@@ -35,10 +36,10 @@ func _ready() -> void:
 	raiz.set_anchors_preset(Control.PRESET_FULL_RECT)
 	raiz.add_theme_constant_override("separation", 0)
 	add_child(raiz)
-	raiz.add_child(_construir_cabecera())
+	raiz.add_child(Barras.cabecera(_r))
 	raiz.add_child(_construir_cuerpo())
 	_raiz = raiz
-	_nav = _construir_nav()
+	_nav = Barras.nav(_abrir_panel)
 	raiz.add_child(_nav)
 	_capa = Control.new()
 	_capa.set_anchors_preset(Control.PRESET_FULL_RECT)
@@ -61,10 +62,6 @@ func _ready() -> void:
 
 
 # ------------------------------------------------------------------ construcción
-func _construir_cabecera() -> Control:
-	return Barras.cabecera(_r)
-
-
 func _construir_cuerpo() -> Control:
 	var cuerpo := Control.new()
 	cuerpo.size_flags_vertical = Control.SIZE_EXPAND_FILL
@@ -158,10 +155,6 @@ func _construir_cuerpo() -> Control:
 	_zona_panel.visible = false
 	cuerpo.add_child(_zona_panel)
 	return cuerpo
-
-
-func _construir_nav() -> Control:
-	return Barras.nav(_abrir_panel)
 
 
 # ------------------------------------------------------------------ estado -> UI
@@ -329,8 +322,11 @@ func _delegar() -> void:
 func _avisar(txt: String) -> void:
 	_toast.text = txt
 	_toast.visible = true
+	if _tw_toast != null and _tw_toast.is_valid():
+		_tw_toast.kill()  # un aviso nuevo no debe ser ocultado por el temporizador del anterior
 	var tw := create_tween()
-	tw.tween_interval(1.8)
+	_tw_toast = tw
+	tw.tween_interval(2.6)
 	tw.tween_callback(func() -> void: _toast.visible = false)
 
 

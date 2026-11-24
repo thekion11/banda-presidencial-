@@ -73,11 +73,11 @@ static func _propuesta(col: VBoxContainer, motor: MotorTurno, pid: String, al_ap
 		mapa.visible = true
 		marcar.call(false))
 	b3.pressed.connect(func() -> void:
-		if not mapa.editando:
-			m3d.poner_trazado(estado["v"]["trazado"], bool(estado["v"]["elevada"]))
-			m3d.visible = true
-			mapa.visible = false
-			marcar.call(true))
+		var trazado: Array = mapa._ruta_edicion if mapa.editando and mapa._ruta_edicion.size() >= 2 else estado["v"]["trazado"]  # con edición, el trazado propio
+		m3d.poner_trazado(trazado, bool(estado["v"]["elevada"]))
+		m3d.visible = true
+		mapa.visible = false
+		marcar.call(true))
 	marcar.call(false)
 	tog.add_child(b2)
 	tog.add_child(b3)
@@ -181,7 +181,10 @@ static func _activar_edicion(mapa: ComiteMapa, edicion: VBoxContainer, detalle: 
 		extremos.add_child(izq)
 		extremos.add_child(Tema.etiqueta_corta(String(par[3]), 10, Tema.TEXTO_SUAVE))
 		edicion.add_child(extremos)
-	mapa.estaciones_cambiadas.connect(func(_e: Array) -> void: actualizar.call())
+	if estado.has("cb_est") and mapa.estaciones_cambiadas.is_connected(estado["cb_est"]):
+		mapa.estaciones_cambiadas.disconnect(estado["cb_est"])  # cada «Modificar trazado» reconectaba otra lambda y las anteriores seguían activas
+	estado["cb_est"] = func(_e: Array) -> void: actualizar.call()
+	mapa.estaciones_cambiadas.connect(estado["cb_est"])
 	mapa.iniciar_edicion(motor.grafo, ests)
 
 

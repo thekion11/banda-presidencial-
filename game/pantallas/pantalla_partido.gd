@@ -204,7 +204,7 @@ func _mostrar_fundacion() -> void:
 
 func _fundar() -> void:
 	var nombre := _nombre.text.strip_edges()
-	var sigla := _sigla.text.strip_edges()
+	var sigla := _sigla.text.strip_edges().to_upper()
 	if nombre == "":
 		nombre = "Partido Independiente"
 	if sigla == "":

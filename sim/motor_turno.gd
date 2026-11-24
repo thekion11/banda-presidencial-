@@ -131,6 +131,8 @@ func ejecutar_amanecer() -> void:
 func cerrar_turno() -> void:
 	if estado.etapa != "campana" and estado.etapa != "gobierno":
 		return
+	if estado.eleccion_pendiente(int(_h("semanas_campana"))):
+		return  # terminada la campaña toca votar: no se pueden seguir cerrando turnos
 	var resumen := {}
 	votaciones_semana = []
 	if estado.etapa == "gobierno":

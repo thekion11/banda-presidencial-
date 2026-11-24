@@ -69,6 +69,7 @@ godot --headless --path . -s tests/test_grafo.gd
 godot --headless --path . -s tests/test_metro_lineas.gd
 godot --headless --path . -s tests/test_mapa_entrada.gd
 godot --headless --path . -s tests/test_lineas_guardado.gd
+godot --headless --path . -s tests/test_validaciones.gd
 godot --headless --path . -s tests/test_sectra.gd
 godot --headless --path . -s tests/test_guardado.gd
 godot --headless --path . -s tests/test_gabinete.gd

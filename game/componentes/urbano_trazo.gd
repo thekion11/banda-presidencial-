@@ -7,7 +7,7 @@ const M_ANCHO := 26003.0  # metros que abarca el ancho del plano de Gran Santiag
 
 
 static func metros_a_px(m: float, tam: Vector2, margen: Vector2) -> float:
-	return m / (M_ANCHO / maxf(1.0, tam.x - 2.0 * margen.x))
+	return m / (M_ANCHO / maxf(1.0, UrbanoBase.area(tam, margen).size.x))
 
 
 static func redondear(pts: PackedVector2Array, radio: float, pasos: int = 4) -> PackedVector2Array:
