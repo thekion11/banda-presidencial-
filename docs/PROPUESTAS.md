@@ -85,10 +85,5 @@ Registro de ideas habladas. Regla acordada el 24-nov-2026: **por ahora solo se c
 
 **Decisiones pendientes:** (1) ¿B con hoja de respaldo? (2) ¿los asesores quedan fuera de la delegación? (3) ¿se explora la sinergia con la coalición?
 
-### PR-02c — Jugadas accidentales: «propongo arrastrar» (24-nov-2026) · estado: hablada (mensaje del usuario cortado; interpretación de Claude por confirmar)
-
-**Lo que llegó del usuario:** sobre el riesgo de *jugadas accidentales*: «Propongo arrastrar» (el mensaje se interrumpió).
-
-**Interpretación de Claude (por confirmar):** el propio gesto de arrastrar al mapa ya es la protección: no se necesita un diálogo de confirmación extra, porque llevar la carta hasta el mapa y soltarla es una decisión deliberada (mucho menos accidental que un toque).
-
-**Opinión:** de acuerdo, **sin ventana de confirmación**. Lo que sí dejaría, porque cuesta poco y evita el error típico (soltar al borde): (1) umbral de distancia antes de que la jugada «se arme»; (2) zona de cancelar (soltar sobre la mano devuelve la carta); (3) retroalimentación durante el arrastre (costo en movimientos y aviso del corrector); (4) la jugada solo se ejecuta al soltar sobre un destino válido. Si el mensaje quería decir otra cosa, se corrige este registro.
+### PR-02c — RETIRADA (24-nov-2026)
+El usuario aclaró que esos dos mensajes («Lo Jugadas accidentales.» y «Propongo arrastrar.») se enviaron por error. La interpretación y la opinión que Claude había registrado aquí se retiran y **no cuentan como decisión**. Sigue vigente solo lo anotado en PR-02 sobre jugadas accidentales (umbral, zona de cancelar, retroalimentación y respaldo de toque), pendiente de que el usuario lo acepte o lo cambie.
