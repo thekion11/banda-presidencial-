@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Genera el icono del juego (banda presidencial tricolor con estrella dorada sobre océano) y la imagen de arranque.
+"""Genera el icono del juego (fachada de La Moneda con la banda tricolor al pie, sobre océano) y la imagen de arranque.
 Salidas: icon.svg, game/arte/marca/{icono_512,icono_fg_432,icono_bg_432,icono_192,splash}.png. Paleta de CLAUDE.md §5."""
 import math
 from pathlib import Path
@@ -52,28 +52,57 @@ def banda(n: int, margen: float) -> Image.Image:
     return capa.resize((n, n), Image.LANCZOS)
 
 
+def moneda(n: int, escala: float = 1.0, sangrado: bool = True) -> Image.Image:
+    """Fachada neoclásica de La Moneda (dorada y crema) con la banda tricolor al pie; capa RGBA transparente."""
+    S = n * SS
+    capa = Image.new("RGBA", (S, S), (0, 0, 0, 0))
+    d = ImageDraw.Draw(capa)
+
+    def X(v: float) -> float:
+        return S * (0.5 + (v - 0.5) * escala)
+
+    def Y(v: float) -> float:
+        return S * (0.5 + (v - 0.5) * escala)
+
+    d.polygon([(X(0.14), Y(0.40)), (X(0.50), Y(0.22)), (X(0.86), Y(0.40))], fill=ORO)
+    d.polygon([(X(0.20), Y(0.395)), (X(0.50), Y(0.255)), (X(0.80), Y(0.395))], fill=PANEL)
+    d.rectangle([X(0.12), Y(0.40), X(0.88), Y(0.45)], fill=ORO)
+    for i in range(6):
+        x = 0.17 + i * 0.118
+        d.rectangle([X(x), Y(0.45), X(x + 0.07), Y(0.70)], fill=CREMA)
+        d.rectangle([X(x - 0.01), Y(0.45), X(x + 0.08), Y(0.47)], fill=ORO)
+    d.rectangle([X(0.10), Y(0.70), X(0.90), Y(0.75)], fill=ORO)
+    d.rectangle([X(0.07), Y(0.75), X(0.93), Y(0.79)], fill=ORO)
+    izq, der = (0.0, 1.0) if sangrado else (0.07, 0.93)
+    for color, y in ((AZUL, 0.82), (CREMA, 0.87), (ROJO, 0.92)):
+        d.rectangle([X(izq) if not sangrado else 0, Y(y), X(der) if not sangrado else S, Y(y + 0.05)], fill=color)
+    estrella(d, X(0.50), Y(0.33), S * 0.045 * escala, ORO)
+    return capa.resize((n, n), Image.LANCZOS)
+
+
 def main() -> None:
     out = ROOT / "game" / "arte" / "marca"
     out.mkdir(parents=True, exist_ok=True)
-    fg = banda(432, 0.34)  # zona segura de los iconos adaptativos (≈ 66 %)
-    fg.save(out / "icono_fg_432.png")
+    moneda(432, 0.66, sangrado=False).save(out / "icono_fg_432.png")  # zona segura de los iconos adaptativos
     fondo(432).save(out / "icono_bg_432.png")
     icono = fondo(512).convert("RGBA")
-    icono.alpha_composite(banda(512, 0.10))
+    icono.alpha_composite(moneda(512))
     mascara = Image.new("L", (512 * SS, 512 * SS), 0)
     ImageDraw.Draw(mascara).rounded_rectangle([0, 0, 512 * SS, 512 * SS], radius=112 * SS, fill=255)
     icono.putalpha(mascara.resize((512, 512), Image.LANCZOS))
     icono.save(out / "icono_512.png")
     icono.resize((192, 192), Image.LANCZOS).save(out / "icono_192.png")
-    s = Image.new("RGB", (1080, 1920), OCEANO)
-    s.paste(fondo(1080).crop((0, 0, 1080, 1080)).resize((1080, 1920)), (0, 0))
-    s.paste(icono.resize((420, 420), Image.LANCZOS), (330, 700), icono.resize((420, 420), Image.LANCZOS))
+    s = fondo(1080).resize((1080, 1920))
+    g = icono.resize((460, 460), Image.LANCZOS)
+    s.paste(g, (310, 700), g)
     s.save(out / "splash.png")
     (ROOT / "icon.svg").write_text(
         '<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128"><rect width="128" height="128" rx="28" fill="#0B2236"/>'
-        '<g transform="rotate(-35 64 64)"><rect x="-20" y="42" width="168" height="15" fill="#1E4F9C"/><rect x="-20" y="57" width="168" height="15" fill="#FBF7EC"/>'
-        '<rect x="-20" y="72" width="168" height="15" fill="#C23B2E"/></g><circle cx="64" cy="64" r="22" fill="#16405F" stroke="#F2C14E" stroke-width="2"/>'
-        '<path d="M64 47l5 11 12 1-9 8 3 12-11-6-11 6 3-12-9-8 12-1z" fill="#F2C14E"/></svg>\n', encoding="utf-8")
+        '<path d="M18 51L64 28l46 23z" fill="#F2C14E"/><path d="M26 50.5L64 32.6 102 50.5z" fill="#16405F"/><rect x="15" y="51" width="98" height="6" fill="#F2C14E"/>'
+        '<g fill="#FBF7EC"><rect x="22" y="57" width="8" height="32"/><rect x="37" y="57" width="8" height="32"/><rect x="52" y="57" width="8" height="32"/>'
+        '<rect x="67" y="57" width="8" height="32"/><rect x="82" y="57" width="8" height="32"/><rect x="97" y="57" width="8" height="32"/></g><rect x="13" y="89" width="102" height="6" fill="#F2C14E"/>'
+        '<rect x="9" y="95" width="110" height="5" fill="#F2C14E"/><rect y="105" width="128" height="7" fill="#1E4F9C"/><rect y="112" width="128" height="6" fill="#FBF7EC"/>'
+        '<rect y="118" width="128" height="10" fill="#C23B2E"/><path d="M64 36l2.4 5.2 5.6.6-4.2 3.8 1.2 5.6-5-2.8-5 2.8 1.2-5.6-4.2-3.8 5.6-.6z" fill="#F2C14E"/></svg>\n', encoding="utf-8")
 
 
 if __name__ == "__main__":
