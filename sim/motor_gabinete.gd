@@ -68,24 +68,30 @@ func anio_gobierno() -> int:
 	return clampi(1 + (m.estado.turno_actual - 1) * m.estado.dias_por_turno / dias_anio, 1, int(_cfg()["anios_mandato"]))
 
 
-func disponible(carta: Dictionary) -> bool:
-	if not categoria_activa(String(carta["categoria"])):
-		return false
+func bloqueo(carta: Dictionary) -> Dictionary:
+	## Única regla de disponibilidad: {} si la carta circula; si no, {"codigo": gabinete|anio_desde|anio_hasta|evento|fiscal|meta, "valor": ...}.
+	var cat := String(carta["categoria"])
+	if not categoria_activa(cat):
+		return {"codigo": "gabinete", "valor": cat}
 	var d: Variant = carta.get("disponibilidad", null)
 	if d == null:
-		return true
+		return {}
 	var anio := anio_gobierno()
 	if d.get("anio_desde", null) != null and anio < int(d["anio_desde"]):
-		return false
+		return {"codigo": "anio_desde", "valor": int(d["anio_desde"])}
 	if d.get("anio_hasta", null) != null and anio > int(d["anio_hasta"]):
-		return false
+		return {"codigo": "anio_hasta", "valor": int(d["anio_hasta"])}
 	if d.get("evento", null) != null and not m.estado.eventos_ocurridos.has(String(d["evento"])):
-		return false
+		return {"codigo": "evento", "valor": String(d["evento"])}
 	if d.get("fiscal_min", null) != null and m.estado.ind("fiscal") < float(d["fiscal_min"]):
-		return false
+		return {"codigo": "fiscal", "valor": float(d["fiscal_min"])}
 	if d.get("meta", null) != null and not m.estado.metas_cumplidas.has(String(d["meta"])):
-		return false
-	return true
+		return {"codigo": "meta", "valor": String(d["meta"])}
+	return {}
+
+
+func disponible(carta: Dictionary) -> bool:
+	return bloqueo(carta).is_empty()
 
 
 # ---------------------------------------------------------------- Delegación
