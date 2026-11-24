@@ -3,12 +3,16 @@ on:
   push:
   pull_request:
 
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   pruebas:
     runs-on: ubuntu-latest
     timeout-minutes: 20
     env:
-      GODOT_VERSION: "4.3-stable"
+      GODOT_VERSION: "4.7.2-stable"
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -23,14 +27,14 @@ jobs:
           python3 tools/informe_alcanzabilidad.py
       - name: Instalar Godot
         run: |
-          curl -sL -o godot.zip "https://github.com/godotengine/godot/releases/download/${GODOT_VERSION}/Godot_v${GODOT_VERSION}_linux.x86_64.zip"
+          curl -fsSL -o godot.zip "https://github.com/godotengine/godot/releases/download/${GODOT_VERSION}/Godot_v${GODOT_VERSION}_linux.x86_64.zip"
           unzip -q godot.zip
           sudo mv "Godot_v${GODOT_VERSION}_linux.x86_64" /usr/local/bin/godot
       - name: Importar proyecto
         run: godot --headless --import --path . || true
       - name: Pruebas de oro, balance y humo de UI
         run: |
-          for t in test_prueba_oro_4_semanas test_prueba_oro_30_dias test_prueba_oro_completa test_enmienda test_congreso test_grafo test_metro_lineas test_mapa_entrada test_lineas_guardado test_sectra test_guardado test_presupuesto test_balance test_ui_humo; do
+          for t in test_prueba_oro_4_semanas test_prueba_oro_30_dias test_prueba_oro_completa test_enmienda test_congreso test_grafo test_metro_lineas test_mapa_entrada test_lineas_guardado test_sectra test_guardado test_gabinete test_delegacion test_movimientos test_equipo test_coalicion test_presupuesto test_balance test_ui_humo; do
             echo "== $t"
             godot --headless --path . -s "tests/$t.gd"
           done

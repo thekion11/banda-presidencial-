@@ -2,6 +2,9 @@ extends SceneTree
 ## Prueba de oro de Fase 0: misma semilla + mismas jugadas = misma huella SHA-256.
 
 
+const ORO := "09dcc0ad5562cf92ea0139595105f5e7a840ef46fecd9e556bce87098441e534"  # idéntica en Godot 4.3 y 4.7.2; si el cambio es intencional, actualízala
+
+
 func _init() -> void:
 	var datos := Datos.cargar_todo()
 	var a := _simular_4_semanas(datos, 20260415)
@@ -10,6 +13,7 @@ func _init() -> void:
 	var ok := true
 	ok = _check(a == b, "Misma semilla dio distinto resultado") and ok
 	ok = _check(a != c, "Distinta semilla dio igual resultado") and ok
+	ok = _check(a == ORO, "La huella ya no es la de referencia (%s); si el cambio es intencional, actualiza ORO" % a) and ok
 	if ok:
 		print("PRUEBA DE ORO SUPERADA (4 semanas / 28 días)")
 		print("Huella determinista: ", a)
