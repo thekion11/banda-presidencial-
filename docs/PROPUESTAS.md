@@ -270,3 +270,13 @@ El conjunto de propuestas (PR-01 a PR-24) es de **meses de trabajo**; el juego a
 - **Pendientes a verificar antes de usar cualquier imagen en el juego:** **licencia de uso comercial** de las imágenes generadas por Gemini (igual que con Canva y Figma: por confirmar en los términos de cada servicio).
 - **Otra vía a explorar si el usuario quiere:** Adobe está conectado a la sesión (Firefly); no sé qué créditos tiene su cuenta, pero se puede probar con una sola imagen.
 **Decisiones pendientes:** (1) ¿flujo manual con Gemini para las ilustraciones grandes? (2) ¿retratos modulares por código para ministros y actores? (3) ¿se prueba una imagen con Adobe para conocer sus créditos?
+
+### D-03b — ¿Existe un conector gratuito de imágenes? (24-nov-2026) · estado: hablada
+**Búsqueda en el directorio de conectores (24-nov-2026):** no hay un conector «solo para generar imágenes» gratuito; sí aparecen:
+- **Hugging Face** (no instalado): da acceso al Hub y a **aplicaciones Gradio («Spaces»)**, entre ellas generadores de imágenes abiertos (familia FLUX, Stable Diffusion). **Cuenta gratuita**, con **colas y límites diarios** (cupo de GPU compartida). Hay que activarlo en los ajustes de conectores de claude.ai e iniciar sesión (lo hace el usuario; Claude no puede iniciar el OAuth). **No lo he probado**: la calidad y la consistencia de estilo son incógnitas hasta hacer una prueba.
+  - *Licencias:* varía **por modelo**: p. ej. FLUX.1-schnell se publica con licencia permisiva (Apache-2.0, por confirmar), pero FLUX.1-dev es de **uso no comercial**; los modelos Stable Diffusion tienen su propia licencia. **Antes de usar cualquier imagen en el juego se verifica la licencia del modelo y del Space concreto.**
+- **Unsplash** (no instalado): fotos gratuitas de alta calidad, **no ilustraciones** (no sirven para el estilo de las cartas; sí para fondos fotográficos si se quisiera, con sus condiciones de licencia).
+- **Getty Images** (no instalado): de pago.
+- Ya conectados y con créditos limitados o desconocidos: **Canva** (agotado), **Figma** (plan gratuito con pocas llamadas), **Adobe Firefly** (créditos por consultar).
+**Alternativas sin costo en créditos:** retratos modulares **generados por código** (coherentes y gratis) y paquetes de efectos de sonido/arte de dominio público (CC0) para sonido y elementos de interfaz.
+**Decisión pendiente:** ¿se prueba el conector de Hugging Face (el usuario lo activa y Claude hace una prueba con 2-3 imágenes para evaluar estilo, cupo y licencia)?
