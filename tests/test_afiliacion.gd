@@ -33,6 +33,12 @@ func _init() -> void:
 		m2.terminar_turno()
 	var g: Dictionary = JSON.parse_string(JSON.stringify(m2.estado.exportar_guardado(Datos.huella(datos))))
 	_check(Partida.reproducir(datos, g).estado.calcular_huella() == m2.estado.calcular_huella(), "guardado y replay idénticos con afiliación")
+	# PR-06c: los eventos de vecinos mueven la relación exterior sin estado nuevo
+	var m3 := Partida.crear(datos, 3, propio)
+	var rel0 := m3.eventos.relacion_exterior("ARG", 62.0)
+	m3.estado.eventos_ocurridos["evt_vecino_arg_crisis"] = 1
+	_check(m3.eventos.relacion_exterior("ARG", 62.0) < rel0, "una crisis en Argentina baja la relación")
+	_check(m3.eventos.relacion_exterior("BRA", 66.0) == 66.0, "otros países no cambian")
 	print("test_afiliacion: ", "OK" if _fallos == 0 else "FALLO")
 	quit(1 if _fallos > 0 else 0)
 

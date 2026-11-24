@@ -9,7 +9,7 @@ static func crear(motor: MotorTurno, geo: Dictionary, regiones: Array, texto_eve
 	pn.custom_minimum_size = Vector2(0, 470)
 	var vn := VBoxContainer.new()
 	vn.add_theme_constant_override("separation", 8)
-	vn.add_child(_selector(pn))
+	vn.add_child(_selector(pn, motor))
 	var banner := PanelContainer.new()
 	banner.add_theme_stylebox_override("panel", Tema.caja(Color("#12395A"), 12, Color("#2B5D86"), 1))
 	banner.add_child(Tema.etiqueta(texto_evento, 12, Tema.TEXTO))
@@ -25,7 +25,7 @@ static func crear(motor: MotorTurno, geo: Dictionary, regiones: Array, texto_eve
 	return vn
 
 
-static func _selector(pn: PanelNacion) -> Control:
+static func _selector(pn: PanelNacion, motor: MotorTurno) -> Control:
 	## PR-06c: «Chile» (regiones) o «Continente» (Sudamérica con relaciones). Un solo mapa con dos niveles.
 	var caja := VBoxContainer.new()
 	caja.size_flags_vertical = Control.SIZE_EXPAND_FILL
@@ -41,13 +41,15 @@ static func _selector(pn: PanelNacion) -> Control:
 	cont.custom_minimum_size = Vector2(0, 470)
 	cont.visible = false
 	var vec: Dictionary = Datos.leer_json("res://data/vecinos.json")
+	for iso in vec["paises"].keys():
+		cont.relaciones[iso] = motor.eventos.relacion_exterior(String(iso), float(vec["paises"][iso]["relacion"]))
 	cont.cargar(Datos.leer_json("res://data/geo/sudamerica.json"), vec)
 	var info := Tema.etiqueta("Toca un país para ver su relación con Chile (cifras ilustrativas · mapa ilustrativo).", 11, Tema.TEXTO_SUAVE)
 	info.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	info.visible = false
 	cont.pais_tocado.connect(func(iso: String) -> void:
 		var d: Dictionary = vec["paises"].get(iso, {})
-		info.text = "%s · relación %d/100 · %s" % [_geo_nombre(cont, iso), int(d.get("relacion", 0)), String(d.get("tema", ""))])
+		info.text = "%s · relación %d/100 · %s" % [_geo_nombre(cont, iso), roundi(float(cont.relaciones.get(iso, d.get("relacion", 0)))), String(d.get("tema", ""))])
 	var mostrar := func(continente: bool) -> void:
 		pn.visible = not continente
 		cont.visible = continente

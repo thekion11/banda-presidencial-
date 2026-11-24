@@ -70,6 +70,7 @@ func _init() -> void:
 	# el mazo no reparte cartas no disponibles a lo largo de un mandato
 	var m3 := AyudaV2.gobierno(datos, 13, sinteticas)
 	m3.estado.gabinete.assign(AyudaV2.ministros_de(datos, ["salud", "transportes", "obras"], tam))
+	m3.mazo.refiltrar_mano()  # igual que gabinete.elegir: la mano se ajusta al cambiar el gabinete
 	var rng := RandomNumberGenerator.new()
 	rng.seed = 5
 	var malas := 0

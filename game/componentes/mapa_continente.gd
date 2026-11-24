@@ -7,6 +7,7 @@ signal pais_tocado(iso: String)
 var _geo: Dictionary = {}
 var _vec: Dictionary = {}
 var seleccion: String = ""
+var relaciones: Dictionary = {}  # iso -> relación actual (base + eventos de la partida)
 var _tri: Dictionary = {}  # iso -> Array[PackedVector2Array] ya limpios
 
 
@@ -43,7 +44,7 @@ func _draw() -> void:
 	var r := _area()
 	var rel: Dictionary = _vec["paises"]
 	for iso in _tri.keys():
-		var col := Tema.color_aprobacion(float(rel.get(iso, {}).get("relacion", 50.0)))
+		var col := Tema.color_aprobacion(float(relaciones.get(iso, rel.get(iso, {}).get("relacion", 50.0))))
 		if iso == "CHL":
 			col = Tema.ORO
 		for pieza in _tri[iso]:

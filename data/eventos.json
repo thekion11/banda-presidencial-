@@ -899,5 +899,173 @@
     ],
     "etapa": "campana",
     "fuente": "fuentes.json#ficticio_2026"
+  },
+  {
+    "id": "evt_vecino_arg_crisis",
+    "tipo": "aleatorio_semilla",
+    "dia_objetivo": null,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 0.1,
+    "titulo": "Crisis cambiaria en Argentina",
+    "descripcion": "Cae el peso argentino: presión comercial y turismo hacia Chile.",
+    "votacion": null,
+    "efectos_base": [
+      {
+        "ind": "fiscal",
+        "delta": -1
+      },
+      {
+        "ind": "aprobacion",
+        "delta": -1
+      }
+    ],
+    "etapa": "gobierno",
+    "fuente": "fuentes.json#ficticio_2026",
+    "pais": "ARG",
+    "relacion_delta": -6
+  },
+  {
+    "id": "evt_vecino_arg_acuerdo",
+    "tipo": "aleatorio_semilla",
+    "dia_objetivo": null,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 0.2,
+    "titulo": "Acuerdo energético con Argentina",
+    "descripcion": "Se firma un acuerdo de gas y electricidad con el país vecino.",
+    "votacion": null,
+    "efectos_base": [
+      {
+        "ind": "aprobacion",
+        "delta": 1
+      },
+      {
+        "ind": "capital",
+        "delta": 1
+      }
+    ],
+    "etapa": "gobierno",
+    "fuente": "fuentes.json#ficticio_2026",
+    "pais": "ARG",
+    "relacion_delta": 8
+  },
+  {
+    "id": "evt_vecino_bol_gas",
+    "tipo": "aleatorio_semilla",
+    "dia_objetivo": null,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 0.1,
+    "titulo": "Tensión por el gas con Bolivia",
+    "descripcion": "La agenda de salida al mar vuelve a la mesa y sube la tensión diplomática.",
+    "votacion": null,
+    "efectos_base": [
+      {
+        "ind": "capital",
+        "delta": -1
+      }
+    ],
+    "etapa": "gobierno",
+    "fuente": "fuentes.json#ficticio_2026",
+    "pais": "BOL",
+    "relacion_delta": -8
+  },
+  {
+    "id": "evt_vecino_per_elecciones",
+    "tipo": "aleatorio_semilla",
+    "dia_objetivo": null,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 0.2,
+    "titulo": "Elecciones en Perú",
+    "descripcion": "Un nuevo gobierno peruano abre una ronda de cooperación fronteriza.",
+    "votacion": null,
+    "efectos_base": [
+      {
+        "ind": "capital",
+        "delta": 1
+      }
+    ],
+    "etapa": "gobierno",
+    "fuente": "fuentes.json#ficticio_2026",
+    "pais": "PER",
+    "relacion_delta": 6
+  },
+  {
+    "id": "evt_vecino_ven_migracion",
+    "tipo": "aleatorio_semilla",
+    "dia_objetivo": null,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 0.1,
+    "titulo": "Ola migratoria desde Venezuela",
+    "descripcion": "Aumentan las llegadas por el norte y la presión sobre servicios locales.",
+    "votacion": null,
+    "efectos_base": [
+      {
+        "ind": "aprobacion",
+        "delta": -1
+      }
+    ],
+    "etapa": "gobierno",
+    "fuente": "fuentes.json#ficticio_2026",
+    "pais": "VEN",
+    "relacion_delta": -5
+  },
+  {
+    "id": "evt_vecino_bra_comercio",
+    "tipo": "aleatorio_semilla",
+    "dia_objetivo": null,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 0.2,
+    "titulo": "Auge comercial con Brasil",
+    "descripcion": "Las exportaciones a Brasil suben con la demanda de cobre y alimentos.",
+    "votacion": null,
+    "efectos_base": [
+      {
+        "ind": "fiscal",
+        "delta": 2
+      }
+    ],
+    "etapa": "gobierno",
+    "fuente": "fuentes.json#ficticio_2026",
+    "pais": "BRA",
+    "relacion_delta": 5
+  },
+  {
+    "id": "evt_vecino_col_pacifico",
+    "tipo": "aleatorio_semilla",
+    "dia_objetivo": null,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 0.2,
+    "titulo": "Cumbre de la Alianza del Pacífico",
+    "descripcion": "Colombia y Chile impulsan una cumbre con anuncios de inversión.",
+    "votacion": null,
+    "efectos_base": [
+      {
+        "ind": "aprobacion",
+        "delta": 1
+      }
+    ],
+    "etapa": "gobierno",
+    "fuente": "fuentes.json#ficticio_2026",
+    "pais": "COL",
+    "relacion_delta": 6
+  },
+  {
+    "id": "evt_vecino_ury_mercosur",
+    "tipo": "aleatorio_semilla",
+    "dia_objetivo": null,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 0.2,
+    "titulo": "Chile y Uruguay cierran un acuerdo comercial",
+    "descripcion": "Un tratado simple abre mercado para pymes exportadoras.",
+    "votacion": null,
+    "efectos_base": [
+      {
+        "ind": "fiscal",
+        "delta": 1
+      }
+    ],
+    "etapa": "gobierno",
+    "fuente": "fuentes.json#ficticio_2026",
+    "pais": "URY",
+    "relacion_delta": 5
   }
 ]

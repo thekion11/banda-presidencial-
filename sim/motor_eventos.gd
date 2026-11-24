@@ -50,3 +50,12 @@ func aplicar_evento(evt: Dictionary) -> Dictionary:
 	m.estado.eventos_ocurridos[String(evt["id"])] = m.estado.turno_actual
 	m.mazo.incorporar(m.mazo.ids_con_disponibilidad("evento", String(evt["id"])))  # desbloquea cartas ligadas a este evento
 	return res
+
+
+func relacion_exterior(iso: String, base: float) -> float:
+	## Relación con un país vecino: valor base (data/vecinos.json) + efecto de los eventos «vecino» ya ocurridos en la partida (sin estado nuevo).
+	var rel := base
+	for evt in m.catalogo_eventos:
+		if String(evt.get("pais", "")) == iso and m.estado.eventos_ocurridos.has(String(evt["id"])):
+			rel += float(evt.get("relacion_delta", 0.0))
+	return clampf(rel, 0.0, 100.0)
