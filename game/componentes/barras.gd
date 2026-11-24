@@ -248,3 +248,13 @@ static func actualizar_evento(refs: Dictionary, motor: MotorTurno) -> void:
 	refs["ev_titulo"].text = String(prox["titulo"])
 	var v: Variant = prox.get("votacion", null)
 	refs["ev_sub"].text = ("%d votos firmes · mínimo %d" % [int(v["votos_firmes_base"]), int(motor.legal.tipo(String(v["tipo_ley"]))["votos_minimos"])]) if v != null else String(prox["descripcion"])
+
+
+static func resumen_cambios(antes: Dictionary, despues: Dictionary) -> String:
+	## «Aprob. +2 · Capital −3»: lo que la carta cambió en los indicadores visibles (solo los que se movieron al menos 0,5).
+	var partes: Array[String] = []
+	for par in [["aprobacion", "Aprob."], ["capital", "Capital"], ["cohesion", "Cohes."], ["fiscal", "Fiscal"]]:
+		var d := float(despues.get(par[0], 0.0)) - float(antes.get(par[0], 0.0))
+		if absf(d) >= 0.5:
+			partes.append("%s %s" % [par[1], Tema.signo(d)])
+	return " · ".join(partes)

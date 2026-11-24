@@ -48,3 +48,7 @@ Este archivo lo mantiene Claude. Lo que depende del usuario queda en «Necesito 
 - 8 eventos de vecinos (crisis cambiaria y acuerdo energético con Argentina, tensión por el gas con Bolivia, elecciones en Perú, migración desde Venezuela, auge comercial con Brasil, cumbre del Pacífico con Colombia, acuerdo con Uruguay) en `data/eventos.json` con campos `pais` y `relacion_delta`; salen por el sorteo con semilla y afectan a Chile con la misma maquinaria de eventos. La relación que muestra el mapa del continente = base + eventos ocurridos en tu partida (`MotorEventos.relacion_exterior`, sin estado nuevo). Los negativos pesan menos (balance: crisis del bot activo 6,7 %).
 - Los hashes de las pruebas de oro cambiaron a propósito (nuevos eventos en el sorteo).
 - Sigue pendiente: cartas de política exterior arrastradas a un país, pines de proyectos internacionales y 2,5D; las elecciones propias de cada vecino con ventana fija.
+
+## Ideas del análisis de mercado (autorizadas con tu «todo quiero todo»)
+- Consecuencia visible por carta: HECHO. Al jugar una carta el aviso muestra lo que cambió («Aprob. +2 · Capital −3»). `Barras.resumen_cambios`.
+- Siguientes (en este orden, una por ciclo): resumen de sesión con hitos, finales variados, tutorial corto, medición D1/D7 (esta última exige tu decisión de monetización/datos, U9, y la Ley 21.719).

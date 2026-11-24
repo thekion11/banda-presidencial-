@@ -50,6 +50,7 @@ func _ready() -> void:
 	_toast.position = Vector2(20, 112)
 	_toast.size = Vector2(350, 30)
 	_toast.custom_minimum_size = Vector2(350, 0)
+	_toast.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART  # con consecuencias el aviso puede ocupar dos líneas
 	_toast.visible = false
 	_capa.add_child(_toast)
 	_cola_eventos = motor.ultimos_eventos.duplicate()
@@ -276,6 +277,7 @@ func _on_region(id: String) -> void:
 
 func _jugar() -> void:
 	var n_reg := motor.estado.registro_acciones.size()
+	var antes := motor.estado.indicadores.duplicate()
 	var r := motor.jugar_carta(_sel, _ministro, _region)
 	if not bool(r["ok"]):
 		_avisar(Razones.texto(r))
@@ -294,7 +296,8 @@ func _jugar() -> void:
 		msg = "Proyecto ingresado al Congreso."
 	elif r["corrector"].get("aplica", false):
 		msg = "Versión viable aplicada (%d %%)." % roundi(float(r["corrector"]["ratio"]) * 100.0)
-	_avisar(msg)
+	var cambios := Barras.resumen_cambios(antes, motor.estado.indicadores)  # consecuencia visible de la carta
+	_avisar(msg if cambios == "" else msg + " " + cambios)
 	accion_hecha.emit()
 	_refrescar()
 
@@ -322,6 +325,7 @@ func _delegar() -> void:
 
 func _avisar(txt: String) -> void:
 	_toast.text = txt
+	_toast.size = Vector2(350, 30)  # se reajusta al alto del texto
 	_toast.visible = true
 	if _tw_toast != null and _tw_toast.is_valid():
 		_tw_toast.kill()  # un aviso nuevo no debe ser ocultado por el temporizador del anterior
