@@ -66,3 +66,21 @@ Registro de ideas habladas. Regla acordada el 24-nov-2026: **por ahora solo se c
 - *Costo estimado (cuando se haga):* medio-alto, ~1 a 1,5 días: gesto con zonas de destino, rediseño de la mano, animaciones y sonido, tutorial, pruebas y capturas.
 
 **Pendiente de decidir (no urgente):** (a) ¿conservar un respaldo de toque? (b) ¿delegar soltando sobre el ícono izquierdo? (c) ¿confirmar al avanzar si sobran movimientos? (d) ¿vibración y ajuste de sonido?
+
+### PR-02b — ¿A quién se delega? (pregunta del usuario, 24-nov-2026) · estado: hablada
+
+**Pregunta:** si delegar es soltar la carta en la esquina izquierda, ¿cómo se indica a qué ministro o consejero se le delega?
+
+**Cómo funciona hoy (para partir de lo real):** la delegación va solo a **ministros del gabinete** (8) con `delegar_carta(idx, ministro_id)`: no gasta movimientos, máximo 2 por turno, y puede fallar (probabilidad según el ministro, el riesgo de ejecución y si la carta es de su área). Hoy se elige en una hoja (`PanelDelegar`) con los ministros ordenados por probabilidad de fallo. Los **asesores no reciben delegaciones**: dan +1 movimiento por turno y un efecto positivo y uno negativo.
+
+**Opciones consideradas**
+- **A. Soltar y elegir en una hoja** (dos pasos): soltar sobre el ícono abre la hoja de hoy y ahí se toca al ministro. Seguro y reutiliza lo existente, pero rompe la fluidez del gesto.
+- **B. Destinos al arrastrar** (un solo gesto): al empezar a arrastrar una carta, la esquina izquierda se despliega en **2 o 3 fichas de ministro** (foto/alias, cartera y **% de fallo para ESTA carta**); se suelta sobre la ficha elegida. Las fichas muestran primero al ministro **del área de la carta** (el de menor riesgo) y al mejor alternativo, más una ficha «Elegir…» que abre la hoja con los 8.
+
+**Recomendación de Claude: B, con la hoja como respaldo.** Es coherente con «mapa = jugar, izquierda = delegar, mano = cancelar»: el gesto sigue siendo uno solo y la decisión importante (a quién y con qué riesgo) se ve antes de soltar. El riesgo se muestra con **color y porcentaje** («30 % de fallar») y no solo con números. El contador de delegaciones (2 por turno) sigue en el ícono.
+- *Cartas sin ministro de su área* (política, comité, estado siempre disponibles): la ficha sugerida es Interior o Secretaría General de Gobierno.
+- *Si falla la delegación:* animación propia (la carta se «agrieta») y el aviso de escándalo si lo hay; hoy el motor ya lo registra.
+- *Consejeros (asesores):* **no los haría delegables** en este diseño; son personal de apoyo, no ejecutores, y sumarlos mezclaría dos mecánicas (movimientos extra vs. delegación). Si el usuario quiere que también reciban delegaciones, habría que definir qué cambia (riesgo, límites) y medirlo con los bots.
+- *Idea a validar, no existe hoy:* la **coalición** reparte ministerios entre aliados; delegar en un ministro de un partido aliado podría subir su satisfacción. Es una sinergia atractiva, pero hay que diseñarla y medirla antes.
+
+**Decisiones pendientes:** (1) ¿B con hoja de respaldo? (2) ¿los asesores quedan fuera de la delegación? (3) ¿se explora la sinergia con la coalición?
