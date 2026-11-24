@@ -206,3 +206,45 @@ Resumen de opinión: casi todo es bueno para el juego, pero **es mucho más de l
 2. ¿Qué **hace** el jugador en el mapa del continente: solo ver relaciones y proyectos, o también **actuar** (p. ej. arrastrar una carta de política exterior sobre un país, igual que se arrastran las demás cartas al mapa de Chile)? Yo recomiendo lo segundo.
 3. ¿Los vecinos son **«vivos»** (sus propias crisis y elecciones, con efectos de contagio hacia Chile) o solo cifras de relación?
 4. ¿Los **proyectos internacionales** se muestran como líneas/pines entre países (pasos fronterizos, corredores, gas, litio)? Yo recomiendo sí, con los reales como primera lista.
+
+## Decisiones del usuario sobre PR-06c (24-nov-2026)
+1. **Sudamérica + potencias como íconos** fuera del mapa: aceptado.
+2. **Vecinos «vivos»** (propias crisis y elecciones con contagio a Chile): aceptado.
+3. Sin respuesta explícita todavía (quedan como *recomendación de Claude*, por confirmar): que el jugador **actúe** en el mapa del continente arrastrando cartas de política exterior sobre un país, y que los proyectos internacionales se vean como **líneas/pines** entre países.
+
+# Segundo lote del 24-nov-2026 (usuario: «¿queda algo más por examinar?») — estado «hablada», sin implementar
+
+## PR-17 — «Balas de plata»
+**Por confirmar:** no estoy seguro de a qué se refiere el usuario con el término en este contexto. **Interpretación de Claude (a validar):** *recursos extraordinarios de un solo uso* que tiene un presidente y que no son cartas normales: **discusión inmediata** (urgencia, art. 74 CPR, verificado en `normas.json`), **veto** (art. 73), **decreto con fuerza de ley** (DFL), **plebiscito**, **estado de excepción**, **decreto de insistencia** ante la Contraloría (art. 99), **nombramientos** de autoridades autónomas.
+**Opinión:** buena idea como **mazo aparte de 3-5 cartas «grandes» por mandato**, de un solo uso o con enfriamiento largo, caras en capital político y con efectos y riesgos fuertes (p. ej. un DFL salta al Congreso pero no vale para materias vedadas por la Constitución; un plebiscito puede salir mal). Da **decisiones memorables** y dramatismo a una sesión de 20 minutos.
+
+## PR-18 — Ley de Presupuestos (octubre)
+**Realidad (verificada en `data/bcn/normas.json`, art. 67):** el Presidente presenta el proyecto **3 meses antes** del año fiscal (a fines de septiembre); el Congreso **solo puede reducir gastos**, y si no despacha en **60 días** rige el proyecto presidencial; la tramitación se concentra en octubre-noviembre.
+**Opinión:** muy buena como **ritmo anual**: cada año, en septiembre-noviembre, un **mini-juego de presupuesto**: repartes el gasto entre sectores (hasta un tope fiscal), la oposición y el Congreso **recortan**, hay **negociación** con comisiones (PR-20) y el resultado fija los **efectos de los sectores** del año siguiente (fiscal, aprobación, capacidad de ejecución). Es la gran decisión recurrente y conecta con el fiscal. Costo medio.
+
+## PR-19 — Más elecciones y el conteo de votos animado
+**Realidad:** dentro del mandato (2026-2030) hay **elecciones municipales y regionales a mitad de mandato (octubre de 2028)**, **parlamentarias junto con la presidencial (nov. 2029)**, **primarias** y posibles **plebiscitos** (fechas por contrastar con Servel/BCN).
+**Opinión:** sí, como **hitos del calendario**: una **«mini-campaña»** de pocas semanas donde asignas apoyo a regiones/candidatos de tu coalición; resultados con **efectos reales**: alcaldes y gobernadores aliados aceleran obras y suben aprobación regional; el resultado parlamentario cambia el **Congreso del siguiente gobierno**.
+**Animación del conteo (cómo la haría):** un **escrutinio en vivo** estilo transmisión: porcentaje de **mesas escrutadas** que sube por tramos (10 %, 35 %, 60 %, 85 %, 100 %), barras de candidatos que **se reordenan con suspenso**, el **mapa pintándose región por región** (cada región «se abre» en un orden), cintillo con la ventaja, un sonido de ritmo creciente y un botón **«saltar al resultado»**. 6-10 segundos. Es solo presentación: el resultado ya está decidido por la semilla (determinista). Costo bajo-medio (reutiliza la pantalla de elección con desglose por región).
+
+## PR-20 — Presidentes de las comisiones legislativas
+**Opinión:** muy útil: las comisiones (Hacienda, Constitución, Gobierno, Salud, Educación, Trabajo…) y sus **presidentes** controlan el **ritmo** de tus proyectos (tablas, citaciones, urgencias). Propongo **6 comisiones × 2 cámaras**, cada presidente como **actor** (partido, postura, relación contigo): su afinidad modifica **plazos y probabilidad de aprobación** de las leyes de su materia; con **peticiones y negociación** (ceder un cargo, apoyar un proyecto suyo). Más las **mesas de la Cámara y el Senado**. Costo medio-alto.
+
+## PR-21 — Contraloría
+**Realidad (verificada, arts. 98-99 CPR):** controla la **legalidad** de los actos de la Administración (**toma de razón**); si **representa** una ilegalidad, el Presidente puede **insistir con la firma de todos sus ministros** (decreto de insistencia).
+**Opinión:** modelarla como **riesgo en los decretos**: una carta de decreto tiene probabilidad de ser **representada** según su calidad jurídica y el riesgo de ejecución; el jugador puede **corregirla** (más movimientos), **esperar** o **insistir** (cuesta capital político y exige la lealtad de todos los ministros: si uno no firma, el decreto cae). El **Contralor/a** es un actor con perfil. Costo medio. Muy fiel a la vida real y fácil de entender.
+
+## PR-22 — Instituciones autónomas
+**Opinión:** el rasgo común es que **no las controlas, solo las influyes**. Primeras candidatas: **Banco Central** (tasa y política monetaria; tú nombras con acuerdo del Senado), **Ministerio Público/Fiscalía** (investigaciones que golpean a ministros o aliados), **Contraloría** (PR-21), **Tribunal Constitucional** (ya existe), **Poder Judicial/Corte Suprema**, **Servel/Tricel**. Cada una con **agenda propia, eventos y relación**; el jugador solo puede **nombrar, negociar o presionar** (con costo). Aporta realismo sin añadir mecánicas nuevas, si usan el marco de actores (PR-24).
+
+## PR-23 — Medios de comunicación
+**Opinión:** sí, y es lo que da **ritmo narrativo**: los medios (televisión, prensa, redes) tienen **línea editorial** y modifican **cómo se recibe** cada carta (la misma ley puede sumar o restar aprobación según la cobertura), amplifican **escándalos**, convocan **entrevistas** (PR-10) y publican **encuestas** (empresas ficticias). Mecánica: una **barra de agenda** (qué tema domina) y opciones de **manejo de la comunicación** con costo en capital. Medios y encuestadoras **ficticios** inspirados en la realidad (misma regla de alias que los políticos). Costo medio.
+
+## PR-24 — Idea de Claude: un solo «marco de actores» para todo lo anterior
+**Observación:** ministros (PR-08), presidentes de comisión (PR-20), Contralor, Banco Central, Fiscalía, medios, partidos, gremios y vecinos tienen la **misma estructura**: **retrato y alias, relación (−100 a +100), agenda, eventos con opciones y peticiones**, sin costo en movimientos. Construir **un solo sistema de actores guiado por datos** evita hacer una mecánica nueva por cada institución, mantiene los archivos pequeños y permite **añadir actores sin tocar código**. Es la pieza que haría viable todo este alcance.
+
+## ¿Ya está todo? No: quedan por examinar
+**Actores sociales** (sindicatos como la CUT, gremios empresariales, Iglesias, universidades, FF.AA. y Carabineros), **gobiernos regionales y municipios** (gobernadores y alcaldes; ligados a PR-19), la **regla fiscal y el Consejo Fiscal Autónomo**, **catástrofes** (terremotos, incendios, aluviones) y la **gestión de crisis**, y **cómo convive todo con sesiones de ~20 minutos** (calendario anual: qué ocurre cada mes para que no todo pase en cada turno).
+
+## Riesgo de alcance y recomendación
+El conjunto de propuestas (PR-01 a PR-24) es de **meses de trabajo**; el juego aún no tiene pruebas con personas. **Recomiendo una «rebanada vertical»**: **un año de gobierno completo** con el calendario real (campaña ya existe; **ley de presupuesto en octubre**, **3 actores** con el marco de PR-24 —un ministro, el presidente de la comisión de Hacienda y la Contraloría—, **dos medios**, **un evento externo con cadena** y **arrastrar cartas al mapa**) y **probarla con personas** antes de construir el resto.
