@@ -46,3 +46,23 @@ Registro de ideas habladas. Regla acordada el 24-nov-2026: **por ahora solo se c
 - Puntos de pausa naturales con resumen de sesión: fin de campaña, resultado de elección, cada trimestre (13 turnos) y cada año de gobierno.
 - La guía de prueba sigue en 10-15 minutos a propósito (primeros testers: recorrido corto).
 - Con sesiones de 20 minutos, el tutorial y las pantallas previas de PR-01 se justifican mejor; en cambio, los textos largos de eventos (P11 del video) siguen siendo un problema porque se repiten decenas de veces.
+
+## PR-02 — Jugar cartas arrastrándolas al mapa; el botón del medio pasa a «avanzar» (24-nov-2026) · estado: hablada
+
+**Idea del usuario (resumen fiel):** eliminar el botón de avanzar de abajo a la derecha; el botón de abajo al medio pasa a ser el de **avanzar**; la esquina inferior derecha queda **vacía**. Usar una carta = **agarrarla, deslizarla hacia el mapa y soltarla**, con una **animación y un sonido** y una **animación en el mapa**.
+
+**Opinión de Claude**
+- *Me gusta mucho:* arrastrar al mapa es más táctil y satisfactorio que «elegir + pulsar», quita un toque por carta y hace del mapa el protagonista. En **campaña** además resuelve algo hoy torpe: la carta necesita una región, y soltarla **sobre la región** elige carta y región en un solo gesto. Para obras con ubicación pasa lo mismo en gobierno.
+- *Riesgos y cómo los resolvería (propuesta):*
+  1. **Jugadas accidentales** (un arrastre es fácil de disparar y la jugada cuesta movimientos): arrastre **vertical hacia arriba** para jugar (el horizontal sigue para recorrer la mano), un **umbral** antes de armar la jugada, retroalimentación mientras arrastras (costo, aviso del corrector, si el destino es válido) y **cancelar soltando sobre la mano**.
+  2. **La mano en abanico** ya tapa cartas y corta textos (P10 del video): arrastrar desde un abanico solapado es difícil. Habrá que rediseñar la mano (cartas más legibles, recorrido horizontal) junto con este gesto.
+  3. **Accesibilidad:** el gesto cuesta a algunas personas y en juego a una mano. Recomiendo conservar **un respaldo** simple (p. ej. tocar de nuevo la carta elegida) y un ajuste para activarlo; el gesto sería la forma principal, no la única.
+  4. **Delegar:** hoy es el botón de la izquierda tras elegir la carta. Coherente con el gesto: **soltar la carta sobre el ícono de delegar** (esquina inferior izquierda). Así quedan tres destinos claros: **mapa = jugar, ícono izquierdo = delegar, mano = cancelar**.
+  5. **El botón del medio = avanzar** sigue siendo «el botón principal en la misma posición» (regla de CLAUDE.md §5). El riesgo es terminar la semana por error con movimientos sin usar: su texto debería mostrar el estado («Terminar semana · 3 mov sin usar») y pedir confirmación si sobran movimientos. Eso además arregla el hallazgo P12 del video (el botón se apagaba sin explicar).
+  6. **La esquina derecha vacía:** se respeta como pidió; la dejo anotada como espacio libre por si más adelante hace falta (p. ej. «descartar»), sin proponerlo ahora.
+- *Sonido y animación:* el sonido hoy **no existe** en el juego. Hace falta elegir efectos con licencia clara (CC0), mantenerlos pequeños (APK), un control de volumen/silencio y vibración corta opcional. La animación en el mapa: pulso sobre la región, cifras flotantes de lo ganado/perdido (+3 aprobación) y un ícono de obra cuando corresponda.
+- *Tutorial y pruebas:* el tutorial debe enseñar el gesto con una mano animada; las pruebas de interfaz que hoy pulsan «Jugar» tendrán que simular el arrastre.
+- *Documentos:* cambia el paso 4 del ciclo de turno y las reglas de interfaz; la maqueta del PDF muestra el botón «Jugar», así que es una **diferencia deliberada** que se anota en `docs/DIFERENCIAS_MAQUETA.md` al implementarse.
+- *Costo estimado (cuando se haga):* medio-alto, ~1 a 1,5 días: gesto con zonas de destino, rediseño de la mano, animaciones y sonido, tutorial, pruebas y capturas.
+
+**Pendiente de decidir (no urgente):** (a) ¿conservar un respaldo de toque? (b) ¿delegar soltando sobre el ícono izquierdo? (c) ¿confirmar al avanzar si sobran movimientos? (d) ¿vibración y ajuste de sonido?
