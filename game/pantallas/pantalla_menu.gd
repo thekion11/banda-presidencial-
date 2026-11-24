@@ -72,6 +72,7 @@ func _mostrar_creditos() -> void:
 	var txt := "Mapa de regiones: GeoJSON público simplificado (ver docs/DATOS.md).\n" \
 		+ "Calles, Metro, río y parques de Gran Santiago: © colaboradores de OpenStreetMap (ODbL), extracto de BBBike. Relieve: teselas públicas de elevación (Terrarium).\n" \
 		+ "Líneas 7, 8 y 9 del Metro: trazado de OpenStreetMap; colores de es.wikipedia y Wikidata (sin confirmar por Metro S.A.). Estaciones de las líneas en operación cotejadas con el GTFS de la Red Metropolitana (DTPM).\n" \
+		+ "Mapa de Sudamérica: Natural Earth (dominio público), simplificado; mapa ilustrativo que no define límites ni reclamos. Relaciones entre países: cifras ilustrativas.\n" \
 		+ "Ilustraciones de cartas generadas con IA (Gemini y Canva) para este proyecto.\n" \
 		+ "Tipografías: Space Grotesk e Inter (SIL OFL 1.1).\n" \
 		+ "Motor: Godot Engine (MIT).\n" \

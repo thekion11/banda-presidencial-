@@ -38,3 +38,8 @@ Este archivo lo mantiene Claude. Lo que depende del usuario queda en «Necesito 
 ## PR-05 Rellenar el gabinete (hecho el 24-nov-2026 tras tu «hazlo»)
 - Botones «Equilibrado» y «Máxima eficacia» en la pantalla de gabinete: completan solo los vacíos, nunca pisan lo escogido, explican el porqué y se pueden deshacer. Pesos en `data/leyes.json` → `gabinete.relleno`. Prueba en `test_gabinete.gd`.
 - Pendiente: que «Máxima eficacia» cueste capital político o cohesión (hoy solo cambia el criterio), y los candidatos recreados desde personas reales (solo con alias/sobrenombre y tras revisión legal; ver PR-05b): no se implementó porque requiere investigación de fuentes y revisión de un abogado (U4).
+
+## PR-06c Mapa del continente (primera etapa hecha el 24-nov-2026 tras tu «hazlo»)
+- Hecho: botón «Continente» en la pantalla Nación: Sudamérica en 2D (Natural Earth 1:50m, dominio público, `tools/geo/sudamerica.py` → `data/geo/sudamerica.json`, 19 KB), países coloreados por relación con Chile (`data/vecinos.json`, cifras ilustrativas) y tres potencias como íconos (EE. UU., China, UE). Toca un país para ver su relación. Malvinas no se dibuja; aviso «mapa ilustrativo»; fuente y crédito registrados.
+- Pendiente (requiere balance y tu confirmación de las dos recomendaciones): vecinos «vivos» (crisis y elecciones propias con contagio a Chile, con semilla), cartas de política exterior arrastradas sobre un país, líneas/pines de proyectos internacionales, 2,5D (relieve y paralaje). Tocar el motor cambia los hashes de oro y exige recalibrar; por eso va como etapa aparte.
+- Revisión legal (U4): fronteras y reclamos del mapa.

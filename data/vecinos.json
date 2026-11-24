@@ -1,0 +1,75 @@
+{
+ "fuente": "fuentes.json#natural_earth_2026",
+ "nota": "Relaciones y descripciones ILUSTRATIVAS (peso de juego, no datos oficiales). Mapa ilustrativo: no define límites ni reclamos.",
+ "cifras_ilustrativas": true,
+ "paises": {
+  "ARG": {
+   "relacion": 62,
+   "tema": "Paso fronterizo Los Libertadores y corredores bioceánicos"
+  },
+  "BOL": {
+   "relacion": 38,
+   "tema": "Salida al mar y gas: agenda pendiente"
+  },
+  "PER": {
+   "relacion": 55,
+   "tema": "Comercio y migración en la frontera norte"
+  },
+  "BRA": {
+   "relacion": 66,
+   "tema": "Mayor socio comercial de la región"
+  },
+  "URY": {
+   "relacion": 74,
+   "tema": "Socio estable en el Mercosur"
+  },
+  "PRY": {
+   "relacion": 58,
+   "tema": "Corredor bioceánico por el norte"
+  },
+  "COL": {
+   "relacion": 64,
+   "tema": "Alianza del Pacífico"
+  },
+  "ECU": {
+   "relacion": 60,
+   "tema": "Alianza del Pacífico y seguridad"
+  },
+  "VEN": {
+   "relacion": 30,
+   "tema": "Migración y relaciones diplomáticas tensas"
+  },
+  "GUY": {
+   "relacion": 50,
+   "tema": "Energía y cooperación emergente"
+  },
+  "SUR": {
+   "relacion": 48,
+   "tema": "Cooperación limitada"
+  },
+  "CHL": {
+   "relacion": 100,
+   "tema": "Tu país"
+  }
+ },
+ "potencias": [
+  {
+   "id": "usa",
+   "nombre": "EE. UU.",
+   "relacion": 63,
+   "tema": "Inversión, tecnología y seguridad"
+  },
+  {
+   "id": "chn",
+   "nombre": "China",
+   "relacion": 59,
+   "tema": "Cobre, litio y comercio"
+  },
+  {
+   "id": "ue",
+   "nombre": "Unión Europea",
+   "relacion": 68,
+   "tema": "Acuerdo avanzado y transición verde"
+  }
+ ]
+}

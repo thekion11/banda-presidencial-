@@ -1196,5 +1196,14 @@
     "vigencia_dias": 120,
     "es_ilustrativa": false,
     "verificado_contra_texto": false
+  },
+  {
+    "id": "natural_earth_2026",
+    "institucion": "Natural Earth (dominio público)",
+    "titulo": "Admin 0 – Countries 1:50m, simplificado para el mapa del continente",
+    "url": "https://www.naturalearthdata.com/downloads/50m-cultural-vectors/",
+    "fecha_corte": "2026-11-24",
+    "vigencia_dias": 3650,
+    "es_ilustrativa": false
   }
 ]
