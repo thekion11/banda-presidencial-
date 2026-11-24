@@ -87,3 +87,22 @@ Registro de ideas habladas. Regla acordada el 24-nov-2026: **por ahora solo se c
 
 ### PR-02c — RETIRADA (24-nov-2026)
 El usuario aclaró que esos dos mensajes («Lo Jugadas accidentales.» y «Propongo arrastrar.») se enviaron por error. La interpretación y la opinión que Claude había registrado aquí se retiran y **no cuentan como decisión**. Sigue vigente solo lo anotado en PR-02 sobre jugadas accidentales (umbral, zona de cancelar, retroalimentación y respaldo de toque), pendiente de que el usuario lo acepte o lo cambie.
+
+## PR-04 — ¿Y los 25 ministros? Cómo elige el jugador un gabinete completo (24-nov-2026) · estado: hablada
+
+**Observación del usuario:** en Chile hay 25 ministros; si la delegación (PR-02b) y las cartas dependen del gabinete, ¿cómo escoge el jugador esos 25?
+
+**Corrección de un error mío (importante):** el «gabinete de 8» **no fue decisión del usuario**. La especificación decía «el jugador escoge el gabinete (tamaño en leyes.json)»; el 8 lo fijó la sesión que implementó, y yo lo anoté en CLAUDE.md y `docs/DISENO_V2.md` como si fuera del usuario. Ya lo corregí en ambos archivos. Hoy `data/ministros.json` trae **25 ministerios con un único titular cada uno** (alias ficticios), y el jugador elige 8 de esos 25: es una simplificación, no la estructura real.
+
+**La estructura real:** los 25 ministerios existen siempre y **todos** tienen titular; lo que el presidente decide es **quién** ocupa cada uno (y a qué partido le «regala» cuáles). Eso encaja con la coalición: los aliados piden ministerios (cuotas), y 25 puestos son una moneda de poder mucho más rica que 8.
+
+**Opciones**
+- **A. Los 25 a mano:** elegir persona para cada ministerio entre 2-3 candidatos. Fiel a la realidad, pero son ~25 decisiones antes de jugar: demasiado para una sesión de ~20 minutos.
+- **B. Solo 8 (como hoy):** simple, pero pierde la estructura real y deja 17 ministerios sin existir.
+- **C. Híbrido (recomendado): «gabinete de 25 con núcleo elegido».** Eliges tú los **ministerios políticos clave** (Interior, Hacienda, Segpres, Segegob, Defensa, RR.EE., Seguridad, y quizá uno más) entre candidatos con perfil visible (ideología, competencia, riesgo de escándalo, partido). Los **~17 restantes** se llenan **automáticamente** con una propuesta según tu ideología, tu coalición y las cuotas que prometiste; puedes cambiar cualquiera después (un cambio de gabinete cuesta capital político y tiene riesgo de crisis).
+- *Qué pasa con las cartas disponibles:* con 25 ministerios llenos, todas las categorías estarían siempre habilitadas y la regla «las cartas dependen de tus ministros» perdería peso. Hay que decidir cómo conservarla: por **calidad** del titular (un ministro técnico desbloquea cartas avanzadas), por **ministerios vacantes o interinos** (una crisis deja un ministerio sin titular), o por **cuotas de la coalición** (si se lo diste a un aliado, sus cartas dependen de su satisfacción).
+- *Efecto en la delegación (PR-02b):* mejora: la ficha sugerida es el ministro del área, y la lista completa («Elegir…») necesita **buscador/filtro** por tener 25 entradas.
+- *Costo de datos:* hoy hay 1 ministro por ministerio. Un gabinete con elección necesita **2-3 candidatos ficticios por ministerio** (hasta ~75 personajes con perfil); es trabajo de datos para una sesión y requiere cuidado de alias (personajes ficticios, no personas reales).
+- *Costo de interfaz:* la pantalla de gabinete pasa a dos niveles (núcleo elegido + vista de los 25 con propuesta automática editable).
+
+**Decisiones pendientes:** (1) ¿A, B o C? (2) ¿cómo se conserva el peso de «mis ministros habilitan cartas»? (3) ¿cuántos ministerios son «núcleo»? (4) ¿cambiar un ministro cuesta capital político?
