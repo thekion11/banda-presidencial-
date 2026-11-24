@@ -63,11 +63,14 @@ func _lineas_del_jugador() -> void:
 		m.estado.pa_actual = 8
 		var prop: Dictionary = datos["propuestas"][0]
 		m.estado.propuestas_abiertas.append(String(prop["id"]))
-		var r := m.aprobar_propuesta(String(prop["id"]), "B", "")
+		var r := m.aprobar_propuesta(String(prop["id"]), "B", "", {}, {"linea": "  Línea\tdel  Sur\n" + "x".repeat(40), "estaciones": ["Plaza Nueva", "", "Hospital\nBase"]})
 		_check(bool(r["ok"]), "no se pudo aprobar la variante predeterminada")
 		_check(m.estado.lineas_jugador.size() == 1, "aprobar una variante debe crear una línea del jugador")
 		var ln: Dictionary = m.estado.lineas_jugador[0]
 		_check(ln["id"] == "P1" and ln["estado"] == "en_construccion" and ln["variante"] == "B", "la línea nace en construcción, con id P1 y la variante elegida")
+		_check(String(ln["nombre"]).begins_with("Línea del Sur x") and String(ln["nombre"]).length() <= 30 and not ("\t" in String(ln["nombre"])), "el nombre de la línea se limpia (espacios, tabuladores) y se recorta a 30 caracteres: %s" % ln["nombre"])
+		_check(ln["nombres_estaciones"][0] == "Plaza Nueva" and ln["nombres_estaciones"][1] == "Estación 2" and ln["nombres_estaciones"][2] == "Hospital Base", "los nombres de estaciones se guardan; los vacíos toman «Estación N»: %s" % [ln["nombres_estaciones"]])
+		_check(String(m.estado.obras_en_curso[0]["nombre"]).begins_with("Línea del Sur x") and m.estado.obras_en_curso[0]["linea"] == "P1", "la obra usa el nombre de la línea y apunta a ella")
 		_check((ln["trazado"] as Array).size() >= 2 and (ln["estaciones"] as Array).size() >= 3, "la línea debe guardar su trazado y sus estaciones")
 		# línea a gusto: otra propuesta, estaciones propias
 		var ests: Array = m.grafo.estaciones_base(prop["variantes"][0])

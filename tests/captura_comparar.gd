@@ -28,6 +28,16 @@ func _buscar_mapa(n: Node) -> UrbanoMapa:
 	return null
 
 
+func _buscar_boton(n: Node, prefijo: String) -> Button:
+	if n is Button and n.text.begins_with(prefijo):
+		return n
+	for h in n.get_children():
+		var r := _buscar_boton(h, prefijo)
+		if r != null:
+			return r
+	return null
+
+
 func _correr() -> void:
 	var main: Node = load("res://game/main.tscn").instantiate()
 	root.add_child(main)
@@ -76,6 +86,17 @@ func _correr() -> void:
 	await _guardar("cmp_dia2")
 	dia._abrir_panel("comite")
 	await _guardar("cmp_comite_2d")
+	var btn_nombres: Button = _buscar_boton(dia, "Nombrar la línea")
+	if btn_nombres != null:
+		btn_nombres.pressed.emit()
+		var sc2: Array = dia.find_children("*", "ScrollContainer", true, false)
+		await process_frame
+		for sc3 in sc2:
+			if sc3.is_visible_in_tree() and sc3.get_v_scroll_bar().max_value > 300:
+				sc3.scroll_vertical = 620
+		await _guardar("cmp_comite_nombres", 0.4)
+		for sc3 in sc2:
+			sc3.scroll_vertical = 0
 	for h in dia._zona_panel.get_children():
 		pass
 	var mc: Node = dia._zona_panel.find_children("*", "ComiteMapa", true, false)[0]
@@ -98,18 +119,20 @@ func _correr() -> void:
 	var obra := {"nombre": "Estación terminal, nueva línea de Metro", "variante": "A", "dias_totales": 960, "dias_avanzados": 760, "retrasos": 0, "carta_id": "", "propuesta": "prop_metro_suroriente", "region": "metropolitana", "efectos_final": [{"ind": "aprobacion", "delta": 4}]}
 	m.estado.obras_en_curso.append(obra)
 	m.estado.obras_en_curso.append({"nombre": "Conjunto de vivienda social", "dias_totales": 400, "dias_avanzados": 120, "retrasos": 0, "carta_id": "viv_campamentos", "region": "metropolitana", "efectos_final": []})
+	m.estado.pa_actual = 8  # líneas del jugador: una en construcción (P1) y otra ya operativa (P2)
+	for pid in ["prop_metro_suroriente", "prop_metro_norte"]:
+		if not m.estado.propuestas_abiertas.has(pid):
+			m.estado.propuestas_abiertas.append(pid)
+	m.aprobar_propuesta("prop_metro_suroriente", "A", "", {}, {"linea": "Línea Cordillera", "estaciones": ["Plaza Nueva", "Barrio Sur", "Hospital Base", "Estadio Sur", "Terminal Sur"]})
+	m.aprobar_propuesta("prop_metro_norte", "A", "")
+	m.estado.lineas_jugador[1]["estado"] = "operativa"
+
+	obra["linea"] = "P1"
 	dia._abrir_hito(obra)
 	await _guardar("cmp_hito")
 	for h in dia._capa.get_children():
 		if h is ColorRect:
 			h.queue_free()
-	m.estado.pa_actual = 8  # líneas del jugador: una en construcción (P1) y otra ya operativa (P2)
-	for pid in ["prop_metro_suroriente", "prop_metro_norte"]:
-		if not m.estado.propuestas_abiertas.has(pid):
-			m.estado.propuestas_abiertas.append(pid)
-	m.aprobar_propuesta("prop_metro_suroriente", "A", "")
-	m.aprobar_propuesta("prop_metro_norte", "A", "")
-	m.estado.lineas_jugador[1]["estado"] = "operativa"
 	dia._abrir_urbano()
 	await _guardar("cmp_urbano", 1.3)
 	var um: UrbanoMapa = _buscar_mapa(dia._capa)

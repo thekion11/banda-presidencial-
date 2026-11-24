@@ -47,7 +47,7 @@ static func reproducir(datos: Dictionary, guardado: Dictionary) -> MotorTurno:
 			"acelerar":
 				motor.acelerar_proyecto(int(e["idx"]))
 			"aprobar_propuesta":
-				motor.aprobar_propuesta(String(e["prop"]), String(e["variante"]), String(e["region"]), e.get("custom", {}))
+				motor.aprobar_propuesta(String(e["prop"]), String(e["variante"]), String(e["region"]), e.get("custom", {}), e.get("nombres", {}))
 			"sectra":
 				motor.impulsar_proyecto(String(e["pid"]))
 			"cerrar":

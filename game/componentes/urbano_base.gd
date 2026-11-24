@@ -227,7 +227,7 @@ static func _propias_px(c: Dictionary) -> Array:
 			var e0 := a_px(q, c["_tam"], c["_margen"])
 			var e1 := UrbanoTrazo.mas_cercano(e0, pts)
 			est.append(e1 if e1 != Vector2.INF and e1.distance_to(e0) < 14.0 else e0)
-		res.append({"id": String(ln["id"]), "pts": pts, "est": est, "operativa": String(ln["estado"]) == "operativa"})
+		res.append({"id": String(ln["id"]), "pts": pts, "est": est, "nombres": ln.get("nombres_estaciones", []), "operativa": String(ln["estado"]) == "operativa"})
 	return res
 
 
@@ -313,6 +313,12 @@ static func estacion_en(pos: Vector2, tam: Vector2, margen: Vector2, umbral: flo
 		if d < mejor:
 			mejor = d
 			res = {"n": c["est_nombres"][i], "l": lineas, "p": c["estaciones"][i]}
+	for pl in _propias_px(c):  # estaciones de las líneas del jugador (con el nombre que les puso)
+		for i in range(pl["est"].size()):
+			var d2 := (pl["est"][i] as Vector2).distance_to(pos)
+			if d2 < mejor:
+				mejor = d2
+				res = {"n": String(pl["nombres"][i]) if i < pl["nombres"].size() else "Estación %d" % (i + 1), "l": [pl["id"]], "p": pl["est"][i]}
 	return res
 
 

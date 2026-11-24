@@ -98,6 +98,13 @@ func _ready() -> void:
 			lista.add_child(Tema.etiqueta("· " + t, 12, Tema.TEXTO))
 		if leyes.size() > 8:
 			lista.add_child(Tema.etiqueta("y %d más." % (leyes.size() - 8), 11, Tema.TEXTO_SUAVE))
+	if not est.lineas_jugador.is_empty():
+		lista.add_child(FilasUI.titulo("Líneas de Metro que creaste"))
+		for ln in est.lineas_jugador:
+			var v2 := FilasUI.col(1)
+			v2.add_child(Tema.etiqueta("%s · %s" % [ln["id"], String(ln["nombre"])], 12, Tema.TEXTO, false, 600))
+			v2.add_child(Tema.etiqueta("%d estaciones · %s" % [(ln["nombres_estaciones"] as Array).size(), "operativa" if ln["estado"] == "operativa" else "en construcción al terminar el mandato"], 10, Tema.TEXTO_SUAVE))
+			lista.add_child(FilasUI.tarjeta(v2, Tema.PANEL))
 	lista.add_child(FilasUI.titulo("Línea de tiempo: eventos reales que viviste"))
 	var evs := eventos_reales()
 	if evs.is_empty():

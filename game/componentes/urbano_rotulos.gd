@@ -23,6 +23,11 @@ static func etiquetas(ci: CanvasItem, tam: Vector2, margen: Vector2, zoom: float
 			cand.append([0, c["estaciones"][i], c["est_nombres"][i], false])
 		elif zoom >= 3.0:
 			cand.append([2, c["estaciones"][i], c["est_nombres"][i], false])
+	if zoom >= 2.0:  # estaciones de las líneas del jugador, con los nombres que eligió
+		for pl in UrbanoBase._propias_px(c):
+			for i in range(pl["est"].size()):
+				if i < pl["nombres"].size():
+					cand.append([1, pl["est"][i], String(pl["nombres"][i]), false])
 	var nombres_est := {}
 	for i in range(c["estaciones"].size()):
 		nombres_est[String(c["est_nombres"][i])] = true

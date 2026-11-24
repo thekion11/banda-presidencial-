@@ -170,7 +170,7 @@ func vista_carta(idx: int, ministro_id: String = "") -> Dictionary: return carta
 func jugar_carta(idx: int, ministro_id: String = "", region_id: String = "") -> Dictionary: return cartas.jugar_carta(idx, ministro_id, region_id)
 
 
-func aprobar_propuesta(prop_id: String, variante_id: String, region_id: String = "", custom: Dictionary = {}) -> Dictionary: return cartas.aprobar_propuesta(prop_id, variante_id, region_id, custom)
+func aprobar_propuesta(prop_id: String, variante_id: String, region_id: String = "", custom: Dictionary = {}, nombres: Dictionary = {}) -> Dictionary: return cartas.aprobar_propuesta(prop_id, variante_id, region_id, custom, nombres)
 
 
 func impulsar_proyecto(pid: String) -> Dictionary: return sectra.impulsar(pid)

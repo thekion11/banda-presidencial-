@@ -424,8 +424,8 @@ func _abrir_panel(cual: String) -> void:
 	_zona_panel.add_child(m)
 
 
-func _aprobar(pid: String, variante: String, custom: Dictionary = {}) -> void:
-	var r := motor.aprobar_propuesta(pid, variante, _region, custom)
+func _aprobar(pid: String, variante: String, custom: Dictionary = {}, nombres: Dictionary = {}) -> void:
+	var r := motor.aprobar_propuesta(pid, variante, _region, custom, nombres)
 	if bool(r["ok"]):
 		_avisar("Obra aprobada: %d días de construcción." % int(r["dias"]))
 		accion_hecha.emit()
@@ -440,7 +440,7 @@ func _abrir_cartera() -> void:
 
 
 func _abrir_hito(obra: Dictionary) -> void:
-	_capa.add_child(PantallaHito.crear(obra, datos["leyes"]["fases_obra"], func() -> void: pass, _abrir_urbano))
+	_capa.add_child(PantallaHito.crear(obra, datos["leyes"]["fases_obra"], func() -> void: pass, _abrir_urbano, motor.estado.lineas_jugador))
 
 
 func _abrir_urbano() -> void:

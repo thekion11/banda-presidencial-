@@ -182,6 +182,23 @@ static func fondo_hero(categoria: String, fraccion: float = 0.62, oscurecer: flo
 	return raiz
 
 
+static func campo(placeholder: String, maximo: int, texto: String = "") -> LineEdit:
+	## Campo de texto para el jugador (tema oscuro, alto táctil de 44 px).
+	var le := LineEdit.new()
+	le.placeholder_text = placeholder
+	le.max_length = maximo
+	le.text = texto
+	le.custom_minimum_size = Vector2(0, 44)
+	le.add_theme_font_override("font", fuente_texto(500))
+	le.add_theme_font_size_override("font_size", 14)
+	le.add_theme_color_override("font_color", CREMA)
+	le.add_theme_color_override("font_placeholder_color", Color("#8FA6BA"))
+	le.add_theme_color_override("caret_color", ORO)
+	le.add_theme_stylebox_override("normal", caja(Color("#0F2D46"), 10, Color("#5D7A94"), 1))
+	le.add_theme_stylebox_override("focus", caja(Color("#0F2D46"), 10, ORO, 2))
+	return le
+
+
 static func perilla(radio: float, relleno: Color, borde: Color) -> ImageTexture:
 	## Círculo con borde para la perilla de un deslizador (se genera una vez por combinación).
 	var clave := "%s|%s|%s" % [str(radio), relleno.to_html(), borde.to_html()]

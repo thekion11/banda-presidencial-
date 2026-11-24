@@ -23,7 +23,47 @@ static func _pildora(texto: String, fondo: Color, tinta: Color) -> Label:
 	return l
 
 
-static func crear(obra: Dictionary, fases: Array, al_cerrar: Callable, al_ver_mapa: Callable) -> Control:
+static func _recorrido(linea: Dictionary) -> Control:
+	## Recorrido de la línea del jugador: sus estaciones en orden, en una tira que se desliza con el dedo.
+	var caja := PanelContainer.new()
+	caja.add_theme_stylebox_override("panel", Tema.caja(Color.WHITE, 14, Tema.BORDE_CLARO, 1))
+	var v := VBoxContainer.new()
+	v.add_theme_constant_override("separation", 2)
+	var estado := "operativa" if String(linea["estado"]) == "operativa" else "en construcción"
+	v.add_child(Tema.etiqueta_corta("%s · %s · %s" % [linea["id"], String(linea["nombre"]), estado], 11, Color("#6A7684"), false, 700))
+	var sc := ScrollContainer.new()
+	sc.vertical_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+	sc.custom_minimum_size = Vector2(0, 40)
+	sc.get_h_scroll_bar().modulate.a = 0.0
+	var fila := HBoxContainer.new()
+	fila.add_theme_constant_override("separation", 0)
+	var nombres: Array = linea.get("nombres_estaciones", [])
+	for i in range(nombres.size()):
+		if i > 0:
+			var tramo := ColorRect.new()
+			tramo.color = UrbanoBase.COLOR_PROPIA
+			tramo.custom_minimum_size = Vector2(18, 4)
+			tramo.size_flags_vertical = Control.SIZE_SHRINK_CENTER
+			fila.add_child(tramo)
+		var punto := PanelContainer.new()
+		var sb := Tema.caja(Color.WHITE, 8, UrbanoBase.COLOR_PROPIA, 3)
+		sb.content_margin_left = 0
+		sb.content_margin_right = 0
+		sb.content_margin_top = 0
+		sb.content_margin_bottom = 0
+		punto.add_theme_stylebox_override("panel", sb)
+		punto.custom_minimum_size = Vector2(14, 14)
+		punto.size_flags_vertical = Control.SIZE_SHRINK_CENTER
+		fila.add_child(punto)
+		var l := Tema.etiqueta_corta(" " + String(nombres[i]) + " ", 11, Tema.TINTA, false, 600)
+		fila.add_child(l)
+	sc.add_child(fila)
+	v.add_child(sc)
+	caja.add_child(v)
+	return caja
+
+
+static func crear(obra: Dictionary, fases: Array, al_cerrar: Callable, al_ver_mapa: Callable, lineas_jugador: Array = []) -> Control:
 	var capa := ColorRect.new()
 	capa.color = Tema.FONDO_CLARO
 	capa.set_anchors_preset(Control.PRESET_FULL_RECT)
@@ -60,6 +100,9 @@ static func crear(obra: Dictionary, fases: Array, al_cerrar: Callable, al_ver_ma
 	fase_pill.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	pila.add_child(fase_pill)
 	col.add_child(tarjeta)
+	for ln in lineas_jugador:  # obra de una línea del jugador: muestra su recorrido
+		if ln["id"] == String(obra.get("linea", "")):
+			col.add_child(_recorrido(ln))
 	var info := Tema.etiqueta("", 12, Color("#3C4A5A"))
 	var nom := Tema.etiqueta("", 16, Tema.TINTA, true)
 	var botones: Array[Button] = []

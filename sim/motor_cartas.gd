@@ -182,7 +182,7 @@ func _ejecutar_carta(carta: Dictionary, escala: float, region_id: String) -> voi
 		m.fx.marcar_cumplida(String(carta["id"]))
 
 
-func aprobar_propuesta(prop_id: String, variante_id: String, region_id: String = "", custom: Dictionary = {}) -> Dictionary:
+func aprobar_propuesta(prop_id: String, variante_id: String, region_id: String = "", custom: Dictionary = {}, nombres: Dictionary = {}) -> Dictionary:
 	if m.estado.etapa != "gobierno" or not m.estado.propuestas_abiertas.has(prop_id):
 		return {"ok": false, "razon": "propuesta_no_disponible"}
 	var prop: Dictionary = m.catalogo_propuestas[prop_id]
@@ -200,7 +200,9 @@ func aprobar_propuesta(prop_id: String, variante_id: String, region_id: String =
 			return {"ok": false, "razon": "trazado_invalido"}
 		variante = m.grafo.variante_modificada(variante, custom["estaciones"], float(custom.get("ritmo", 0.0)), float(custom.get("cobertura", 0.0)))
 		variante_id = "M"
-	m.estado.registrar_entrada("aprobar_propuesta", {"prop": prop_id, "variante": variante_id, "region": region_id, "custom": custom})
+	nombres = _nombres_limpios(nombres)
+	var id_linea := "P%d" % (m.estado.lineas_jugador.size() + 1)
+	m.estado.registrar_entrada("aprobar_propuesta", {"prop": prop_id, "variante": variante_id, "region": region_id, "custom": custom, "nombres": nombres})
 	m.estado.pa_actual -= costo
 	var ratio := clampf(float(prop["capacidad_musd"]) / float(variante["costo_musd"]), 0.1, 1.0)
 	var region := region_id if region_id != "" else String(prop.get("region", ""))
@@ -211,8 +213,9 @@ func aprobar_propuesta(prop_id: String, variante_id: String, region_id: String =
 		else:
 			m.fx.aplicar_efecto(ef, ratio, "")
 	var dias := roundi(float(variante["plazo_anios"]) * 365.0 * ratio)
-	m.obras.iniciar(m.estado, "%s · %s" % [prop["titulo"], variante["nombre"]], dias, region, "", final, {"propuesta": prop_id, "variante": variante_id})
-	_registrar_linea(prop, prop_id, variante, variante_id, custom)
+	var titulo_obra := String(nombres.get("linea", "")) if String(nombres.get("linea", "")) != "" else String(prop["titulo"])
+	m.obras.iniciar(m.estado, "%s · %s" % [titulo_obra, variante["nombre"]], dias, region, "", final, {"propuesta": prop_id, "variante": variante_id, "linea": id_linea})
+	_registrar_linea(prop, prop_id, variante, variante_id, custom, nombres, id_linea)
 	m.estado.propuestas_abiertas.erase(prop_id)
 	m.estado.propuestas_aprobadas.append(prop_id)
 	for c in m.catalogo_cartas:
@@ -224,7 +227,7 @@ func aprobar_propuesta(prop_id: String, variante_id: String, region_id: String =
 
 
 
-func _registrar_linea(prop: Dictionary, prop_id: String, variante: Dictionary, variante_id: String, custom: Dictionary) -> void:
+func _registrar_linea(prop: Dictionary, prop_id: String, variante: Dictionary, variante_id: String, custom: Dictionary, nombres: Dictionary, id_linea: String) -> void:
 	## La línea aprobada (variante A/B/C o trazado propio) queda en el estado como línea del jugador: se dibuja en el mapa
 	## en construcción y pasa a operativa al terminar su obra. Se reconstruye al reproducir el guardado (por eventos).
 	var estaciones: Array = []
@@ -236,8 +239,31 @@ func _registrar_linea(prop: Dictionary, prop_id: String, variante: Dictionary, v
 	var trazado: Array = []
 	for q in variante["trazado"]:
 		trazado.append([snappedf(float(q[0]), 0.0001), snappedf(float(q[1]), 0.0001)])
-	m.estado.lineas_jugador.append({"id": "P%d" % (m.estado.lineas_jugador.size() + 1), "nombre": String(prop["titulo"]), "prop": prop_id,
-			"variante": variante_id, "trazado": trazado, "estaciones": estaciones, "estado": "en_construccion", "dia_aprobacion": m.estado.dia_actual})
+	var nom_est: Array = []
+	var dados: Array = nombres.get("estaciones", [])
+	for i in range(estaciones.size()):
+		var n := String(dados[i]) if i < dados.size() else ""
+		nom_est.append(n if n != "" else "Estación %d" % (i + 1))
+	var nombre_linea := String(nombres.get("linea", ""))
+	m.estado.lineas_jugador.append({"id": id_linea, "nombre": nombre_linea if nombre_linea != "" else String(prop["titulo"]), "nombre_propio": nombre_linea != "",
+			"prop": prop_id, "variante": variante_id, "trazado": trazado, "estaciones": estaciones, "nombres_estaciones": nom_est,
+			"estado": "en_construccion", "dia_aprobacion": m.estado.dia_actual})
+
+
+static func limpiar_nombre(texto: String, maximo: int) -> String:
+	## Nombre elegido por el jugador: sin saltos ni caracteres de control, espacios colapsados y con largo máximo.
+	var t := ""
+	for i in range(texto.length()):
+		var c := texto.unicode_at(i)
+		t += " " if c < 32 or c == 127 else texto[i]
+	return " ".join(t.strip_edges().split(" ", false)).left(maximo)
+
+
+func _nombres_limpios(nombres: Dictionary) -> Dictionary:
+	var est: Array = []
+	for n in nombres.get("estaciones", []):
+		est.append(limpiar_nombre(String(n), 26))
+	return {"linea": limpiar_nombre(String(nombres.get("linea", "")), 30), "estaciones": est}
 
 
 func resolver_proyectos() -> Array[Dictionary]:

@@ -30,7 +30,7 @@ static func _propuesta(col: VBoxContainer, motor: MotorTurno, pid: String, al_ap
 	var prop: Dictionary = motor.catalogo_propuestas[pid]
 	col.add_child(Tema.etiqueta(String(prop["titulo"]), 20, Tema.TEXTO, true))
 	col.add_child(Tema.etiqueta("Presenta la " + String(prop["presenta"]) + " · cifras ilustrativas", 11, Tema.TEXTO_SUAVE))
-	var estado := {"v": prop["variantes"][0], "custom": {}}
+	var estado := {"v": prop["variantes"][0], "custom": {}, "nombre": "", "est": [], "abierto": false}
 	var mapa := ComiteMapa.new()
 	mapa.semilla = hash(pid) % 1000
 	var pila := Control.new()
@@ -95,10 +95,11 @@ static func _propuesta(col: VBoxContainer, motor: MotorTurno, pid: String, al_ap
 			edicion.visible = false
 			estado["v"] = v
 			estado["custom"] = {}
+			estado["est"] = []  # otra variante, otras estaciones: los nombres de estaciones se reinician
 			mapa.poner_variante(v["trazado"], bool(v["elevada"]), _pos_estaciones(motor, v))
 			if m3d.visible:
 				m3d.poner_trazado(v["trazado"], bool(v["elevada"]))
-			_ficha(detalle, pid, v, prop, motor, al_aprobar, {}, func() -> void: _activar_edicion(mapa, edicion, detalle, pid, estado, prop, motor, al_aprobar)))
+			_ficha(detalle, pid, v, prop, motor, al_aprobar, {}, func() -> void: _activar_edicion(mapa, edicion, detalle, pid, estado, prop, motor, al_aprobar), estado))
 		fila_v.add_child(b)
 	col.add_child(fila_v)
 	col.add_child(edicion)
@@ -107,7 +108,7 @@ static func _propuesta(col: VBoxContainer, motor: MotorTurno, pid: String, al_ap
 	mapa.trazado = v0["trazado"]
 	mapa.elevada = bool(v0["elevada"])
 	mapa.estaciones_pos = _pos_estaciones(motor, v0)
-	_ficha(detalle, pid, v0, prop, motor, al_aprobar, {}, func() -> void: _activar_edicion(mapa, edicion, detalle, pid, estado, prop, motor, al_aprobar))
+	_ficha(detalle, pid, v0, prop, motor, al_aprobar, {}, func() -> void: _activar_edicion(mapa, edicion, detalle, pid, estado, prop, motor, al_aprobar), estado)
 
 
 static func _pos_estaciones(motor: MotorTurno, v: Dictionary) -> Array:
@@ -146,7 +147,7 @@ static func _activar_edicion(mapa: ComiteMapa, edicion: VBoxContainer, detalle: 
 		if motor.grafo.estaciones_validas(custom["estaciones"]):
 			var vm := motor.grafo.variante_modificada(base, custom["estaciones"], custom["ritmo"], custom["cobertura"])
 			vm["corrector_texto"] = " ".join(motor.grafo.advertencias(vm, prop))
-			_ficha(detalle, pid, vm, prop, motor, al_aprobar, custom, Callable())
+			_ficha(detalle, pid, vm, prop, motor, al_aprobar, custom, Callable(), estado)
 	for par in [["ritmo", "Ritmo de construcción", "más lento y barato", "más rápido y caro"], ["cobertura", "Cobertura", "menos población y conflicto", "más población y expropiaciones"]]:
 		var cab := HBoxContainer.new()
 		var tit := Tema.etiqueta_corta(String(par[1]), 12, Tema.TEXTO, false, 700)
@@ -183,7 +184,7 @@ static func _activar_edicion(mapa: ComiteMapa, edicion: VBoxContainer, detalle: 
 	mapa.iniciar_edicion(motor.grafo, ests)
 
 
-static func _ficha(detalle: VBoxContainer, pid: String, v: Dictionary, prop: Dictionary, motor: MotorTurno, al_aprobar: Callable, custom: Dictionary, al_modificar: Callable) -> void:
+static func _ficha(detalle: VBoxContainer, pid: String, v: Dictionary, prop: Dictionary, motor: MotorTurno, al_aprobar: Callable, custom: Dictionary, al_modificar: Callable, estado: Dictionary = {}) -> void:
 	for h in detalle.get_children():
 		h.queue_free()
 	detalle.add_theme_constant_override("separation", 8)
@@ -208,6 +209,13 @@ static func _ficha(detalle: VBoxContainer, pid: String, v: Dictionary, prop: Dic
 		txt += " (Capacidad fiscal disponible: US$%d M; se construye el %d %% en el primer tramo.)" % [roundi(float(prop["capacidad_musd"])), roundi(ratio * 100.0)]
 	corr.add_child(Tema.etiqueta("Corrector de realismo: " + txt, 12, Tema.TINTA))
 	detalle.add_child(corr)
+	var n_est := 0
+	if not custom.is_empty():
+		n_est = (custom["estaciones"] as Array).size()
+	elif motor.grafo.listo():
+		n_est = motor.grafo.estaciones_base(v).size()
+	if not estado.is_empty() and n_est > 0:
+		detalle.add_child(_nombrar(estado, prop, n_est))
 	var fila := HBoxContainer.new()
 	fila.add_theme_constant_override("separation", 8)
 	if al_modificar.is_valid():
@@ -222,6 +230,38 @@ static func _ficha(detalle: VBoxContainer, pid: String, v: Dictionary, prop: Dic
 	ok.add_theme_font_size_override("font_size", 14)
 	ok.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	ok.disabled = int(prop["costo_pa"]) > motor.estado.pa_actual
-	ok.pressed.connect(func() -> void: al_aprobar.call(pid, String(v["id"]), custom))
+	var nombres_linea := {"linea": "", "estaciones": []}
+	if not estado.is_empty():
+		nombres_linea = {"linea": String(estado["nombre"]), "estaciones": (estado["est"] as Array).slice(0, n_est)}
+	ok.pressed.connect(func() -> void: al_aprobar.call(pid, String(v["id"]), custom, nombres_linea))
 	fila.add_child(ok)
 	detalle.add_child(fila)
+
+
+static func _nombrar(estado: Dictionary, prop: Dictionary, n_est: int) -> Control:
+	## Nombre de la línea y de sus estaciones: solo se pueden poner ahora, mientras se planifica (después quedan fijos).
+	var col := VBoxContainer.new()
+	col.add_theme_constant_override("separation", 6)
+	var est: Array = estado["est"]
+	while est.size() < n_est:
+		est.append("")
+	var cuerpo := VBoxContainer.new()
+	cuerpo.add_theme_constant_override("separation", 6)
+	cuerpo.visible = bool(estado["abierto"])
+	var abrir := Tema.boton("Nombrar la línea y sus estaciones (opcional)", Tema.PANEL, Tema.TEXTO, 12, 44)
+	abrir.pressed.connect(func() -> void:
+		estado["abierto"] = not bool(estado["abierto"])
+		cuerpo.visible = bool(estado["abierto"]))
+	col.add_child(abrir)
+	cuerpo.add_child(Tema.etiqueta("Solo puedes ponerles nombre ahora, mientras planificas. Si lo dejas vacío, la línea usa el nombre de la propuesta.", 11, Tema.TEXTO_SUAVE))
+	cuerpo.add_child(Tema.etiqueta("Nombre de la línea", 12, Tema.TEXTO, false, 700))
+	var campo_linea := Tema.campo(String(prop["titulo"]), 30, String(estado["nombre"]))
+	campo_linea.text_changed.connect(func(t: String) -> void: estado["nombre"] = t)
+	cuerpo.add_child(campo_linea)
+	cuerpo.add_child(Tema.etiqueta("Estaciones, en orden", 12, Tema.TEXTO, false, 700))
+	for i in range(n_est):
+		var c := Tema.campo("Estación %d" % (i + 1), 26, String(est[i]))
+		c.text_changed.connect(func(t: String) -> void: est[i] = t)
+		cuerpo.add_child(c)
+	col.add_child(cuerpo)
+	return col
