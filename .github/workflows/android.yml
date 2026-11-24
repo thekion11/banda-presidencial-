@@ -25,7 +25,10 @@ jobs:
           unzip -q tpl.tpz -d tpl && cp -r tpl/templates/* ~/.local/share/godot/export_templates/4.3.stable/
       - name: Android SDK y keystore de depuración
         run: |
-          sdkmanager --install "platform-tools" "build-tools;34.0.0" "platforms;android-34" > /dev/null
+          SDKM="$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager"
+          if [ ! -x "$SDKM" ]; then SDKM="$(ls $ANDROID_HOME/cmdline-tools/*/bin/sdkmanager | head -n 1)"; fi
+          yes | "$SDKM" --licenses > /dev/null || true
+          "$SDKM" --install "platform-tools" "build-tools;34.0.0" "platforms;android-34" > /dev/null
           keytool -genkeypair -keystore "$RUNNER_TEMP/debug.keystore" -alias androiddebugkey -storepass android -keypass android -keyalg RSA -keysize 2048 -validity 10000 -dname "CN=Android Debug,O=Android,C=US"
           godot --headless --import --path . || true
           cat >> ~/.config/godot/editor_settings-4.3.tres <<EOF2
