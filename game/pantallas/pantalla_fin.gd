@@ -112,6 +112,11 @@ func _ready() -> void:
 			v2.add_child(Tema.etiqueta("%s · %s" % [ln["id"], String(ln["nombre"])], 12, Tema.TEXTO, false, 600))
 			v2.add_child(Tema.etiqueta("%d estaciones · %s" % [(ln["nombres_estaciones"] as Array).size(), "operativa" if ln["estado"] == "operativa" else "en construcción al terminar el mandato"], 10, Tema.TEXTO_SUAVE))
 			lista.add_child(FilasUI.tarjeta(v2, Tema.PANEL))
+	var hitos := motor.mandato.hitos()
+	if not hitos.is_empty():
+		lista.add_child(FilasUI.titulo("Hitos de tu mandato"))
+		for h in hitos:
+			lista.add_child(Tema.etiqueta("· Semana %d: %s" % [int(h["turno"]), String(h["texto"])], 12, Tema.TEXTO))
 	lista.add_child(FilasUI.titulo("Línea de tiempo: eventos reales que viviste"))
 	var evs := eventos_reales()
 	if evs.is_empty():

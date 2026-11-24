@@ -12,6 +12,8 @@ func _init() -> void:
 			if String(e["id"]) == "" and m.estado.etapa in ["fin_mandato", "crisis", "derrota_electoral"]:
 				print("FALLO: sin epílogo para ", m.estado.etapa); fallos += 1
 			ids[String(e["id"])] = true
+			if m.estado.etapa == "fin_mandato" and m.mandato.hitos().is_empty():
+				print("FALLO: un mandato completo debe tener hitos"); fallos += 1
 	print("epílogos vistos: ", ids.keys())
 	if ids.size() < 3:
 		print("FALLO: muy poca variedad de finales"); fallos += 1

@@ -16,12 +16,9 @@ Este archivo lo mantiene Claude. Lo que depende del usuario queda en «Necesito 
 | U9 | Elegir modelo de monetización (premium barato, anuncios recompensados, packs de escenarios) | Condiciona qué datos se recolectan (Ley 21.719) y la ficha de Play | Pendiente |
 | U10 | Google Play, prueba cerrada con 12+ testers y keystore de release | En pausa por instrucción del usuario | Pausado |
 
-## Para hacer yo (en este orden)
-1. Fuzzing del núcleo (`tests/fuzz_acciones.gd`, de la rama `ccr-c6aa6dd1-uuqdjm`): integrarlo al CI y corregir lo que encuentre.
-2. Pendientes de los informes de revisión: mapa de Chile (rendimiento: la geometría se recalcula al abrir cada pantalla del día); reglas de disponibilidad duplicadas en la interfaz; código muerto de `carta_ui.gd`. (Hecho el 24-nov-2026: hemiciclo con geometría precalculada (capturas idénticas pixel a pixel), ilustraciones a 640×512 (los originales de 1024×820 quedan en `docs/arte_originales/cartas/`; unos 3 MB menos de RAM por ilustración), guardado atómico, aviso por guardado dañado, registro de prueba que solo añade líneas.)
-3. Del audit del plan: portada conectada al menú (créditos ya al día); títulos cortos para los eventos legales largos (P11, hecho: descripción ≤120 caracteres, texto completo en meta); estado vacío del informe (P3); cartera con buscador y sin «Fuera de partida» (P2); texto «Tus 8 ministros» desde `leyes.json`.
-4. Propuestas ACEPTADAS sin implementar: PR-01 (dificultad y afiliación), PR-05 (rellenar el gabinete), PR-06c (mapa de Sudamérica).
-5. Ideas del análisis de mercado (solo proponer y registrar): consecuencias visibles por carta, finales variados, resumen de sesión con hitos, tutorial corto, medición D1 y D7.
+## Para hacer yo (actualizado tras tu «hazlo todo»)
+Hecho el 24-nov-2026: fuzzing en CI, mapa de Chile con caché, reglas de disponibilidad en un solo lugar, títulos cortos (P11), cartera con buscador, PR-01 (dificultad, afiliación, «como la última vez»), PR-05 (rellenar gabinete), PR-06c (continente y vecinos vivos), consecuencias visibles por carta, finales variados (9 epílogos) y hitos del mandato en la pantalla de fin. El tutorial ya es corto (5 pasos).
+En curso, en este orden: PR-09 estadísticas de cartas → PR-08 ministros con peticiones → PR-02 arrastrar cartas al mapa → PR-07 eventos externos → PR-11/12/13 cierre, reelección y oposición → PR-14 → PR-17 balas de plata → PR-18 presupuesto → PR-19 a PR-23 → PR-24 marco de actores. PR-10 (campaña narrativa), PR-15 y PR-16 (apariencia y habilidades) después. Medición D1/D7 espera tu decisión U9.
 
 ## PR-01 Dificultad (implementada con valores por defecto, ajustable)
 - Fuente: `docs/PROPUESTAS.md` PR-01; presets en `data/leyes.json` bloque `dificultad` (umbral_delta, aprobacion_inicial, desgaste). Selector en la pantalla de fundación del partido; se guarda en `partido["dificultad"]` y se reproduce.

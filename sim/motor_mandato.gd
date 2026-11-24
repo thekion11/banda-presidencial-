@@ -55,6 +55,33 @@ func finalizar(motivo: String) -> void:
 
 
 
+func hitos(maximo: int = 8) -> Array[Dictionary]:
+	## Resumen de sesión: hitos del registro de acciones (solo lectura): [{turno, texto}] en orden cronológico, los más recientes si hay muchos.
+	var res: Array[Dictionary] = []
+	var primera_ley := false
+	for a in m.estado.registro_acciones:
+		var d: Dictionary = a["detalle"]
+		var texto := ""
+		match String(a["tipo"]):
+			"eleccion_presidencial":
+				texto = "Ganaste la elección con %.1f %% de apoyo." % float(d["voto_final"]) if bool(d["electo"]) else "Pasaste a segunda vuelta con %.1f %%." % float(d["voto_final"])
+			"votacion":
+				if bool(d["aprobada"]) and not primera_ley:
+					primera_ley = true
+					texto = "Primera ley aprobada en el Congreso."
+			"obra_terminada":
+				texto = "Se inauguró: %s." % String(d["nombre"])
+			"coalicion_ruptura":
+				texto = "Un partido aliado rompió con tu gobierno."
+			"escandalo_ministro":
+				texto = "Escándalo ministerial."
+			"meta":
+				texto = "Cumpliste una meta interna."
+		if texto != "":
+			res.append({"turno": int(a["turno"]), "texto": texto})
+	return res.slice(maxi(0, res.size() - maximo)) if res.size() > maximo else res
+
+
 func epilogo() -> Dictionary:
 	## Final variado (solo texto, no toca el estado): primer epílogo de data/leyes.json «finales» cuyas condiciones se cumplen.
 	var e := m.estado
