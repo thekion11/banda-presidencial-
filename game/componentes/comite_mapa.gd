@@ -141,7 +141,8 @@ func _linea(puntos: Array, hasta: float) -> void:
 
 func _draw() -> void:
 	draw_style_box(Tema.caja(Color("#EFEADF"), 14, Tema.BORDE_CLARO, 1), Rect2(Vector2.ZERO, size))
-	UrbanoBase.dibujar(self, size, MARGEN, true, 0.9)
+	UrbanoBase.dibujar(self, size, MARGEN, true, 0.9, 0.45)
+	UrbanoBase.fichas(self, size, MARGEN, 1.0, Vector2.ZERO)
 	if editando and grafo != null:
 		if _ruta_edicion.size() >= 2:
 			_linea(_ruta_edicion, 1.0)

@@ -129,6 +129,7 @@ static func crear(motor: MotorTurno, urbano: Dictionary, al_volver: Callable, al
 			var ic := PanelContainer.new()
 			ic.add_theme_stylebox_override("panel", Tema.caja(f[3], 10))
 			ic.custom_minimum_size = Vector2(36, 36)
+			ic.size_flags_vertical = Control.SIZE_SHRINK_CENTER
 			ic.mouse_filter = Control.MOUSE_FILTER_IGNORE
 			ic.add_child(Icono.crear(String(f[4]), f[2], 18.0))
 			h.add_child(ic)

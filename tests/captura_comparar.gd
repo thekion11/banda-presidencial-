@@ -18,6 +18,16 @@ func _guardar(nombre: String, espera: float = 0.3) -> void:
 	root.get_texture().get_image().save_png("%s/%s.png" % [_dir, nombre])
 
 
+func _buscar_mapa(n: Node) -> UrbanoMapa:
+	if n is UrbanoMapa:
+		return n
+	for h in n.get_children():
+		var r := _buscar_mapa(h)
+		if r != null:
+			return r
+	return null
+
+
 func _correr() -> void:
 	var main: Node = load("res://game/main.tscn").instantiate()
 	root.add_child(main)
@@ -95,6 +105,18 @@ func _correr() -> void:
 			h.queue_free()
 	dia._abrir_urbano()
 	await _guardar("cmp_urbano", 1.3)
+	var um: UrbanoMapa = _buscar_mapa(dia._capa)
+	if um != null:  # acercamiento al centro (zoom 3) y enfoque: solo L1, L4 y L5 visibles
+		um._zoom_en(3.0, Vector2(um.size.x * 0.52, um.size.y * 0.42))
+		await _guardar("cmp_urbano_zoom", 0.3)
+		for id in ["L2", "L3", "L4A", "L6"]:
+			UrbanoBase.alternar_linea(id)
+		um.queue_redraw()
+		await _guardar("cmp_urbano_foco", 0.3)
+		UrbanoBase.ocultas.clear()
+		um.zoom = 1.0
+		um.pan = Vector2.ZERO
+		um.queue_redraw()
 	for h in dia._capa.get_children():
 		if h != dia._toast:
 			h.queue_free()
