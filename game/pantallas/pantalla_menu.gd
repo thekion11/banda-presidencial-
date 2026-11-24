@@ -5,12 +5,13 @@ signal nueva
 signal continuar
 
 var hay_guardado: bool = false
+var aviso: String = ""  # mensaje para el jugador (p. ej. guardado descartado)
 var datos: Dictionary = {}
 var _creditos: PanelContainer
 
 
 func _ready() -> void:
-	add_child(Tema.fondo_hero("politica"))
+	add_child(Tema.fondo_hero("politica", 0.78, 0.22, "res://game/arte/marca/portada.jpg"))  # portada nueva (vector plano); si falta, usa la de la categoría
 	var col := VBoxContainer.new()
 	col.set_anchors_preset(Control.PRESET_FULL_RECT)
 	col.offset_left = 24
@@ -25,6 +26,11 @@ func _ready() -> void:
 	var esp := Control.new()
 	esp.size_flags_vertical = Control.SIZE_EXPAND_FILL
 	col.add_child(esp)
+	if aviso != "":
+		var av := PanelContainer.new()
+		av.add_theme_stylebox_override("panel", Tema.caja(Color("#FBEFD2"), 12, Tema.ORO, 2))
+		av.add_child(Tema.etiqueta(aviso, 12, Tema.TINTA, false, 600))
+		col.add_child(av)
 	if hay_guardado:
 		var c := Tema.boton("Continuar partida", Tema.PANEL)
 		c.add_theme_stylebox_override("normal", Tema.caja_degradada(Color("#1B4F78"), Color("#0F2F4A"), 18, Color("#4C84AE"), 2))
@@ -65,11 +71,18 @@ func _mostrar_creditos() -> void:
 	v.add_child(Tema.etiqueta("Créditos y atribuciones", 18, Tema.ORO, true))
 	var txt := "Mapa de regiones: GeoJSON público simplificado (ver docs/DATOS.md).\n" \
 		+ "Calles, Metro, río y parques de Gran Santiago: © colaboradores de OpenStreetMap (ODbL), extracto de BBBike. Relieve: teselas públicas de elevación (Terrarium).\n" \
-		+ "Ilustraciones de cartas generadas con IA (Figma) para este proyecto.\n" \
+		+ "Líneas 7, 8 y 9 del Metro: trazado de OpenStreetMap; colores de es.wikipedia y Wikidata (sin confirmar por Metro S.A.). Estaciones de las líneas en operación cotejadas con el GTFS de la Red Metropolitana (DTPM).\n" \
+		+ "Ilustraciones de cartas generadas con IA (Gemini y Canva) para este proyecto.\n" \
 		+ "Tipografías: Space Grotesk e Inter (SIL OFL 1.1).\n" \
 		+ "Motor: Godot Engine (MIT).\n" \
 		+ "Cifras marcadas como ilustrativas no representan datos oficiales."
-	v.add_child(Tema.etiqueta(txt, 12, Tema.TEXTO))
+	var sc := ScrollContainer.new()
+	sc.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	sc.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+	var lbl := Tema.etiqueta(txt, 12, Tema.TEXTO)
+	lbl.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	sc.add_child(lbl)
+	v.add_child(sc)
 	var cerrar := Tema.boton("Cerrar", Tema.ROJO, Tema.TEXTO, 14, 48)
 	cerrar.pressed.connect(_mostrar_creditos)
 	v.add_child(cerrar)

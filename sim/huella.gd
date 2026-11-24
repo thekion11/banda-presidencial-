@@ -19,7 +19,10 @@ static func texto(v: Variant) -> String:
 			partes2.append(texto(x))
 		return "[" + ",".join(partes2) + "]"
 	if v is int or v is float:
-		return "%.8f" % float(v)
+		var f := roundf(float(v) * 100000000.0) / 100000000.0
+		if f == 0.0:
+			f = 0.0  # -0,0 y los negativos que redondean a cero se escriben igual que 0 (lo encontró el fuzzing: eje_inst -0,0 contra 0,0 tras el JSON)
+		return "%.8f" % f
 	if v is bool:
 		return "true" if v else "false"
 	if v == null:

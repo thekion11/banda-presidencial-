@@ -2,7 +2,7 @@ name: Android (debug)
 on:
   workflow_dispatch:
   push:
-    branches: [ccr-ec102a3c-giitie]  # cada push deja un APK de depuración como artefacto
+    branches: [ccr-ec102a3c-giitie, main]  # cada push deja un APK de depuración como artefacto
 
 concurrency:
   group: android-${{ github.ref }}

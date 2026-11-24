@@ -56,7 +56,7 @@ func votar(estado: EstadoSimulacion, tipo_id: String, votos_firmes_senado: int =
 		0.0, 1.0)
 	var n_sen := int(h["total_senadores"])
 	var n_dip := int(h.get("total_diputados", 155))
-	var propios_sen := int(estado.partido.get("escanos_propios", 16))
+	var propios_sen := int(estado.partido.get("escanos_propios", leyes["congreso"]["escanos_propios_defecto"]))
 	var propios_dip := roundi(float(propios_sen) * float(n_dip) / float(n_sen)) + int(estado.apoyo_coalicion["camara"])
 	propios_sen += int(estado.apoyo_coalicion["senado"])  # partidos aliados satisfechos (MotorCoalicion)
 	var ruido := int(c["ruido_votos"])
@@ -66,7 +66,7 @@ func votar(estado: EstadoSimulacion, tipo_id: String, votos_firmes_senado: int =
 	else:
 		sen = clampi(_votos_camara(propios_sen, n_sen, apoyo) + rng.randi_range(-ruido, ruido), 0, n_sen)
 	var dip := clampi(_votos_camara(propios_dip, n_dip, apoyo) + rng.randi_range(-ruido * 3, ruido * 3), 0, n_dip)
-	var fr := float(c.get("fraccion_abstencion", 0.35))  # presentación: parte de los no-favorables se abstiene
+	var fr := float(c["fraccion_abstencion"])  # presentación: parte de los no-favorables se abstiene
 	var abst_sen := roundi(fr * float(n_sen - sen))
 	var abst_dip := roundi(fr * float(n_dip - dip))
 	return {
@@ -84,7 +84,7 @@ func composicion(estado: EstadoSimulacion, camara: bool) -> Dictionary:
 	var h: Dictionary = leyes["hemiciclo"]
 	var c: Dictionary = leyes["congreso"]
 	var total := int(h["total_diputados"]) if camara else int(h["total_senadores"])
-	var propios := int(estado.partido.get("escanos_propios", 16))
+	var propios := int(estado.partido.get("escanos_propios", leyes["congreso"]["escanos_propios_defecto"]))
 	if camara:
 		propios = roundi(float(propios) * float(total) / float(h["total_senadores"]))
 	var apoyo := clampf(float(c["apoyo_base"]) + float(c["peso_capital"]) * estado.ind("capital") + float(c["peso_cohesion"]) * estado.ind("cohesion"), 0.0, 1.0)
@@ -124,7 +124,7 @@ func corregir(carta: Dictionary, estado: EstadoSimulacion) -> Dictionary:
 		cap = estado.ind(String(corr["capacidad_ind"]))
 	if cap >= meta:
 		return {"aplica": false, "ratio": 1.0, "mensaje": ""}
-	var ratio := clampf(cap / meta, 0.1, 1.0)
+	var ratio := clampf(cap / meta, float(leyes["dinamica"]["ratio_obra_min"]), 1.0)
 	var u := String(corr.get("unidad", ""))
 	var msg := "La meta pide %s y la capacidad actual es ~%s. " % [fmt_cifra(meta, u), fmt_cifra(cap, u)]
 	if corr["modo"] == "por_tramos":

@@ -23,7 +23,7 @@ func aplicar_efecto(ef: Dictionary, escala: float, region: String) -> void:
 
 func delta_aprobacion(delta: float, region: String, decreciente: bool = false) -> void:
 	if decreciente and delta > 0.0:
-		delta *= maxf(0.2, 1.0 - estado.ind("aprobacion") / float(leyes["dinamica"]["rendimiento_decreciente"]))
+		delta *= maxf(float(leyes["dinamica"]["piso_rendimiento_decreciente"]), 1.0 - estado.ind("aprobacion") / float(leyes["dinamica"]["rendimiento_decreciente"]))
 	if regiones.pesos.is_empty():
 		sumar_ind("aprobacion", delta)
 	else:

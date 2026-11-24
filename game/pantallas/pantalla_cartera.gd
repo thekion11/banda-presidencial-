@@ -14,6 +14,7 @@ var motor: MotorTurno = null  # opcional: con partida en curso muestra el estado
 var f_tipo: String = ""
 var f_region: String = ""
 var f_sector: String = ""
+var f_texto: String = ""  # búsqueda por texto en el título
 var pagina: int = 0
 var items: Array[Dictionary] = []
 var filtrados: Array[Dictionary] = []
@@ -56,7 +57,7 @@ func _fuente(c: Dictionary) -> String:
 
 func _estado_partida(c: Dictionary) -> Array:
 	if motor == null:
-		return ["Fuera de partida", Tema.TEXTO_SUAVE]
+		return ["Sin partida abierta: estado real del proyecto", Tema.TEXTO_SUAVE]
 	var est := motor.estado
 	if est.cartas_ejecutadas.has(String(c["id"])):
 		return ["En tu partida: ya ejecutada", Tema.SUBE]
@@ -79,9 +80,15 @@ func aplicar_filtros() -> void:
 			continue
 		if f_sector != "" and String(c["categoria"]) != f_sector:
 			continue
+		if f_texto != "" and not _sin_tildes(String(c["titulo"])).contains(_sin_tildes(f_texto)):
+			continue
 		filtrados.append(c)
 	pagina = clampi(pagina, 0, maxi(0, (filtrados.size() - 1) / POR_PAGINA))
 	_pintar()
+
+
+static func _sin_tildes(t: String) -> String:
+	return t.to_lower().replace("á", "a").replace("é", "e").replace("í", "i").replace("ó", "o").replace("ú", "u").replace("ü", "u").replace("ñ", "n")
 
 
 func _chip_fila(clave: String, titulo: String, opciones: Array) -> Control:
@@ -139,6 +146,12 @@ func _ready() -> void:
 	claves.sort()
 	for k in claves:
 		sec.append([k, BloqueoCarta.nombre_cat(String(k))])
+	var buscar := Tema.campo("Buscar por título (ej. metro, salud mental, pensiones)", 40, f_texto)
+	buscar.text_changed.connect(func(t: String) -> void:
+		f_texto = t.strip_edges()
+		pagina = 0
+		aplicar_filtros())
+	v.add_child(buscar)
 	v.add_child(_chip_fila("tipo", "TIPO", TIPOS))
 	v.add_child(_chip_fila("region", "REGIÓN", regiones))
 	v.add_child(_chip_fila("sector", "SECTOR", sec))

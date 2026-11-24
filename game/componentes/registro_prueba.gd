@@ -6,6 +6,8 @@ extends RefCounted
 const RUTA := "user://registro_prueba.jsonl"
 const MAX_LINEAS := 1500
 
+static var _n: int = -1  # líneas del archivo (se cuentan una vez)
+
 
 static func anotar(tipo: String, motor: MotorTurno, huella: String, extra: Dictionary = {}) -> void:
 	if motor == null:
@@ -15,15 +17,20 @@ static func anotar(tipo: String, motor: MotorTurno, huella: String, extra: Dicti
 			"turno": e.turno_actual, "ap": snappedf(e.ind("aprobacion"), 0.1), "mov": e.pa_actual, "ent": e.entradas.size(),
 			"fps": int(Engine.get_frames_per_second()), "mem": int(OS.get_static_memory_usage() / 1048576.0)}
 	linea.merge(extra)
-	var lineas: PackedStringArray = []
-	if FileAccess.file_exists(RUTA):
-		lineas = FileAccess.get_file_as_string(RUTA).split("\n", false)
-	lineas.append(JSON.stringify(linea))
-	if lineas.size() > MAX_LINEAS:
+	if _n < 0:  # primera vez en esta ejecución: se cuentan las líneas existentes una sola vez
+		_n = FileAccess.get_file_as_string(RUTA).split("\n", false).size() if FileAccess.file_exists(RUTA) else 0
+	if _n > MAX_LINEAS + 200:  # el archivo se recorta de vez en cuando; el resto de las veces solo se añade una línea (antes se releía y reescribía entero)
+		var lineas := FileAccess.get_file_as_string(RUTA).split("\n", false)
 		lineas = lineas.slice(lineas.size() - MAX_LINEAS)
-	var f := FileAccess.open(RUTA, FileAccess.WRITE)
+		var fr := FileAccess.open(RUTA, FileAccess.WRITE)
+		if fr != null:
+			fr.store_string("\n".join(lineas) + "\n")
+			_n = lineas.size()
+	var f := FileAccess.open(RUTA, FileAccess.READ_WRITE if FileAccess.file_exists(RUTA) else FileAccess.WRITE)
 	if f != null:
-		f.store_string("\n".join(lineas) + "\n")
+		f.seek_end()
+		f.store_line(JSON.stringify(linea))
+		_n += 1
 
 
 static func informe() -> String:
@@ -60,6 +67,8 @@ static func informe() -> String:
 	for s in por_semilla.keys():
 		var p: Dictionary = por_semilla[s]
 		cab.append("- semilla %s: %d acciones, turno máx %d, etapa %s, aprobación %s, duración %d min" % [s, p["acciones"], p["turno_max"], p["etapa"], p["ap"], int((int(p["t1"]) - int(p["t0"])) / 60)])
+	if por_semilla.is_empty():
+		cab.append("Todavía no hay partidas registradas: juega una partida y vuelve aquí; el informe se llena solo con tus acciones (turno, aprobación, fps y memoria).")
 	for f in finales:
 		cab.append("  fin · " + f)
 	cab.append("")

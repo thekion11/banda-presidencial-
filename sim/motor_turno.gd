@@ -120,7 +120,7 @@ func ejecutar_amanecer() -> void:
 	fx.delta_aprobacion(-float(d["desgaste_aprobacion_semanal"]), "")
 	fx.sumar_ind("fiscal", float(d["regen_fiscal_semanal"]))
 	var extra := maxi(0, estado.obras_en_curso.size() - int(d["max_obras_concurrentes"]))
-	fx.sumar_ind("riesgo_ejecucion", float(extra) * float(d["riesgo_por_obra_extra"]) - 0.5)
+	fx.sumar_ind("riesgo_ejecucion", float(extra) * float(d["riesgo_por_obra_extra"]) - float(d["riesgo_regen_semanal"]))
 	if estado.ind("riesgo_ejecucion") > float(d["riesgo_umbral"]):
 		fx.delta_aprobacion(-float(d["penal_aprobacion_riesgo"]), "")
 	fx.sumar_ind("capital", float(d["regen_capital_semanal"]))

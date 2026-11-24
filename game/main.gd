@@ -44,8 +44,9 @@ func _cambiar(p: Control) -> void:
 	p.create_tween().tween_property(p, "modulate:a", 1.0, 0.22)  # el tween muere con la pantalla (antes: aviso «Target object freed»)
 
 
-func mostrar_menu() -> void:
+func mostrar_menu(aviso: String = "") -> void:
 	var m := PantallaMenu.new()
+	m.aviso = aviso
 	m.hay_guardado = FileAccess.file_exists(RUTA_GUARDADO)
 	m.datos = datos
 	m.nueva.connect(mostrar_partido)
@@ -79,9 +80,11 @@ func mostrar_gabinete() -> void:
 
 func continuar_guardado() -> void:
 	var g: Variant = Datos.leer_json(RUTA_GUARDADO)
-	if g == null or String(g.get("huella_datos", "")) != _huella_datos:
-		push_warning("Guardado incompatible con esta versión de los datos: se descarta.")
-		mostrar_menu()
+	if not (g is Dictionary) or not g.has("semilla") or not g.has("entradas") or String(g.get("huella_datos", "")) != _huella_datos:
+		push_warning("Guardado dañado o incompatible con esta versión de los datos.")
+		# se conserva una copia (por si sirve para diagnosticar) y se quita el original: así el botón no reaparece fallando otra vez
+		DirAccess.rename_absolute(ProjectSettings.globalize_path(RUTA_GUARDADO), ProjectSettings.globalize_path("user://guardado_descartado.json"))
+		mostrar_menu("No se pudo continuar: el guardado estaba dañado o es de otra versión del juego. Empieza una partida nueva.")
 		return
 	motor = Partida.reproducir(datos, g)
 	UrbanoBase.reiniciar()
@@ -120,7 +123,10 @@ func mostrar_fin() -> void:
 func guardar() -> void:
 	if motor == null:
 		return
-	var f := FileAccess.open(RUTA_GUARDADO, FileAccess.WRITE)
+	var tmp := RUTA_GUARDADO + ".tmp"  # se escribe aparte y se renombra: un corte a mitad de la escritura no deja el guardado truncado
+	var f := FileAccess.open(tmp, FileAccess.WRITE)
 	if f != null:
 		f.store_string(JSON.stringify(motor.estado.exportar_guardado(_huella_datos)))
+		f.close()
+		DirAccess.rename_absolute(ProjectSettings.globalize_path(tmp), ProjectSettings.globalize_path(RUTA_GUARDADO))
 	RegistroPrueba.anotar("accion", motor, _huella_datos)

@@ -119,6 +119,6 @@ func _iniciar_ejecucion(pid: String) -> void:
 	var tir := float(p["tir"])
 	if bool(p["tiene_tir"]) and tir < 0.0:
 		m.fx.sumar_ind("riesgo_ejecucion", float(cfg["riesgo_tir_negativa"]))
-	var apr := clampf(float(cfg["aprobacion_base"]) + tir * float(cfg["aprobacion_por_tir"]), 0.5, float(cfg["aprobacion_max"]))
+	var apr := clampf(float(cfg["aprobacion_base"]) + tir * float(cfg["aprobacion_por_tir"]), float(cfg["piso_aprobacion_obra"]), float(cfg["aprobacion_max"]))
 	var dias := int(clampf(float(cfg["dias_base_obra"]) + mm * float(cfg["dias_por_musd"]), float(cfg["dias_base_obra"]), float(cfg["dias_max_obra"])))
 	m.obras.iniciar(m.estado, String(p["nombre"]), dias, String(p["region"]), "", [{"ind": "aprobacion", "delta": apr}], {"sectra": pid})
