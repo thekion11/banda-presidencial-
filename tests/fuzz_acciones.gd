@@ -4,6 +4,7 @@ extends SceneTree
 ## Uso: godot --headless --path . -s tests/fuzz_acciones.gd -- [partidas] [semilla_inicial]
 
 var _fallos: int = 0
+var _gobernadas: int = 0
 
 
 func _check(cond: bool, msg: String) -> void:
@@ -109,8 +110,13 @@ func _init() -> void:
 		if rng.randf() < 0.5:
 			m.elegir_gabinete(AyudaV2.ministros_de(datos, ["salud", "transportes", "vivienda"], int(datos["leyes"]["gabinete"]["tamano"])))
 		var guard := 0
+		var guiado := rng.randf() < 0.6  # parte de las partidas usa un bot sensato para llegar a gobernar
+		var etapas := {}
 		while (m.estado.etapa == "campana" or m.estado.etapa == "gobierno") and guard < 400:
 			guard += 1
+			etapas[m.estado.etapa] = true
+			if guiado:
+				Bots.jugar_turno(m, "codicioso", rng)
 			for _a in range(rng.randi_range(0, 14)):
 				_accion_aleatoria(m, rng, datos)
 				_invariantes(m, ctx)
@@ -122,9 +128,10 @@ func _init() -> void:
 				continue
 			m.terminar_turno()
 			_invariantes(m, ctx + " t%d" % m.estado.turno_actual)
+		_gobernadas += 1 if etapas.has("gobierno") else 0
 		_check(guard < 400, ctx + ": la partida no termina (bucle)")
 		var g: Dictionary = JSON.parse_string(JSON.stringify(m.estado.exportar_guardado(h)))
 		var r := Partida.reproducir(datos, g)
 		_check(r.estado.calcular_huella() == m.estado.calcular_huella(), ctx + ": el replay NO es idéntico (etapa %s, turno %d)" % [m.estado.etapa, m.estado.turno_actual])
-	print("FUZZ %s (%d partidas, %d fallos)" % ["OK" if _fallos == 0 else "CON FALLOS", n, _fallos])
+	print("FUZZ %s (%d partidas, %d llegaron a gobernar, %d fallos)" % ["OK" if _fallos == 0 else "CON FALLOS", n, _gobernadas, _fallos])
 	quit(1 if _fallos > 0 else 0)
