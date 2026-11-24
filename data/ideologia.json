@@ -246,5 +246,29 @@
       "inst_min": 0.1,
       "inst_max": 1.0
     }
-  ]
+  ],
+  "inicio": {
+    "nota": "Indicadores iniciales del partido: base + k * (eje o distancia al centro). Antes vivían en sim/generador_partido.gd.",
+    "cohesion": {
+      "base": 65.0,
+      "k": 20.0
+    },
+    "fiscal": {
+      "base": 65.0,
+      "k": 15.0
+    },
+    "capital": {
+      "base": 60.0,
+      "k": 10.0
+    },
+    "aprobacion": {
+      "base": 38.0,
+      "k": 6.0,
+      "atenuacion_distancia": 0.5,
+      "min": 32.0,
+      "max": 46.0
+    },
+    "riesgo_ejecucion": 18.0,
+    "viviendas_anio": 55000.0
+  }
 }

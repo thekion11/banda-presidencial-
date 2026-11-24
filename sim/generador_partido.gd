@@ -46,10 +46,12 @@ static func construir_partido(
 	var inst: float = ejes.y
 	var distancia := sqrt(eco * eco + inst * inst)
 
-	var cohesion_ini := float(roundi(65.0 + 20.0 * distancia))
-	var fiscal_ini := float(roundi(65.0 + 15.0 * eco))
-	var capital_ini := float(roundi(60.0 + 10.0 * inst))
-	var aprobacion_ini := clampf(38.0 + 6.0 * (1.0 - distancia * 0.5), 32.0, 46.0)
+	var f: Dictionary = catalogo_ideologia["inicio"]  # fórmulas en data/ideologia.json
+	var cohesion_ini := float(roundi(float(f["cohesion"]["base"]) + float(f["cohesion"]["k"]) * distancia))
+	var fiscal_ini := float(roundi(float(f["fiscal"]["base"]) + float(f["fiscal"]["k"]) * eco))
+	var capital_ini := float(roundi(float(f["capital"]["base"]) + float(f["capital"]["k"]) * inst))
+	var fa: Dictionary = f["aprobacion"]
+	var aprobacion_ini := clampf(float(fa["base"]) + float(fa["k"]) * (1.0 - distancia * float(fa["atenuacion_distancia"])), float(fa["min"]), float(fa["max"]))
 
 	return {
 		"nombre": nombre.strip_edges(),
@@ -65,7 +67,7 @@ static func construir_partido(
 			"capital": capital_ini,
 			"cohesion": cohesion_ini,
 			"fiscal": fiscal_ini,
-			"riesgo_ejecucion": 18.0,
-			"viviendas_anio": 55000.0
+			"riesgo_ejecucion": float(f["riesgo_ejecucion"]),
+			"viviendas_anio": float(f["viviendas_anio"])
 		}
 	}
