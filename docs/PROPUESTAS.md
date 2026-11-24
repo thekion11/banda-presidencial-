@@ -2,7 +2,7 @@
 
 Registro de ideas habladas. Regla acordada el 24-nov-2026: **por ahora solo se conversa; nada se implementa hasta que el usuario diga «hazlo»**. Estados: hablada · aceptada · rechazada · por hacer · hecha.
 
-## PR-01 — Pantallas previas al inicio: dificultad y afiliación (24-nov-2026) · estado: hablada
+## PR-01 — Pantallas previas al inicio: dificultad y afiliación (24-nov-2026) · estado: ACEPTADA en lo conversado (sin implementar; falta «hazlo»)
 
 **Idea del usuario (resumen fiel):** al iniciar, primero una pantalla que pregunte la **dificultad**; después otra que pregunte si quieres ser **independiente**, entrar a **un partido grande («de un partidazo»)** o **fundar el propio**; solo si se elige fundar aparece el formulario de partido.
 
@@ -21,3 +21,19 @@ Registro de ideas habladas. Regla acordada el 24-nov-2026: **por ahora solo se c
 - *Orden de pantallas sugerido:* Dificultad → Afiliación → (según elección: formulario / lista de partidos / región) → test ideológico si corresponde → gabinete → campaña.
 
 **Decisiones que pide esta propuesta (no urgentes):** (1) ¿qué cambia exactamente con cada dificultad (umbral de elección, indicadores iniciales, severidad de eventos, movimientos base)? (2) ¿el independiente tiene un beneficio propio? (3) ¿se mantiene el test ideológico para quien entra a un partido?
+
+**Decisiones del usuario sobre PR-01 (24-nov-2026):** acepta la opinión y la solución propuestas por Claude:
+1. **Test ideológico:** lo hacen completo los **fundadores e independientes**; quien **entra a un partido existente** solo confirma o discrepa de 2-3 posturas del partido.
+2. **Fricción:** máximo 3 toques antes de ver el mapa, tarjetas grandes de un toque y opción «continuar como la última vez».
+3. **Documentos:** al implementarse se suma una «ampliación autorizada» en `CLAUDE.md` (la Enmienda de Cierre original queda ampliada).
+4. Siguen abiertas, sin urgencia: qué cambia con cada dificultad y el beneficio propio del independiente.
+
+## D-01 — Duración objetivo de las sesiones (24-nov-2026) · estado: decisión del usuario, pendiente de cifra exacta
+
+**Dicho por el usuario:** los 8 minutos de `CLAUDE.md` («sesiones de 3 a 8 minutos») son muy poco: apunta a **un poco más**.
+
+**Opinión de Claude**
+- Me parece razonable: con 1.685 proyectos, 1.607 cartas, gabinete, delegación, movimientos internos y coalición, el juego tiene más profundidad de la que cabe en 8 minutos; una sesión de unos **10 a 20 minutos** es típica de estrategia móvil por turnos.
+- Lo que **cambia** si se sube: (a) el costo de las pantallas previas (PR-01) pesa menos, porque se amortiza en una sesión más larga; (b) conviene definir **puntos de pausa naturales** (fin de campaña, fin de cada año de gobierno) con un resumen de «lo que lograste esta sesión»; (c) la guía de prueba y el informe de prueba hoy hablan de 10-15 minutos: se mantienen; (d) el balance por turno no cambia, pero la **duración de un turno** sí importa: hoy una semana tarda ~30-60 s; 20 minutos serían unos 20-30 turnos, es decir, la campaña entera más unas semanas de gobierno.
+- Lo que **no cambia**: el guardado por eventos ya permite pausar en cualquier momento; la partida completa (208 turnos) sigue siendo de varias sesiones.
+- **Falta una cifra:** ¿cuánto es «un poco más»? Propongo **10 a 20 minutos** como nuevo objetivo. Cuando el usuario la confirme, se actualiza la línea de identidad de `CLAUDE.md` (hoy dice 3 a 8) y `docs/GUIA_PRUEBA.md`.
