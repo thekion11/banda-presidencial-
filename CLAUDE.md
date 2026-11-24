@@ -5,7 +5,7 @@ La maqueta manda. Si el código y la maqueta discrepan en colores, proporciones,
 Ninguna tarea cierra sin pruebas en verde y captura comparada (`tests/captura.gd`).
 
 ## 2. Identidad y Alcance
-- Simulador político estratégico casual por turnos, exclusivo para Android (sesiones de 3 a 8 minutos).
+- Simulador político estratégico casual por turnos, exclusivo para Android (sesiones de unos 20 minutos; decisión del usuario del 24-nov-2026, antes 3 a 8).
 - Escala temporal: mandato de 4 años (1.460 días internos) jugado a razón de 1 turno = 1 semana (7 días): 208 turnos.
   El salto de 7 días se lee desde `data/leyes.json` (nunca fijo).
 - Comité de Planificación (3D intacto): variantes A/B/C (Fase 1), sliders y estaciones sobre grafo Dijkstra (Fase 3), obras en 5 fases.

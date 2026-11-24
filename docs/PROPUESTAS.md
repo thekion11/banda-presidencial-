@@ -28,7 +28,7 @@ Registro de ideas habladas. Regla acordada el 24-nov-2026: **por ahora solo se c
 3. **Documentos:** al implementarse se suma una «ampliación autorizada» en `CLAUDE.md` (la Enmienda de Cierre original queda ampliada).
 4. Siguen abiertas, sin urgencia: qué cambia con cada dificultad y el beneficio propio del independiente.
 
-## D-01 — Duración objetivo de las sesiones (24-nov-2026) · estado: decisión del usuario, pendiente de cifra exacta
+## D-01 — Duración objetivo de las sesiones (24-nov-2026) · estado: DECIDIDA: unos 20 minutos
 
 **Dicho por el usuario:** los 8 minutos de `CLAUDE.md` («sesiones de 3 a 8 minutos») son muy poco: apunta a **un poco más**.
 
@@ -37,3 +37,12 @@ Registro de ideas habladas. Regla acordada el 24-nov-2026: **por ahora solo se c
 - Lo que **cambia** si se sube: (a) el costo de las pantallas previas (PR-01) pesa menos, porque se amortiza en una sesión más larga; (b) conviene definir **puntos de pausa naturales** (fin de campaña, fin de cada año de gobierno) con un resumen de «lo que lograste esta sesión»; (c) la guía de prueba y el informe de prueba hoy hablan de 10-15 minutos: se mantienen; (d) el balance por turno no cambia, pero la **duración de un turno** sí importa: hoy una semana tarda ~30-60 s; 20 minutos serían unos 20-30 turnos, es decir, la campaña entera más unas semanas de gobierno.
 - Lo que **no cambia**: el guardado por eventos ya permite pausar en cualquier momento; la partida completa (208 turnos) sigue siendo de varias sesiones.
 - **Falta una cifra:** ¿cuánto es «un poco más»? Propongo **10 a 20 minutos** como nuevo objetivo. Cuando el usuario la confirme, se actualiza la línea de identidad de `CLAUDE.md` (hoy dice 3 a 8) y `docs/GUIA_PRUEBA.md`.
+
+**Confirmación del usuario (24-nov-2026):** objetivo de **unos 20 minutos por sesión** (antes 3 a 8).
+
+**Consecuencias que registro (a aplicar cuando el usuario diga «hazlo»):**
+- `CLAUDE.md` §2 pasa de «sesiones de 3 a 8 minutos» a «sesiones de unos 20 minutos» (hecho en este commit, es solo el texto de la regla).
+- A ~30-60 s por turno, 20 minutos son unos 20-30 turnos: la campaña completa (8, o 12 con segunda vuelta) más unas 10-15 semanas de gobierno. Un año de gobierno son 52 turnos: **un año ≈ 2 sesiones**.
+- Puntos de pausa naturales con resumen de sesión: fin de campaña, resultado de elección, cada trimestre (13 turnos) y cada año de gobierno.
+- La guía de prueba sigue en 10-15 minutos a propósito (primeros testers: recorrido corto).
+- Con sesiones de 20 minutos, el tutorial y las pantallas previas de PR-01 se justifican mejor; en cambio, los textos largos de eventos (P11 del video) siguen siendo un problema porque se repiten decenas de veces.
