@@ -34,6 +34,30 @@ static func escanos_para(eco: float, inst: float) -> int:
 	return clampi(roundi(18.0 - 6.0 * sqrt(eco * eco + inst * inst)), 6, 22)
 
 
+static func construir_partido_afiliado(afiliacion: String, base: Dictionary, nombre: String, sigla: String, region_bastion: String,
+		respuestas: Array[Dictionary], catalogo_ideologia: Dictionary, cfg: Dictionary) -> Dictionary:
+	## Partido según la afiliación (PR-01): propio, independiente o existente (base = partido de data/coalicion.json). Todo número viene de cfg (leyes.json "afiliacion").
+	var op: Dictionary = cfg["opciones"][afiliacion]
+	var p := construir_partido(nombre, sigla, region_bastion, respuestas, catalogo_ideologia)
+	if afiliacion == "existente":
+		var ide: Dictionary = base["ideologia"]
+		var peso := float(op["peso_postura"])
+		var ejes := calcular_ejes(respuestas)
+		p["eje_eco"] = clampf(float(ide["eco"]) + peso * ejes.x, -1.0, 1.0)
+		p["eje_inst"] = clampf(float(ide["inst"]) + peso * ejes.y, -1.0, 1.0)
+		p["arquetipo"] = arquetipo_para(p["eje_eco"], catalogo_ideologia)
+		p["perfil"] = perfil_para(p["eje_eco"], p["eje_inst"], catalogo_ideologia)
+		p["escanos_propios"] = maxi(int(op["escanos_min"]), roundi(float(base["escanos_senado"]) * float(op["escanos_mult"])))
+		p["partido_base"] = String(base["id"])
+	elif afiliacion == "independiente":
+		p["escanos_propios"] = maxi(int(op["escanos_min"]), roundi(float(p["escanos_propios"]) * float(op["escanos_factor"])))
+	var ind: Dictionary = p["indicadores_iniciales"]
+	ind["aprobacion"] = clampf(float(ind["aprobacion"]) + float(op["aprobacion"]), 0.0, 100.0)
+	ind["cohesion"] = clampf(float(ind["cohesion"]) + float(op["cohesion"]), 0.0, 100.0)
+	p["afiliacion"] = afiliacion
+	return p
+
+
 static func construir_partido(
 		nombre: String,
 		sigla: String,

@@ -5,6 +5,8 @@ extends Control
 signal fundado(partido: Dictionary)
 
 var datos: Dictionary = {}
+var afiliacion: String = "propio"  # propio | independiente | existente (PR-01)
+var base: Dictionary = {}  # partido existente elegido (data/coalicion.json)
 var _respuestas: Array[Dictionary] = []
 var _paso: int = 0
 var _contenido: VBoxContainer
@@ -68,7 +70,10 @@ func _ready() -> void:
 
 
 func _preguntas() -> Array:
-	return datos["ideologia"]["preguntas"]
+	var todas: Array = datos["ideologia"]["preguntas"]
+	if afiliacion == "existente":  # quien entra a un partido solo confirma unas pocas posturas
+		return todas.slice(0, int(datos["leyes"]["afiliacion"]["opciones"]["existente"]["preguntas"]))
+	return todas
 
 
 func _actualizar_franja() -> void:
@@ -89,7 +94,7 @@ func _limpiar() -> void:
 func _mostrar_pregunta() -> void:
 	_limpiar()
 	var total := _preguntas().size()
-	_titulo.text = "Fundación de Partido · Pregunta %d de %d" % [_paso + 1, total]
+	_titulo.text = "%s · Pregunta %d de %d" % ["Confirma tus posturas" if afiliacion == "existente" else "Fundación de Partido", _paso + 1, total]
 	_barra.anchor_right = float(_paso) / float(total + 1)
 	_actualizar_franja()
 	var p: Dictionary = _preguntas()[_paso]
@@ -148,7 +153,7 @@ func _responder(op: Dictionary) -> void:
 
 func _mostrar_fundacion() -> void:
 	_limpiar()
-	_titulo.text = "Fundación de Partido · Identidad"
+	_titulo.text = "Tu candidatura · Identidad" if afiliacion != "propio" else "Fundación de Partido · Identidad"
 	_barra.anchor_right = float(_preguntas().size()) / float(_preguntas().size() + 1)
 	_actualizar_franja()
 	var ficha := PanelContainer.new()
@@ -183,6 +188,16 @@ func _mostrar_fundacion() -> void:
 	_sigla.max_length = 5
 	_sigla.custom_minimum_size = Vector2(0, 48)
 	_contenido.add_child(_sigla)
+	if afiliacion == "independiente":
+		_nombre.text = "Candidatura Independiente"
+		_sigla.text = "IND"
+		emblema.text = "IND"
+	elif afiliacion == "existente":
+		_nombre.text = String(base["nombre"])
+		_sigla.text = String(base["sigla"])
+		emblema.text = String(base["sigla"])
+		_nombre.editable = false
+		_sigla.editable = false
 	nombre_prev.text = _nombre.text
 	_nombre.text_changed.connect(func(t: String) -> void: nombre_prev.text = t)
 	_sigla.text_changed.connect(func(t: String) -> void: emblema.text = t.to_upper())
@@ -227,6 +242,6 @@ func _fundar() -> void:
 	if sigla == "":
 		sigla = nombre.substr(0, 3)
 	var region := String(_region.get_item_metadata(_region.selected))
-	var partido := GeneradorPartido.construir_partido(nombre, sigla, region, _respuestas, datos["ideologia"])
+	var partido := GeneradorPartido.construir_partido_afiliado(afiliacion, base, nombre, sigla, region, _respuestas, datos["ideologia"], datos["leyes"]["afiliacion"])
 	partido["dificultad"] = String(_dificultad.get_item_metadata(_dificultad.selected))
 	fundado.emit(partido)

@@ -39,6 +39,15 @@ func _una(semilla: int, idx: int = 0) -> void:
 	var main: Node = load("res://game/main.tscn").instantiate()
 	root.add_child(main)
 	await process_frame
+	if idx == 0:  # PR-01: la pantalla de afiliación y la lista de partidos existentes
+		main.mostrar_afiliacion()
+		await process_frame
+		var af: Node = main._pantalla
+		_check(af.find_children("*", "Button", true, false).size() == 3, "afiliación: tres tarjetas")
+		af._elegir("existente")
+		await process_frame
+		await process_frame
+		_check(af.find_children("*", "Button", true, false).size() >= 15, "afiliación: lista de partidos")
 	main.mostrar_partido()
 	await process_frame
 	var pp: Node = main._pantalla

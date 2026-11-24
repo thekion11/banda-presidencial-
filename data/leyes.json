@@ -217,6 +217,15 @@
     ,"tope_prob_retraso": 0.5
   },
   "repeticion_promesa": 0.5,
+  "afiliacion": {
+    "defecto": "propio",
+    "nota": "PR-01: cómo entra el jugador a la política. aprobacion y cohesion se suman a los indicadores iniciales; escanos: independiente = escaños del test * factor (mínimo); existente = escaños del partido * multiplicador (mínimo). peso_postura: cuánto desplaza al partido existente lo que respondes en las preguntas de confirmación.",
+    "opciones": {
+      "propio": {"nombre": "Fundar mi partido", "descripcion": "Tu ideología y tu identidad. Pocos escaños, máxima libertad.", "aprobacion": 0.0, "cohesion": 0.0},
+      "independiente": {"nombre": "Candidatura independiente", "descripcion": "Sin partido ni deudas: más aprobación personal, bancada pequeña.", "aprobacion": 4.0, "cohesion": 0.0, "escanos_factor": 0.6, "escanos_min": 4},
+      "existente": {"nombre": "Entrar a un partido", "descripcion": "Hereda su ideología y su bancada; basta confirmar 3 posturas.", "aprobacion": 0.0, "cohesion": 5.0, "escanos_mult": 2.0, "escanos_min": 6, "peso_postura": 0.5, "preguntas": 3}
+    }
+  },
   "dificultad": {
     "defecto": "normal",
     "nota": "PR-01: presets de dificultad. umbral_delta se suma al umbral de victoria de hemiciclo; aprobacion_inicial se suma a la aprobación con la que parte el partido; desgaste multiplica el desgaste semanal de aprobación.",

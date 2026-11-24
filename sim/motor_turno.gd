@@ -71,6 +71,7 @@ func turnos_mandato() -> int:
 func aplicar_partido_inicial(datos_partido: Dictionary) -> void:
 	estado.partido = EstadoSimulacion.normalizar(datos_partido)
 	estado.etapa = "campana"
+	coalicion.partidos.erase(String(datos_partido.get("partido_base", "")))  # tu propio partido no es aliado (PR-01)
 	estado.promesas_campana.clear()
 	var ind_ini: Dictionary = estado.partido["indicadores_iniciales"]
 	for clave in ind_ini.keys():

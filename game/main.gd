@@ -49,14 +49,23 @@ func mostrar_menu(aviso: String = "") -> void:
 	m.aviso = aviso
 	m.hay_guardado = FileAccess.file_exists(RUTA_GUARDADO)
 	m.datos = datos
-	m.nueva.connect(mostrar_partido)
+	m.nueva.connect(mostrar_afiliacion)
 	m.continuar.connect(continuar_guardado)
 	_cambiar(m)
 
 
-func mostrar_partido() -> void:
+func mostrar_afiliacion() -> void:
+	var a := PantallaAfiliacion.new()
+	a.datos = datos
+	a.elegida.connect(mostrar_partido)
+	_cambiar(a)
+
+
+func mostrar_partido(afiliacion: String = "propio", base: Dictionary = {}) -> void:
 	var p := PantallaPartido.new()
 	p.datos = datos
+	p.afiliacion = afiliacion
+	p.base = base
 	p.fundado.connect(_iniciar_campana)
 	_cambiar(p)
 

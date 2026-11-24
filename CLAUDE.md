@@ -20,6 +20,7 @@ Ninguna tarea cierra sin pruebas en verde y captura comparada (`tests/captura.gd
   Si gana, inicia el Turno 1 de Gobierno (208 semanas).
 - ALCANCE CONGELADO: prohibido agregar nuevas mecánicas o pantallas fuera de los documentos hasta completar la Fase 4 y la prueba cerrada.
 - **AMPLIACIÓN AUTORIZADA POR EL USUARIO (23-nov-2026)**, documentada en `docs/DISENO_V2.md` y `docs/ESTADO_FASES.md`: calendario real (campaña desde el 21-sep-2025, 1ª vuelta 16-nov-2025, 2ª vuelta 14-dic-2025 si se supera `umbral_pasa_balotaje`, mandato desde el 11-mar-2026: en el Turno 8 se vota; si no se alcanza el umbral se pasa a segunda vuelta o se pierde), gabinete elegido por el jugador (hoy 8 de los 25 ministros del catálogo; el tamaño NO fue decisión del usuario y está en revisión: ver `docs/PROPUESTAS.md` PR-04), 5 movimientos por turno con mano continua, delegación, movimientos internos, asesores, coalición con 15 partidos ficticios, cartas por proyecto real y eventos reales. Toda mecánica o pantalla nueva debe citar su fuente y su commit.
+- **AMPLIACIÓN AUTORIZADA POR EL USUARIO (24-nov-2026, PR-01 en `docs/PROPUESTAS.md`)**: pantalla de afiliación (fundar partido propio, candidatura independiente o entrar a uno de los 15 partidos ficticios) y dificultad (fácil, normal, difícil) con presets en `data/leyes.json`; el test ideológico completo es para fundadores e independientes, y quien entra a un partido solo confirma 3 posturas.
 
 ## 3. Arquitectura y Separación de Capas
 - Motor: Godot 4 con GDScript. C++ solo vía GDExtension en bucles con cuello de botella comprobado.
@@ -82,6 +83,7 @@ godot --headless --path . -s tests/test_equipo.gd
 godot --headless --path . -s tests/test_coalicion.gd
 godot --headless --path . -s tests/test_presupuesto.gd
 godot --headless --path . -s tests/test_dificultad.gd
+godot --headless --path . -s tests/test_afiliacion.gd
 godot --headless --path . -s tests/test_balance.gd
 godot --headless --path . -s tests/test_ui_humo.gd
 godot --headless --path . -s tests/montecarlo.gd -- 200        # informe de balance
