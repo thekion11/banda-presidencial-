@@ -18,7 +18,7 @@ Este archivo lo mantiene Claude. Lo que depende del usuario queda en «Necesito 
 
 ## Para hacer yo (en este orden)
 1. Fuzzing del núcleo (`tests/fuzz_acciones.gd`, de la rama `ccr-c6aa6dd1-uuqdjm`): integrarlo al CI y corregir lo que encuentre.
-2. Pendientes de los informes de revisión: hemiciclo y mapa de Chile (rendimiento); memoria de las ilustraciones; reglas de disponibilidad duplicadas en la interfaz; código muerto de `carta_ui.gd`. (Hecho el 24-nov-2026: guardado atómico, aviso por guardado dañado, registro de prueba que solo añade líneas.)
+2. Pendientes de los informes de revisión: mapa de Chile (rendimiento: la geometría se recalcula al abrir cada pantalla del día); reglas de disponibilidad duplicadas en la interfaz; código muerto de `carta_ui.gd`. (Hecho el 24-nov-2026: hemiciclo con geometría precalculada (capturas idénticas pixel a pixel), ilustraciones a 640×512 (los originales de 1024×820 quedan en `docs/arte_originales/cartas/`; unos 3 MB menos de RAM por ilustración), guardado atómico, aviso por guardado dañado, registro de prueba que solo añade líneas.)
 3. Del audit del plan: portada conectada al menú (créditos ya al día); títulos cortos para los eventos legales largos (P11); estado vacío del informe (P3); cartera con buscador y sin «Fuera de partida» (P2); texto «Tus 8 ministros» desde `leyes.json`.
 4. Propuestas ACEPTADAS sin implementar: PR-01 (dificultad y afiliación), PR-05 (rellenar el gabinete), PR-06c (mapa de Sudamérica).
 5. Ideas del análisis de mercado (solo proponer y registrar): consecuencias visibles por carta, finales variados, resumen de sesión con hitos, tutorial corto, medición D1 y D7.
