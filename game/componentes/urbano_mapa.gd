@@ -25,6 +25,7 @@ var _movido: bool = false
 var _origen: Vector2 = Vector2.ZERO
 var _ultimo_toque: float = -10.0
 var _pos_ultimo_toque: Vector2 = Vector2.ZERO
+var _estacion: Dictionary = {}  # estación tocada (burbuja con nombre y líneas)
 
 
 func _init() -> void:
@@ -101,7 +102,16 @@ func _toque(pos: Vector2) -> void:
 	_pos_ultimo_toque = pos
 	if not mostrar_metro:
 		return
-	var id := UrbanoBase.linea_en((pos - pan) / zoom, size, MARGEN, 16.0 / zoom)
+	var local := (pos - pan) / zoom
+	var est := UrbanoBase.estacion_en(local, size, MARGEN, 15.0 / zoom)
+	if not est.is_empty():  # un toque sobre una estación muestra su nombre y sus líneas
+		_estacion = est if _estacion.is_empty() or _estacion["n"] != est["n"] else {}
+		queue_redraw()
+		return
+	if not _estacion.is_empty():
+		_estacion = {}
+		queue_redraw()
+	var id := UrbanoBase.linea_en(local, size, MARGEN, 16.0 / zoom)
 	if id != "":
 		UrbanoBase.alternar_linea(id)
 		queue_redraw()
@@ -120,15 +130,15 @@ func _draw() -> void:
 		return
 	var esc := (1.0 + 0.35 * (zoom - 1.0)) / zoom  # el grosor crece menos que el mapa: las líneas no se vuelven brochazos
 	draw_set_transform(pan, 0.0, Vector2(zoom, zoom))
-	UrbanoBase.dibujar(self, size, MARGEN, mostrar_metro, esc, 0.6 if mostrar_metro else 0.0)
+	UrbanoBase.dibujar(self, size, MARGEN, mostrar_metro, esc, 1.0 if mostrar_metro else 0.0)
 	if propuesta.size() >= 2:
 		var pp := PackedVector2Array()
 		for q in propuesta:
 			pp.append(UrbanoBase.a_px(q, size, MARGEN))
 		var hasta := maxi(2, int(ceil(float(pp.size()) * trazo)))
-		draw_polyline(pp.slice(0, hasta), Color.WHITE, 7.5 * esc, true)
+		draw_polyline(pp.slice(0, hasta), Color.WHITE, 6.6 * esc, true)
 		for k in range(hasta - 1):
-			draw_dashed_line(pp[k], pp[k + 1], Tema.TINTA, 5.0 * esc, 9.0 * esc, true)  # tinta oscura: no se confunde con ninguna línea
+			draw_dashed_line(pp[k], pp[k + 1], Tema.TINTA, 4.2 * esc, 9.0 * esc, true)  # tinta oscura: no se confunde con ninguna línea
 	draw_set_transform(Vector2.ZERO, 0.0, Vector2.ONE)
 	var reservados: Array[Rect2] = []
 	if mostrar_metro:
@@ -144,9 +154,32 @@ func _draw() -> void:
 		draw_circle(c2, 15.0, Color(1, 1, 1, 0.92))
 		draw_circle(c2, 13.0, m["color"])
 		draw_string(Tema.fuente_titulo(), c2 + Vector2(-13, 4.5), "%d%%" % int(m["pct"]), HORIZONTAL_ALIGNMENT_CENTER, 26.0, 11, Tema.TEXTO)
+	if not _estacion.is_empty():
+		_dibujar_burbuja()
 	if propuesta.size() >= 2:
 		var leyenda := Rect2(10, size.y - 34, 96, 24)
 		draw_style_box(Tema.caja(Color("#FBF7EC"), 8, Tema.BORDE_CLARO, 1), leyenda)
 		draw_dashed_line(leyenda.position + Vector2(8, 12), leyenda.position + Vector2(28, 12), Tema.TINTA, 4.0, 6.0)
 		draw_string(Tema.fuente_texto(500), leyenda.position + Vector2(33, 16), "Propuesta", HORIZONTAL_ALIGNMENT_LEFT, -1, 10, Tema.TINTA)
 	draw_string(Tema.fuente_texto(400), Vector2(size.x - 232, size.y - 14), "© colaboradores de OpenStreetMap (ODbL)", HORIZONTAL_ALIGNMENT_RIGHT, 222, 9, Color("#6A7684"))
+
+
+func _dibujar_burbuja() -> void:
+	## Burbuja con el nombre de la estación y una pastilla de color por línea que la sirve.
+	var p: Vector2 = Vector2(_estacion["p"]) * zoom + pan
+	var f := Tema.fuente_titulo()
+	var nombre := String(_estacion["n"])
+	var ancho := maxf(f.get_string_size(nombre, HORIZONTAL_ALIGNMENT_LEFT, -1, 12).x + 20.0, 34.0 + 26.0 * float(_estacion["l"].size()))
+	var caja := Rect2(clampf(p.x - ancho * 0.5, 4.0, size.x - ancho - 4.0), p.y - 56.0, ancho, 44.0)
+	if caja.position.y < 4.0:
+		caja.position.y = p.y + 14.0
+	draw_circle(p, 9.0, Color(1, 1, 1, 0.95))
+	draw_circle(p, 6.5, Tema.TINTA)
+	draw_style_box(Tema.caja(Color("#FBF7EC"), 10, Tema.TINTA, 2), caja)
+	draw_string(f, caja.position + Vector2(10, 17), nombre, HORIZONTAL_ALIGNMENT_LEFT, ancho - 16.0, 12, Tema.TINTA)
+	var x := caja.position.x + 10.0
+	for lid in _estacion["l"]:
+		var col := UrbanoBase.color_linea(String(lid))
+		draw_circle(Vector2(x + 9.0, caja.position.y + 31.0), 9.0, col)
+		draw_string(f, Vector2(x + 1.0, caja.position.y + 35.0), UrbanoBase.nombre_corto(String(lid)), HORIZONTAL_ALIGNMENT_CENTER, 16.0, 10, Tema.TINTA if lid == "L2" else Color.WHITE)
+		x += 24.0

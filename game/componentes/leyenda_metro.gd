@@ -16,7 +16,7 @@ func _init() -> void:
 
 func _ready() -> void:
 	var cab := HBoxContainer.new()
-	_nota = Tema.etiqueta_corta("Líneas de Metro · toca una para ocultarla", 11, Color("#6A7684"), false, 600)
+	_nota = Tema.etiqueta_corta("Toca: ocultar · mantén: solo esa", 11, Color("#6A7684"), false, 600)
 	_nota.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	_nota.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 	cab.add_child(_nota)
@@ -36,7 +36,19 @@ func _ready() -> void:
 		b.add_theme_font_size_override("font_size", 14)
 		b.focus_mode = Control.FOCUS_NONE
 		var id := String(l["id"])
+		var estado := {"largo": false}
+		b.button_down.connect(func() -> void:
+			estado["largo"] = false
+			var t := get_tree().create_timer(0.45)
+			t.timeout.connect(func() -> void:
+				if b.button_pressed:  # pulsación larga: deja visible solo esta línea
+					estado["largo"] = true
+					UrbanoBase.solo_linea(id)
+					_pintar()
+					cambiado.emit()))
 		b.pressed.connect(func() -> void:
+			if estado["largo"]:
+				return
 			UrbanoBase.alternar_linea(id)
 			_pintar()
 			cambiado.emit())

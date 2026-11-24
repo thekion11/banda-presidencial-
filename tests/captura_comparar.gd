@@ -109,6 +109,12 @@ func _correr() -> void:
 	if um != null:  # acercamiento al centro (zoom 3) y enfoque: solo L1, L4 y L5 visibles
 		um._zoom_en(3.0, Vector2(um.size.x * 0.52, um.size.y * 0.42))
 		await _guardar("cmp_urbano_zoom", 0.3)
+		var cc := UrbanoBase.preparar(um.size, UrbanoMapa.MARGEN)
+		for i in range(cc["est_nombres"].size()):
+			if cc["est_nombres"][i] == "Los Héroes":
+				um._toque(Vector2(cc["estaciones"][i]) * um.zoom + um.pan)
+		await _guardar("cmp_urbano_estacion", 0.3)
+		um._toque(Vector2(5, 5))
 		for id in ["L2", "L3", "L4A", "L6"]:
 			UrbanoBase.alternar_linea(id)
 		um.queue_redraw()

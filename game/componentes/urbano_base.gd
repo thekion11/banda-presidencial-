@@ -145,8 +145,9 @@ static func dibujar(ci: CanvasItem, tam: Vector2, margen: Vector2 = Vector2(8, 8
 	if c["calles"].is_empty():
 		return
 	var fondo := Color("#EFEADF")
+	var limpio := suave >= 0.99  # modo "Metro": sin relieve (su imagen es de baja resolución) y solo avenidas principales, muy tenues
 	var rel := relieve()
-	if rel != null:
+	if rel != null and not limpio:
 		ci.draw_texture_rect(rel, Rect2(margen, tam - margen * 2.0), false, Color(1, 1, 1, lerpf(0.75, 0.32, suave)))
 	for pk in c["parques"]:
 		var poly: PackedVector2Array = pk["poly"]
@@ -156,8 +157,10 @@ static func dibujar(ci: CanvasItem, tam: Vector2, margen: Vector2 = Vector2(8, 8
 	if c["rio"].size() > 1:
 		ci.draw_multiline(c["rio"], Color("#A9CFE4").lerp(fondo, suave * 0.4), 5.0 * escala_linea, true)
 	for cl in [4, 3, 2, 1, 0]:
+		if limpio and cl > 2:
+			continue
 		if c["calles"][cl].size() > 1:
-			ci.draw_multiline(c["calles"][cl], COLORES_CALLE[cl].lerp(fondo, suave * 0.6), ANCHOS_CALLE[cl] * escala_linea, true)
+			ci.draw_multiline(c["calles"][cl], COLORES_CALLE[cl].lerp(fondo, suave * (0.62 if limpio else 0.6)), ANCHOS_CALLE[cl] * escala_linea * (0.8 if limpio else 1.0), true)
 	if con_metro:
 		_dibujar_metro(ci, c, escala_linea)
 
@@ -241,11 +244,11 @@ static func _dibujar_metro(ci: CanvasItem, c: Dictionary, esc: float) -> void:
 	for l in c["metro"]:
 		if ocultas.has(l["id"]) or l["seg"].size() < 2:
 			continue
-		ci.draw_multiline(l["seg"], Color(1, 1, 1, 0.85), 6.0 * esc, true)
+		ci.draw_multiline(l["seg"], Color(1, 1, 1, 0.92), 7.4 * esc, true)
 	for l in c["metro"]:
 		if ocultas.has(l["id"]) or l["seg"].size() < 2:
 			continue
-		ci.draw_multiline(l["seg"], l["color"], 3.6 * esc, true)
+		ci.draw_multiline(l["seg"], l["color"], 4.6 * esc, true)
 	for i in range(c["estaciones"].size()):
 		var lineas: Array = c["est_lineas"][i]
 		var visibles := 0
@@ -307,3 +310,38 @@ static func linea_en(pos: Vector2, tam: Vector2, margen: Vector2, umbral: float 
 				mejor = d
 				res = l["id"]
 	return res
+
+
+static func estacion_en(pos: Vector2, tam: Vector2, margen: Vector2, umbral: float = 14.0) -> Dictionary:
+	## Estación visible más cercana al punto (px locales): {"n": nombre, "l": [líneas], "p": posición local} o {} si no hay.
+	var c := preparar(tam, margen)
+	var mejor := umbral
+	var res: Dictionary = {}
+	for i in range(c["estaciones"].size()):
+		var lineas: Array = c["est_lineas"][i]
+		var visibles: Array = []
+		for lid in lineas:
+			if not ocultas.has(lid):
+				visibles.append(lid)
+		if visibles.is_empty():
+			continue
+		var d := (c["estaciones"][i] as Vector2).distance_to(pos)
+		if d < mejor:
+			mejor = d
+			res = {"n": c["est_nombres"][i], "l": lineas, "p": c["estaciones"][i]}
+	return res
+
+
+static func color_linea(id: String) -> Color:
+	for l in ids_lineas():
+		if l["id"] == id:
+			return l["color"]
+	return Tema.TINTA
+
+
+static func solo_linea(id: String) -> void:
+	## Deja visible únicamente esta línea (enfoque rápido).
+	ocultas.clear()
+	for l in ids_lineas():
+		if l["id"] != id:
+			ocultas[l["id"]] = true
