@@ -89,5 +89,28 @@ func _init() -> void:
 			jugada = true
 			break
 	_check(jugada and m4.estado.mano.size() == antes, "mano continua: entra otra carta al jugar")
+	# PR-05: rellenar no pisa lo escogido, completa el tamaño, es determinista y no repite
+	var m5 := AyudaV2.gobierno(datos, 15)
+	var ids5: Array = m5.catalogo_ministros.keys()
+	var elegidos5: Array = [ids5[3], ids5[7]]
+	for modo in ["equilibrado", "eficaz"]:
+		var r1 := m5.gabinete.rellenar(elegidos5, modo)
+		var r2 := m5.gabinete.rellenar(elegidos5, modo)
+		var todos: Array = elegidos5.duplicate()
+		for n in r1:
+			todos.append(String(n["id"]))
+		_check(todos.size() == tam and _sin_repetidos(todos), "rellenar (%s) completa %d sin repetir" % [modo, tam])
+		_check(r1 == r2, "rellenar (%s) es determinista" % modo)
+		_check(bool(m5.gabinete.elegir(todos)["ok"]), "el gabinete rellenado es válido")
+	_check(m5.gabinete.rellenar(elegidos5.duplicate() + ids5.filter(func(i: String) -> bool: return not elegidos5.has(i)).slice(0, tam - 2)).is_empty(), "gabinete completo: nada que rellenar")
 	print("GABINETE OK (gabinete %d ministros, mano continua, disponibilidad)" % tam if _fallos == 0 else "GABINETE FALLÓ")
 	quit(1 if _fallos > 0 else 0)
+
+
+func _sin_repetidos(a: Array) -> bool:
+	var vistos := {}
+	for x in a:
+		if vistos.has(x):
+			return false
+		vistos[x] = true
+	return true

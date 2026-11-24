@@ -75,6 +75,8 @@ func _una(semilla: int, idx: int = 0) -> void:
 	print("  botón fundación: %s · botón gabinete: %s" % [r_fundar, conf.get_global_rect()])
 	_check(conf.get_global_rect() == r_fundar, "el botón principal del gabinete debe estar donde el de la fundación (%s vs %s)" % [conf.get_global_rect(), r_fundar])
 	_check(not conf.disabled, "el gabinete por defecto (8 ministros) debe poder confirmarse")
+	var rel: Array = main._pantalla.find_children("*", "Button", true, false).filter(func(b: Button) -> bool: return b.text in ["Equilibrado", "Máxima eficacia"])
+	_check(rel.size() == 2, "PR-05: dos botones de relleno (equilibrado y máxima eficacia)")
 	var filas: Array = sel_g.filter(func(b: Button) -> bool: return b.text == "" and b.get_child_count() > 0)
 	_check(filas.size() == 25, "deben listarse los 25 ministros, hay %d" % filas.size())
 	var tam: int = int(main.datos["leyes"]["gabinete"]["tamano"])

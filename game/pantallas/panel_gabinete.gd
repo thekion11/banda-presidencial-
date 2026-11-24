@@ -10,6 +10,42 @@ static func puede_editar(motor: MotorTurno) -> bool:
 	return e.etapa == "campana" or (e.etapa == "gobierno" and e.turno_actual == 1)
 
 
+static func _agregar_relleno(raiz: VBoxContainer, motor: MotorTurno, elegidos: Array, refrescar: Callable) -> void:
+	## PR-05: «Rellenar» completa solo los vacíos (nunca pisa lo escogido), explica por qué y se puede deshacer.
+	var previo: Array = []
+	var motivos := Tema.etiqueta("", 11, Tema.TEXTO_SUAVE)
+	motivos.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	var fila := HBoxContainer.new()
+	fila.add_theme_constant_override("separation", 8)
+	var modos: Dictionary = motor.catalogo_leyes["gabinete"]["relleno"]["modos"]
+	for modo in modos.keys():
+		var b := Tema.boton(String(modos[modo]["nombre"]), Tema.PANEL, Tema.TEXTO, 12, 44)
+		b.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		b.clip_text = true
+		b.custom_minimum_size.x = 0.0
+		b.pressed.connect(func() -> void:
+			previo.assign(elegidos)
+			var nuevos := motor.gabinete.rellenar(elegidos, String(modo))
+			motivos.text = "\n".join(nuevos.map(func(n: Dictionary) -> String: return String(n["motivo"])))
+			for n in nuevos:
+				elegidos.append(String(n["id"]))
+			refrescar.call())
+		fila.add_child(b)
+	var deshacer := Tema.boton("Deshacer", Tema.OCEANO.lightened(0.14), Tema.TEXTO, 12, 44)
+	deshacer.clip_text = true
+	deshacer.custom_minimum_size.x = 84.0
+	deshacer.pressed.connect(func() -> void:
+		if not previo.is_empty() or not motivos.text.is_empty():
+			elegidos.assign(previo)
+			previo.clear()
+			motivos.text = ""
+			refrescar.call())
+	fila.add_child(deshacer)
+	raiz.add_child(Tema.etiqueta("Rellenar los cargos vacíos (no cambia lo que elegiste):", 11, Tema.TEXTO_SUAVE))
+	raiz.add_child(fila)
+	raiz.add_child(motivos)
+
+
 static func crear(motor: MotorTurno, texto_boton: String, al_confirmar: Callable, al_error: Callable = Callable(), con_bloqueadas: bool = false) -> Control:
 	var tam := int(motor.catalogo_leyes["gabinete"]["tamano"])
 	var editable := puede_editar(motor)
@@ -68,6 +104,8 @@ static func crear(motor: MotorTurno, texto_boton: String, al_confirmar: Callable
 			al_error.call(Razones.texto(r)))
 	raiz.add_child(contador)
 	raiz.add_child(resumen)
+	if editable:
+		_agregar_relleno(raiz, motor, elegidos, refrescar)
 	if not editable:
 		raiz.add_child(Tema.etiqueta("El gabinete quedó cerrado: solo se cambia en campaña o en la primera semana de gobierno.", 11, Tema.ORO))
 	raiz.add_child(FilasUI.scroll(lista))

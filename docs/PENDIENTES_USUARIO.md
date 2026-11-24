@@ -34,3 +34,7 @@ Este archivo lo mantiene Claude. Lo que depende del usuario queda en «Necesito 
 - Tres caminos: fundar partido propio (flujo anterior), candidatura independiente (+4 aprobación, bancada ×0,6, mínimo 4) o entrar a un partido ficticio (hereda ideología desplazada por 3 posturas, bancada = escaños del Senado ×2, cohesión +5; ese partido deja de ser aliado). `test_afiliacion.gd`.
 - Falta decidir (usuario): si el partido existente debe «pedir poder y castigar» (mecánica nueva, no implementada), el beneficio definitivo del independiente, y balance 3×3 con bots por afiliación (hoy solo la dificultad está calibrada). «Continuar como la última vez» sigue pendiente.
 - Interfaz: ya no muestra conteos ni números de página internos (cartera, gabinete, SECTRA) ni el número de boletín.
+
+## PR-05 Rellenar el gabinete (hecho el 24-nov-2026 tras tu «hazlo»)
+- Botones «Equilibrado» y «Máxima eficacia» en la pantalla de gabinete: completan solo los vacíos, nunca pisan lo escogido, explican el porqué y se pueden deshacer. Pesos en `data/leyes.json` → `gabinete.relleno`. Prueba en `test_gabinete.gd`.
+- Pendiente: que «Máxima eficacia» cueste capital político o cohesión (hoy solo cambia el criterio), y los candidatos recreados desde personas reales (solo con alias/sobrenombre y tras revisión legal; ver PR-05b): no se implementó porque requiere investigación de fuentes y revisión de un abogado (U4).

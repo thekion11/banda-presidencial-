@@ -28,6 +28,42 @@ func por_defecto() -> Array[String]:
 	return res
 
 
+func rellenar(elegidos: Array, modo: String = "") -> Array[Dictionary]:
+	## PR-05: completa el gabinete sin tocar lo ya escogido. Determinista (puntaje, desempate por id). No cambia el estado:
+	## devuelve [{id, motivo}] solo de los ministros añadidos, para mostrarlos y poder deshacerlos.
+	var cfg: Dictionary = _cfg()["relleno"]
+	var w: Dictionary = cfg["modos"].get(modo if modo != "" else String(cfg["defecto"]), cfg["modos"][cfg["defecto"]])
+	var tam := int(_cfg()["tamano"])
+	var actuales: Array[String] = []
+	var cubiertas := {}
+	for id in elegidos:
+		if m.catalogo_ministros.has(String(id)) and not actuales.has(String(id)):
+			actuales.append(String(id))
+			cubiertas[String(m.catalogo_ministros[String(id)]["categoria_afin"])] = true
+	var res: Array[Dictionary] = []
+	while actuales.size() < tam:
+		var mejor := ""
+		var mejor_p := -INF
+		for id in m.catalogo_ministros.keys():
+			if actuales.has(String(id)):
+				continue
+			var mi: Dictionary = m.catalogo_ministros[id]
+			var nueva := not cubiertas.has(String(mi["categoria_afin"]))
+			var pts := (float(w["cobertura"]) if nueva else 0.0) + float(w["ejecucion"]) * float(mi["bono_ejecucion"]) \
+					+ float(w["ahorro"]) * float(mi["reduccion_costo_pa"]) - float(w["escandalo"]) * float(mi["riesgo_escandalo"])
+			if pts > mejor_p or (is_equal_approx(pts, mejor_p) and String(id) < mejor):
+				mejor_p = pts
+				mejor = String(id)
+		if mejor == "":
+			break
+		var mm: Dictionary = m.catalogo_ministros[mejor]
+		var nueva_cat := not cubiertas.has(String(mm["categoria_afin"]))
+		actuales.append(mejor)
+		cubiertas[String(mm["categoria_afin"])] = true
+		res.append({"id": mejor, "motivo": "%s: %s" % [mm["cartera"], "cubre un área sin ministro" if nueva_cat else "mejor rendimiento disponible"]})
+	return res
+
+
 func elegir(ids: Array) -> Dictionary:
 	## Nombra el gabinete. Se puede cambiar en campaña o en la primera semana de gobierno (antes de gobernar).
 	var est := m.estado

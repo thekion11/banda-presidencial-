@@ -299,6 +299,14 @@
     "nota_conversion": "Tipos de cambio aproximados e ilustrativos (UF→US$ y CLP→US$) solo para dimensionar el costo de las cartas de proyecto; no son datos oficiales."
   },
   "gabinete": {
+    "relleno": {
+      "nota": "PR-05: pesos del botón Rellenar. cobertura: ministerio de un área aún sin ministro; ejecucion: bono de ejecución; ahorro: reducción de costo en movimientos; escandalo: penaliza el riesgo de escándalo. equilibrado prioriza cubrir áreas; eficaz prioriza el rendimiento puro.",
+      "defecto": "equilibrado",
+      "modos": {
+        "equilibrado": {"nombre": "Equilibrado", "cobertura": 3.0, "ejecucion": 4.0, "ahorro": 0.5, "escandalo": 6.0},
+        "eficaz": {"nombre": "Máxima eficacia", "cobertura": 0.5, "ejecucion": 8.0, "ahorro": 1.5, "escandalo": 1.0}
+      }
+    },
     "tamano": 8,
     "anios_mandato": 4,
     "categorias_siempre": [
