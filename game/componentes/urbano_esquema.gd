@@ -25,7 +25,7 @@ static func _octilineal(a: Vector2, b: Vector2) -> PackedVector2Array:
 
 
 static func preparar(tam: Vector2, margen: Vector2, propias: Array) -> Dictionary:
-	var clave := "%d,%d,%d,%d,%d" % [int(tam.x), int(tam.y), int(margen.x), int(margen.y), propias.size()]
+	var clave := "%d,%d,%d,%d,%d,%s" % [int(tam.x), int(tam.y), int(margen.x), int(margen.y), propias.size(), UrbanoBase.fecha_iso]
 	for ln in propias:
 		clave += "|%s%d" % [ln["id"], (ln["estaciones"] as Array).size()]
 	if clave == _clave:
@@ -69,7 +69,7 @@ static func preparar(tam: Vector2, margen: Vector2, propias: Array) -> Dictionar
 		for n in l["orden"]:
 			pts.append(en_px[String(n)])
 			nombres.append(String(n))
-		lineas.append(_linea(String(l["id"]), Color(String(l["color"])), pts, nombres, l.get("cabos", [])))
+		lineas.append(_linea(String(l["id"]), Color(String(l["color"])), pts, nombres, l.get("cabos", []), UrbanoBase.abierta(l)))
 	for ln in propias:
 		var pts2: Array = []
 		for q in ln["estaciones"]:

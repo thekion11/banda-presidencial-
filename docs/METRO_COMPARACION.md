@@ -20,6 +20,14 @@ Fuente: Red Metropolitana de Movilidad (DTPM), GTFS vigente V171.20261114 (vigen
 Nombres y orden de las 7 líneas iguales a la lista; 132 estaciones del mapa comparadas en posición: la mayor diferencia es de 175 m (límite 250 m).
 
 
+## Líneas 7, 8 y 9 (futuras)
+Trazado y estaciones: relaciones de ruta de OpenStreetMap (`tools/geo/osm_metro_futuro.py`, `data/geo/metro_futuro.json`). Colores: es.wikipedia / Wikidata (L7 gris #96989A, L8 naranjo #FF6414, L9 rosado #EE7FA9; Wikidata trae #FF00FF para L9), sin confirmar por Metro S.A.
+- L7: 19 estaciones (ficha: 19), en construcción, apertura est. 2028 (segundo semestre). Estaciones en OSM: Estoril, Padre Hurtado, Gerónimo de Alderete, Parque Araucano, Américo Vespucio, Vitacura, Isidora Goyenechea, Pedro de Valdivia, Baquedano, Puente Cal y Canto, Parque de los Reyes, Matucana, General Velásquez, Radal, Cerro Navia, Huelén, Salvador Gutiérrez, José Miguel Infante, Brasil.
+- L8: 14 estaciones (ficha: 14), en licitación, apertura c. 2032. Estaciones en OSM: El Peral, Diego Portales, Trinidad Oriente, La Florida Alto, Walker Martínez, Macul, Juan Pinto Durán, Punta de Rieles, Zañartu, Juan Gómez Millas, Chile España, Campus Oriente, Eliodoro Yáñez, Los Leones.
+- L9: 19 estaciones (ficha: 19), en construcción, apertura c. 2030 (por tramos hasta 2033). Estaciones en OSM: Plaza de Puente Alto, Ejército Libertador, Bajos de Mena, Eyzaguirre, El Castillo, Plaza de La Pintana, Antumapu, Hospital Padre Hurtado, Santa Rosa, Fernández Albano, La Castrina, Berlioz, Salvador Allende, La Legua, Bío Bío, Ñuble Poniente, Matta, Santa Lucía, Puente Cal y Canto.
+Los nombres de estación de OSM difieren en parte de la lista de Wikipedia (p. ej. L7: Parque de los Reyes, General Velásquez, Cerro Navia en OSM; Cumming, Walker Martínez, Neptuno en Wikipedia): son provisionales y hay que cotejarlos con Metro S.A.
+
+
 Estaciones distintas en la lista: 126; en el mapa: 115.
 Todas las estaciones del mapa calzan con una línea de la lista y ninguna está a más de 0.012 del trazado de su línea.
 

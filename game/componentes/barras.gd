@@ -6,12 +6,21 @@ const DIAS := ["Dom", "Lun", "Mar", "Mié", "Jue", "Vie", "Sáb"]
 const MESES := ["ene", "feb", "mar", "abr", "may", "jun", "jul", "ago", "sep", "oct", "nov", "dic"]
 
 
-static func fecha_texto(leyes: Dictionary, etapa: String, turno: int, dia: int) -> String:
+static func _fecha(leyes: Dictionary, etapa: String, turno: int, dia: int) -> Dictionary:
 	var cal: Dictionary = leyes["calendario"]
 	var base := String(cal["fecha_inicio_mandato"] if etapa == "gobierno" else cal["fecha_inicio_campana"])
 	var t := Time.get_unix_time_from_datetime_string(base + "T00:00:00")
 	var dias := (dia - 1) if etapa == "gobierno" else (turno - 1) * 7
-	var d := Time.get_datetime_dict_from_unix_time(t + dias * 86400)
+	return Time.get_datetime_dict_from_unix_time(t + dias * 86400)
+
+
+static func fecha_iso(leyes: Dictionary, etapa: String, turno: int, dia: int) -> String:
+	var d := _fecha(leyes, etapa, turno, dia)
+	return "%04d-%02d-%02d" % [int(d["year"]), int(d["month"]), int(d["day"])]
+
+
+static func fecha_texto(leyes: Dictionary, etapa: String, turno: int, dia: int) -> String:
+	var d := _fecha(leyes, etapa, turno, dia)
 	return "%s %d %s %d" % [DIAS[int(d["weekday"])], int(d["day"]), MESES[int(d["month"]) - 1], int(d["year"])]
 
 

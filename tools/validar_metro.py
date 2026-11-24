@@ -86,6 +86,11 @@ def main() -> int:
         term = [n for n in (nombres[0], nombres[-1])]
         filas.append((lid, len(nombres), len(dentro), fuera, lejos, [(n, n in pos) for n in term]))
     comp, max_d, filas_gtfs, gtfs = cotejo_gtfs(ofi, geo, pos, problemas)
+    fut = json.loads((RAIZ / "data/geo/metro_futuro.json").read_text(encoding="utf-8"))
+    cifras = {f["linea"]: f["estaciones"] for f in ofi["futuras"] if f["linea"] in ("L7", "L8", "L9")}
+    for lid, info in fut["lineas"].items():
+        if len(info["estaciones"]) != cifras.get(lid):
+            problemas.append(f"{lid} futura: {len(info['estaciones'])} estaciones en OSM y {cifras.get(lid)} en la ficha")
     sobran = [n for n in pos if not asignadas[n]]
     if sobran:
         problemas.append(f"estaciones del mapa que no calzan con ninguna línea: {sobran}")
@@ -121,6 +126,11 @@ def main() -> int:
         md.append(f"| {lid} | {n} | {dentro} | {', '.join(fuera) or '—'} | {', '.join(a + (' sí' if ok else ' NO') for a, ok in term)} |")
     md += ["", "## Cotejo con el GTFS oficial (Red Metropolitana, DTPM)", f"Fuente: {gtfs['fuente']} (vigencia {gtfs['vigencia']}; corte {gtfs['corte']}). {gtfs['url']}",
            f"Nombres y orden de las 7 líneas iguales a la lista; {comp} estaciones del mapa comparadas en posición: la mayor diferencia es de {round(max_d)} m (límite 250 m).", ""]
+    md += ["", "## Líneas 7, 8 y 9 (futuras)", "Trazado y estaciones: relaciones de ruta de OpenStreetMap (`tools/geo/osm_metro_futuro.py`, `data/geo/metro_futuro.json`). "
+           "Colores: es.wikipedia / Wikidata (L7 gris #96989A, L8 naranjo #FF6414, L9 rosado #EE7FA9; Wikidata trae #FF00FF para L9), sin confirmar por Metro S.A."]
+    for lid, info in fut["lineas"].items():
+        md.append(f"- {lid}: {len(info['estaciones'])} estaciones (ficha: {cifras.get(lid)}), {info['estado']}, apertura {info['apertura']}. Estaciones en OSM: {', '.join(e['n'] for e in info['estaciones'])}.")
+    md += ["Los nombres de estación de OSM difieren en parte de la lista de Wikipedia (p. ej. L7: Parque de los Reyes, General Velásquez, Cerro Navia en OSM; Cumming, Walker Martínez, Neptuno en Wikipedia): son provisionales y hay que cotejarlos con Metro S.A.", ""]
     md += ["", f"Estaciones distintas en la lista: {len({n for i in ofi['lineas'].values() for n in i['estaciones']})}; en el mapa: {len(pos)}.",
            "Todas las estaciones del mapa calzan con una línea de la lista y ninguna está a más de %.3f del trazado de su línea." % UMBRAL if not problemas else "**Incoherencias:** " + "; ".join(problemas), "",
            "## Qué no cubre el mapa", "Las 11 estaciones fuera de la ventana son extensiones periféricas (L2 sur, L3 norte, L4 sur); el mapa las indica con una flecha en el borde.",

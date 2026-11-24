@@ -1186,5 +1186,15 @@
     "vigencia_dias": 45,
     "es_ilustrativa": false,
     "verificado_contra_texto": true
+  },
+  {
+    "id": "metro_futuro_osm",
+    "institucion": "OpenStreetMap contributors (relaciones de ruta de las líneas 7, 8 y 9, extracto BBBike del 21-nov-2026) y es.wikipedia / Wikidata (colores)",
+    "titulo": "Trazado y estaciones de las líneas 7, 8 y 9 del Metro de Santiago; colores gris, naranjo y rosado (sin confirmar por Metro S.A.)",
+    "url": "https://download.bbbike.org/osm/bbbike/Santiago/",
+    "fecha_corte": "2026-11-24",
+    "vigencia_dias": 120,
+    "es_ilustrativa": false,
+    "verificado_contra_texto": false
   }
 ]

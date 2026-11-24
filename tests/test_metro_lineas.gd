@@ -14,17 +14,30 @@ func _init() -> void:
 	var d := UrbanoBase.datos()
 	_check(not d.is_empty(), "faltan los datos urbanos")
 	var ids := UrbanoBase.ids_lineas()
-	_check(ids.size() == 7, "deben existir 7 líneas (L1, L2, L3, L4, L4A, L5, L6); hay %d" % ids.size())
+	_check(ids.size() == 10, "deben existir 10 líneas (L1, L2, L3, L4, L4A, L5, L6 reales y L7, L8, L9 futuras); hay %d" % ids.size())
+	var futuras := 0
+	for l in d["metro"]:
+		if bool(l.get("futuro", false)):
+			futuras += 1
+			_check(not (l["orden"] as Array).is_empty() and (l["vias"] as Array).size() > 0, "la línea futura %s trae trazado y estaciones" % l["id"])
+	_check(futuras == 3, "las líneas 7, 8 y 9 se cargan como futuras")
+	var cerradas := UrbanoBase.abierta({"futuro": true, "apertura_fecha": "2099-01-01"})
+	_check(not cerradas and UrbanoBase.abierta({"id": "L1"}), "una línea futura no está abierta antes de su fecha y las reales sí")
 	var con_lineas := 0
 	var combinaciones := 0
+	var comb_reales := 0
 	for e in d["estaciones"]:
 		var l: Array = e.get("l", [])
 		if not l.is_empty():
 			con_lineas += 1
 		if l.size() > 1:
 			combinaciones += 1
+		var reales: Array = l.filter(func(x: String) -> bool: return x.length() >= 2 and x[1].is_valid_int() and int(x.substr(1, 1)) <= 6)
+		if reales.size() > 1:
+			comb_reales += 1
 	_check(con_lineas == d["estaciones"].size(), "toda estación debe pertenecer a alguna línea (%d de %d)" % [con_lineas, d["estaciones"].size()])
-	_check(combinaciones == 17, "deben ser 17 estaciones de combinación; hay %d" % combinaciones)
+	_check(comb_reales == 17, "deben ser 17 estaciones de combinación entre líneas reales; hay %d" % comb_reales)
+	_check(combinaciones > comb_reales, "las líneas futuras traen combinaciones nuevas (%d en total)" % combinaciones)
 	for l in d["metro"]:
 		_check(l.get("cabos", []).size() == 2, "la línea %s debe tener dos cabos" % l["id"])
 	UrbanoBase.ocultas.clear()
@@ -47,7 +60,7 @@ func _init() -> void:
 	_sugerencias()
 	_lineas_del_jugador()
 	if _fallos == 0:
-		print("METRO OK (7 líneas, %d estaciones, 17 combinaciones; ocultar y tocar línea)" % d["estaciones"].size())
+		print("METRO OK (10 líneas, %d estaciones, 17 combinaciones reales; ocultar y tocar línea)" % d["estaciones"].size())
 	quit(0 if _fallos == 0 else 1)
 
 

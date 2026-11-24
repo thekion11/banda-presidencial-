@@ -12,8 +12,9 @@ static var _elev: PackedByteArray = PackedByteArray()
 static var _datos: Dictionary = {}
 static var _cache_clave: String = ""
 static var _cache: Dictionary = {}
-const COLOR_PROPIA := Color("#D6336C")  # líneas creadas por el jugador (P1, P2…): distinto de todas las reales
+const COLOR_PROPIA := Color("#00A99D")  # líneas creadas por el jugador (P1, P2…): distinto de todas las reales
 static var propias: Array = []  # estado.lineas_jugador de la partida abierta (las pantallas lo asignan antes de dibujar)
+static var fecha_iso: String = "2026-03-11"  # fecha de la partida (la fija cada pantalla que dibuja el mapa)
 static var ocultas: Dictionary = {}  # ids de líneas de Metro ocultas (se comparte entre los mapas de la partida)
 
 
@@ -21,7 +22,68 @@ static func datos() -> Dictionary:
 	if _datos.is_empty():
 		var d: Variant = Datos.leer_json("res://data/geo/urbano_real.json")
 		_datos = d if d != null else {}
+		if not _datos.is_empty():
+			_fusionar_futuras(_datos)
 	return _datos
+
+
+static func _norm(n: String) -> String:
+	return n.to_lower().replace("-", " ").strip_edges()
+
+
+static func _fusionar_futuras(d: Dictionary) -> void:
+	## Líneas 7, 8 y 9 (en construcción o proyectadas): se suman a las líneas y estaciones reales. Una estación que ya existe
+	## (Baquedano, Puente Cal y Canto, Matta…) se comparte y pasa a ser combinación; las nuevas se añaden con la marca «futuro».
+	var f: Variant = Datos.leer_json("res://data/geo/metro_futuro.json")
+	if f == null:
+		return
+	var por_nombre := {}
+	for i in range(d["estaciones"].size()):
+		por_nombre[_norm(String(d["estaciones"][i]["n"]))] = i
+	for lid in f["lineas"]:
+		var ln: Dictionary = f["lineas"][lid]
+		var orden: Array = []
+		var dentro: Array = []  # [nombre, posición] de las estaciones dentro de la ventana del mapa, en orden
+		var fuera_ini := false
+		var fuera_fin := false
+		var n := (ln["estaciones"] as Array).size()
+		for k in range(n):
+			var e: Dictionary = ln["estaciones"][k]
+			var p: Array = e["p"]
+			var visible: bool = p[0] >= 0.0 and p[0] <= 1.0 and p[1] >= 0.0 and p[1] <= 1.0
+			if not visible:
+				if k < n / 2:
+					fuera_ini = true
+				else:
+					fuera_fin = true
+				continue
+			var clave := _norm(String(e["n"]))
+			var nombre := String(e["n"])
+			if por_nombre.has(clave):
+				var ex: Dictionary = d["estaciones"][por_nombre[clave]]
+				if not (ex.get("l", []) as Array).has(lid):
+					ex["l"] = (ex.get("l", []) as Array) + [lid]
+				nombre = String(ex["n"])
+				p = ex["p"]
+			else:
+				d["estaciones"].append({"n": nombre, "p": p, "l": [lid], "futuro": true})
+				por_nombre[clave] = d["estaciones"].size() - 1
+			orden.append(nombre)
+			dentro.append(p)
+		var cabos: Array = []
+		if dentro.size() >= 2:
+			for fin in range(2):
+				var a: Array = dentro[0] if fin == 0 else dentro[dentro.size() - 1]
+				var b: Array = dentro[1] if fin == 0 else dentro[dentro.size() - 2]
+				var dir := Vector2(float(a[0]) - float(b[0]), float(a[1]) - float(b[1])).normalized()
+				cabos.append({"n": orden[0 if fin == 0 else orden.size() - 1], "p": a, "d": [dir.x, dir.y], "sigue": fuera_ini if fin == 0 else fuera_fin})
+		d["metro"].append({"id": lid, "color": ln["color"], "vias": ln["vias"], "cabos": cabos, "orden": orden, "futuro": true,
+				"estado": ln["estado"], "apertura": ln["apertura"], "apertura_fecha": ln["apertura_fecha"]})
+
+
+static func abierta(l: Dictionary) -> bool:
+	## Una línea futura se dibuja continua si la fecha de la partida ya pasó su apertura estimada; las reales siempre.
+	return not bool(l.get("futuro", false)) or fecha_iso >= String(l["apertura_fecha"])
 
 
 static func edificios_total() -> int:
@@ -133,7 +195,7 @@ static func preparar(tam: Vector2, margen: Vector2) -> Dictionary:
 			for k in range(pv.size() - 1):
 				seg.append(pv[k])
 				seg.append(pv[k + 1])
-		c["metro"].append({"id": String(l["id"]), "color": Color(String(l["color"])), "seg": seg, "vias": vias_px, "cabos": cabos})
+		c["metro"].append({"id": String(l["id"]), "color": Color(String(l["color"])), "seg": seg, "vias": vias_px, "cabos": cabos, "abierta": abierta(l)})
 	for pk in d["parques"]:
 		var poly := PackedVector2Array()
 		for p in pk:
@@ -201,7 +263,7 @@ static func reiniciar() -> void:
 
 static func tinta_sobre(id: String) -> Color:
 	## Color de texto legible (contraste ≥ 4,5) sobre la ficha de una línea: tinta sobre el amarillo de L2 y el celeste de L4A.
-	return Tema.TINTA if id == "L2" or id == "L4A" else Color.WHITE
+	return Tema.TINTA if id in ["L2", "L4A", "L7", "L8", "L9"] or id.begins_with("P") else Color.WHITE
 
 
 static func nombre_corto(id: String) -> String:
@@ -252,7 +314,10 @@ static func _dibujar_metro(ci: CanvasItem, c: Dictionary, esc: float) -> void:
 		if ocultas.has(l["id"]):
 			continue
 		for via in l["vias"]:
-			UrbanoTrazo.trazo(ci, via, l["color"], 4.6 * esc)
+			if bool(l["abierta"]):
+				UrbanoTrazo.trazo(ci, via, l["color"], 4.6 * esc)
+			else:  # línea en construcción o proyectada: trazo discontinuo
+				UrbanoTrazo.discontinua(ci, via, l["color"], 4.6 * esc, 9.0 * esc, 6.0 * esc)
 	for pl in _propias_px(c):
 		var pts: PackedVector2Array = pl["pts"]
 		if pts.size() < 2:

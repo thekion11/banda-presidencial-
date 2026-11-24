@@ -59,6 +59,12 @@ func _ready() -> void:
 		_fichas[id] = b
 		fila.add_child(b)
 	add_child(fila)
+	var futuras: Array[String] = []
+	for l in UrbanoBase.datos().get("metro", []):
+		if bool(l.get("futuro", false)):
+			futuras.append("%s %s (%s)" % [l["id"], "abierta" if UrbanoBase.abierta(l) else String(l["estado"]), String(l["apertura"])])
+	if not futuras.is_empty():
+		add_child(Tema.etiqueta(" · ".join(futuras), 10, Tema.TEXTO_SUAVE if oscuro else Tema.GRIS_CLARO, false, 600))
 	for ln in UrbanoBase.propias:  # estado de cada línea creada por el jugador
 		var txt := "%s · %s · %s" % [ln["id"], String(ln["nombre"]), "operativa" if ln["estado"] == "operativa" else "en construcción"]
 		add_child(Tema.etiqueta(txt, 10, Tema.TEXTO_SUAVE if oscuro else Tema.GRIS_CLARO, false, 600))

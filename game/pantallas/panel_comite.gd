@@ -53,6 +53,7 @@ static func _propuesta(col: VBoxContainer, motor: MotorTurno, pid: String, al_ap
 	b2.custom_minimum_size = Vector2(48, 44)
 	b3.custom_minimum_size = Vector2(48, 44)
 	UrbanoBase.propias = motor.estado.lineas_jugador
+	UrbanoBase.fecha_iso = Barras.fecha_iso(motor.catalogo_leyes, motor.estado.etapa, motor.estado.turno_actual, motor.estado.dia_actual)
 	var leyenda := LeyendaMetro.new()
 	leyenda.oscuro = true
 	leyenda.cambiado.connect(mapa.queue_redraw)

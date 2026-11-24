@@ -64,7 +64,7 @@ func _run() -> void:
 	chk(m.zoom >= 1.0 - 0.001 and m.pan == Vector2.ZERO, "al alejar del todo vuelve a la vista completa sin desplazamiento")
 	# solo una línea
 	UrbanoBase.solo_linea("L2")
-	chk(UrbanoBase.ocultas.size() == 6 and not UrbanoBase.ocultas.has("L2"), "solo_linea deja una sola línea")
+	chk(UrbanoBase.ocultas.size() == UrbanoBase.ids_lineas().size() - 1 and not UrbanoBase.ocultas.has("L2"), "solo_linea deja una sola línea")
 	UrbanoBase.ocultas.clear()
 	# estación (con zoom)
 	var est := UrbanoBase.estacion_en(c["estaciones"][10], tam, UrbanoMapa.MARGEN, 15.0)
@@ -76,10 +76,10 @@ func _run() -> void:
 	var b: Button = ley._fichas["L3"]
 	b.button_down.emit()
 	await create_timer(0.6).timeout
-	chk(UrbanoBase.ocultas.size() == 6 and not UrbanoBase.ocultas.has("L3"), "la pulsación larga deja solo L3")
+	chk(UrbanoBase.ocultas.size() == UrbanoBase.ids_lineas().size() - 1 and not UrbanoBase.ocultas.has("L3"), "la pulsación larga deja solo L3")
 	b.button_up.emit()
 	b.pressed.emit()
-	chk(UrbanoBase.ocultas.size() == 6, "soltar tras la pulsación larga no debe alternar otra vez")
+	chk(UrbanoBase.ocultas.size() == UrbanoBase.ids_lineas().size() - 1, "soltar tras la pulsación larga no debe alternar otra vez")
 	UrbanoBase.ocultas.clear()
 	_esquema()
 	await _comite_con_zoom()
@@ -135,7 +135,7 @@ func _esquema() -> void:
 	UrbanoBase.propias = []
 	var tam := Vector2(358, 480)
 	var c := UrbanoEsquema.preparar(tam, UrbanoVista.MARGEN, [])
-	chk(c["lineas"].size() == 7, "el esquema trae las 7 líneas reales")
+	chk(c["lineas"].size() == 10, "el esquema trae las 7 líneas reales y las 3 futuras")
 	var torcidos := 0
 	var total := 0
 	for l in c["lineas"]:
