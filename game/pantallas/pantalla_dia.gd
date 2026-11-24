@@ -225,7 +225,7 @@ func _pintar_mano() -> void:
 	var v := motor.vista_carta(_sel, _ministro)
 	var c: Dictionary = est.mano[_sel]
 	var tit := String(c["titulo"])
-	var cabeza := "[b]%s[/b] · %s · %d mov\n" % [tit if tit.length() <= 34 else tit.substr(0, 33) + "…", BloqueoCarta.nombre_cat(String(c["categoria"])), motor.costo_carta(c, _ministro)]
+	var cabeza := "[b]%s[/b] · %d mov · %s\n" % [tit if tit.length() <= 22 else tit.substr(0, 21) + "…", motor.costo_carta(c, _ministro), FichaCarta.linea(c, datos["leyes"])]
 	if est.etapa == "campana":
 		_lbl_corrector.text = cabeza + "[b]Campaña:[/b] cada carta es una promesa: sube la aprobación de la región elegida y queda como meta de legado."
 	elif v["corrector"]["aplica"]:

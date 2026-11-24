@@ -226,6 +226,11 @@
       "existente": {"nombre": "Entrar a un partido", "descripcion": "Hereda su ideología y su bancada; basta confirmar 3 posturas.", "aprobacion": 0.0, "cohesion": 5.0, "escanos_mult": 2.0, "escanos_min": 6, "peso_postura": 0.5, "preguntas": 3}
     }
   },
+  "impacto_carta": {
+    "nota": "PR-09: etiqueta de impacto según la suma de |efectos| en aprobación, capital, cohesión y fiscal. Hasta pequeno: «Impacto pequeño»; hasta mediano: «mediano»; más: «grande».",
+    "pequeno": 3.0,
+    "mediano": 4.5
+  },
   "finales": {
     "nota": "Epílogos del mandato. Se evalúan en orden y gana el primero que cumpla todas sus condiciones (motivo, aprobacion_min/max, obras_min, legado_min = proporción de promesas cumplidas, fiscal_min/max). Solo texto: no cambia el estado ni el puntaje.",
     "lista": [

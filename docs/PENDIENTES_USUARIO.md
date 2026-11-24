@@ -49,3 +49,7 @@ En curso, en este orden: PR-09 estadísticas de cartas → PR-08 ministros con p
 ## Ideas del análisis de mercado (autorizadas con tu «todo quiero todo»)
 - Consecuencia visible por carta: HECHO. Al jugar una carta el aviso muestra lo que cambió («Aprob. +2 · Capital −3»). `Barras.resumen_cambios`.
 - Siguientes (en este orden, una por ciclo): resumen de sesión con hitos, finales variados, tutorial corto, medición D1/D7 (esta última exige tu decisión de monetización/datos, U9, y la Ley 21.719).
+
+## PR-09 Estadísticas de las cartas (primera etapa, 24-nov-2026)
+- Hecho: el panel de detalle de la carta muestra su impacto (pequeño, mediano o grande; umbrales en `data/leyes.json` → `impacto_carta`) y si pasa por el Congreso (`FichaCarta`).
+- Pendiente (más grande, requiere rebalancear con bots): efectos diferenciados por sector y tipo de carta, efectos a futuro («sube cohesión hoy, baja fiscal en 8 semanas»), texto de sabor por carta. Las 1.685 cartas reales se generan por plantilla; cambiar la plantilla en `tools/` y regenerar es el camino.
