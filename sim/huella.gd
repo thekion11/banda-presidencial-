@@ -29,3 +29,11 @@ static func texto(v: Variant) -> String:
 
 static func sha(v: Variant) -> String:
 	return texto(v).sha256_text()
+
+
+static func fnv32(texto: String) -> int:
+	## FNV-1a de 32 bits sobre UTF-8: valor fijo en todas las versiones de Godot (hash() no lo garantiza).
+	var h := 2166136261
+	for b in texto.to_utf8_buffer():
+		h = ((h ^ int(b)) * 16777619) & 0xFFFFFFFF
+	return h

@@ -102,6 +102,10 @@ static func crear(motor: MotorTurno, urbano: Dictionary, al_volver: Callable, al
 		mapa.mostrar_metro = int(estado["filtro"]) == 0
 		leyenda.visible = mapa.mostrar_metro
 		vista.visible = mapa.mostrar_metro
+		if not mapa.mostrar_metro and mapa.modo_esquema:  # el esquema es solo del Metro: al cambiar de filtro se vuelve al mapa y a las obras
+			mapa.modo_esquema = false
+			panel.visible = true
+			vista.text = "Esquema"
 		mapa.propuesta = _trazado_propuesta(motor) if int(estado["filtro"]) == 0 else []
 		mapa.queue_redraw()
 		for h in hoja.get_children():

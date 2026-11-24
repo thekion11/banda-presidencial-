@@ -117,6 +117,7 @@ func _toque(pos: Vector2) -> void:
 	var ahora := Time.get_ticks_msec() / 1000.0
 	if ahora - _ultimo_toque < 0.35 and pos.distance_to(_pos_ultimo_toque) < 30.0:  # doble toque: acerca o vuelve a la vista completa
 		_ultimo_toque = -10.0
+		_vista_toque(_pos_ultimo_toque)  # el primer toque ya había actuado (ocultar línea, abrir burbuja): se deshace
 		if zoom < 2.0:
 			_zoom_en(2.5 / zoom, pos)
 		else:

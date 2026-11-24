@@ -129,7 +129,7 @@ static func crear(obra: Dictionary, fases: Array, al_cerrar: Callable, al_ver_ma
 			actualizar.call(i + 1))
 		botones.append(b)
 		v.add_child(b)
-		var l := Tema.etiqueta_corta(CORTAS[i], 9, Tema.GRIS_CLARO)
+		var l := Tema.etiqueta_corta(CORTAS[i], 10, Tema.GRIS_CLARO)
 		l.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 		v.add_child(l)
 		fila.add_child(v)
@@ -149,12 +149,13 @@ static func crear(obra: Dictionary, fases: Array, al_cerrar: Callable, al_ver_ma
 	tv.add_child(info)
 	var ap := 0.0
 	for ef in obra["efectos_final"]:
-		ap += float(ef["delta"])
+		if String(ef["ind"]) == "aprobacion":  # antes sumaba también fiscal y riesgo de ejecución
+			ap += float(ef["delta"])
 	var chips := HBoxContainer.new()
 	chips.add_theme_constant_override("separation", 8)
-	chips.add_child(_chip("Empleo (ilustrativo)", "+%s" % str(roundi(float(obra["dias_totales"]) * 1.6 / 10.0) * 10), Color("#DDEFE6"), Color("#2E7D5B")))
-	chips.add_child(_chip("Aprobación local", Tema.signo(ap), Color("#F7E7C4"), Color("#8A6410")))
-	chips.add_child(_chip("Riesgo de retraso", "Bajo" if int(obra["retrasos"]) == 0 else "Medio", Color("#F7D9D5"), Color("#B03A2E")))
+	chips.add_child(_chip("Empleo (ilustrativo)", "+%s" % str(roundi(float(obra["dias_totales"]) * 1.6 / 10.0) * 10), Color("#DDEFE6"), Color("#1F6B4A")))
+	chips.add_child(_chip("Aprobación local", Tema.signo(ap), Color("#F7E7C4"), Color("#6F500C")))
+	chips.add_child(_chip("Riesgo de retraso", "Bajo" if int(obra["retrasos"]) == 0 else "Medio", Color("#F7D9D5"), Color("#9A3026")))
 	tv.add_child(chips)
 	ficha.add_child(tv)
 	col.add_child(ficha)

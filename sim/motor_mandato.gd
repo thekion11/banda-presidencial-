@@ -59,6 +59,8 @@ func resolver_eleccion() -> Dictionary:
 	## 1ª vuelta: gana quien supera el umbral; si no, pasa a la 2ª vuelta (semanas_balotaje más de campaña) con el piso configurado.
 	var h: Dictionary = m.catalogo_leyes["hemiciclo"]
 	var umbral := float(h["umbral_victoria_presidencial"])
+	if not m.estado.eleccion_pendiente(int(h["semanas_campana"])):  # solo se vota cuando la campaña terminó (nada se registra ni cambia)
+		return {"ok": false, "electo": false, "balotaje": false, "ronda": m.estado.ronda_electoral, "voto_final": 0.0, "umbral": umbral}
 	var ruido := float(m.catalogo_leyes["campana"]["ruido_eleccion"])
 	var voto_final := clampf(m.estado.ind("aprobacion") + m.rng.randf_range(-ruido, ruido), 0.0, 100.0)
 	var ronda := m.estado.ronda_electoral
@@ -77,4 +79,4 @@ func resolver_eleccion() -> Dictionary:
 	else:
 		m.estado.etapa = "derrota_electoral"
 		m.estado.resultado_final = {"motivo": "derrota_electoral", "voto_final": voto_final, "puntaje": 0}
-	return {"electo": electo, "balotaje": balotaje, "ronda": ronda, "voto_final": voto_final, "umbral": umbral}
+	return {"ok": true, "electo": electo, "balotaje": balotaje, "ronda": ronda, "voto_final": voto_final, "umbral": umbral}

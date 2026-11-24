@@ -72,6 +72,8 @@ func jugar_carta(idx: int, ministro_id: String = "", region_id: String = "", del
 		return {"ok": false, "razon": "indice_invalido"}
 	if ministro_id != "" and (m.estado.etapa == "campana" or not m.catalogo_ministros.has(ministro_id)):
 		return {"ok": false, "razon": "ministro_no_disponible"}
+	if ministro_id != "" and not m.estado.gabinete.has(ministro_id):
+		return {"ok": false, "razon": "ministro_fuera_del_gabinete"}  # solo el gabinete elegido da bonos y reduce costos
 	if region_id != "" and not m.regiones.existe(region_id):
 		return {"ok": false, "razon": "region_invalida"}
 	if delegada:
@@ -196,6 +198,9 @@ func aprobar_propuesta(prop_id: String, variante_id: String, region_id: String =
 	if variante.is_empty():
 		return {"ok": false, "razon": "variante_invalida"}
 	if not custom.is_empty():  # trazado propio: estaciones sobre el grafo + sliders
+		custom = custom.duplicate()
+		custom["ritmo"] = snappedf(float(custom.get("ritmo", 0.0)), 0.0001)  # los deslizadores se guardan con 4 decimales: el JSON no altera el cálculo
+		custom["cobertura"] = snappedf(float(custom.get("cobertura", 0.0)), 0.0001)
 		if not m.grafo.listo() or not m.grafo.estaciones_validas(custom.get("estaciones", [])):
 			return {"ok": false, "razon": "trazado_invalido"}
 		variante = m.grafo.variante_modificada(variante, custom["estaciones"], float(custom.get("ritmo", 0.0)), float(custom.get("cobertura", 0.0)))

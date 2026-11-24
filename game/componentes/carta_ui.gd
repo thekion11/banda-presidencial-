@@ -10,12 +10,13 @@ const COLORES_CATEGORIA := {
 	"economia": Color("#A67C3D"), "social": Color("#B0607E"), "medioambiente": Color("#5E9A4C"), "politica": Color("#7A5D9A"),
 	"descentralizacion": Color("#4C7FA0"), "obras": Color("#9A7A4C"),
 }
-const NOMBRES_CAT := {"comite": "COMITÉ", "medioambiente": "AMBIENTE", "descentralizacion": "REGIONES", "transportes": "TRANSPORTE"}
+const NOMBRES_CAT := {"comite": "COMITÉ", "medioambiente": "AMBIENTE", "descentralizacion": "REGIONES", "transportes": "TRANSP."}
 
 var carta: Dictionary = {}
 var costo: int = 0
 var elegida: bool = false
 var atenuada: bool = false
+static var _shader: Shader
 var _arte: TextureRect
 var _sup: Control  # capa superior: gema y cinta por encima de la ilustración
 static var _texturas: Dictionary = {}
@@ -83,10 +84,11 @@ func _preparar_arte() -> void:
 	_arte.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_COVERED
 	_arte.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	_arte.texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR_WITH_MIPMAPS  # arte de 1024 px reducido a ~100: sin mipmaps se ve dentado
-	var sh := Shader.new()
-	sh.code = SHADER_REDONDEADO
+	if _shader == null:  # un solo shader para todas las cartas: uno nuevo por carta obliga a compilar variantes en la GPU del teléfono
+		_shader = Shader.new()
+		_shader.code = SHADER_REDONDEADO
 	var mat := ShaderMaterial.new()
-	mat.shader = sh
+	mat.shader = _shader
 	_arte.material = mat
 	add_child(_arte)
 	_sup = Control.new()
@@ -103,7 +105,7 @@ func _dibujar_sup() -> void:
 	var cat: String = NOMBRES_CAT.get(String(carta["categoria"]), String(carta["categoria"]).to_upper())
 	var cinta := Rect2(size.x - 68.0, 9, 62, 16)
 	_sup.draw_style_box(Tema.caja_degradada(Tema.ROJO if elegida else base.darkened(0.25), Tema.ROJO.darkened(0.25) if elegida else base.darkened(0.5), 5), cinta)
-	_sup.draw_string(Tema.fuente_texto(800), cinta.position + Vector2(0, 11.5), cat, HORIZONTAL_ALIGNMENT_CENTER, 62, 9, Tema.CREMA)
+	_sup.draw_string(Tema.fuente_texto(800), cinta.position + Vector2(0, 11.5), cat, HORIZONTAL_ALIGNMENT_CENTER, 62, 10, Tema.CREMA)
 	_gema_en(_sup, Vector2(21, 21), 14.0)
 
 
@@ -279,7 +281,7 @@ func _gema_en(ci: CanvasItem, c: Vector2, r: float) -> void:
 
 func _chip_efecto(r: Rect2, delta: float, texto: String) -> void:
 	var bueno := delta >= 0.0
-	draw_style_box(Tema.caja(Color("#2E9E6B") if bueno else Tema.ROJO, 9), r)
+	draw_style_box(Tema.caja(Color("#23825A") if bueno else Tema.ROJO, 9), r)
 	var cx := r.position.x + 8.0
 	var cy := r.position.y + r.size.y * 0.5
 	if bueno:
@@ -312,7 +314,7 @@ func _draw() -> void:
 	if _arte == null:
 		var cinta := Rect2(w - 68.0, 9, 62, 16)
 		draw_style_box(Tema.caja(Tema.ROJO if elegida else base.darkened(0.35), 4), cinta)
-		draw_string(Tema.fuente_texto(800), cinta.position + Vector2(0, 11.5), cat, HORIZONTAL_ALIGNMENT_CENTER, 62, 9, Tema.CREMA)
+		draw_string(Tema.fuente_texto(800), cinta.position + Vector2(0, 11.5), cat, HORIZONTAL_ALIGNMENT_CENTER, 62, 10, Tema.CREMA)
 		_gema(Vector2(21, 21), 14.0)
 	var tam_tit := 12 if elegida else 11
 	var tit := _titulo_ajustado(String(carta["titulo"]), w - 14.0, tam_tit)

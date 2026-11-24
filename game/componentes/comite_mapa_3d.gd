@@ -258,10 +258,10 @@ func _gui_input(event: InputEvent) -> void:
 		if event.button_index == MOUSE_BUTTON_LEFT:
 			_arrastrando = event.pressed
 			_auto = false
-		elif event.button_index == MOUSE_BUTTON_WHEEL_UP:
+		elif event.button_index == MOUSE_BUTTON_WHEEL_UP and event.pressed:
 			_distancia = maxf(8.0, _distancia * 0.9)
 			_actualizar_camara()
-		elif event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
+		elif event.button_index == MOUSE_BUTTON_WHEEL_DOWN and event.pressed:
 			_distancia = minf(300.0, _distancia * 1.1)
 			_actualizar_camara()
 	elif event is InputEventMagnifyGesture:

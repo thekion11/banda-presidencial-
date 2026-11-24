@@ -167,7 +167,7 @@ static func _segmentos(lista: Array, tam: Vector2, margen: Vector2) -> PackedVec
 
 
 static func preparar(tam: Vector2, margen: Vector2) -> Dictionary:
-	var clave := "%d,%d,%d,%d" % [int(tam.x), int(tam.y), int(margen.x), int(margen.y)]
+	var clave := "%d,%d,%d,%d,%s" % [int(tam.x), int(tam.y), int(margen.x), int(margen.y), fecha_iso]  # «abierta» de las líneas futuras depende de la fecha
 	if clave == _cache_clave:
 		return _cache
 	var d := datos()
@@ -259,6 +259,7 @@ static func reiniciar() -> void:
 	## Estado de los mapas ligado a la partida: se limpia al empezar o cargar otra.
 	ocultas.clear()
 	propias = []
+	_cache_clave = ""
 
 
 static func tinta_sobre(id: String) -> Color:
