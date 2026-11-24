@@ -150,7 +150,19 @@ func _esquema() -> void:
 				torcidos += 1
 	chk(total > 0 and float(torcidos) / float(total) < 0.2, "los tramos largos del esquema van a 0°, 45° o 90° (%d de %d fuera)" % [torcidos, total])
 	var l5: Array = c["lineas"].filter(func(l: Dictionary) -> bool: return l["id"] == "L5")
-	var p: Vector2 = (l5[0]["ruta"] as PackedVector2Array)[(l5[0]["ruta"] as PackedVector2Array).size() / 2]
+	var p := Vector2.INF  # punto de L5 a más de 14 px de toda estación (si no, el toque abre la burbuja de la estación)
+	var ruta: PackedVector2Array = l5[0]["ruta"]
+	for i in range(ruta.size() - 1):
+		var mid := (ruta[i] + ruta[i + 1]) * 0.5
+		var lejos := true
+		for l in c["lineas"]:
+			for q in l["estaciones"]:
+				if (q as Vector2).distance_to(mid) < 15.0:
+					lejos = false
+		if lejos:
+			p = mid
+			break
+	chk(p != Vector2.INF, "hay un punto de L5 alejado de las estaciones")
 	chk(UrbanoEsquema.linea_en(p, tam, UrbanoVista.MARGEN, [], 10.0) != "", "tocar una línea en el esquema la encuentra")
 	var m := UrbanoMapa.new()
 	m.size = tam

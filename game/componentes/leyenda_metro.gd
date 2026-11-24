@@ -17,7 +17,7 @@ func _init() -> void:
 
 func _ready() -> void:
 	var cab := HBoxContainer.new()
-	_nota = Tema.etiqueta_corta("Toca: ocultar · mantén: solo esa", 11, Tema.TEXTO_SUAVE if oscuro else Color("#6A7684"), false, 600)
+	_nota = Tema.etiqueta_corta("Toca: ocultar · mantén: solo esa", 11, Tema.TEXTO_SUAVE if oscuro else Tema.GRIS_CLARO, false, 600)
 	_nota.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	_nota.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 	cab.add_child(_nota)
@@ -61,7 +61,7 @@ func _ready() -> void:
 	add_child(fila)
 	for ln in UrbanoBase.propias:  # estado de cada línea creada por el jugador
 		var txt := "%s · %s · %s" % [ln["id"], String(ln["nombre"]), "operativa" if ln["estado"] == "operativa" else "en construcción"]
-		add_child(Tema.etiqueta(txt, 10, Tema.TEXTO_SUAVE if oscuro else Color("#6A7684"), false, 600))
+		add_child(Tema.etiqueta(txt, 10, Tema.TEXTO_SUAVE if oscuro else Tema.GRIS_CLARO, false, 600))
 	_pintar()
 
 
@@ -87,7 +87,7 @@ func _pintar() -> void:
 		var color: Color = l["color"]
 		var fondo := Color.WHITE if oculta else color
 		var borde := color
-		var tinta := color.darkened(0.25) if oculta else (Tema.TINTA if id == "L2" else Color.WHITE)
+		var tinta := color.darkened(0.25) if oculta else UrbanoBase.tinta_sobre(id)
 		for e in ["normal", "hover", "pressed", "focus"]:
 			b.add_theme_stylebox_override(e, Tema.caja(fondo, 12, borde, 3))
 		for e in ["font_color", "font_hover_color", "font_pressed_color", "font_focus_color"]:

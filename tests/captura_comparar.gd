@@ -173,6 +173,12 @@ func _correr() -> void:
 		var panel_obras := um.get_parent().get_child(um.get_index() + 1)
 		panel_obras.visible = false
 		await _guardar("cmp_esquema", 0.4)
+		var ce := UrbanoEsquema.preparar(um.size, UrbanoMapa.MARGEN, UrbanoBase.propias)
+		for l in ce["lineas"]:
+			if l["id"] == "L1" and l["nombres"].size() > 10:
+				um._vista_toque((l["estaciones"] as PackedVector2Array)[10] * um.zoom + um.pan)
+		await _guardar("cmp_esquema_estacion", 0.4)
+		um._estacion = {}
 		um._zoom_en(2.2, Vector2(um.size.x * 0.5, um.size.y * 0.45))
 		await _guardar("cmp_esquema_zoom", 0.4)
 		um.modo_esquema = false

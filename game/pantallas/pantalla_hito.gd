@@ -30,7 +30,7 @@ static func _recorrido(linea: Dictionary) -> Control:
 	var v := VBoxContainer.new()
 	v.add_theme_constant_override("separation", 2)
 	var estado := "operativa" if String(linea["estado"]) == "operativa" else "en construcción"
-	v.add_child(Tema.etiqueta_corta("%s · %s · %s" % [linea["id"], String(linea["nombre"]), estado], 11, Color("#6A7684"), false, 700))
+	v.add_child(Tema.etiqueta_corta("%s · %s · %s" % [linea["id"], String(linea["nombre"]), estado], 11, Tema.GRIS_CLARO, false, 700))
 	var sc := ScrollContainer.new()
 	sc.vertical_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
 	sc.custom_minimum_size = Vector2(0, 40)
@@ -76,7 +76,7 @@ static func crear(obra: Dictionary, fases: Array, al_cerrar: Callable, al_ver_ma
 	col.add_theme_constant_override("separation", 10)
 	capa.add_child(col)
 	var variante := String(obra.get("variante", ""))
-	col.add_child(Tema.etiqueta("OBRA APROBADA%s" % ((" · VARIANTE " + variante) if variante != "" else ""), 10, Color("#6A7684"), false, 700))
+	col.add_child(Tema.etiqueta("OBRA APROBADA%s" % ((" · VARIANTE " + variante) if variante != "" else ""), 10, Tema.GRIS_CLARO, false, 700))
 	col.add_child(Tema.etiqueta(String(obra["nombre"]), 24, Tema.TINTA, true))
 	var tarjeta := PanelContainer.new()
 	tarjeta.add_theme_stylebox_override("panel", Tema.caja(Color("#D6E6EF"), 18, Tema.BORDE_CLARO, 2))
@@ -129,7 +129,7 @@ static func crear(obra: Dictionary, fases: Array, al_cerrar: Callable, al_ver_ma
 			actualizar.call(i + 1))
 		botones.append(b)
 		v.add_child(b)
-		var l := Tema.etiqueta_corta(CORTAS[i], 9, Color("#6A7684"))
+		var l := Tema.etiqueta_corta(CORTAS[i], 9, Tema.GRIS_CLARO)
 		l.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 		v.add_child(l)
 		fila.add_child(v)

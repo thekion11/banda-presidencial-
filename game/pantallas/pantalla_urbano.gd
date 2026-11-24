@@ -36,7 +36,7 @@ static func crear(motor: MotorTurno, urbano: Dictionary, al_volver: Callable, al
 	var tit := VBoxContainer.new()
 	tit.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	tit.add_theme_constant_override("separation", -2)
-	tit.add_child(Tema.etiqueta_corta("MAPA NACIONAL › REGIÓN METROPOLITANA", 10, Color("#6A7684"), false, 700))
+	tit.add_child(Tema.etiqueta_corta("MAPA NACIONAL › REGIÓN METROPOLITANA", 10, Tema.GRIS_CLARO, false, 700))
 	tit.add_child(Tema.etiqueta_corta("Gran Santiago", 26, Tema.TINTA, true))
 	cab.add_child(tit)
 	var atras := Tema.boton("2D", Color.WHITE, Tema.TINTA, 13, 44)
@@ -118,10 +118,10 @@ static func crear(motor: MotorTurno, urbano: Dictionary, al_volver: Callable, al
 		var sp := Control.new()
 		sp.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		cab2.add_child(sp)
-		cab2.add_child(Tema.etiqueta_corta("%d de %d" % [mini(lista.size(), 3), lista.size()], 11, Color("#6A7684")))
+		cab2.add_child(Tema.etiqueta_corta("%d de %d" % [mini(lista.size(), 3), lista.size()], 11, Tema.GRIS_CLARO))
 		hoja.add_child(cab2)
 		if lista.is_empty():
-			hoja.add_child(Tema.etiqueta("No hay obras de este tipo en curso. Juega cartas de esta categoría o aprueba una propuesta del Comité.", 12, Color("#6A7684")))
+			hoja.add_child(Tema.etiqueta("No hay obras de este tipo en curso. Juega cartas de esta categoría o aprueba una propuesta del Comité.", 12, Tema.GRIS_CLARO))
 		for o in lista.slice(0, 3):
 			var fila := Button.new()
 			fila.flat = true
@@ -156,7 +156,7 @@ static func crear(motor: MotorTurno, urbano: Dictionary, al_volver: Callable, al
 			barra.add_theme_stylebox_override("fill", Tema.caja(f[2], 3))
 			v.add_child(barra)
 			h.add_child(v)
-			h.add_child(Tema.etiqueta_corta(PantallaHito.CORTAS[MotorObras.fase_de(o) - 1], 11, Color("#6A7684")))
+			h.add_child(Tema.etiqueta_corta(PantallaHito.CORTAS[MotorObras.fase_de(o) - 1], 11, Tema.GRIS_CLARO))
 			fila.add_child(h)
 			fila.pressed.connect(func() -> void: al_abrir_obra.call(o))
 			hoja.add_child(fila)

@@ -199,6 +199,11 @@ static func reiniciar() -> void:
 	propias = []
 
 
+static func tinta_sobre(id: String) -> Color:
+	## Color de texto legible (contraste ≥ 4,5) sobre la ficha de una línea: tinta sobre el amarillo de L2 y el celeste de L4A.
+	return Tema.TINTA if id == "L2" or id == "L4A" else Color.WHITE
+
+
 static func nombre_corto(id: String) -> String:
 	return id.trim_prefix("L")
 

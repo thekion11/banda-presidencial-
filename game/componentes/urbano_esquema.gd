@@ -4,7 +4,7 @@ extends RefCounted
 ## pescado) para que se lea, y cada tramo entre estaciones se dibuja en 0°, 45° o 90°. Incluye las líneas del jugador con los nombres
 ## que les puso. Solo cambia la presentación: los datos y las posiciones reales no se tocan.
 
-const GAMMA := 0.58  # <1 abre el centro y junta la periferia
+const GAMMA := 0.58  # <1 abre el centro y junta la periferia (0,5 y relajación de distancias se probaron: deforman más las líneas)
 const M_ANCHO := 26003.0
 const M_ALTO := 21128.0
 
@@ -58,12 +58,16 @@ static func preparar(tam: Vector2, margen: Vector2, propias: Array) -> Dictionar
 	var a_px := func(p: Vector2) -> Vector2:
 		var q: Vector2 = lente.call(p)
 		return origen + (q - mn) * esc
+	var en_px := {}
+	for n in pos:
+		en_px[n] = a_px.call(pos[n])
+	_relajar(en_px, 0.0, 0)  # sin relajación: separar las estaciones a la fuerza deformaba las líneas (probado con 17 px)
 	var lineas: Array = []
 	for l in d["metro"]:
 		var pts: Array = []
 		var nombres: Array = []
 		for n in l["orden"]:
-			pts.append(a_px.call(pos[String(n)]))
+			pts.append(en_px[String(n)])
 			nombres.append(String(n))
 		lineas.append(_linea(String(l["id"]), Color(String(l["color"])), pts, nombres, l.get("cabos", [])))
 	for ln in propias:
@@ -81,6 +85,27 @@ static func preparar(tam: Vector2, margen: Vector2, propias: Array) -> Dictionar
 	_cache = {"lineas": lineas, "rio": rio, "combinaciones": _combinaciones(lineas)}
 	_clave = clave
 	return _cache
+
+
+static func _relajar(pos: Dictionary, dmin: float, iteraciones: int) -> void:
+	## Cada pareja de estaciones a menos de `dmin` px se aleja a partes iguales: conserva la forma general y evita montones.
+	var claves := pos.keys()
+	for _it in range(iteraciones):
+		var movido := false
+		for i in range(claves.size()):
+			for j in range(i + 1, claves.size()):
+				var a: Vector2 = pos[claves[i]]
+				var b: Vector2 = pos[claves[j]]
+				var d := b - a
+				var l := d.length()
+				if l < dmin:
+					var u := d / l if l > 0.01 else Vector2(1, 0)
+					var m := u * (dmin - l) * 0.5
+					pos[claves[i]] = a - m
+					pos[claves[j]] = b + m
+					movido = true
+		if not movido:
+			break
 
 
 static func _linea(id: String, color: Color, pts: Array, nombres: Array, cabos: Array, operativa: bool = true) -> Dictionary:
@@ -182,7 +207,8 @@ static func _rotulos(ci: CanvasItem, c: Dictionary, tam: Vector2, zoom: float, p
 			ocupados.append(caja)
 			vistos[nombre] = true
 			var o := Vector2(p.x + desp.x, p.y + desp.y + 3.5)
-			ci.draw_string_outline(f, o, nombre, HORIZONTAL_ALIGNMENT_LEFT, -1, 10, 4, Color(0.98, 0.97, 0.93, 0.95))
+			ci.draw_rect(caja, Color(0.98, 0.97, 0.93, 0.82))  # fondo suave: el nombre se lee aunque pase una línea por detrás
+			ci.draw_string_outline(f, o, nombre, HORIZONTAL_ALIGNMENT_LEFT, -1, 10, 3, Color(0.98, 0.97, 0.93, 0.9))
 			ci.draw_string(f, o, nombre, HORIZONTAL_ALIGNMENT_LEFT, -1, 10, Tema.TINTA)
 			break
 	# fichas con el número de la línea en los terminales y flechas donde la línea sigue fuera del mapa
@@ -193,7 +219,7 @@ static func _rotulos(ci: CanvasItem, c: Dictionary, tam: Vector2, zoom: float, p
 		var est2: PackedVector2Array = l["estaciones"]
 		if est2.size() < 2:
 			continue
-		var tinta: Color = Tema.TINTA if l["id"] == "L2" else Color.WHITE
+		var tinta: Color = UrbanoBase.tinta_sobre(String(l["id"]))
 		for fin in range(2):
 			var p2: Vector2 = (est2[0] if fin == 0 else est2[est2.size() - 1]) * zoom + pan
 			if p2.x < -12.0 or p2.y < -12.0 or p2.x > tam.x + 12.0 or p2.y > tam.y + 12.0:
@@ -224,4 +250,30 @@ static func linea_en(pos_local: Vector2, tam: Vector2, margen: Vector2, propias:
 			if q.distance_to(pos_local) < mejor:
 				mejor = q.distance_to(pos_local)
 				res = String(l["id"])
+	return res
+
+
+static func estacion_en(pos_local: Vector2, tam: Vector2, margen: Vector2, propias: Array, umbral: float = 12.0) -> Dictionary:
+	## Estación visible más cercana al toque: {"n": nombre, "l": [líneas que la sirven], "p": posición} o {} si no hay ninguna cerca.
+	var c := preparar(tam, margen, propias)
+	var mejor := umbral
+	var res: Dictionary = {}
+	for l in c["lineas"]:
+		if UrbanoBase.ocultas.has(l["id"]):
+			continue
+		var est: PackedVector2Array = l["estaciones"]
+		for i in range(est.size()):
+			var dd := est[i].distance_to(pos_local)
+			if dd < mejor:
+				mejor = dd
+				res = {"n": String(l["nombres"][i]) if i < l["nombres"].size() else "", "l": [l["id"]], "p": est[i]}
+	if res.is_empty():
+		return res
+	for l in c["lineas"]:  # añade las demás líneas visibles que pasan por la misma posición (combinaciones)
+		if UrbanoBase.ocultas.has(l["id"]) or res["l"].has(l["id"]):
+			continue
+		for q in l["estaciones"]:
+			if (q as Vector2).distance_to(res["p"]) < 1.0:
+				res["l"].append(l["id"])
+				break
 	return res

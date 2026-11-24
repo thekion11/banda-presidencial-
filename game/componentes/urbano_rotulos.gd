@@ -75,7 +75,7 @@ static func fichas(ci: CanvasItem, tam: Vector2, margen: Vector2, zoom: float, p
 	for l in c["metro"]:
 		if UrbanoBase.ocultas.has(l["id"]):
 			continue
-		var tinta: Color = Tema.TINTA if l["id"] == "L2" else Color.WHITE
+		var tinta: Color = UrbanoBase.tinta_sobre(String(l["id"]))
 		for cb in l["cabos"]:
 			var p: Vector2 = Vector2(cb["p"]) * zoom + pan
 			if p.x < -12.0 or p.y < -12.0 or p.x > tam.x + 12.0 or p.y > tam.y + 12.0:
