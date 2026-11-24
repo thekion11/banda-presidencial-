@@ -126,3 +126,15 @@ El usuario aclaró que esos dos mensajes («Lo Jugadas accidentales.» y «Propo
 - *Costo de datos:* ~75 candidatos (3 por ministerio) con perfil verificado: una sesión de investigación por búsqueda web, con fuentes y fecha de corte; más el diseño de la puntuación del relleno y la pantalla de dos niveles de PR-04.
 
 **Decisiones pendientes:** (1) ¿relleno por defecto «equilibrado» y modo «máxima eficacia» con costo? (2) ¿alias + perfil real (recomendado) o apellido real con revisión legal? (3) ¿candidatos de varios gobiernos, solo vivos, o también ficticios para completar? (4) ¿cuántos candidatos por ministerio?
+
+### PR-05b — Sin apellido: solo sobrenombre si lo tienen (24-nov-2026) · estado: hablada
+
+**Propuesta del usuario:** ni nombre ni apellido; solo el **sobrenombre**, para quienes tengan uno conocido.
+
+**Opinión de Claude:** de acuerdo en el fondo (es la tradición de la sátira política y es más coherente con la regla de `CLAUDE.md`: alias, no nombre), con tres precauciones:
+1. **Un apodo conocido también identifica.** Seguirá siendo una persona real reconocible, así que no elimina la necesidad de revisión legal; solo mejora el tono y la coherencia con la regla de alias.
+2. **Criterio de uso:** solo apodos **documentados en prensa o fuentes públicas** (con enlace y fecha de corte en `fuentes.json`), de uso **neutro o afectuoso**; **no** apodos despectivos ni burlas (suben el riesgo de reclamo por la honra). Se aplica el **mismo criterio a todos los sectores políticos**, para no favorecer ni dañar a ninguno.
+3. **Sin apodo conocido:** alias **inventado**, en el mismo estilo de los actuales («El Guardián de la Billetera»).
+- Se mantiene lo ya recomendado: perfil real **público y verificable** (ideología, partido, estudios, años de experiencia) y cifras de juego derivadas de datos neutros, nunca de juicios sobre la persona; aviso de ficción satírica; revisión legal antes de que lo jueguen terceros.
+- *Decisión de proceso:* la investigación de candidatos anota por persona `apodo_real` (con fuente) o `alias_inventado`, y marca si el apodo es neutral; el relleno automático y la interfaz solo muestran el alias.
+**Pendiente de decisión del usuario:** (1) ¿se acepta este criterio de apodos (neutros, documentados, igual trato a todos)? (2) ¿qué hacer con apodos dudosos: inventar un alias en su lugar (propuesta de Claude)?
