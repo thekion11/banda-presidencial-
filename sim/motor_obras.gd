@@ -41,7 +41,7 @@ func iniciar(estado: EstadoSimulacion, nombre: String, dias_totales: int, region
 
 func avanzar(estado: EstadoSimulacion, dias: int, aplicar_efecto: Callable, marcar_cumplida: Callable) -> Array[Dictionary]:
 	var terminadas: Array[Dictionary] = []
-	var p_retraso := clampf(estado.ind("riesgo_ejecucion") * float(leyes.get("obras", {}).get("prob_retraso_por_riesgo", 0.005)), 0.0, 0.5)
+	var p_retraso := clampf(estado.ind("riesgo_ejecucion") * float(leyes["obras"]["prob_retraso_por_riesgo"]), 0.0, float(leyes["obras"]["tope_prob_retraso"]))
 	var restantes: Array[Dictionary] = []
 	for obra in estado.obras_en_curso:
 		if rng.randf() < p_retraso:

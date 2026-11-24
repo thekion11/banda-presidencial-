@@ -38,3 +38,5 @@ jobs:
             echo "== $t"
             godot --headless --path . -s "tests/$t.gd"
           done
+      - name: Fuzzing del núcleo (acciones aleatorias e inválidas, replay idéntico)
+        run: godot --headless --path . -s tests/fuzz_acciones.gd -- 60 7000

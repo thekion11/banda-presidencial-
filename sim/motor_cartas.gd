@@ -113,9 +113,9 @@ func _jugar_en_campana(carta: Dictionary, region_id: String) -> Dictionary:
 		if ef["ind"] == "aprobacion":
 			ef_apr += float(ef["delta"])
 	var ya := m.estado.promesas_campana.any(func(p: Dictionary) -> bool: return p["carta_id"] == carta["id"])
-	var delta := maxf(0.5, (float(camp["aprobacion_base_por_carta"]) + ef_apr) * float(m._h("bono_aprobacion_promesa")))
+	var delta := maxf(float(camp["piso_aprobacion_carta"]), (float(camp["aprobacion_base_por_carta"]) + ef_apr) * float(m._h("bono_aprobacion_promesa")))
 	if ya:
-		delta *= float(m.catalogo_leyes.get("repeticion_promesa", 0.5))
+		delta *= float(m.catalogo_leyes["repeticion_promesa"])
 	else:
 		m.estado.promesas_campana.append({"carta_id": carta["id"], "titulo": carta["titulo"],
 				"turno": m.estado.turno_actual, "region": region_id, "cumplida": false})
@@ -209,7 +209,7 @@ func aprobar_propuesta(prop_id: String, variante_id: String, region_id: String =
 	var id_linea := "P%d" % (m.estado.lineas_jugador.size() + 1)
 	m.estado.registrar_entrada("aprobar_propuesta", {"prop": prop_id, "variante": variante_id, "region": region_id, "custom": custom, "nombres": nombres})
 	m.estado.pa_actual -= costo
-	var ratio := clampf(float(prop["capacidad_musd"]) / float(variante["costo_musd"]), 0.1, 1.0)
+	var ratio := clampf(float(prop["capacidad_musd"]) / float(variante["costo_musd"]), float(m.catalogo_leyes["dinamica"]["ratio_obra_min"]), 1.0)
 	var region := region_id if region_id != "" else String(prop.get("region", ""))
 	var final: Array = []
 	for ef in variante["efectos"]:

@@ -12,6 +12,7 @@
   },
   "campana": {
     "aprobacion_base_por_carta": 0.2,
+    "piso_aprobacion_carta": 0.5,
     "ruido_eleccion": 2.0,
     "bono_bastion": 8.0,
     "derrame_regional": 0.15,
@@ -58,6 +59,9 @@
     "regen_fiscal_semanal": 0.8,
     "max_obras_concurrentes": 5,
     "riesgo_por_obra_extra": 1.5,
+    "riesgo_regen_semanal": 0.5,
+    "piso_rendimiento_decreciente": 0.2,
+    "ratio_obra_min": 0.1,
     "fiscal_critico": 30.0,
     "penal_fiscal_critico": 0.6,
     "sesgo_regional_persistente": 0.6
@@ -69,6 +73,7 @@
     "ruido_votos": 2.0,
     "penal_capital_rechazo": 2.0,
     "fraccion_abstencion": 0.35,
+    "escanos_propios_defecto": 16,
     "nombres": {
       "camara": "Cámara de Diputados",
       "senado": "Senado"
@@ -209,6 +214,7 @@
   },
   "obras": {
     "prob_retraso_por_riesgo": 0.005
+    ,"tope_prob_retraso": 0.5
   },
   "repeticion_promesa": 0.5,
   "calendario": {
@@ -268,6 +274,7 @@
     "aprobacion_base": 1.0,
     "aprobacion_por_tir": 0.5,
     "aprobacion_max": 6.0,
+    "piso_aprobacion_obra": 0.5,
     "riesgo_tir_negativa": 2.0,
     "fuente": "fuentes.json#uf_aprox",
     "clp_por_usd": 950.0,
