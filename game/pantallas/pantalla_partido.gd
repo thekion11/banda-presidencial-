@@ -77,7 +77,7 @@ func _actualizar_franja() -> void:
 		_franja_escanos.text = "Responde para proyectar tu bancada inicial."
 		return
 	_franja_perfil.text = "Perfil: " + GeneradorPartido.perfil_para(ejes.x, ejes.y, datos["ideologia"])
-	_franja_escanos.text = "Proyección: %d de 50 escaños en el Senado" % GeneradorPartido.escanos_para(ejes.x, ejes.y)
+	_franja_escanos.text = "Proyección: %d de %d escaños en el Senado" % [GeneradorPartido.escanos_para(ejes.x, ejes.y), int(datos["leyes"]["hemiciclo"]["total_senadores"])]
 
 
 func _limpiar() -> void:

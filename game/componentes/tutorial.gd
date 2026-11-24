@@ -7,14 +7,15 @@ static var ruta: String = "user://preferencias.json"
 
 const PASOS := [
 	["Tu mano", "Cada carta es una acción de gobierno. Toca una para verla completa y pulsa Jugar para ejecutarla; cuando juegas una, entra otra nueva."],
-	["Movimientos", "Cada carta cuesta de 1 a 3 movimientos. Tienes 5 por turno, más un bono cuando tu aprobación es alta y +1 por cada asesor."],
-	["Delegación", "Hasta 2 cartas por turno puedes delegarlas en un ministro: no gastan movimientos, pero pueden salir mal. Solo en gobierno."],
-	["Gabinete", "Tus 8 ministros deciden qué cartas aparecen. En Gabinete también cambias asesores, coalición y movimientos internos."],
+	["Movimientos", "Cada carta cuesta de 1 a 3 movimientos. Tienes {pa} por turno, más un bono cuando tu aprobación es alta y +1 por cada asesor."],
+	["Delegación", "Hasta {deleg} cartas por turno puedes delegarlas en un ministro: no gastan movimientos, pero pueden salir mal. Solo en gobierno."],
+	["Gabinete", "Tus {gab} ministros deciden qué cartas aparecen. En Gabinete también cambias asesores, coalición y movimientos internos."],
 	["Tu turno", "Cuando termines tus jugadas, toca el botón de avanzar para cerrar la semana. Eso es todo: ¡a campaña!"],
 ]
 
 signal cerrado
 
+var leyes: Dictionary = {}  # data/leyes.json: las cifras del texto salen de ahí (nunca fijas)
 var objetivos: Array = []  # un Control por paso, en el mismo orden que PASOS
 var _paso: int = 0
 var _marco: PanelContainer
@@ -84,7 +85,7 @@ func _mostrar() -> void:
 	var p: Array = PASOS[_paso]
 	_contador.text = "PASO %d DE %d" % [_paso + 1, PASOS.size()]
 	_titulo.text = String(p[0])
-	_texto.text = String(p[1])
+	_texto.text = String(p[1]).format({"pa": int(leyes.get("mano", {}).get("pa_por_turno", 5)), "deleg": int(leyes.get("delegacion", {}).get("max_por_turno", 2)), "gab": int(leyes.get("gabinete", {}).get("tamano", 8))})
 	_siguiente.text = "Siguiente" if _paso < PASOS.size() - 1 else "Entendido"
 	if _paso < objetivos.size() and objetivos[_paso] is Control and is_instance_valid(objetivos[_paso]):
 		var r: Rect2 = (objetivos[_paso] as Control).get_global_rect().grow(6.0)

@@ -25,6 +25,6 @@ func _ready() -> void:
 	v.add_child(Tema.etiqueta("Cada ministro habilita las cartas de su área. Sin ministro de un sector, esas cartas no aparecen en tu mano. Puedes cambiarlo durante la campaña.", 12, Tema.TEXTO_SUAVE))
 	_aviso = Tema.etiqueta("", 12, FilasUI.ROJO_TEXTO, true)
 	v.add_child(_aviso)
-	var sel := PanelGabinete.crear(motor, "Comenzar campaña · 8 semanas", listo.emit, func(t: String) -> void: _aviso.text = t)
+	var sel := PanelGabinete.crear(motor, "Comenzar campaña · %d semanas" % int(motor.catalogo_leyes["hemiciclo"]["semanas_campana"]), listo.emit, func(t: String) -> void: _aviso.text = t)
 	sel.size_flags_vertical = Control.SIZE_EXPAND_FILL
 	v.add_child(sel)

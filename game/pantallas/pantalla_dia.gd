@@ -57,6 +57,7 @@ func _ready() -> void:
 	_siguiente_evento()
 	if Tutorial.debe_mostrar() and motor.estado.etapa == "campana" and motor.estado.turno_actual == 1:
 		var tut := Tutorial.new()
+		tut.leyes = motor.catalogo_leyes
 		tut.objetivos = [_mano, _r["pa"], _btn_deleg, _nav, _btn_fin]
 		_capa.add_child(tut)
 
