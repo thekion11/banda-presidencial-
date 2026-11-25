@@ -91,6 +91,8 @@ Referencia: lienzo de Claude Design «Presidente de Chile — Dirección visual 
 | Chips de indicadores | Cifra fija | La cifra cuenta, el chip destella verde/coral al cambiar y lleva una mini barra interna (sin cambiar su alto: el mapa sigue > 1/3) | `barras.gd` |
 | Pastilla de movimientos | Fija | Late al gastar o recuperar movimientos | `pantalla_dia.gd` |
 | Mano | Carta elegida fija | La elegida se mece 3 px tras posarse | `mano_ui.gd` |
+| Jugar una carta | La carta desaparecía de la mano | Una copia vuela a la región elegida (gira y se encoge); al llegar, el mapa reacciona con golpe de cámara (acerca, rebota y tiembla), ondas y destello de la región, y el número flotante sale en el punto de impacto | `mano_vuelo.gd`, `mapa_chile.gd › reaccionar` |
+| Sello de votación (Senado y Cámara) | APROBADA/RECHAZADA casi sin movimiento: el contenedor le reiniciaba giro y escala | Fuera del contenedor: cae girado desde grande, golpea con onda expansiva, chispas, temblor de la capa y sonido (éxito/error); RECHAZADA hace un vaivén de «no» | `sello_voto.gd` |
 | Barra inferior | Sin estado | Pestaña abierta en oro con filo superior | `barras.gd › nav` |
 | Hojas (Comité, Congreso, Gabinete) | Aparecen de golpe | Se funden y asientan | `pantalla_dia.gd` |
 | Elección | Estática | La cifra cuenta, la barra se llena, regiones escalonadas, confeti oro/rojo/crema al ganar | `pantalla_eleccion.gd` |
