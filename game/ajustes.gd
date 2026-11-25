@@ -6,6 +6,8 @@ const RUTA := "user://ajustes.json"
 static var sonido: bool = true
 static var vibracion: bool = true
 static var animaciones: bool = true
+static var texto_grande: bool = false  # letra un 15 % mayor en las etiquetas con ajuste de línea
+static var daltonico: bool = false  # escala de aprobación azul-naranja (Okabe-Ito) en lugar de verde-rojo
 
 
 static func cargar() -> void:
@@ -16,18 +18,22 @@ static func cargar() -> void:
 		sonido = bool(d.get("sonido", true))
 		vibracion = bool(d.get("vibracion", true))
 		animaciones = bool(d.get("animaciones", true))
+		texto_grande = bool(d.get("texto_grande", false))
+		daltonico = bool(d.get("daltonico", false))
 
 
 static func guardar() -> void:
 	var f := FileAccess.open(RUTA, FileAccess.WRITE)
 	if f != null:
-		f.store_string(JSON.stringify({"sonido": sonido, "vibracion": vibracion, "animaciones": animaciones}))
+		f.store_string(JSON.stringify({"sonido": sonido, "vibracion": vibracion, "animaciones": animaciones, "texto_grande": texto_grande, "daltonico": daltonico}))
 
 
 static func leer(clave: String) -> bool:
 	match clave:
 		"sonido": return sonido
 		"vibracion": return vibracion
+		"texto_grande": return texto_grande
+		"daltonico": return daltonico
 		_: return animaciones
 
 
@@ -35,4 +41,6 @@ static func poner(clave: String, valor: bool) -> void:
 	match clave:
 		"sonido": sonido = valor
 		"vibracion": vibracion = valor
+		"texto_grande": texto_grande = valor
+		"daltonico": daltonico = valor
 		_: animaciones = valor

@@ -163,3 +163,7 @@ Instrucción del usuario: «dejaría la dirección del juego abierta, haría tod
 - Fuente: PR-10 (`docs/PROPUESTAS.md`, prioridad media-alta, autorizada por el usuario con la carrera política PR-12 ampliado). Sin arte nuevo y sin mecánica nueva en el motor: cada ronda es un evento con decisión del mismo día (mismo sistema de guardado y replay), con el campo `escena {nombre, ronda, rondas}` que la interfaz muestra en la cabecera («DEBATE PRESIDENCIAL FINAL · RONDA 2 DE 3»).
 - Escenas: debate presidencial final (3 rondas: economía, seguridad, cierre), debate en radio (2), entrevista en televisión abierta (2) y debate parlamentario en oposición (2). Cada ronda mezcla tono (ataque, unidad, programa) con efectos pequeños; el total equivale a lo que daba el evento único.
 - Prueba: `test_escenas` (3 rondas en orden el mismo día, decisión y replay exacto). Pendiente: audiencia/encuestas por ronda y retratos del moderador (arte, U7).
+
+## V. Accesibilidad básica (25-nov-2026, Fase F del análisis de profundidad)
+- Ajustes nuevos, desactivados por defecto: «Texto grande» (+15 % en las etiquetas con ajuste de línea; las cortas no cambian para no desbordar) y «Colores para daltonismo» (escala de aprobación azul–naranja de Okabe-Ito). La paleta congelada sigue siendo la predeterminada. Prueba: `test_accesibilidad`.
+- Pendiente: probar el texto grande en cada pantalla con personas (U1) y música.
