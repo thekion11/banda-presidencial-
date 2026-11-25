@@ -35,7 +35,7 @@ static func mostrar(capa: Control, p_antes: Array, p_despues: Array, ind_antes: 
 
 
 func _ready() -> void:
-	set_anchors_preset(Control.PRESET_FULL_RECT)
+	set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)  # ya está en el árbol: hay que fijar también los offsets
 	mouse_filter = Control.MOUSE_FILTER_STOP
 	gui_input.connect(func(ev: InputEvent) -> void:
 		if ev is InputEventMouseButton and ev.pressed:
@@ -73,7 +73,7 @@ func _ready() -> void:
 	col.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	_panel.add_child(col)
 	col.add_child(Tema.etiqueta("FIN DE LA SEMANA", 12, Tema.ORO, true))
-	var tit := Tema.etiqueta(titulo_antes, 30, Tema.TEXTO_SUAVE, true)
+	var tit := Tema.etiqueta(titulo_antes, 24, Tema.TEXTO_SUAVE, true)
 	col.add_child(tit)
 	col.add_child(Tema.etiqueta(subtitulo, 13, Tema.TEXTO_SUAVE))
 	var sep := ColorRect.new()

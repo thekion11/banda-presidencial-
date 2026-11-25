@@ -42,24 +42,27 @@ static func mostrar(capa: Control, ministro: Dictionary, chips: Array) -> void:
 	var cinta := Tema.etiqueta_corta("ÚLTIMA HORA · ESCÁNDALO", 11, Tema.ROJO, true)
 	v.add_child(cinta)
 	var cartera := String(ministro.get("cartera", "el gabinete"))
-	v.add_child(Tema.etiqueta("Estalla escándalo en %s" % cartera, 20, Tema.TINTA, true))
+	v.add_child(Tema.etiqueta("Estalla escándalo: %s" % cartera, 20, Tema.TINTA, true))
 	if ministro.has("alias"):
 		v.add_child(Tema.etiqueta("Apuntan a %s. El gobierno pierde aprobación y capital político." % String(ministro["alias"]), 12, Tema.GRIS_CLARO, false, 600))
 	hoja.add_child(v)
-	hoja.custom_minimum_size = Vector2(320, 0)
-	capa.add_child(hoja)
-	hoja.size = hoja.get_combined_minimum_size()
-	hoja.position = Vector2((Tema.ANCHO - hoja.size.x) * 0.5, 300.0)
-	hoja.pivot_offset = hoja.size * 0.5
-	hoja.scale = Vector2.ONE * 0.1
-	hoja.rotation_degrees = -200.0
-	var th := hoja.create_tween()
-	th.tween_property(hoja, "scale", Vector2.ONE, 0.45).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
-	th.parallel().tween_property(hoja, "rotation_degrees", -4.0, 0.45).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
+	var marco := Control.new()  # soporte de tamaño fijo fuera de contenedores: gira y escala sin que nadie lo reacomode
+	marco.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	marco.size = Vector2(330, 140)
+	marco.position = Vector2((Tema.ANCHO - marco.size.x) * 0.5, 280.0)
+	marco.pivot_offset = marco.size * 0.5
+	hoja.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	marco.add_child(hoja)
+	capa.add_child(marco)
+	marco.scale = Vector2.ONE * 0.1
+	marco.rotation_degrees = -200.0
+	var th := marco.create_tween()
+	th.tween_property(marco, "scale", Vector2.ONE, 0.45).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	th.parallel().tween_property(marco, "rotation_degrees", -4.0, 0.45).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
 	th.tween_interval(1.7)
-	th.tween_property(hoja, "modulate:a", 0.0, 0.3)
-	th.parallel().tween_property(hoja, "position:y", 260.0, 0.3)
-	th.tween_callback(hoja.queue_free)
+	th.tween_property(marco, "modulate:a", 0.0, 0.3)
+	th.parallel().tween_property(marco, "position:y", 240.0, 0.3)
+	th.tween_callback(marco.queue_free)
 	for c in chips:  # los chips golpeados tiemblan
 		temblar(c as Control)
 

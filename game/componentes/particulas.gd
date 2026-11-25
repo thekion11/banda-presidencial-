@@ -15,7 +15,7 @@ var _t: float = 0.0
 
 func _ready() -> void:
 	mouse_filter = Control.MOUSE_FILTER_IGNORE
-	set_anchors_preset(Control.PRESET_FULL_RECT)
+	set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	if not Movimiento.activo():
 		visible = false
 		set_process(false)
