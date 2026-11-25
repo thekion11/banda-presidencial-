@@ -66,3 +66,15 @@ En curso, en este orden: PR-09 estadísticas de cartas → PR-08 ministros con p
 - PR-11 hecho en parte: epílogo (finales variados), hitos y **resultado de la sucesión** (texto según aprobación final; umbrales en `leyes.json` → `sucesion`). Pendiente: bono de legado que pase a la próxima partida (requiere guardar progreso entre partidas: decisión de datos/privacidad, U9) y la puerta a una nueva candidatura.
 - PR-12 (reelección): NO implementado. El artículo 25 de la Constitución debe contrastarse con el texto oficial antes de modelarlo (regla de CLAUDE.md §6) y hoy no está en `data/bcn/normas.json`; además exige un segundo mandato como sesión nueva con estado heredado. Necesito que confirmes si lo quieres como partida nueva heredada.
 - PR-13 (oposición): NO implementado. Es un modo casi nuevo (verbos distintos: bloquear, fiscalizar, acusar, reconstruir el partido); conviene validar primero el modo de gobierno con personas (D-02).
+
+## PR-17 Balas de plata (25-nov-2026)
+- Hecho: 5 cartas únicas de «recursos extraordinarios» (urgencia legislativa, veto, DFL, plebiscito, estado de excepción) en `data/cartas.json` con `unica: true`: efectos fuertes y costo alto en capital político; entran al mazo normal y no se repiten. Prueba en `test_decisiones.gd`. Los hashes de oro cambiaron a propósito.
+- Pendiente: reglas legales finas (el DFL no vale para materias vedadas, el plebiscito puede salir mal) y un mazo aparte de 3-5 cartas por mandato.
+
+## Nota legal informal (consulta del usuario a Gemini, 25-nov-2026; NO reemplaza a U4)
+Lo que el usuario recopiló, y cómo lo cumple el proyecto:
+- Figuras históricas fallecidas: nombres y hechos de libre uso. Políticos vivos: la representación en su rol público suele protegerse por libertad de expresión e información **si no se difama ni se sugiere que patrocinan el juego**. → Mantener alias satíricos, aviso de ficción y cero afirmaciones de auspicio.
+- Fotografías: la persona no es dueña del nombre, pero **la foto sí tiene dueño** (fotógrafo o agencia). → El juego no usa fotos de personas: solo ilustraciones propias/generadas y retratos de dominio público (Wikimedia Commons con licencia verificada).
+- Banderas y escudos: símbolos públicos, sin derechos de autor comerciales; evitar usarlos como marca o logotipo y símbolos prohibidos por ley. → La bandera chilena aparece como ambientación, no como marca del juego.
+- Marcas, armas comerciales, música con derechos y mapas propietarios requieren licencia. → Mapas propios/abiertos (OSM, Natural Earth), sin marcas reales; sonido solo CC0 cuando se agregue.
+Sigue pendiente U4: revisión por un abogado chileno (esta nota es de una fuente general, no asesoría jurídica).

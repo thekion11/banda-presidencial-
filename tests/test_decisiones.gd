@@ -29,5 +29,13 @@ func _init() -> void:
 	_check(not bool(m.eventos.decidir("evt_inexistente", 0)["ok"]), "evento inexistente")
 	var g: Dictionary = JSON.parse_string(JSON.stringify(m.estado.exportar_guardado(Datos.huella(datos))))
 	_check(g["entradas"].any(func(e: Dictionary) -> bool: return e["tipo"] == "decision"), "la decisión queda en el guardado")
+	# PR-17: «balas de plata»: cartas únicas, caras en capital político
+	var balas: Array = datos["cartas"].filter(func(c: Dictionary) -> bool: return String(c["id"]).begins_with("bala_"))
+	_check(balas.size() == 5, "hay 5 balas de plata")
+	var m2 := AyudaV2.gobierno(datos, 22)
+	m2.estado.mano[0] = balas[0]
+	_check(m2.cartas.es_unica(balas[0]), "una bala de plata es de un solo uso")
+	var cap := m2.estado.ind("capital")
+	_check(bool(m2.jugar_carta(0)["ok"]) and m2.estado.cartas_ejecutadas.has(String(balas[0]["id"])) and m2.estado.ind("capital") < cap, "usarla cuesta capital y no se repite")
 	print("test_decisiones: ", "OK" if _fallos == 0 else "FALLO")
 	quit(1 if _fallos > 0 else 0)

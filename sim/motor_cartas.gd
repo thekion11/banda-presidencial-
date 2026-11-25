@@ -52,7 +52,7 @@ func reales_para_mazo() -> Array[String]:
 
 
 func es_unica(carta: Dictionary) -> bool:
-	return carta["requisitos"]["ley"] != null or carta.has("obra") or es_real(carta) or carta.get("abre_propuesta_comite", null) != null
+	return bool(carta.get("unica", false)) or carta["requisitos"]["ley"] != null or carta.has("obra") or es_real(carta) or carta.get("abre_propuesta_comite", null) != null
 
 
 func vista_carta(idx: int, ministro_id: String = "") -> Dictionary:
