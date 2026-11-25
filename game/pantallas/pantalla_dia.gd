@@ -264,6 +264,7 @@ func _on_region(id: String) -> void:
 func _jugar() -> void:
 	var n_reg := motor.estado.registro_acciones.size()
 	var antes := motor.estado.indicadores.duplicate()
+	var vuelo := ManoVuelo.datos(motor, _sel, _mano)  # la carta elegida (y dónde está) antes de que salga de la mano
 	_mano_tocada = false
 	var r := motor.jugar_carta(_sel, _ministro, _region)
 	if not bool(r["ok"]):
@@ -286,7 +287,9 @@ func _jugar() -> void:
 		msg = "Versión viable aplicada (%d %%)." % roundi(float(r["corrector"]["ratio"]) * 100.0)
 	var cambios := Barras.resumen_cambios(antes, motor.estado.indicadores)  # consecuencia visible de la carta
 	_avisar((msg if cambios == "" else msg + " " + cambios) + Barras.sufijo_carta(r))
-	Feedback.tras_jugar(_capa, r, cambios)
+	var color := Tema.BAJA if bool(r.get("salio_mal", false)) or bool(r.get("escandalo", false)) else Tema.SUBE
+	ManoVuelo.lanzar(_capa, vuelo, _mapa, _region, color, func(destino: Vector2) -> void:
+		Feedback.tras_jugar(_capa, r, cambios, _capa.get_global_transform().affine_inverse() * destino + Vector2(-40, -30)))
 	accion_hecha.emit()
 	_refrescar()
 

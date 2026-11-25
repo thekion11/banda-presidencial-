@@ -49,22 +49,7 @@ static func _pagina_votacion(col: VBoxContainer, camara: String, voto: Dictionar
 		leyenda.add_child(Icono.crear("dot", par[0], 12.0))
 		leyenda.add_child(Tema.etiqueta_corta(par[1], 11, Tema.TEXTO_SUAVE))
 	col.add_child(leyenda)
-	var ok := favor >= minimo
-	var color := Tema.SUBE if ok else Tema.BAJA
-	var sc := CenterContainer.new()
-	var caja := PanelContainer.new()
-	caja.add_theme_stylebox_override("panel", Tema.caja(Color(color, 0.12), 10, color, 3))
-	caja.add_child(Tema.etiqueta_corta("APROBADA" if ok else "RECHAZADA", 30, color, true))
-	caja.pivot_offset = Vector2(100, 24)
-	sc.add_child(caja)
-	sc.custom_minimum_size = Vector2(0, 70)
-	col.add_child(sc)
-	caja.set_deferred("rotation_degrees", -4.0)
-	caja.modulate.a = 0.0
-	caja.scale = Vector2(2.2, 2.2)
-	var tws := caja.create_tween().set_parallel(true)
-	tws.tween_property(caja, "modulate:a", 1.0, 0.12).set_delay(1.35)
-	tws.tween_property(caja, "scale", Vector2.ONE, 0.32).set_delay(1.35).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	col.add_child(SelloVoto.crear(favor >= minimo, 1.35))  # cae al terminar de llenarse el hemiciclo
 
 
 static func _camino(col: VBoxContainer, paginas: Array, i: int, nombres: Dictionary) -> void:

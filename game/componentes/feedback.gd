@@ -42,7 +42,7 @@ static func flotante(padre: Control, texto: String, pos: Vector2, color: Color =
 	tw.chain().tween_callback(l.queue_free)
 
 
-static func tras_jugar(capa: Control, r: Dictionary, cambios: String) -> void:
+static func tras_jugar(capa: Control, r: Dictionary, cambios: String, pos: Vector2 = Vector2(110, 430)) -> void:
 	## Sonido, vibración y número flotante al jugar una carta (según salga bien, mal o con escándalo).
 	if bool(r.get("escandalo", false)) or bool(r.get("salio_mal", false)):
 		sonar("alerta")
@@ -50,4 +50,4 @@ static func tras_jugar(capa: Control, r: Dictionary, cambios: String) -> void:
 	else:
 		sonar("jugar")
 		vibrar(20)
-	flotante(capa, cambios, Vector2(110, 430), Tema.SUBE if not bool(r.get("salio_mal", false)) else Tema.BAJA)
+	flotante(capa, cambios, pos, Tema.SUBE if not bool(r.get("salio_mal", false)) else Tema.BAJA)

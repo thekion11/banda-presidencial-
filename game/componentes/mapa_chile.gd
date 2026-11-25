@@ -26,6 +26,10 @@ var _relieve: Texture2D
 var x_centro_rel: float = 0.5
 var leyenda: bool = true
 var ciudades_visibles: bool = true
+var _camara := Transform2D.IDENTITY  # golpe de cámara al recibir una carta (dirección visual v4); el fondo no se mueve
+var _onda: Dictionary = {}  # {pos, t, color}: ondas del último impacto
+var _destello_id: String = ""
+var _destello: float = 0.0
 
 
 func cargar_geo(geo: Dictionary) -> void:
@@ -131,21 +135,23 @@ func _draw() -> void:
 		for gx in range(int(fila % 2) * 15, int(size.x), 30):
 			draw_arc(Vector2(gx, gy), 4.5, PI * 0.15, PI * 0.85, 6, Color(0.55, 0.78, 1.0, 0.10), 1.2)
 		fila += 1
+	draw_set_transform_matrix(_camara)
 	for id in _piezas.keys():
 		var col := Tema.color_aprobacion(float(valores.get(id, 50.0)))
 		if id == seleccion:
 			col = col.lightened(0.18)
+		if id == _destello_id and _destello > 0.0:
+			col = col.lerp(Tema.CREMA, 0.55 * _destello)
 		if _mallas.has(id):
 			var h := size.y - 16.0
-			draw_set_transform(_transformar(Vector2.ZERO) + Vector2(5.0, 6.0), 0.0, Vector2(h * estirar_x, h))
+			draw_set_transform_matrix(_camara * Transform2D(0.0, Vector2(h * estirar_x, h), 0.0, _transformar(Vector2.ZERO) + Vector2(5.0, 6.0)))
 			draw_mesh(_mallas[id], null, Transform2D.IDENTITY, Color(0, 0, 0, 0.38))
-			draw_set_transform(Vector2.ZERO, 0.0, Vector2.ONE)
 			var origen := _transformar(Vector2.ZERO)
-			draw_set_transform(origen, 0.0, Vector2(h * estirar_x, h))
+			draw_set_transform_matrix(_camara * Transform2D(0.0, Vector2(h * estirar_x, h), 0.0, origen))
 			draw_mesh(_mallas[id], null, Transform2D.IDENTITY, col)
 			if _relieve != null:
 				draw_mesh(_mallas[id], _relieve, Transform2D.IDENTITY, Color(1, 1, 1, 0.7))
-			draw_set_transform(Vector2.ZERO, 0.0, Vector2.ONE)
+			draw_set_transform_matrix(_camara)
 		for pieza in _piezas[id]:
 			var pts := PackedVector2Array()
 			for p in pieza:
@@ -170,12 +176,22 @@ func _draw() -> void:
 		var nombre := String(c["nombre"])
 		var ancho_txt := fuente.get_string_size(nombre, HORIZONTAL_ALIGNMENT_LEFT, -1, 10).x
 		draw_string(fuente, Vector2(pc.x - 8.0 - ancho_txt, pc.y + 3.5), nombre, HORIZONTAL_ALIGNMENT_LEFT, -1, 10, Tema.TEXTO)
+	if not _onda.is_empty():  # ondas del impacto de la carta en la región
+		var o := _onda
+		var t: float = o["t"]
+		for k in range(2):
+			var tk := clampf(t * 1.25 - 0.22 * float(k), 0.0, 1.0)
+			if tk > 0.0:
+				draw_arc(o["pos"], 6.0 + 54.0 * tk, 0.0, TAU, 48, Color(o["color"], (1.0 - tk) * 0.9), 3.0 - 1.5 * tk, true)
+		draw_circle(o["pos"], 7.0 * (1.0 - t), Color(Tema.CREMA, 1.0 - t))
+	draw_set_transform_matrix(Transform2D.IDENTITY)
 	if leyenda:
 		var r := Rect2(size.x - 178.0, size.y - 34.0, 168.0, 26.0)
 		draw_style_box(Tema.caja(Color(0.04, 0.13, 0.21, 0.85), 10), r)
 		draw_string(Tema.fuente_texto(500), r.position + Vector2(8, 17), "Aprobación", HORIZONTAL_ALIGNMENT_LEFT, -1, 10, Tema.TEXTO_SUAVE)
 		for k in range(60):
 			draw_rect(Rect2(r.position.x + 74.0 + float(k) * 1.4, r.position.y + 9.0, 1.6, 8.0), Tema.color_aprobacion(30.0 + float(k) / 59.0 * 30.0))
+	draw_set_transform_matrix(_camara)  # obras y propuestas siguen al golpe de cámara; la leyenda queda fija
 	for id in obras.keys():
 		if int(obras[id]) > 0 and _banda_y.has(id):
 			var c := centro(id) + Vector2(10.0, 0.0)
@@ -189,8 +205,34 @@ func _draw() -> void:
 			draw_circle(c2, 9.5, Tema.ROJO)
 			draw_colored_polygon(PackedVector2Array([c2 + Vector2(-5, 1), c2 + Vector2(0, -5), c2 + Vector2(5, 1)]), Tema.TEXTO)
 			draw_rect(Rect2(c2 + Vector2(-3.5, 1), Vector2(7, 5)), Tema.TEXTO)
+	draw_set_transform_matrix(Transform2D.IDENTITY)
 	if bastion != "" and _banda_y.has(bastion):
 		pass
+
+
+func reaccionar(id: String, color: Color) -> void:
+	## El mapa recibe la carta: golpe de cámara hacia la región (acerca y rebota con un leve temblor), ondas y destello.
+	if not Movimiento.activo():
+		return
+	var p := centro(id) if _banda_y.has(id) else size * 0.5
+	_onda = {"pos": p, "t": 0.0, "color": color}
+	_destello_id = id
+	create_tween().tween_method(func(t: float) -> void:
+		var s := 1.0 + 0.07 * sin(t * 2.6 * PI) * exp(-3.2 * t)
+		var temblor := Vector2(sin(t * 41.0), cos(t * 33.0)) * 3.0 * pow(1.0 - t, 2.0)
+		_camara = Transform2D(0.0, Vector2(s, s), 0.0, p * (1.0 - s) + temblor)
+		_destello = 1.0 - t
+		_onda["t"] = t
+		if t >= 1.0:
+			_camara = Transform2D.IDENTITY
+			_destello = 0.0
+			_onda = {}
+		queue_redraw(), 0.0, 1.0, 0.9)
+
+
+func posicion_global(id: String) -> Vector2:
+	## Punto de la región en coordenadas de pantalla (destino de la carta que vuela).
+	return get_global_transform() * (centro(id) if _banda_y.has(id) else size * 0.5)
 
 
 func centro(id: String) -> Vector2:

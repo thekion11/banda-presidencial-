@@ -87,7 +87,7 @@ func _correr() -> void:
 	Tutorial.ruta = "user://preferencias_video.json"
 	DirAccess.remove_absolute(ProjectSettings.globalize_path(Tutorial.ruta))
 	_poner_dedo()
-	create_timer(100.0).timeout.connect(quit)  # tope de seguridad: el video nunca pasa de 100 s
+	create_timer(110.0).timeout.connect(quit)  # tope de seguridad: el video nunca pasa de 110 s
 	process_frame.connect(func() -> void: _process_dedo(1.0 / 30.0))
 	var main: Node = load("res://game/main.tscn").instantiate()
 	root.add_child(main)
@@ -132,9 +132,13 @@ func _correr() -> void:
 	for vez in range(2):
 		var r: Rect2 = dia._mano.get_global_rect()
 		await _deslizar(Vector2(r.get_center().x, r.position.y + 110.0), Vector2(r.get_center().x, r.position.y - 120.0))
-		dia._jugar()
+		dia._jugar()  # la carta vuela a la región y el mapa reacciona
 		await _esperar(2.4)
 		if vez == 0:
+			await _tocar_en(dia._mapa.posicion_global("biobio"))  # la segunda carta va al sur
+			dia._mapa.seleccion = "biobio"
+			dia._on_region("biobio")
+			await _esperar(0.8)
 			await _tocar_en(Vector2(dia._mano.get_global_rect().position.x + 280.0, dia._mano.get_global_rect().position.y + 100.0))
 			dia._on_carta(maxi(0, dia.motor.estado.mano.size() - 1))
 			await _esperar(1.2)
@@ -164,6 +168,14 @@ func _correr() -> void:
 	var bs: Array = dia._capa.find_children("*", "Button", true, false)
 	await _tocar(bs[bs.size() - 1])
 	await _esperar(3.4)
+	for h in dia._capa.get_children():
+		if h is Control and h != dia._toast:
+			h.queue_free()
+	# 6b) Votación rechazada en el Senado: sello rojo con vaivén de «no».
+	var ev2 := {"titulo": "Reforma de pensiones", "hora": "11:00", "descripcion": "Requiere 26 votos de 50 senadores", "efectos": [{"ind": "capital", "delta": -5}, {"ind": "aprobacion", "delta": -2}],
+		"votacion": {"origen": "senado", "voto": {"aprobada": false, "senado": 21, "camara": 0, "min_senado": 26, "min_camara": 78, "total_senado": 50, "total_camara": 155, "abst_senado": 6, "abst_camara": 0, "contra_senado": 23, "contra_camara": 0}, "tc": {"recurso": false, "cae": false}, "aprobada": false}}
+	dia._capa.add_child(OverlaysDia.evento(ev2, func() -> void: pass, main.motor.catalogo_leyes["congreso"]["nombres"], 43))
+	await _esperar(4.4)
 	for h in dia._capa.get_children():
 		if h is Control and h != dia._toast:
 			h.queue_free()

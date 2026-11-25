@@ -36,6 +36,20 @@ func _correr() -> void:
 	root.add_child(pt)
 	_check(not pt.visible and not pt.is_processing(), "las partículas no deben procesar sin animaciones")
 
+	var sello := SelloVoto.crear(false)
+	sello.size = Vector2(358, 70)
+	root.add_child(sello)
+	await process_frame
+	var caja: Control = sello.get_child(0)
+	_check(is_equal_approx(caja.modulate.a, 1.0) and caja.scale.is_equal_approx(Vector2.ONE) and is_equal_approx(caja.rotation_degrees, SelloVoto.GIRO), "sin animaciones el sello queda visible, a escala 1 y girado")
+	var llego := [false]
+	var mapa := MapaChile.new()
+	root.add_child(mapa)
+	var c0 := Control.new()
+	root.add_child(c0)
+	ManoVuelo.lanzar(c0, {}, mapa, "", Tema.SUBE, func(_p: Vector2) -> void: llego[0] = true)
+	_check(llego[0], "sin animaciones el vuelo de la carta avisa la llegada al instante (el número flotante no se pierde)")
+
 	# 2) Forzado encendido: las animaciones corren y terminan exactas.
 	Movimiento.forzado = 1
 	var b := Barras.boton_jugar()
@@ -67,6 +81,14 @@ func _correr() -> void:
 	_check(c.modulate.a < 0.5, "aparecer parte transparente")
 	await _esperar(0.4)
 	_check(is_equal_approx(c.modulate.a, 1.0) and c.scale.is_equal_approx(Vector2.ONE), "aparecer termina opaco y a escala 1 (%s, %s)" % [c.modulate.a, c.scale])
+	var sello2 := SelloVoto.crear(true, 0.1)
+	sello2.size = Vector2(358, 70)
+	root.add_child(sello2)
+	await _esperar(0.05)
+	var caja2: Control = sello2.get_child(0)
+	_check(caja2.scale.x > 1.5, "el sello parte grande antes de caer (%s)" % caja2.scale)
+	await _esperar(1.0)
+	_check(caja2.scale.is_equal_approx(Vector2.ONE) and is_equal_approx(caja2.rotation_degrees, SelloVoto.GIRO) and is_equal_approx(caja2.modulate.a, 1.0), "el sello termina asentado (%s, %s)" % [caja2.scale, caja2.rotation_degrees])
 	var conf := Particulas.new()
 	conf.modo = "confeti"
 	conf.duracion = 0.2
