@@ -52,7 +52,13 @@
     ],
     "etapa": "gobierno",
     "fuente": "fuentes.json#dipres_2026",
-    "familia": "naturaleza"
+    "familia": "naturaleza",
+    "meses": [
+      12,
+      1,
+      2,
+      3
+    ]
   },
   {
     "id": "evt_terremoto",
@@ -106,7 +112,14 @@
     ],
     "etapa": "gobierno",
     "fuente": "fuentes.json#ficticio_2026",
-    "familia": "economia"
+    "familia": "economia",
+    "contexto": [
+      {
+        "ind": "cohesion",
+        "bajo": 55,
+        "mult": 2.5
+      }
+    ]
   },
   {
     "id": "evt_alza_cobre",
@@ -129,7 +142,14 @@
     ],
     "etapa": "gobierno",
     "fuente": "fuentes.json#ficticio_2026",
-    "familia": "economia"
+    "familia": "economia",
+    "contexto": [
+      {
+        "ind": "fiscal",
+        "bajo": 40,
+        "mult": 2.0
+      }
+    ]
   },
   {
     "id": "evt_baja_cobre",
@@ -148,7 +168,14 @@
     ],
     "etapa": "gobierno",
     "fuente": "fuentes.json#ficticio_2026",
-    "familia": "economia"
+    "familia": "economia",
+    "contexto": [
+      {
+        "ind": "fiscal",
+        "bajo": 60,
+        "mult": 1.8
+      }
+    ]
   },
   {
     "id": "evt_incendios",
@@ -171,7 +198,13 @@
     ],
     "etapa": "gobierno",
     "fuente": "fuentes.json#ficticio_2026",
-    "familia": "naturaleza"
+    "familia": "naturaleza",
+    "meses": [
+      12,
+      1,
+      2,
+      3
+    ]
   },
   {
     "id": "evt_protesta_estudiantil",
@@ -194,7 +227,14 @@
     ],
     "etapa": "gobierno",
     "fuente": "fuentes.json#ficticio_2026",
-    "familia": "social"
+    "familia": "social",
+    "contexto": [
+      {
+        "ind": "aprobacion",
+        "bajo": 35,
+        "mult": 2.5
+      }
+    ]
   },
   {
     "id": "evt_cuenta_publica_a1",
@@ -462,7 +502,12 @@
     ],
     "etapa": "gobierno",
     "fuente": "fuentes.json#ficticio_2026",
-    "familia": "naturaleza"
+    "familia": "naturaleza",
+    "meses": [
+      12,
+      1,
+      2
+    ]
   },
   {
     "id": "evt_marejadas",
@@ -485,7 +530,13 @@
     ],
     "etapa": "gobierno",
     "fuente": "fuentes.json#ficticio_2026",
-    "familia": "naturaleza"
+    "familia": "naturaleza",
+    "meses": [
+      6,
+      7,
+      8,
+      9
+    ]
   },
   {
     "id": "evt_paro_salud",
@@ -508,7 +559,14 @@
     ],
     "etapa": "gobierno",
     "fuente": "fuentes.json#ficticio_2026",
-    "familia": "social"
+    "familia": "social",
+    "contexto": [
+      {
+        "ind": "aprobacion",
+        "bajo": 35,
+        "mult": 2.5
+      }
+    ]
   },
   {
     "id": "evt_huelga_mineria",
@@ -531,7 +589,14 @@
     ],
     "etapa": "gobierno",
     "fuente": "fuentes.json#ficticio_2026",
-    "familia": "economia"
+    "familia": "economia",
+    "contexto": [
+      {
+        "ind": "cohesion",
+        "bajo": 55,
+        "mult": 2.0
+      }
+    ]
   },
   {
     "id": "evt_inflacion_baja",
@@ -554,7 +619,14 @@
     ],
     "etapa": "gobierno",
     "fuente": "fuentes.json#ficticio_2026",
-    "familia": "economia"
+    "familia": "economia",
+    "contexto": [
+      {
+        "ind": "fiscal",
+        "alto": 60,
+        "mult": 1.8
+      }
+    ]
   },
   {
     "id": "evt_dolar_alto",
@@ -577,7 +649,14 @@
     ],
     "etapa": "gobierno",
     "fuente": "fuentes.json#ficticio_2026",
-    "familia": "economia"
+    "familia": "economia",
+    "contexto": [
+      {
+        "ind": "fiscal",
+        "bajo": 45,
+        "mult": 2.5
+      }
+    ]
   },
   {
     "id": "evt_inversion_privada",
@@ -600,7 +679,14 @@
     ],
     "etapa": "gobierno",
     "fuente": "fuentes.json#ficticio_2026",
-    "familia": "economia"
+    "familia": "economia",
+    "contexto": [
+      {
+        "ind": "aprobacion",
+        "alto": 45,
+        "mult": 1.8
+      }
+    ]
   },
   {
     "id": "evt_acusacion",
@@ -623,7 +709,14 @@
     ],
     "etapa": "gobierno",
     "fuente": "fuentes.json#ficticio_2026",
-    "familia": "politica"
+    "familia": "politica",
+    "contexto": [
+      {
+        "ind": "aprobacion",
+        "bajo": 30,
+        "mult": 3.0
+      }
+    ]
   },
   {
     "id": "evt_cumbre",
@@ -646,7 +739,14 @@
     ],
     "etapa": "gobierno",
     "fuente": "fuentes.json#ficticio_2026",
-    "familia": "politica"
+    "familia": "politica",
+    "contexto": [
+      {
+        "ind": "capital",
+        "alto": 60,
+        "mult": 1.8
+      }
+    ]
   },
   {
     "id": "evt_lluvias",
@@ -669,7 +769,13 @@
     ],
     "etapa": "gobierno",
     "fuente": "fuentes.json#ficticio_2026",
-    "familia": "naturaleza"
+    "familia": "naturaleza",
+    "meses": [
+      5,
+      6,
+      7,
+      8
+    ]
   },
   {
     "id": "evt_fiestas_patrias_a1",
@@ -1260,7 +1366,14 @@
         ]
       }
     ],
-    "familia": "externo"
+    "familia": "externo",
+    "contexto": [
+      {
+        "ind": "fiscal",
+        "bajo": 55,
+        "mult": 1.8
+      }
+    ]
   },
   {
     "id": "evt_ext_incendio",
@@ -1329,7 +1442,13 @@
         ]
       }
     ],
-    "familia": "externo"
+    "familia": "externo",
+    "meses": [
+      12,
+      1,
+      2,
+      3
+    ]
   },
   {
     "id": "evt_ext_paro",
@@ -1467,7 +1586,14 @@
       "id": "min_hacienda",
       "nombre": "Ministerio: Hacienda"
     },
-    "familia": "ministerio"
+    "familia": "ministerio",
+    "contexto": [
+      {
+        "ind": "fiscal",
+        "bajo": 45,
+        "mult": 3.0
+      }
+    ]
   },
   {
     "id": "evt_min_salud",
@@ -1543,7 +1669,14 @@
       "id": "min_salud",
       "nombre": "Ministerio: Salud"
     },
-    "familia": "ministerio"
+    "familia": "ministerio",
+    "contexto": [
+      {
+        "ind": "aprobacion",
+        "bajo": 35,
+        "mult": 2.0
+      }
+    ]
   },
   {
     "id": "evt_min_educacion",
@@ -1703,7 +1836,14 @@
       "id": "min_seguridad",
       "nombre": "Ministerio: Seguridad"
     },
-    "familia": "ministerio"
+    "familia": "ministerio",
+    "contexto": [
+      {
+        "ind": "aprobacion",
+        "bajo": 40,
+        "mult": 2.0
+      }
+    ]
   },
   {
     "id": "evt_min_obras",
@@ -2266,7 +2406,14 @@
       "id": "comision_hacienda",
       "nombre": "Comisión de Hacienda"
     },
-    "familia": "comision"
+    "familia": "comision",
+    "contexto": [
+      {
+        "ind": "capital",
+        "bajo": 40,
+        "mult": 2.0
+      }
+    ]
   },
   {
     "id": "evt_comision_salud",
@@ -2741,7 +2888,14 @@
       "id": "medios",
       "nombre": "Medios de comunicación"
     },
-    "familia": "medios"
+    "familia": "medios",
+    "contexto": [
+      {
+        "ind": "aprobacion",
+        "bajo": 35,
+        "mult": 2.5
+      }
+    ]
   },
   {
     "id": "evt_medios_entrevista",
@@ -2795,7 +2949,14 @@
       "id": "medios",
       "nombre": "Medios de comunicación"
     },
-    "familia": "medios"
+    "familia": "medios",
+    "contexto": [
+      {
+        "ind": "aprobacion",
+        "alto": 50,
+        "mult": 2.0
+      }
+    ]
   },
   {
     "id": "evt_camp_entrevista1",
@@ -5912,6 +6073,13 @@
           }
         ]
       }
+    ],
+    "contexto": [
+      {
+        "ind": "rival",
+        "alto": 45,
+        "mult": 2.0
+      }
     ]
   },
   {
@@ -5970,6 +6138,13 @@
             "delta": 2
           }
         ]
+      }
+    ],
+    "contexto": [
+      {
+        "ind": "rival",
+        "bajo": 40,
+        "mult": 2.0
       }
     ]
   },
@@ -6160,6 +6335,13 @@
             "delta": 0.5
           }
         ]
+      }
+    ],
+    "contexto": [
+      {
+        "ind": "rival",
+        "alto": 50,
+        "mult": 2.5
       }
     ]
   },

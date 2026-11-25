@@ -12,11 +12,20 @@
   },
   "director_eventos": {
     "nota": "Director de eventos: peso_sorteo es RELATIVO (no una probabilidad). Cada semana, con prob_semana ocurre como máximo un evento aleatorio; prob_decision es la parte de esos que pide una decisión. Ningún evento se repite antes de cooldown_evento semanas, ninguno de su misma familia antes de cooldown_familia, y entre decisiones pasan al menos cooldown_decision semanas. Los eventos programados no pasan por el director.",
-    "prob_semana": 0.5,
+    "prob_semana": 0.45,
     "prob_decision": 0.5,
     "cooldown_evento": 40,
     "cooldown_familia": 6,
-    "cooldown_decision": 4
+    "cooldown_decision": 4,
+    "silencio_libre": 2,
+    "ajuste_silencio": 0.12,
+    "prob_max": 0.9,
+    "decisiones_min_anio": 8,
+    "decisiones_max_anio": 12,
+    "estacion_en": 3.0,
+    "estacion_fuera": 0.2,
+    "umbral_menor": 3.0,
+    "nota_v2": "Director v2: la probabilidad semanal sube ajuste_silencio por cada semana sin eventos pasadas las silencio_libre (hasta prob_max); las decisiones se mantienen entre decisiones_min_anio y decisiones_max_anio por cada 52 semanas (bajo el mínimo se piden siempre, sobre el máximo nunca); los eventos con `meses` pesan estacion_en veces en esos meses y estacion_fuera fuera de ellos; `contexto` multiplica el peso cuando un indicador está bajo (`bajo`) o sobre (`alto`) un valor; los eventos informativos aleatorios con efectos pequeños (suma de |delta| ≤ umbral_menor) salen como aviso breve, no como pantalla completa."
   },
   "campana": {
     "min_promesas": 2,

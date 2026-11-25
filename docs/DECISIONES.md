@@ -133,3 +133,12 @@ Instrucción del usuario: «dejaría la dirección del juego abierta, haría tod
 - `tests/informe_bots.gd` compara las seis políticas en 1.ª campaña, gobierno y carrera (2.ª elección tras oposición); con `--escribir` guarda `docs/INFORME_BOTS.md`. No está en la suite (tarda ≈ 4 min).
 - Calibración final: `umbral_crisis_aprobacion` 12; en campañas posteriores a la primera el voto suma `peso_rival_voto × (42 − aprobación del rival)`; la herencia de aprobación entre periodos quedó en 0. Codicioso: ≈ 90 % de elecciones y ≈ 15 % de caídas; azar: ≈ 22 % y ≈ 60 %; humano: ≈ 70 % y ≈ 14 %.
 - **CI**: desde el commit de la carrera política el paso «Validar datos y límites» fallaba (informe de alcanzabilidad: las cartas de oposición no dependen del gabinete) y por eso el resto de pruebas no corría en CI. Corregido en `8c25601`.
+
+
+## Q. Director de eventos v2 (25-nov-2026, profundización del punto A pedida por el usuario)
+- Probabilidad de evento por semana dinámica: 0,45 + 0,12 por cada semana de silencio sobre 2 (tope 0,9), todo en `data/leyes.json › director_eventos`.
+- Estaciones (`meses` en cada evento: ×3 en su mes, ×0,2 fuera) y contexto (`contexto`: p. ej. fiscal < 45 multiplica ×2,5 los eventos de crisis fiscal).
+- Decisiones: entre 8 y 12 por año (bajo el mínimo se piden siempre en gobierno; sobre el máximo, nunca).
+- Eventos menores (aleatorios informativos con suma de efectos ≤ 3) se muestran como aviso breve, no como pantalla completa.
+- Medido (`test_ritmo`): 0,49 eventos por semana (antes 0,76), 32 decisiones por mandato (meta 30–45 ✔), 101 eventos distintos, silencio máximo 11 semanas, máx. 11 decisiones en 52 semanas. Bots: codicioso 93 % elecciones / 11 % crisis; experto 93 % / 0 %.
+- Pendiente: arranque con test ideológico rápido (3 preguntas); la dirección de duración sigue abierta (decisión del usuario).

@@ -292,7 +292,8 @@ static func texto_consecuencia(ev: Dictionary) -> String:
 	for ef in ev["efectos"]:
 		d[String(ef["ind"])] = float(ef["delta"])
 	var c := resumen_cambios({}, d)
-	return "Consecuencia: %s%s" % [String(ev["descripcion"]), (" " + c + ".") if c != "" else ""]
+	var cabeza := "Consecuencia: %s" % String(ev["descripcion"]) if String(ev["id"]).begins_with("dif_") else "%s: %s" % [String(ev["titulo"]), String(ev["descripcion"])]
+	return cabeza + ((" " + c + ".") if c != "" else "")
 
 
 static func pintar_chips(refs: Dictionary, est: EstadoSimulacion) -> void:

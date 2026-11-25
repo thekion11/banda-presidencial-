@@ -100,25 +100,71 @@ func _en_cooldown(evt: Dictionary, cfg: Dictionary, ahora: int) -> bool:
 	return false
 
 
+func mes_actual() -> int:
+	## Mes del calendario (1 a 12) de la semana en curso: desde el ciclo 2 hay un solo reloj; en el ciclo 1 la campaña y el gobierno tienen su fecha base.
+	var cal: Dictionary = m.catalogo_leyes["calendario"]
+	var e := m.estado
+	var base := String(cal["fecha_inicio_mandato"] if (e.etapa == "gobierno" or e.ciclo > 1) else cal["fecha_inicio_campana"])
+	var dias := (e.dia_actual - 1) if e.etapa == "gobierno" else (e.turno_actual - 1) * e.dias_por_turno
+	var t := Time.get_unix_time_from_datetime_string(base + "T00:00:00") + (dias + (e.dias_carrera if e.ciclo > 1 else 0)) * 86400
+	return int(Time.get_datetime_dict_from_unix_time(t)["month"])
+
+
+func _peso_efectivo(evt: Dictionary, cfg: Dictionary, mes: int) -> float:
+	## Peso relativo ajustado por estación (`meses`) y por contexto (`contexto`: indicador bajo o alto → multiplicador).
+	var w := float(evt.get("peso_sorteo", 0.0))
+	if evt.has("meses"):
+		w *= float(cfg["estacion_en"]) if (evt["meses"] as Array).has(mes) else float(cfg["estacion_fuera"])
+	for c in evt.get("contexto", []):
+		var v := m.estado.ind(String(c["ind"]))
+		if (c.has("bajo") and v < float(c["bajo"])) or (c.has("alto") and v > float(c["alto"])):
+			w *= float(c["mult"])
+	return w
+
+
+func _silencio(ahora: int) -> int:
+	var ultima := -1000
+	for id in m.estado.eventos_ocurridos.keys():
+		ultima = maxi(ultima, int(m.estado.eventos_ocurridos[id]))
+	return ahora - ultima
+
+
+func _decisiones_ultimo_anio(ahora: int) -> int:
+	var n := 0
+	for e in m.catalogo_eventos:
+		if e.has("opciones") and e["tipo"] == "aleatorio_semilla" and m.estado.eventos_ocurridos.has(String(e["id"])) and ahora - int(m.estado.eventos_ocurridos[String(e["id"])]) < 52:
+			n += 1
+	return n
+
+
 func _director(pool: Array[Dictionary]) -> Dictionary:
-	## Como máximo un evento aleatorio por semana, sin repeticiones cercanas (data/leyes.json «director_eventos»). Determinista con la semilla.
+	## Director v2 (data/leyes.json «director_eventos»): a lo sumo un evento aleatorio por semana, con probabilidad que sube con el silencio,
+	## decisiones entre un mínimo y un máximo por año, estaciones y contexto. Determinista con la semilla.
 	var cfg: Dictionary = m.catalogo_leyes["director_eventos"]
-	if m.rng.randf() >= float(cfg["prob_semana"]):
-		return {}
-	var quiere_decision := m.rng.randf() < float(cfg["prob_decision"])
 	var ahora := semana_abs()
+	var p := minf(float(cfg["prob_max"]), float(cfg["prob_semana"]) + float(cfg["ajuste_silencio"]) * float(maxi(0, _silencio(ahora) - int(cfg["silencio_libre"]))))
+	if m.rng.randf() >= p:
+		return {}
+	var dec_anio := _decisiones_ultimo_anio(ahora)
+	var p_dec := float(cfg["prob_decision"])
+	if dec_anio < int(cfg["decisiones_min_anio"]):
+		p_dec = 1.0 if m.estado.etapa == "gobierno" else p_dec  # bajo el mínimo anual, se piden decisiones
+	elif dec_anio >= int(cfg["decisiones_max_anio"]):
+		p_dec = 0.0
+	var quiere_decision := m.rng.randf() < p_dec
+	var mes := mes_actual()
 	for tipo in [quiere_decision, not quiere_decision]:  # si no hay del tipo pedido, se prueba el otro
 		var cand: Array[Dictionary] = []
 		var total := 0.0
 		for evt in pool:
 			if evt.has("opciones") == tipo and not _en_cooldown(evt, cfg, ahora) and _cumple_requisitos(evt):
 				cand.append(evt)
-				total += float(evt.get("peso_sorteo", 0.0))
+				total += _peso_efectivo(evt, cfg, mes)
 		if cand.is_empty() or total <= 0.0:
 			continue
 		var r := m.rng.randf() * total
 		for evt in cand:
-			r -= float(evt.get("peso_sorteo", 0.0))
+			r -= _peso_efectivo(evt, cfg, mes)
 			if r <= 0.0:
 				return evt
 		return cand[cand.size() - 1]
@@ -128,6 +174,10 @@ func _director(pool: Array[Dictionary]) -> Dictionary:
 func aplicar_evento(evt: Dictionary) -> Dictionary:
 	var res := {"id": evt["id"], "titulo": evt["titulo"], "descripcion": evt["descripcion"], "hora": evt["hora_etiqueta"], "votacion": null, "efectos": evt["efectos_base"]}
 	var aplicar := true
+	var abs_ef := 0.0
+	for ef in evt["efectos_base"]:
+		abs_ef += absf(float(ef["delta"]))
+	res["menor"] = evt["tipo"] == "aleatorio_semilla" and not evt.has("opciones") and evt["votacion"] == null and abs_ef <= float(m.catalogo_leyes["director_eventos"]["umbral_menor"])  # aviso breve, no pantalla completa
 	var opciones: Variant = evt.get("opciones", null)
 	if opciones != null:  # evento con decisión (PR-07/PR-08): los efectos dependen de la respuesta del jugador (decidir)
 		res["opciones"] = opciones
