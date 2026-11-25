@@ -366,7 +366,10 @@ func _siguiente_evento() -> void:
 		return
 	var ev: Dictionary = _cola_eventos.pop_front()
 	_capa.add_child(OverlaysDia.evento(ev, _siguiente_evento, motor.catalogo_leyes["congreso"]["nombres"], motor.estado.dia_actual,
-			func(i: int) -> void: motor.eventos.decidir(String(ev["id"]), i); _refrescar()))
+			func(i: int) -> void:
+				var a := motor.estado.indicadores.duplicate()
+				_avisar(Barras.texto_decision(motor.eventos.decidir(String(ev["id"]), i), a, motor.estado.indicadores))
+				_refrescar()))
 
 
 func _poner_nav(nacion: bool) -> void:

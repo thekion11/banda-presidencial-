@@ -20,7 +20,7 @@ func semana_abs() -> int:
 func procesar_semana() -> Array[Dictionary]:
 	var dia_inicio := m.estado.dia_actual
 	var dia_fin := m.estado.dia_actual + m.estado.dias_por_turno - 1
-	var ocurridos: Array[Dictionary] = []
+	var ocurridos: Array[Dictionary] = _cumplir_pendientes()
 	var aleatorios: Array[Dictionary] = []
 	for evt in m.catalogo_eventos:
 		if String(evt.get("etapa", "gobierno")) != m.estado.etapa:
@@ -37,6 +37,52 @@ func procesar_semana() -> Array[Dictionary]:
 	if not elegido.is_empty():
 		ocurridos.append(aplicar_evento(elegido))
 	return ocurridos
+
+
+func _cumple_requisitos(evt: Dictionary) -> bool:
+	## Memoria de las decisiones: un evento puede exigir haber elegido cierta opción antes (`requiere.decision`) o una relación mínima/máxima con un actor.
+	var rq: Variant = evt.get("requiere", null)
+	if rq == null:
+		return true
+	if rq.has("decision") and int(m.estado.decisiones.get(String(rq["decision"]["evento"]), -1)) != int(rq["decision"]["idx"]):
+		return false
+	if rq.has("relacion"):
+		var rel := relacion_actor(String(rq["relacion"]["actor"]))
+		if rq["relacion"].has("max") and rel > float(rq["relacion"]["max"]):
+			return false
+		if rq["relacion"].has("min") and rel < float(rq["relacion"]["min"]):
+			return false
+	return true
+
+
+func _cumplir_pendientes() -> Array[Dictionary]:
+	## Consecuencias programadas por decisiones anteriores: efectos diferidos y eventos en cadena que ya tocan esta semana.
+	var res: Array[Dictionary] = []
+	var quedan: Array[Dictionary] = []
+	var ahora := semana_abs()
+	for p in m.estado.pendientes:
+		if int(p["semana"]) > ahora:
+			quedan.append(p)
+			continue
+		if String(p["tipo"]) == "efecto":
+			for ef in p["efectos"]:
+				m.fx.aplicar_efecto(ef, 1.0, "")
+			res.append({"id": "dif_" + String(p["origen"]), "titulo": "Consecuencia de tu decisión", "descripcion": String(p.get("texto", "")), "hora": "09:00", "votacion": null, "efectos": p["efectos"]})
+			m.estado.registrar_accion("consecuencia", {"origen": p["origen"]})
+		else:
+			for evt in m.catalogo_eventos:
+				if String(evt["id"]) == String(p["evento"]):
+					m.estado.decisiones.erase(String(evt["id"]))  # un seguimiento puede repetirse en otro periodo
+					res.append(aplicar_evento(evt))
+	m.estado.pendientes = quedan
+	return res
+
+
+func relacion_actor(id: String) -> float:
+	for a in relaciones_actores():
+		if String(a["id"]) == id:
+			return float(a["relacion"])
+	return float(m.catalogo_leyes["actores"]["base"])
 
 
 func _en_cooldown(evt: Dictionary, cfg: Dictionary, ahora: int) -> bool:
@@ -65,7 +111,7 @@ func _director(pool: Array[Dictionary]) -> Dictionary:
 		var cand: Array[Dictionary] = []
 		var total := 0.0
 		for evt in pool:
-			if evt.has("opciones") == tipo and not _en_cooldown(evt, cfg, ahora):
+			if evt.has("opciones") == tipo and not _en_cooldown(evt, cfg, ahora) and _cumple_requisitos(evt):
 				cand.append(evt)
 				total += float(evt.get("peso_sorteo", 0.0))
 		if cand.is_empty() or total <= 0.0:
@@ -128,12 +174,26 @@ func decidir(evento_id: String, idx: int) -> Dictionary:
 	var ops: Array = evt["opciones"]
 	if idx < 0 or idx >= ops.size():
 		return {"ok": false, "razon": "opcion_invalida"}
-	for ef in ops[idx]["efectos"]:
+	var op: Dictionary = ops[idx]
+	for ef in op["efectos"]:
 		m.fx.aplicar_efecto(ef, 1.0, "")
+	var salio_mal := false
+	if op.has("riesgo") and m.rng.randf() < float(op["riesgo"]["prob"]):  # opción arriesgada: puede salir mal
+		salio_mal = true
+		for ef in op["riesgo"]["efectos"]:
+			m.fx.aplicar_efecto(ef, 1.0, "")
+	var ahora := semana_abs()
+	var futuro := 0
+	if op.has("diferido"):
+		futuro = int(op["diferido"]["semanas"])
+		m.estado.pendientes.append({"tipo": "efecto", "semana": ahora + futuro, "origen": evento_id, "efectos": op["diferido"]["efectos"], "texto": String(op["diferido"].get("texto", ""))})
+	if op.has("cadena"):
+		futuro = maxi(futuro, int(op["cadena"]["semanas"]))
+		m.estado.pendientes.append({"tipo": "evento", "semana": ahora + int(op["cadena"]["semanas"]), "origen": evento_id, "evento": String(op["cadena"]["evento"])})
 	m.estado.decisiones[evento_id] = idx
 	m.estado.registrar_entrada("decision", {"evento": evento_id, "idx": idx})
-	m.estado.registrar_accion("decision", {"evento": evento_id, "idx": idx})
-	return {"ok": true, "efectos": ops[idx]["efectos"]}
+	m.estado.registrar_accion("decision", {"evento": evento_id, "idx": idx, "mal": salio_mal})
+	return {"ok": true, "efectos": op["efectos"], "salio_mal": salio_mal, "efectos_riesgo": op.get("riesgo", {}).get("efectos", []) if salio_mal else [], "futuro": futuro}
 
 
 func relaciones_actores() -> Array[Dictionary]:

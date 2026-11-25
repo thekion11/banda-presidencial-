@@ -22,7 +22,8 @@
       "tipo": {
         "enum": [
           "programado",
-          "aleatorio_semilla"
+          "aleatorio_semilla",
+          "cadena"
         ]
       },
       "dia_objetivo": {

@@ -97,3 +97,8 @@ Instrucción del usuario: «dejaría la dirección del juego abierta, haría tod
 - **Partida rápida:** un toque desde el menú (última configuración o partido por defecto) lleva directo al mapa.
 - **Rebalanceo por el nuevo ritmo:** al haber menos eventos el juego se volvió demasiado fácil (bot codicioso 100 % y 0 % de crisis); se ajustó `umbral_victoria_presidencial` 51 → 52 y `umbral_crisis_aprobacion` 12 → 24. Bots ahora: codicioso ≈ 90–98 % de elecciones y ≈ 14 % de crisis; azar ≈ 25 % de elecciones y crisis casi segura. Dificultad difícil: 7 de 24.
 - Sigue abierta (decisión del usuario): duración del juego (semanas silenciosas, turno = mes o capítulos).
+
+## L. Fase D: decisiones con peso (hecha el 25-nov-2026)
+- **Riesgo** (`opciones[].riesgo {prob, efectos}`), **efecto a futuro** (`diferido {semanas, efectos, texto}`), **cadenas** (`cadena {evento, semanas}`: eventos de tipo `cadena` que aparecen semanas después) y **memoria** (`requiere {decision | relacion}`: eventos que solo salen si decidiste algo antes o si tu relación con un actor es muy baja o muy alta). Estado nuevo: `pendientes` (consecuencias programadas), guardado y replay exactos.
+- Contenido: 11 eventos en cadena, 5 eventos con memoria y 23 opciones existentes con riesgo, efecto diferido o cadena. La pantalla de decisión rotula «con riesgo» y «con efecto a futuro»; tras decidir, el aviso dice qué cambió, si salió mal y cuándo habrá consecuencias.
+- `EstadoSimulacion.exportar_resumen` pasó a `sim/resumen_estado.gd` (el archivo estaba al límite). La validación de datos comprueba riesgos, plazos, cadenas y memorias.

@@ -44,9 +44,11 @@ func _init() -> void:
 			semanas += 1
 			var aleatorios := 0
 			for ev in evs:
-				var d: Dictionary = por_id[String(ev["id"])]
 				eventos += 1
 				vistos[String(ev["id"])] = true
+				if not por_id.has(String(ev["id"])):
+					continue  # consecuencia diferida de una decisión (pantalla aparte, sin ficha en el catálogo)
+				var d: Dictionary = por_id[String(ev["id"])]
 				if d["tipo"] != "aleatorio_semilla":
 					continue
 				aleatorios += 1

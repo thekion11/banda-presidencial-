@@ -178,6 +178,30 @@ def validar_eventos(eventos: list, ids_fuentes: set, tipos: set, dias_mandato: i
                 raise ValueError(f"{ctx}: dia_objetivo fuera del período")
         if e["votacion"] and e["votacion"]["tipo_ley"] not in tipos:
             raise ValueError(f"{ctx}: tipo_ley desconocido")
+    por_id = {e["id"]: e for e in eventos}
+    for e in eventos:  # decisiones: opciones, riesgos, efectos a futuro, cadenas y memoria
+        ctx = f"evento {e['id']}"
+        if e["tipo"] == "cadena" and "opciones" not in e:
+            raise ValueError(f"{ctx}: un evento en cadena debe tener opciones")
+        for i, o in enumerate(e.get("opciones", [])):
+            validar_efectos(o["efectos"], f"{ctx} opción {i}")
+            if "riesgo" in o:
+                if not 0.0 < o["riesgo"]["prob"] < 1.0:
+                    raise ValueError(f"{ctx} opción {i}: riesgo.prob debe estar entre 0 y 1")
+                validar_efectos(o["riesgo"]["efectos"], f"{ctx} opción {i} riesgo")
+            if "diferido" in o:
+                if not 1 <= o["diferido"]["semanas"] <= 60:
+                    raise ValueError(f"{ctx} opción {i}: diferido.semanas fuera de 1..60")
+                validar_efectos(o["diferido"]["efectos"], f"{ctx} opción {i} diferido")
+            if "cadena" in o:
+                dest = por_id.get(o["cadena"]["evento"])
+                if dest is None or dest["tipo"] != "cadena":
+                    raise ValueError(f"{ctx} opción {i}: la cadena apunta a un evento inexistente o que no es de tipo cadena")
+        rq = e.get("requiere")
+        if rq and "decision" in rq:
+            origen = por_id.get(rq["decision"]["evento"])
+            if origen is None or not 0 <= rq["decision"]["idx"] < len(origen.get("opciones", [])):
+                raise ValueError(f"{ctx}: requiere una decisión inexistente")
 
 
 def validar_ideologia(ide: dict) -> None:

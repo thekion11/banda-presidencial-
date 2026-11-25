@@ -259,3 +259,18 @@ static func resumen_cambios(antes: Dictionary, despues: Dictionary) -> String:
 		if absf(d) >= 0.5:
 			partes.append("%s %s" % [par[1], Tema.signo(d)])
 	return " · ".join(partes)
+
+
+static func texto_decision(r: Dictionary, antes: Dictionary, despues: Dictionary) -> String:
+	## Aviso tras responder un evento: lo que cambió, si la opción salió mal y si habrá consecuencias más adelante.
+	if not bool(r.get("ok", false)):
+		return "No se pudo registrar la decisión."
+	var t := "Decisión tomada."
+	var c := resumen_cambios(antes, despues)
+	if c != "":
+		t += " " + c + "."
+	if bool(r.get("salio_mal", false)):
+		t += " Salió mal."
+	if int(r.get("futuro", 0)) > 0:
+		t += " Habrá consecuencias en unas %d semanas." % int(r["futuro"])
+	return t

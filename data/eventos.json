@@ -1144,7 +1144,11 @@
             "ind": "aprobacion",
             "delta": 3
           }
-        ]
+        ],
+        "cadena": {
+          "evento": "evt_cad_reconstruccion",
+          "semanas": 6
+        }
       },
       {
         "texto": "Ayuda focalizada y subsidios",
@@ -1166,7 +1170,20 @@
             "ind": "aprobacion",
             "delta": -3
           }
-        ]
+        ],
+        "riesgo": {
+          "prob": 0.45,
+          "efectos": [
+            {
+              "ind": "aprobacion",
+              "delta": -3
+            }
+          ]
+        },
+        "cadena": {
+          "evento": "evt_cad_reclamos",
+          "semanas": 4
+        }
       }
     ],
     "familia": "externo"
@@ -1195,7 +1212,17 @@
             "ind": "aprobacion",
             "delta": 1
           }
-        ]
+        ],
+        "diferido": {
+          "semanas": 12,
+          "efectos": [
+            {
+              "ind": "fiscal",
+              "delta": -1
+            }
+          ],
+          "texto": "El fondo de estabilización quedó más bajo de lo previsto."
+        }
       },
       {
         "texto": "Recortar gasto en ministerios",
@@ -1208,7 +1235,20 @@
             "ind": "fiscal",
             "delta": 1
           }
-        ]
+        ],
+        "riesgo": {
+          "prob": 0.35,
+          "efectos": [
+            {
+              "ind": "cohesion",
+              "delta": -2
+            }
+          ]
+        },
+        "cadena": {
+          "evento": "evt_cad_recorte_protesta",
+          "semanas": 5
+        }
       },
       {
         "texto": "No hacer nada por ahora",
@@ -1250,7 +1290,17 @@
             "ind": "aprobacion",
             "delta": 2
           }
-        ]
+        ],
+        "diferido": {
+          "semanas": 8,
+          "efectos": [
+            {
+              "ind": "aprobacion",
+              "delta": 1
+            }
+          ],
+          "texto": "La reconstrucción de las zonas afectadas se empieza a notar."
+        }
       },
       {
         "texto": "Apoyar solo con recursos regionales",
@@ -1322,7 +1372,20 @@
             "ind": "aprobacion",
             "delta": -2
           }
-        ]
+        ],
+        "riesgo": {
+          "prob": 0.35,
+          "efectos": [
+            {
+              "ind": "aprobacion",
+              "delta": -3
+            },
+            {
+              "ind": "cohesion",
+              "delta": -1
+            }
+          ]
+        }
       },
       {
         "texto": "Dejar que se desgasten",
@@ -1365,7 +1428,11 @@
             "delta": -1
           }
         ],
-        "relacion": 1
+        "relacion": 1,
+        "cadena": {
+          "evento": "evt_cad_ajuste_regiones",
+          "semanas": 8
+        }
       },
       {
         "texto": "Pedir un ajuste menor",
@@ -1427,7 +1494,17 @@
             "delta": 3
           }
         ],
-        "relacion": 1
+        "relacion": 1,
+        "diferido": {
+          "semanas": 10,
+          "efectos": [
+            {
+              "ind": "aprobacion",
+              "delta": 2
+            }
+          ],
+          "texto": "Las listas de espera empiezan a bajar tras el refuerzo."
+        }
       },
       {
         "texto": "Reasignar dentro del ministerio",
@@ -1455,7 +1532,11 @@
             "delta": -1
           }
         ],
-        "relacion": -1
+        "relacion": -1,
+        "cadena": {
+          "evento": "evt_cad_salud_crisis",
+          "semanas": 6
+        }
       }
     ],
     "actor": {
@@ -1517,7 +1598,16 @@
             "delta": -1
           }
         ],
-        "relacion": -1
+        "relacion": -1,
+        "riesgo": {
+          "prob": 0.5,
+          "efectos": [
+            {
+              "ind": "aprobacion",
+              "delta": -2
+            }
+          ]
+        }
       }
     ],
     "actor": {
@@ -1555,7 +1645,30 @@
             "delta": -1
           }
         ],
-        "relacion": 1
+        "relacion": 1,
+        "riesgo": {
+          "prob": 0.4,
+          "efectos": [
+            {
+              "ind": "cohesion",
+              "delta": -2
+            },
+            {
+              "ind": "capital",
+              "delta": -1
+            }
+          ]
+        },
+        "diferido": {
+          "semanas": 6,
+          "efectos": [
+            {
+              "ind": "aprobacion",
+              "delta": 1
+            }
+          ],
+          "texto": "Baja la percepción de inseguridad."
+        }
       },
       {
         "texto": "Apoyar solo una parte",
@@ -1617,7 +1730,20 @@
             "delta": -2
           }
         ],
-        "relacion": 1
+        "relacion": 1,
+        "riesgo": {
+          "prob": 0.3,
+          "efectos": [
+            {
+              "ind": "capital",
+              "delta": -2
+            },
+            {
+              "ind": "aprobacion",
+              "delta": -1
+            }
+          ]
+        }
       },
       {
         "texto": "Mantener el calendario",
@@ -1679,7 +1805,17 @@
             "delta": 1
           }
         ],
-        "relacion": 1
+        "relacion": 1,
+        "diferido": {
+          "semanas": 10,
+          "efectos": [
+            {
+              "ind": "fiscal",
+              "delta": 1
+            }
+          ],
+          "texto": "La nueva línea de transmisión empieza a rendir."
+        }
       },
       {
         "texto": "Pedir más consulta ciudadana",
@@ -2233,7 +2369,20 @@
             "delta": 1
           }
         ],
-        "relacion": 0
+        "relacion": 0,
+        "riesgo": {
+          "prob": 0.5,
+          "efectos": [
+            {
+              "ind": "capital",
+              "delta": -2
+            }
+          ]
+        },
+        "cadena": {
+          "evento": "evt_cad_contraloria_dictamen",
+          "semanas": 5
+        }
       },
       {
         "texto": "Pedir un dictamen aclaratorio",
@@ -2371,7 +2520,17 @@
             "delta": 2
           }
         ],
-        "relacion": -1
+        "relacion": -1,
+        "diferido": {
+          "semanas": 6,
+          "efectos": [
+            {
+              "ind": "aprobacion",
+              "delta": 1
+            }
+          ],
+          "texto": "El subsidio llega a las pymes y se nota."
+        }
       }
     ],
     "actor": {
@@ -2419,7 +2578,16 @@
             "delta": -2
           }
         ],
-        "relacion": 0
+        "relacion": 0,
+        "riesgo": {
+          "prob": 0.4,
+          "efectos": [
+            {
+              "ind": "cohesion",
+              "delta": -2
+            }
+          ]
+        }
       },
       {
         "texto": "Presentar una nueva versión",
@@ -2481,7 +2649,20 @@
             "delta": -2
           }
         ],
-        "relacion": 0
+        "relacion": 0,
+        "riesgo": {
+          "prob": 0.5,
+          "efectos": [
+            {
+              "ind": "aprobacion",
+              "delta": -3
+            }
+          ]
+        },
+        "cadena": {
+          "evento": "evt_cad_fiscalia_formaliza",
+          "semanas": 6
+        }
       },
       {
         "texto": "Evitar comentar",
@@ -2549,7 +2730,11 @@
             "delta": -2
           }
         ],
-        "relacion": -1
+        "relacion": -1,
+        "cadena": {
+          "evento": "evt_cad_reportaje_segundo",
+          "semanas": 3
+        }
       }
     ],
     "actor": {
@@ -2869,7 +3054,16 @@
             "delta": -2
           }
         ],
-        "relacion": -1
+        "relacion": -1,
+        "riesgo": {
+          "prob": 0.4,
+          "efectos": [
+            {
+              "ind": "aprobacion",
+              "delta": -2
+            }
+          ]
+        }
       }
     ],
     "actor": {
@@ -3275,7 +3469,20 @@
             "delta": -2
           }
         ],
-        "relacion": -1
+        "relacion": -1,
+        "riesgo": {
+          "prob": 0.45,
+          "efectos": [
+            {
+              "ind": "aprobacion",
+              "delta": -2
+            }
+          ]
+        },
+        "cadena": {
+          "evento": "evt_cad_ministro_conflicto",
+          "semanas": 5
+        }
       }
     ],
     "actor": {
@@ -3972,7 +4179,20 @@
             "ind": "cohesion",
             "delta": -2
           }
-        ]
+        ],
+        "riesgo": {
+          "prob": 0.4,
+          "efectos": [
+            {
+              "ind": "aprobacion",
+              "delta": -2
+            }
+          ]
+        },
+        "cadena": {
+          "evento": "evt_cad_franja_rival",
+          "semanas": 2
+        }
       }
     ],
     "familia": "politica"
@@ -4319,7 +4539,11 @@
             "ind": "cohesion",
             "delta": 1
           }
-        ]
+        ],
+        "cadena": {
+          "evento": "evt_cad_acusacion_resultado",
+          "semanas": 3
+        }
       },
       {
         "texto": "Pedir más antecedentes",
@@ -4616,5 +4840,935 @@
       }
     ],
     "familia": "comision"
+  },
+  {
+    "id": "evt_cad_reconstruccion",
+    "tipo": "cadena",
+    "dia_objetivo": null,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 0.0,
+    "titulo": "Balance de la reconstrucción",
+    "descripcion": "Pasaron semanas desde el terremoto y las familias esperan resultados.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "gobierno",
+    "fuente": "fuentes.json#ficticio_2026",
+    "familia": "cadena",
+    "opciones": [
+      {
+        "texto": "Inaugurar las primeras viviendas con una ceremonia",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 2
+          },
+          {
+            "ind": "capital",
+            "delta": -1
+          }
+        ]
+      },
+      {
+        "texto": "Auditar el uso de los fondos antes de hablar",
+        "efectos": [
+          {
+            "ind": "capital",
+            "delta": 1
+          },
+          {
+            "ind": "aprobacion",
+            "delta": -1
+          }
+        ]
+      },
+      {
+        "texto": "Dejar que el proceso siga sin intervenir",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": -1
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "evt_cad_reclamos",
+    "tipo": "cadena",
+    "dia_objetivo": null,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 0.0,
+    "titulo": "Los damnificados reclaman",
+    "descripcion": "Por la espera, vecinos bloquean una ruta y exigen respuestas.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "gobierno",
+    "fuente": "fuentes.json#ficticio_2026",
+    "familia": "cadena",
+    "opciones": [
+      {
+        "texto": "Ir en persona a dialogar",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          },
+          {
+            "ind": "capital",
+            "delta": -2
+          }
+        ]
+      },
+      {
+        "texto": "Enviar a un ministro con un plan",
+        "efectos": [
+          {
+            "ind": "capital",
+            "delta": -1
+          }
+        ]
+      },
+      {
+        "texto": "Pedir que despejen la ruta",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": -2
+          },
+          {
+            "ind": "cohesion",
+            "delta": -1
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "evt_cad_recorte_protesta",
+    "tipo": "cadena",
+    "dia_objetivo": null,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 0.0,
+    "titulo": "Protestas por el recorte",
+    "descripcion": "Los gremios públicos rechazan el ajuste y convocan a un paro.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "gobierno",
+    "fuente": "fuentes.json#ficticio_2026",
+    "familia": "cadena",
+    "opciones": [
+      {
+        "texto": "Abrir una mesa de negociación",
+        "efectos": [
+          {
+            "ind": "cohesion",
+            "delta": 1
+          },
+          {
+            "ind": "capital",
+            "delta": -1
+          }
+        ]
+      },
+      {
+        "texto": "Mantener el recorte",
+        "efectos": [
+          {
+            "ind": "fiscal",
+            "delta": 1
+          },
+          {
+            "ind": "aprobacion",
+            "delta": -2
+          }
+        ]
+      },
+      {
+        "texto": "Revertir parte del recorte",
+        "efectos": [
+          {
+            "ind": "fiscal",
+            "delta": -1
+          },
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "evt_cad_ajuste_regiones",
+    "tipo": "cadena",
+    "dia_objetivo": null,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 0.0,
+    "titulo": "El ajuste llega a las regiones",
+    "descripcion": "Los gobernadores regionales dicen que el ajuste frena obras locales.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "gobierno",
+    "fuente": "fuentes.json#ficticio_2026",
+    "familia": "cadena",
+    "opciones": [
+      {
+        "texto": "Priorizar obras regionales clave",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          },
+          {
+            "ind": "fiscal",
+            "delta": -1
+          }
+        ],
+        "relacion": 1
+      },
+      {
+        "texto": "Explicar que el ajuste es temporal",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": -1
+          },
+          {
+            "ind": "capital",
+            "delta": 1
+          }
+        ],
+        "relacion": 0
+      },
+      {
+        "texto": "Pedir paciencia",
+        "efectos": [
+          {
+            "ind": "cohesion",
+            "delta": -1
+          }
+        ],
+        "relacion": -1
+      }
+    ],
+    "actor": {
+      "id": "min_hacienda",
+      "nombre": "Ministerio: Hacienda"
+    }
+  },
+  {
+    "id": "evt_cad_salud_crisis",
+    "tipo": "cadena",
+    "dia_objetivo": null,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 0.0,
+    "titulo": "Crisis en un hospital regional",
+    "descripcion": "La falta de recursos que se había advertido se hace visible en un hospital.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "gobierno",
+    "fuente": "fuentes.json#ficticio_2026",
+    "familia": "cadena",
+    "opciones": [
+      {
+        "texto": "Inyectar recursos de emergencia",
+        "efectos": [
+          {
+            "ind": "fiscal",
+            "delta": -2
+          },
+          {
+            "ind": "aprobacion",
+            "delta": 2
+          }
+        ],
+        "relacion": 1
+      },
+      {
+        "texto": "Cambiar a la dirección del hospital",
+        "efectos": [
+          {
+            "ind": "capital",
+            "delta": -1
+          },
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          }
+        ],
+        "relacion": 0
+      },
+      {
+        "texto": "Negar el problema",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": -3
+          },
+          {
+            "ind": "cohesion",
+            "delta": -1
+          }
+        ],
+        "relacion": -1
+      }
+    ],
+    "actor": {
+      "id": "min_salud",
+      "nombre": "Ministerio: Salud"
+    }
+  },
+  {
+    "id": "evt_cad_contraloria_dictamen",
+    "tipo": "cadena",
+    "dia_objetivo": null,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 0.0,
+    "titulo": "La Contraloría emite su dictamen",
+    "descripcion": "El órgano contralor responde a tu insistencia.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "gobierno",
+    "fuente": "fuentes.json#ficticio_2026",
+    "familia": "cadena",
+    "opciones": [
+      {
+        "texto": "Acatar el dictamen sin reclamar",
+        "efectos": [
+          {
+            "ind": "capital",
+            "delta": 1
+          },
+          {
+            "ind": "aprobacion",
+            "delta": -1
+          }
+        ],
+        "relacion": 1
+      },
+      {
+        "texto": "Reclamar ante el Tribunal Constitucional",
+        "efectos": [
+          {
+            "ind": "capital",
+            "delta": -2
+          },
+          {
+            "ind": "cohesion",
+            "delta": 1
+          }
+        ],
+        "relacion": 0
+      },
+      {
+        "texto": "Cambiar el decreto",
+        "efectos": [
+          {
+            "ind": "capital",
+            "delta": -1
+          },
+          {
+            "ind": "cohesion",
+            "delta": 1
+          }
+        ],
+        "relacion": -1
+      }
+    ],
+    "actor": {
+      "id": "contraloria",
+      "nombre": "Contraloría"
+    }
+  },
+  {
+    "id": "evt_cad_fiscalia_formaliza",
+    "tipo": "cadena",
+    "dia_objetivo": null,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 0.0,
+    "titulo": "La Fiscalía formaliza a un dirigente aliado",
+    "descripcion": "El caso que tu gobierno respaldó escala.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "gobierno",
+    "fuente": "fuentes.json#ficticio_2026",
+    "familia": "cadena",
+    "opciones": [
+      {
+        "texto": "Pedir su renuncia al cargo",
+        "efectos": [
+          {
+            "ind": "cohesion",
+            "delta": -2
+          },
+          {
+            "ind": "aprobacion",
+            "delta": 2
+          }
+        ],
+        "relacion": 1
+      },
+      {
+        "texto": "Sostenerlo hasta que se pruebe algo",
+        "efectos": [
+          {
+            "ind": "cohesion",
+            "delta": 1
+          },
+          {
+            "ind": "aprobacion",
+            "delta": -3
+          }
+        ],
+        "relacion": 0
+      },
+      {
+        "texto": "Congelar su participación",
+        "efectos": [
+          {
+            "ind": "cohesion",
+            "delta": -1
+          },
+          {
+            "ind": "aprobacion",
+            "delta": 0
+          }
+        ],
+        "relacion": -1
+      }
+    ],
+    "actor": {
+      "id": "fiscalia",
+      "nombre": "Fiscalía"
+    }
+  },
+  {
+    "id": "evt_cad_reportaje_segundo",
+    "tipo": "cadena",
+    "dia_objetivo": null,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 0.0,
+    "titulo": "El medio publica una segunda parte",
+    "descripcion": "Al ignorar el primer reportaje, el medio insiste con nuevos antecedentes.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "gobierno",
+    "fuente": "fuentes.json#ficticio_2026",
+    "familia": "cadena",
+    "opciones": [
+      {
+        "texto": "Dar una conferencia de prensa",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          },
+          {
+            "ind": "capital",
+            "delta": -2
+          }
+        ],
+        "relacion": 1
+      },
+      {
+        "texto": "Responder por escrito",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": -1
+          }
+        ],
+        "relacion": 0
+      },
+      {
+        "texto": "Demandar al medio",
+        "efectos": [
+          {
+            "ind": "capital",
+            "delta": -1
+          },
+          {
+            "ind": "aprobacion",
+            "delta": -2
+          },
+          {
+            "ind": "cohesion",
+            "delta": 1
+          }
+        ],
+        "relacion": -1
+      }
+    ],
+    "actor": {
+      "id": "medios",
+      "nombre": "Medios de comunicación"
+    }
+  },
+  {
+    "id": "evt_cad_franja_rival",
+    "tipo": "cadena",
+    "dia_objetivo": null,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 0.0,
+    "titulo": "Tu rival responde en la franja",
+    "descripcion": "Tu rival contraataca en sus minutos de televisión.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "campana",
+    "fuente": "fuentes.json#ficticio_2026",
+    "familia": "cadena",
+    "opciones": [
+      {
+        "texto": "Responder con una franja propositiva",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          },
+          {
+            "ind": "cohesion",
+            "delta": 1
+          }
+        ]
+      },
+      {
+        "texto": "Responder atacando de vuelta",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 0
+          },
+          {
+            "ind": "cohesion",
+            "delta": -2
+          }
+        ]
+      },
+      {
+        "texto": "Ignorar el ataque",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": -1
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "evt_cad_acusacion_resultado",
+    "tipo": "cadena",
+    "dia_objetivo": null,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 0.0,
+    "titulo": "Se vota la acusación constitucional",
+    "descripcion": "Llegó el día de la votación en la Cámara.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "oposicion",
+    "fuente": "fuentes.json#ficticio_2026",
+    "familia": "cadena",
+    "opciones": [
+      {
+        "texto": "Cerrar filas con tu bancada",
+        "efectos": [
+          {
+            "ind": "cohesion",
+            "delta": 2
+          },
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          }
+        ]
+      },
+      {
+        "texto": "Dar libertad de voto",
+        "efectos": [
+          {
+            "ind": "cohesion",
+            "delta": -1
+          },
+          {
+            "ind": "capital",
+            "delta": 1
+          }
+        ]
+      },
+      {
+        "texto": "Buscar un acuerdo de último minuto",
+        "efectos": [
+          {
+            "ind": "capital",
+            "delta": -1
+          },
+          {
+            "ind": "cohesion",
+            "delta": 1
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "evt_cad_ministro_conflicto",
+    "tipo": "cadena",
+    "dia_objetivo": null,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 0.0,
+    "titulo": "Un ministro choca con otro",
+    "descripcion": "El conflicto entre dos carteras se hace público.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "gobierno",
+    "fuente": "fuentes.json#ficticio_2026",
+    "familia": "cadena",
+    "opciones": [
+      {
+        "texto": "Mediar personalmente",
+        "efectos": [
+          {
+            "ind": "capital",
+            "delta": -2
+          },
+          {
+            "ind": "cohesion",
+            "delta": 2
+          }
+        ]
+      },
+      {
+        "texto": "Respaldar a uno de los dos",
+        "efectos": [
+          {
+            "ind": "cohesion",
+            "delta": -1
+          },
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          }
+        ]
+      },
+      {
+        "texto": "Dejar que lo resuelvan",
+        "efectos": [
+          {
+            "ind": "cohesion",
+            "delta": -2
+          },
+          {
+            "ind": "aprobacion",
+            "delta": -1
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "evt_mem_oposicion_caso",
+    "tipo": "aleatorio_semilla",
+    "dia_objetivo": null,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 0.5,
+    "titulo": "La oposición usa el caso de la Fiscalía en tu contra",
+    "descripcion": "Por haber respaldado a tu aliado, la oposición te acusa de proteger a tu gente.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "gobierno",
+    "fuente": "fuentes.json#ficticio_2026",
+    "familia": "memoria",
+    "opciones": [
+      {
+        "texto": "Responder con transparencia total",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          },
+          {
+            "ind": "capital",
+            "delta": -1
+          }
+        ]
+      },
+      {
+        "texto": "Contraatacar a la oposición",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": -1
+          },
+          {
+            "ind": "cohesion",
+            "delta": 1
+          }
+        ]
+      },
+      {
+        "texto": "No responder",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": -2
+          }
+        ]
+      }
+    ],
+    "requiere": {
+      "decision": {
+        "evento": "evt_fiscalia_caso",
+        "idx": 1
+      }
+    }
+  },
+  {
+    "id": "evt_mem_agradecen_salud",
+    "tipo": "aleatorio_semilla",
+    "dia_objetivo": null,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 0.5,
+    "titulo": "Gremios de la salud destacan tu refuerzo",
+    "descripcion": "Por haber aprobado el refuerzo, el sector reconoce públicamente tu gestión.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "gobierno",
+    "fuente": "fuentes.json#ficticio_2026",
+    "familia": "memoria",
+    "opciones": [
+      {
+        "texto": "Aprovechar para anunciar la segunda etapa",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 2
+          },
+          {
+            "ind": "fiscal",
+            "delta": -1
+          }
+        ]
+      },
+      {
+        "texto": "Agradecer y mantener el plan",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          }
+        ]
+      },
+      {
+        "texto": "No comentar",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 0
+          }
+        ]
+      }
+    ],
+    "requiere": {
+      "decision": {
+        "evento": "evt_min_salud",
+        "idx": 0
+      }
+    }
+  },
+  {
+    "id": "evt_mem_hacienda_tensiona",
+    "tipo": "aleatorio_semilla",
+    "dia_objetivo": null,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 0.5,
+    "titulo": "Hacienda amenaza con renunciar",
+    "descripcion": "Tu relación con el ministro de Hacienda está muy deteriorada.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "gobierno",
+    "fuente": "fuentes.json#ficticio_2026",
+    "familia": "ministerio",
+    "opciones": [
+      {
+        "texto": "Reunirte y ceder en algo",
+        "efectos": [
+          {
+            "ind": "capital",
+            "delta": -1
+          },
+          {
+            "ind": "fiscal",
+            "delta": 1
+          }
+        ],
+        "relacion": 1
+      },
+      {
+        "texto": "Aceptar su renuncia",
+        "efectos": [
+          {
+            "ind": "cohesion",
+            "delta": -2
+          },
+          {
+            "ind": "fiscal",
+            "delta": -1
+          }
+        ],
+        "relacion": 0
+      },
+      {
+        "texto": "Ignorar la amenaza",
+        "efectos": [
+          {
+            "ind": "fiscal",
+            "delta": -2
+          },
+          {
+            "ind": "cohesion",
+            "delta": -1
+          }
+        ],
+        "relacion": -1
+      }
+    ],
+    "requiere": {
+      "relacion": {
+        "actor": "min_hacienda",
+        "max": 30
+      }
+    },
+    "actor": {
+      "id": "min_hacienda",
+      "nombre": "Ministerio: Hacienda"
+    }
+  },
+  {
+    "id": "evt_mem_contraloria_exige",
+    "tipo": "aleatorio_semilla",
+    "dia_objetivo": null,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 0.5,
+    "titulo": "La Contraloría endurece su fiscalización",
+    "descripcion": "Tu relación con el organismo contralor es tensa y empieza a exigirte más antecedentes.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "gobierno",
+    "fuente": "fuentes.json#ficticio_2026",
+    "familia": "institucion",
+    "opciones": [
+      {
+        "texto": "Reforzar tu equipo jurídico",
+        "efectos": [
+          {
+            "ind": "capital",
+            "delta": -1
+          },
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          }
+        ],
+        "relacion": 1
+      },
+      {
+        "texto": "Colaborar sin condiciones",
+        "efectos": [
+          {
+            "ind": "capital",
+            "delta": 1
+          },
+          {
+            "ind": "aprobacion",
+            "delta": -1
+          }
+        ],
+        "relacion": 0
+      },
+      {
+        "texto": "Reclamar públicamente",
+        "efectos": [
+          {
+            "ind": "capital",
+            "delta": -2
+          },
+          {
+            "ind": "cohesion",
+            "delta": 1
+          }
+        ],
+        "relacion": -1
+      }
+    ],
+    "requiere": {
+      "relacion": {
+        "actor": "contraloria",
+        "max": 30
+      }
+    },
+    "actor": {
+      "id": "contraloria",
+      "nombre": "Contraloría"
+    }
+  },
+  {
+    "id": "evt_mem_medios_aliados",
+    "tipo": "aleatorio_semilla",
+    "dia_objetivo": null,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 0.5,
+    "titulo": "Un medio te da una tribuna",
+    "descripcion": "Por tu buena relación con la prensa, te ofrecen una columna semanal.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "gobierno",
+    "fuente": "fuentes.json#ficticio_2026",
+    "familia": "medios",
+    "opciones": [
+      {
+        "texto": "Aprovechar la tribuna",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 2
+          },
+          {
+            "ind": "capital",
+            "delta": -1
+          }
+        ],
+        "relacion": 1
+      },
+      {
+        "texto": "Declinar para evitar sospechas",
+        "efectos": [
+          {
+            "ind": "capital",
+            "delta": 1
+          }
+        ],
+        "relacion": 0
+      },
+      {
+        "texto": "Delegarla en un vocero",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          }
+        ],
+        "relacion": -1
+      }
+    ],
+    "requiere": {
+      "relacion": {
+        "actor": "medios",
+        "min": 70
+      }
+    },
+    "actor": {
+      "id": "medios",
+      "nombre": "Medios de comunicación"
+    }
   }
 ]

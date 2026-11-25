@@ -188,7 +188,12 @@ static func evento(ev: Dictionary, al_continuar: Callable, nombres: Dictionary, 
 		if ev.get("opciones", null) != null and al_decidir.is_valid():  # decisión del jugador: no gasta movimientos
 			var ops: Array = ev["opciones"]
 			for k in range(ops.size()):
-				var ob := Tema.boton(String(ops[k]["texto"]), Tema.ROJO if k == 0 else Tema.PANEL, Tema.TEXTO, 13, 56)
+				var marcas: Array[String] = []
+				if ops[k].has("riesgo"):
+					marcas.append("con riesgo")
+				if ops[k].has("diferido") or ops[k].has("cadena"):
+					marcas.append("con efecto a futuro")
+				var ob := Tema.boton(String(ops[k]["texto"]) + (("\n" + " · ".join(marcas)) if not marcas.is_empty() else ""), Tema.ROJO if k == 0 else Tema.PANEL, Tema.TEXTO, 13, 56)
 				ob.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 				ob.pressed.connect(func() -> void:
 					estado.erase("armar")
