@@ -1,7 +1,9 @@
 extends SceneTree
 ## Recorrido grabable de la dirección visual v4 (menú, afiliación, test, día con cartas, paneles, votación,
-## elección y fin). Pensado para el modo Movie Maker de Godot, que graba cada cuadro a ritmo fijo:
-##   xvfb-run -a godot --path . --rendering-method gl_compatibility --resolution 780x1688 \
+## elección y fin). Pensado para el modo Movie Maker de Godot, que graba cada cuadro a ritmo fijo.
+## Movie Maker graba al tamaño de ventana del proyecto (390×844); para 2× crea antes un override.cfg temporal
+## en la raíz (no se sube) con [display] window/size/window_width_override=780 y window_height_override=1688:
+##   xvfb-run -a -s "-screen 0 1000x1800x24" godot --path . --rendering-method gl_compatibility \
 ##     --write-movie /tmp/video/cuadro.png --fixed-fps 30 -s tests/grabar_video.gd
 ##   ffmpeg -framerate 30 -i /tmp/video/cuadro%08d.png -i /tmp/video/cuadro.wav -c:v libx264 -pix_fmt yuv420p video.mp4
 ## Dibuja un anillo donde «toca el dedo» para que el video se lea como una partida real. No cambia nada del juego.
