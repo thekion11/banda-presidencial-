@@ -25,7 +25,11 @@ static func crear(p_motor: MotorTurno, p_avisar: Callable, p_cambio: Callable) -
 func construir() -> void:
 	var fila := HBoxContainer.new()
 	fila.add_theme_constant_override("separation", 4)
-	for t in TABS:
+	var tabs: Array = TABS
+	if motor.estado.etapa == "oposicion":  # sin gabinete ni movimientos internos: solo alianzas
+		tabs = [["coalicion", "Coalición"]]
+		pestana = "coalicion"
+	for t in tabs:
 		var b := Tema.boton(t[1], Tema.ORO if pestana == t[0] else Tema.PANEL, Tema.TINTA if pestana == t[0] else Tema.TEXTO, 12, 44)
 		b.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		b.pressed.connect(func() -> void:

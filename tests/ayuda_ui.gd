@@ -63,6 +63,17 @@ static func carrera(arbol: SceneTree) -> Array[String]:
 			fallos.append("seguir la carrera lleva a la oposición")
 		elif not String(main._pantalla._r["dia"].text).begins_with("Oposición"):
 			fallos.append("la cabecera dice Oposición")
+		else:
+			var pd: Node = main._pantalla
+			var cb: Array = pd.find_children("*", "Button", true, false).filter(func(b: Button) -> bool: return b.get_child_count() > 0 and b.find_children("*", "Label", true, false).any(func(l: Label) -> bool: return l.text == "Coalición"))
+			if cb.size() != 1:
+				fallos.append("en oposición la barra ofrece Coalición en lugar de Gabinete")
+			else:
+				cb[0].pressed.emit()
+				await arbol.process_frame
+				var tabs: Array = pd.find_children("*", "Button", true, false).filter(func(b: Button) -> bool: return b.text == "Gabinete" or b.text == "Internos")
+				if not tabs.is_empty():
+					fallos.append("en oposición no hay pestañas de gabinete ni internos")
 	DirAccess.remove_absolute(ProjectSettings.globalize_path("user://ultima_config.json"))  # instalación nueva: la partida rápida usa el partido por defecto
 	main._repetir_ultima()
 	await arbol.process_frame

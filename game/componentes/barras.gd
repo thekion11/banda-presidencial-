@@ -189,13 +189,13 @@ static func _boton_central(texto: String, al_avanzar: Callable) -> Control:
 	return b
 
 
-static func nav(al_pulsar: Callable, nacion: bool = false, texto_dia: String = "", al_avanzar: Callable = Callable()) -> Control:
+static func nav(al_pulsar: Callable, nacion: bool = false, texto_dia: String = "", al_avanzar: Callable = Callable(), etq_gestion: String = "Gabinete") -> Control:
 	## Barra inferior. En "Nación" la maqueta usa Cartas / Comité / [Día N] / Congreso / Gabinete.
 	var fila := HBoxContainer.new()
 	fila.custom_minimum_size = Vector2(0, 58)
-	var items: Array = [["Mapa", "mapa", "map"], ["Comité", "comite", "bars"], ["Congreso", "congreso", "building"], ["Gabinete", "gabinete", "people"]]
+	var items: Array = [["Mapa", "mapa", "map"], ["Comité", "comite", "bars"], ["Congreso", "congreso", "building"], [etq_gestion, "gabinete", "people"]]
 	if nacion:
-		items = [["Cartas", "mapa", "card"], ["Comité", "comite", "bars"], ["", "", ""], ["Congreso", "congreso", "building"], ["Gabinete", "gabinete", "people"]]
+		items = [["Cartas", "mapa", "card"], ["Comité", "comite", "bars"], ["", "", ""], ["Congreso", "congreso", "building"], [etq_gestion, "gabinete", "people"]]
 	for par in items:
 		if par[1] == "":
 			fila.add_child(_boton_central(texto_dia, al_avanzar))
