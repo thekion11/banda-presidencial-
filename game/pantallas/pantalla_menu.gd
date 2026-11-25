@@ -3,8 +3,10 @@ extends Control
 
 signal nueva
 signal continuar
+signal repetir
 
 var hay_guardado: bool = false
+var hay_ultima: bool = false  # hay una configuración previa (partido, afiliación y dificultad) para repetir
 var aviso: String = ""  # mensaje para el jugador (p. ej. guardado descartado)
 var datos: Dictionary = {}
 var _creditos: PanelContainer
@@ -40,12 +42,18 @@ func _ready() -> void:
 	n.text = "Nueva partida"
 	n.pressed.connect(func() -> void: nueva.emit())
 	col.add_child(n)
+	var rp := Tema.boton("Partida rápida (como la última vez)" if hay_ultima else "Partida rápida", Tema.OCEANO.lightened(0.1), Tema.TEXTO, 13, 44)
+	rp.pressed.connect(func() -> void: repetir.emit())
+	col.add_child(rp)
 	var ca := Tema.boton("Cartera de proyectos", Tema.OCEANO.lightened(0.1), Tema.TEXTO, 13, 44)
 	ca.pressed.connect(func() -> void: add_child(PantallaCartera.crear(datos)))
 	col.add_child(ca)
 	var inf := Tema.boton("Informe de prueba", Tema.OCEANO.lightened(0.1), Tema.TEXTO_SUAVE, 13, 44)
 	inf.pressed.connect(func() -> void: add_child(PantallaInforme.crear()))
 	col.add_child(inf)
+	var aj := Tema.boton("Ajustes", Tema.OCEANO.lightened(0.1), Tema.TEXTO_SUAVE, 13, 44)
+	aj.pressed.connect(func() -> void: add_child(PantallaAjustes.new()))
+	col.add_child(aj)
 	var cr := Tema.boton("Créditos", Tema.OCEANO.lightened(0.1), Tema.TEXTO_SUAVE, 13, 44)
 	cr.pressed.connect(_mostrar_creditos)
 	col.add_child(cr)
@@ -72,6 +80,7 @@ func _mostrar_creditos() -> void:
 	var txt := "Mapa de regiones: GeoJSON público simplificado (ver docs/DATOS.md).\n" \
 		+ "Calles, Metro, río y parques de Gran Santiago: © colaboradores de OpenStreetMap (ODbL), extracto de BBBike. Relieve: teselas públicas de elevación (Terrarium).\n" \
 		+ "Líneas 7, 8 y 9 del Metro: trazado de OpenStreetMap; colores de es.wikipedia y Wikidata (sin confirmar por Metro S.A.). Estaciones de las líneas en operación cotejadas con el GTFS de la Red Metropolitana (DTPM).\n" \
+		+ "Mapa de Sudamérica: Natural Earth (dominio público), simplificado; mapa ilustrativo que no define límites ni reclamos. Relaciones entre países: cifras ilustrativas.\n" \
 		+ "Ilustraciones de cartas generadas con IA (Gemini y Canva) para este proyecto.\n" \
 		+ "Tipografías: Space Grotesk e Inter (SIL OFL 1.1).\n" \
 		+ "Motor: Godot Engine (MIT).\n" \

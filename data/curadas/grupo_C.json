@@ -1,0 +1,2406 @@
+[
+ {
+  "id": "cur_seguridad_patrullaje_municipal",
+  "categoria": "seguridad",
+  "costo_pa": 1,
+  "titulo": "Convenio de patrullaje con municipios",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 2.0
+   },
+   {
+    "ind": "capital",
+    "delta": -0.5
+   },
+   {
+    "ind": "fiscal",
+    "delta": -0.5
+   }
+  ],
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Un alcalde presta las camionetas; la policía pone el plan."
+ },
+ {
+  "id": "cur_seguridad_fiscalia_crimen_organizado",
+  "categoria": "seguridad",
+  "costo_pa": 2,
+  "titulo": "Fiscalía especializada en crimen organizado",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 1.0
+   },
+   {
+    "ind": "cohesion",
+    "delta": 1.0
+   },
+   {
+    "ind": "fiscal",
+    "delta": -2.0
+   },
+   {
+    "ind": "riesgo_ejecucion",
+    "delta": -1
+   }
+  ],
+  "requisitos": {
+   "ley": "ley_organica_constitucional",
+   "quorum": "ley_organica_constitucional"
+  },
+  "camara_origen": "senado",
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Más fiscales, más peritos y una sala con pizarras llenas de nombres.",
+  "diferido": {
+   "semanas": 20,
+   "texto": "Las primeras causas grandes llegan a juicio.",
+   "efectos": [
+    {
+     "ind": "aprobacion",
+     "delta": 2.0
+    }
+   ]
+  }
+ },
+ {
+  "id": "cur_seguridad_modernizar_carceles",
+  "categoria": "seguridad",
+  "costo_pa": 3,
+  "titulo": "Plan de modernización de cárceles",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": -0.5
+   },
+   {
+    "ind": "fiscal",
+    "delta": -3.5
+   },
+   {
+    "ind": "cohesion",
+    "delta": 1.0
+   },
+   {
+    "ind": "riesgo_ejecucion",
+    "delta": -1.5
+   }
+  ],
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Celdas con cupo para dos que hoy alojan a seis.",
+  "riesgo": {
+   "prob": 0.3,
+   "efectos": [
+    {
+     "ind": "aprobacion",
+     "delta": -2
+    }
+   ]
+  },
+  "diferido": {
+   "semanas": 24,
+   "texto": "Bajan las fugas y los motines en los penales intervenidos.",
+   "efectos": [
+    {
+     "ind": "aprobacion",
+     "delta": 2.5
+    }
+   ]
+  }
+ },
+ {
+  "id": "cur_seguridad_camaras_barrios",
+  "categoria": "seguridad",
+  "costo_pa": 1,
+  "titulo": "Cámaras de televigilancia en barrios",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 2.5
+   },
+   {
+    "ind": "fiscal",
+    "delta": -1.0
+   },
+   {
+    "ind": "cohesion",
+    "delta": -0.5
+   }
+  ],
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Mil lentes nuevos, y el debate sobre quién mira las pantallas.",
+  "riesgo": {
+   "prob": 0.25,
+   "efectos": [
+    {
+     "ind": "aprobacion",
+     "delta": -1
+    }
+   ]
+  }
+ },
+ {
+  "id": "cur_seguridad_unidad_inteligencia_financiera",
+  "categoria": "seguridad",
+  "costo_pa": 2,
+  "titulo": "Unidad de inteligencia financiera reforzada",
+  "efectos": [
+   {
+    "ind": "capital",
+    "delta": 1.0
+   },
+   {
+    "ind": "fiscal",
+    "delta": 1
+   },
+   {
+    "ind": "riesgo_ejecucion",
+    "delta": -0.5
+   },
+   {
+    "ind": "cohesion",
+    "delta": 1.0
+   }
+  ],
+  "requisitos": {
+   "ley": "ley_simple",
+   "quorum": "ley_simple"
+  },
+  "camara_origen": "senado",
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Seguir el dinero rinde más que seguir al sospechoso."
+ },
+ {
+  "id": "cur_seguridad_control_pasos_fronterizos",
+  "categoria": "seguridad",
+  "costo_pa": 2,
+  "titulo": "Control integrado de pasos fronterizos",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 2.5
+   },
+   {
+    "ind": "fiscal",
+    "delta": -2.5
+   },
+   {
+    "ind": "capital",
+    "delta": 1.0
+   },
+   {
+    "ind": "riesgo_ejecucion",
+    "delta": 1
+   }
+  ],
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Sensores, drones y turnos completos en el altiplano.",
+  "riesgo": {
+   "prob": 0.35,
+   "efectos": [
+    {
+     "ind": "aprobacion",
+     "delta": -2
+    }
+   ]
+  }
+ },
+ {
+  "id": "cur_seguridad_barrios_prioritarios",
+  "categoria": "seguridad",
+  "costo_pa": 1,
+  "titulo": "Programa de barrios prioritarios",
+  "efectos": [
+   {
+    "ind": "cohesion",
+    "delta": 2.5
+   },
+   {
+    "ind": "fiscal",
+    "delta": -1.0
+   },
+   {
+    "ind": "aprobacion",
+    "delta": 1.0
+   }
+  ],
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Cancha, luminaria y un equipo social que se queda más de un año.",
+  "diferido": {
+   "semanas": 16,
+   "texto": "Disminuyen las denuncias por riñas y el comercio reabre de noche.",
+   "efectos": [
+    {
+     "ind": "aprobacion",
+     "delta": 2.0
+    }
+   ]
+  }
+ },
+ {
+  "id": "cur_seguridad_carrera_policial",
+  "categoria": "seguridad",
+  "costo_pa": 3,
+  "titulo": "Reforma a la carrera policial",
+  "efectos": [
+   {
+    "ind": "cohesion",
+    "delta": 2.5
+   },
+   {
+    "ind": "capital",
+    "delta": -2
+   },
+   {
+    "ind": "fiscal",
+    "delta": -2.5
+   },
+   {
+    "ind": "aprobacion",
+    "delta": 1.0
+   }
+  ],
+  "requisitos": {
+   "ley": "quorum_calificado",
+   "quorum": "quorum_calificado"
+  },
+  "camara_origen": "camara",
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Ascensos por mérito y una escuela con nuevo currículo.",
+  "diferido": {
+   "semanas": 28,
+   "texto": "Baja la rotación y mejora la investigación de delitos.",
+   "efectos": [
+    {
+     "ind": "riesgo_ejecucion",
+     "delta": -1
+    },
+    {
+     "ind": "cohesion",
+     "delta": 1.0
+    }
+   ]
+  }
+ },
+ {
+  "id": "cur_seguridad_centro_ciberseguridad",
+  "categoria": "seguridad",
+  "costo_pa": 1,
+  "titulo": "Centro nacional de ciberseguridad",
+  "efectos": [
+   {
+    "ind": "riesgo_ejecucion",
+    "delta": -1
+   },
+   {
+    "ind": "fiscal",
+    "delta": -0.5
+   },
+   {
+    "ind": "capital",
+    "delta": 1.0
+   }
+  ],
+  "requisitos": {
+   "ley": "ley_simple",
+   "quorum": "ley_simple"
+  },
+  "camara_origen": "senado",
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Un equipo de guardia contra el próximo hackeo a un servicio público."
+ },
+ {
+  "id": "cur_seguridad_ofensiva_barrios_criticos",
+  "categoria": "seguridad",
+  "costo_pa": 2,
+  "titulo": "Ofensiva de mano dura en barrios críticos",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 4.0
+   },
+   {
+    "ind": "cohesion",
+    "delta": -2
+   },
+   {
+    "ind": "fiscal",
+    "delta": -1.0
+   },
+   {
+    "ind": "capital",
+    "delta": -1
+   }
+  ],
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Operativos de madrugada; los vecinos aplauden y también reclaman.",
+  "riesgo": {
+   "prob": 0.4,
+   "efectos": [
+    {
+     "ind": "aprobacion",
+     "delta": -3
+    },
+    {
+     "ind": "cohesion",
+     "delta": -1
+    }
+   ]
+  }
+ },
+ {
+  "id": "cur_seguridad_reinsercion_laboral",
+  "categoria": "seguridad",
+  "costo_pa": 1,
+  "titulo": "Reinserción laboral de personas privadas de libertad",
+  "efectos": [
+   {
+    "ind": "cohesion",
+    "delta": 2.0
+   },
+   {
+    "ind": "aprobacion",
+    "delta": -1
+   },
+   {
+    "ind": "fiscal",
+    "delta": -0.5
+   }
+  ],
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Un taller de soldadura dentro del penal y un contrato afuera.",
+  "diferido": {
+   "semanas": 26,
+   "texto": "Menor reincidencia reduce el gasto penitenciario.",
+   "efectos": [
+    {
+     "ind": "fiscal",
+     "delta": 1.5
+    }
+   ]
+  }
+ },
+ {
+  "id": "cur_seguridad_sistema_emergencias_unico",
+  "categoria": "seguridad",
+  "costo_pa": 2,
+  "titulo": "Sistema único de emergencias",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 1.0
+   },
+   {
+    "ind": "riesgo_ejecucion",
+    "delta": -1.5
+   },
+   {
+    "ind": "fiscal",
+    "delta": -1.0
+   }
+  ],
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Un solo número, un solo mapa y una ambulancia que sí llega."
+ },
+ {
+  "id": "cur_energia_corredor_hidrogeno_verde",
+  "categoria": "energia",
+  "costo_pa": 3,
+  "titulo": "Corredor de hidrógeno verde",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": -0.5
+   },
+   {
+    "ind": "fiscal",
+    "delta": -3.5
+   },
+   {
+    "ind": "capital",
+    "delta": 1.0
+   },
+   {
+    "ind": "riesgo_ejecucion",
+    "delta": 1
+   }
+  ],
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Electrolizadores en la pampa y la promesa de exportar viento.",
+  "riesgo": {
+   "prob": 0.35,
+   "efectos": [
+    {
+     "ind": "fiscal",
+     "delta": -2
+    }
+   ]
+  },
+  "diferido": {
+   "semanas": 26,
+   "texto": "Los primeros contratos de exportación entran en caja.",
+   "efectos": [
+    {
+     "ind": "fiscal",
+     "delta": 3
+    },
+    {
+     "ind": "aprobacion",
+     "delta": 2.0
+    }
+   ]
+  }
+ },
+ {
+  "id": "cur_energia_litio_socios_privados",
+  "categoria": "energia",
+  "costo_pa": 2,
+  "titulo": "Alianza público-privada para el litio",
+  "efectos": [
+   {
+    "ind": "fiscal",
+    "delta": 2
+   },
+   {
+    "ind": "capital",
+    "delta": -1
+   },
+   {
+    "ind": "aprobacion",
+    "delta": -0.5
+   },
+   {
+    "ind": "cohesion",
+    "delta": -1
+   }
+  ],
+  "requisitos": {
+   "ley": "ley_simple",
+   "quorum": "ley_simple"
+  },
+  "camara_origen": "senado",
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Mitad Estado, mitad socio, y una salmuera en el centro del debate.",
+  "diferido": {
+   "semanas": 18,
+   "texto": "Los contratos de explotación aportan royalties.",
+   "efectos": [
+    {
+     "ind": "fiscal",
+     "delta": 2
+    }
+   ]
+  }
+ },
+ {
+  "id": "cur_energia_linea_transmision_troncal",
+  "categoria": "energia",
+  "costo_pa": 3,
+  "titulo": "Línea de transmisión troncal norte-sur",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 1.0
+   },
+   {
+    "ind": "fiscal",
+    "delta": -2.5
+   },
+   {
+    "ind": "riesgo_ejecucion",
+    "delta": 1.5
+   },
+   {
+    "ind": "capital",
+    "delta": 1.0
+   }
+  ],
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Torres kilómetro a kilómetro para llevar el sol a las ciudades.",
+  "riesgo": {
+   "prob": 0.4,
+   "efectos": [
+    {
+     "ind": "riesgo_ejecucion",
+     "delta": 1.5
+    },
+    {
+     "ind": "aprobacion",
+     "delta": -1
+    }
+   ]
+  },
+  "diferido": {
+   "semanas": 28,
+   "texto": "La energía limpia deja de vertirse y baja el precio spot.",
+   "efectos": [
+    {
+     "ind": "aprobacion",
+     "delta": 2.0
+    },
+    {
+     "ind": "fiscal",
+     "delta": 1
+    }
+   ]
+  }
+ },
+ {
+  "id": "cur_energia_paneles_solares_techos",
+  "categoria": "energia",
+  "costo_pa": 1,
+  "titulo": "Subsidio a paneles solares en techos",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 2.5
+   },
+   {
+    "ind": "fiscal",
+    "delta": -1.0
+   }
+  ],
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "El vecino instala, la boleta baja y el medidor corre al revés.",
+  "diferido": {
+   "semanas": 12,
+   "texto": "Las cuentas de la luz bajan en los hogares beneficiados.",
+   "efectos": [
+    {
+     "ind": "aprobacion",
+     "delta": 1.0
+    }
+   ]
+  }
+ },
+ {
+  "id": "cur_energia_baterias_almacenamiento",
+  "categoria": "energia",
+  "costo_pa": 2,
+  "titulo": "Licitación de baterías de almacenamiento",
+  "efectos": [
+   {
+    "ind": "fiscal",
+    "delta": -2.0
+   },
+   {
+    "ind": "riesgo_ejecucion",
+    "delta": -1
+   },
+   {
+    "ind": "capital",
+    "delta": 1.0
+   },
+   {
+    "ind": "aprobacion",
+    "delta": 1.0
+   }
+  ],
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Guardar el mediodía para usarlo a las ocho de la noche."
+ },
+ {
+  "id": "cur_energia_cierre_carbon",
+  "categoria": "energia",
+  "costo_pa": 2,
+  "titulo": "Calendario de cierre de centrales a carbón",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": -1
+   },
+   {
+    "ind": "fiscal",
+    "delta": -2.0
+   },
+   {
+    "ind": "cohesion",
+    "delta": 2.0
+   },
+   {
+    "ind": "capital",
+    "delta": -0.5
+   }
+  ],
+  "requisitos": {
+   "ley": "ley_simple",
+   "quorum": "ley_simple"
+  },
+  "camara_origen": "camara",
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Fecha cierta, plan de reconversión y una comuna que mira con inquietud.",
+  "diferido": {
+   "semanas": 20,
+   "texto": "El aire mejora y las comunas reconvertidas atraen nuevas empresas.",
+   "efectos": [
+    {
+     "ind": "aprobacion",
+     "delta": 1.0
+    }
+   ]
+  }
+ },
+ {
+  "id": "cur_energia_congelar_tarifas",
+  "categoria": "energia",
+  "costo_pa": 1,
+  "titulo": "Congelamiento parcial de tarifas eléctricas",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 4.0
+   },
+   {
+    "ind": "fiscal",
+    "delta": -2.5
+   },
+   {
+    "ind": "riesgo_ejecucion",
+    "delta": 1
+   }
+  ],
+  "requisitos": {
+   "ley": "ley_simple",
+   "quorum": "ley_simple"
+  },
+  "camara_origen": "camara",
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Alivio inmediato en la boleta; la cuenta queda para después.",
+  "diferido": {
+   "semanas": 10,
+   "texto": "La deuda acumulada con las generadoras presiona el alza.",
+   "efectos": [
+    {
+     "ind": "aprobacion",
+     "delta": -2
+    }
+   ]
+  }
+ },
+ {
+  "id": "cur_energia_eficiencia_hogares",
+  "categoria": "energia",
+  "costo_pa": 1,
+  "titulo": "Programa de eficiencia energética en hogares",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 1.0
+   },
+   {
+    "ind": "fiscal",
+    "delta": -0.5
+   },
+   {
+    "ind": "cohesion",
+    "delta": 1.0
+   }
+  ],
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Ampolletas, aislación y un técnico que golpea la puerta."
+ },
+ {
+  "id": "cur_energia_ventanilla_permisos",
+  "categoria": "energia",
+  "costo_pa": 2,
+  "titulo": "Ventanilla única de permisos energéticos",
+  "efectos": [
+   {
+    "ind": "riesgo_ejecucion",
+    "delta": -2
+   },
+   {
+    "ind": "capital",
+    "delta": 1.0
+   },
+   {
+    "ind": "fiscal",
+    "delta": 0.5
+   },
+   {
+    "ind": "cohesion",
+    "delta": -1
+   }
+  ],
+  "requisitos": {
+   "ley": "ley_simple",
+   "quorum": "ley_simple"
+  },
+  "camara_origen": "senado",
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Un solo timbre para proyectos que hoy esperan en siete oficinas."
+ },
+ {
+  "id": "cur_energia_exploracion_geotermica",
+  "categoria": "energia",
+  "costo_pa": 1,
+  "titulo": "Exploración geotérmica en el altiplano",
+  "efectos": [
+   {
+    "ind": "fiscal",
+    "delta": -0.5
+   },
+   {
+    "ind": "capital",
+    "delta": 1.0
+   },
+   {
+    "ind": "riesgo_ejecucion",
+    "delta": 0.5
+   }
+  ],
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Perforar a tres mil metros para ver si el volcán sirve de caldera.",
+  "riesgo": {
+   "prob": 0.3,
+   "efectos": [
+    {
+     "ind": "fiscal",
+     "delta": -1
+    }
+   ]
+  },
+  "diferido": {
+   "semanas": 30,
+   "texto": "Un primer pozo rentable abre una nueva fuente base.",
+   "efectos": [
+    {
+     "ind": "fiscal",
+     "delta": 2
+    },
+    {
+     "ind": "aprobacion",
+     "delta": 1.0
+    }
+   ]
+  }
+ },
+ {
+  "id": "cur_energia_lena_seca_certificada",
+  "categoria": "energia",
+  "costo_pa": 1,
+  "titulo": "Leña seca certificada para calefacción",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 1.0
+   },
+   {
+    "ind": "cohesion",
+    "delta": 1.0
+   },
+   {
+    "ind": "fiscal",
+    "delta": -0.5
+   }
+  ],
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Menos humo en el invierno del sur sin apagar la estufa."
+ },
+ {
+  "id": "cur_energia_eolico_costa_afuera",
+  "categoria": "energia",
+  "costo_pa": 2,
+  "titulo": "Pilotos de energía eólica costa afuera",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 1.0
+   },
+   {
+    "ind": "fiscal",
+    "delta": -1.0
+   },
+   {
+    "ind": "capital",
+    "delta": 1.0
+   },
+   {
+    "ind": "riesgo_ejecucion",
+    "delta": 0.5
+   }
+  ],
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Molinos mar adentro; los pescadores piden sentarse a la mesa."
+ },
+ {
+  "id": "cur_medioambiente_descontaminacion_zonas_sacrificio",
+  "categoria": "medioambiente",
+  "costo_pa": 2,
+  "titulo": "Plan de descontaminación de zonas de sacrificio",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 2.0
+   },
+   {
+    "ind": "fiscal",
+    "delta": -2.5
+   },
+   {
+    "ind": "cohesion",
+    "delta": 1.0
+   },
+   {
+    "ind": "capital",
+    "delta": -1
+   }
+  ],
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Normas más duras para chimeneas que llevan décadas encendidas.",
+  "riesgo": {
+   "prob": 0.3,
+   "efectos": [
+    {
+     "ind": "aprobacion",
+     "delta": -1.5
+    }
+   ]
+  },
+  "diferido": {
+   "semanas": 20,
+   "texto": "Mejora la calidad del aire y las consultas por asma bajan.",
+   "efectos": [
+    {
+     "ind": "aprobacion",
+     "delta": 2.0
+    }
+   ]
+  }
+ },
+ {
+  "id": "cur_medioambiente_ampliar_apr",
+  "categoria": "medioambiente",
+  "costo_pa": 2,
+  "titulo": "Ampliación de agua potable rural (APR)",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 2.5
+   },
+   {
+    "ind": "fiscal",
+    "delta": -2.0
+   },
+   {
+    "ind": "cohesion",
+    "delta": 1.0
+   }
+  ],
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Un camión aljibe menos y una llave más en el campo.",
+  "diferido": {
+   "semanas": 14,
+   "texto": "Las localidades conectadas dejan de depender del camión.",
+   "efectos": [
+    {
+     "ind": "aprobacion",
+     "delta": 1.0
+    }
+   ]
+  }
+ },
+ {
+  "id": "cur_medioambiente_plantas_desaladoras",
+  "categoria": "medioambiente",
+  "costo_pa": 3,
+  "titulo": "Plantas desaladoras para el norte",
+  "efectos": [
+   {
+    "ind": "fiscal",
+    "delta": -3.5
+   },
+   {
+    "ind": "aprobacion",
+    "delta": 1.0
+   },
+   {
+    "ind": "riesgo_ejecucion",
+    "delta": 1
+   },
+   {
+    "ind": "capital",
+    "delta": 1.0
+   }
+  ],
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Agua de mar para la minería y para los vecinos del desierto.",
+  "riesgo": {
+   "prob": 0.3,
+   "efectos": [
+    {
+     "ind": "aprobacion",
+     "delta": -1.5
+    }
+   ]
+  },
+  "diferido": {
+   "semanas": 26,
+   "texto": "El abastecimiento se estabiliza en las ciudades costeras.",
+   "efectos": [
+    {
+     "ind": "aprobacion",
+     "delta": 2.5
+    },
+    {
+     "ind": "cohesion",
+     "delta": 1.0
+    }
+   ]
+  }
+ },
+ {
+  "id": "cur_medioambiente_proteccion_glaciares",
+  "categoria": "medioambiente",
+  "costo_pa": 2,
+  "titulo": "Ley de resguardo de glaciares y cuencas",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 1.0
+   },
+   {
+    "ind": "cohesion",
+    "delta": 1.0
+   },
+   {
+    "ind": "fiscal",
+    "delta": -0.5
+   },
+   {
+    "ind": "capital",
+    "delta": -1.5
+   }
+  ],
+  "requisitos": {
+   "ley": "ley_simple",
+   "quorum": "ley_simple"
+  },
+  "camara_origen": "senado",
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Hielo que alimenta ríos, y una minera que lee la letra chica."
+ },
+ {
+  "id": "cur_medioambiente_reciclaje_envases",
+  "categoria": "medioambiente",
+  "costo_pa": 1,
+  "titulo": "Ley de reciclaje de envases",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 1.0
+   },
+   {
+    "ind": "fiscal",
+    "delta": 0.5
+   },
+   {
+    "ind": "capital",
+    "delta": -0.5
+   }
+  ],
+  "requisitos": {
+   "ley": "ley_simple",
+   "quorum": "ley_simple"
+  },
+  "camara_origen": "camara",
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Quien vende el envase se hace cargo de recuperarlo."
+ },
+ {
+  "id": "cur_medioambiente_humedales_urbanos",
+  "categoria": "medioambiente",
+  "costo_pa": 1,
+  "titulo": "Plan de conservación de humedales urbanos",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 1.0
+   },
+   {
+    "ind": "cohesion",
+    "delta": 1.0
+   },
+   {
+    "ind": "capital",
+    "delta": 1.0
+   },
+   {
+    "ind": "fiscal",
+    "delta": -0.5
+   }
+  ],
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Un chapoteo de patos entre dos autopistas."
+ },
+ {
+  "id": "cur_medioambiente_brigadas_forestales",
+  "categoria": "medioambiente",
+  "costo_pa": 2,
+  "titulo": "Brigadas forestales y cortafuegos",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 2.0
+   },
+   {
+    "ind": "fiscal",
+    "delta": -2.0
+   },
+   {
+    "ind": "riesgo_ejecucion",
+    "delta": -1
+   }
+  ],
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Más manos con motosierra antes de que llegue enero.",
+  "riesgo": {
+   "prob": 0.3,
+   "efectos": [
+    {
+     "ind": "aprobacion",
+     "delta": -2
+    }
+   ]
+  }
+ },
+ {
+  "id": "cur_medioambiente_fiscalizadores_ambientales",
+  "categoria": "medioambiente",
+  "costo_pa": 1,
+  "titulo": "Más fiscalizadores ambientales",
+  "efectos": [
+   {
+    "ind": "capital",
+    "delta": 1.0
+   },
+   {
+    "ind": "fiscal",
+    "delta": -0.5
+   },
+   {
+    "ind": "riesgo_ejecucion",
+    "delta": -1
+   },
+   {
+    "ind": "cohesion",
+    "delta": -0.5
+   }
+  ],
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Menos reuniones y más inspecciones sorpresa."
+ },
+ {
+  "id": "cur_medioambiente_plastico_un_uso",
+  "categoria": "medioambiente",
+  "costo_pa": 1,
+  "titulo": "Prohibición de plásticos de un solo uso",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 2.0
+   },
+   {
+    "ind": "capital",
+    "delta": -0.5
+   },
+   {
+    "ind": "fiscal",
+    "delta": 0.5
+   }
+  ],
+  "requisitos": {
+   "ley": "ley_simple",
+   "quorum": "ley_simple"
+  },
+  "camara_origen": "camara",
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "La bombilla de papel divide más que muchos proyectos de ley."
+ },
+ {
+  "id": "cur_medioambiente_reforma_codigo_aguas",
+  "categoria": "medioambiente",
+  "costo_pa": 3,
+  "titulo": "Reforma al Código de Aguas",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": -1
+   },
+   {
+    "ind": "capital",
+    "delta": -3
+   },
+   {
+    "ind": "cohesion",
+    "delta": 2.5
+   },
+   {
+    "ind": "fiscal",
+    "delta": 1
+   }
+  ],
+  "requisitos": {
+   "ley": "quorum_calificado",
+   "quorum": "quorum_calificado"
+  },
+  "camara_origen": "senado",
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Agua para el consumo primero, y derechos antiguos en discusión.",
+  "diferido": {
+   "semanas": 22,
+   "texto": "Más seguridad hídrica para el riego campesino.",
+   "efectos": [
+    {
+     "ind": "aprobacion",
+     "delta": 2.5
+    }
+   ]
+  }
+ },
+ {
+  "id": "cur_medioambiente_impuesto_verde_ampliado",
+  "categoria": "medioambiente",
+  "costo_pa": 1,
+  "titulo": "Impuesto verde ampliado",
+  "efectos": [
+   {
+    "ind": "fiscal",
+    "delta": 2
+   },
+   {
+    "ind": "aprobacion",
+    "delta": -1.5
+   },
+   {
+    "ind": "capital",
+    "delta": -1
+   }
+  ],
+  "requisitos": {
+   "ley": "ley_simple",
+   "quorum": "ley_simple"
+  },
+  "camara_origen": "camara",
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Quien contamina paga, y paga por tonelada."
+ },
+ {
+  "id": "cur_medioambiente_areas_marinas_protegidas",
+  "categoria": "medioambiente",
+  "costo_pa": 2,
+  "titulo": "Nuevas áreas marinas protegidas",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 1.0
+   },
+   {
+    "ind": "cohesion",
+    "delta": 1.0
+   },
+   {
+    "ind": "fiscal",
+    "delta": -0.5
+   },
+   {
+    "ind": "capital",
+    "delta": 1.0
+   }
+  ],
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Santuario para ballenas y reglas para las caletas vecinas.",
+  "riesgo": {
+   "prob": 0.25,
+   "efectos": [
+    {
+     "ind": "cohesion",
+     "delta": -1
+    }
+   ]
+  },
+  "diferido": {
+   "semanas": 24,
+   "texto": "Se recuperan pesquerías y crece el turismo de naturaleza.",
+   "efectos": [
+    {
+     "ind": "aprobacion",
+     "delta": 1.0
+    }
+   ]
+  }
+ },
+ {
+  "id": "cur_transportes_extension_metro",
+  "categoria": "transportes",
+  "costo_pa": 3,
+  "titulo": "Extensión de líneas de metro",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 2.5
+   },
+   {
+    "ind": "fiscal",
+    "delta": -3.5
+   },
+   {
+    "ind": "riesgo_ejecucion",
+    "delta": 1
+   },
+   {
+    "ind": "capital",
+    "delta": 1.0
+   }
+  ],
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Cinco estaciones nuevas y tres años de calles abiertas.",
+  "riesgo": {
+   "prob": 0.3,
+   "efectos": [
+    {
+     "ind": "fiscal",
+     "delta": -2
+    }
+   ]
+  },
+  "diferido": {
+   "semanas": 30,
+   "texto": "Miles de viajes diarios cambian el auto por el vagón.",
+   "efectos": [
+    {
+     "ind": "aprobacion",
+     "delta": 3.0
+    },
+    {
+     "ind": "cohesion",
+     "delta": 1.0
+    }
+   ]
+  }
+ },
+ {
+  "id": "cur_transportes_buses_electricos",
+  "categoria": "transportes",
+  "costo_pa": 2,
+  "titulo": "Renovación de buses eléctricos",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 2.0
+   },
+   {
+    "ind": "fiscal",
+    "delta": -2.5
+   },
+   {
+    "ind": "riesgo_ejecucion",
+    "delta": -0.5
+   }
+  ],
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Silencio al arrancar y menos humo en el paradero.",
+  "diferido": {
+   "semanas": 12,
+   "texto": "El ahorro en combustible compensa parte de la inversión.",
+   "efectos": [
+    {
+     "ind": "fiscal",
+     "delta": 1
+    }
+   ]
+  }
+ },
+ {
+  "id": "cur_transportes_pase_adulto_mayor",
+  "categoria": "transportes",
+  "costo_pa": 1,
+  "titulo": "Pase gratuito para adultos mayores",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 3.0
+   },
+   {
+    "ind": "fiscal",
+    "delta": -2.0
+   },
+   {
+    "ind": "cohesion",
+    "delta": 1.0
+   }
+  ],
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "El abuelo viaja gratis y la caja del sistema lo anota."
+ },
+ {
+  "id": "cur_transportes_red_ciclovias",
+  "categoria": "transportes",
+  "costo_pa": 1,
+  "titulo": "Red de ciclovías interurbanas",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 1.0
+   },
+   {
+    "ind": "cohesion",
+    "delta": 1.0
+   },
+   {
+    "ind": "fiscal",
+    "delta": -0.5
+   },
+   {
+    "ind": "capital",
+    "delta": 1.0
+   }
+  ],
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Un carril pintado que une dos comunas sin pasar por el auto."
+ },
+ {
+  "id": "cur_transportes_tren_cercanias",
+  "categoria": "transportes",
+  "costo_pa": 2,
+  "titulo": "Tren de cercanías regional",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 2.0
+   },
+   {
+    "ind": "fiscal",
+    "delta": -2.5
+   },
+   {
+    "ind": "cohesion",
+    "delta": 2.0
+   },
+   {
+    "ind": "riesgo_ejecucion",
+    "delta": 1
+   }
+  ],
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Rieles viejos que vuelven a tener horario.",
+  "diferido": {
+   "semanas": 28,
+   "texto": "El tren consolida pasajeros y alivia la ruta paralela.",
+   "efectos": [
+    {
+     "ind": "aprobacion",
+     "delta": 2.5
+    },
+    {
+     "ind": "fiscal",
+     "delta": 1
+    }
+   ]
+  }
+ },
+ {
+  "id": "cur_transportes_rebaja_peajes",
+  "categoria": "transportes",
+  "costo_pa": 1,
+  "titulo": "Rebaja de peajes en horas punta",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 2.5
+   },
+   {
+    "ind": "fiscal",
+    "delta": -1.0
+   },
+   {
+    "ind": "riesgo_ejecucion",
+    "delta": 0.5
+   }
+  ],
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Pagar menos por llegar tarde a casa igual."
+ },
+ {
+  "id": "cur_transportes_tarifa_congestion",
+  "categoria": "transportes",
+  "costo_pa": 2,
+  "titulo": "Tarifa por congestión en el centro",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": -2
+   },
+   {
+    "ind": "fiscal",
+    "delta": 2.5
+   },
+   {
+    "ind": "capital",
+    "delta": -1
+   },
+   {
+    "ind": "cohesion",
+    "delta": -0.5
+   }
+  ],
+  "requisitos": {
+   "ley": "ley_simple",
+   "quorum": "ley_simple"
+  },
+  "camara_origen": "camara",
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Entrar al centro cuesta, y el bus gratis lo compensa a medias.",
+  "diferido": {
+   "semanas": 10,
+   "texto": "Baja el tiempo de viaje y se aceptan las nuevas reglas.",
+   "efectos": [
+    {
+     "ind": "aprobacion",
+     "delta": 1.0
+    }
+   ]
+  }
+ },
+ {
+  "id": "cur_transportes_terminal_aereo_regional",
+  "categoria": "transportes",
+  "costo_pa": 2,
+  "titulo": "Ampliación de terminal aéreo regional",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 1.0
+   },
+   {
+    "ind": "fiscal",
+    "delta": -2.0
+   },
+   {
+    "ind": "riesgo_ejecucion",
+    "delta": 1
+   },
+   {
+    "ind": "capital",
+    "delta": 1.0
+   }
+  ],
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Una pista más larga y un turismo que sueña con vuelos directos.",
+  "riesgo": {
+   "prob": 0.3,
+   "efectos": [
+    {
+     "ind": "riesgo_ejecucion",
+     "delta": 1
+    }
+   ]
+  }
+ },
+ {
+  "id": "cur_transportes_fiscalizacion_evasion",
+  "categoria": "transportes",
+  "costo_pa": 1,
+  "titulo": "Fiscalización de evasión en transporte",
+  "efectos": [
+   {
+    "ind": "fiscal",
+    "delta": 1
+   },
+   {
+    "ind": "aprobacion",
+    "delta": -1
+   },
+   {
+    "ind": "riesgo_ejecucion",
+    "delta": -0.5
+   },
+   {
+    "ind": "capital",
+    "delta": 1.0
+   }
+  ],
+  "requisitos": {
+   "ley": "ley_simple",
+   "quorum": "ley_simple"
+  },
+  "camara_origen": "camara",
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Un inspector en el torniquete y mil reclamos en redes."
+ },
+ {
+  "id": "cur_transportes_corredores_buses",
+  "categoria": "transportes",
+  "costo_pa": 2,
+  "titulo": "Corredores exclusivos de buses",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 1.0
+   },
+   {
+    "ind": "fiscal",
+    "delta": -1.0
+   },
+   {
+    "ind": "cohesion",
+    "delta": 1.0
+   },
+   {
+    "ind": "riesgo_ejecucion",
+    "delta": 1
+   }
+  ],
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Una pista para el bus, quejas del automovilista.",
+  "riesgo": {
+   "prob": 0.35,
+   "efectos": [
+    {
+     "ind": "aprobacion",
+     "delta": -1.5
+    }
+   ]
+  }
+ },
+ {
+  "id": "cur_transportes_puerto_ferroviario",
+  "categoria": "transportes",
+  "costo_pa": 2,
+  "titulo": "Puerto de carga con acceso ferroviario",
+  "efectos": [
+   {
+    "ind": "fiscal",
+    "delta": -2.0
+   },
+   {
+    "ind": "capital",
+    "delta": 2.0
+   },
+   {
+    "ind": "aprobacion",
+    "delta": 1.0
+   }
+  ],
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Menos camiones en la costanera y más contenedores en vía.",
+  "diferido": {
+   "semanas": 24,
+   "texto": "El puerto gana carga y vuelve a la caja fiscal.",
+   "efectos": [
+    {
+     "ind": "fiscal",
+     "delta": 2.5
+    }
+   ]
+  }
+ },
+ {
+  "id": "cur_transportes_semaforos_inteligentes",
+  "categoria": "transportes",
+  "costo_pa": 1,
+  "titulo": "Semáforos inteligentes en ejes principales",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 1.0
+   },
+   {
+    "ind": "riesgo_ejecucion",
+    "delta": -1
+   },
+   {
+    "ind": "fiscal",
+    "delta": -0.5
+   },
+   {
+    "ind": "cohesion",
+    "delta": 1.0
+   }
+  ],
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "La onda verde, esta vez de verdad."
+ },
+ {
+  "id": "cur_obras_puente_rio_grande",
+  "categoria": "obras",
+  "costo_pa": 3,
+  "titulo": "Nuevo puente sobre el río grande",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 2.5
+   },
+   {
+    "ind": "fiscal",
+    "delta": -3.5
+   },
+   {
+    "ind": "riesgo_ejecucion",
+    "delta": 1.5
+   },
+   {
+    "ind": "capital",
+    "delta": 1.0
+   }
+  ],
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Una ciudad partida en dos por un puente de 1960 con peso limitado.",
+  "riesgo": {
+   "prob": 0.35,
+   "efectos": [
+    {
+     "ind": "riesgo_ejecucion",
+     "delta": 2
+    }
+   ]
+  },
+  "diferido": {
+   "semanas": 28,
+   "texto": "El puente integra ambos lados y reduce los tiempos de traslado.",
+   "efectos": [
+    {
+     "ind": "cohesion",
+     "delta": 2.5
+    },
+    {
+     "ind": "aprobacion",
+     "delta": 2.0
+    }
+   ]
+  }
+ },
+ {
+  "id": "cur_obras_ruta_longitudinal",
+  "categoria": "obras",
+  "costo_pa": 2,
+  "titulo": "Mejoramiento de la ruta longitudinal",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 2.0
+   },
+   {
+    "ind": "fiscal",
+    "delta": -2.5
+   },
+   {
+    "ind": "riesgo_ejecucion",
+    "delta": 0.5
+   },
+   {
+    "ind": "cohesion",
+    "delta": 1.0
+   }
+  ],
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Doble vía, berma ancha y menos camiones detrás del tractor."
+ },
+ {
+  "id": "cur_obras_operativo_bacheo",
+  "categoria": "obras",
+  "costo_pa": 1,
+  "titulo": "Operativo nacional de bacheo",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 2.5
+   },
+   {
+    "ind": "fiscal",
+    "delta": -0.5
+   },
+   {
+    "ind": "riesgo_ejecucion",
+    "delta": 0.5
+   }
+  ],
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Un hoyo menos vale más que mil discursos."
+ },
+ {
+  "id": "cur_obras_embalse_riego",
+  "categoria": "obras",
+  "costo_pa": 2,
+  "titulo": "Embalse de riego en el valle",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 1.0
+   },
+   {
+    "ind": "fiscal",
+    "delta": -2.5
+   },
+   {
+    "ind": "cohesion",
+    "delta": 1.0
+   },
+   {
+    "ind": "riesgo_ejecucion",
+    "delta": 1
+   }
+  ],
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Un muro de hormigón para guardar la nieve del invierno.",
+  "diferido": {
+   "semanas": 26,
+   "texto": "El riego asegurado mejora la producción agrícola.",
+   "efectos": [
+    {
+     "ind": "fiscal",
+     "delta": 1.5
+    },
+    {
+     "ind": "aprobacion",
+     "delta": 2.0
+    }
+   ]
+  }
+ },
+ {
+  "id": "cur_obras_caletas_pesqueras",
+  "categoria": "obras",
+  "costo_pa": 1,
+  "titulo": "Mejoramiento de caletas pesqueras",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 1.0
+   },
+   {
+    "ind": "cohesion",
+    "delta": 1.0
+   },
+   {
+    "ind": "fiscal",
+    "delta": -0.5
+   }
+  ],
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Un muelle nuevo y hielo para conservar la pesca."
+ },
+ {
+  "id": "cur_obras_ruta_costera_austral",
+  "categoria": "obras",
+  "costo_pa": 2,
+  "titulo": "Ruta costera austral y transbordadores",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 1.0
+   },
+   {
+    "ind": "cohesion",
+    "delta": 2.5
+   },
+   {
+    "ind": "fiscal",
+    "delta": -2.5
+   },
+   {
+    "ind": "riesgo_ejecucion",
+    "delta": 1.5
+   }
+  ],
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Conectar fiordos sin depender del clima de la semana.",
+  "riesgo": {
+   "prob": 0.3,
+   "efectos": [
+    {
+     "ind": "aprobacion",
+     "delta": -1
+    }
+   ]
+  }
+ },
+ {
+  "id": "cur_obras_colectores_aguas_lluvia",
+  "categoria": "obras",
+  "costo_pa": 1,
+  "titulo": "Colectores de aguas lluvia",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 1.0
+   },
+   {
+    "ind": "riesgo_ejecucion",
+    "delta": -1
+   },
+   {
+    "ind": "fiscal",
+    "delta": -1.0
+   }
+  ],
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Para que la primera lluvia no sea un diluvio en la esquina."
+ },
+ {
+  "id": "cur_obras_programa_concesiones",
+  "categoria": "obras",
+  "costo_pa": 2,
+  "titulo": "Programa de concesiones de obra pública",
+  "efectos": [
+   {
+    "ind": "fiscal",
+    "delta": 2
+   },
+   {
+    "ind": "capital",
+    "delta": -1
+   },
+   {
+    "ind": "aprobacion",
+    "delta": -0.5
+   },
+   {
+    "ind": "riesgo_ejecucion",
+    "delta": -1
+   }
+  ],
+  "requisitos": {
+   "ley": "ley_simple",
+   "quorum": "ley_simple"
+  },
+  "camara_origen": "senado",
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "El privado construye y cobra; el Estado ahorra y vigila.",
+  "diferido": {
+   "semanas": 20,
+   "texto": "Las obras concesionadas se inauguran con plazos cumplidos.",
+   "efectos": [
+    {
+     "ind": "aprobacion",
+     "delta": 1.0
+    }
+   ]
+  }
+ },
+ {
+  "id": "cur_obras_auditoria_grandes_obras",
+  "categoria": "obras",
+  "costo_pa": 1,
+  "titulo": "Auditoría externa de grandes obras",
+  "efectos": [
+   {
+    "ind": "riesgo_ejecucion",
+    "delta": -2
+   },
+   {
+    "ind": "capital",
+    "delta": 1.0
+   },
+   {
+    "ind": "fiscal",
+    "delta": 0.5
+   },
+   {
+    "ind": "aprobacion",
+    "delta": -0.5
+   }
+  ],
+  "requisitos": {
+   "ley": "ley_simple",
+   "quorum": "ley_simple"
+  },
+  "camara_origen": "senado",
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Quien revisa los sobrecostos antes de que aparezcan."
+ },
+ {
+  "id": "cur_obras_caminos_rurales",
+  "categoria": "obras",
+  "costo_pa": 1,
+  "titulo": "Plan de conservación de caminos rurales",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 2.0
+   },
+   {
+    "ind": "cohesion",
+    "delta": 1.0
+   },
+   {
+    "ind": "fiscal",
+    "delta": -0.5
+   }
+  ],
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "La lluvia deja de aislar al pueblo cada invierno."
+ },
+ {
+  "id": "cur_obras_defensas_fluviales",
+  "categoria": "obras",
+  "costo_pa": 2,
+  "titulo": "Defensas fluviales contra crecidas",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 1.0
+   },
+   {
+    "ind": "riesgo_ejecucion",
+    "delta": -1.5
+   },
+   {
+    "ind": "fiscal",
+    "delta": -2.0
+   },
+   {
+    "ind": "cohesion",
+    "delta": 1.0
+   }
+  ],
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Muros de contención antes de la próxima lluvia fuerte.",
+  "riesgo": {
+   "prob": 0.25,
+   "efectos": [
+    {
+     "ind": "aprobacion",
+     "delta": -1.5
+    }
+   ]
+  }
+ },
+ {
+  "id": "cur_obras_parques_barrios",
+  "categoria": "obras",
+  "costo_pa": 2,
+  "titulo": "Parques y espacios públicos en barrios",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 2.0
+   },
+   {
+    "ind": "cohesion",
+    "delta": 1.0
+   },
+   {
+    "ind": "fiscal",
+    "delta": -1.0
+   },
+   {
+    "ind": "capital",
+    "delta": 1.0
+   }
+  ],
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Una plaza con luz es la mejor patrulla."
+ }
+]

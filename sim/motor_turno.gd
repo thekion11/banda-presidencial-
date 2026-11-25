@@ -5,6 +5,7 @@ extends RefCounted
 var estado: EstadoSimulacion
 var rng: RandomNumberGenerator
 var catalogo_cartas: Array[Dictionary] = []
+const ETAPAS_JUEGO := ["campana", "gobierno", "oposicion"]  # etapas con turnos (el resto son fines de periodo)
 var catalogo_eventos: Array[Dictionary] = []
 var catalogo_leyes: Dictionary = {}
 var catalogo_ministros: Dictionary = {}
@@ -71,6 +72,7 @@ func turnos_mandato() -> int:
 func aplicar_partido_inicial(datos_partido: Dictionary) -> void:
 	estado.partido = EstadoSimulacion.normalizar(datos_partido)
 	estado.etapa = "campana"
+	coalicion.adoptar_partido_propio(String(datos_partido.get("partido_base", "")))  # tu partido es aliado permanente que pide poder (PR-01)
 	estado.promesas_campana.clear()
 	var ind_ini: Dictionary = estado.partido["indicadores_iniciales"]
 	for clave in ind_ini.keys():
@@ -95,7 +97,7 @@ func terminar_turno() -> Array[Dictionary]:
 	cerrar_turno()
 	if estado.eleccion_pendiente(int(_h("semanas_campana"))):
 		return []
-	if estado.etapa == "campana" or estado.etapa == "gobierno":
+	if ETAPAS_JUEGO.has(estado.etapa):
 		return iniciar_turno()
 	return []
 
@@ -107,6 +109,8 @@ func ejecutar_amanecer() -> void:
 	if estado.etapa == "campana":
 		regiones.revertir_a_base(estado, float(catalogo_leyes["campana"]["reversion_semanal"]))
 	if estado.etapa != "gobierno":
+		if estado.etapa == "oposicion":
+			mandato.amanecer_oposicion()
 		movimientos.fijar_movimientos()
 		return
 	var d: Dictionary = catalogo_leyes["dinamica"]
@@ -126,11 +130,12 @@ func ejecutar_amanecer() -> void:
 		fx.delta_aprobacion(-float(d["penal_aprobacion_riesgo"]), "")
 	fx.sumar_ind("capital", float(d["regen_capital_semanal"]))
 	fx.sumar_ind("cohesion", float(d["regen_cohesion_semanal"]))
+	gabinete.amanecer()  # estilos y afinidad de los ministros (Fase C)
 	movimientos.fijar_movimientos()
 
 
 func cerrar_turno() -> void:
-	if estado.etapa != "campana" and estado.etapa != "gobierno":
+	if not ETAPAS_JUEGO.has(estado.etapa):
 		return
 	if estado.eleccion_pendiente(int(_h("semanas_campana"))):
 		return  # terminada la campaña toca votar: no se pueden seguir cerrando turnos
@@ -146,10 +151,12 @@ func cerrar_turno() -> void:
 	estado.registrar_accion("cierre_turno", {"aprobacion": snappedf(estado.ind("aprobacion"), 0.01), "resumen": resumen.size()})
 	estado.registrar_entrada("cerrar", {})
 	cartas.descartar_mano()
-	if estado.etapa != "gobierno" and estado.etapa != "campana":
+	if not ETAPAS_JUEGO.has(estado.etapa):
 		return
 	estado.turno_actual += 1
 	estado.dia_actual += estado.dias_por_turno
+	if estado.etapa == "oposicion" and estado.turno_actual > int(catalogo_leyes["oposicion"]["semanas"]):
+		mandato.cerrar_oposicion()
 	if estado.etapa == "gobierno" and estado.turno_actual > turnos_mandato():
 		mandato.finalizar("fin_mandato")
 
@@ -157,60 +164,46 @@ func cerrar_turno() -> void:
 func resolver_eleccion_presidencial() -> Dictionary: return mandato.resolver_eleccion()
 
 
+func continuar_carrera() -> Dictionary: return mandato.continuar_carrera()
+
+
 # ---------------------------------------------------------------- Fachada (la UI y los tests usan estos nombres)
 func procesar_eventos_semana() -> Array[Dictionary]: return eventos.procesar_semana()
 
-
 func costo_carta(carta: Dictionary, ministro_id: String = "") -> int: return cartas.costo_carta(carta, ministro_id)
-
 
 func es_unica(carta: Dictionary) -> bool: return cartas.es_unica(carta)
 
-
 func vista_carta(idx: int, ministro_id: String = "") -> Dictionary: return cartas.vista_carta(idx, ministro_id)
-
 
 func jugar_carta(idx: int, ministro_id: String = "", region_id: String = "") -> Dictionary: return cartas.jugar_carta(idx, ministro_id, region_id)
 
-
 func aprobar_propuesta(prop_id: String, variante_id: String, region_id: String = "", custom: Dictionary = {}, nombres: Dictionary = {}) -> Dictionary: return cartas.aprobar_propuesta(prop_id, variante_id, region_id, custom, nombres)
 
-
 func impulsar_proyecto(pid: String) -> Dictionary: return sectra.impulsar(pid)
-
 
 func calcular_puntaje() -> int: return mandato.calcular_puntaje()
 
 
 func robar_mano(n: int = 5) -> void: mazo.robar(n)
 
-
 func carta_disponible(carta: Dictionary) -> bool: return gabinete.disponible(carta)
-
 
 func elegir_gabinete(ids: Array) -> Dictionary: return gabinete.elegir(ids)
 
-
 func delegar_carta(idx: int, ministro_id: String, region_id: String = "") -> Dictionary: return cartas.jugar_carta(idx, ministro_id, region_id, true)
-
 
 func prob_fallo_delegacion(idx: int, ministro_id: String) -> float: return gabinete.prob_fallo(estado.mano[idx], ministro_id)
 
-
 func buscar_meta(meta_id: String) -> Dictionary: return movimientos.buscar_meta(meta_id)
-
 
 func ajustar_sector(sector: String, direccion: int) -> Dictionary: return movimientos.ajustar_sector(sector, direccion)
 
-
 func reducir_errores() -> Dictionary: return movimientos.reducir_errores()
-
 
 func acelerar_proyecto(idx: int) -> Dictionary: return movimientos.acelerar_proyecto(idx)
 
-
 func contratar_asesor(id: String) -> Dictionary: return equipo.contratar(id)
-
 
 func despedir_asesor(id: String) -> Dictionary: return equipo.despedir(id)
 func unirse_coalicion(id: String) -> Dictionary: return coalicion.unirse(id)

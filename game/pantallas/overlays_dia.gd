@@ -136,7 +136,7 @@ static func _fila_efectos(efectos: Array) -> HBoxContainer:
 	return fila
 
 
-static func evento(ev: Dictionary, al_continuar: Callable, nombres: Dictionary, dia: int = 0) -> Control:
+static func evento(ev: Dictionary, al_continuar: Callable, nombres: Dictionary, dia: int = 0, al_decidir: Callable = Callable()) -> Control:
 	## Evento del día. Si trae votación, se muestra cámara por cámara en el orden de tramitación (origen -> revisora).
 	var capa := Control.new()
 	capa.set_anchors_preset(Control.PRESET_FULL_RECT)
@@ -160,6 +160,8 @@ static func evento(ev: Dictionary, al_continuar: Callable, nombres: Dictionary, 
 		for h in col.get_children():
 			h.queue_free()
 		var cab := ("EVENTO · %s" % String(ev["hora"]))
+		if ev.has("escena"):  # debate o entrevista: cabecera de escena con el avance de las rondas
+			cab = "%s · RONDA %d DE %d" % [String(ev["escena"]["nombre"]).to_upper(), int(ev["escena"]["ronda"]), int(ev["escena"]["rondas"])]
 		if dia > 0:
 			cab += " · DÍA %d" % dia
 		col.add_child(_centrada(cab, 11, Tema.ORO, true))
@@ -185,6 +187,23 @@ static func evento(ev: Dictionary, al_continuar: Callable, nombres: Dictionary, 
 		var esp := Control.new()
 		esp.size_flags_vertical = Control.SIZE_EXPAND_FILL
 		col.add_child(esp)
+		if ev.get("opciones", null) != null and al_decidir.is_valid():  # decisión del jugador: no gasta movimientos
+			var ops: Array = ev["opciones"]
+			for k in range(ops.size()):
+				var marcas: Array[String] = []
+				if ops[k].has("riesgo"):
+					marcas.append("con riesgo")
+				if ops[k].has("diferido") or ops[k].has("cadena"):
+					marcas.append("con efecto a futuro")
+				var ob := Tema.boton(String(ops[k]["texto"]) + (("\n" + " · ".join(marcas)) if not marcas.is_empty() else ""), Tema.ROJO if k == 0 else Tema.PANEL, Tema.TEXTO, 13, 56)
+				ob.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+				ob.pressed.connect(func() -> void:
+					estado.erase("armar")
+					al_decidir.call(k)
+					capa.queue_free()
+					al_continuar.call())
+				col.add_child(ob)
+			return
 		var b := Barras.boton_jugar()
 		b.custom_minimum_size = Vector2(0, 52)
 		var ultima := v == null or int(estado["i"]) == 1 or not _pasa(v, paginas, int(estado["i"]))

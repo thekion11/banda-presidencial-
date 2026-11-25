@@ -4,7 +4,8 @@ extends RefCounted
 
 const IND_DEFECTO := {
 	"aprobacion": 90.0, "capital": 65.0, "cohesion": 85.0,
-	"fiscal": 67.0, "riesgo_ejecucion": 20.0, "viviendas_anio": 55000.0
+	"fiscal": 67.0, "riesgo_ejecucion": 20.0, "viviendas_anio": 55000.0,
+	"rival": 45.0  # aprobación del gobierno rival (solo cuenta en oposición)
 }
 
 var semilla: int = 20260415
@@ -27,6 +28,7 @@ var partido: Dictionary = {}
 var promesas_campana: Array[Dictionary] = []
 
 var gabinete: Array[String] = []  # ids de ministros nombrados (data/ministros.json)
+var decisiones: Dictionary = {}  # id de evento con opciones -> índice elegido por el jugador (PR-07/PR-08)
 var eventos_ocurridos: Dictionary = {}  # id de evento -> turno en que ocurrió (activa cartas con disponibilidad.evento)
 var metas_cumplidas: Dictionary = {}  # id de meta interna -> turno (data/metas.json)
 var indices_sector: Dictionary = {}  # categoría -> índice sectorial 0..100 (movimiento interno ajustar_sector)
@@ -54,6 +56,10 @@ var entradas: Array[Dictionary] = []  # decisiones del jugador, para reproducir 
 var semanas_en_crisis: int = 0
 var legado_evaluado: Array[int] = []
 var resultado_final: Dictionary = {}
+var ciclo: int = 1  # periodo de la carrera política (1 = primera campaña; sube cada vez que continúas tras un gobierno o una derrota)
+var carrera: Array[Dictionary] = []  # periodos ya cerrados: {ciclo, resultado, puntaje, aprobacion, turnos}
+var pendientes: Array[Dictionary] = []  # consecuencias programadas por decisiones: {tipo: efecto|evento, semana, origen, ...}
+var dias_carrera: int = 0  # días jugados en periodos cerrados desde el inicio del mandato (reloj del calendario desde el ciclo 2)
 
 
 func configurar(p_semilla: int, p_dias_turno: int = 7, p_leyes: Dictionary = {}) -> void:
@@ -76,6 +82,7 @@ func configurar(p_semilla: int, p_dias_turno: int = 7, p_leyes: Dictionary = {})
 	pa_actual = pa_maximo
 	gabinete.clear()
 	eventos_ocurridos.clear()
+	decisiones.clear()
 	metas_cumplidas.clear()
 	indices_sector.clear()
 	asesores.clear()
@@ -103,6 +110,10 @@ func configurar(p_semilla: int, p_dias_turno: int = 7, p_leyes: Dictionary = {})
 	semanas_en_crisis = 0
 	legado_evaluado.clear()
 	resultado_final = {}
+	ciclo = 1
+	carrera.clear()
+	dias_carrera = 0
+	pendientes.clear()
 
 
 static func normalizar(v: Variant) -> Variant:
@@ -152,41 +163,7 @@ func eleccion_pendiente(semanas_campana: int) -> bool:
 
 
 func exportar_resumen() -> Dictionary:
-	return {
-		"semilla": semilla,
-		"etapa": etapa,
-		"turno_actual": turno_actual,
-		"dia_actual": dia_actual,
-		"pa_actual": pa_actual,
-		"gabinete": gabinete.duplicate(),
-		"eventos_ocurridos": eventos_ocurridos.duplicate(),
-		"metas_cumplidas": metas_cumplidas.duplicate(),
-		"indices_sector": indices_sector.duplicate(),
-		"asesores": asesores.duplicate(),
-		"bono_mov": bono_mov.duplicate(),
-		"coalicion": coalicion.duplicate(true),
-		"apoyo_coalicion": apoyo_coalicion.duplicate(),
-		"delegadas_turno": delegadas_turno,
-		"internos_actual": internos_actual,
-		"indicadores": indicadores.duplicate(true),
-		"aprobacion_regional": aprobacion_regional.duplicate(true),
-		"partido": partido.duplicate(true),
-		"promesas": promesas_campana.duplicate(true),
-		"mano": _ids_mano(),
-		"mazo": mazo.size(),
-		"obras_en_curso": obras_en_curso.duplicate(true),
-		"obras_terminadas": obras_terminadas.size(),
-		"lineas_jugador": lineas_jugador.duplicate(true),
-		"proyectos_ley": proyectos_ley.duplicate(true),
-		"cartas_ejecutadas": cartas_ejecutadas.keys(),
-		"sectra": sectra.duplicate(true),
-		"ronda_electoral": ronda_electoral,
-		"propuestas_abiertas": propuestas_abiertas.duplicate(),
-		"propuestas_aprobadas": propuestas_aprobadas.duplicate(),
-		"total_acciones": registro_acciones.size(),
-		"registro": registro_acciones.duplicate(true),
-		"resultado_final": resultado_final.duplicate(true),
-	}
+	return ResumenEstado.de(self)  # el detalle vive en sim/resumen_estado.gd (este archivo está al límite de líneas)
 
 
 func calcular_huella() -> String:

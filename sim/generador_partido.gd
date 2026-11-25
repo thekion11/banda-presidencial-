@@ -34,6 +34,41 @@ static func escanos_para(eco: float, inst: float) -> int:
 	return clampi(roundi(18.0 - 6.0 * sqrt(eco * eco + inst * inst)), 6, 22)
 
 
+static func construir_partido_afiliado(afiliacion: String, base: Dictionary, nombre: String, sigla: String, region_bastion: String,
+		respuestas: Array[Dictionary], catalogo_ideologia: Dictionary, cfg: Dictionary) -> Dictionary:
+	## Partido según la afiliación (PR-01): propio, independiente o existente (base = partido de data/coalicion.json). Todo número viene de cfg (leyes.json "afiliacion").
+	var op: Dictionary = cfg["opciones"][afiliacion]
+	var p := construir_partido(nombre, sigla, region_bastion, respuestas, catalogo_ideologia)
+	if afiliacion == "existente":
+		var ide: Dictionary = base["ideologia"]
+		var peso := float(op["peso_postura"])
+		var ejes := calcular_ejes(respuestas)
+		p["eje_eco"] = clampf(float(ide["eco"]) + peso * ejes.x, -1.0, 1.0)
+		p["eje_inst"] = clampf(float(ide["inst"]) + peso * ejes.y, -1.0, 1.0)
+		p["arquetipo"] = arquetipo_para(p["eje_eco"], catalogo_ideologia)
+		p["perfil"] = perfil_para(p["eje_eco"], p["eje_inst"], catalogo_ideologia)
+		p["escanos_propios"] = maxi(int(op["escanos_min"]), roundi(float(base["escanos_senado"]) * float(op["escanos_mult"])))
+		p["partido_base"] = String(base["id"])
+	elif afiliacion == "independiente":
+		p["escanos_propios"] = maxi(int(op["escanos_min"]), roundi(float(p["escanos_propios"]) * float(op["escanos_factor"])))
+	var ind: Dictionary = p["indicadores_iniciales"]
+	ind["aprobacion"] = clampf(float(ind["aprobacion"]) + float(op["aprobacion"]), 0.0, 100.0)
+	ind["cohesion"] = clampf(float(ind["cohesion"]) + float(op["cohesion"]), 0.0, 100.0)
+	p["afiliacion"] = afiliacion
+	return p
+
+
+static func aplicar_habilidad(partido: Dictionary, habilidad: String, color: String, cfg: Dictionary) -> void:
+	## PR-16/PR-15: la habilidad suma a los indicadores iniciales (datos en leyes.json «habilidades»); el color es solo apariencia (debe estar en la paleta).
+	var op: Dictionary = cfg["opciones"].get(habilidad, cfg["opciones"][cfg["defecto"]])
+	var ind: Dictionary = partido["indicadores_iniciales"]
+	for k in ["aprobacion", "capital", "cohesion", "fiscal"]:
+		if op.has(k):
+			ind[k] = clampf(float(ind[k]) + float(op[k]), 0.0, 100.0)
+	partido["habilidad"] = habilidad if cfg["opciones"].has(habilidad) else String(cfg["defecto"])
+	partido["color_emblema"] = color if (cfg["colores"] as Array).has(color) else String(cfg["colores"][0])
+
+
 static func construir_partido(
 		nombre: String,
 		sigla: String,
@@ -46,10 +81,12 @@ static func construir_partido(
 	var inst: float = ejes.y
 	var distancia := sqrt(eco * eco + inst * inst)
 
-	var cohesion_ini := float(roundi(65.0 + 20.0 * distancia))
-	var fiscal_ini := float(roundi(65.0 + 15.0 * eco))
-	var capital_ini := float(roundi(60.0 + 10.0 * inst))
-	var aprobacion_ini := clampf(38.0 + 6.0 * (1.0 - distancia * 0.5), 32.0, 46.0)
+	var f: Dictionary = catalogo_ideologia["inicio"]  # fórmulas en data/ideologia.json
+	var cohesion_ini := float(roundi(float(f["cohesion"]["base"]) + float(f["cohesion"]["k"]) * distancia))
+	var fiscal_ini := float(roundi(float(f["fiscal"]["base"]) + float(f["fiscal"]["k"]) * eco))
+	var capital_ini := float(roundi(float(f["capital"]["base"]) + float(f["capital"]["k"]) * inst))
+	var fa: Dictionary = f["aprobacion"]
+	var aprobacion_ini := clampf(float(fa["base"]) + float(fa["k"]) * (1.0 - distancia * float(fa["atenuacion_distancia"])), float(fa["min"]), float(fa["max"]))
 
 	return {
 		"nombre": nombre.strip_edges(),
@@ -65,7 +102,7 @@ static func construir_partido(
 			"capital": capital_ini,
 			"cohesion": cohesion_ini,
 			"fiscal": fiscal_ini,
-			"riesgo_ejecucion": 18.0,
-			"viviendas_anio": 55000.0
+			"riesgo_ejecucion": float(f["riesgo_ejecucion"]),
+			"viviendas_anio": float(f["viviendas_anio"])
 		}
 	}

@@ -74,7 +74,7 @@ static func crear(motor: MotorTurno, urbano: Dictionary, al_volver: Callable, al
 		chips.add_child(b)
 	col.add_child(chips)
 	UrbanoBase.propias = motor.estado.lineas_jugador
-	UrbanoBase.fecha_iso = Barras.fecha_iso(motor.catalogo_leyes, motor.estado.etapa, motor.estado.turno_actual, motor.estado.dia_actual)
+	UrbanoBase.fecha_iso = Barras.fecha_iso(motor.catalogo_leyes, motor.estado.etapa, motor.estado.turno_actual, motor.estado.dia_actual, motor.estado.ciclo, motor.estado.dias_carrera)
 	var leyenda := LeyendaMetro.new()
 	leyenda.cambiado.connect(mapa.queue_redraw)
 	col.add_child(leyenda)

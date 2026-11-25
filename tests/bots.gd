@@ -14,12 +14,49 @@ static func _valor(carta: Dictionary, estado: EstadoSimulacion) -> float:
 		if ef["ind"] == "capital" and estado.ind("capital") < 30.0:
 			w *= 2.0
 		v += w * float(ef["delta"])
+	if carta.has("riesgo"):  # valor esperado de que salga mal
+		for ef in carta["riesgo"]["efectos"]:
+			v += float(carta["riesgo"]["prob"]) * float(PESOS.get(ef["ind"], 0.0)) * float(ef["delta"])
+	if carta.has("diferido"):  # consecuencia futura, algo descontada
+		for ef in carta["diferido"]["efectos"]:
+			v += 0.8 * float(PESOS.get(ef["ind"], 0.0)) * float(ef["delta"])
 	v /= float(carta["costo_pa"])
 	if carta["requisitos"]["ley"] != null:
 		v *= 0.8
 	if carta.has("obra"):
 		v *= 0.5  # la aprobación de una obra llega tarde (a su inauguración)
 	return v
+
+
+static func _valor_opcion(op: Dictionary) -> float:
+	## Valor esperado de una opción de evento: efectos + riesgo (por su probabilidad) + efecto a futuro (algo descontado) + relación con el actor.
+	var v := 0.0
+	for ef in op["efectos"]:
+		v += float(PESOS.get(ef["ind"], 0.0)) * float(ef["delta"])
+	if op.has("riesgo"):
+		for ef in op["riesgo"]["efectos"]:
+			v += float(op["riesgo"]["prob"]) * float(PESOS.get(ef["ind"], 0.0)) * float(ef["delta"])
+	if op.has("diferido"):
+		for ef in op["diferido"]["efectos"]:
+			v += 0.8 * float(PESOS.get(ef["ind"], 0.0)) * float(ef["delta"])
+	return v + 0.3 * float(op.get("relacion", 0.0))
+
+
+static func _opcion(ev: Dictionary, politica: String, rng: RandomNumberGenerator) -> int:
+	## Cómo decide cada política ante un evento con opciones: azar elige al azar, humano acierta ~70 % de las veces, el resto maximiza el valor esperado.
+	var ops: Array = ev["opciones"]
+	if politica == "azar" or (politica == "humano" and rng.randf() < 0.3):
+		return rng.randi_range(0, ops.size() - 1)
+	if politica == "pasivo":
+		return 0
+	var mejor := 0
+	var mejor_v := -1.0e9
+	for i in range(ops.size()):
+		var v := _valor_opcion(ops[i])
+		if v > mejor_v:
+			mejor_v = v
+			mejor = i
+	return mejor
 
 
 static func _delegar(motor: MotorTurno) -> void:
@@ -58,6 +95,22 @@ static func _internos(motor: MotorTurno) -> void:
 		motor.reducir_errores()
 
 
+static func _cuotas(motor: MotorTurno) -> void:
+	## Entrega a cada aliado los ministerios y asesores que pide (lo que haría una persona atenta); se revisa cada turno por si hubo renuncias.
+	var est := motor.estado
+	for id in est.coalicion.keys():
+		var pet: Dictionary = motor.coalicion.partidos[id]["peticion"]
+		var c: Dictionary = est.coalicion[id]
+		for mid in est.gabinete:
+			if c["ministros"].size() >= int(pet["ministerios"]):
+				break
+			motor.asignar_cuota(String(id), "ministerio", String(mid))
+		for aid in est.asesores:
+			if c["asesores"].size() >= int(pet["asesores"]):
+				break
+			motor.asignar_cuota(String(id), "asesor", String(aid))
+
+
 static func _extras(motor: MotorTurno) -> void:
 	## Política "completo": además de jugar cartas como el codicioso usa asesores, coalición, delegación y movimientos internos.
 	var est := motor.estado
@@ -70,6 +123,7 @@ static func _extras(motor: MotorTurno) -> void:
 		pids.sort_custom(func(a: String, b: String) -> bool: return motor.coalicion.afinidad(a) > motor.coalicion.afinidad(b))
 		for id in pids.slice(0, 2):
 			motor.unirse_coalicion(String(id))
+	_cuotas(motor)
 	for _d in range(2):  # delegar las cartas más baratas en el ministro con menor probabilidad de fallo
 		if est.mano.is_empty() or est.gabinete.is_empty():
 			break
@@ -93,7 +147,18 @@ static func _extras(motor: MotorTurno) -> void:
 
 static func jugar_turno(motor: MotorTurno, politica: String, rng: RandomNumberGenerator) -> void:
 	var est := motor.estado
-	if politica == "completo":
+	for ev in motor.ultimos_eventos:  # decisiones de eventos con opciones: el bot elige la primera (azar: una al azar)
+		if ev.has("opciones") and not est.decisiones.has(String(ev["id"])):
+			motor.eventos.decidir(String(ev["id"]), _opcion(ev, politica, rng))
+	var max_jugadas := 12
+	if politica == "humano":  # jugador casual: a veces no juega la semana y rara vez usa más de 3 cartas ni las mecánicas avanzadas
+		if rng.randf() < 0.2:
+			return
+		politica = "codicioso"
+		max_jugadas = 3
+	elif politica == "completo" or politica == "experto":
+		if politica == "experto" and est.etapa == "campana" and est.turno_actual == 1 and est.ciclo == 1:
+			motor.elegir_gabinete(Array(motor.gabinete.rellenar([], "eficaz").map(func(n: Dictionary) -> String: return String(n["id"]))))  # gabinete de máxima eficacia
 		politica = "codicioso"
 		if est.etapa == "gobierno":
 			_extras(motor)
@@ -101,7 +166,7 @@ static func jugar_turno(motor: MotorTurno, politica: String, rng: RandomNumberGe
 		_internos(motor)
 		_delegar(motor)
 	var guard := 0
-	while guard < 12 and not est.mano.is_empty():
+	while guard < max_jugadas and not est.mano.is_empty():
 		guard += 1
 		var mejor := -1
 		var mejor_v := -1.0e9
@@ -119,6 +184,8 @@ static func jugar_turno(motor: MotorTurno, politica: String, rng: RandomNumberGe
 				mejor = i
 		if mejor < 0 or politica == "pasivo":
 			break
+		if est.etapa == "gobierno" and politica != "azar" and mejor_v <= 0.0:
+			break  # un jugador competente no juega cartas que le hacen daño: guarda los movimientos
 		var region := ""
 		if est.etapa == "campana" and not motor.regiones.catalogo.is_empty():
 			region = String(motor.regiones.catalogo[rng.randi_range(0, motor.regiones.catalogo.size() - 1)]["id"]) if politica == "azar" else _region_objetivo(motor)

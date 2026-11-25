@@ -22,7 +22,8 @@
       "tipo": {
         "enum": [
           "programado",
-          "aleatorio_semilla"
+          "aleatorio_semilla",
+          "cadena"
         ]
       },
       "dia_objetivo": {
@@ -43,7 +44,8 @@
       "etapa": {
         "enum": [
           "campana",
-          "gobierno"
+          "gobierno",
+          "oposicion"
         ]
       },
       "efectos_base": {
@@ -63,7 +65,8 @@
                 "cohesion",
                 "fiscal",
                 "riesgo_ejecucion",
-                "viviendas_anio"
+                "viviendas_anio",
+                "rival"
               ]
             },
             "delta": {

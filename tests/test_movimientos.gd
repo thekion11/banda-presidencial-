@@ -13,7 +13,7 @@ func _check(cond: bool, msg: String) -> void:
 func _init() -> void:
 	var datos := Datos.cargar_todo()
 	var cfg: Dictionary = datos["leyes"]["movimientos_internos"]
-	var tam := int(datos["leyes"]["gabinete"]["tamano"])
+	var tam := 8  # gabinete corto de prueba: el real tiene 25 y no deja sectores sin ministro
 	var carta_meta := AyudaV2.carta_sintetica("t_desbloqueo", "salud", {"meta": "meta_salud_1"})
 	var m := AyudaV2.gobierno(datos, 31, [carta_meta])
 	var est := m.estado

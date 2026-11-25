@@ -6,21 +6,22 @@ const DIAS := ["Dom", "Lun", "Mar", "Mié", "Jue", "Vie", "Sáb"]
 const MESES := ["ene", "feb", "mar", "abr", "may", "jun", "jul", "ago", "sep", "oct", "nov", "dic"]
 
 
-static func _fecha(leyes: Dictionary, etapa: String, turno: int, dia: int) -> Dictionary:
+static func _fecha(leyes: Dictionary, etapa: String, turno: int, dia: int, ciclo: int = 1, dias_carrera: int = 0) -> Dictionary:
+	## Desde el ciclo 2 de la carrera hay un solo reloj: inicio del mandato + días de los periodos cerrados + días del periodo actual.
 	var cal: Dictionary = leyes["calendario"]
-	var base := String(cal["fecha_inicio_mandato"] if etapa == "gobierno" else cal["fecha_inicio_campana"])
+	var base := String(cal["fecha_inicio_mandato"] if (etapa == "gobierno" or ciclo > 1) else cal["fecha_inicio_campana"])
 	var t := Time.get_unix_time_from_datetime_string(base + "T00:00:00")
 	var dias := (dia - 1) if etapa == "gobierno" else (turno - 1) * 7
-	return Time.get_datetime_dict_from_unix_time(t + dias * 86400)
+	return Time.get_datetime_dict_from_unix_time(t + (dias + (dias_carrera if ciclo > 1 else 0)) * 86400)
 
 
-static func fecha_iso(leyes: Dictionary, etapa: String, turno: int, dia: int) -> String:
-	var d := _fecha(leyes, etapa, turno, dia)
+static func fecha_iso(leyes: Dictionary, etapa: String, turno: int, dia: int, ciclo: int = 1, dias_carrera: int = 0) -> String:
+	var d := _fecha(leyes, etapa, turno, dia, ciclo, dias_carrera)
 	return "%04d-%02d-%02d" % [int(d["year"]), int(d["month"]), int(d["day"])]
 
 
-static func fecha_texto(leyes: Dictionary, etapa: String, turno: int, dia: int) -> String:
-	var d := _fecha(leyes, etapa, turno, dia)
+static func fecha_texto(leyes: Dictionary, etapa: String, turno: int, dia: int, ciclo: int = 1, dias_carrera: int = 0) -> String:
+	var d := _fecha(leyes, etapa, turno, dia, ciclo, dias_carrera)
 	return "%s %d %s %d" % [DIAS[int(d["weekday"])], int(d["day"]), MESES[int(d["month"]) - 1], int(d["year"])]
 
 
@@ -75,13 +76,16 @@ static func cabecera(refs: Dictionary) -> Control:
 	var chips := HBoxContainer.new()
 	chips.add_theme_constant_override("separation", 5)
 	refs["chips"] = {}
+	refs["captions"] = {}
 	for par in [["aprobacion", "Aprob."], ["capital", "Capital"], ["cohesion", "Cohes."], ["fiscal", "Fiscal"]]:
 		var p := PanelContainer.new()
 		p.add_theme_stylebox_override("panel", Tema.caja_degradada(Color("#17476C"), Color("#0F3355"), 10, Color("#2A6290"), 1))
 		p.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		var h := HBoxContainer.new()
 		h.add_theme_constant_override("separation", 3)
-		h.add_child(Tema.etiqueta_corta(par[1], 10, Tema.TEXTO_SUAVE))
+		var cap := Tema.etiqueta_corta(par[1], 10, Tema.TEXTO_SUAVE)
+		refs["captions"][par[0]] = cap
+		h.add_child(cap)
 		var val := Tema.etiqueta_corta("", 13, Tema.TEXTO, true)
 		val.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		val.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
@@ -185,13 +189,13 @@ static func _boton_central(texto: String, al_avanzar: Callable) -> Control:
 	return b
 
 
-static func nav(al_pulsar: Callable, nacion: bool = false, texto_dia: String = "", al_avanzar: Callable = Callable()) -> Control:
+static func nav(al_pulsar: Callable, nacion: bool = false, texto_dia: String = "", al_avanzar: Callable = Callable(), etq_gestion: String = "Gabinete") -> Control:
 	## Barra inferior. En "Nación" la maqueta usa Cartas / Comité / [Día N] / Congreso / Gabinete.
 	var fila := HBoxContainer.new()
 	fila.custom_minimum_size = Vector2(0, 58)
-	var items: Array = [["Mapa", "mapa", "map"], ["Comité", "comite", "bars"], ["Congreso", "congreso", "building"], ["Gabinete", "gabinete", "people"]]
+	var items: Array = [["Mapa", "mapa", "map"], ["Comité", "comite", "bars"], ["Congreso", "congreso", "building"], [etq_gestion, "gabinete", "people"]]
 	if nacion:
-		items = [["Cartas", "mapa", "card"], ["Comité", "comite", "bars"], ["", "", ""], ["Congreso", "congreso", "building"], ["Gabinete", "gabinete", "people"]]
+		items = [["Cartas", "mapa", "card"], ["Comité", "comite", "bars"], ["", "", ""], ["Congreso", "congreso", "building"], [etq_gestion, "gabinete", "people"]]
 	for par in items:
 		if par[1] == "":
 			fila.add_child(_boton_central(texto_dia, al_avanzar))
@@ -248,3 +252,58 @@ static func actualizar_evento(refs: Dictionary, motor: MotorTurno) -> void:
 	refs["ev_titulo"].text = String(prox["titulo"])
 	var v: Variant = prox.get("votacion", null)
 	refs["ev_sub"].text = ("%d votos firmes · mínimo %d" % [int(v["votos_firmes_base"]), int(motor.legal.tipo(String(v["tipo_ley"]))["votos_minimos"])]) if v != null else String(prox["descripcion"])
+
+
+static func resumen_cambios(antes: Dictionary, despues: Dictionary) -> String:
+	## «Aprob. +2 · Capital −3»: lo que la carta cambió en los indicadores visibles (solo los que se movieron al menos 0,5).
+	var partes: Array[String] = []
+	for par in [["aprobacion", "Aprob."], ["capital", "Capital"], ["cohesion", "Cohes."], ["fiscal", "Fiscal"], ["rival", "Rival"]]:
+		var d := float(despues.get(par[0], 0.0)) - float(antes.get(par[0], 0.0))
+		if absf(d) >= 0.5:
+			partes.append("%s %s" % [par[1], Tema.signo(d)])
+	return " · ".join(partes)
+
+
+static func texto_decision(r: Dictionary, antes: Dictionary, despues: Dictionary) -> String:
+	## Aviso tras responder un evento: lo que cambió, si la opción salió mal y si habrá consecuencias más adelante.
+	if not bool(r.get("ok", false)):
+		return "No se pudo registrar la decisión."
+	var t := "Decisión tomada."
+	var c := resumen_cambios(antes, despues)
+	if c != "":
+		t += " " + c + "."
+	if bool(r.get("congreso", false)):
+		t += " Perdiste la votación." if bool(r.get("salio_mal", false)) else " Ganaste la votación."
+	elif bool(r.get("salio_mal", false)):
+		t += " Salió mal."
+	if int(r.get("futuro", 0)) > 0:
+		t += " Habrá consecuencias en unas %d semanas." % int(r["futuro"])
+	if not r.get("renuncia", {}).is_empty():
+		t += " Renunció %s; asume %s." % [r["renuncia"]["ministro"], r["renuncia"]["nuevo"]]
+	return t
+
+
+static func sufijo_carta(r: Dictionary) -> String:
+	## Texto que se suma al aviso de una carta con riesgo o efecto a futuro.
+	return (" Salió mal." if bool(r.get("salio_mal", false)) else "") + (" Habrá consecuencias en unas %d semanas." % int(r["futuro"]) if int(r.get("futuro", 0)) > 0 else "")
+
+
+static func texto_consecuencia(ev: Dictionary) -> String:
+	## Aviso de una consecuencia programada por una carta: su frase y lo que cambió.
+	var d := {}
+	for ef in ev["efectos"]:
+		d[String(ef["ind"])] = float(ef["delta"])
+	var c := resumen_cambios({}, d)
+	var cabeza := "Consecuencia: %s" % String(ev["descripcion"]) if String(ev["id"]).begins_with("dif_") else "%s: %s" % [String(ev["titulo"]), String(ev["descripcion"])]
+	return cabeza + ((" " + c + ".") if c != "" else "")
+
+
+static func pintar_chips(refs: Dictionary, est: EstadoSimulacion) -> void:
+	## Indicadores de la cabecera. En oposición el chip de Fiscal pasa a mostrar la aprobación del gobierno rival.
+	for k in refs["chips"].keys():
+		var oposicion: bool = est.etapa == "oposicion" and k == "fiscal"
+		var ind: String = "rival" if oposicion else String(k)
+		(refs["captions"][k] as Label).text = "Rival" if oposicion else {"aprobacion": "Aprob.", "capital": "Capital", "cohesion": "Cohes.", "fiscal": "Fiscal"}[k]
+		var l: Label = refs["chips"][k]
+		l.text = str(roundi(est.ind(ind)))
+		l.add_theme_color_override("font_color", Tema.SUBE if (k == "aprobacion" and est.ind(ind) >= 50.0) else Tema.TEXTO)

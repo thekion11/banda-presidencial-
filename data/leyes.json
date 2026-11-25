@@ -5,12 +5,33 @@
     "dias_por_turno": 7,
     "duracion_mandato_dias": 1460,
     "semanas_campana": 8,
-    "umbral_victoria_presidencial": 51.0,
+    "umbral_victoria_presidencial": 52.0,
     "bono_aprobacion_promesa": 1.5,
     "semanas_balotaje": 4,
     "umbral_pasa_balotaje": 38.0
   },
+  "director_eventos": {
+    "nota": "Director de eventos: peso_sorteo es RELATIVO (no una probabilidad). Cada semana, con prob_semana ocurre como máximo un evento aleatorio; prob_decision es la parte de esos que pide una decisión. Ningún evento se repite antes de cooldown_evento semanas, ninguno de su misma familia antes de cooldown_familia, y entre decisiones pasan al menos cooldown_decision semanas. Los eventos programados no pasan por el director.",
+    "prob_semana": 0.45,
+    "prob_decision": 0.5,
+    "cooldown_evento": 40,
+    "cooldown_familia": 6,
+    "cooldown_decision": 4,
+    "silencio_libre": 2,
+    "silencio_max": 8,
+    "ajuste_silencio": 0.12,
+    "prob_max": 0.9,
+    "decisiones_min_anio": 8,
+    "decisiones_max_anio": 12,
+    "estacion_en": 3.0,
+    "estacion_fuera": 0.2,
+    "umbral_menor": 3.0,
+    "nota_v2": "Director v2: la probabilidad semanal sube ajuste_silencio por cada semana sin eventos pasadas las silencio_libre (hasta prob_max); las decisiones se mantienen entre decisiones_min_anio y decisiones_max_anio por cada 52 semanas (bajo el mínimo se piden siempre, sobre el máximo nunca); los eventos con `meses` pesan estacion_en veces en esos meses y estacion_fuera fuera de ellos; `contexto` multiplica el peso cuando un indicador está bajo (`bajo`) o sobre (`alto`) un valor; los eventos informativos aleatorios con efectos pequeños (suma de |delta| ≤ umbral_menor) salen como aviso breve, no como pantalla completa."
+  },
   "campana": {
+    "min_promesas": 2,
+    "penal_sin_promesas": 12.0,
+    "nota_promesas": "U3: quien llega a la elección con menos de min_promesas es «intrascendente»: pierde penal_sin_promesas puntos de voto y, si gobierna, su legado vale cero.",
     "aprobacion_base_por_carta": 0.2,
     "piso_aprobacion_carta": 0.5,
     "ruido_eleccion": 2.0,
@@ -37,6 +58,7 @@
     "pa_por_turno": 5,
     "descartes_por_turno": 2,
     "reales_en_mazo": 15,
+    "min_disenadas": 2,
     "costo_min": 1,
     "costo_max": 3,
     "reposicion_cartas": 3,
@@ -217,13 +239,96 @@
     ,"tope_prob_retraso": 0.5
   },
   "repeticion_promesa": 0.5,
+  "actores": {
+    "nota": "PR-24: relación con cada actor (ministerios, comisiones, instituciones, medios) = base + paso * suma de «relacion» de las opciones elegidas (+1 apoyar, 0 negociar, −1 ignorar). Se calcula del registro de decisiones: sin estado nuevo.",
+    "base": 50.0,
+    "paso": 10.0
+  },
+  "oposicion": {
+    "nota": "Carrera política: periodo de oposición jugable (semanas) tras una derrota, una caída o un mandato sin reelección. Solo circulan las cartas de categoría «oposicion»; los eventos con etapa «oposicion» traen entrevistas, debates y decisiones. Al terminar empieza una nueva campaña.",
+    "semanas": 26,
+    "congreso": {
+      "base": 0.1,
+      "peso_escanos": 1.0,
+      "peso_cohesion": 0.004,
+      "min": 0.1,
+      "max": 0.85,
+      "nota": "Votaciones del gobierno rival en el Congreso (PR-12 ampliado). Probabilidad de que tu bloqueo o tu enmienda prosperen = base + peso_escanos x (tu bancada + aliados del Senado) / total + peso_cohesion x (cohesión - 50), acotada. Cifras ilustrativas."
+    },
+    "rival_inicial": 55.0,
+    "rival_media": 42.0,
+    "rival_reversion": 0.04,
+    "rival_ruido": 2.0,
+    "ancla_base": 30.0,
+    "peso_rival": 0.6,
+    "reversion_aprobacion": 0.2,
+    "herencia_campana": 0.0,
+    "peso_rival_voto": 0.1,
+    "rival_neutro": 42.0,
+    "nota_voto_rival": "En las campañas posteriores a la primera, el voto suma peso_rival_voto * (rival_neutro - aprobación del gobierno rival): un rival débil te ayuda.",
+    "nota_herencia": "Al empezar una nueva campaña tu aprobación vuelve a la base de tu partido más herencia_campana de lo que subiste (o bajaste) durante el periodo anterior.",
+    "nota_rival": "Un gobierno rival gobierna mientras eres oposición: su aprobación (indicador «rival») parte alta, tiende a su media con ruido, y tus cartas pueden bajarla. Tu aprobación converge a ancla_base + peso_rival * (50 - rival): si el rival va mal, tu base sube."
+  },
+  "habilidades": {
+    "nota": "PR-16: habilidad personal elegida al fundar. Suma a los indicadores iniciales. colores: PR-15, color del emblema del partido (paleta fija).",
+    "defecto": "negociador",
+    "opciones": {
+      "negociador": {"nombre": "Negociador", "descripcion": "Más cohesión de partida: tu coalición te sigue.", "cohesion": 6.0},
+      "comunicador": {"nombre": "Comunicador", "descripcion": "Más aprobación de partida: conectas con la gente.", "aprobacion": 3.0},
+      "gestor": {"nombre": "Gestor", "descripcion": "Más capital político: sabes cómo se hacen las cosas.", "capital": 6.0},
+      "economista": {"nombre": "Economista", "descripcion": "Caja fiscal más sana desde el primer día.", "fiscal": 6.0}
+    },
+    "colores": ["#C23B2E", "#F2C14E", "#4CC38A", "#3D7EA6", "#7E6BB0", "#E8705A"]
+  },
+  "afiliacion": {
+    "defecto": "propio",
+    "nota": "PR-01: cómo entra el jugador a la política. aprobacion y cohesion se suman a los indicadores iniciales; escanos: independiente = escaños del test * factor (mínimo); existente = escaños del partido * multiplicador (mínimo). peso_postura: cuánto desplaza al partido existente lo que respondes en las preguntas de confirmación.",
+    "opciones": {
+      "propio": {"nombre": "Fundar mi partido", "descripcion": "Tu ideología y tu identidad. Pocos escaños, máxima libertad.", "aprobacion": 0.0, "cohesion": 0.0},
+      "independiente": {"nombre": "Candidatura independiente", "descripcion": "Sin partido ni deudas: más aprobación personal, bancada pequeña.", "aprobacion": 4.0, "cohesion": 0.0, "escanos_factor": 0.6, "escanos_min": 4},
+      "existente": {"nombre": "Entrar a un partido", "descripcion": "Hereda su ideología y su bancada; basta confirmar 3 posturas.", "aprobacion": 0.0, "cohesion": 5.0, "escanos_mult": 2.0, "escanos_min": 6, "peso_postura": 0.5, "preguntas": 3}
+    }
+  },
+  "impacto_carta": {
+    "nota": "PR-09: etiqueta de impacto según la suma de |efectos| en aprobación, capital, cohesión y fiscal. Hasta pequeno: «Impacto pequeño»; hasta mediano: «mediano»; más: «grande».",
+    "pequeno": 3.0,
+    "mediano": 4.5
+  },
+  "sucesion": {
+    "nota": "PR-11: resultado de la sucesión al terminar el mandato (solo texto). Se evalúa con la aprobación final: gana tu sector si aprobacion >= umbral_gana; reñida entre ambos umbrales; si no, gana la oposición. legado_bono: puntos de bono ilustrativos para una próxima partida (no implementado: solo se muestra).",
+    "umbral_gana": 55.0,
+    "umbral_renida": 42.0,
+    "legado_bono": 5,
+    "textos": {
+      "gana": "Tu candidato ganó la presidencia: el proyecto continúa.",
+      "renida": "Fue reñida y se definió en segunda vuelta; el resultado quedó abierto.",
+      "pierde": "La oposición ganó la presidencia: parte de tus reformas quedará en discusión."
+    }
+  },
+  "finales": {
+    "nota": "Epílogos del mandato. Se evalúan en orden y gana el primero que cumpla todas sus condiciones (motivo, aprobacion_min/max, obras_min, legado_min = proporción de promesas cumplidas, fiscal_min/max). Solo texto: no cambia el estado ni el puntaje.",
+    "lista": [
+      {"id": "intrascendente", "motivo": "fin_mandato", "promesas_max": 0, "titulo": "Un presidente intrascendente", "texto": "No prometiste nada y no dejaste compromisos que cumplir. Gobernaste sin rumbo y la historia apenas te recordará."},
+      {"id": "reelegido", "motivo": "fin_mandato", "carta_ejecutada": "reforma_reeleccion", "aprobacion_min": 55.0, "titulo": "Un segundo mandato", "texto": "Reformaste la Constitución para poder continuar y la gente te respaldó. (Mecánica ilustrativa del juego: la regla real de reelección se verificará contra el texto oficial.)"},
+      {"id": "reeleccion_fallida", "motivo": "fin_mandato", "carta_ejecutada": "reforma_reeleccion", "titulo": "Quisiste quedarte y no te acompañaron", "texto": "Impulsaste la reelección y pagaste el costo político: el respaldo no alcanzó. (Mecánica ilustrativa.)"},
+      {"id": "derrota", "motivo": "derrota_electoral", "titulo": "La Moneda quedó lejos", "texto": "Tu campaña no convenció a suficientes votantes. La historia te recordará como quien casi llegó."},
+      {"id": "caida", "motivo": "crisis", "titulo": "Un gobierno que no resistió", "texto": "La crisis política superó a tu administración. Tus reformas quedaron a medias y tu sucesor deberá retomarlas."},
+      {"id": "estadista", "motivo": "fin_mandato", "aprobacion_min": 60.0, "legado_min": 0.75, "obras_min": 3, "titulo": "El mandato del estadista", "texto": "Cumpliste tus promesas, dejaste obras visibles y terminaste con aprobación alta. Te recuerdan como un presidente que gobernó."},
+      {"id": "popular", "motivo": "fin_mandato", "aprobacion_min": 60.0, "titulo": "Un presidente querido", "texto": "Terminaste con el cariño de la gente, aunque no todas tus promesas llegaron a puerto."},
+      {"id": "constructor", "motivo": "fin_mandato", "obras_min": 5, "titulo": "El presidente constructor", "texto": "Tu legado se ve en el paisaje: puentes, hospitales y líneas de Metro llevan tu sello."},
+      {"id": "austero", "motivo": "fin_mandato", "fiscal_min": 75.0, "titulo": "El presidente austero", "texto": "Entregaste las cuentas más ordenadas en años. Los mercados aplauden; la calle, a veces, no tanto."},
+      {"id": "endeudado", "motivo": "fin_mandato", "fiscal_max": 40.0, "titulo": "Gastaste más de lo que había", "texto": "Tus programas fueron generosos, pero dejaste una caja fiscal frágil a quien te suceda."},
+      {"id": "impopular", "motivo": "fin_mandato", "aprobacion_max": 35.0, "titulo": "Un cierre difícil", "texto": "Llegaste al final con poco respaldo. Resististe el mandato completo, y eso ya es algo."},
+      {"id": "transicion", "motivo": "fin_mandato", "titulo": "Un mandato de transición", "texto": "Gobernaste cuatro años sin grandes sobresaltos. Ni héroe ni villano: la historia lo juzgará."}
+    ]
+  },
   "dificultad": {
     "defecto": "normal",
     "nota": "PR-01: presets de dificultad. umbral_delta se suma al umbral de victoria de hemiciclo; aprobacion_inicial se suma a la aprobación con la que parte el partido; desgaste multiplica el desgaste semanal de aprobación.",
     "niveles": {
       "facil": {"nombre": "Fácil", "descripcion": "Más aprobación de partida y menos desgaste. Para aprender el juego.", "umbral_delta": -5.0, "aprobacion_inicial": 6.0, "desgaste": 0.85},
       "normal": {"nombre": "Normal", "descripcion": "La experiencia pensada para el juego.", "umbral_delta": 0.0, "aprobacion_inicial": 0.0, "desgaste": 1.0},
-      "dificil": {"nombre": "Difícil", "descripcion": "Parte con menos apoyo, el cargo desgasta más y ganar exige más votos.", "umbral_delta": 0.5, "aprobacion_inicial": -2.0, "desgaste": 1.05}
+      "dificil": {"nombre": "Difícil", "descripcion": "Parte con menos apoyo, el cargo desgasta más y ganar exige más votos.", "umbral_delta": 2.2, "aprobacion_inicial": -3.5, "desgaste": 1.1}
     }
   },
   "calendario": {
@@ -290,7 +395,30 @@
     "nota_conversion": "Tipos de cambio aproximados e ilustrativos (UF→US$ y CLP→US$) solo para dimensionar el costo de las cartas de proyecto; no son datos oficiales."
   },
   "gabinete": {
-    "tamano": 8,
+    "identidad": {
+      "nota": "Fase C: cada ministerio tiene 3 candidatos con perfil propio. estilos: efectos semanales por cada ministro del gabinete con ese estilo (se suman). peso_afinidad: cohesión semanal por la afinidad ideológica media del gabinete con tu partido (distancia_max normaliza). escala_riesgo_auto: fracción del riesgo de escándalo del ministro titular que se aplica al jugar una carta de su área sin delegar. renuncia_bajo / estrella_sobre: relación con el ministro (0 a 100) bajo la cual renuncia y sobre la cual rinde más (estrella_bono).",
+      "estilos": {
+        "tecnico": {"riesgo_ejecucion": -0.03},
+        "politico": {"capital": 0.03},
+        "comunicador": {"aprobacion": 0.02},
+        "negociador": {"cohesion": 0.03}
+      },
+      "peso_afinidad": 0.4,
+      "distancia_max": 2.0,
+      "escala_riesgo_auto": 0.15,
+      "renuncia_bajo": 20.0,
+      "estrella_sobre": 80.0,
+      "estrella_bono": 0.2
+    },
+    "relleno": {
+      "nota": "PR-05: pesos del botón Rellenar. cobertura: ministerio de un área aún sin ministro; ejecucion: bono de ejecución; ahorro: reducción de costo en movimientos; escandalo: penaliza el riesgo de escándalo. equilibrado prioriza cubrir áreas; eficaz prioriza el rendimiento puro.",
+      "defecto": "equilibrado",
+      "modos": {
+        "equilibrado": {"nombre": "Equilibrado", "cobertura": 3.0, "ejecucion": 4.0, "ahorro": 0.5, "escandalo": 6.0, "afinidad": 1.5},
+        "eficaz": {"nombre": "Máxima eficacia", "cobertura": 0.5, "ejecucion": 8.0, "ahorro": 1.5, "escandalo": 1.0, "afinidad": 0.3}
+      }
+    },
+    "tamano": 25,
     "anios_mandato": 4,
     "categorias_siempre": [
       "politica",
@@ -358,19 +486,13 @@
   "bono_movimientos": {
     "tramos": [
       {
-        "desde": 60.0,
-        "hasta": 80.0,
-        "paso": 5.0,
+        "desde": 45.0,
+        "hasta": 95.0,
+        "paso": 10.0,
         "mov": 1
-      },
-      {
-        "desde": 85.0,
-        "hasta": 100.0,
-        "paso": 5.0,
-        "mov": 2
       }
     ],
-    "nota": "DISENO_V2 §11. Por cada umbral de aprobación superado (60,65,70,75,80: +1 c/u; 85,90,95,100: +2 c/u) se suman movimientos al amanecer del turno de gobierno. Cifras ilustrativas."
+    "nota": "DISENO_V2 §11 (recalibrado 25-nov: con la aprobación real de una partida, 60 casi nunca se alcanzaba). +1 movimiento por cada umbral de aprobación superado (45, 55, 65, 75, 85, 95). Cifras ilustrativas."
   },
   "asesores": {
     "max": 3,
@@ -395,6 +517,9 @@
     "penal_ruptura_cohesion": 3.0,
     "penal_ruptura_capital": 2.0,
     "nota": "DISENO_V2 §10. Satisfacción 0..100 de cada partido aliado: converge hacia (cuota cumplida) x (1 - peso_ideologia x (1 - afinidad ideológica)). Afecta cohesión por turno, escaños que votan con el gobierno y movimientos internos. Partidos ficticios; cifras ilustrativas.",
-    "penal_carta_rechazada": 2.0
+    "penal_carta_rechazada": 2.0,
+    "bono_efecto_afin": 0.12,
+    "penal_efecto_rechazada": 0.10,
+    "tope_bono_efecto": 0.3
   }
 }

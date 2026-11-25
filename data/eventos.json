@@ -28,14 +28,15 @@
       }
     ],
     "etapa": "gobierno",
-    "fuente": "fuentes.json#cpr_chile_2026"
+    "fuente": "fuentes.json#cpr_chile_2026",
+    "familia": "politica"
   },
   {
     "id": "evt_sequia_norte",
     "tipo": "aleatorio_semilla",
     "dia_objetivo": null,
     "hora_etiqueta": "09:00",
-    "peso_sorteo": 0.25,
+    "peso_sorteo": 0.12,
     "titulo": "Déficit hídrico en valles transversales",
     "descripcion": "Presión regional por subsidios de riego y agua potable.",
     "votacion": null,
@@ -50,7 +51,14 @@
       }
     ],
     "etapa": "gobierno",
-    "fuente": "fuentes.json#dipres_2026"
+    "fuente": "fuentes.json#dipres_2026",
+    "familia": "naturaleza",
+    "meses": [
+      12,
+      1,
+      2,
+      3
+    ]
   },
   {
     "id": "evt_terremoto",
@@ -80,7 +88,8 @@
       }
     ],
     "etapa": "gobierno",
-    "fuente": "fuentes.json#ficticio_2026"
+    "fuente": "fuentes.json#ficticio_2026",
+    "familia": "naturaleza"
   },
   {
     "id": "evt_paro_transporte",
@@ -102,7 +111,15 @@
       }
     ],
     "etapa": "gobierno",
-    "fuente": "fuentes.json#ficticio_2026"
+    "fuente": "fuentes.json#ficticio_2026",
+    "familia": "economia",
+    "contexto": [
+      {
+        "ind": "cohesion",
+        "bajo": 55,
+        "mult": 2.5
+      }
+    ]
   },
   {
     "id": "evt_alza_cobre",
@@ -124,7 +141,15 @@
       }
     ],
     "etapa": "gobierno",
-    "fuente": "fuentes.json#ficticio_2026"
+    "fuente": "fuentes.json#ficticio_2026",
+    "familia": "economia",
+    "contexto": [
+      {
+        "ind": "fiscal",
+        "bajo": 40,
+        "mult": 2.0
+      }
+    ]
   },
   {
     "id": "evt_baja_cobre",
@@ -142,7 +167,15 @@
       }
     ],
     "etapa": "gobierno",
-    "fuente": "fuentes.json#ficticio_2026"
+    "fuente": "fuentes.json#ficticio_2026",
+    "familia": "economia",
+    "contexto": [
+      {
+        "ind": "fiscal",
+        "bajo": 60,
+        "mult": 1.8
+      }
+    ]
   },
   {
     "id": "evt_incendios",
@@ -164,7 +197,14 @@
       }
     ],
     "etapa": "gobierno",
-    "fuente": "fuentes.json#ficticio_2026"
+    "fuente": "fuentes.json#ficticio_2026",
+    "familia": "naturaleza",
+    "meses": [
+      12,
+      1,
+      2,
+      3
+    ]
   },
   {
     "id": "evt_protesta_estudiantil",
@@ -186,7 +226,15 @@
       }
     ],
     "etapa": "gobierno",
-    "fuente": "fuentes.json#ficticio_2026"
+    "fuente": "fuentes.json#ficticio_2026",
+    "familia": "social",
+    "contexto": [
+      {
+        "ind": "aprobacion",
+        "bajo": 35,
+        "mult": 2.5
+      }
+    ]
   },
   {
     "id": "evt_cuenta_publica_a1",
@@ -208,7 +256,8 @@
       }
     ],
     "etapa": "gobierno",
-    "fuente": "fuentes.json#ficticio_2026"
+    "fuente": "fuentes.json#ficticio_2026",
+    "familia": "politica"
   },
   {
     "id": "evt_presupuesto_a1",
@@ -230,7 +279,8 @@
       }
     ],
     "etapa": "gobierno",
-    "fuente": "fuentes.json#ficticio_2026"
+    "fuente": "fuentes.json#ficticio_2026",
+    "familia": "politica"
   },
   {
     "id": "evt_cuenta_publica_a2",
@@ -252,7 +302,8 @@
       }
     ],
     "etapa": "gobierno",
-    "fuente": "fuentes.json#ficticio_2026"
+    "fuente": "fuentes.json#ficticio_2026",
+    "familia": "politica"
   },
   {
     "id": "evt_presupuesto_a2",
@@ -274,7 +325,8 @@
       }
     ],
     "etapa": "gobierno",
-    "fuente": "fuentes.json#ficticio_2026"
+    "fuente": "fuentes.json#ficticio_2026",
+    "familia": "politica"
   },
   {
     "id": "evt_cuenta_publica_a3",
@@ -296,7 +348,8 @@
       }
     ],
     "etapa": "gobierno",
-    "fuente": "fuentes.json#ficticio_2026"
+    "fuente": "fuentes.json#ficticio_2026",
+    "familia": "politica"
   },
   {
     "id": "evt_presupuesto_a3",
@@ -318,7 +371,8 @@
       }
     ],
     "etapa": "gobierno",
-    "fuente": "fuentes.json#ficticio_2026"
+    "fuente": "fuentes.json#ficticio_2026",
+    "familia": "politica"
   },
   {
     "id": "evt_cuenta_publica_a4",
@@ -340,7 +394,8 @@
       }
     ],
     "etapa": "gobierno",
-    "fuente": "fuentes.json#ficticio_2026"
+    "fuente": "fuentes.json#ficticio_2026",
+    "familia": "politica"
   },
   {
     "id": "evt_franja",
@@ -358,7 +413,8 @@
       }
     ],
     "etapa": "campana",
-    "fuente": "fuentes.json#ficticio_2026"
+    "fuente": "fuentes.json#ficticio_2026",
+    "familia": "politica"
   },
   {
     "id": "evt_debate",
@@ -380,7 +436,8 @@
       }
     ],
     "etapa": "campana",
-    "fuente": "fuentes.json#ficticio_2026"
+    "fuente": "fuentes.json#ficticio_2026",
+    "familia": "politica"
   },
   {
     "id": "evt_polemica_rival",
@@ -398,7 +455,8 @@
       }
     ],
     "etapa": "campana",
-    "fuente": "fuentes.json#ficticio_2026"
+    "fuente": "fuentes.json#ficticio_2026",
+    "familia": "politica"
   },
   {
     "id": "evt_gaffe",
@@ -420,7 +478,8 @@
       }
     ],
     "etapa": "campana",
-    "fuente": "fuentes.json#ficticio_2026"
+    "fuente": "fuentes.json#ficticio_2026",
+    "familia": "politica"
   },
   {
     "id": "evt_ola_calor",
@@ -442,7 +501,13 @@
       }
     ],
     "etapa": "gobierno",
-    "fuente": "fuentes.json#ficticio_2026"
+    "fuente": "fuentes.json#ficticio_2026",
+    "familia": "naturaleza",
+    "meses": [
+      12,
+      1,
+      2
+    ]
   },
   {
     "id": "evt_marejadas",
@@ -464,7 +529,14 @@
       }
     ],
     "etapa": "gobierno",
-    "fuente": "fuentes.json#ficticio_2026"
+    "fuente": "fuentes.json#ficticio_2026",
+    "familia": "naturaleza",
+    "meses": [
+      6,
+      7,
+      8,
+      9
+    ]
   },
   {
     "id": "evt_paro_salud",
@@ -486,7 +558,15 @@
       }
     ],
     "etapa": "gobierno",
-    "fuente": "fuentes.json#ficticio_2026"
+    "fuente": "fuentes.json#ficticio_2026",
+    "familia": "social",
+    "contexto": [
+      {
+        "ind": "aprobacion",
+        "bajo": 35,
+        "mult": 2.5
+      }
+    ]
   },
   {
     "id": "evt_huelga_mineria",
@@ -508,7 +588,15 @@
       }
     ],
     "etapa": "gobierno",
-    "fuente": "fuentes.json#ficticio_2026"
+    "fuente": "fuentes.json#ficticio_2026",
+    "familia": "economia",
+    "contexto": [
+      {
+        "ind": "cohesion",
+        "bajo": 55,
+        "mult": 2.0
+      }
+    ]
   },
   {
     "id": "evt_inflacion_baja",
@@ -530,7 +618,15 @@
       }
     ],
     "etapa": "gobierno",
-    "fuente": "fuentes.json#ficticio_2026"
+    "fuente": "fuentes.json#ficticio_2026",
+    "familia": "economia",
+    "contexto": [
+      {
+        "ind": "fiscal",
+        "alto": 60,
+        "mult": 1.8
+      }
+    ]
   },
   {
     "id": "evt_dolar_alto",
@@ -552,7 +648,15 @@
       }
     ],
     "etapa": "gobierno",
-    "fuente": "fuentes.json#ficticio_2026"
+    "fuente": "fuentes.json#ficticio_2026",
+    "familia": "economia",
+    "contexto": [
+      {
+        "ind": "fiscal",
+        "bajo": 45,
+        "mult": 2.5
+      }
+    ]
   },
   {
     "id": "evt_inversion_privada",
@@ -574,7 +678,15 @@
       }
     ],
     "etapa": "gobierno",
-    "fuente": "fuentes.json#ficticio_2026"
+    "fuente": "fuentes.json#ficticio_2026",
+    "familia": "economia",
+    "contexto": [
+      {
+        "ind": "aprobacion",
+        "alto": 45,
+        "mult": 1.8
+      }
+    ]
   },
   {
     "id": "evt_acusacion",
@@ -596,7 +708,15 @@
       }
     ],
     "etapa": "gobierno",
-    "fuente": "fuentes.json#ficticio_2026"
+    "fuente": "fuentes.json#ficticio_2026",
+    "familia": "politica",
+    "contexto": [
+      {
+        "ind": "aprobacion",
+        "bajo": 30,
+        "mult": 3.0
+      }
+    ]
   },
   {
     "id": "evt_cumbre",
@@ -618,7 +738,15 @@
       }
     ],
     "etapa": "gobierno",
-    "fuente": "fuentes.json#ficticio_2026"
+    "fuente": "fuentes.json#ficticio_2026",
+    "familia": "politica",
+    "contexto": [
+      {
+        "ind": "capital",
+        "alto": 60,
+        "mult": 1.8
+      }
+    ]
   },
   {
     "id": "evt_lluvias",
@@ -640,7 +768,14 @@
       }
     ],
     "etapa": "gobierno",
-    "fuente": "fuentes.json#ficticio_2026"
+    "fuente": "fuentes.json#ficticio_2026",
+    "familia": "naturaleza",
+    "meses": [
+      5,
+      6,
+      7,
+      8
+    ]
   },
   {
     "id": "evt_fiestas_patrias_a1",
@@ -662,7 +797,8 @@
       }
     ],
     "etapa": "gobierno",
-    "fuente": "fuentes.json#ficticio_2026"
+    "fuente": "fuentes.json#ficticio_2026",
+    "familia": "politica"
   },
   {
     "id": "evt_fiestas_patrias_a2",
@@ -684,7 +820,8 @@
       }
     ],
     "etapa": "gobierno",
-    "fuente": "fuentes.json#ficticio_2026"
+    "fuente": "fuentes.json#ficticio_2026",
+    "familia": "politica"
   },
   {
     "id": "evt_fiestas_patrias_a3",
@@ -706,7 +843,8 @@
       }
     ],
     "etapa": "gobierno",
-    "fuente": "fuentes.json#ficticio_2026"
+    "fuente": "fuentes.json#ficticio_2026",
+    "familia": "politica"
   },
   {
     "id": "evt_fiestas_patrias_a4",
@@ -728,7 +866,8 @@
       }
     ],
     "etapa": "gobierno",
-    "fuente": "fuentes.json#ficticio_2026"
+    "fuente": "fuentes.json#ficticio_2026",
+    "familia": "politica"
   },
   {
     "id": "evt_vota_presupuesto_a1",
@@ -755,7 +894,8 @@
       }
     ],
     "etapa": "gobierno",
-    "fuente": "fuentes.json#dipres_2026"
+    "fuente": "fuentes.json#dipres_2026",
+    "familia": "politica"
   },
   {
     "id": "evt_vota_presupuesto_a2",
@@ -782,7 +922,8 @@
       }
     ],
     "etapa": "gobierno",
-    "fuente": "fuentes.json#dipres_2026"
+    "fuente": "fuentes.json#dipres_2026",
+    "familia": "politica"
   },
   {
     "id": "evt_vota_presupuesto_a3",
@@ -809,7 +950,8 @@
       }
     ],
     "etapa": "gobierno",
-    "fuente": "fuentes.json#dipres_2026"
+    "fuente": "fuentes.json#dipres_2026",
+    "familia": "politica"
   },
   {
     "id": "evt_vota_presupuesto_a4",
@@ -836,7 +978,8 @@
       }
     ],
     "etapa": "gobierno",
-    "fuente": "fuentes.json#dipres_2026"
+    "fuente": "fuentes.json#dipres_2026",
+    "familia": "politica"
   },
   {
     "id": "evt_encuesta_camp",
@@ -854,7 +997,8 @@
       }
     ],
     "etapa": "campana",
-    "fuente": "fuentes.json#ficticio_2026"
+    "fuente": "fuentes.json#ficticio_2026",
+    "familia": "politica"
   },
   {
     "id": "evt_apoyo_gremio",
@@ -876,7 +1020,8 @@
       }
     ],
     "etapa": "campana",
-    "fuente": "fuentes.json#ficticio_2026"
+    "fuente": "fuentes.json#ficticio_2026",
+    "familia": "politica"
   },
   {
     "id": "evt_cadena_falsa",
@@ -898,6 +1043,6307 @@
       }
     ],
     "etapa": "campana",
-    "fuente": "fuentes.json#ficticio_2026"
+    "fuente": "fuentes.json#ficticio_2026",
+    "familia": "politica"
+  },
+  {
+    "id": "evt_vecino_arg_crisis",
+    "tipo": "aleatorio_semilla",
+    "dia_objetivo": null,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 0.1,
+    "titulo": "Crisis cambiaria en Argentina",
+    "descripcion": "Cae el peso argentino: presión comercial y turismo hacia Chile.",
+    "votacion": null,
+    "efectos_base": [
+      {
+        "ind": "fiscal",
+        "delta": -1
+      },
+      {
+        "ind": "aprobacion",
+        "delta": -1
+      }
+    ],
+    "etapa": "gobierno",
+    "fuente": "fuentes.json#ficticio_2026",
+    "pais": "ARG",
+    "relacion_delta": -6,
+    "familia": "vecino"
+  },
+  {
+    "id": "evt_vecino_arg_acuerdo",
+    "tipo": "aleatorio_semilla",
+    "dia_objetivo": null,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 0.2,
+    "titulo": "Acuerdo energético con Argentina",
+    "descripcion": "Se firma un acuerdo de gas y electricidad con el país vecino.",
+    "votacion": null,
+    "efectos_base": [
+      {
+        "ind": "aprobacion",
+        "delta": 1
+      },
+      {
+        "ind": "capital",
+        "delta": 1
+      }
+    ],
+    "etapa": "gobierno",
+    "fuente": "fuentes.json#ficticio_2026",
+    "pais": "ARG",
+    "relacion_delta": 8,
+    "familia": "vecino"
+  },
+  {
+    "id": "evt_vecino_bol_gas",
+    "tipo": "aleatorio_semilla",
+    "dia_objetivo": null,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 0.1,
+    "titulo": "Tensión por el gas con Bolivia",
+    "descripcion": "La agenda de salida al mar vuelve a la mesa y sube la tensión diplomática.",
+    "votacion": null,
+    "efectos_base": [
+      {
+        "ind": "capital",
+        "delta": -1
+      }
+    ],
+    "etapa": "gobierno",
+    "fuente": "fuentes.json#ficticio_2026",
+    "pais": "BOL",
+    "relacion_delta": -8,
+    "familia": "vecino"
+  },
+  {
+    "id": "evt_vecino_per_elecciones",
+    "tipo": "aleatorio_semilla",
+    "dia_objetivo": null,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 0.2,
+    "titulo": "Elecciones en Perú",
+    "descripcion": "Un nuevo gobierno peruano abre una ronda de cooperación fronteriza.",
+    "votacion": null,
+    "efectos_base": [
+      {
+        "ind": "capital",
+        "delta": 1
+      }
+    ],
+    "etapa": "gobierno",
+    "fuente": "fuentes.json#ficticio_2026",
+    "pais": "PER",
+    "relacion_delta": 6,
+    "familia": "vecino"
+  },
+  {
+    "id": "evt_vecino_ven_migracion",
+    "tipo": "aleatorio_semilla",
+    "dia_objetivo": null,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 0.1,
+    "titulo": "Ola migratoria desde Venezuela",
+    "descripcion": "Aumentan las llegadas por el norte y la presión sobre servicios locales.",
+    "votacion": null,
+    "efectos_base": [
+      {
+        "ind": "aprobacion",
+        "delta": -1
+      }
+    ],
+    "etapa": "gobierno",
+    "fuente": "fuentes.json#ficticio_2026",
+    "pais": "VEN",
+    "relacion_delta": -5,
+    "familia": "vecino"
+  },
+  {
+    "id": "evt_vecino_bra_comercio",
+    "tipo": "aleatorio_semilla",
+    "dia_objetivo": null,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 0.2,
+    "titulo": "Auge comercial con Brasil",
+    "descripcion": "Las exportaciones a Brasil suben con la demanda de cobre y alimentos.",
+    "votacion": null,
+    "efectos_base": [
+      {
+        "ind": "fiscal",
+        "delta": 2
+      }
+    ],
+    "etapa": "gobierno",
+    "fuente": "fuentes.json#ficticio_2026",
+    "pais": "BRA",
+    "relacion_delta": 5,
+    "familia": "vecino"
+  },
+  {
+    "id": "evt_vecino_col_pacifico",
+    "tipo": "aleatorio_semilla",
+    "dia_objetivo": null,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 0.2,
+    "titulo": "Cumbre de la Alianza del Pacífico",
+    "descripcion": "Colombia y Chile impulsan una cumbre con anuncios de inversión.",
+    "votacion": null,
+    "efectos_base": [
+      {
+        "ind": "aprobacion",
+        "delta": 1
+      }
+    ],
+    "etapa": "gobierno",
+    "fuente": "fuentes.json#ficticio_2026",
+    "pais": "COL",
+    "relacion_delta": 6,
+    "familia": "vecino"
+  },
+  {
+    "id": "evt_vecino_ury_mercosur",
+    "tipo": "aleatorio_semilla",
+    "dia_objetivo": null,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 0.2,
+    "titulo": "Chile y Uruguay cierran un acuerdo comercial",
+    "descripcion": "Un tratado simple abre mercado para pymes exportadoras.",
+    "votacion": null,
+    "efectos_base": [
+      {
+        "ind": "fiscal",
+        "delta": 1
+      }
+    ],
+    "etapa": "gobierno",
+    "fuente": "fuentes.json#ficticio_2026",
+    "pais": "URY",
+    "relacion_delta": 5,
+    "familia": "vecino"
+  },
+  {
+    "id": "evt_ext_terremoto",
+    "tipo": "aleatorio_semilla",
+    "dia_objetivo": null,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 0.04,
+    "titulo": "Terremoto en la zona central",
+    "descripcion": "Un sismo fuerte deja daños en viviendas y rutas. Debes decidir cómo responder.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "gobierno",
+    "fuente": "fuentes.json#ficticio_2026",
+    "opciones": [
+      {
+        "texto": "Declarar catástrofe y reconstruir ya",
+        "efectos": [
+          {
+            "ind": "capital",
+            "delta": -2
+          },
+          {
+            "ind": "fiscal",
+            "delta": -3
+          },
+          {
+            "ind": "aprobacion",
+            "delta": 3
+          }
+        ],
+        "cadena": {
+          "evento": "evt_cad_reconstruccion",
+          "semanas": 6
+        }
+      },
+      {
+        "texto": "Ayuda focalizada y subsidios",
+        "efectos": [
+          {
+            "ind": "fiscal",
+            "delta": -1
+          },
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          }
+        ]
+      },
+      {
+        "texto": "Esperar los informes técnicos",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": -3
+          }
+        ],
+        "riesgo": {
+          "prob": 0.45,
+          "efectos": [
+            {
+              "ind": "aprobacion",
+              "delta": -3
+            }
+          ]
+        },
+        "cadena": {
+          "evento": "evt_cad_reclamos",
+          "semanas": 4
+        }
+      }
+    ],
+    "familia": "externo"
+  },
+  {
+    "id": "evt_ext_cobre",
+    "tipo": "aleatorio_semilla",
+    "dia_objetivo": null,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 0.04,
+    "titulo": "Cae el precio del cobre",
+    "descripcion": "El cobre baja y los ingresos fiscales se resienten.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "gobierno",
+    "fuente": "fuentes.json#ficticio_2026",
+    "opciones": [
+      {
+        "texto": "Usar el fondo de estabilización",
+        "efectos": [
+          {
+            "ind": "fiscal",
+            "delta": -2
+          },
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          }
+        ],
+        "diferido": {
+          "semanas": 12,
+          "efectos": [
+            {
+              "ind": "fiscal",
+              "delta": -1
+            }
+          ],
+          "texto": "El fondo de estabilización quedó más bajo de lo previsto."
+        }
+      },
+      {
+        "texto": "Recortar gasto en ministerios",
+        "efectos": [
+          {
+            "ind": "cohesion",
+            "delta": -3
+          },
+          {
+            "ind": "fiscal",
+            "delta": 1
+          }
+        ],
+        "riesgo": {
+          "prob": 0.35,
+          "efectos": [
+            {
+              "ind": "cohesion",
+              "delta": -2
+            }
+          ]
+        },
+        "cadena": {
+          "evento": "evt_cad_recorte_protesta",
+          "semanas": 5
+        }
+      },
+      {
+        "texto": "No hacer nada por ahora",
+        "efectos": [
+          {
+            "ind": "fiscal",
+            "delta": -3
+          }
+        ]
+      }
+    ],
+    "familia": "externo",
+    "contexto": [
+      {
+        "ind": "fiscal",
+        "bajo": 55,
+        "mult": 1.8
+      }
+    ]
+  },
+  {
+    "id": "evt_ext_incendio",
+    "tipo": "aleatorio_semilla",
+    "dia_objetivo": null,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 0.04,
+    "titulo": "Incendios forestales en el sur",
+    "descripcion": "Hay evacuaciones y pérdidas de bosque nativo.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "gobierno",
+    "fuente": "fuentes.json#ficticio_2026",
+    "opciones": [
+      {
+        "texto": "Movilizar brigadas y Fuerzas Armadas",
+        "efectos": [
+          {
+            "ind": "capital",
+            "delta": -1
+          },
+          {
+            "ind": "fiscal",
+            "delta": -1
+          },
+          {
+            "ind": "aprobacion",
+            "delta": 2
+          }
+        ],
+        "diferido": {
+          "semanas": 8,
+          "efectos": [
+            {
+              "ind": "aprobacion",
+              "delta": 1
+            }
+          ],
+          "texto": "La reconstrucción de las zonas afectadas se empieza a notar."
+        }
+      },
+      {
+        "texto": "Apoyar solo con recursos regionales",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": -1
+          }
+        ]
+      },
+      {
+        "texto": "Culpar a la gestión anterior",
+        "efectos": [
+          {
+            "ind": "capital",
+            "delta": 1
+          },
+          {
+            "ind": "aprobacion",
+            "delta": -2
+          },
+          {
+            "ind": "cohesion",
+            "delta": -1
+          }
+        ]
+      }
+    ],
+    "familia": "externo",
+    "meses": [
+      12,
+      1,
+      2,
+      3
+    ]
+  },
+  {
+    "id": "evt_ext_paro",
+    "tipo": "aleatorio_semilla",
+    "dia_objetivo": null,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 0.04,
+    "titulo": "Paro nacional de camioneros",
+    "descripcion": "Las rutas están bloqueadas y suben los precios.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "gobierno",
+    "fuente": "fuentes.json#ficticio_2026",
+    "opciones": [
+      {
+        "texto": "Negociar con los gremios",
+        "efectos": [
+          {
+            "ind": "capital",
+            "delta": -2
+          },
+          {
+            "ind": "fiscal",
+            "delta": -1
+          },
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          }
+        ]
+      },
+      {
+        "texto": "Aplicar la ley con firmeza",
+        "efectos": [
+          {
+            "ind": "capital",
+            "delta": 1
+          },
+          {
+            "ind": "aprobacion",
+            "delta": -2
+          }
+        ],
+        "riesgo": {
+          "prob": 0.35,
+          "efectos": [
+            {
+              "ind": "aprobacion",
+              "delta": -3
+            },
+            {
+              "ind": "cohesion",
+              "delta": -1
+            }
+          ]
+        }
+      },
+      {
+        "texto": "Dejar que se desgasten",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": -3
+          }
+        ]
+      }
+    ],
+    "familia": "externo"
+  },
+  {
+    "id": "evt_min_hacienda",
+    "tipo": "aleatorio_semilla",
+    "dia_objetivo": null,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 0.04,
+    "titulo": "Hacienda pide un ajuste",
+    "descripcion": "Tu ministro de Hacienda propone recortar gasto para cuidar la caja fiscal.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "gobierno",
+    "fuente": "fuentes.json#ficticio_2026",
+    "opciones": [
+      {
+        "texto": "Apoyar el ajuste",
+        "efectos": [
+          {
+            "ind": "fiscal",
+            "delta": 3
+          },
+          {
+            "ind": "aprobacion",
+            "delta": -2
+          },
+          {
+            "ind": "cohesion",
+            "delta": -1
+          }
+        ],
+        "relacion": 1,
+        "cadena": {
+          "evento": "evt_cad_ajuste_regiones",
+          "semanas": 8
+        }
+      },
+      {
+        "texto": "Pedir un ajuste menor",
+        "efectos": [
+          {
+            "ind": "fiscal",
+            "delta": 1
+          },
+          {
+            "ind": "capital",
+            "delta": -1
+          }
+        ],
+        "relacion": 0
+      },
+      {
+        "texto": "Rechazarlo",
+        "efectos": [
+          {
+            "ind": "fiscal",
+            "delta": -2
+          },
+          {
+            "ind": "cohesion",
+            "delta": 1
+          }
+        ],
+        "relacion": -1
+      }
+    ],
+    "actor": {
+      "id": "min_hacienda",
+      "nombre": "Ministerio: Hacienda"
+    },
+    "familia": "ministerio",
+    "contexto": [
+      {
+        "ind": "fiscal",
+        "bajo": 45,
+        "mult": 3.0
+      }
+    ]
+  },
+  {
+    "id": "evt_min_salud",
+    "tipo": "aleatorio_semilla",
+    "dia_objetivo": null,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 0.04,
+    "titulo": "Salud pide más presupuesto",
+    "descripcion": "La ministra de Salud advierte por listas de espera.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "gobierno",
+    "fuente": "fuentes.json#ficticio_2026",
+    "opciones": [
+      {
+        "texto": "Aprobar el refuerzo",
+        "efectos": [
+          {
+            "ind": "fiscal",
+            "delta": -2
+          },
+          {
+            "ind": "aprobacion",
+            "delta": 3
+          }
+        ],
+        "relacion": 1,
+        "diferido": {
+          "semanas": 10,
+          "efectos": [
+            {
+              "ind": "aprobacion",
+              "delta": 2
+            }
+          ],
+          "texto": "Las listas de espera empiezan a bajar tras el refuerzo."
+        }
+      },
+      {
+        "texto": "Reasignar dentro del ministerio",
+        "efectos": [
+          {
+            "ind": "capital",
+            "delta": -1
+          },
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          }
+        ],
+        "relacion": 0
+      },
+      {
+        "texto": "Postergar la petición",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": -2
+          },
+          {
+            "ind": "cohesion",
+            "delta": -1
+          }
+        ],
+        "relacion": -1,
+        "cadena": {
+          "evento": "evt_cad_salud_crisis",
+          "semanas": 6
+        }
+      }
+    ],
+    "actor": {
+      "id": "min_salud",
+      "nombre": "Ministerio: Salud"
+    },
+    "familia": "ministerio",
+    "contexto": [
+      {
+        "ind": "aprobacion",
+        "bajo": 35,
+        "mult": 2.0
+      }
+    ]
+  },
+  {
+    "id": "evt_min_educacion",
+    "tipo": "aleatorio_semilla",
+    "dia_objetivo": null,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 0.04,
+    "titulo": "Educación pide respaldo ante un paro docente",
+    "descripcion": "El ministro quiere tu apoyo público frente al conflicto.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "gobierno",
+    "fuente": "fuentes.json#ficticio_2026",
+    "opciones": [
+      {
+        "texto": "Respaldarlo en público",
+        "efectos": [
+          {
+            "ind": "capital",
+            "delta": -1
+          },
+          {
+            "ind": "cohesion",
+            "delta": 2
+          }
+        ],
+        "relacion": 1
+      },
+      {
+        "texto": "Mediar con los docentes",
+        "efectos": [
+          {
+            "ind": "capital",
+            "delta": -2
+          },
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          }
+        ],
+        "relacion": 0
+      },
+      {
+        "texto": "Mantener distancia",
+        "efectos": [
+          {
+            "ind": "cohesion",
+            "delta": -2
+          },
+          {
+            "ind": "aprobacion",
+            "delta": -1
+          }
+        ],
+        "relacion": -1,
+        "riesgo": {
+          "prob": 0.5,
+          "efectos": [
+            {
+              "ind": "aprobacion",
+              "delta": -2
+            }
+          ]
+        }
+      }
+    ],
+    "actor": {
+      "id": "min_educacion",
+      "nombre": "Ministerio: Educacion"
+    },
+    "familia": "ministerio"
+  },
+  {
+    "id": "evt_min_seguridad",
+    "tipo": "aleatorio_semilla",
+    "dia_objetivo": null,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 0.04,
+    "titulo": "Seguridad pide facultades especiales",
+    "descripcion": "El ministro de Seguridad plantea medidas más duras tras una ola de delitos.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "gobierno",
+    "fuente": "fuentes.json#ficticio_2026",
+    "opciones": [
+      {
+        "texto": "Apoyar las medidas",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 2
+          },
+          {
+            "ind": "capital",
+            "delta": -2
+          },
+          {
+            "ind": "cohesion",
+            "delta": -1
+          }
+        ],
+        "relacion": 1,
+        "riesgo": {
+          "prob": 0.4,
+          "efectos": [
+            {
+              "ind": "cohesion",
+              "delta": -2
+            },
+            {
+              "ind": "capital",
+              "delta": -1
+            }
+          ]
+        },
+        "diferido": {
+          "semanas": 6,
+          "efectos": [
+            {
+              "ind": "aprobacion",
+              "delta": 1
+            }
+          ],
+          "texto": "Baja la percepción de inseguridad."
+        }
+      },
+      {
+        "texto": "Apoyar solo una parte",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          },
+          {
+            "ind": "capital",
+            "delta": -1
+          }
+        ],
+        "relacion": 0
+      },
+      {
+        "texto": "Frenar la propuesta",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": -2
+          },
+          {
+            "ind": "cohesion",
+            "delta": 1
+          }
+        ],
+        "relacion": -1
+      }
+    ],
+    "actor": {
+      "id": "min_seguridad",
+      "nombre": "Ministerio: Seguridad"
+    },
+    "familia": "ministerio",
+    "contexto": [
+      {
+        "ind": "aprobacion",
+        "bajo": 40,
+        "mult": 2.0
+      }
+    ]
+  },
+  {
+    "id": "evt_min_obras",
+    "tipo": "aleatorio_semilla",
+    "dia_objetivo": null,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 0.04,
+    "titulo": "Obras Públicas pide acelerar una licitación",
+    "descripcion": "La cartera propone saltarse etapas para inaugurar antes del invierno.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "gobierno",
+    "fuente": "fuentes.json#ficticio_2026",
+    "opciones": [
+      {
+        "texto": "Acelerar la licitación",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 2
+          },
+          {
+            "ind": "capital",
+            "delta": -2
+          }
+        ],
+        "relacion": 1,
+        "riesgo": {
+          "prob": 0.3,
+          "efectos": [
+            {
+              "ind": "capital",
+              "delta": -2
+            },
+            {
+              "ind": "aprobacion",
+              "delta": -1
+            }
+          ]
+        }
+      },
+      {
+        "texto": "Mantener el calendario",
+        "efectos": [
+          {
+            "ind": "capital",
+            "delta": 1
+          }
+        ],
+        "relacion": 0
+      },
+      {
+        "texto": "Revisar la propuesta con Contraloría",
+        "efectos": [
+          {
+            "ind": "capital",
+            "delta": -1
+          },
+          {
+            "ind": "cohesion",
+            "delta": 1
+          }
+        ],
+        "relacion": -1
+      }
+    ],
+    "actor": {
+      "id": "min_obras",
+      "nombre": "Ministerio: Obras"
+    },
+    "familia": "ministerio"
+  },
+  {
+    "id": "evt_min_energia",
+    "tipo": "aleatorio_semilla",
+    "dia_objetivo": null,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 0.04,
+    "titulo": "Energía pide aprobar una nueva línea de transmisión",
+    "descripcion": "El ministro quiere apoyo político para un proyecto sensible.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "gobierno",
+    "fuente": "fuentes.json#ficticio_2026",
+    "opciones": [
+      {
+        "texto": "Respaldarlo con fuerza",
+        "efectos": [
+          {
+            "ind": "capital",
+            "delta": -2
+          },
+          {
+            "ind": "fiscal",
+            "delta": 1
+          },
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          }
+        ],
+        "relacion": 1,
+        "diferido": {
+          "semanas": 10,
+          "efectos": [
+            {
+              "ind": "fiscal",
+              "delta": 1
+            }
+          ],
+          "texto": "La nueva línea de transmisión empieza a rendir."
+        }
+      },
+      {
+        "texto": "Pedir más consulta ciudadana",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          },
+          {
+            "ind": "cohesion",
+            "delta": 1
+          },
+          {
+            "ind": "capital",
+            "delta": -1
+          }
+        ],
+        "relacion": 0
+      },
+      {
+        "texto": "Congelar el proyecto",
+        "efectos": [
+          {
+            "ind": "fiscal",
+            "delta": -1
+          },
+          {
+            "ind": "aprobacion",
+            "delta": -1
+          }
+        ],
+        "relacion": -1
+      }
+    ],
+    "actor": {
+      "id": "min_energia",
+      "nombre": "Ministerio: Energia"
+    },
+    "familia": "ministerio"
+  },
+  {
+    "id": "evt_presup_decision_a1",
+    "tipo": "programado",
+    "dia_objetivo": 210,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 1.0,
+    "titulo": "Ley de Presupuestos, año 1: ¿qué priorizas?",
+    "descripcion": "Debes decidir cómo repartir el gasto del próximo año. El Congreso solo podrá reducirlo.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "gobierno",
+    "fuente": "fuentes.json#ficticio_2026",
+    "opciones": [
+      {
+        "texto": "Priorizar salud y educación",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 3
+          },
+          {
+            "ind": "fiscal",
+            "delta": -3
+          }
+        ]
+      },
+      {
+        "texto": "Priorizar inversión en obras",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          },
+          {
+            "ind": "fiscal",
+            "delta": -2
+          },
+          {
+            "ind": "cohesion",
+            "delta": 1
+          }
+        ]
+      },
+      {
+        "texto": "Presupuesto austero",
+        "efectos": [
+          {
+            "ind": "fiscal",
+            "delta": 3
+          },
+          {
+            "ind": "aprobacion",
+            "delta": -2
+          }
+        ]
+      }
+    ],
+    "familia": "politica"
+  },
+  {
+    "id": "evt_presup_decision_a2",
+    "tipo": "programado",
+    "dia_objetivo": 575,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 1.0,
+    "titulo": "Ley de Presupuestos, año 2: ¿qué priorizas?",
+    "descripcion": "Debes decidir cómo repartir el gasto del próximo año. El Congreso solo podrá reducirlo.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "gobierno",
+    "fuente": "fuentes.json#ficticio_2026",
+    "opciones": [
+      {
+        "texto": "Priorizar salud y educación",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 3
+          },
+          {
+            "ind": "fiscal",
+            "delta": -3
+          }
+        ]
+      },
+      {
+        "texto": "Priorizar inversión en obras",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          },
+          {
+            "ind": "fiscal",
+            "delta": -2
+          },
+          {
+            "ind": "cohesion",
+            "delta": 1
+          }
+        ]
+      },
+      {
+        "texto": "Presupuesto austero",
+        "efectos": [
+          {
+            "ind": "fiscal",
+            "delta": 3
+          },
+          {
+            "ind": "aprobacion",
+            "delta": -2
+          }
+        ]
+      }
+    ],
+    "familia": "politica"
+  },
+  {
+    "id": "evt_presup_decision_a3",
+    "tipo": "programado",
+    "dia_objetivo": 940,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 1.0,
+    "titulo": "Ley de Presupuestos, año 3: ¿qué priorizas?",
+    "descripcion": "Debes decidir cómo repartir el gasto del próximo año. El Congreso solo podrá reducirlo.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "gobierno",
+    "fuente": "fuentes.json#ficticio_2026",
+    "opciones": [
+      {
+        "texto": "Priorizar salud y educación",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 3
+          },
+          {
+            "ind": "fiscal",
+            "delta": -3
+          }
+        ]
+      },
+      {
+        "texto": "Priorizar inversión en obras",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          },
+          {
+            "ind": "fiscal",
+            "delta": -2
+          },
+          {
+            "ind": "cohesion",
+            "delta": 1
+          }
+        ]
+      },
+      {
+        "texto": "Presupuesto austero",
+        "efectos": [
+          {
+            "ind": "fiscal",
+            "delta": 3
+          },
+          {
+            "ind": "aprobacion",
+            "delta": -2
+          }
+        ]
+      }
+    ],
+    "familia": "politica"
+  },
+  {
+    "id": "evt_presup_decision_a4",
+    "tipo": "programado",
+    "dia_objetivo": 1305,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 1.0,
+    "titulo": "Ley de Presupuestos, año 4: ¿qué priorizas?",
+    "descripcion": "Debes decidir cómo repartir el gasto del próximo año. El Congreso solo podrá reducirlo.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "gobierno",
+    "fuente": "fuentes.json#ficticio_2026",
+    "opciones": [
+      {
+        "texto": "Priorizar salud y educación",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 3
+          },
+          {
+            "ind": "fiscal",
+            "delta": -3
+          }
+        ]
+      },
+      {
+        "texto": "Priorizar inversión en obras",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          },
+          {
+            "ind": "fiscal",
+            "delta": -2
+          },
+          {
+            "ind": "cohesion",
+            "delta": 1
+          }
+        ]
+      },
+      {
+        "texto": "Presupuesto austero",
+        "efectos": [
+          {
+            "ind": "fiscal",
+            "delta": 3
+          },
+          {
+            "ind": "aprobacion",
+            "delta": -2
+          }
+        ]
+      }
+    ],
+    "familia": "politica"
+  },
+  {
+    "id": "evt_elecciones_a2",
+    "tipo": "programado",
+    "dia_objetivo": 640,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 1.0,
+    "titulo": "Elecciones del año 2: cómo participas",
+    "descripcion": "Se acerca una elección y tu partido te pide definir su estrategia.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "gobierno",
+    "fuente": "fuentes.json#ficticio_2026",
+    "opciones": [
+      {
+        "texto": "Hacer campaña activa por tus candidatos",
+        "efectos": [
+          {
+            "ind": "capital",
+            "delta": -2
+          },
+          {
+            "ind": "cohesion",
+            "delta": 2
+          },
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          }
+        ]
+      },
+      {
+        "texto": "Mantener distancia institucional",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          }
+        ]
+      },
+      {
+        "texto": "Concentrarte en la gestión",
+        "efectos": [
+          {
+            "ind": "capital",
+            "delta": 1
+          },
+          {
+            "ind": "cohesion",
+            "delta": -1
+          }
+        ]
+      }
+    ],
+    "familia": "politica"
+  },
+  {
+    "id": "evt_elecciones_a4",
+    "tipo": "programado",
+    "dia_objetivo": 1370,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 1.0,
+    "titulo": "Elecciones del año 4: cómo participas",
+    "descripcion": "Se acerca una elección y tu partido te pide definir su estrategia.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "gobierno",
+    "fuente": "fuentes.json#ficticio_2026",
+    "opciones": [
+      {
+        "texto": "Hacer campaña activa por tus candidatos",
+        "efectos": [
+          {
+            "ind": "capital",
+            "delta": -2
+          },
+          {
+            "ind": "cohesion",
+            "delta": 2
+          },
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          }
+        ]
+      },
+      {
+        "texto": "Mantener distancia institucional",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          }
+        ]
+      },
+      {
+        "texto": "Concentrarte en la gestión",
+        "efectos": [
+          {
+            "ind": "capital",
+            "delta": 1
+          },
+          {
+            "ind": "cohesion",
+            "delta": -1
+          }
+        ]
+      }
+    ],
+    "familia": "politica"
+  },
+  {
+    "id": "evt_comision_hacienda",
+    "tipo": "aleatorio_semilla",
+    "dia_objetivo": null,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 0.03,
+    "titulo": "El presidente de la Comisión de Hacienda pide negociar",
+    "descripcion": "Condiciona su voto a cambios en tu proyecto.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "gobierno",
+    "fuente": "fuentes.json#ficticio_2026",
+    "opciones": [
+      {
+        "texto": "Aceptar sus cambios",
+        "efectos": [
+          {
+            "ind": "capital",
+            "delta": -1
+          },
+          {
+            "ind": "fiscal",
+            "delta": -1
+          },
+          {
+            "ind": "cohesion",
+            "delta": 1
+          }
+        ],
+        "relacion": 1
+      },
+      {
+        "texto": "Negociar a medias",
+        "efectos": [
+          {
+            "ind": "capital",
+            "delta": -1
+          },
+          {
+            "ind": "cohesion",
+            "delta": 1
+          }
+        ],
+        "relacion": 0
+      },
+      {
+        "texto": "Rechazar y presionar",
+        "efectos": [
+          {
+            "ind": "capital",
+            "delta": 1
+          },
+          {
+            "ind": "cohesion",
+            "delta": -2
+          }
+        ],
+        "relacion": -1
+      }
+    ],
+    "actor": {
+      "id": "comision_hacienda",
+      "nombre": "Comisión de Hacienda"
+    },
+    "familia": "comision",
+    "contexto": [
+      {
+        "ind": "capital",
+        "bajo": 40,
+        "mult": 2.0
+      }
+    ]
+  },
+  {
+    "id": "evt_comision_salud",
+    "tipo": "aleatorio_semilla",
+    "dia_objetivo": null,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 0.03,
+    "titulo": "La Comisión de Salud cita a tu ministra",
+    "descripcion": "Piden explicaciones por las listas de espera.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "gobierno",
+    "fuente": "fuentes.json#ficticio_2026",
+    "opciones": [
+      {
+        "texto": "Enviar a la ministra con datos",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          },
+          {
+            "ind": "capital",
+            "delta": -1
+          }
+        ],
+        "relacion": 1
+      },
+      {
+        "texto": "Ir tú con un plan",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 2
+          },
+          {
+            "ind": "capital",
+            "delta": -2
+          }
+        ],
+        "relacion": 0
+      },
+      {
+        "texto": "Postergar la sesión",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": -1
+          },
+          {
+            "ind": "cohesion",
+            "delta": -1
+          }
+        ],
+        "relacion": -1
+      }
+    ],
+    "actor": {
+      "id": "comision_salud",
+      "nombre": "Comisión de Salud"
+    },
+    "familia": "comision"
+  },
+  {
+    "id": "evt_contraloria_objeta",
+    "tipo": "aleatorio_semilla",
+    "dia_objetivo": null,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 0.03,
+    "titulo": "La Contraloría objeta un decreto",
+    "descripcion": "Dice que el decreto excede las facultades del Ejecutivo.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "gobierno",
+    "fuente": "fuentes.json#ficticio_2026",
+    "opciones": [
+      {
+        "texto": "Acatar y reformularlo",
+        "efectos": [
+          {
+            "ind": "capital",
+            "delta": -1
+          },
+          {
+            "ind": "cohesion",
+            "delta": 1
+          }
+        ],
+        "relacion": 1
+      },
+      {
+        "texto": "Insistir con la firma de todos los ministros",
+        "efectos": [
+          {
+            "ind": "capital",
+            "delta": -3
+          },
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          }
+        ],
+        "relacion": 0,
+        "riesgo": {
+          "prob": 0.5,
+          "efectos": [
+            {
+              "ind": "capital",
+              "delta": -2
+            }
+          ]
+        },
+        "cadena": {
+          "evento": "evt_cad_contraloria_dictamen",
+          "semanas": 5
+        }
+      },
+      {
+        "texto": "Pedir un dictamen aclaratorio",
+        "efectos": [
+          {
+            "ind": "capital",
+            "delta": -1
+          },
+          {
+            "ind": "fiscal",
+            "delta": -1
+          }
+        ],
+        "relacion": -1
+      }
+    ],
+    "actor": {
+      "id": "contraloria",
+      "nombre": "Contraloría"
+    },
+    "familia": "institucion"
+  },
+  {
+    "id": "evt_contraloria_auditoria",
+    "tipo": "aleatorio_semilla",
+    "dia_objetivo": null,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 0.03,
+    "titulo": "La Contraloría anuncia una auditoría",
+    "descripcion": "Revisará contratos de una obra en curso.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "gobierno",
+    "fuente": "fuentes.json#ficticio_2026",
+    "opciones": [
+      {
+        "texto": "Colaborar con total transparencia",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          },
+          {
+            "ind": "capital",
+            "delta": -1
+          }
+        ],
+        "relacion": 1
+      },
+      {
+        "texto": "Defender la gestión",
+        "efectos": [
+          {
+            "ind": "cohesion",
+            "delta": 1
+          },
+          {
+            "ind": "aprobacion",
+            "delta": -1
+          }
+        ],
+        "relacion": 0
+      },
+      {
+        "texto": "Reservar los antecedentes",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": -2
+          },
+          {
+            "ind": "capital",
+            "delta": 1
+          }
+        ],
+        "relacion": -1
+      }
+    ],
+    "actor": {
+      "id": "contraloria",
+      "nombre": "Contraloría"
+    },
+    "familia": "institucion"
+  },
+  {
+    "id": "evt_bcentral_tasa",
+    "tipo": "aleatorio_semilla",
+    "dia_objetivo": null,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 0.03,
+    "titulo": "El Banco Central sube la tasa de interés",
+    "descripcion": "La decisión enfría la economía y complica a las pymes.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "gobierno",
+    "fuente": "fuentes.json#ficticio_2026",
+    "opciones": [
+      {
+        "texto": "Respetar su autonomía",
+        "efectos": [
+          {
+            "ind": "fiscal",
+            "delta": 1
+          },
+          {
+            "ind": "aprobacion",
+            "delta": -1
+          }
+        ],
+        "relacion": 1
+      },
+      {
+        "texto": "Pedir públicamente una pausa",
+        "efectos": [
+          {
+            "ind": "capital",
+            "delta": -2
+          },
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          }
+        ],
+        "relacion": 0
+      },
+      {
+        "texto": "Anunciar subsidio a pymes",
+        "efectos": [
+          {
+            "ind": "fiscal",
+            "delta": -2
+          },
+          {
+            "ind": "aprobacion",
+            "delta": 2
+          }
+        ],
+        "relacion": -1,
+        "diferido": {
+          "semanas": 6,
+          "efectos": [
+            {
+              "ind": "aprobacion",
+              "delta": 1
+            }
+          ],
+          "texto": "El subsidio llega a las pymes y se nota."
+        }
+      }
+    ],
+    "actor": {
+      "id": "bcentral",
+      "nombre": "Banco Central"
+    },
+    "familia": "institucion"
+  },
+  {
+    "id": "evt_tc_fallo",
+    "tipo": "aleatorio_semilla",
+    "dia_objetivo": null,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 0.03,
+    "titulo": "El Tribunal Constitucional frena una norma",
+    "descripcion": "Un fallo ajustado deja sin efecto parte de tu reforma.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "gobierno",
+    "fuente": "fuentes.json#ficticio_2026",
+    "opciones": [
+      {
+        "texto": "Acatar y reformular",
+        "efectos": [
+          {
+            "ind": "capital",
+            "delta": -1
+          },
+          {
+            "ind": "cohesion",
+            "delta": 1
+          }
+        ],
+        "relacion": 1
+      },
+      {
+        "texto": "Criticar el fallo",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          },
+          {
+            "ind": "capital",
+            "delta": -2
+          }
+        ],
+        "relacion": 0,
+        "riesgo": {
+          "prob": 0.4,
+          "efectos": [
+            {
+              "ind": "cohesion",
+              "delta": -2
+            }
+          ]
+        }
+      },
+      {
+        "texto": "Presentar una nueva versión",
+        "efectos": [
+          {
+            "ind": "capital",
+            "delta": -1
+          },
+          {
+            "ind": "fiscal",
+            "delta": -1
+          }
+        ],
+        "relacion": -1
+      }
+    ],
+    "actor": {
+      "id": "tc",
+      "nombre": "Tribunal Constitucional"
+    },
+    "familia": "institucion"
+  },
+  {
+    "id": "evt_fiscalia_caso",
+    "tipo": "aleatorio_semilla",
+    "dia_objetivo": null,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 0.03,
+    "titulo": "La Fiscalía abre una investigación que roza a tu coalición",
+    "descripcion": "Un partido aliado queda en el centro de la polémica.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "gobierno",
+    "fuente": "fuentes.json#ficticio_2026",
+    "opciones": [
+      {
+        "texto": "Pedir transparencia",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 2
+          },
+          {
+            "ind": "cohesion",
+            "delta": -2
+          }
+        ],
+        "relacion": 1
+      },
+      {
+        "texto": "Respaldar a tu aliado",
+        "efectos": [
+          {
+            "ind": "cohesion",
+            "delta": 2
+          },
+          {
+            "ind": "aprobacion",
+            "delta": -2
+          }
+        ],
+        "relacion": 0,
+        "riesgo": {
+          "prob": 0.5,
+          "efectos": [
+            {
+              "ind": "aprobacion",
+              "delta": -3
+            }
+          ]
+        },
+        "cadena": {
+          "evento": "evt_cad_fiscalia_formaliza",
+          "semanas": 6
+        }
+      },
+      {
+        "texto": "Evitar comentar",
+        "efectos": [
+          {
+            "ind": "capital",
+            "delta": -1
+          }
+        ],
+        "relacion": -1
+      }
+    ],
+    "actor": {
+      "id": "fiscalia",
+      "nombre": "Fiscalía"
+    },
+    "familia": "institucion"
+  },
+  {
+    "id": "evt_medios_reportaje",
+    "tipo": "aleatorio_semilla",
+    "dia_objetivo": null,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 0.03,
+    "titulo": "Un reportaje critica a tu gobierno",
+    "descripcion": "Un medio importante publica un reportaje duro sobre tu gestión.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "gobierno",
+    "fuente": "fuentes.json#ficticio_2026",
+    "opciones": [
+      {
+        "texto": "Responder con datos",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          },
+          {
+            "ind": "capital",
+            "delta": -1
+          }
+        ],
+        "relacion": 1
+      },
+      {
+        "texto": "Ir a un programa en vivo",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 2
+          },
+          {
+            "ind": "capital",
+            "delta": -2
+          }
+        ],
+        "relacion": 0
+      },
+      {
+        "texto": "Ignorarlo",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": -2
+          }
+        ],
+        "relacion": -1,
+        "cadena": {
+          "evento": "evt_cad_reportaje_segundo",
+          "semanas": 3
+        }
+      }
+    ],
+    "actor": {
+      "id": "medios",
+      "nombre": "Medios de comunicación"
+    },
+    "familia": "medios",
+    "contexto": [
+      {
+        "ind": "aprobacion",
+        "bajo": 35,
+        "mult": 2.5
+      }
+    ]
+  },
+  {
+    "id": "evt_medios_entrevista",
+    "tipo": "aleatorio_semilla",
+    "dia_objetivo": null,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 0.03,
+    "titulo": "Te piden una entrevista de fin de año",
+    "descripcion": "Es una oportunidad de explicar tu rumbo.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "gobierno",
+    "fuente": "fuentes.json#ficticio_2026",
+    "opciones": [
+      {
+        "texto": "Aceptar y preparar un anuncio",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 2
+          },
+          {
+            "ind": "capital",
+            "delta": -1
+          }
+        ],
+        "relacion": 1
+      },
+      {
+        "texto": "Dar solo una declaración escrita",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          }
+        ],
+        "relacion": 0
+      },
+      {
+        "texto": "Rechazarla",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": -1
+          }
+        ],
+        "relacion": -1
+      }
+    ],
+    "actor": {
+      "id": "medios",
+      "nombre": "Medios de comunicación"
+    },
+    "familia": "medios",
+    "contexto": [
+      {
+        "ind": "aprobacion",
+        "alto": 50,
+        "mult": 2.0
+      }
+    ]
+  },
+  {
+    "id": "evt_camp_entrevista1",
+    "tipo": "programado",
+    "dia_objetivo": 12,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 1.0,
+    "titulo": "Entrevista matinal",
+    "descripcion": "Un conductor popular te pregunta por tu programa y tus cuentas.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "campana",
+    "fuente": "fuentes.json#ficticio_2026",
+    "opciones": [
+      {
+        "texto": "Mostrar propuestas concretas",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 2
+          },
+          {
+            "ind": "capital",
+            "delta": -1
+          }
+        ]
+      },
+      {
+        "texto": "Hablar de tu historia personal",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          },
+          {
+            "ind": "cohesion",
+            "delta": 1
+          }
+        ]
+      },
+      {
+        "texto": "Esquivar las preguntas",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": -2
+          }
+        ]
+      }
+    ],
+    "familia": "politica"
+  },
+  {
+    "id": "evt_camp_cabildo",
+    "tipo": "programado",
+    "dia_objetivo": 20,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 1.0,
+    "titulo": "Cabildo abierto en regiones",
+    "descripcion": "Vecinos y dirigentes te esperan para plantearte sus demandas.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "campana",
+    "fuente": "fuentes.json#ficticio_2026",
+    "opciones": [
+      {
+        "texto": "Prometer una obra local",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 2
+          },
+          {
+            "ind": "fiscal",
+            "delta": -1
+          }
+        ]
+      },
+      {
+        "texto": "Escuchar y comprometer una mesa de trabajo",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          },
+          {
+            "ind": "cohesion",
+            "delta": 1
+          }
+        ]
+      },
+      {
+        "texto": "Llegar tarde y salir rápido",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": -2
+          }
+        ]
+      }
+    ],
+    "familia": "politica"
+  },
+  {
+    "id": "evt_camp_entrevista2",
+    "tipo": "programado",
+    "dia_objetivo": 34,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 1.0,
+    "titulo": "Entrevista de fondo en un diario",
+    "descripcion": "Te preguntan por tus alianzas y por quién financia tu campaña.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "campana",
+    "fuente": "fuentes.json#ficticio_2026",
+    "opciones": [
+      {
+        "texto": "Transparentar los aportes",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 2
+          },
+          {
+            "ind": "capital",
+            "delta": -1
+          }
+        ]
+      },
+      {
+        "texto": "Defender tu financiamiento",
+        "efectos": [
+          {
+            "ind": "cohesion",
+            "delta": 1
+          },
+          {
+            "ind": "aprobacion",
+            "delta": -1
+          }
+        ]
+      },
+      {
+        "texto": "Atacar a tus rivales",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          },
+          {
+            "ind": "cohesion",
+            "delta": -2
+          }
+        ]
+      }
+    ],
+    "familia": "politica"
+  },
+  {
+    "id": "evt_camp_cierre",
+    "tipo": "programado",
+    "dia_objetivo": 50,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 1.0,
+    "titulo": "Cierre de campaña",
+    "descripcion": "Última semana: decides cómo cerrar.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "campana",
+    "fuente": "fuentes.json#ficticio_2026",
+    "opciones": [
+      {
+        "texto": "Gran acto masivo",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 3
+          },
+          {
+            "ind": "capital",
+            "delta": -2
+          }
+        ]
+      },
+      {
+        "texto": "Recorrido puerta a puerta",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 2
+          },
+          {
+            "ind": "cohesion",
+            "delta": 1
+          }
+        ]
+      },
+      {
+        "texto": "Un mensaje por redes sociales",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          }
+        ]
+      }
+    ],
+    "familia": "politica"
+  },
+  {
+    "id": "evt_min_interior",
+    "tipo": "aleatorio_semilla",
+    "dia_objetivo": null,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 0.03,
+    "titulo": "Interior pide respaldo ante una protesta masiva",
+    "descripcion": "El ministro advierte desórdenes en varias ciudades.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "gobierno",
+    "fuente": "fuentes.json#ficticio_2026",
+    "opciones": [
+      {
+        "texto": "Autorizar diálogo con los dirigentes",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          },
+          {
+            "ind": "capital",
+            "delta": -1
+          }
+        ],
+        "relacion": 1
+      },
+      {
+        "texto": "Reforzar el control del orden público",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          },
+          {
+            "ind": "cohesion",
+            "delta": -1
+          }
+        ],
+        "relacion": 0
+      },
+      {
+        "texto": "Esperar a que baje la tensión",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": -2
+          }
+        ],
+        "relacion": -1,
+        "riesgo": {
+          "prob": 0.4,
+          "efectos": [
+            {
+              "ind": "aprobacion",
+              "delta": -2
+            }
+          ]
+        }
+      }
+    ],
+    "actor": {
+      "id": "min_interior",
+      "nombre": "Ministerio: Interior"
+    },
+    "familia": "ministerio"
+  },
+  {
+    "id": "evt_min_exteriores",
+    "tipo": "aleatorio_semilla",
+    "dia_objetivo": null,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 0.03,
+    "titulo": "Relaciones Exteriores pide definir una postura en una crisis regional",
+    "descripcion": "Un conflicto en la región exige una declaración oficial.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "gobierno",
+    "fuente": "fuentes.json#ficticio_2026",
+    "opciones": [
+      {
+        "texto": "Condenar y ofrecer mediación",
+        "efectos": [
+          {
+            "ind": "capital",
+            "delta": -1
+          },
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          }
+        ],
+        "relacion": 1
+      },
+      {
+        "texto": "Declaración cauta y neutral",
+        "efectos": [
+          {
+            "ind": "capital",
+            "delta": 1
+          },
+          {
+            "ind": "cohesion",
+            "delta": 1
+          }
+        ],
+        "relacion": 0
+      },
+      {
+        "texto": "No pronunciarte",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": -1
+          }
+        ],
+        "relacion": -1
+      }
+    ],
+    "actor": {
+      "id": "min_exteriores",
+      "nombre": "Ministerio: Exteriores"
+    },
+    "familia": "ministerio"
+  },
+  {
+    "id": "evt_min_defensa",
+    "tipo": "aleatorio_semilla",
+    "dia_objetivo": null,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 0.03,
+    "titulo": "Defensa pide renovar equipos de las Fuerzas Armadas",
+    "descripcion": "Hay equipos con vida útil vencida.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "gobierno",
+    "fuente": "fuentes.json#ficticio_2026",
+    "opciones": [
+      {
+        "texto": "Aprobar la compra completa",
+        "efectos": [
+          {
+            "ind": "fiscal",
+            "delta": -3
+          },
+          {
+            "ind": "cohesion",
+            "delta": 1
+          }
+        ],
+        "relacion": 1
+      },
+      {
+        "texto": "Aprobar una renovación parcial",
+        "efectos": [
+          {
+            "ind": "fiscal",
+            "delta": -1
+          },
+          {
+            "ind": "capital",
+            "delta": -1
+          }
+        ],
+        "relacion": 0
+      },
+      {
+        "texto": "Postergar la decisión",
+        "efectos": [
+          {
+            "ind": "cohesion",
+            "delta": -1
+          }
+        ],
+        "relacion": -1
+      }
+    ],
+    "actor": {
+      "id": "min_defensa",
+      "nombre": "Ministerio: Defensa"
+    },
+    "familia": "ministerio"
+  },
+  {
+    "id": "evt_min_segegob",
+    "tipo": "aleatorio_semilla",
+    "dia_objetivo": null,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 0.03,
+    "titulo": "La Segegob propone cambiar la estrategia comunicacional",
+    "descripcion": "Plantea una cadena nacional y una nueva vocería.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "gobierno",
+    "fuente": "fuentes.json#ficticio_2026",
+    "opciones": [
+      {
+        "texto": "Hacer la cadena nacional",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 2
+          },
+          {
+            "ind": "capital",
+            "delta": -2
+          }
+        ],
+        "relacion": 1
+      },
+      {
+        "texto": "Reforzar solo las redes sociales",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          },
+          {
+            "ind": "capital",
+            "delta": -1
+          }
+        ],
+        "relacion": 0
+      },
+      {
+        "texto": "Mantener la estrategia",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": -1
+          }
+        ],
+        "relacion": -1
+      }
+    ],
+    "actor": {
+      "id": "min_segegob",
+      "nombre": "Ministerio: Segegob"
+    },
+    "familia": "ministerio"
+  },
+  {
+    "id": "evt_min_economia",
+    "tipo": "aleatorio_semilla",
+    "dia_objetivo": null,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 0.03,
+    "titulo": "Economía pide un plan de apoyo a las pymes",
+    "descripcion": "Las pymes sufren por el costo del crédito.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "gobierno",
+    "fuente": "fuentes.json#ficticio_2026",
+    "opciones": [
+      {
+        "texto": "Subsidio amplio",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 2
+          },
+          {
+            "ind": "fiscal",
+            "delta": -2
+          }
+        ],
+        "relacion": 1
+      },
+      {
+        "texto": "Plan focalizado",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          },
+          {
+            "ind": "fiscal",
+            "delta": -1
+          }
+        ],
+        "relacion": 0
+      },
+      {
+        "texto": "Dejar al mercado",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": -2
+          }
+        ],
+        "relacion": -1
+      }
+    ],
+    "actor": {
+      "id": "min_economia",
+      "nombre": "Ministerio: Economia"
+    },
+    "familia": "ministerio"
+  },
+  {
+    "id": "evt_min_social",
+    "tipo": "aleatorio_semilla",
+    "dia_objetivo": null,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 0.03,
+    "titulo": "Desarrollo Social pide ampliar un bono familiar",
+    "descripcion": "Hay familias que quedaron fuera de la ayuda.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "gobierno",
+    "fuente": "fuentes.json#ficticio_2026",
+    "opciones": [
+      {
+        "texto": "Ampliar el bono",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 3
+          },
+          {
+            "ind": "fiscal",
+            "delta": -2
+          }
+        ],
+        "relacion": 1
+      },
+      {
+        "texto": "Ampliarlo con fiscalización",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          },
+          {
+            "ind": "fiscal",
+            "delta": -1
+          }
+        ],
+        "relacion": 0
+      },
+      {
+        "texto": "Mantener el bono actual",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": -2
+          }
+        ],
+        "relacion": -1
+      }
+    ],
+    "actor": {
+      "id": "min_social",
+      "nombre": "Ministerio: Social"
+    },
+    "familia": "ministerio"
+  },
+  {
+    "id": "evt_min_justicia",
+    "tipo": "aleatorio_semilla",
+    "dia_objetivo": null,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 0.03,
+    "titulo": "Justicia pide una reforma al sistema carcelario",
+    "descripcion": "Hay hacinamiento y reclamos de organismos de derechos humanos.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "gobierno",
+    "fuente": "fuentes.json#ficticio_2026",
+    "opciones": [
+      {
+        "texto": "Impulsar la reforma",
+        "efectos": [
+          {
+            "ind": "capital",
+            "delta": -2
+          },
+          {
+            "ind": "cohesion",
+            "delta": 1
+          }
+        ],
+        "relacion": 1
+      },
+      {
+        "texto": "Plan de mejoras graduales",
+        "efectos": [
+          {
+            "ind": "capital",
+            "delta": -1
+          },
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          }
+        ],
+        "relacion": 0
+      },
+      {
+        "texto": "Postergar",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": -1
+          }
+        ],
+        "relacion": -1
+      }
+    ],
+    "actor": {
+      "id": "min_justicia",
+      "nombre": "Ministerio: Justicia"
+    },
+    "familia": "ministerio"
+  },
+  {
+    "id": "evt_min_trabajo",
+    "tipo": "aleatorio_semilla",
+    "dia_objetivo": null,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 0.03,
+    "titulo": "Trabajo pide mediar en una huelga de un sector clave",
+    "descripcion": "Una huelga larga afecta el abastecimiento.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "gobierno",
+    "fuente": "fuentes.json#ficticio_2026",
+    "opciones": [
+      {
+        "texto": "Mediar personalmente",
+        "efectos": [
+          {
+            "ind": "capital",
+            "delta": -2
+          },
+          {
+            "ind": "aprobacion",
+            "delta": 2
+          }
+        ],
+        "relacion": 1
+      },
+      {
+        "texto": "Dejar que mediación técnica trabaje",
+        "efectos": [
+          {
+            "ind": "capital",
+            "delta": -1
+          },
+          {
+            "ind": "cohesion",
+            "delta": 1
+          }
+        ],
+        "relacion": 0
+      },
+      {
+        "texto": "No intervenir",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": -2
+          }
+        ],
+        "relacion": -1,
+        "riesgo": {
+          "prob": 0.45,
+          "efectos": [
+            {
+              "ind": "aprobacion",
+              "delta": -2
+            }
+          ]
+        },
+        "cadena": {
+          "evento": "evt_cad_ministro_conflicto",
+          "semanas": 5
+        }
+      }
+    ],
+    "actor": {
+      "id": "min_trabajo",
+      "nombre": "Ministerio: Trabajo"
+    },
+    "familia": "ministerio"
+  },
+  {
+    "id": "evt_min_vivienda",
+    "tipo": "aleatorio_semilla",
+    "dia_objetivo": null,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 0.03,
+    "titulo": "Vivienda pide ampliar un subsidio de arriendo",
+    "descripcion": "La demanda de arriendos subió con la migración interna.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "gobierno",
+    "fuente": "fuentes.json#ficticio_2026",
+    "opciones": [
+      {
+        "texto": "Ampliar el subsidio",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 2
+          },
+          {
+            "ind": "fiscal",
+            "delta": -2
+          }
+        ],
+        "relacion": 1
+      },
+      {
+        "texto": "Ampliar con focalización",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          },
+          {
+            "ind": "fiscal",
+            "delta": -1
+          }
+        ],
+        "relacion": 0
+      },
+      {
+        "texto": "Mantenerlo igual",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": -1
+          }
+        ],
+        "relacion": -1
+      }
+    ],
+    "actor": {
+      "id": "min_vivienda",
+      "nombre": "Ministerio: Vivienda"
+    },
+    "familia": "ministerio"
+  },
+  {
+    "id": "evt_min_agricultura",
+    "tipo": "aleatorio_semilla",
+    "dia_objetivo": null,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 0.03,
+    "titulo": "Agricultura pide ayuda por la sequía",
+    "descripcion": "Productores del sur piden apoyo urgente.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "gobierno",
+    "fuente": "fuentes.json#ficticio_2026",
+    "opciones": [
+      {
+        "texto": "Plan de emergencia",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 2
+          },
+          {
+            "ind": "fiscal",
+            "delta": -2
+          }
+        ],
+        "relacion": 1
+      },
+      {
+        "texto": "Apoyo solo con créditos",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          },
+          {
+            "ind": "fiscal",
+            "delta": -1
+          }
+        ],
+        "relacion": 0
+      },
+      {
+        "texto": "Esperar las lluvias",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": -2
+          }
+        ],
+        "relacion": -1
+      }
+    ],
+    "actor": {
+      "id": "min_agricultura",
+      "nombre": "Ministerio: Agricultura"
+    },
+    "familia": "ministerio"
+  },
+  {
+    "id": "evt_min_mineria",
+    "tipo": "aleatorio_semilla",
+    "dia_objetivo": null,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 0.03,
+    "titulo": "Minería pide acelerar permisos de un proyecto de litio",
+    "descripcion": "Una inversión grande espera aprobación.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "gobierno",
+    "fuente": "fuentes.json#ficticio_2026",
+    "opciones": [
+      {
+        "texto": "Acelerar los permisos",
+        "efectos": [
+          {
+            "ind": "fiscal",
+            "delta": 2
+          },
+          {
+            "ind": "aprobacion",
+            "delta": -1
+          }
+        ],
+        "relacion": 1
+      },
+      {
+        "texto": "Exigir más estudios ambientales",
+        "efectos": [
+          {
+            "ind": "fiscal",
+            "delta": 1
+          },
+          {
+            "ind": "cohesion",
+            "delta": 1
+          }
+        ],
+        "relacion": 0
+      },
+      {
+        "texto": "Frenar el proyecto",
+        "efectos": [
+          {
+            "ind": "fiscal",
+            "delta": -1
+          }
+        ],
+        "relacion": -1
+      }
+    ],
+    "actor": {
+      "id": "min_mineria",
+      "nombre": "Ministerio: Mineria"
+    },
+    "familia": "ministerio"
+  },
+  {
+    "id": "evt_min_transportes",
+    "tipo": "aleatorio_semilla",
+    "dia_objetivo": null,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 0.03,
+    "titulo": "Transportes pide subsidio al transporte público",
+    "descripcion": "Suben los costos y baja la frecuencia de buses.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "gobierno",
+    "fuente": "fuentes.json#ficticio_2026",
+    "opciones": [
+      {
+        "texto": "Subsidiar sin condiciones",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 2
+          },
+          {
+            "ind": "fiscal",
+            "delta": -2
+          }
+        ],
+        "relacion": 1
+      },
+      {
+        "texto": "Subsidiar con metas de calidad",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          },
+          {
+            "ind": "fiscal",
+            "delta": -1
+          }
+        ],
+        "relacion": 0
+      },
+      {
+        "texto": "No subsidiar",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": -2
+          }
+        ],
+        "relacion": -1
+      }
+    ],
+    "actor": {
+      "id": "min_transportes",
+      "nombre": "Ministerio: Transportes"
+    },
+    "familia": "ministerio"
+  },
+  {
+    "id": "evt_min_bienes",
+    "tipo": "aleatorio_semilla",
+    "dia_objetivo": null,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 0.03,
+    "titulo": "Bienes Nacionales pide definir el uso de terrenos fiscales",
+    "descripcion": "Hay terrenos que podrían usarse para vivienda o parques.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "gobierno",
+    "fuente": "fuentes.json#ficticio_2026",
+    "opciones": [
+      {
+        "texto": "Destinarlos a vivienda",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 2
+          },
+          {
+            "ind": "capital",
+            "delta": -1
+          }
+        ],
+        "relacion": 1
+      },
+      {
+        "texto": "Destinarlos a un parque",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          },
+          {
+            "ind": "cohesion",
+            "delta": 1
+          }
+        ],
+        "relacion": 0
+      },
+      {
+        "texto": "Dejarlos sin uso",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": -1
+          }
+        ],
+        "relacion": -1
+      }
+    ],
+    "actor": {
+      "id": "min_bienes",
+      "nombre": "Ministerio: Bienes"
+    },
+    "familia": "ministerio"
+  },
+  {
+    "id": "evt_min_ambiente",
+    "tipo": "aleatorio_semilla",
+    "dia_objetivo": null,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 0.03,
+    "titulo": "Medio Ambiente pide declarar una zona de protección",
+    "descripcion": "Un humedal está bajo presión inmobiliaria.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "gobierno",
+    "fuente": "fuentes.json#ficticio_2026",
+    "opciones": [
+      {
+        "texto": "Declarar la protección",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          },
+          {
+            "ind": "fiscal",
+            "delta": -1
+          }
+        ],
+        "relacion": 1
+      },
+      {
+        "texto": "Protección parcial",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          },
+          {
+            "ind": "capital",
+            "delta": -1
+          }
+        ],
+        "relacion": 0
+      },
+      {
+        "texto": "Postergar",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": -1
+          }
+        ],
+        "relacion": -1
+      }
+    ],
+    "actor": {
+      "id": "min_ambiente",
+      "nombre": "Ministerio: Ambiente"
+    },
+    "familia": "ministerio"
+  },
+  {
+    "id": "evt_min_segpres",
+    "tipo": "aleatorio_semilla",
+    "dia_objetivo": null,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 0.03,
+    "titulo": "La Segpres pide priorizar la agenda legislativa",
+    "descripcion": "Hay demasiados proyectos y poco tiempo.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "gobierno",
+    "fuente": "fuentes.json#ficticio_2026",
+    "opciones": [
+      {
+        "texto": "Priorizar tres proyectos clave",
+        "efectos": [
+          {
+            "ind": "capital",
+            "delta": -1
+          },
+          {
+            "ind": "cohesion",
+            "delta": 1
+          }
+        ],
+        "relacion": 1
+      },
+      {
+        "texto": "Mantener toda la agenda",
+        "efectos": [
+          {
+            "ind": "cohesion",
+            "delta": -1
+          },
+          {
+            "ind": "capital",
+            "delta": -1
+          }
+        ],
+        "relacion": 0
+      },
+      {
+        "texto": "Dejar que el Congreso decida",
+        "efectos": [
+          {
+            "ind": "capital",
+            "delta": 1
+          }
+        ],
+        "relacion": -1
+      }
+    ],
+    "actor": {
+      "id": "min_segpres",
+      "nombre": "Ministerio: Segpres"
+    },
+    "familia": "ministerio"
+  },
+  {
+    "id": "evt_min_deporte",
+    "tipo": "aleatorio_semilla",
+    "dia_objetivo": null,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 0.03,
+    "titulo": "Deporte pide apoyo para una candidatura a un evento internacional",
+    "descripcion": "Es una oportunidad de prestigio con costo fiscal.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "gobierno",
+    "fuente": "fuentes.json#ficticio_2026",
+    "opciones": [
+      {
+        "texto": "Respaldar la candidatura",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 2
+          },
+          {
+            "ind": "fiscal",
+            "delta": -2
+          }
+        ],
+        "relacion": 1
+      },
+      {
+        "texto": "Apoyo con límite de gasto",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          },
+          {
+            "ind": "fiscal",
+            "delta": -1
+          }
+        ],
+        "relacion": 0
+      },
+      {
+        "texto": "Declinar",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": -1
+          }
+        ],
+        "relacion": -1
+      }
+    ],
+    "actor": {
+      "id": "min_deporte",
+      "nombre": "Ministerio: Deporte"
+    },
+    "familia": "ministerio"
+  },
+  {
+    "id": "evt_min_mujer",
+    "tipo": "aleatorio_semilla",
+    "dia_objetivo": null,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 0.03,
+    "titulo": "La ministra de la Mujer pide respaldo a una agenda de equidad",
+    "descripcion": "Plantea un proyecto polémico en el Congreso.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "gobierno",
+    "fuente": "fuentes.json#ficticio_2026",
+    "opciones": [
+      {
+        "texto": "Respaldarla con fuerza",
+        "efectos": [
+          {
+            "ind": "capital",
+            "delta": -2
+          },
+          {
+            "ind": "cohesion",
+            "delta": 1
+          }
+        ],
+        "relacion": 1
+      },
+      {
+        "texto": "Negociar el contenido",
+        "efectos": [
+          {
+            "ind": "capital",
+            "delta": -1
+          },
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          }
+        ],
+        "relacion": 0
+      },
+      {
+        "texto": "Mantener distancia",
+        "efectos": [
+          {
+            "ind": "cohesion",
+            "delta": -1
+          }
+        ],
+        "relacion": -1
+      }
+    ],
+    "actor": {
+      "id": "min_mujer",
+      "nombre": "Ministerio: Mujer"
+    },
+    "familia": "ministerio"
+  },
+  {
+    "id": "evt_min_cultura",
+    "tipo": "aleatorio_semilla",
+    "dia_objetivo": null,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 0.03,
+    "titulo": "Cultura pide financiar un festival nacional",
+    "descripcion": "Hay presión de gremios culturales.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "gobierno",
+    "fuente": "fuentes.json#ficticio_2026",
+    "opciones": [
+      {
+        "texto": "Financiarlo completo",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 2
+          },
+          {
+            "ind": "fiscal",
+            "delta": -1
+          }
+        ],
+        "relacion": 1
+      },
+      {
+        "texto": "Cofinanciar con privados",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          },
+          {
+            "ind": "fiscal",
+            "delta": -1
+          }
+        ],
+        "relacion": 0
+      },
+      {
+        "texto": "Rechazar",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": -1
+          }
+        ],
+        "relacion": -1
+      }
+    ],
+    "actor": {
+      "id": "min_cultura",
+      "nombre": "Ministerio: Cultura"
+    },
+    "familia": "ministerio"
+  },
+  {
+    "id": "evt_min_ciencia",
+    "tipo": "aleatorio_semilla",
+    "dia_objetivo": null,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 0.03,
+    "titulo": "Ciencia pide más fondos para investigación",
+    "descripcion": "Investigadores advierten que se van del país.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "gobierno",
+    "fuente": "fuentes.json#ficticio_2026",
+    "opciones": [
+      {
+        "texto": "Aumentar los fondos",
+        "efectos": [
+          {
+            "ind": "fiscal",
+            "delta": -2
+          },
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          }
+        ],
+        "relacion": 1
+      },
+      {
+        "texto": "Convocar un concurso nuevo",
+        "efectos": [
+          {
+            "ind": "fiscal",
+            "delta": -1
+          },
+          {
+            "ind": "cohesion",
+            "delta": 1
+          }
+        ],
+        "relacion": 0
+      },
+      {
+        "texto": "Mantener el presupuesto",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": -1
+          }
+        ],
+        "relacion": -1
+      }
+    ],
+    "actor": {
+      "id": "min_ciencia",
+      "nombre": "Ministerio: Ciencia"
+    },
+    "familia": "ministerio"
+  },
+  {
+    "id": "evt_camp_franja1",
+    "tipo": "programado",
+    "dia_objetivo": 8,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 1.0,
+    "titulo": "Franja televisiva: tu primer spot",
+    "descripcion": "Dispones de minutos gratuitos en televisión. ¿Qué mostrarás?",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "campana",
+    "fuente": "fuentes.json#ficticio_2026",
+    "opciones": [
+      {
+        "texto": "Un spot emotivo con tu historia",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 2
+          },
+          {
+            "ind": "capital",
+            "delta": -1
+          }
+        ]
+      },
+      {
+        "texto": "Un spot con propuestas y cifras",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          },
+          {
+            "ind": "cohesion",
+            "delta": 1
+          }
+        ]
+      },
+      {
+        "texto": "Un spot contra tus rivales",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          },
+          {
+            "ind": "cohesion",
+            "delta": -2
+          }
+        ],
+        "riesgo": {
+          "prob": 0.4,
+          "efectos": [
+            {
+              "ind": "aprobacion",
+              "delta": -2
+            }
+          ]
+        },
+        "cadena": {
+          "evento": "evt_cad_franja_rival",
+          "semanas": 2
+        }
+      }
+    ],
+    "familia": "politica"
+  },
+  {
+    "tipo": "programado",
+    "dia_objetivo": 24,
+    "peso_sorteo": 1.0,
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "campana",
+    "fuente": "fuentes.json#ficticio_2026",
+    "familia": "politica",
+    "id": "evt_camp_debate_radio",
+    "hora_etiqueta": "09:00",
+    "titulo": "Primera pregunta",
+    "descripcion": "El conductor abre el programa: ¿qué te diferencia de tus rivales?",
+    "opciones": [
+      {
+        "texto": "Atacar con datos",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          },
+          {
+            "ind": "capital",
+            "delta": -1
+          }
+        ]
+      },
+      {
+        "texto": "Mostrar un mensaje conciliador",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          },
+          {
+            "ind": "cohesion",
+            "delta": 1
+          }
+        ]
+      },
+      {
+        "texto": "Contar tu historia personal",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          }
+        ]
+      }
+    ],
+    "escena": {
+      "nombre": "Debate en radio",
+      "ronda": 1,
+      "rondas": 2
+    }
+  },
+  {
+    "tipo": "programado",
+    "dia_objetivo": 24,
+    "peso_sorteo": 1.0,
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "campana",
+    "fuente": "fuentes.json#ficticio_2026",
+    "familia": "politica",
+    "id": "evt_camp_debate_radio_r2",
+    "hora_etiqueta": "09:15",
+    "titulo": "Réplica",
+    "descripcion": "Un oyente llama y te cuestiona por una promesa difícil de cumplir.",
+    "opciones": [
+      {
+        "texto": "Responder con franqueza y plazos",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          },
+          {
+            "ind": "capital",
+            "delta": 1
+          }
+        ]
+      },
+      {
+        "texto": "Desviar hacia el gobierno actual",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          },
+          {
+            "ind": "cohesion",
+            "delta": -1
+          }
+        ]
+      },
+      {
+        "texto": "Cortar la llamada con una broma",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": -1
+          }
+        ]
+      }
+    ],
+    "escena": {
+      "nombre": "Debate en radio",
+      "ronda": 2,
+      "rondas": 2
+    }
+  },
+  {
+    "tipo": "programado",
+    "dia_objetivo": 16,
+    "peso_sorteo": 1.0,
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "campana",
+    "fuente": "fuentes.json#ficticio_2026",
+    "familia": "politica",
+    "id": "evt_camp_entrevista_tv",
+    "hora_etiqueta": "09:00",
+    "titulo": "Presentación",
+    "descripcion": "El conductor te pide que te presentes en una frase, sin tecnicismos.",
+    "opciones": [
+      {
+        "texto": "Responder con humor y cercanía",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          }
+        ]
+      },
+      {
+        "texto": "Responder con tecnicismos",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": -1
+          },
+          {
+            "ind": "capital",
+            "delta": 1
+          }
+        ]
+      },
+      {
+        "texto": "Pedir las preguntas antes",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": -1
+          },
+          {
+            "ind": "cohesion",
+            "delta": 1
+          }
+        ]
+      }
+    ],
+    "escena": {
+      "nombre": "Entrevista en televisión abierta",
+      "ronda": 1,
+      "rondas": 2
+    }
+  },
+  {
+    "tipo": "programado",
+    "dia_objetivo": 16,
+    "peso_sorteo": 1.0,
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "campana",
+    "fuente": "fuentes.json#ficticio_2026",
+    "familia": "politica",
+    "id": "evt_camp_entrevista_tv_r2",
+    "hora_etiqueta": "09:15",
+    "titulo": "Pregunta incómoda",
+    "descripcion": "Ahora te consulta por la polémica más reciente de tu candidatura.",
+    "opciones": [
+      {
+        "texto": "Asumirla y explicar",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          },
+          {
+            "ind": "capital",
+            "delta": -1
+          }
+        ]
+      },
+      {
+        "texto": "Responder con otra pregunta",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 0
+          },
+          {
+            "ind": "cohesion",
+            "delta": -1
+          }
+        ]
+      },
+      {
+        "texto": "Apelar a tu equipo y tu programa",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          },
+          {
+            "ind": "cohesion",
+            "delta": 1
+          }
+        ]
+      }
+    ],
+    "escena": {
+      "nombre": "Entrevista en televisión abierta",
+      "ronda": 2,
+      "rondas": 2
+    }
+  },
+  {
+    "id": "evt_camp_franja2",
+    "tipo": "programado",
+    "dia_objetivo": 44,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 1.0,
+    "titulo": "Franja televisiva: tu segundo spot",
+    "descripcion": "Es la última semana de franja. ¿Cómo cierras?",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "campana",
+    "fuente": "fuentes.json#ficticio_2026",
+    "opciones": [
+      {
+        "texto": "Un llamado a votar con esperanza",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 2
+          },
+          {
+            "ind": "cohesion",
+            "delta": 1
+          }
+        ]
+      },
+      {
+        "texto": "Una advertencia sobre el rival",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          },
+          {
+            "ind": "cohesion",
+            "delta": -1
+          }
+        ]
+      },
+      {
+        "texto": "Repetir el primer spot",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 0
+          }
+        ]
+      }
+    ],
+    "familia": "politica"
+  },
+  {
+    "tipo": "programado",
+    "dia_objetivo": 47,
+    "peso_sorteo": 1.0,
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "campana",
+    "fuente": "fuentes.json#ficticio_2026",
+    "familia": "politica",
+    "id": "evt_camp_debate_final",
+    "hora_etiqueta": "09:00",
+    "titulo": "Economía",
+    "descripcion": "El moderador pregunta: ¿cómo vas a crecer sin desordenar las cuentas fiscales?",
+    "opciones": [
+      {
+        "texto": "Atacar el historial del favorito",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          },
+          {
+            "ind": "cohesion",
+            "delta": -1
+          }
+        ]
+      },
+      {
+        "texto": "Proponer un acuerdo fiscal amplio",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          },
+          {
+            "ind": "cohesion",
+            "delta": 1
+          }
+        ]
+      },
+      {
+        "texto": "Detallar tu programa con cifras",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          },
+          {
+            "ind": "capital",
+            "delta": 1
+          }
+        ]
+      }
+    ],
+    "escena": {
+      "nombre": "Debate presidencial final",
+      "ronda": 1,
+      "rondas": 3
+    }
+  },
+  {
+    "tipo": "programado",
+    "dia_objetivo": 47,
+    "peso_sorteo": 1.0,
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "campana",
+    "fuente": "fuentes.json#ficticio_2026",
+    "familia": "politica",
+    "id": "evt_camp_debate_final_r2",
+    "hora_etiqueta": "09:15",
+    "titulo": "Seguridad",
+    "descripcion": "Segunda ronda: ¿qué harás en el primer año contra el crimen organizado?",
+    "opciones": [
+      {
+        "texto": "Prometer mano dura inmediata",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 2
+          },
+          {
+            "ind": "cohesion",
+            "delta": -1
+          }
+        ]
+      },
+      {
+        "texto": "Ofrecer una alianza con las policías y regiones",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          },
+          {
+            "ind": "cohesion",
+            "delta": 1
+          }
+        ]
+      },
+      {
+        "texto": "Reconocer los límites y priorizar",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          },
+          {
+            "ind": "capital",
+            "delta": 1
+          }
+        ]
+      }
+    ],
+    "escena": {
+      "nombre": "Debate presidencial final",
+      "ronda": 2,
+      "rondas": 3
+    }
+  },
+  {
+    "tipo": "programado",
+    "dia_objetivo": 47,
+    "peso_sorteo": 1.0,
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "campana",
+    "fuente": "fuentes.json#ficticio_2026",
+    "familia": "politica",
+    "id": "evt_camp_debate_final_r3",
+    "hora_etiqueta": "09:30",
+    "titulo": "Cierre",
+    "descripcion": "Última ronda: un minuto para pedir el voto.",
+    "opciones": [
+      {
+        "texto": "Apelar a la unidad del país",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 2
+          },
+          {
+            "ind": "cohesion",
+            "delta": 1
+          }
+        ]
+      },
+      {
+        "texto": "Contrastar con el favorito sin rodeos",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 2
+          },
+          {
+            "ind": "capital",
+            "delta": -1
+          }
+        ]
+      },
+      {
+        "texto": "Hablarle a quienes dudan, con calma",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          },
+          {
+            "ind": "capital",
+            "delta": 1
+          }
+        ]
+      }
+    ],
+    "escena": {
+      "nombre": "Debate presidencial final",
+      "ronda": 3,
+      "rondas": 3
+    }
+  },
+  {
+    "tipo": "programado",
+    "dia_objetivo": 14,
+    "peso_sorteo": 1.0,
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "oposicion",
+    "fuente": "fuentes.json#ficticio_2026",
+    "familia": "politica",
+    "id": "evt_opo_debate_parlamentario",
+    "hora_etiqueta": "09:00",
+    "titulo": "Fundamento",
+    "descripcion": "El gobierno presenta su proyecto estrella y te toca fijar posición.",
+    "opciones": [
+      {
+        "texto": "Presentar una contrapropuesta",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          },
+          {
+            "ind": "capital",
+            "delta": -1
+          },
+          {
+            "ind": "rival",
+            "delta": -1
+          }
+        ]
+      },
+      {
+        "texto": "Votar en contra con un discurso duro",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          },
+          {
+            "ind": "cohesion",
+            "delta": 1
+          }
+        ]
+      },
+      {
+        "texto": "Abstenerte para negociar",
+        "efectos": [
+          {
+            "ind": "capital",
+            "delta": 1
+          }
+        ]
+      }
+    ],
+    "escena": {
+      "nombre": "Debate parlamentario clave",
+      "ronda": 1,
+      "rondas": 2
+    }
+  },
+  {
+    "tipo": "programado",
+    "dia_objetivo": 14,
+    "peso_sorteo": 1.0,
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "oposicion",
+    "fuente": "fuentes.json#ficticio_2026",
+    "familia": "politica",
+    "id": "evt_opo_debate_parlamentario_r2",
+    "hora_etiqueta": "09:15",
+    "titulo": "Réplica",
+    "descripcion": "El ministro defiende el proyecto y te acusa de bloquear por política.",
+    "opciones": [
+      {
+        "texto": "Responder con cifras alternativas",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          },
+          {
+            "ind": "rival",
+            "delta": -1
+          }
+        ]
+      },
+      {
+        "texto": "Ofrecer un pacto con condiciones",
+        "efectos": [
+          {
+            "ind": "capital",
+            "delta": 1
+          },
+          {
+            "ind": "aprobacion",
+            "delta": 0
+          }
+        ]
+      },
+      {
+        "texto": "Denunciar un acuerdo a puertas cerradas",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          },
+          {
+            "ind": "cohesion",
+            "delta": -1
+          }
+        ]
+      }
+    ],
+    "escena": {
+      "nombre": "Debate parlamentario clave",
+      "ronda": 2,
+      "rondas": 2
+    }
+  },
+  {
+    "id": "evt_opo_entrevista",
+    "tipo": "programado",
+    "dia_objetivo": 35,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 1.0,
+    "titulo": "Entrevista a fondo sobre tu rol de oposición",
+    "descripcion": "Te preguntan si eres constructivo u obstruccionista.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "oposicion",
+    "fuente": "fuentes.json#ficticio_2026",
+    "opciones": [
+      {
+        "texto": "Marcar diferencias claras",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 2
+          },
+          {
+            "ind": "capital",
+            "delta": -1
+          }
+        ]
+      },
+      {
+        "texto": "Mostrar disposición a acuerdos",
+        "efectos": [
+          {
+            "ind": "capital",
+            "delta": 1
+          },
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          }
+        ]
+      },
+      {
+        "texto": "Esquivar la pregunta",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": -1
+          }
+        ]
+      }
+    ],
+    "familia": "politica"
+  },
+  {
+    "id": "evt_opo_acusacion",
+    "tipo": "programado",
+    "dia_objetivo": 63,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 1.0,
+    "titulo": "Tu bancada propone una acusación constitucional",
+    "descripcion": "Hay presión de las bases para acusar a un ministro.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "oposicion",
+    "fuente": "fuentes.json#ficticio_2026",
+    "opciones": [
+      {
+        "texto": "Encabezar la acusación",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 3
+          },
+          {
+            "ind": "capital",
+            "delta": -2
+          },
+          {
+            "ind": "cohesion",
+            "delta": 1
+          },
+          {
+            "ind": "rival",
+            "delta": -3
+          }
+        ],
+        "cadena": {
+          "evento": "evt_cad_acusacion_resultado",
+          "semanas": 3
+        }
+      },
+      {
+        "texto": "Pedir más antecedentes",
+        "efectos": [
+          {
+            "ind": "capital",
+            "delta": 1
+          },
+          {
+            "ind": "cohesion",
+            "delta": 1
+          }
+        ]
+      },
+      {
+        "texto": "No respaldarla",
+        "efectos": [
+          {
+            "ind": "cohesion",
+            "delta": -2
+          },
+          {
+            "ind": "aprobacion",
+            "delta": -1
+          }
+        ]
+      }
+    ],
+    "familia": "politica"
+  },
+  {
+    "id": "evt_opo_presupuesto",
+    "tipo": "programado",
+    "dia_objetivo": 91,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 1.0,
+    "titulo": "Discusión del presupuesto desde la oposición",
+    "descripcion": "Puedes proponer recortes o reasignaciones.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "oposicion",
+    "fuente": "fuentes.json#ficticio_2026",
+    "opciones": [
+      {
+        "texto": "Proponer reasignar gasto a salud y educación",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 2
+          },
+          {
+            "ind": "capital",
+            "delta": -1
+          },
+          {
+            "ind": "rival",
+            "delta": -1
+          }
+        ]
+      },
+      {
+        "texto": "Aprobar con reparos",
+        "efectos": [
+          {
+            "ind": "capital",
+            "delta": 2
+          }
+        ]
+      },
+      {
+        "texto": "Rechazar en bloque",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          },
+          {
+            "ind": "cohesion",
+            "delta": 1
+          },
+          {
+            "ind": "capital",
+            "delta": -2
+          }
+        ]
+      }
+    ],
+    "familia": "politica"
+  },
+  {
+    "id": "evt_opo_congreso_partido",
+    "tipo": "programado",
+    "dia_objetivo": 126,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 1.0,
+    "titulo": "Tu partido te pide definir el rumbo",
+    "descripcion": "Hay que decidir el programa para la próxima elección.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "oposicion",
+    "fuente": "fuentes.json#ficticio_2026",
+    "opciones": [
+      {
+        "texto": "Renovar la directiva y el programa",
+        "efectos": [
+          {
+            "ind": "cohesion",
+            "delta": 3
+          },
+          {
+            "ind": "capital",
+            "delta": -1
+          }
+        ]
+      },
+      {
+        "texto": "Mantener a la directiva",
+        "efectos": [
+          {
+            "ind": "cohesion",
+            "delta": 1
+          },
+          {
+            "ind": "aprobacion",
+            "delta": -1
+          }
+        ]
+      },
+      {
+        "texto": "Convocar a primarias",
+        "efectos": [
+          {
+            "ind": "cohesion",
+            "delta": 2
+          },
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          },
+          {
+            "ind": "capital",
+            "delta": -2
+          }
+        ]
+      }
+    ],
+    "familia": "politica"
+  },
+  {
+    "id": "evt_opo_encuesta",
+    "tipo": "programado",
+    "dia_objetivo": 154,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 1.0,
+    "titulo": "Una encuesta te muestra estancado",
+    "descripcion": "Los medios hablan de tu liderazgo.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "oposicion",
+    "fuente": "fuentes.json#ficticio_2026",
+    "opciones": [
+      {
+        "texto": "Reforzar tu presencia en regiones",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 2
+          },
+          {
+            "ind": "capital",
+            "delta": -1
+          }
+        ]
+      },
+      {
+        "texto": "Cambiar a tu vocero",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          },
+          {
+            "ind": "cohesion",
+            "delta": -1
+          }
+        ]
+      },
+      {
+        "texto": "Ignorar la encuesta",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": -1
+          }
+        ]
+      }
+    ],
+    "familia": "politica"
+  },
+  {
+    "id": "evt_opo_filtracion",
+    "tipo": "aleatorio_semilla",
+    "dia_objetivo": null,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 0.04,
+    "titulo": "Se filtra una conversación interna de tu partido",
+    "descripcion": "Los medios publican diferencias entre tus dirigentes.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "oposicion",
+    "fuente": "fuentes.json#ficticio_2026",
+    "opciones": [
+      {
+        "texto": "Pedir disculpas y ordenar al partido",
+        "efectos": [
+          {
+            "ind": "cohesion",
+            "delta": 1
+          },
+          {
+            "ind": "aprobacion",
+            "delta": -1
+          }
+        ]
+      },
+      {
+        "texto": "Atribuirlo a una operación política",
+        "efectos": [
+          {
+            "ind": "cohesion",
+            "delta": 1
+          },
+          {
+            "ind": "capital",
+            "delta": -1
+          }
+        ]
+      },
+      {
+        "texto": "Sancionar a quien filtró",
+        "efectos": [
+          {
+            "ind": "cohesion",
+            "delta": -1
+          },
+          {
+            "ind": "capital",
+            "delta": 1
+          }
+        ]
+      }
+    ],
+    "familia": "politica"
+  },
+  {
+    "id": "evt_opo_comision",
+    "tipo": "aleatorio_semilla",
+    "dia_objetivo": null,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 0.04,
+    "titulo": "Se abre una comisión investigadora",
+    "descripcion": "Puedes liderarla o dejarla pasar.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "oposicion",
+    "fuente": "fuentes.json#ficticio_2026",
+    "opciones": [
+      {
+        "texto": "Liderarla con dureza",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 2
+          },
+          {
+            "ind": "capital",
+            "delta": -1
+          },
+          {
+            "ind": "rival",
+            "delta": -2
+          }
+        ]
+      },
+      {
+        "texto": "Participar con moderación",
+        "efectos": [
+          {
+            "ind": "capital",
+            "delta": 1
+          }
+        ]
+      },
+      {
+        "texto": "No participar",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": -1
+          }
+        ]
+      }
+    ],
+    "familia": "comision"
+  },
+  {
+    "id": "evt_cad_reconstruccion",
+    "tipo": "cadena",
+    "dia_objetivo": null,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 0.0,
+    "titulo": "Balance de la reconstrucción",
+    "descripcion": "Pasaron semanas desde el terremoto y las familias esperan resultados.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "gobierno",
+    "fuente": "fuentes.json#ficticio_2026",
+    "familia": "cadena",
+    "opciones": [
+      {
+        "texto": "Inaugurar las primeras viviendas con una ceremonia",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 2
+          },
+          {
+            "ind": "capital",
+            "delta": -1
+          }
+        ]
+      },
+      {
+        "texto": "Auditar el uso de los fondos antes de hablar",
+        "efectos": [
+          {
+            "ind": "capital",
+            "delta": 1
+          },
+          {
+            "ind": "aprobacion",
+            "delta": -1
+          }
+        ]
+      },
+      {
+        "texto": "Dejar que el proceso siga sin intervenir",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": -1
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "evt_cad_reclamos",
+    "tipo": "cadena",
+    "dia_objetivo": null,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 0.0,
+    "titulo": "Los damnificados reclaman",
+    "descripcion": "Por la espera, vecinos bloquean una ruta y exigen respuestas.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "gobierno",
+    "fuente": "fuentes.json#ficticio_2026",
+    "familia": "cadena",
+    "opciones": [
+      {
+        "texto": "Ir en persona a dialogar",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          },
+          {
+            "ind": "capital",
+            "delta": -2
+          }
+        ]
+      },
+      {
+        "texto": "Enviar a un ministro con un plan",
+        "efectos": [
+          {
+            "ind": "capital",
+            "delta": -1
+          }
+        ]
+      },
+      {
+        "texto": "Pedir que despejen la ruta",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": -2
+          },
+          {
+            "ind": "cohesion",
+            "delta": -1
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "evt_cad_recorte_protesta",
+    "tipo": "cadena",
+    "dia_objetivo": null,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 0.0,
+    "titulo": "Protestas por el recorte",
+    "descripcion": "Los gremios públicos rechazan el ajuste y convocan a un paro.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "gobierno",
+    "fuente": "fuentes.json#ficticio_2026",
+    "familia": "cadena",
+    "opciones": [
+      {
+        "texto": "Abrir una mesa de negociación",
+        "efectos": [
+          {
+            "ind": "cohesion",
+            "delta": 1
+          },
+          {
+            "ind": "capital",
+            "delta": -1
+          }
+        ]
+      },
+      {
+        "texto": "Mantener el recorte",
+        "efectos": [
+          {
+            "ind": "fiscal",
+            "delta": 1
+          },
+          {
+            "ind": "aprobacion",
+            "delta": -2
+          }
+        ]
+      },
+      {
+        "texto": "Revertir parte del recorte",
+        "efectos": [
+          {
+            "ind": "fiscal",
+            "delta": -1
+          },
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "evt_cad_ajuste_regiones",
+    "tipo": "cadena",
+    "dia_objetivo": null,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 0.0,
+    "titulo": "El ajuste llega a las regiones",
+    "descripcion": "Los gobernadores regionales dicen que el ajuste frena obras locales.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "gobierno",
+    "fuente": "fuentes.json#ficticio_2026",
+    "familia": "cadena",
+    "opciones": [
+      {
+        "texto": "Priorizar obras regionales clave",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          },
+          {
+            "ind": "fiscal",
+            "delta": -1
+          }
+        ],
+        "relacion": 1
+      },
+      {
+        "texto": "Explicar que el ajuste es temporal",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": -1
+          },
+          {
+            "ind": "capital",
+            "delta": 1
+          }
+        ],
+        "relacion": 0
+      },
+      {
+        "texto": "Pedir paciencia",
+        "efectos": [
+          {
+            "ind": "cohesion",
+            "delta": -1
+          }
+        ],
+        "relacion": -1
+      }
+    ],
+    "actor": {
+      "id": "min_hacienda",
+      "nombre": "Ministerio: Hacienda"
+    }
+  },
+  {
+    "id": "evt_cad_salud_crisis",
+    "tipo": "cadena",
+    "dia_objetivo": null,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 0.0,
+    "titulo": "Crisis en un hospital regional",
+    "descripcion": "La falta de recursos que se había advertido se hace visible en un hospital.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "gobierno",
+    "fuente": "fuentes.json#ficticio_2026",
+    "familia": "cadena",
+    "opciones": [
+      {
+        "texto": "Inyectar recursos de emergencia",
+        "efectos": [
+          {
+            "ind": "fiscal",
+            "delta": -2
+          },
+          {
+            "ind": "aprobacion",
+            "delta": 2
+          }
+        ],
+        "relacion": 1
+      },
+      {
+        "texto": "Cambiar a la dirección del hospital",
+        "efectos": [
+          {
+            "ind": "capital",
+            "delta": -1
+          },
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          }
+        ],
+        "relacion": 0
+      },
+      {
+        "texto": "Negar el problema",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": -3
+          },
+          {
+            "ind": "cohesion",
+            "delta": -1
+          }
+        ],
+        "relacion": -1
+      }
+    ],
+    "actor": {
+      "id": "min_salud",
+      "nombre": "Ministerio: Salud"
+    }
+  },
+  {
+    "id": "evt_cad_contraloria_dictamen",
+    "tipo": "cadena",
+    "dia_objetivo": null,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 0.0,
+    "titulo": "La Contraloría emite su dictamen",
+    "descripcion": "El órgano contralor responde a tu insistencia.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "gobierno",
+    "fuente": "fuentes.json#ficticio_2026",
+    "familia": "cadena",
+    "opciones": [
+      {
+        "texto": "Acatar el dictamen sin reclamar",
+        "efectos": [
+          {
+            "ind": "capital",
+            "delta": 1
+          },
+          {
+            "ind": "aprobacion",
+            "delta": -1
+          }
+        ],
+        "relacion": 1
+      },
+      {
+        "texto": "Reclamar ante el Tribunal Constitucional",
+        "efectos": [
+          {
+            "ind": "capital",
+            "delta": -2
+          },
+          {
+            "ind": "cohesion",
+            "delta": 1
+          }
+        ],
+        "relacion": 0
+      },
+      {
+        "texto": "Cambiar el decreto",
+        "efectos": [
+          {
+            "ind": "capital",
+            "delta": -1
+          },
+          {
+            "ind": "cohesion",
+            "delta": 1
+          }
+        ],
+        "relacion": -1
+      }
+    ],
+    "actor": {
+      "id": "contraloria",
+      "nombre": "Contraloría"
+    }
+  },
+  {
+    "id": "evt_cad_fiscalia_formaliza",
+    "tipo": "cadena",
+    "dia_objetivo": null,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 0.0,
+    "titulo": "La Fiscalía formaliza a un dirigente aliado",
+    "descripcion": "El caso que tu gobierno respaldó escala.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "gobierno",
+    "fuente": "fuentes.json#ficticio_2026",
+    "familia": "cadena",
+    "opciones": [
+      {
+        "texto": "Pedir su renuncia al cargo",
+        "efectos": [
+          {
+            "ind": "cohesion",
+            "delta": -2
+          },
+          {
+            "ind": "aprobacion",
+            "delta": 2
+          }
+        ],
+        "relacion": 1
+      },
+      {
+        "texto": "Sostenerlo hasta que se pruebe algo",
+        "efectos": [
+          {
+            "ind": "cohesion",
+            "delta": 1
+          },
+          {
+            "ind": "aprobacion",
+            "delta": -3
+          }
+        ],
+        "relacion": 0
+      },
+      {
+        "texto": "Congelar su participación",
+        "efectos": [
+          {
+            "ind": "cohesion",
+            "delta": -1
+          },
+          {
+            "ind": "aprobacion",
+            "delta": 0
+          }
+        ],
+        "relacion": -1
+      }
+    ],
+    "actor": {
+      "id": "fiscalia",
+      "nombre": "Fiscalía"
+    }
+  },
+  {
+    "id": "evt_cad_reportaje_segundo",
+    "tipo": "cadena",
+    "dia_objetivo": null,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 0.0,
+    "titulo": "El medio publica una segunda parte",
+    "descripcion": "Al ignorar el primer reportaje, el medio insiste con nuevos antecedentes.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "gobierno",
+    "fuente": "fuentes.json#ficticio_2026",
+    "familia": "cadena",
+    "opciones": [
+      {
+        "texto": "Dar una conferencia de prensa",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          },
+          {
+            "ind": "capital",
+            "delta": -2
+          }
+        ],
+        "relacion": 1
+      },
+      {
+        "texto": "Responder por escrito",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": -1
+          }
+        ],
+        "relacion": 0
+      },
+      {
+        "texto": "Demandar al medio",
+        "efectos": [
+          {
+            "ind": "capital",
+            "delta": -1
+          },
+          {
+            "ind": "aprobacion",
+            "delta": -2
+          },
+          {
+            "ind": "cohesion",
+            "delta": 1
+          }
+        ],
+        "relacion": -1
+      }
+    ],
+    "actor": {
+      "id": "medios",
+      "nombre": "Medios de comunicación"
+    }
+  },
+  {
+    "id": "evt_cad_franja_rival",
+    "tipo": "cadena",
+    "dia_objetivo": null,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 0.0,
+    "titulo": "Tu rival responde en la franja",
+    "descripcion": "Tu rival contraataca en sus minutos de televisión.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "campana",
+    "fuente": "fuentes.json#ficticio_2026",
+    "familia": "cadena",
+    "opciones": [
+      {
+        "texto": "Responder con una franja propositiva",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          },
+          {
+            "ind": "cohesion",
+            "delta": 1
+          }
+        ]
+      },
+      {
+        "texto": "Responder atacando de vuelta",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 0
+          },
+          {
+            "ind": "cohesion",
+            "delta": -2
+          }
+        ]
+      },
+      {
+        "texto": "Ignorar el ataque",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": -1
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "evt_cad_acusacion_resultado",
+    "tipo": "cadena",
+    "dia_objetivo": null,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 0.0,
+    "titulo": "Se vota la acusación constitucional",
+    "descripcion": "Llegó el día de la votación en la Cámara.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "oposicion",
+    "fuente": "fuentes.json#ficticio_2026",
+    "familia": "cadena",
+    "opciones": [
+      {
+        "texto": "Cerrar filas con tu bancada",
+        "efectos": [
+          {
+            "ind": "cohesion",
+            "delta": 2
+          },
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          }
+        ]
+      },
+      {
+        "texto": "Dar libertad de voto",
+        "efectos": [
+          {
+            "ind": "cohesion",
+            "delta": -1
+          },
+          {
+            "ind": "capital",
+            "delta": 1
+          }
+        ]
+      },
+      {
+        "texto": "Buscar un acuerdo de último minuto",
+        "efectos": [
+          {
+            "ind": "capital",
+            "delta": -1
+          },
+          {
+            "ind": "cohesion",
+            "delta": 1
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "evt_cad_ministro_conflicto",
+    "tipo": "cadena",
+    "dia_objetivo": null,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 0.0,
+    "titulo": "Un ministro choca con otro",
+    "descripcion": "El conflicto entre dos carteras se hace público.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "gobierno",
+    "fuente": "fuentes.json#ficticio_2026",
+    "familia": "cadena",
+    "opciones": [
+      {
+        "texto": "Mediar personalmente",
+        "efectos": [
+          {
+            "ind": "capital",
+            "delta": -2
+          },
+          {
+            "ind": "cohesion",
+            "delta": 2
+          }
+        ]
+      },
+      {
+        "texto": "Respaldar a uno de los dos",
+        "efectos": [
+          {
+            "ind": "cohesion",
+            "delta": -1
+          },
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          }
+        ]
+      },
+      {
+        "texto": "Dejar que lo resuelvan",
+        "efectos": [
+          {
+            "ind": "cohesion",
+            "delta": -2
+          },
+          {
+            "ind": "aprobacion",
+            "delta": -1
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "evt_mem_oposicion_caso",
+    "tipo": "aleatorio_semilla",
+    "dia_objetivo": null,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 0.5,
+    "titulo": "La oposición usa el caso de la Fiscalía en tu contra",
+    "descripcion": "Por haber respaldado a tu aliado, la oposición te acusa de proteger a tu gente.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "gobierno",
+    "fuente": "fuentes.json#ficticio_2026",
+    "familia": "memoria",
+    "opciones": [
+      {
+        "texto": "Responder con transparencia total",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          },
+          {
+            "ind": "capital",
+            "delta": -1
+          }
+        ]
+      },
+      {
+        "texto": "Contraatacar a la oposición",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": -1
+          },
+          {
+            "ind": "cohesion",
+            "delta": 1
+          }
+        ]
+      },
+      {
+        "texto": "No responder",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": -2
+          }
+        ]
+      }
+    ],
+    "requiere": {
+      "decision": {
+        "evento": "evt_fiscalia_caso",
+        "idx": 1
+      }
+    }
+  },
+  {
+    "id": "evt_mem_agradecen_salud",
+    "tipo": "aleatorio_semilla",
+    "dia_objetivo": null,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 0.5,
+    "titulo": "Gremios de la salud destacan tu refuerzo",
+    "descripcion": "Por haber aprobado el refuerzo, el sector reconoce públicamente tu gestión.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "gobierno",
+    "fuente": "fuentes.json#ficticio_2026",
+    "familia": "memoria",
+    "opciones": [
+      {
+        "texto": "Aprovechar para anunciar la segunda etapa",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 2
+          },
+          {
+            "ind": "fiscal",
+            "delta": -1
+          }
+        ]
+      },
+      {
+        "texto": "Agradecer y mantener el plan",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          }
+        ]
+      },
+      {
+        "texto": "No comentar",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 0
+          }
+        ]
+      }
+    ],
+    "requiere": {
+      "decision": {
+        "evento": "evt_min_salud",
+        "idx": 0
+      }
+    }
+  },
+  {
+    "id": "evt_mem_hacienda_tensiona",
+    "tipo": "aleatorio_semilla",
+    "dia_objetivo": null,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 0.5,
+    "titulo": "Hacienda amenaza con renunciar",
+    "descripcion": "Tu relación con el ministro de Hacienda está muy deteriorada.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "gobierno",
+    "fuente": "fuentes.json#ficticio_2026",
+    "familia": "ministerio",
+    "opciones": [
+      {
+        "texto": "Reunirte y ceder en algo",
+        "efectos": [
+          {
+            "ind": "capital",
+            "delta": -1
+          },
+          {
+            "ind": "fiscal",
+            "delta": 1
+          }
+        ],
+        "relacion": 1
+      },
+      {
+        "texto": "Aceptar su renuncia",
+        "efectos": [
+          {
+            "ind": "cohesion",
+            "delta": -2
+          },
+          {
+            "ind": "fiscal",
+            "delta": -1
+          }
+        ],
+        "relacion": 0
+      },
+      {
+        "texto": "Ignorar la amenaza",
+        "efectos": [
+          {
+            "ind": "fiscal",
+            "delta": -2
+          },
+          {
+            "ind": "cohesion",
+            "delta": -1
+          }
+        ],
+        "relacion": -1
+      }
+    ],
+    "requiere": {
+      "relacion": {
+        "actor": "min_hacienda",
+        "max": 30
+      }
+    },
+    "actor": {
+      "id": "min_hacienda",
+      "nombre": "Ministerio: Hacienda"
+    }
+  },
+  {
+    "id": "evt_mem_contraloria_exige",
+    "tipo": "aleatorio_semilla",
+    "dia_objetivo": null,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 0.5,
+    "titulo": "La Contraloría endurece su fiscalización",
+    "descripcion": "Tu relación con el organismo contralor es tensa y empieza a exigirte más antecedentes.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "gobierno",
+    "fuente": "fuentes.json#ficticio_2026",
+    "familia": "institucion",
+    "opciones": [
+      {
+        "texto": "Reforzar tu equipo jurídico",
+        "efectos": [
+          {
+            "ind": "capital",
+            "delta": -1
+          },
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          }
+        ],
+        "relacion": 1
+      },
+      {
+        "texto": "Colaborar sin condiciones",
+        "efectos": [
+          {
+            "ind": "capital",
+            "delta": 1
+          },
+          {
+            "ind": "aprobacion",
+            "delta": -1
+          }
+        ],
+        "relacion": 0
+      },
+      {
+        "texto": "Reclamar públicamente",
+        "efectos": [
+          {
+            "ind": "capital",
+            "delta": -2
+          },
+          {
+            "ind": "cohesion",
+            "delta": 1
+          }
+        ],
+        "relacion": -1
+      }
+    ],
+    "requiere": {
+      "relacion": {
+        "actor": "contraloria",
+        "max": 30
+      }
+    },
+    "actor": {
+      "id": "contraloria",
+      "nombre": "Contraloría"
+    }
+  },
+  {
+    "id": "evt_mem_medios_aliados",
+    "tipo": "aleatorio_semilla",
+    "dia_objetivo": null,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 0.5,
+    "titulo": "Un medio te da una tribuna",
+    "descripcion": "Por tu buena relación con la prensa, te ofrecen una columna semanal.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "gobierno",
+    "fuente": "fuentes.json#ficticio_2026",
+    "familia": "medios",
+    "opciones": [
+      {
+        "texto": "Aprovechar la tribuna",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 2
+          },
+          {
+            "ind": "capital",
+            "delta": -1
+          }
+        ],
+        "relacion": 1
+      },
+      {
+        "texto": "Declinar para evitar sospechas",
+        "efectos": [
+          {
+            "ind": "capital",
+            "delta": 1
+          }
+        ],
+        "relacion": 0
+      },
+      {
+        "texto": "Delegarla en un vocero",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          }
+        ],
+        "relacion": -1
+      }
+    ],
+    "requiere": {
+      "relacion": {
+        "actor": "medios",
+        "min": 70
+      }
+    },
+    "actor": {
+      "id": "medios",
+      "nombre": "Medios de comunicación"
+    }
+  },
+  {
+    "id": "evt_opo_reforma_tributaria",
+    "tipo": "aleatorio_semilla",
+    "dia_objetivo": null,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 0.4,
+    "titulo": "El gobierno presenta una reforma tributaria",
+    "descripcion": "La mayoría oficialista exige apoyo para aprobarla sin cambios.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "oposicion",
+    "fuente": "fuentes.json#ficticio_2026",
+    "familia": "oposicion",
+    "opciones": [
+      {
+        "texto": "Bloquearla en el Senado",
+        "efectos": [
+          {
+            "ind": "rival",
+            "delta": -2
+          },
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          },
+          {
+            "ind": "capital",
+            "delta": -1
+          }
+        ],
+        "riesgo": {
+          "prob": 0.35,
+          "efectos": [
+            {
+              "ind": "aprobacion",
+              "delta": -2
+            }
+          ]
+        }
+      },
+      {
+        "texto": "Negociar cambios a cambio de apoyo",
+        "efectos": [
+          {
+            "ind": "capital",
+            "delta": 2
+          },
+          {
+            "ind": "rival",
+            "delta": 0.5
+          }
+        ]
+      },
+      {
+        "texto": "Apoyarla sin condiciones",
+        "efectos": [
+          {
+            "ind": "cohesion",
+            "delta": -2
+          },
+          {
+            "ind": "rival",
+            "delta": 1
+          },
+          {
+            "ind": "aprobacion",
+            "delta": -1
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "evt_opo_escandalo_gobierno",
+    "tipo": "aleatorio_semilla",
+    "dia_objetivo": null,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 0.3,
+    "titulo": "Escándalo en el gobierno",
+    "descripcion": "Un ministro del gobierno rival queda en el centro de una polémica.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "oposicion",
+    "fuente": "fuentes.json#ficticio_2026",
+    "familia": "oposicion",
+    "opciones": [
+      {
+        "texto": "Pedir su renuncia con fuerza",
+        "efectos": [
+          {
+            "ind": "rival",
+            "delta": -4
+          },
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          },
+          {
+            "ind": "capital",
+            "delta": -1
+          }
+        ]
+      },
+      {
+        "texto": "Mantener un tono prudente",
+        "efectos": [
+          {
+            "ind": "rival",
+            "delta": -1
+          },
+          {
+            "ind": "capital",
+            "delta": 1
+          }
+        ]
+      },
+      {
+        "texto": "No pronunciarte",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": -1
+          }
+        ]
+      }
+    ],
+    "contexto": [
+      {
+        "ind": "rival",
+        "alto": 45,
+        "mult": 2.0
+      }
+    ]
+  },
+  {
+    "id": "evt_opo_acuerdo_gobierno",
+    "tipo": "aleatorio_semilla",
+    "dia_objetivo": null,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 0.3,
+    "titulo": "El gobierno logra un acuerdo importante",
+    "descripcion": "El oficialismo anuncia un pacto con sectores de oposición.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "oposicion",
+    "fuente": "fuentes.json#ficticio_2026",
+    "familia": "oposicion",
+    "opciones": [
+      {
+        "texto": "Felicitar y marcar tus diferencias",
+        "efectos": [
+          {
+            "ind": "rival",
+            "delta": 1
+          },
+          {
+            "ind": "capital",
+            "delta": 1
+          }
+        ]
+      },
+      {
+        "texto": "Descalificar el acuerdo",
+        "efectos": [
+          {
+            "ind": "rival",
+            "delta": -1
+          },
+          {
+            "ind": "cohesion",
+            "delta": -1
+          }
+        ]
+      },
+      {
+        "texto": "Sumarte al acuerdo",
+        "efectos": [
+          {
+            "ind": "capital",
+            "delta": 2
+          },
+          {
+            "ind": "cohesion",
+            "delta": -1
+          },
+          {
+            "ind": "rival",
+            "delta": 2
+          }
+        ]
+      }
+    ],
+    "contexto": [
+      {
+        "ind": "rival",
+        "bajo": 40,
+        "mult": 2.0
+      }
+    ]
+  },
+  {
+    "id": "evt_opo_ley_seguridad",
+    "tipo": "aleatorio_semilla",
+    "dia_objetivo": null,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 0.4,
+    "titulo": "Ley de seguridad del gobierno",
+    "descripcion": "Una ley dura de seguridad llega a votación.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "oposicion",
+    "fuente": "fuentes.json#ficticio_2026",
+    "familia": "oposicion",
+    "opciones": [
+      {
+        "texto": "Votar a favor con reparos",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          },
+          {
+            "ind": "cohesion",
+            "delta": -1
+          }
+        ]
+      },
+      {
+        "texto": "Votar en contra y proponer una alternativa",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          },
+          {
+            "ind": "rival",
+            "delta": -1
+          },
+          {
+            "ind": "capital",
+            "delta": -1
+          }
+        ]
+      },
+      {
+        "texto": "Pedir un plebiscito",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 2
+          },
+          {
+            "ind": "capital",
+            "delta": -2
+          },
+          {
+            "ind": "rival",
+            "delta": -1
+          }
+        ],
+        "riesgo": {
+          "prob": 0.4,
+          "efectos": [
+            {
+              "ind": "aprobacion",
+              "delta": -2
+            },
+            {
+              "ind": "cohesion",
+              "delta": -1
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "evt_opo_reajuste",
+    "tipo": "aleatorio_semilla",
+    "dia_objetivo": null,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 0.4,
+    "titulo": "Debate del reajuste del sector público",
+    "descripcion": "Los gremios piden más que lo ofrecido por el gobierno.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "oposicion",
+    "fuente": "fuentes.json#ficticio_2026",
+    "familia": "oposicion",
+    "opciones": [
+      {
+        "texto": "Respaldar a los gremios",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          },
+          {
+            "ind": "cohesion",
+            "delta": 1
+          },
+          {
+            "ind": "rival",
+            "delta": -1
+          }
+        ]
+      },
+      {
+        "texto": "Proponer un acuerdo intermedio",
+        "efectos": [
+          {
+            "ind": "capital",
+            "delta": 1
+          },
+          {
+            "ind": "aprobacion",
+            "delta": 0.5
+          }
+        ]
+      },
+      {
+        "texto": "Apoyar al gobierno",
+        "efectos": [
+          {
+            "ind": "cohesion",
+            "delta": -1
+          },
+          {
+            "ind": "capital",
+            "delta": 1
+          },
+          {
+            "ind": "rival",
+            "delta": 1
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "evt_opo_encuesta_rival",
+    "tipo": "aleatorio_semilla",
+    "dia_objetivo": null,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 0.3,
+    "titulo": "Una encuesta muestra al gobierno en alza",
+    "descripcion": "El gobierno rival recupera apoyo tras un anuncio.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "oposicion",
+    "fuente": "fuentes.json#ficticio_2026",
+    "familia": "oposicion",
+    "opciones": [
+      {
+        "texto": "Redoblar la presencia en regiones",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          },
+          {
+            "ind": "capital",
+            "delta": -1
+          }
+        ]
+      },
+      {
+        "texto": "Cambiar la estrategia comunicacional",
+        "efectos": [
+          {
+            "ind": "capital",
+            "delta": -1
+          },
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          }
+        ]
+      },
+      {
+        "texto": "Esperar a que baje el entusiasmo",
+        "efectos": [
+          {
+            "ind": "rival",
+            "delta": 0.5
+          }
+        ]
+      }
+    ],
+    "contexto": [
+      {
+        "ind": "rival",
+        "alto": 50,
+        "mult": 2.5
+      }
+    ]
+  },
+  {
+    "id": "evt_opo_liderazgo",
+    "tipo": "aleatorio_semilla",
+    "dia_objetivo": null,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 0.4,
+    "titulo": "Surge un liderazgo joven en tu sector",
+    "descripcion": "Un nuevo dirigente gana notoriedad y compite contigo.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "oposicion",
+    "fuente": "fuentes.json#ficticio_2026",
+    "familia": "partido",
+    "opciones": [
+      {
+        "texto": "Integrarlo a tu equipo",
+        "efectos": [
+          {
+            "ind": "cohesion",
+            "delta": 2
+          },
+          {
+            "ind": "capital",
+            "delta": -1
+          }
+        ]
+      },
+      {
+        "texto": "Marcar tu liderazgo",
+        "efectos": [
+          {
+            "ind": "cohesion",
+            "delta": -1
+          },
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          }
+        ]
+      },
+      {
+        "texto": "Ignorarlo",
+        "efectos": [
+          {
+            "ind": "cohesion",
+            "delta": -1
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "evt_opo_coalicion",
+    "tipo": "aleatorio_semilla",
+    "dia_objetivo": null,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 0.4,
+    "titulo": "Tus aliados piden definir la candidatura única",
+    "descripcion": "Los partidos de oposición exigen un solo candidato.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "oposicion",
+    "fuente": "fuentes.json#ficticio_2026",
+    "familia": "partido",
+    "opciones": [
+      {
+        "texto": "Proponerte como candidato",
+        "efectos": [
+          {
+            "ind": "cohesion",
+            "delta": -1
+          },
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          },
+          {
+            "ind": "capital",
+            "delta": -1
+          }
+        ]
+      },
+      {
+        "texto": "Impulsar primarias",
+        "efectos": [
+          {
+            "ind": "cohesion",
+            "delta": 1
+          },
+          {
+            "ind": "capital",
+            "delta": -1
+          }
+        ]
+      },
+      {
+        "texto": "Postergar la decisión",
+        "efectos": [
+          {
+            "ind": "cohesion",
+            "delta": -2
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "evt_opo_crisis_gobierno",
+    "tipo": "aleatorio_semilla",
+    "dia_objetivo": null,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 0.3,
+    "titulo": "El gobierno enfrenta una crisis climática",
+    "descripcion": "Una emergencia pone a prueba al gobierno rival.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "oposicion",
+    "fuente": "fuentes.json#ficticio_2026",
+    "familia": "externo",
+    "opciones": [
+      {
+        "texto": "Ofrecer colaboración en la emergencia",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          },
+          {
+            "ind": "capital",
+            "delta": 1
+          },
+          {
+            "ind": "rival",
+            "delta": 1
+          }
+        ]
+      },
+      {
+        "texto": "Fiscalizar su respuesta",
+        "efectos": [
+          {
+            "ind": "rival",
+            "delta": -2
+          },
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          }
+        ]
+      },
+      {
+        "texto": "Aprovechar políticamente",
+        "efectos": [
+          {
+            "ind": "rival",
+            "delta": -2
+          },
+          {
+            "ind": "aprobacion",
+            "delta": -1
+          }
+        ],
+        "riesgo": {
+          "prob": 0.5,
+          "efectos": [
+            {
+              "ind": "aprobacion",
+              "delta": -2
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "evt_opo_debate_tv",
+    "tipo": "aleatorio_semilla",
+    "dia_objetivo": null,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 0.4,
+    "titulo": "Te invitan a un debate televisivo sobre el rumbo del país",
+    "descripcion": "Un canal reúne a los referentes de la oposición.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "oposicion",
+    "fuente": "fuentes.json#ficticio_2026",
+    "familia": "medios",
+    "opciones": [
+      {
+        "texto": "Ir y atacar al gobierno",
+        "efectos": [
+          {
+            "ind": "rival",
+            "delta": -2
+          },
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          },
+          {
+            "ind": "cohesion",
+            "delta": -1
+          }
+        ]
+      },
+      {
+        "texto": "Ir con propuestas",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 2
+          },
+          {
+            "ind": "capital",
+            "delta": -1
+          }
+        ]
+      },
+      {
+        "texto": "No asistir",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": -1
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "evt_opo_congreso_presupuesto",
+    "tipo": "programado",
+    "dia_objetivo": 28,
+    "hora_etiqueta": "10:00",
+    "peso_sorteo": 1.0,
+    "titulo": "Votación: Ley de Presupuestos del gobierno",
+    "descripcion": "El gobierno rival lleva su presupuesto al Congreso y necesita votos de la oposición.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "oposicion",
+    "fuente": "fuentes.json#ficticio_2026",
+    "familia": "politica",
+    "opciones": [
+      {
+        "texto": "Rechazar y buscar bloquearlo",
+        "efectos": [
+          {
+            "ind": "capital",
+            "delta": -1
+          }
+        ],
+        "congreso": {
+          "exito": [
+            {
+              "ind": "aprobacion",
+              "delta": 2
+            },
+            {
+              "ind": "rival",
+              "delta": -2
+            },
+            {
+              "ind": "fiscal",
+              "delta": 1
+            }
+          ],
+          "derrota": [
+            {
+              "ind": "aprobacion",
+              "delta": -1
+            },
+            {
+              "ind": "rival",
+              "delta": 1
+            },
+            {
+              "ind": "cohesion",
+              "delta": -1
+            }
+          ]
+        }
+      },
+      {
+        "texto": "Negociar enmiendas",
+        "efectos": [
+          {
+            "ind": "capital",
+            "delta": -1
+          }
+        ],
+        "congreso": {
+          "exito": [
+            {
+              "ind": "aprobacion",
+              "delta": 1
+            },
+            {
+              "ind": "rival",
+              "delta": -1
+            },
+            {
+              "ind": "capital",
+              "delta": 2
+            },
+            {
+              "ind": "fiscal",
+              "delta": 0
+            }
+          ],
+          "derrota": [
+            {
+              "ind": "capital",
+              "delta": -1
+            },
+            {
+              "ind": "cohesion",
+              "delta": -1
+            }
+          ]
+        }
+      },
+      {
+        "texto": "Apoyarlo por responsabilidad",
+        "efectos": [
+          {
+            "ind": "capital",
+            "delta": 1
+          },
+          {
+            "ind": "aprobacion",
+            "delta": -1
+          },
+          {
+            "ind": "rival",
+            "delta": 1
+          },
+          {
+            "ind": "fiscal",
+            "delta": 0
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "evt_opo_congreso_pensiones",
+    "tipo": "programado",
+    "dia_objetivo": 70,
+    "hora_etiqueta": "10:00",
+    "peso_sorteo": 1.0,
+    "titulo": "Votación: reforma de pensiones del gobierno",
+    "descripcion": "El oficialismo busca aprobar su reforma de pensiones con tu bancada como fiel de la balanza.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "oposicion",
+    "fuente": "fuentes.json#ficticio_2026",
+    "familia": "politica",
+    "opciones": [
+      {
+        "texto": "Rechazar y buscar bloquearlo",
+        "efectos": [
+          {
+            "ind": "capital",
+            "delta": -1
+          }
+        ],
+        "congreso": {
+          "exito": [
+            {
+              "ind": "aprobacion",
+              "delta": 2
+            },
+            {
+              "ind": "rival",
+              "delta": -2
+            },
+            {
+              "ind": "cohesion",
+              "delta": 1
+            }
+          ],
+          "derrota": [
+            {
+              "ind": "aprobacion",
+              "delta": -1
+            },
+            {
+              "ind": "rival",
+              "delta": 1
+            },
+            {
+              "ind": "cohesion",
+              "delta": -1
+            }
+          ]
+        }
+      },
+      {
+        "texto": "Negociar enmiendas",
+        "efectos": [
+          {
+            "ind": "capital",
+            "delta": -1
+          }
+        ],
+        "congreso": {
+          "exito": [
+            {
+              "ind": "aprobacion",
+              "delta": 1
+            },
+            {
+              "ind": "rival",
+              "delta": -1
+            },
+            {
+              "ind": "capital",
+              "delta": 2
+            },
+            {
+              "ind": "cohesion",
+              "delta": 0
+            }
+          ],
+          "derrota": [
+            {
+              "ind": "capital",
+              "delta": -1
+            },
+            {
+              "ind": "cohesion",
+              "delta": -1
+            }
+          ]
+        }
+      },
+      {
+        "texto": "Apoyarlo por responsabilidad",
+        "efectos": [
+          {
+            "ind": "capital",
+            "delta": 1
+          },
+          {
+            "ind": "aprobacion",
+            "delta": -1
+          },
+          {
+            "ind": "rival",
+            "delta": 1
+          },
+          {
+            "ind": "cohesion",
+            "delta": 0
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "evt_opo_congreso_tributaria",
+    "tipo": "programado",
+    "dia_objetivo": 112,
+    "hora_etiqueta": "10:00",
+    "peso_sorteo": 1.0,
+    "titulo": "Votación: reforma tributaria del gobierno",
+    "descripcion": "La reforma tributaria llega a sala y el gobierno cuenta los votos uno a uno.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "oposicion",
+    "fuente": "fuentes.json#ficticio_2026",
+    "familia": "politica",
+    "opciones": [
+      {
+        "texto": "Rechazar y buscar bloquearlo",
+        "efectos": [
+          {
+            "ind": "capital",
+            "delta": -1
+          }
+        ],
+        "congreso": {
+          "exito": [
+            {
+              "ind": "aprobacion",
+              "delta": 2
+            },
+            {
+              "ind": "rival",
+              "delta": -2
+            },
+            {
+              "ind": "fiscal",
+              "delta": 1
+            }
+          ],
+          "derrota": [
+            {
+              "ind": "aprobacion",
+              "delta": -1
+            },
+            {
+              "ind": "rival",
+              "delta": 1
+            },
+            {
+              "ind": "cohesion",
+              "delta": -1
+            }
+          ]
+        }
+      },
+      {
+        "texto": "Negociar enmiendas",
+        "efectos": [
+          {
+            "ind": "capital",
+            "delta": -1
+          }
+        ],
+        "congreso": {
+          "exito": [
+            {
+              "ind": "aprobacion",
+              "delta": 1
+            },
+            {
+              "ind": "rival",
+              "delta": -1
+            },
+            {
+              "ind": "capital",
+              "delta": 2
+            },
+            {
+              "ind": "fiscal",
+              "delta": 0
+            }
+          ],
+          "derrota": [
+            {
+              "ind": "capital",
+              "delta": -1
+            },
+            {
+              "ind": "cohesion",
+              "delta": -1
+            }
+          ]
+        }
+      },
+      {
+        "texto": "Apoyarlo por responsabilidad",
+        "efectos": [
+          {
+            "ind": "capital",
+            "delta": 1
+          },
+          {
+            "ind": "aprobacion",
+            "delta": -1
+          },
+          {
+            "ind": "rival",
+            "delta": 1
+          },
+          {
+            "ind": "fiscal",
+            "delta": 0
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "evt_opo_congreso_seguridad",
+    "tipo": "programado",
+    "dia_objetivo": 154,
+    "hora_etiqueta": "10:00",
+    "peso_sorteo": 1.0,
+    "titulo": "Votación: ley de seguridad del gobierno",
+    "descripcion": "El gobierno pide urgencia para su ley de seguridad antes del receso.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "oposicion",
+    "fuente": "fuentes.json#ficticio_2026",
+    "familia": "politica",
+    "opciones": [
+      {
+        "texto": "Rechazar y buscar bloquearlo",
+        "efectos": [
+          {
+            "ind": "capital",
+            "delta": -1
+          }
+        ],
+        "congreso": {
+          "exito": [
+            {
+              "ind": "aprobacion",
+              "delta": 2
+            },
+            {
+              "ind": "rival",
+              "delta": -2
+            },
+            {
+              "ind": "cohesion",
+              "delta": 1
+            }
+          ],
+          "derrota": [
+            {
+              "ind": "aprobacion",
+              "delta": -1
+            },
+            {
+              "ind": "rival",
+              "delta": 1
+            },
+            {
+              "ind": "cohesion",
+              "delta": -1
+            }
+          ]
+        }
+      },
+      {
+        "texto": "Negociar enmiendas",
+        "efectos": [
+          {
+            "ind": "capital",
+            "delta": -1
+          }
+        ],
+        "congreso": {
+          "exito": [
+            {
+              "ind": "aprobacion",
+              "delta": 1
+            },
+            {
+              "ind": "rival",
+              "delta": -1
+            },
+            {
+              "ind": "capital",
+              "delta": 2
+            },
+            {
+              "ind": "cohesion",
+              "delta": 0
+            }
+          ],
+          "derrota": [
+            {
+              "ind": "capital",
+              "delta": -1
+            },
+            {
+              "ind": "cohesion",
+              "delta": -1
+            }
+          ]
+        }
+      },
+      {
+        "texto": "Apoyarlo por responsabilidad",
+        "efectos": [
+          {
+            "ind": "capital",
+            "delta": 1
+          },
+          {
+            "ind": "aprobacion",
+            "delta": -1
+          },
+          {
+            "ind": "rival",
+            "delta": 1
+          },
+          {
+            "ind": "cohesion",
+            "delta": 0
+          }
+        ]
+      }
+    ]
   }
 ]

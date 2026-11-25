@@ -209,4 +209,4 @@ static func _lineas(f: Font, texto: String, ancho: float, tam: int) -> int:
 
 static func _nombre_ind(ind: String) -> String:
 	return {"aprobacion": "Aprob.", "capital": "Capital", "cohesion": "Cohes.", "fiscal": "Fiscal",
-			"riesgo_ejecucion": "Riesgo", "viviendas_anio": "viv./año"}.get(ind, ind)
+			"riesgo_ejecucion": "Riesgo", "viviendas_anio": "viv./año", "rival": "Rival"}.get(ind, ind)

@@ -27,6 +27,9 @@ func _correr() -> void:
 		await _una(sem, idx)
 		idx += 1
 	DirAccess.remove_absolute(ProjectSettings.globalize_path(Tutorial.ruta))
+	DirAccess.remove_absolute(ProjectSettings.globalize_path("user://ultima_config.json"))
+	for f in await AyudaUI.carrera(self):
+		_check(false, f)
 	await _informe()
 	if _fallos == 0:
 		print("HUMO DE UI OK (%d semillas)" % SEMILLAS.size())
@@ -39,11 +42,22 @@ func _una(semilla: int, idx: int = 0) -> void:
 	var main: Node = load("res://game/main.tscn").instantiate()
 	root.add_child(main)
 	await process_frame
+	if idx == 0:  # PR-01: la pantalla de afiliación y la lista de partidos existentes
+		main.mostrar_afiliacion()
+		await process_frame
+		var af: Node = main._pantalla
+		_check(af.find_children("*", "Button", true, false).size() == 3, "afiliación: tres tarjetas")
+		af._elegir("existente")
+		await process_frame
+		await process_frame
+		_check(af.find_children("*", "Button", true, false).size() >= 15, "afiliación: lista de partidos")
 	main.mostrar_partido()
 	await process_frame
 	var pp: Node = main._pantalla
-	for p in main.datos["ideologia"]["preguntas"]:
+	_check(pp._preguntas().size() == 3, "el test ideológico empieza en modo rápido (3 preguntas)")
+	for p in pp._preguntas():
 		pp._responder(p["opciones"][1])
+	_check(pp._respuestas.size() == 3, "el test rápido se completa en 3 toques")
 	for _k in range(4):
 		await process_frame
 	var r_fundar := Rect2()
@@ -54,6 +68,14 @@ func _una(semilla: int, idx: int = 0) -> void:
 	pp._fundar()
 	await process_frame
 	var partido: Dictionary = main.motor.estado.partido.duplicate(true)
+	if idx == 0:  # «Nueva partida como la última vez»
+		main.mostrar_menu()
+		await process_frame
+		var rb: Array = main._pantalla.find_children("*", "Button", true, false).filter(func(b: Button) -> bool: return b.text.begins_with("Partida rápida"))
+		_check(rb.size() == 1, "el menú ofrece la partida rápida")
+		main._repetir_ultima()
+		await process_frame
+		_check(main.motor != null and String(main.motor.estado.partido["nombre"]) == String(partido["nombre"]) and main._pantalla is PantallaDia, "la partida rápida repite el partido y va directo al mapa (1 toque)")
 	partido["indicadores_iniciales"]["aprobacion"] = 90.0  # la prueba recorre el gobierno: que la campaña no la pierda al azar
 	main.motor = Partida.crear(main.datos, semilla, partido)  # semilla fija: la prueba no depende del reloj
 	main.mostrar_gabinete()
@@ -65,17 +87,17 @@ func _una(semilla: int, idx: int = 0) -> void:
 		await process_frame
 	print("  botón fundación: %s · botón gabinete: %s" % [r_fundar, conf.get_global_rect()])
 	_check(conf.get_global_rect() == r_fundar, "el botón principal del gabinete debe estar donde el de la fundación (%s vs %s)" % [conf.get_global_rect(), r_fundar])
-	_check(not conf.disabled, "el gabinete por defecto (8 ministros) debe poder confirmarse")
+	_check(not conf.disabled, "el gabinete por defecto (los 25 ministerios) debe poder confirmarse")
+	var rel: Array = main._pantalla.find_children("*", "Button", true, false).filter(func(b: Button) -> bool: return b.text in ["Equilibrado", "Máxima eficacia"])
+	_check(rel.size() == 2, "PR-05: dos botones de relleno (equilibrado y máxima eficacia)")
 	var filas: Array = sel_g.filter(func(b: Button) -> bool: return b.text == "" and b.get_child_count() > 0)
-	_check(filas.size() == 25, "deben listarse los 25 ministros, hay %d" % filas.size())
+	_check(filas.size() == 75, "deben listarse los 75 candidatos (3 por ministerio), hay %d" % filas.size())
 	var tam: int = int(main.datos["leyes"]["gabinete"]["tamano"])
-	var libre: Button = filas.filter(func(b: Button) -> bool: return not String((b.get_child(0).get_child(0) as Label).text).begins_with("EN EL GABINETE"))[0]
-	libre.pressed.emit()  # con tamano+1 no se agrega: sigue habilitado
-	_check(not conf.disabled, "no se debe poder pasar del tamaño del gabinete")
-	var elegido: Button = filas.filter(func(b: Button) -> bool: return String((b.get_child(0).get_child(0) as Label).text).begins_with("EN EL GABINETE"))[0]
+	var alias_elegidos: Array = main.motor.estado.gabinete.map(func(i: String) -> String: return String(main.motor.catalogo_ministros[i]["alias"]))
+	var elegido: Button = filas.filter(func(b: Button) -> bool: return alias_elegidos.has(String((b.get_child(0).get_child(0) as Label).text)))[0]
 	elegido.pressed.emit()
 	_check(conf.disabled, "con menos de %d ministros no se puede confirmar" % tam)
-	libre.pressed.emit()
+	elegido.pressed.emit()  # vuelve a elegirlo
 	_check(not conf.disabled, "con %d ministros se puede confirmar" % tam)
 	conf.pressed.emit()
 	await process_frame
@@ -166,6 +188,14 @@ func _recorrer_v2(main: Node, dia: Node) -> void:
 	_check(est.pa_actual < antes or est.mano.size() == 5, "jugar debe gastar movimientos")
 	_check(est.mano.size() == 5, "tras jugar entra otra carta (mano continua)")
 	await process_frame
+	# PR-02: deslizar hacia arriba desde la mano juega la carta elegida
+	if est.pa_actual > 0:
+		var pa_antes: int = est.pa_actual
+		AyudaUI.deslizar_arriba(dia._mano)
+		await process_frame
+		_check(est.pa_actual < pa_antes, "deslizar la carta hacia arriba debe jugarla")
+	for f in AyudaUI.controles_dia(dia):
+		_check(false, f)
 	# delegación
 	dia._sel = 0
 	dia._delegar()

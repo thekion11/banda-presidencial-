@@ -17,14 +17,90 @@ func _cfg() -> Dictionary:
 
 
 func por_defecto() -> Array[String]:
-	## Gabinete inicial determinista: el primer ministro de cada categoría, en el orden de data/ministros.json, hasta completar el tamaño.
+	## Gabinete inicial determinista: el relleno automático equilibrado sobre un gabinete vacío (con tamaño 25, todos los ministerios).
 	var res: Array[String] = []
-	var vistas := {}
-	for id in m.catalogo_ministros.keys():
-		var cat := String(m.catalogo_ministros[id]["categoria_afin"])
-		if res.size() < int(_cfg()["tamano"]) and not vistas.has(cat):
-			vistas[cat] = true
-			res.append(String(id))
+	for n in rellenar([], ""):
+		res.append(String(n["id"]))
+	return res
+
+
+func slot_de(id: String) -> String:
+	## Ministerio (cargo) que ocupa un candidato: cada ministerio tiene 3 candidatos con perfil propio (Fase C).
+	return String(m.catalogo_ministros[id].get("ministerio", id)) if m.catalogo_ministros.has(id) else id
+
+
+func tiene_ministerio(slot: String) -> bool:
+	return m.estado.gabinete.any(func(id: String) -> bool: return slot_de(id) == slot)
+
+
+func de_ministerio(slot: String) -> String:
+	for id in m.estado.gabinete:
+		if slot_de(id) == slot:
+			return id
+	return ""
+
+
+func afinidad(id: String) -> float:
+	## 1 = el ministro piensa como tu partido; 0 = distancia ideológica máxima (ejes eco/inst).
+	var pf: Dictionary = m.catalogo_ministros[id].get("perfil", {"eco": 0.0, "inst": 0.0})
+	var d := Vector2(float(pf["eco"]) - float(m.estado.partido.get("eje_eco", 0.0)), float(pf["inst"]) - float(m.estado.partido.get("eje_inst", 0.0))).length()
+	return clampf(1.0 - d / float(_cfg()["identidad"]["distancia_max"]), 0.0, 1.0)
+
+
+func titular(categoria: String) -> String:
+	## Ministro del gabinete que lleva las cartas de una categoría: el de mejor rendimiento (ahorro de costo y bono de ejecución) entre los de esa área.
+	var mejor := ""
+	var mejor_p := -INF
+	for id in m.estado.gabinete:
+		var mi: Dictionary = m.catalogo_ministros[id]
+		if String(mi["categoria_afin"]) != String(m.catalogo_leyes["gabinete"]["categorias_alias"].get(categoria, categoria)) and String(mi["categoria_afin"]) != categoria:
+			continue
+		var pts := float(mi["bono_ejecucion"]) + 0.1 * float(mi["reduccion_costo_pa"]) - 0.1 * float(mi["riesgo_escandalo"])
+		if pts > mejor_p or (is_equal_approx(pts, mejor_p) and id < mejor):
+			mejor_p = pts
+			mejor = id
+	return mejor
+
+
+func _puntaje(id: String, w: Dictionary, cubierta: bool) -> float:
+	var mi: Dictionary = m.catalogo_ministros[id]
+	return (0.0 if cubierta else float(w["cobertura"])) + float(w["ejecucion"]) * float(mi["bono_ejecucion"]) + float(w["ahorro"]) * float(mi["reduccion_costo_pa"]) \
+			- float(w["escandalo"]) * float(mi["riesgo_escandalo"]) + float(w.get("afinidad", 0.0)) * afinidad(id)
+
+
+func rellenar(elegidos: Array, modo: String = "") -> Array[Dictionary]:
+	## PR-05: completa el gabinete sin tocar lo ya escogido, un candidato por ministerio. Determinista (puntaje, desempate por id).
+	## No cambia el estado: devuelve [{id, motivo}] solo de los añadidos, para mostrarlos y poder deshacerlos.
+	var cfg: Dictionary = _cfg()["relleno"]
+	var w: Dictionary = cfg["modos"].get(modo if modo != "" else String(cfg["defecto"]), cfg["modos"][cfg["defecto"]])
+	var tam := int(_cfg()["tamano"])
+	var actuales: Array[String] = []
+	var slots := {}
+	var cubiertas := {}
+	for id in elegidos:
+		if m.catalogo_ministros.has(String(id)) and not slots.has(slot_de(String(id))):
+			actuales.append(String(id))
+			slots[slot_de(String(id))] = true
+			cubiertas[String(m.catalogo_ministros[String(id)]["categoria_afin"])] = true
+	var res: Array[Dictionary] = []
+	while actuales.size() < tam:
+		var mejor := ""
+		var mejor_p := -INF
+		for id in m.catalogo_ministros.keys():
+			if slots.has(slot_de(String(id))):
+				continue
+			var pts := _puntaje(String(id), w, cubiertas.has(String(m.catalogo_ministros[id]["categoria_afin"])))
+			if pts > mejor_p or (is_equal_approx(pts, mejor_p) and String(id) < mejor):
+				mejor_p = pts
+				mejor = String(id)
+		if mejor == "":
+			break
+		var mm: Dictionary = m.catalogo_ministros[mejor]
+		var nueva_cat := not cubiertas.has(String(mm["categoria_afin"]))
+		actuales.append(mejor)
+		slots[slot_de(mejor)] = true
+		cubiertas[String(mm["categoria_afin"])] = true
+		res.append({"id": mejor, "motivo": "%s: %s (%s)" % [mm["cartera"], String(mm.get("rasgo", "mejor rendimiento disponible")), "cubre un área sin ministro" if nueva_cat else "mejor puntaje"]})
 	return res
 
 
@@ -36,10 +112,12 @@ func elegir(ids: Array) -> Dictionary:
 	if ids.size() != int(_cfg()["tamano"]):
 		return {"ok": false, "razon": "tamano_invalido", "tamano": int(_cfg()["tamano"])}
 	var nuevo: Array[String] = []
+	var slots := {}
 	for id in ids:
-		if not m.catalogo_ministros.has(String(id)) or nuevo.has(String(id)):
-			return {"ok": false, "razon": "ministro_invalido"}
+		if not m.catalogo_ministros.has(String(id)) or nuevo.has(String(id)) or slots.has(slot_de(String(id))):
+			return {"ok": false, "razon": "ministro_invalido"}  # inexistente, repetido o dos candidatos del mismo ministerio
 		nuevo.append(String(id))
+		slots[slot_de(String(id))] = true
 	est.registrar_entrada("gabinete", {"ids": nuevo})
 	est.gabinete = nuevo
 	est.registrar_accion("gabinete", {"ids": nuevo})
@@ -71,6 +149,11 @@ func anio_gobierno() -> int:
 func bloqueo(carta: Dictionary) -> Dictionary:
 	## Única regla de disponibilidad: {} si la carta circula; si no, {"codigo": gabinete|anio_desde|anio_hasta|evento|fiscal|meta, "valor": ...}.
 	var cat := String(carta["categoria"])
+	var oposicion := m.estado.etapa == "oposicion"
+	if oposicion != (cat == "oposicion"):  # en oposición solo circulan sus cartas; en campaña y gobierno, nunca
+		return {"codigo": "etapa", "valor": "oposicion" if cat == "oposicion" else "gobierno"}
+	if oposicion:
+		return {}
 	if not categoria_activa(cat):
 		return {"codigo": "gabinete", "valor": cat}
 	var d: Variant = carta.get("disponibilidad", null)
@@ -92,6 +175,49 @@ func bloqueo(carta: Dictionary) -> Dictionary:
 
 func disponible(carta: Dictionary) -> bool:
 	return bloqueo(carta).is_empty()
+
+
+# ---------------------------------------------------------------- Identidad (Fase C)
+func amanecer() -> void:
+	## Efectos semanales del gabinete: el estilo de cada ministro y la afinidad ideológica media con tu partido (leyes.json › gabinete.identidad).
+	if m.estado.etapa != "gobierno" or m.estado.gabinete.is_empty():
+		return
+	var cfg: Dictionary = _cfg()["identidad"]
+	var suma := {}
+	var afin := 0.0
+	for id in m.estado.gabinete:
+		var est: Dictionary = cfg["estilos"].get(String(m.catalogo_ministros[id].get("estilo", "")), {})
+		for ind in est.keys():
+			suma[ind] = float(suma.get(ind, 0.0)) + float(est[ind])
+		afin += afinidad(id)
+	for ind in suma.keys():
+		m.fx.sumar_ind(String(ind), float(suma[ind]))
+	m.fx.sumar_ind("cohesion", float(cfg["peso_afinidad"]) * (afin / float(m.estado.gabinete.size()) - 0.5))
+
+
+func revisar_renuncia(actor_id: String) -> Dictionary:
+	## Si tu relación con el ministro de ese ministerio cae bajo el umbral, renuncia y asume el mejor candidato restante (la relación parte de cero).
+	var cfg: Dictionary = _cfg()["identidad"]
+	var actual := de_ministerio(actor_id)
+	if actual == "" or m.eventos.relacion_actor(actor_id) > float(cfg["renuncia_bajo"]):
+		return {}
+	var w: Dictionary = _cfg()["relleno"]["modos"][_cfg()["relleno"]["defecto"]]
+	var mejor := ""
+	var mejor_p := -INF
+	for id in m.catalogo_ministros.keys():
+		if slot_de(String(id)) == actor_id and String(id) != actual:
+			var pts := _puntaje(String(id), w, true)
+			if pts > mejor_p or (is_equal_approx(pts, mejor_p) and String(id) < mejor):
+				mejor_p = pts
+				mejor = String(id)
+	if mejor == "":
+		return {}
+	m.estado.gabinete[m.estado.gabinete.find(actual)] = mejor
+	for evt in m.catalogo_eventos:  # el nuevo ministro empieza sin historia contigo
+		if evt.has("actor") and String(evt["actor"]["id"]) == actor_id:
+			m.estado.decisiones.erase(String(evt["id"]))
+	m.estado.registrar_accion("renuncia", {"ministro": actual, "nuevo": mejor})
+	return {"ministro": String(m.catalogo_ministros[actual]["alias"]), "nuevo": String(m.catalogo_ministros[mejor]["alias"])}
 
 
 # ---------------------------------------------------------------- Delegación

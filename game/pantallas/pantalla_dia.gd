@@ -21,13 +21,13 @@ var _r: Dictionary = {}  # referencias de Barras
 var _mapa: MapaChile
 var _mano: ManoUI
 var _lbl_corrector: RichTextLabel
-var _tw_toast: Tween
 var _btn_jugar: Button
-var _btn_fin: Button
+var _confirmar_fin: bool = false
+var _mano_tocada: bool = false  # ya hay una carta elegida por toque (el siguiente toque sobre ella la juega)
 var _btn_deleg: Button
 var _zona_panel: Control
 var _capa: Control
-var _toast: Label
+var _toast: Toast
 var _cola_eventos: Array[Dictionary] = []
 
 
@@ -39,18 +39,13 @@ func _ready() -> void:
 	raiz.add_child(Barras.cabecera(_r))
 	raiz.add_child(_construir_cuerpo())
 	_raiz = raiz
-	_nav = Barras.nav(_abrir_panel)
+	_nav = Barras.nav(_abrir_panel, false, "", Callable(), "Coalición" if motor.estado.etapa == "oposicion" else "Gabinete")
 	raiz.add_child(_nav)
 	_capa = Control.new()
 	_capa.set_anchors_preset(Control.PRESET_FULL_RECT)
 	_capa.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	add_child(_capa)
-	_toast = Tema.etiqueta("", 12, Tema.TINTA, true)
-	_toast.add_theme_stylebox_override("normal", Tema.caja(Tema.ORO, 12))
-	_toast.position = Vector2(20, 112)
-	_toast.size = Vector2(350, 30)
-	_toast.custom_minimum_size = Vector2(350, 0)
-	_toast.visible = false
+	_toast = Toast.new()
 	_capa.add_child(_toast)
 	_cola_eventos = motor.ultimos_eventos.duplicate()
 	_refrescar()
@@ -58,7 +53,7 @@ func _ready() -> void:
 	if Tutorial.debe_mostrar() and motor.estado.etapa == "campana" and motor.estado.turno_actual == 1:
 		var tut := Tutorial.new()
 		tut.leyes = motor.catalogo_leyes
-		tut.objetivos = [_mano, _r["pa"], _btn_deleg, _nav, _btn_fin]
+		tut.objetivos = [_mano, _r["pa"], _btn_deleg, _nav, _btn_jugar]
 		_capa.add_child(tut)
 
 
@@ -107,6 +102,7 @@ func _construir_cuerpo() -> Control:
 	_mano.custom_minimum_size = Vector2(0, 214)
 	_mano.clip_contents = false
 	_mano.tocada.connect(_on_carta)
+	_mano.arrastrada.connect(_gesto_mano)  # deslizar hacia el mapa juega; soltar sobre el ícono izquierdo delega (PR-02)
 	vista.add_child(_mano)
 	var corr := PanelContainer.new()
 	corr.add_theme_stylebox_override("panel", Tema.caja(Tema.CREMA, 10, Color("#E8D9A8"), 1))
@@ -135,14 +131,15 @@ func _construir_cuerpo() -> Control:
 	_badge = Tema.etiqueta_corta("", 10, Tema.ORO, true)
 	_badge.position = Vector2(36, 34)
 	_btn_deleg.add_child(_badge)
-	_btn_jugar = Barras.boton_jugar()
+	_btn_jugar = Barras.boton_jugar()  # botón del medio: avanzar la semana (PR-02); las cartas se juegan deslizándolas o tocándolas dos veces
 	_btn_jugar.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	_btn_jugar.pressed.connect(_jugar)
-	_btn_fin = Barras.boton_redondo("play")
-	_btn_fin.pressed.connect(_terminar_turno)
+	_btn_jugar.clip_text = true
+	_btn_jugar.pressed.connect(_avanzar)
+	var libre := Control.new()  # la esquina inferior derecha queda vacía a propósito
+	libre.custom_minimum_size = Vector2(54, 54)
 	acciones.add_child(_btn_deleg)
 	acciones.add_child(_btn_jugar)
-	acciones.add_child(_btn_fin)
+	acciones.add_child(libre)
 	var ma := MarginContainer.new()
 	ma.add_theme_constant_override("margin_left", 12)
 	ma.add_theme_constant_override("margin_right", 12)
@@ -164,15 +161,14 @@ func _refrescar() -> void:
 	var sem_camp := int(datos["leyes"]["hemiciclo"]["semanas_campana"])
 	if est.etapa == "campana":
 		_r["dia"].text = "Campaña · Semana %d de %d" % [mini(est.turno_actual, sem_camp), sem_camp]
+	elif est.etapa == "oposicion":
+		_r["dia"].text = "Oposición · Sem. %d/%d" % [est.turno_actual, int(datos["leyes"]["oposicion"]["semanas"])]
 	else:
 		_r["dia"].text = "Día %d" % est.dia_actual
-	_r["fecha"].text = Barras.fecha_texto(datos["leyes"], est.etapa, est.turno_actual, est.dia_actual)
+	_r["fecha"].text = Barras.fecha_texto(datos["leyes"], est.etapa, est.turno_actual, est.dia_actual, est.ciclo, est.dias_carrera)
 	_r["pa"].text = ManoUI.texto_pastilla(est)
 	_lbl_mov.text = ManoUI.texto_movimientos(est)
-	for k in _r["chips"].keys():
-		var l: Label = _r["chips"][k]
-		l.text = str(roundi(est.ind(k)))
-		l.add_theme_color_override("font_color", Tema.SUBE if (k == "aprobacion" and est.ind(k) >= 50.0) else Tema.TEXTO)
+	Barras.pintar_chips(_r, est)
 	var obras: Dictionary = {}
 	for o in est.obras_en_curso:
 		obras[o["region"]] = int(obras.get(o["region"], 0)) + 1
@@ -188,28 +184,7 @@ func _refrescar() -> void:
 
 
 func _actualizar_region() -> void:
-	var est := motor.estado
-	if _region == "" or not est.aprobacion_regional.has(_region):
-		_r["rg_nombre"].text = "Elige una región"
-		_r["rg_valor"].text = ""
-		_r["rg_sub"].text = "Toca el mapa para %s." % ("dirigir tu promesa de campaña" if est.etapa == "campana" else "ver su aprobación")
-		_r["rg_barra"].value = 0
-		return
-	var nombre := _region
-	for r in datos["regiones"]:
-		if r["id"] == _region:
-			nombre = String(r["nombre"]).replace(" de Santiago", "")
-	var n_obras := 0
-	for o in est.obras_en_curso:
-		if o["region"] == _region:
-			n_obras += 1
-	var v := float(est.aprobacion_regional[_region])
-	_r["rg_nombre"].text = nombre
-	_r["rg_valor"].text = Tema.pct(v)
-	_r["rg_valor"].add_theme_color_override("font_color", Tema.color_aprobacion(v + 12.0))
-	_r["rg_sub"].text = "%d obra(s) en curso%s" % [n_obras, " · 1 propuesta nueva" if est.propuestas_abiertas.size() > 0 and _region == "metropolitana" else ""]
-	_r["rg_barra"].value = v
-	_r["rg_barra"].add_theme_stylebox_override("fill", Tema.caja(Tema.color_aprobacion(v + 12.0), 4))
+	PanelesDia.pintar_region(_r, motor, datos, _region)
 
 
 func _pintar_mano() -> void:
@@ -224,46 +199,54 @@ func _pintar_mano() -> void:
 	var v := motor.vista_carta(_sel, _ministro)
 	var c: Dictionary = est.mano[_sel]
 	var tit := String(c["titulo"])
-	var cabeza := "[b]%s[/b] · %s · %d mov\n" % [tit if tit.length() <= 34 else tit.substr(0, 33) + "…", BloqueoCarta.nombre_cat(String(c["categoria"])), motor.costo_carta(c, _ministro)]
+	var cabeza := "[b]%s[/b] · %d mov · %s\n" % [tit if tit.length() <= 22 else tit.substr(0, 21) + "…", motor.costo_carta(c, _ministro), FichaCarta.linea(c, datos["leyes"])]
 	if est.etapa == "campana":
 		_lbl_corrector.text = cabeza + "[b]Campaña:[/b] cada carta es una promesa: sube la aprobación de la región elegida y queda como meta de legado."
 	elif v["corrector"]["aplica"]:
-		_lbl_corrector.text = cabeza + "[b]Corrector:[/b] " + _caber(String(v["corrector"]["mensaje"]))
+		_lbl_corrector.text = cabeza + "[b]Corrector:[/b] " + FichaCarta.caber(String(v["corrector"]["mensaje"]))
 	else:
 		_lbl_corrector.text = cabeza + "[b]Corrector:[/b] sin observaciones; la meta es viable."
-
-
-func _caber(msg: String) -> String:
-	## El panel del corrector mide 66 px (cabecera + 3 líneas de 10 pt): si el mensaje no cabe se corta en una palabra y termina en "…".
-	var f := Tema.fuente_texto(400)
-	var palabras := msg.split(" ")
-	while palabras.size() > 1 and f.get_multiline_string_size("Corrector: " + " ".join(palabras), HORIZONTAL_ALIGNMENT_LEFT, 304, 10).y > f.get_height(10) * 3.05:
-		palabras.remove_at(palabras.size() - 1)
-		palabras[palabras.size() - 1] = palabras[palabras.size() - 1].rstrip(".,;:") + "…"
-	return " ".join(palabras)
 
 
 func _actualizar_botones() -> void:
 	var est := motor.estado
 	var n := est.mano.size()
-	if n > 0:
-		var costo := motor.costo_carta(est.mano[_sel], _ministro)
-		_btn_jugar.text = "Jugar · %d mov" % costo
-		_btn_jugar.disabled = costo > est.pa_actual
-	else:
-		_btn_jugar.text = "Sin cartas"
-		_btn_jugar.disabled = true
+	var elec := est.eleccion_pendiente(int(datos["leyes"]["hemiciclo"]["semanas_campana"]))
+	_btn_jugar.text = "Ir a las urnas" if elec else ("Terminar semana · %d mov" % est.pa_actual if est.pa_actual > 0 else "Siguiente semana")
+	_btn_jugar.disabled = false
 	var max_deleg := int(motor.catalogo_leyes["delegacion"]["max_por_turno"])
 	_btn_deleg.disabled = est.etapa != "gobierno" or n == 0 or est.delegadas_turno >= max_deleg
-	_btn_deleg.tooltip_text = "Delegar la carta elegida en un ministro"
+	_btn_deleg.tooltip_text = "Delegar la carta elegida en un ministro (suelta la carta aquí)"
 	_badge.text = str(max_deleg - est.delegadas_turno) if est.etapa == "gobierno" else ""
-	var elec := est.eleccion_pendiente(int(datos["leyes"]["hemiciclo"]["semanas_campana"]))
-	_btn_fin.tooltip_text = "Urnas" if elec else "Terminar turno"
-	_btn_jugar.disabled = _btn_jugar.disabled or elec
 
 
 # ------------------------------------------------------------------ interacción
+func _gesto_mano(pos: Vector2) -> void:
+	if _btn_deleg.get_global_rect().has_point(pos):
+		_delegar()
+	elif pos.y <= _mano.get_global_rect().end.y:  # soltar hacia el mapa juega; soltar más abajo (fuera del ícono) cancela
+		_jugar()
+
+
+func _avanzar() -> void:
+	## Botón del medio. Pide confirmar con una segunda pulsación si sobran movimientos (PR-02c) o si vas a votar con pocas promesas (U3).
+	var est := motor.estado
+	var urnas := est.eleccion_pendiente(int(datos["leyes"]["hemiciclo"]["semanas_campana"]))
+	var minimo := int(datos["leyes"]["campana"]["min_promesas"])
+	if not _confirmar_fin and ((urnas and est.promesas_campana.size() < minimo) or (not urnas and est.pa_actual > 0)):
+		_confirmar_fin = true
+		_avisar("Con menos de %d promesas serás intrascendente y perderás votos. Pulsa de nuevo para votar igual." % minimo if urnas else "Te quedan %d movimientos. Pulsa de nuevo para terminar la semana." % est.pa_actual)
+		return
+	_confirmar_fin = false
+	_terminar_turno()
+
+
 func _on_carta(i: int) -> void:
+	Feedback.sonar("toque")
+	if i == _sel and _mano_tocada:  # tocar de nuevo la carta elegida la juega (respaldo del gesto de deslizar)
+		_jugar()
+		return
+	_mano_tocada = true
 	_sel = i
 	_pintar_mano()
 	_actualizar_botones()
@@ -276,8 +259,11 @@ func _on_region(id: String) -> void:
 
 func _jugar() -> void:
 	var n_reg := motor.estado.registro_acciones.size()
+	var antes := motor.estado.indicadores.duplicate()
+	_mano_tocada = false
 	var r := motor.jugar_carta(_sel, _ministro, _region)
 	if not bool(r["ok"]):
+		Feedback.sonar("error")
 		_avisar(Razones.texto(r))
 		return
 	_leer_reposicion(n_reg)
@@ -294,7 +280,9 @@ func _jugar() -> void:
 		msg = "Proyecto ingresado al Congreso."
 	elif r["corrector"].get("aplica", false):
 		msg = "Versión viable aplicada (%d %%)." % roundi(float(r["corrector"]["ratio"]) * 100.0)
-	_avisar(msg)
+	var cambios := Barras.resumen_cambios(antes, motor.estado.indicadores)  # consecuencia visible de la carta
+	_avisar((msg if cambios == "" else msg + " " + cambios) + Barras.sufijo_carta(r))
+	Feedback.tras_jugar(_capa, r, cambios)
 	accion_hecha.emit()
 	_refrescar()
 
@@ -321,17 +309,11 @@ func _delegar() -> void:
 
 
 func _avisar(txt: String) -> void:
-	_toast.text = txt
-	_toast.visible = true
-	if _tw_toast != null and _tw_toast.is_valid():
-		_tw_toast.kill()  # un aviso nuevo no debe ser ocultado por el temporizador del anterior
-	var tw := create_tween()
-	_tw_toast = tw
-	tw.tween_interval(2.6)
-	tw.tween_callback(func() -> void: _toast.visible = false)
+	_toast.mostrar(txt)
 
 
 func _terminar_turno() -> void:
+	Feedback.sonar("turno")
 	var est := motor.estado
 	var sem := int(datos["leyes"]["hemiciclo"]["semanas_campana"])
 	if est.eleccion_pendiente(sem):
@@ -341,7 +323,7 @@ func _terminar_turno() -> void:
 	accion_hecha.emit()
 	if est.eleccion_pendiente(sem):
 		_avisar("Termina la campaña: toca el botón de avanzar para ir a las urnas.")
-	elif est.etapa != "campana" and est.etapa != "gobierno":
+	elif not MotorTurno.ETAPAS_JUEGO.has(est.etapa):
 		terminado.emit()
 		return
 	_cola_eventos = OverlaysDia.eventos_de_votaciones(motor)
@@ -369,13 +351,23 @@ func _siguiente_evento() -> void:
 	if _cola_eventos.is_empty():
 		return
 	var ev: Dictionary = _cola_eventos.pop_front()
-	_capa.add_child(OverlaysDia.evento(ev, _siguiente_evento, motor.catalogo_leyes["congreso"]["nombres"], motor.estado.dia_actual))
+	if ev.get("menor", false):  # consecuencia de una carta: un aviso, no una pantalla completa
+		_avisar(Barras.texto_consecuencia(ev))
+		_siguiente_evento()
+		return
+	Feedback.sonar("evento")
+	_capa.add_child(OverlaysDia.evento(ev, _siguiente_evento, motor.catalogo_leyes["congreso"]["nombres"], motor.estado.dia_actual,
+			func(i: int) -> void:
+				var a := motor.estado.indicadores.duplicate()
+				Feedback.sonar("decision")
+				_avisar(Barras.texto_decision(motor.eventos.decidir(String(ev["id"]), i), a, motor.estado.indicadores))
+				_refrescar()))
 
 
 func _poner_nav(nacion: bool) -> void:
 	var nuevo := Barras.nav(_abrir_panel, nacion, "al día %d" % (motor.estado.dia_actual + motor.estado.dias_por_turno), func() -> void:
 		_abrir_panel("mapa")
-		_terminar_turno())
+		_terminar_turno(), "Coalición" if motor.estado.etapa == "oposicion" else "Gabinete")
 	_raiz.add_child(nuevo)
 	_raiz.move_child(nuevo, _nav.get_index())
 	_nav.queue_free()

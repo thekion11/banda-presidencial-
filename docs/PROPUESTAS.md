@@ -1,8 +1,8 @@
 # Propuestas del usuario y opinión de Claude
 
-Registro de ideas habladas. Regla acordada el 24-nov-2026: **por ahora solo se conversa; nada se implementa hasta que el usuario diga «hazlo»**. Estados: hablada · aceptada · rechazada · por hacer · hecha.
+**Registro consolidado de lo aceptado: `docs/DECISIONES.md`.** Registro de ideas habladas. Regla acordada el 24-nov-2026: **por ahora solo se conversa; nada se implementa hasta que el usuario diga «hazlo»**. Estados: hablada · aceptada · rechazada · por hacer · hecha.
 
-## PR-01 — Pantallas previas al inicio: dificultad y afiliación (24-nov-2026) · estado: ACEPTADA en lo conversado (sin implementar; falta «hazlo»)
+## PR-01 — Pantallas previas al inicio: dificultad y afiliación (24-nov-2026) · estado: HECHA (dificultad, afiliación y «como la última vez»; ver DECISIONES.md)
 
 **Idea del usuario (resumen fiel):** al iniciar, primero una pantalla que pregunte la **dificultad**; después otra que pregunte si quieres ser **independiente**, entrar a **un partido grande («de un partidazo»)** o **fundar el propio**; solo si se elige fundar aparece el formulario de partido.
 
@@ -127,7 +127,7 @@ El usuario aclaró que esos dos mensajes («Lo Jugadas accidentales.» y «Propo
 
 **Decisiones pendientes:** (1) ¿relleno por defecto «equilibrado» y modo «máxima eficacia» con costo? (2) ¿alias + perfil real (recomendado) o apellido real con revisión legal? (3) ¿candidatos de varios gobiernos, solo vivos, o también ficticios para completar? (4) ¿cuántos candidatos por ministerio?
 
-### PR-05b — Sin apellido: solo sobrenombre si lo tienen (24-nov-2026) · estado: CRITERIO ACEPTADO por el usuario (sin implementar)
+### PR-05b — Sin apellido: solo sobrenombre si lo tienen (24-nov-2026) · estado: CRITERIO ACEPTADO por el usuario (vigente; la recreación de candidatos reales sigue sin implementar)
 
 **Propuesta del usuario:** ni nombre ni apellido; solo el **sobrenombre**, para quienes tengan uno conocido.
 
@@ -192,7 +192,7 @@ Resumen de opinión: casi todo es bueno para el juego, pero **es mucho más de l
 3. PR-12: ¿reelección como carta jugable (recomendado como idea) y qué variantes (inmediata una vez, indefinida, plazos)?
 4. PR-13: ¿Modo Oposición se planifica después de validar el gobierno?
 
-### PR-06c — Mapa del continente en 2D/2,5D (24-nov-2026) · estado: hablada (dirección aceptada por el usuario; sin implementar)
+### PR-06c — Mapa del continente en 2D/2,5D (24-nov-2026) · estado: HECHA en 2 etapas (continente y vecinos vivos; ver DECISIONES.md)
 
 **Dicho por el usuario:** «por lo menos todo el continente»; mejor **2D y 2,5D** que 3D completo.
 

@@ -14,8 +14,8 @@ func _init() -> void:
 	var datos := Datos.cargar_todo()
 	var m := AyudaV2.gobierno(datos, 41)
 	var est := m.estado
-	# bono por aprobación: 60..80 de 5 en 5 suman +1; 85..100 suman +2 cada uno
-	var esperado := {50.0: 0, 59.9: 0, 60.0: 1, 64.0: 1, 65.0: 2, 80.0: 5, 84.0: 5, 85.0: 7, 90.0: 9, 95.0: 11, 100.0: 13}
+	# bono por aprobación: +1 por cada umbral superado (45, 55, 65, 75, 85, 95)
+	var esperado := {40.0: 0, 44.9: 0, 45.0: 1, 54.0: 1, 55.0: 2, 64.9: 2, 65.0: 3, 75.0: 4, 85.0: 5, 95.0: 6, 100.0: 6}
 	for apr in esperado.keys():
 		est.indicadores["aprobacion"] = apr
 		_check(m.movimientos.bono_aprobacion() == int(esperado[apr]), "bono a %.1f%% = %d (da %d)" % [apr, esperado[apr], m.movimientos.bono_aprobacion()])

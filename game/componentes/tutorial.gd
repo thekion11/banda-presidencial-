@@ -6,11 +6,11 @@ extends Control
 static var ruta: String = "user://preferencias.json"
 
 const PASOS := [
-	["Tu mano", "Cada carta es una acción de gobierno. Toca una para verla completa y pulsa Jugar para ejecutarla; cuando juegas una, entra otra nueva."],
+	["Tu mano", "Cada carta es una acción de gobierno. Toca una para verla; deslízala hacia arriba para jugarla. Al jugarla entra otra."],
 	["Movimientos", "Cada carta cuesta de 1 a 3 movimientos. Tienes {pa} por turno, más un bono cuando tu aprobación es alta y +1 por cada asesor."],
-	["Delegación", "Hasta {deleg} cartas por turno puedes delegarlas en un ministro: no gastan movimientos, pero pueden salir mal. Solo en gobierno."],
-	["Gabinete", "Tus {gab} ministros deciden qué cartas aparecen. En Gabinete también cambias asesores, coalición y movimientos internos."],
-	["Tu turno", "Cuando termines tus jugadas, toca el botón de avanzar para cerrar la semana. Eso es todo: ¡a campaña!"],
+	["Delegación", "Hasta {deleg} cartas por turno: suéltalas sobre el ícono izquierdo. No gastan movimientos, pero pueden fallar. Solo en gobierno."],
+	["Gabinete", "Tu gabinete de {gab} ministerios se puede rellenar solo. Ahí cambias también asesores, coalición y movimientos internos."],
+	["Tu turno", "Cuando termines tus jugadas, toca el botón del centro para cerrar la semana. Eso es todo: ¡a campaña!"],
 ]
 
 signal cerrado

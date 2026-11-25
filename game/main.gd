@@ -2,6 +2,7 @@ extends Control
 ## Enrutador de pantallas + guardado por eventos (semilla + historial de entradas).
 
 const RUTA_GUARDADO := "user://guardado.json"
+const RUTA_ULTIMA := "user://ultima_config.json"  # último partido fundado: «Nueva partida como la última vez»
 
 var datos: Dictionary = {}
 var geo: Dictionary = {}
@@ -13,6 +14,7 @@ var _huella_datos: String = ""
 
 
 func _ready() -> void:
+	Ajustes.cargar()
 	datos = Datos.cargar_todo()
 	_huella_datos = Datos.huella(datos)  # una sola vez: calcularla en cada guardado costaría ~1 s en un teléfono modesto
 	geo = Datos.leer_json("res://data/geo/regiones_mapa.json")
@@ -31,6 +33,7 @@ func _ready() -> void:
 	fondo.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 	fondo.set_anchors_preset(Control.PRESET_FULL_RECT)
 	add_child(fondo)
+	Feedback.iniciar(self)
 	mostrar_menu()
 
 
@@ -49,22 +52,56 @@ func mostrar_menu(aviso: String = "") -> void:
 	m.aviso = aviso
 	m.hay_guardado = FileAccess.file_exists(RUTA_GUARDADO)
 	m.datos = datos
-	m.nueva.connect(mostrar_partido)
+	m.nueva.connect(mostrar_afiliacion)
+	m.hay_ultima = FileAccess.file_exists(RUTA_ULTIMA)
+	m.repetir.connect(_repetir_ultima)
 	m.continuar.connect(continuar_guardado)
 	_cambiar(m)
 
 
-func mostrar_partido() -> void:
+func mostrar_afiliacion() -> void:
+	var a := PantallaAfiliacion.new()
+	a.datos = datos
+	a.elegida.connect(mostrar_partido)
+	_cambiar(a)
+
+
+func mostrar_partido(afiliacion: String = "propio", base: Dictionary = {}) -> void:
 	var p := PantallaPartido.new()
 	p.datos = datos
+	p.afiliacion = afiliacion
+	p.base = base
 	p.fundado.connect(_iniciar_campana)
 	_cambiar(p)
 
 
-func _iniciar_campana(partido: Dictionary) -> void:
+func _repetir_ultima() -> void:
+	## Partida rápida (1 toque): la última configuración o, si no hay, un partido por defecto; sin pasar por afiliación, test ni gabinete.
+	var p: Variant = Datos.leer_json(RUTA_ULTIMA) if FileAccess.file_exists(RUTA_ULTIMA) else null
+	if p is Dictionary and p.has("indicadores_iniciales"):
+		_iniciar_campana(p, true)
+		return
+	if FileAccess.file_exists(RUTA_ULTIMA):
+		DirAccess.remove_absolute(ProjectSettings.globalize_path(RUTA_ULTIMA))  # archivo dañado: se descarta
+	var resp: Array[Dictionary] = []
+	for q in datos["ideologia"]["preguntas"]:
+		resp.append(q["opciones"][1])
+	var base := GeneradorPartido.construir_partido_afiliado("propio", {}, "Movimiento Cívico Austral", "MCA", "metropolitana", resp, datos["ideologia"], datos["leyes"]["afiliacion"])
+	GeneradorPartido.aplicar_habilidad(base, String(datos["leyes"]["habilidades"]["defecto"]), String(datos["leyes"]["habilidades"]["colores"][0]), datos["leyes"]["habilidades"])
+	_iniciar_campana(base, true)
+
+
+func _iniciar_campana(partido: Dictionary, directo: bool = false) -> void:
+	var f := FileAccess.open(RUTA_ULTIMA, FileAccess.WRITE)
+	if f != null:
+		f.store_string(JSON.stringify(partido))
 	var semilla := int(Time.get_unix_time_from_system()) % 2000000000
 	motor = Partida.crear(datos, semilla, partido)
 	UrbanoBase.reiniciar()  # líneas ocultas y líneas del jugador de la partida anterior no pasan a la nueva
+	if directo:  # el gabinete real (25) ya viene relleno; se puede cambiar después desde la pestaña Gabinete
+		guardar()
+		mostrar_dia()
+		return
 	mostrar_gabinete()
 
 
@@ -92,7 +129,7 @@ func continuar_guardado() -> void:
 
 
 func mostrar_dia() -> void:
-	if motor.estado.etapa not in ["campana", "gobierno"] and not motor.estado.eleccion_pendiente(int(datos["leyes"]["hemiciclo"]["semanas_campana"])):
+	if not MotorTurno.ETAPAS_JUEGO.has(motor.estado.etapa) and not motor.estado.eleccion_pendiente(int(datos["leyes"]["hemiciclo"]["semanas_campana"])):
 		mostrar_fin()
 		return
 	var d := PantallaDia.new()
@@ -114,6 +151,12 @@ func mostrar_fin() -> void:
 	f.otra_vez.connect(func() -> void:
 		DirAccess.remove_absolute(ProjectSettings.globalize_path(RUTA_GUARDADO))
 		mostrar_menu())
+	f.continuar.connect(func() -> void:  # carrera política: oposición o reelección, y vuelta a jugar
+		if bool(motor.continuar_carrera()["ok"]):
+			motor.iniciar_turno()
+			UrbanoBase.reiniciar()
+			guardar()
+			mostrar_dia())
 	f.reintentar.connect(func() -> void:
 		DirAccess.remove_absolute(ProjectSettings.globalize_path(RUTA_GUARDADO))
 		mostrar_partido())

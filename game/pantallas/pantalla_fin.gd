@@ -4,6 +4,7 @@ extends Control
 ## de los eventos reales vividos (fecha y fuente). Solo lee el estado.
 
 signal otra_vez
+signal continuar  # la carrera sigue: oposición o campaña de reelección (carrera política)
 signal reintentar  # solo tras una derrota electoral: nueva partida directa
 
 var motor: MotorTurno
@@ -68,7 +69,10 @@ func _ready() -> void:
 	add_child(col)
 	var titulos := {"fin_mandato": "Fin del mandato", "crisis": "Caída del gobierno", "derrota_electoral": "Derrota electoral"}
 	col.add_child(Tema.etiqueta("FIN DE PARTIDA", 10, Tema.ORO, true))
+	var epi := motor.mandato.epilogo()
 	col.add_child(Tema.etiqueta(String(titulos.get(est.etapa, "Fin")), 30, Tema.TEXTO, true))
+	if String(epi["id"]) != "":
+		col.add_child(Tema.etiqueta(String(epi["titulo"]), 16, Tema.ORO, true))
 	var umbral := float(motor.catalogo_leyes["hemiciclo"]["umbral_victoria_presidencial"]) + float(motor.mandato.nivel()["umbral_delta"])
 	var detalle := ""
 	match est.etapa:
@@ -79,7 +83,23 @@ func _ready() -> void:
 		_:
 			detalle = "Completaste los 4 años con %.1f %% de aprobación." % float(r.get("aprobacion", 0.0))
 	col.add_child(Tema.etiqueta(detalle, 13, Tema.TEXTO_SUAVE))
+	if motor.mandato.sucesion() != "":
+		var su := Tema.etiqueta("Sucesión: " + motor.mandato.sucesion(), 12, Tema.ORO)
+		su.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+		col.add_child(su)
+	if String(epi["texto"]) != "":
+		var et := Tema.etiqueta(String(epi["texto"]), 12, Tema.TEXTO)
+		et.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+		col.add_child(et)
 	var lista := FilasUI.col(8)
+	var reelige := est.etapa == "fin_mandato" and est.cartas_ejecutadas.has("reforma_reeleccion")
+	var bo := Tema.boton("Postularte a la reelección" if reelige else "Seguir tu carrera: pasar a la oposición", Tema.ROJO, Tema.TEXTO, 14, 48)
+	bo.pressed.connect(func() -> void: continuar.emit())
+	lista.add_child(bo)
+	if not est.carrera.is_empty():
+		lista.add_child(FilasUI.titulo("Tu carrera política"))
+		for c in est.carrera:
+			lista.add_child(Tema.etiqueta("· Periodo %d: %s (aprobación %.0f %%)" % [int(c["ciclo"]), String({"fin_mandato": "mandato completo", "crisis": "gobierno caído", "derrota_electoral": "derrota electoral"}.get(c["resultado"], c["resultado"])), float(c["aprobacion"])], 12, Tema.TEXTO))
 	var total_prom := est.promesas_campana.size()
 	var leyes := leyes_aprobadas()
 	var fila1 := HBoxContainer.new()
@@ -105,6 +125,16 @@ func _ready() -> void:
 			v2.add_child(Tema.etiqueta("%s · %s" % [ln["id"], String(ln["nombre"])], 12, Tema.TEXTO, false, 600))
 			v2.add_child(Tema.etiqueta("%d estaciones · %s" % [(ln["nombres_estaciones"] as Array).size(), "operativa" if ln["estado"] == "operativa" else "en construcción al terminar el mandato"], 10, Tema.TEXTO_SUAVE))
 			lista.add_child(FilasUI.tarjeta(v2, Tema.PANEL))
+	var hitos := motor.mandato.hitos()
+	if not hitos.is_empty():
+		lista.add_child(FilasUI.titulo("Hitos de tu mandato"))
+		for h in hitos:
+			lista.add_child(Tema.etiqueta("· Semana %d: %s" % [int(h["turno"]), String(h["texto"])], 12, Tema.TEXTO))
+	var actores := motor.eventos.relaciones_actores()
+	if not actores.is_empty():
+		lista.add_child(FilasUI.titulo("Tu relación con los actores"))
+		for a in actores.slice(0, 6):
+			lista.add_child(Tema.etiqueta("· %s: %d/100" % [String(a["nombre"]), roundi(float(a["relacion"]))], 12, Tema.TEXTO))
 	lista.add_child(FilasUI.titulo("Línea de tiempo: eventos reales que viviste"))
 	var evs := eventos_reales()
 	if evs.is_empty():

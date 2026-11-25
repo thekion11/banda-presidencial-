@@ -15,7 +15,7 @@ import sys
 ROOT = Path(__file__).resolve().parents[1]
 ROOT_GAME = Path(__file__).resolve().parents[1] / "game" / "arte" / "cartas"
 DATA_DIR = ROOT / "data"
-INDICADORES = {"aprobacion", "capital", "cohesion", "fiscal", "riesgo_ejecucion", "viviendas_anio"}
+INDICADORES = {"aprobacion", "capital", "cohesion", "fiscal", "riesgo_ejecucion", "viviendas_anio", "rival"}
 MAX_CARTAS_CAMPANA_PA = 16
 
 
@@ -173,11 +173,35 @@ def validar_eventos(eventos: list, ids_fuentes: set, tipos: set, dias_mandato: i
         validar_efectos(e["efectos_base"], ctx)
         if e["tipo"] == "programado":
             d = e["dia_objetivo"]
-            limite = dias_mandato if e.get("etapa", "gobierno") == "gobierno" else 56
+            limite = {"gobierno": dias_mandato, "oposicion": 26 * 7}.get(e.get("etapa", "gobierno"), 56)  # oposición: leyes.json oposicion.semanas x 7
             if d is None or not 1 <= d <= limite:
                 raise ValueError(f"{ctx}: dia_objetivo fuera del período")
         if e["votacion"] and e["votacion"]["tipo_ley"] not in tipos:
             raise ValueError(f"{ctx}: tipo_ley desconocido")
+    por_id = {e["id"]: e for e in eventos}
+    for e in eventos:  # decisiones: opciones, riesgos, efectos a futuro, cadenas y memoria
+        ctx = f"evento {e['id']}"
+        if e["tipo"] == "cadena" and "opciones" not in e:
+            raise ValueError(f"{ctx}: un evento en cadena debe tener opciones")
+        for i, o in enumerate(e.get("opciones", [])):
+            validar_efectos(o["efectos"], f"{ctx} opción {i}")
+            if "riesgo" in o:
+                if not 0.0 < o["riesgo"]["prob"] < 1.0:
+                    raise ValueError(f"{ctx} opción {i}: riesgo.prob debe estar entre 0 y 1")
+                validar_efectos(o["riesgo"]["efectos"], f"{ctx} opción {i} riesgo")
+            if "diferido" in o:
+                if not 1 <= o["diferido"]["semanas"] <= 60:
+                    raise ValueError(f"{ctx} opción {i}: diferido.semanas fuera de 1..60")
+                validar_efectos(o["diferido"]["efectos"], f"{ctx} opción {i} diferido")
+            if "cadena" in o:
+                dest = por_id.get(o["cadena"]["evento"])
+                if dest is None or dest["tipo"] != "cadena":
+                    raise ValueError(f"{ctx} opción {i}: la cadena apunta a un evento inexistente o que no es de tipo cadena")
+        rq = e.get("requiere")
+        if rq and "decision" in rq:
+            origen = por_id.get(rq["decision"]["evento"])
+            if origen is None or not 0 <= rq["decision"]["idx"] < len(origen.get("opciones", [])):
+                raise ValueError(f"{ctx}: requiere una decisión inexistente")
 
 
 def validar_ideologia(ide: dict) -> None:
@@ -356,6 +380,28 @@ def main() -> int:
     if faltan:
         print(f"[AVISO] Arte sin archivo en game/arte/cartas (las cartas usan el de su categoría): {', '.join(faltan)}")
     datos["cartas"] = datos["cartas"] + reales
+    ruta_cur = DATA_DIR / "cartas_curadas.json"
+    if ruta_cur.exists():  # Fase B: cartas diseñadas a mano
+        curadas = json.loads(ruta_cur.read_text(encoding="utf-8"))
+        validar_schema("cartas.json", curadas)
+        ya = {c["id"] for c in datos["cartas"]}
+        titulos_ya = {c["titulo"] for c in datos["cartas"]}
+        for c in curadas:
+            ctx = f"carta curada {c['id']}"
+            if c["id"] in ya or c["titulo"] in titulos_ya:
+                raise ValueError(f"{ctx}: id o título duplicado")
+            if not c.get("curada") or not c.get("cifras_ilustrativas"):
+                raise ValueError(f"{ctx}: debe llevar curada=true y cifras_ilustrativas=true")
+            if not 1 <= c["costo_pa"] <= 3 or len(c["titulo"]) > 60:
+                raise ValueError(f"{ctx}: costo 1-3 y título ≤ 60")
+            if "riesgo" in c:
+                if not 0.0 < c["riesgo"]["prob"] < 1.0:
+                    raise ValueError(f"{ctx}: riesgo.prob entre 0 y 1")
+                validar_efectos(c["riesgo"]["efectos"], ctx + " riesgo")
+            if "diferido" in c:
+                validar_efectos(c["diferido"]["efectos"], ctx + " diferido")
+        datos["cartas"] = datos["cartas"] + curadas
+        print(f"[INFO] Cartas curadas: {len(curadas)}")
     validar_cartas(datos["cartas"], ids_fuentes, tipos, props)
     from validate_v2 import validar_v2
     validar_v2(datos, ids_fuentes)

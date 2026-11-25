@@ -31,15 +31,31 @@ func afinidad(id: String) -> float:
 	return clampf(1.0 - dist / float(_cfg()["distancia_max"]), 0.0, 1.0)
 
 
+func adoptar_partido_propio(id: String) -> void:
+	## PR-01: quien entra a un partido existente lo lleva como aliado permanente que pide poder (sus ministerios) y castiga si se le ignora.
+	if not partidos.has(id):
+		return
+	var pet: Dictionary = partidos[id]["peticion"]
+	var mins: Array = []
+	for mid in partidos[id]["ministerios_pedidos"]:
+		if m.gabinete.tiene_ministerio(String(mid)) and mins.size() < int(pet["ministerios"]):
+			mins.append(mid)  # las cuotas se guardan por ministerio (cargo), no por persona
+	m.estado.coalicion[id] = {"satisfaccion": float(_cfg()["satisfaccion_inicial"]), "ministros": mins, "asesores": [], "propio": true}
+
+
+func _n_aliados() -> int:
+	return m.estado.coalicion.values().filter(func(c: Dictionary) -> bool: return not bool(c.get("propio", false))).size()
+
+
 func unirse(id: String) -> Dictionary:
 	var est := m.estado
-	if est.etapa != "campana" and est.etapa != "gobierno":
+	if est.etapa != "campana" and est.etapa != "gobierno" and est.etapa != "oposicion":
 		return {"ok": false, "razon": "partida_terminada"}
 	if not partidos.has(id):
 		return {"ok": false, "razon": "partido_inexistente"}
 	if est.coalicion.has(id):
 		return {"ok": false, "razon": "ya_aliado"}
-	if est.coalicion.size() >= int(_cfg()["max_aliados"]):
+	if _n_aliados() >= int(_cfg()["max_aliados"]):
 		return {"ok": false, "razon": "limite_aliados"}
 	est.registrar_entrada("coalicion", {"accion": "unirse", "id": id})
 	est.coalicion[id] = {"satisfaccion": float(_cfg()["satisfaccion_inicial"]), "ministros": [], "asesores": []}
@@ -52,6 +68,8 @@ func salir(id: String, ruptura: bool = false) -> Dictionary:
 	var est := m.estado
 	if not est.coalicion.has(id):
 		return {"ok": false, "razon": "no_aliado"}
+	if not ruptura and bool(est.coalicion[id].get("propio", false)):
+		return {"ok": false, "razon": "partido_propio"}  # tu partido no se abandona: se rompe solo si lo desatiendes
 	if not ruptura:
 		est.registrar_entrada("coalicion", {"accion": "salir", "id": id})
 	est.coalicion.erase(id)
@@ -72,11 +90,15 @@ func asignar_cuota(id: String, tipo: String, valor: String, quitar: bool = false
 		return {"ok": false, "razon": "tipo_invalido"}
 	var clave := "ministros" if tipo == "ministerio" else "asesores"
 	var lista: Array = est.coalicion[id][clave]
+	if tipo == "ministerio":
+		valor = m.gabinete.slot_de(valor)
 	if quitar:
 		if not lista.has(valor):
 			return {"ok": false, "razon": "no_asignado"}
 	else:
-		if not (est.gabinete if tipo == "ministerio" else est.asesores).has(valor):
+		if tipo == "ministerio":
+			valor = m.gabinete.slot_de(valor)  # se acepta el id de un candidato: la cuota es del ministerio
+		if not (m.gabinete.tiene_ministerio(valor) if tipo == "ministerio" else est.asesores.has(valor)):
 			return {"ok": false, "razon": "fuera_del_gabinete" if tipo == "ministerio" else "asesor_no_contratado"}
 		for otro in est.coalicion.values():
 			if otro[clave].has(valor):
@@ -93,7 +115,7 @@ func cumplimiento(id: String) -> float:
 	## Fracción 0..1 de la petición del partido (ministerios y asesores asignados que siguen vigentes).
 	var pet: Dictionary = partidos[id]["peticion"]
 	var c: Dictionary = m.estado.coalicion[id]
-	var vig_min: int = c["ministros"].filter(func(x: String) -> bool: return m.estado.gabinete.has(x)).size()
+	var vig_min: int = c["ministros"].filter(func(x: String) -> bool: return m.gabinete.tiene_ministerio(x)).size()
 	var vig_ase: int = c["asesores"].filter(func(x: String) -> bool: return m.estado.asesores.has(x)).size()
 	var demanda := int(pet["ministerios"]) + int(pet["asesores"])
 	if demanda == 0:
@@ -115,6 +137,20 @@ func carta_jugada(carta: Dictionary) -> void:
 		elif partidos[id]["categorias_rechazadas"].has(carta["categoria"]):
 			c["satisfaccion"] = maxf(0.0, float(c["satisfaccion"]) - float(_cfg()["penal_carta_rechazada"]))
 	_recalcular_apoyo()
+
+
+func mult_carta(carta: Dictionary) -> float:
+	## Multiplicador del efecto de una carta de gobierno: un aliado satisfecho potencia las cartas de las categorías que pide;
+	## uno descontento (bajo el umbral de malestar) frena las que rechaza. Sin aliados vale 1.
+	var cfg := _cfg()
+	var bono := 0.0
+	for id in m.estado.coalicion.keys():
+		var sat := float(m.estado.coalicion[id]["satisfaccion"])
+		if sat >= float(cfg["umbral_satisfechos"]) and partidos[id]["categorias_pedidas"].has(carta["categoria"]):
+			bono += float(cfg["bono_efecto_afin"])
+		elif sat < float(cfg["umbral_malestar"]) and partidos[id]["categorias_rechazadas"].has(carta["categoria"]):
+			bono -= float(cfg["penal_efecto_rechazada"])
+	return 1.0 + clampf(bono, -float(cfg["tope_bono_efecto"]), float(cfg["tope_bono_efecto"]))
 
 
 func amanecer() -> void:
@@ -145,6 +181,8 @@ func _recalcular_apoyo() -> void:
 	var sen := 0.0
 	var cam := 0.0
 	for id in m.estado.coalicion.keys():
+		if bool(m.estado.coalicion[id].get("propio", false)):
+			continue  # sus escaños ya son «propios» (partido de origen)
 		var f := float(m.estado.coalicion[id]["satisfaccion"]) / 100.0
 		sen += float(partidos[id]["escanos_senado"]) * f
 		cam += float(partidos[id]["escanos_camara"]) * f

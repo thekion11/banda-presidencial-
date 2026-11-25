@@ -47,7 +47,7 @@ static func _llenar(lista: VBoxContainer, motor: MotorTurno, rid: String, al_imp
 	for p in items.slice(0, MAX_MOSTRADOS):
 		lista.add_child(_tarjeta(motor, p, al_impulsar))
 	if items.size() > MAX_MOSTRADOS:
-		lista.add_child(Tema.etiqueta("+ %d proyectos más en la cartera de la región." % (items.size() - MAX_MOSTRADOS), 11, Tema.TEXTO_SUAVE))
+		lista.add_child(Tema.etiqueta("Hay más proyectos en la cartera de la región.", 11, Tema.TEXTO_SUAVE))
 
 
 static func _tarjeta(motor: MotorTurno, p: Dictionary, al_impulsar: Callable) -> Control:

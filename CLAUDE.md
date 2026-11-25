@@ -19,7 +19,8 @@ Ninguna tarea cierra sin pruebas en verde y captura comparada (`tests/captura.gd
 - En el Turno 8 de campaña se vota la elección presidencial. Si el jugador no supera el umbral de `data/leyes.json`, pierde.
   Si gana, inicia el Turno 1 de Gobierno (208 semanas).
 - ALCANCE CONGELADO: prohibido agregar nuevas mecánicas o pantallas fuera de los documentos hasta completar la Fase 4 y la prueba cerrada.
-- **AMPLIACIÓN AUTORIZADA POR EL USUARIO (23-nov-2026)**, documentada en `docs/DISENO_V2.md` y `docs/ESTADO_FASES.md`: calendario real (campaña desde el 21-sep-2025, 1ª vuelta 16-nov-2025, 2ª vuelta 14-dic-2025 si se supera `umbral_pasa_balotaje`, mandato desde el 11-mar-2026: en el Turno 8 se vota; si no se alcanza el umbral se pasa a segunda vuelta o se pierde), gabinete elegido por el jugador (hoy 8 de los 25 ministros del catálogo; el tamaño NO fue decisión del usuario y está en revisión: ver `docs/PROPUESTAS.md` PR-04), 5 movimientos por turno con mano continua, delegación, movimientos internos, asesores, coalición con 15 partidos ficticios, cartas por proyecto real y eventos reales. Toda mecánica o pantalla nueva debe citar su fuente y su commit.
+- **AMPLIACIÓN AUTORIZADA POR EL USUARIO (23-nov-2026)**, documentada en `docs/DISENO_V2.md` y `docs/ESTADO_FASES.md`: calendario real (campaña desde el 21-sep-2025, 1ª vuelta 16-nov-2025, 2ª vuelta 14-dic-2025 si se supera `umbral_pasa_balotaje`, mandato desde el 11-mar-2026: en el Turno 8 se vota; si no se alcanza el umbral se pasa a segunda vuelta o se pierde), gabinete elegido por el jugador (**decisión del usuario del 25-nov-2026: el gabinete es el de la vida real, los 25 ministerios, con relleno automático** de los cargos vacíos que nunca pisa lo escogido; PR-04 y PR-05), 5 movimientos por turno con mano continua, delegación, movimientos internos, asesores, coalición con 15 partidos ficticios, cartas por proyecto real y eventos reales. Toda mecánica o pantalla nueva debe citar su fuente y su commit.
+- **AMPLIACIÓN AUTORIZADA POR EL USUARIO (24-nov-2026, PR-01 en `docs/PROPUESTAS.md`)**: pantalla de afiliación (fundar partido propio, candidatura independiente o entrar a uno de los 15 partidos ficticios) y dificultad (fácil, normal, difícil) con presets en `data/leyes.json`; el test ideológico completo es para fundadores e independientes, y quien entra a un partido solo confirma 3 posturas.
 
 ## 3. Arquitectura y Separación de Capas
 - Motor: Godot 4 con GDScript. C++ solo vía GDExtension en bucles con cuello de botella comprobado.
@@ -34,7 +35,7 @@ Ninguna tarea cierra sin pruebas en verde y captura comparada (`tests/captura.gd
 ## 4. Ciclo Fijo del Turno Semanal (8 pasos)
 1. Amanecer: actualiza indicadores (aprobación, capital, cohesión, fiscal, riesgo de ejecución) y regenera PA.
 2. Eventos: programados en la ventana de 7 días y sorteados con la semilla.
-3. Mano: 5 cartas con costo de 1 a 3 movimientos (los PA pasan a llamarse movimientos); al jugar una carta entra otra al instante. Solo circulan las cartas habilitadas por el gabinete y su ventana (docs/DISENO_V2.md).
+3. Mano: 5 cartas con costo de 1 a 3 movimientos (los PA pasan a llamarse movimientos); al jugar una carta entra otra al instante. Solo circulan las cartas habilitadas por el gabinete y su ventana (docs/DISENO_V2.md). Las cartas se juegan deslizándolas o tocándolas dos veces.
 4. Jugar cartas: con movimientos, delegando hasta 2 por turno en un ministro del gabinete (sin gastar movimientos, con riesgo de fallo), o con los 3 movimientos internos de la coalición.
 5. Validación legal: competencia, ley, quórum (Senado y Cámara), plazos y Tribunal Constitucional.
 6. Corrector de realismo: nunca responde con un "no" seco; ofrece versión viable o por tramos.
@@ -48,7 +49,7 @@ Si un paso falla, entra el Corrector antes.
 - Paleta congelada: océano `#0B2236`, panel `#16405F`, oro `#F2C14E`, rojo `#C23B2E`, crema `#FBF7EC`, escala de aprobación `#4CC38A` a `#E8705A`.
 - Tipografías: Space Grotesk 700 (títulos) e Inter 400–600 (texto). Mínimo 10 pt. Zonas táctiles ≥ 44 px. Contraste ≥ 4.5:1. Sin emojis.
 - APK < 150 MB (regiones vía Play Asset Delivery). RAM ≤ 800 MB. 30 fps estables en la escena urbana 3D.
-- El mapa ocupa siempre más de un tercio de la pantalla. El botón principal está siempre en la misma posición.
+- El mapa ocupa siempre más de un tercio de la pantalla. El botón principal está siempre en la misma posición. **Decisión del usuario del 25-nov-2026 (PR-02):** en la pantalla del día el botón del medio es «Terminar semana» (pide confirmar si sobran movimientos), la esquina inferior derecha queda vacía y las cartas se juegan deslizándolas hacia arriba o tocándolas dos veces; soltar sobre el ícono izquierdo delega.
 
 ## 6. Flujo de trabajo con IA
 - Una tarea pequeña por vez, con su prueba. Commits pequeños y descriptivos; un pull request por tarea.
@@ -82,6 +83,12 @@ godot --headless --path . -s tests/test_equipo.gd
 godot --headless --path . -s tests/test_coalicion.gd
 godot --headless --path . -s tests/test_presupuesto.gd
 godot --headless --path . -s tests/test_dificultad.gd
+godot --headless --path . -s tests/test_afiliacion.gd
+godot --headless --path . -s tests/test_finales.gd
+godot --headless --path . -s tests/test_decisiones.gd
+godot --headless --path . -s tests/test_carrera.gd
+godot --headless --path . -s tests/test_ritmo.gd
+godot --headless --path . -s tests/test_identidad.gd
 godot --headless --path . -s tests/test_balance.gd
 godot --headless --path . -s tests/test_ui_humo.gd
 godot --headless --path . -s tests/montecarlo.gd -- 200        # informe de balance

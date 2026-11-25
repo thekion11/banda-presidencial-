@@ -50,3 +50,19 @@ Sin cambios. Pasan con los parámetros finales (suite completa en verde con godo
 
 ## Ley interpretativa de la Constitución (auditoría 3, punto 3)
 Tipo `ley_interpretativa`: 4/7 de los en ejercicio (29/89), con cita del art. 66 en `normas.json`; `verificado:false`. Ninguna carta real la exige, por lo que se añadió la carta de diseño ilustrativa `pol_ley_interpretativa` (rotulada; `tools/generar_carta_interpretativa.py`).
+
+## Medición repetida el 25-nov-2026 (tras las fases A a F)
+`tests/ablacion.gd -- 24` (política «completo», 24 partidas por variante, 1.965 cartas, 25 ministerios con candidatos, director de eventos). Puntaje medio con todo: 2.933.
+
+| variante | cae en crisis | aprobación final | puntaje medio | Δ vs completo |
+|---|---|---|---|---|
+| completo | 0 % | 48,3 | 2.933 | — |
+| sin_asesores | 0 % | 39,3 | 2.610 | −11 % |
+| sin_coalicion | 0 % | 49,4 | 2.890 | −1,5 % (casi inerte) |
+| sin_delegacion | 0 % | 39,5 | 2.047 | −30 % |
+| sin_internos | 0 % | 36,6 | 2.014 | −31 % |
+| sin_bono_aprobacion | 0 % | 48,5 | 2.927 | −0,2 % (inerte) |
+| sin_mano_continua | 41,7 % | 15,8 | 2.023 | −31 % y 42 puntos de crisis |
+| sin_nada_v2 | 0 % | 34,3 | 1.418 | −52 % |
+
+Lectura: los asesores dejaron de ser dominantes (de −32 % a −11 %); la delegación y los movimientos internos pesan ahora ≈ 30 % cada uno (antes −18 % y −5 %), es decir, tienden a ser dominantes y conviene revisarlos; la coalición y el bono por aprobación siguen sin efecto medible con este bot (el bot no asigna cuotas y casi nunca llega a 60 % de aprobación). Pendiente de decisión de diseño: o se les da una función real (cuotas visibles, bono más bajo) o se retiran.

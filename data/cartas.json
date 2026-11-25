@@ -1891,5 +1891,956 @@
       "cifras_ilustrativas": true,
       "nota": "Carta de diseño (ninguna carta real exige este tipo). Quórum 4/7 de los en ejercicio según la cita de normas.json; sin verificar contra el texto consolidado."
     }
+  },
+  {
+    "id": "bala_urgencia",
+    "categoria": "politica",
+    "costo_pa": 2,
+    "titulo": "Discusión inmediata (urgencia legislativa)",
+    "efectos": [
+      {
+        "ind": "aprobacion",
+        "delta": 2
+      },
+      {
+        "ind": "capital",
+        "delta": -3
+      },
+      {
+        "ind": "cohesion",
+        "delta": -1
+      }
+    ],
+    "requisitos": {
+      "ley": null,
+      "quorum": null
+    },
+    "corrector": null,
+    "abre_propuesta_comite": null,
+    "unica": true,
+    "fuente": "fuentes.json#ficticio_2026"
+  },
+  {
+    "id": "bala_veto",
+    "categoria": "politica",
+    "costo_pa": 2,
+    "titulo": "Veto presidencial a una ley del Congreso",
+    "efectos": [
+      {
+        "ind": "capital",
+        "delta": -2
+      },
+      {
+        "ind": "cohesion",
+        "delta": 3
+      },
+      {
+        "ind": "aprobacion",
+        "delta": 1
+      }
+    ],
+    "requisitos": {
+      "ley": null,
+      "quorum": null
+    },
+    "corrector": null,
+    "abre_propuesta_comite": null,
+    "unica": true,
+    "fuente": "fuentes.json#ficticio_2026"
+  },
+  {
+    "id": "bala_dfl",
+    "categoria": "politica",
+    "costo_pa": 3,
+    "titulo": "Decreto con fuerza de ley (DFL)",
+    "efectos": [
+      {
+        "ind": "aprobacion",
+        "delta": 3
+      },
+      {
+        "ind": "capital",
+        "delta": -4
+      },
+      {
+        "ind": "fiscal",
+        "delta": -1
+      }
+    ],
+    "requisitos": {
+      "ley": null,
+      "quorum": null
+    },
+    "corrector": null,
+    "abre_propuesta_comite": null,
+    "unica": true,
+    "fuente": "fuentes.json#ficticio_2026"
+  },
+  {
+    "id": "bala_plebiscito",
+    "categoria": "politica",
+    "costo_pa": 3,
+    "titulo": "Convocar un plebiscito",
+    "efectos": [
+      {
+        "ind": "aprobacion",
+        "delta": 4
+      },
+      {
+        "ind": "capital",
+        "delta": -5
+      },
+      {
+        "ind": "cohesion",
+        "delta": -2
+      }
+    ],
+    "requisitos": {
+      "ley": null,
+      "quorum": null
+    },
+    "corrector": null,
+    "abre_propuesta_comite": null,
+    "unica": true,
+    "fuente": "fuentes.json#ficticio_2026"
+  },
+  {
+    "id": "bala_excepcion",
+    "categoria": "politica",
+    "costo_pa": 3,
+    "titulo": "Declarar estado de excepción",
+    "efectos": [
+      {
+        "ind": "aprobacion",
+        "delta": 2
+      },
+      {
+        "ind": "capital",
+        "delta": -4
+      },
+      {
+        "ind": "cohesion",
+        "delta": -3
+      }
+    ],
+    "requisitos": {
+      "ley": null,
+      "quorum": null
+    },
+    "corrector": null,
+    "abre_propuesta_comite": null,
+    "unica": true,
+    "fuente": "fuentes.json#ficticio_2026"
+  },
+  {
+    "id": "reforma_reeleccion",
+    "categoria": "politica",
+    "costo_pa": 3,
+    "titulo": "Reforma constitucional: reelección presidencial",
+    "efectos": [
+      {
+        "ind": "aprobacion",
+        "delta": -3
+      },
+      {
+        "ind": "cohesion",
+        "delta": -3
+      },
+      {
+        "ind": "capital",
+        "delta": -3
+      }
+    ],
+    "requisitos": {
+      "ley": "reforma_constitucional",
+      "quorum": "reforma_constitucional"
+    },
+    "corrector": null,
+    "abre_propuesta_comite": null,
+    "camara_origen": "senado",
+    "disponibilidad": {
+      "anio_desde": 3,
+      "anio_hasta": 4,
+      "evento": null,
+      "fiscal_min": null,
+      "meta": null
+    },
+    "fuente": "fuentes.json#ficticio_2026"
+  },
+  {
+    "id": "opo_fiscalizar",
+    "categoria": "oposicion",
+    "costo_pa": 1,
+    "titulo": "Fiscalizar al gobierno",
+    "efectos": [
+      {
+        "ind": "aprobacion",
+        "delta": 0.5
+      },
+      {
+        "ind": "capital",
+        "delta": 1
+      },
+      {
+        "ind": "rival",
+        "delta": -1
+      }
+    ],
+    "requisitos": {
+      "ley": null,
+      "quorum": null
+    },
+    "corrector": null,
+    "abre_propuesta_comite": null,
+    "fuente": "fuentes.json#ficticio_2026"
+  },
+  {
+    "id": "opo_acusacion",
+    "categoria": "oposicion",
+    "costo_pa": 3,
+    "titulo": "Acusación constitucional a un ministro",
+    "efectos": [
+      {
+        "ind": "aprobacion",
+        "delta": 1.5
+      },
+      {
+        "ind": "capital",
+        "delta": -3
+      },
+      {
+        "ind": "cohesion",
+        "delta": 1
+      },
+      {
+        "ind": "rival",
+        "delta": -3
+      }
+    ],
+    "requisitos": {
+      "ley": null,
+      "quorum": null
+    },
+    "corrector": null,
+    "abre_propuesta_comite": null,
+    "fuente": "fuentes.json#ficticio_2026"
+  },
+  {
+    "id": "opo_bloquear",
+    "categoria": "oposicion",
+    "costo_pa": 2,
+    "titulo": "Bloquear un proyecto del gobierno",
+    "efectos": [
+      {
+        "ind": "capital",
+        "delta": 2
+      },
+      {
+        "ind": "aprobacion",
+        "delta": -1
+      },
+      {
+        "ind": "cohesion",
+        "delta": 1
+      },
+      {
+        "ind": "rival",
+        "delta": -1.5
+      }
+    ],
+    "requisitos": {
+      "ley": null,
+      "quorum": null
+    },
+    "corrector": null,
+    "abre_propuesta_comite": null,
+    "fuente": "fuentes.json#ficticio_2026"
+  },
+  {
+    "id": "opo_negociar",
+    "categoria": "oposicion",
+    "costo_pa": 2,
+    "titulo": "Negociar un acuerdo legislativo",
+    "efectos": [
+      {
+        "ind": "capital",
+        "delta": 2
+      },
+      {
+        "ind": "cohesion",
+        "delta": 1
+      },
+      {
+        "ind": "rival",
+        "delta": 0.5
+      }
+    ],
+    "requisitos": {
+      "ley": null,
+      "quorum": null
+    },
+    "corrector": null,
+    "abre_propuesta_comite": null,
+    "fuente": "fuentes.json#ficticio_2026"
+  },
+  {
+    "id": "opo_recorrer",
+    "categoria": "oposicion",
+    "costo_pa": 2,
+    "titulo": "Recorrer el país con tu programa",
+    "efectos": [
+      {
+        "ind": "aprobacion",
+        "delta": 1.0
+      },
+      {
+        "ind": "cohesion",
+        "delta": 1
+      }
+    ],
+    "requisitos": {
+      "ley": null,
+      "quorum": null
+    },
+    "corrector": null,
+    "abre_propuesta_comite": null,
+    "fuente": "fuentes.json#ficticio_2026"
+  },
+  {
+    "id": "opo_entrevista",
+    "categoria": "oposicion",
+    "costo_pa": 1,
+    "titulo": "Entrevista en un medio nacional",
+    "efectos": [
+      {
+        "ind": "aprobacion",
+        "delta": 0.5
+      },
+      {
+        "ind": "capital",
+        "delta": -1
+      }
+    ],
+    "requisitos": {
+      "ley": null,
+      "quorum": null
+    },
+    "corrector": null,
+    "abre_propuesta_comite": null,
+    "fuente": "fuentes.json#ficticio_2026"
+  },
+  {
+    "id": "opo_debate",
+    "categoria": "oposicion",
+    "costo_pa": 2,
+    "titulo": "Debate de ideas en el Congreso",
+    "efectos": [
+      {
+        "ind": "aprobacion",
+        "delta": 1.0
+      },
+      {
+        "ind": "capital",
+        "delta": 1
+      },
+      {
+        "ind": "rival",
+        "delta": -1
+      }
+    ],
+    "requisitos": {
+      "ley": null,
+      "quorum": null
+    },
+    "corrector": null,
+    "abre_propuesta_comite": null,
+    "fuente": "fuentes.json#ficticio_2026"
+  },
+  {
+    "id": "opo_congreso_partido",
+    "categoria": "oposicion",
+    "costo_pa": 3,
+    "titulo": "Congreso interno del partido",
+    "efectos": [
+      {
+        "ind": "cohesion",
+        "delta": 4
+      },
+      {
+        "ind": "capital",
+        "delta": -1
+      }
+    ],
+    "requisitos": {
+      "ley": null,
+      "quorum": null
+    },
+    "corrector": null,
+    "abre_propuesta_comite": null,
+    "fuente": "fuentes.json#ficticio_2026"
+  },
+  {
+    "id": "opo_alianza",
+    "categoria": "oposicion",
+    "costo_pa": 2,
+    "titulo": "Armar una alianza de oposición",
+    "efectos": [
+      {
+        "ind": "cohesion",
+        "delta": 2
+      },
+      {
+        "ind": "capital",
+        "delta": 1
+      },
+      {
+        "ind": "aprobacion",
+        "delta": 0.5
+      }
+    ],
+    "requisitos": {
+      "ley": null,
+      "quorum": null
+    },
+    "corrector": null,
+    "abre_propuesta_comite": null,
+    "fuente": "fuentes.json#ficticio_2026"
+  },
+  {
+    "id": "opo_alternativa",
+    "categoria": "oposicion",
+    "costo_pa": 2,
+    "titulo": "Presentar un proyecto alternativo",
+    "efectos": [
+      {
+        "ind": "aprobacion",
+        "delta": 1.0
+      },
+      {
+        "ind": "capital",
+        "delta": -1
+      },
+      {
+        "ind": "rival",
+        "delta": -0.5
+      }
+    ],
+    "requisitos": {
+      "ley": null,
+      "quorum": null
+    },
+    "corrector": null,
+    "abre_propuesta_comite": null,
+    "fuente": "fuentes.json#ficticio_2026"
+  },
+  {
+    "id": "opo_comision",
+    "categoria": "oposicion",
+    "costo_pa": 2,
+    "titulo": "Comisión investigadora",
+    "efectos": [
+      {
+        "ind": "aprobacion",
+        "delta": 1.0
+      },
+      {
+        "ind": "capital",
+        "delta": 1
+      },
+      {
+        "ind": "cohesion",
+        "delta": -1
+      },
+      {
+        "ind": "rival",
+        "delta": -2
+      }
+    ],
+    "requisitos": {
+      "ley": null,
+      "quorum": null
+    },
+    "corrector": null,
+    "abre_propuesta_comite": null,
+    "fuente": "fuentes.json#ficticio_2026"
+  },
+  {
+    "id": "opo_vocero",
+    "categoria": "oposicion",
+    "costo_pa": 1,
+    "titulo": "Fortalecer tu vocería en redes",
+    "efectos": [
+      {
+        "ind": "aprobacion",
+        "delta": 0.5
+      }
+    ],
+    "requisitos": {
+      "ley": null,
+      "quorum": null
+    },
+    "corrector": null,
+    "abre_propuesta_comite": null,
+    "fuente": "fuentes.json#ficticio_2026"
+  },
+  {
+    "id": "opo_territorio",
+    "categoria": "oposicion",
+    "costo_pa": 2,
+    "titulo": "Trabajo territorial con dirigentes",
+    "efectos": [
+      {
+        "ind": "aprobacion",
+        "delta": 0.5
+      },
+      {
+        "ind": "cohesion",
+        "delta": 2
+      }
+    ],
+    "requisitos": {
+      "ley": null,
+      "quorum": null
+    },
+    "corrector": null,
+    "abre_propuesta_comite": null,
+    "fuente": "fuentes.json#ficticio_2026"
+  },
+  {
+    "id": "opo_financiamiento",
+    "categoria": "oposicion",
+    "costo_pa": 1,
+    "titulo": "Reunir financiamiento transparente",
+    "efectos": [
+      {
+        "ind": "capital",
+        "delta": 2
+      },
+      {
+        "ind": "aprobacion",
+        "delta": -1
+      }
+    ],
+    "requisitos": {
+      "ley": null,
+      "quorum": null
+    },
+    "corrector": null,
+    "abre_propuesta_comite": null,
+    "fuente": "fuentes.json#ficticio_2026"
+  },
+  {
+    "id": "opo_experticia",
+    "categoria": "oposicion",
+    "costo_pa": 2,
+    "titulo": "Formar un equipo técnico de programa",
+    "efectos": [
+      {
+        "ind": "capital",
+        "delta": 1
+      },
+      {
+        "ind": "aprobacion",
+        "delta": 0.5
+      },
+      {
+        "ind": "cohesion",
+        "delta": 1
+      }
+    ],
+    "requisitos": {
+      "ley": null,
+      "quorum": null
+    },
+    "corrector": null,
+    "abre_propuesta_comite": null,
+    "fuente": "fuentes.json#ficticio_2026"
+  },
+  {
+    "id": "opo_votar_a_favor",
+    "categoria": "oposicion",
+    "costo_pa": 1,
+    "titulo": "Votar a favor de una buena ley del gobierno",
+    "efectos": [
+      {
+        "ind": "capital",
+        "delta": 1
+      },
+      {
+        "ind": "cohesion",
+        "delta": -1
+      },
+      {
+        "ind": "aprobacion",
+        "delta": 0.5
+      },
+      {
+        "ind": "rival",
+        "delta": 1
+      }
+    ],
+    "requisitos": {
+      "ley": null,
+      "quorum": null
+    },
+    "corrector": null,
+    "abre_propuesta_comite": null,
+    "fuente": "fuentes.json#ficticio_2026"
+  },
+  {
+    "id": "opo_denuncia_contraloria",
+    "categoria": "oposicion",
+    "costo_pa": 2,
+    "titulo": "Denunciar al gobierno ante la Contraloría",
+    "efectos": [
+      {
+        "ind": "aprobacion",
+        "delta": 0.5
+      },
+      {
+        "ind": "rival",
+        "delta": -2
+      },
+      {
+        "ind": "capital",
+        "delta": -1
+      }
+    ],
+    "requisitos": {
+      "ley": null,
+      "quorum": null
+    },
+    "corrector": null,
+    "abre_propuesta_comite": null,
+    "fuente": "fuentes.json#ficticio_2026",
+    "riesgo": {
+      "prob": 0.35,
+      "efectos": [
+        {
+          "ind": "aprobacion",
+          "delta": -1
+        },
+        {
+          "ind": "capital",
+          "delta": -1
+        }
+      ]
+    }
+  },
+  {
+    "id": "opo_primarias",
+    "categoria": "oposicion",
+    "costo_pa": 3,
+    "titulo": "Primarias abiertas de tu sector",
+    "efectos": [
+      {
+        "ind": "cohesion",
+        "delta": 2
+      },
+      {
+        "ind": "aprobacion",
+        "delta": 0.5
+      }
+    ],
+    "requisitos": {
+      "ley": null,
+      "quorum": null
+    },
+    "corrector": null,
+    "abre_propuesta_comite": null,
+    "fuente": "fuentes.json#ficticio_2026",
+    "diferido": {
+      "semanas": 8,
+      "texto": "Las primarias ordenan a tu sector y generan entusiasmo.",
+      "efectos": [
+        {
+          "ind": "cohesion",
+          "delta": 2
+        },
+        {
+          "ind": "aprobacion",
+          "delta": 1
+        }
+      ]
+    }
+  },
+  {
+    "id": "opo_gira",
+    "categoria": "oposicion",
+    "costo_pa": 3,
+    "titulo": "Gira por regiones con tu equipo",
+    "efectos": [
+      {
+        "ind": "aprobacion",
+        "delta": 1.0
+      },
+      {
+        "ind": "capital",
+        "delta": -1
+      }
+    ],
+    "requisitos": {
+      "ley": null,
+      "quorum": null
+    },
+    "corrector": null,
+    "abre_propuesta_comite": null,
+    "fuente": "fuentes.json#ficticio_2026",
+    "diferido": {
+      "semanas": 6,
+      "texto": "Los dirigentes locales te recuerdan y suman apoyos.",
+      "efectos": [
+        {
+          "ind": "aprobacion",
+          "delta": 1
+        },
+        {
+          "ind": "cohesion",
+          "delta": 1
+        }
+      ]
+    }
+  },
+  {
+    "id": "opo_libro",
+    "categoria": "oposicion",
+    "costo_pa": 2,
+    "titulo": "Presentar tu libro programático",
+    "efectos": [
+      {
+        "ind": "capital",
+        "delta": 1
+      },
+      {
+        "ind": "aprobacion",
+        "delta": 0.5
+      }
+    ],
+    "requisitos": {
+      "ley": null,
+      "quorum": null
+    },
+    "corrector": null,
+    "abre_propuesta_comite": null,
+    "fuente": "fuentes.json#ficticio_2026",
+    "diferido": {
+      "semanas": 10,
+      "texto": "Tu programa se cita en la discusión pública.",
+      "efectos": [
+        {
+          "ind": "aprobacion",
+          "delta": 1
+        }
+      ]
+    }
+  },
+  {
+    "id": "opo_afiliacion",
+    "categoria": "oposicion",
+    "costo_pa": 2,
+    "titulo": "Campaña de afiliación al partido",
+    "efectos": [
+      {
+        "ind": "cohesion",
+        "delta": 2
+      },
+      {
+        "ind": "capital",
+        "delta": -1
+      }
+    ],
+    "requisitos": {
+      "ley": null,
+      "quorum": null
+    },
+    "corrector": null,
+    "abre_propuesta_comite": null,
+    "fuente": "fuentes.json#ficticio_2026",
+    "riesgo": {
+      "prob": 0.25,
+      "efectos": [
+        {
+          "ind": "cohesion",
+          "delta": -1
+        }
+      ]
+    }
+  },
+  {
+    "id": "opo_franja_opo",
+    "categoria": "oposicion",
+    "costo_pa": 2,
+    "titulo": "Franja de oposición en televisión",
+    "efectos": [
+      {
+        "ind": "aprobacion",
+        "delta": 1.0
+      },
+      {
+        "ind": "rival",
+        "delta": -1
+      },
+      {
+        "ind": "capital",
+        "delta": -1
+      }
+    ],
+    "requisitos": {
+      "ley": null,
+      "quorum": null
+    },
+    "corrector": null,
+    "abre_propuesta_comite": null,
+    "fuente": "fuentes.json#ficticio_2026"
+  },
+  {
+    "id": "opo_think_tank",
+    "categoria": "oposicion",
+    "costo_pa": 2,
+    "titulo": "Crear un centro de estudios aliado",
+    "efectos": [
+      {
+        "ind": "capital",
+        "delta": 1
+      },
+      {
+        "ind": "cohesion",
+        "delta": 1
+      }
+    ],
+    "requisitos": {
+      "ley": null,
+      "quorum": null
+    },
+    "corrector": null,
+    "abre_propuesta_comite": null,
+    "fuente": "fuentes.json#ficticio_2026",
+    "diferido": {
+      "semanas": 12,
+      "texto": "El centro de estudios publica propuestas que se discuten.",
+      "efectos": [
+        {
+          "ind": "aprobacion",
+          "delta": 1
+        },
+        {
+          "ind": "capital",
+          "delta": 1
+        }
+      ]
+    }
+  },
+  {
+    "id": "opo_pacto_ley",
+    "categoria": "oposicion",
+    "costo_pa": 2,
+    "titulo": "Pactar una ley de consenso con el gobierno",
+    "efectos": [
+      {
+        "ind": "capital",
+        "delta": 2
+      },
+      {
+        "ind": "rival",
+        "delta": 1
+      },
+      {
+        "ind": "cohesion",
+        "delta": -1
+      }
+    ],
+    "requisitos": {
+      "ley": null,
+      "quorum": null
+    },
+    "corrector": null,
+    "abre_propuesta_comite": null,
+    "fuente": "fuentes.json#ficticio_2026",
+    "diferido": {
+      "semanas": 6,
+      "texto": "El acuerdo muestra a una oposición responsable.",
+      "efectos": [
+        {
+          "ind": "aprobacion",
+          "delta": 1
+        }
+      ]
+    }
+  },
+  {
+    "id": "opo_filtrar",
+    "categoria": "oposicion",
+    "costo_pa": 1,
+    "titulo": "Filtrar un dato incómodo del gobierno",
+    "efectos": [
+      {
+        "ind": "rival",
+        "delta": -2
+      },
+      {
+        "ind": "aprobacion",
+        "delta": 0.5
+      }
+    ],
+    "requisitos": {
+      "ley": null,
+      "quorum": null
+    },
+    "corrector": null,
+    "abre_propuesta_comite": null,
+    "fuente": "fuentes.json#ficticio_2026",
+    "riesgo": {
+      "prob": 0.45,
+      "efectos": [
+        {
+          "ind": "aprobacion",
+          "delta": -2
+        },
+        {
+          "ind": "capital",
+          "delta": -1
+        }
+      ]
+    }
+  },
+  {
+    "id": "opo_movilizar",
+    "categoria": "oposicion",
+    "costo_pa": 3,
+    "titulo": "Convocar a una movilización social",
+    "efectos": [
+      {
+        "ind": "aprobacion",
+        "delta": 1.0
+      },
+      {
+        "ind": "cohesion",
+        "delta": 1
+      },
+      {
+        "ind": "rival",
+        "delta": -1.5
+      },
+      {
+        "ind": "capital",
+        "delta": -2
+      }
+    ],
+    "requisitos": {
+      "ley": null,
+      "quorum": null
+    },
+    "corrector": null,
+    "abre_propuesta_comite": null,
+    "fuente": "fuentes.json#ficticio_2026",
+    "riesgo": {
+      "prob": 0.3,
+      "efectos": [
+        {
+          "ind": "aprobacion",
+          "delta": -2
+        }
+      ]
+    }
   }
 ]

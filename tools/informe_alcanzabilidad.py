@@ -23,6 +23,10 @@ def anio_de_dia(dia: int, dias_mandato: int, anios: int) -> int:
 def main() -> int:
     leyes, ministros = cargar("leyes.json"), cargar("ministros.json")
     cartas = cargar("cartas.json") + cargar("cartas_reales.json")
+    ruta_cur = D / "cartas_curadas.json"
+    if ruta_cur.exists():
+        cartas += json.loads(ruta_cur.read_text(encoding="utf-8"))
+    cartas = [c for c in cartas if c["categoria"] != "oposicion"]  # las cartas de oposición circulan solo en esa etapa (MotorGabinete.bloqueo), no dependen del gabinete
     gab, dias = leyes["gabinete"], leyes["hemiciclo"]["duracion_mandato_dias"]
     anios = int(gab["anios_mandato"])
     siempre, alias = set(gab["categorias_siempre"]), gab.get("categorias_alias", {})
