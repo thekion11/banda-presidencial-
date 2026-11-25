@@ -87,7 +87,7 @@ func _correr() -> void:
 	Tutorial.ruta = "user://preferencias_video.json"
 	DirAccess.remove_absolute(ProjectSettings.globalize_path(Tutorial.ruta))
 	_poner_dedo()
-	create_timer(130.0).timeout.connect(quit)  # tope de seguridad: el video nunca pasa de 130 s
+	create_timer(150.0).timeout.connect(quit)  # tope de seguridad: el video nunca pasa de 150 s
 	process_frame.connect(func() -> void: _process_dedo(1.0 / 30.0))
 	var main: Node = load("res://game/main.tscn").instantiate()
 	root.add_child(main)
@@ -205,6 +205,28 @@ func _correr() -> void:
 		if h is Control and h != dia._toast:
 			h.queue_free()
 
+	# 6c) Debate presidencial (escenografía de TV) y debate en radio.
+	var nombres: Dictionary = main.motor.catalogo_leyes["congreso"]["nombres"]
+	var deb := {"titulo": "Debate presidencial final", "hora": "22:00", "descripcion": "Tus rivales te acusan de prometer sin financiamiento. ¿Cómo respondes?",
+		"escena": {"nombre": "Debate presidencial final", "ronda": 2, "rondas": 3},
+		"opciones": [{"texto": "Mostrar las cifras del programa"}, {"texto": "Contraatacar al rival"}, {"texto": "Apelar a la emoción"}]}
+	dia._capa.add_child(OverlaysDia.evento(deb, func() -> void: pass, nombres, 50, func(_i: int) -> void: pass))
+	await _esperar(3.2)
+	for h in dia._capa.get_children():
+		if h is Control and h != dia._toast:
+			h.queue_free()
+	var rad := {"titulo": "Debate en radio", "hora": "08:00", "descripcion": "La conductora pregunta por el costo de la vida.",
+		"escena": {"nombre": "Debate en radio", "ronda": 1, "rondas": 2},
+		"opciones": [{"texto": "Prometer un alivio concreto"}, {"texto": "Explicar con calma"}]}
+	dia._capa.add_child(OverlaysDia.evento(rad, func() -> void: pass, nombres, 50, func(_i: int) -> void: pass))
+	await _esperar(2.6)
+	for h in dia._capa.get_children():
+		if h is Control and h != dia._toast:
+			h.queue_free()
+	# 6d) Obra terminada: fuegos artificiales sobre su región.
+	dia._mapa.lanzar_fuegos("valparaiso")
+	await _esperar(2.4)
+
 	# 7) Resultado de la elección: cifra que cuenta, barra que se llena, confeti.
 	var regional: Dictionary = main.motor.estado.aprobacion_regional.duplicate()
 	var el: Control = PantallaEleccion.crear(main.motor, d["regiones"], regional, {"electo": true, "balotaje": false, "ronda": 1, "voto_final": 57.4, "umbral": 51.0}, func() -> void: pass)
@@ -216,6 +238,9 @@ func _correr() -> void:
 	await _esperar(0.3)
 	if is_instance_valid(el):
 		el.queue_free()
+	# 7b) Cambio de mando: la banda presidencial y la piocha.
+	CambioMando.mostrar(dia._capa, "11 mar 2026", "Movimiento Cívico Austral", func() -> void: pass)
+	await _esperar(4.6)
 
 	# 8) Fin del mandato y vuelta al menú.
 	var n := 0

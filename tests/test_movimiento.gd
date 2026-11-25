@@ -65,6 +65,17 @@ func _correr() -> void:
 	Movimiento.movimientos(pas, b0, 0, true)
 	_check(pas.modulate == Color.WHITE, "sin animaciones la pastilla agotada no cambia de color")
 
+	var asumio := [false]
+	CambioMando.mostrar(c0, "11 mar 2026", "MCA", func() -> void: asumio[0] = true)
+	_check(asumio[0], "sin animaciones el cambio de mando no retiene el primer día de gobierno")
+	var tv := EscenaTV.crear({"nombre": "Debate en radio", "ronda": 2, "rondas": 2})
+	c0.add_child(tv)
+	_check(not tv.is_processing(), "sin animaciones la escenografía de TV no se anima")
+	Musica.etapa("campana")
+	Musica.tension(true)
+	Musica.tension(false)
+	_check(true, "la música no falla en headless")
+
 	# 2) Forzado encendido: las animaciones corren y terminan exactas.
 	Movimiento.forzado = 1
 	var b := Barras.boton_jugar()
@@ -141,6 +152,20 @@ func _correr() -> void:
 	_check(conf.is_processing(), "el confeti se anima con el movimiento encendido")
 	await _esperar(7.8)  # caída máxima ≈ (844 + 253 + 20) / 160 s
 	_check(not is_instance_valid(conf), "el confeti se libera solo al terminar")
+	var previo := Ajustes.reducir
+	Ajustes.reducir = true
+	_check(Movimiento.activo() and not Movimiento.intenso(), "«Reducir movimiento» deja las animaciones suaves y quita las intensas")
+	var pt2 := Particulas.new()
+	root.add_child(pt2)
+	_check(not pt2.visible, "con «Reducir movimiento» no hay partículas")
+	Ajustes.reducir = previo
+	_check(Ajustes.leer("reducir") == previo and Ajustes.leer("musica") == Ajustes.musica, "Ajustes lee música y reducir movimiento")
+	var cm := [false]
+	CambioMando.mostrar(c0, "11 mar 2026", "MCA", func() -> void: cm[0] = true)
+	await _esperar(0.5)
+	_check(not cm[0], "el cambio de mando retiene el primer día mientras se ve")
+	await _esperar(4.0)
+	_check(cm[0], "el cambio de mando se va solo")
 	Movimiento.forzado = 0
 	_check(not Movimiento.activo(), "forzado apagado desactiva el movimiento")
 	Movimiento.forzado = -1

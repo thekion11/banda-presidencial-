@@ -120,6 +120,7 @@ func _mostrar_creditos() -> void:
 		+ "Mapa de Sudamérica: Natural Earth (dominio público), simplificado; mapa ilustrativo que no define límites ni reclamos. Relaciones entre países: cifras ilustrativas.\n" \
 		+ "Ilustraciones de cartas generadas con IA (Gemini y Canva) para este proyecto.\n" \
 		+ "Tipografías: Space Grotesk e Inter (SIL OFL 1.1).\n" \
+		+ "Música y efectos de sonido: sintetizados para este proyecto (tools/audio), sin muestras de terceros.\n" \
 		+ "Motor: Godot Engine (MIT).\n" \
 		+ "Cifras marcadas como ilustrativas no representan datos oficiales."
 	var sc := ScrollContainer.new()

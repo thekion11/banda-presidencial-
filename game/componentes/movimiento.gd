@@ -21,6 +21,12 @@ static func activo() -> bool:
 	return Ajustes.animaciones and DisplayServer.get_name() != "headless"
 
 
+static func intenso() -> bool:
+	## Efectos fuertes (temblores, golpes de cámara, destellos, partículas). Ajustes › «Reducir movimiento» los quita
+	## y deja las animaciones suaves (fundidos, cifras que cuentan, barras).
+	return activo() and not Ajustes.reducir
+
+
 static func entrar_pantalla(p: Control) -> void:
 	## La pantalla nueva se funde y sube unos píxeles (salida cúbica). Sin animaciones, aparece de inmediato.
 	if not activo():
@@ -192,7 +198,7 @@ static func ancho(c: Control, w: float, demora: float = 0.0, dur: float = ENFASI
 
 static func mecer(c: Control, y: float, amplitud: float = 3.0, demora: float = 0.45) -> void:
 	## Vaivén vertical suave y continuo (la carta elegida de la mano). El tween muere con el nodo.
-	if not activo():
+	if not intenso():
 		return
 	var tw := c.create_tween().set_loops()
 	tw.tween_interval(demora)

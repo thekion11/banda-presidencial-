@@ -68,7 +68,7 @@ func _golpe() -> void:
 	Feedback.sonar("exito" if aprobada else "error")
 	Feedback.vibrar(45 if aprobada else 70)
 	var capa := get_parent()  # la columna del evento tiembla un instante (no es un contenedor: su posición no se reinicia)
-	if capa != null and capa.get_parent() is Control and not (capa.get_parent() is Container):
+	if Movimiento.intenso() and capa != null and capa.get_parent() is Control and not (capa.get_parent() is Container):
 		var c := capa as Control
 		var tw := c.create_tween()
 		for d in [Vector2(0, 7), Vector2(-4, -3), Vector2(3, 2), Vector2(0, 0)]:
@@ -85,7 +85,7 @@ func _draw() -> void:
 	var r := Rect2(_caja.position, _caja.size).grow(8.0 + 34.0 * _onda)
 	draw_style_box(_contorno(col, 1.0 - _onda), r)
 	var c := size * 0.5
-	for v in _chispas:
+	for v in (_chispas if Movimiento.intenso() else []):
 		var p := c + v * (_caja.size.x * 0.5 + 70.0 * _onda)
 		draw_circle(p, 3.5 * (1.0 - _onda), Color(col if aprobada else Tema.BAJA, 1.0 - _onda))
 

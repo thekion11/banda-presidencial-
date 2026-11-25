@@ -21,7 +21,7 @@ func _ready() -> void:
 	col.add_theme_constant_override("separation", 12)
 	mc.add_child(col)
 	col.add_child(Tema.etiqueta("Ajustes", 24, Tema.TEXTO, true))
-	for fila in [["Sonido", "sonido"], ["Vibración", "vibracion"], ["Animaciones y movimiento", "animaciones"], ["Texto grande", "texto_grande"], ["Colores para daltonismo", "daltonico"]]:
+	for fila in [["Sonido", "sonido"], ["Música", "musica"], ["Vibración", "vibracion"], ["Animaciones y movimiento", "animaciones"], ["Reducir movimiento", "reducir"], ["Texto grande", "texto_grande"], ["Colores para daltonismo", "daltonico"]]:
 		var cb := CheckButton.new()
 		cb.text = fila[0]
 		cb.custom_minimum_size = Vector2(0, 52)

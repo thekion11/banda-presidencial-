@@ -111,4 +111,13 @@ Cuadros del recorrido grabado (`tests/grabar_video.gd`, 780×1688): `docs/compar
 
 Limitación: los eventos del juego (`data/eventos.json`) no traen región, así que no hay «pin del evento en su región»; agregarlo exigiría datos nuevos con fuente.
 
+### Paquete 2 del 25-nov-2026: momentos y sonido (pedido por el usuario: «Sigue»)
+| Elemento | Antes | Ahora | Archivo |
+|---|---|---|---|
+| Ganar la elección | Del resultado se pasaba al primer día | Cambio de mando: la banda presidencial (azul, crema y rojo con filo dorado) cruza la pantalla sobre La Moneda, aparece la piocha dorada y la fecha del mandato; se va sola o al tocarla | `cambio_mando.gd` |
+| Debates y entrevistas (escenas por rondas) | Mismo diseño que un evento | Focos que barren, marco de cámara, insignia «EN VIVO» que late y puntos de ronda; en radio, «AL AIRE» y ondas de micrófono | `escena_tv.gd` |
+| Obra terminada | Solo desaparecía el marcador | Fuegos artificiales oro, crema y rojo sobre la región tras el telón de fin de semana | `mapa_chile.gd › lanzar_fuegos` |
+| Música | Sin música | Bucles sintetizados por etapa (campaña, gobierno, oposición; el menú usa gobierno) y pista de tensión mientras hay una votación en pantalla, con fundidos de 1,5 s; ajuste «Música» | `musica.gd`, `tools/audio/generar_musica.py` |
+| Ajustes | Animaciones sí/no | Nuevo «Reducir movimiento»: quita temblores, golpe de cámara, chispas, partículas y suaviza el destello rojo; deja fundidos, cifras y barras | `ajustes.gd`, `movimiento.gd › intenso` |
+
 Reglas: todo el movimiento respeta Ajustes › «Animaciones y movimiento» y se apaga en modo headless, así que las pruebas miden siempre el estado final. El azar de las partículas es solo visual y no toca la semilla de la partida. Prueba propia: `tests/test_movimiento.gd`.

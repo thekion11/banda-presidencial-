@@ -126,6 +126,11 @@ static func evento(ev: Dictionary, al_continuar: Callable, nombres: Dictionary, 
 	var capa := Control.new()
 	capa.set_anchors_preset(Control.PRESET_FULL_RECT)
 	capa.add_child(_fondo_radial())
+	if ev.get("votacion", null) != null:  # votación del Congreso: música de tensión mientras está en pantalla
+		Musica.tension(true)
+		capa.tree_exiting.connect(func() -> void: Musica.tension(false))
+	if ev.has("escena"):  # debate o entrevista: focos, EN VIVO / AL AIRE y puntos de ronda detrás del texto
+		capa.add_child(EscenaTV.crear(ev["escena"]))
 	var col := VBoxContainer.new()
 	col.set_anchors_preset(Control.PRESET_FULL_RECT)
 	col.offset_left = 16

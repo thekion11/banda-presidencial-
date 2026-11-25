@@ -34,6 +34,7 @@ var _vivo: Control  # capa animada barata: tendencias, bastión, obras y propues
 var _previos: Dictionary = {}
 var _tendencia: Dictionary = {}  # id -> +1 / -1 desde el último cambio de aprobación regional
 var _t: float = 0.0
+var _fuegos: Array[Dictionary] = []  # {pos, inicio, color}: obra terminada (dirección visual v4)
 
 
 func cargar_geo(geo: Dictionary) -> void:
@@ -128,6 +129,9 @@ func actualizar(p_valores: Dictionary, p_obras: Dictionary = {}, p_propuestas: D
 	if not cambios.is_empty():
 		_tendencia = cambios  # laten las regiones que se movieron en el último cambio
 	_previos = p_valores.duplicate()  # copia: el estado modifica el diccionario en su lugar
+	for id in obras.keys():  # una obra salió de «en curso»: se terminó esta semana
+		if int(p_obras.get(id, 0)) < int(obras[id]):
+			lanzar_fuegos(id, 2.6)  # tras el telón de fin de semana
 	valores = p_valores
 	obras = p_obras
 	propuestas = p_propuestas
@@ -219,9 +223,10 @@ func reaccionar(id: String, color: Color) -> void:
 	var p := centro(id) if _banda_y.has(id) else size * 0.5
 	_onda = {"pos": p, "t": 0.0, "color": color}
 	_destello_id = id
+	var fuerza := 1.0 if Movimiento.intenso() else 0.0  # con «Reducir movimiento»: ondas y destello, sin golpe de cámara
 	create_tween().tween_method(func(t: float) -> void:
-		var s := 1.0 + 0.07 * sin(t * 2.6 * PI) * exp(-3.2 * t)
-		var temblor := Vector2(sin(t * 41.0), cos(t * 33.0)) * 3.0 * pow(1.0 - t, 2.0)
+		var s := 1.0 + 0.07 * fuerza * sin(t * 2.6 * PI) * exp(-3.2 * t)
+		var temblor := Vector2(sin(t * 41.0), cos(t * 33.0)) * 3.0 * fuerza * pow(1.0 - t, 2.0)
 		_camara = Transform2D(0.0, Vector2(s, s), 0.0, p * (1.0 - s) + temblor)
 		_destello = 1.0 - t
 		_onda["t"] = t
@@ -230,6 +235,40 @@ func reaccionar(id: String, color: Color) -> void:
 			_destello = 0.0
 			_onda = {}
 		queue_redraw(), 0.0, 1.0, 0.9)
+
+
+func lanzar_fuegos(id: String, demora: float = 0.0) -> void:
+	## Tres fuegos artificiales (oro, crema y rojo) sobre la región de una obra terminada.
+	if not Movimiento.intenso() or not _banda_y.has(id):
+		return
+	for k in range(3):
+		_fuegos.append({"id": id, "dx": -18.0 + 18.0 * float(k), "inicio": _t + demora + 0.28 * float(k), "color": [Tema.ORO, Tema.CREMA, Tema.ROJO][k]})
+	get_tree().create_timer(demora).timeout.connect(func() -> void: Feedback.sonar("exito"))
+
+
+func _dibujar_fuegos(v: Control) -> void:
+	var vivos: Array[Dictionary] = []
+	for f in _fuegos:
+		var l := _t - float(f["inicio"])
+		if l > 1.6:
+			continue
+		vivos.append(f)
+		if l < 0.0:
+			continue
+		var base := centro(String(f["id"])) + Vector2(float(f["dx"]), 0.0)
+		var col: Color = f["color"]
+		if l < 0.4:  # sube el cohete
+			var p := base + Vector2(0.0, -70.0 * (l / 0.4))
+			v.draw_circle(p, 2.5, col)
+			v.draw_line(p, p + Vector2(0.0, 10.0), Color(col, 0.5), 1.5)
+			continue
+		var k := (l - 0.4) / 1.2  # estalla en 16 chispas con caída
+		var c := base + Vector2(0.0, -70.0)
+		for i in range(16):
+			var a := TAU * float(i) / 16.0
+			var p2 := c + Vector2(cos(a), sin(a)) * 34.0 * sqrt(k) + Vector2(0.0, 22.0 * k * k)
+			v.draw_circle(p2, 2.2 * (1.0 - k) + 0.6, Color(col, 1.0 - k))
+	_fuegos = vivos
 
 
 func posicion_global(id: String) -> Vector2:
@@ -318,4 +357,5 @@ func _dibujar_vivo() -> void:
 			v.draw_circle(c2, 9.5 * e, Tema.ROJO)
 			v.draw_colored_polygon(PackedVector2Array([c2 + Vector2(-5, 1), c2 + Vector2(0, -5), c2 + Vector2(5, 1)]), Tema.TEXTO)
 			v.draw_rect(Rect2(c2 + Vector2(-3.5, 1), Vector2(7, 5)), Tema.TEXTO)
+	_dibujar_fuegos(v)
 	v.draw_set_transform_matrix(Transform2D.IDENTITY)

@@ -19,8 +19,8 @@ static func mostrar(capa: Control, ministro: Dictionary, chips: Array) -> void:
 		return
 	Feedback.sonar("alerta")
 	Feedback.vibrar(90)
-	var rojo := ColorRect.new()  # destello rojo con viñeta
-	rojo.color = Color(Tema.ROJO, 0.42)
+	var rojo := ColorRect.new()  # destello rojo con viñeta (suave con «Reducir movimiento»)
+	rojo.color = Color(Tema.ROJO, 0.42 if Movimiento.intenso() else 0.15)
 	rojo.set_anchors_preset(Control.PRESET_FULL_RECT)
 	rojo.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	capa.add_child(rojo)
@@ -69,7 +69,7 @@ static func mostrar(capa: Control, ministro: Dictionary, chips: Array) -> void:
 
 static func temblar(c: Control, fuerza: float = 4.0) -> void:
 	## Sacudida horizontal breve. Si el control está en un contenedor, este lo reacomoda al final.
-	if not Movimiento.activo() or c == null:
+	if not Movimiento.intenso() or c == null:
 		return
 	var x0 := c.position.x
 	var tw := c.create_tween()

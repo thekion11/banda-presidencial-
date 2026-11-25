@@ -34,6 +34,7 @@ func _ready() -> void:
 	fondo.set_anchors_preset(Control.PRESET_FULL_RECT)
 	add_child(fondo)
 	Feedback.iniciar(self)
+	Musica.iniciar(self)
 	get_tree().node_added.connect(_al_agregar)  # todo botón del juego se hunde y rebota al tocarlo (Movimiento.presion)
 	mostrar_menu()
 
@@ -53,6 +54,7 @@ func _cambiar(p: Control) -> void:
 
 
 func mostrar_menu(aviso: String = "") -> void:
+	Musica.etapa("gobierno")  # el menú suena solemne
 	var m := PantallaMenu.new()
 	m.aviso = aviso
 	m.hay_guardado = FileAccess.file_exists(RUTA_GUARDADO)
@@ -137,6 +139,7 @@ func mostrar_dia() -> void:
 	if not MotorTurno.ETAPAS_JUEGO.has(motor.estado.etapa) and not motor.estado.eleccion_pendiente(int(datos["leyes"]["hemiciclo"]["semanas_campana"])):
 		mostrar_fin()
 		return
+	Musica.etapa(motor.estado.etapa)
 	var d := PantallaDia.new()
 	d.motor = motor
 	d.datos = datos
