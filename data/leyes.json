@@ -11,6 +11,9 @@
     "umbral_pasa_balotaje": 38.0
   },
   "campana": {
+    "min_promesas": 2,
+    "penal_sin_promesas": 12.0,
+    "nota_promesas": "U3: quien llega a la elección con menos de min_promesas es «intrascendente»: pierde penal_sin_promesas puntos de voto y, si gobierna, su legado vale cero.",
     "aprobacion_base_por_carta": 0.2,
     "piso_aprobacion_carta": 0.5,
     "ruido_eleccion": 2.0,
@@ -287,6 +290,7 @@
   "finales": {
     "nota": "Epílogos del mandato. Se evalúan en orden y gana el primero que cumpla todas sus condiciones (motivo, aprobacion_min/max, obras_min, legado_min = proporción de promesas cumplidas, fiscal_min/max). Solo texto: no cambia el estado ni el puntaje.",
     "lista": [
+      {"id": "intrascendente", "motivo": "fin_mandato", "promesas_max": 0, "titulo": "Un presidente intrascendente", "texto": "No prometiste nada y no dejaste compromisos que cumplir. Gobernaste sin rumbo y la historia apenas te recordará."},
       {"id": "reelegido", "motivo": "fin_mandato", "carta_ejecutada": "reforma_reeleccion", "aprobacion_min": 55.0, "titulo": "Un segundo mandato", "texto": "Reformaste la Constitución para poder continuar y la gente te respaldó. (Mecánica ilustrativa del juego: la regla real de reelección se verificará contra el texto oficial.)"},
       {"id": "reeleccion_fallida", "motivo": "fin_mandato", "carta_ejecutada": "reforma_reeleccion", "titulo": "Quisiste quedarte y no te acompañaron", "texto": "Impulsaste la reelección y pagaste el costo político: el respaldo no alcanzó. (Mecánica ilustrativa.)"},
       {"id": "derrota", "motivo": "derrota_electoral", "titulo": "La Moneda quedó lejos", "texto": "Tu campaña no convenció a suficientes votantes. La historia te recordará como quien casi llegó."},

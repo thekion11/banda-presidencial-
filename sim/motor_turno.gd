@@ -71,7 +71,7 @@ func turnos_mandato() -> int:
 func aplicar_partido_inicial(datos_partido: Dictionary) -> void:
 	estado.partido = EstadoSimulacion.normalizar(datos_partido)
 	estado.etapa = "campana"
-	coalicion.partidos.erase(String(datos_partido.get("partido_base", "")))  # tu propio partido no es aliado (PR-01)
+	coalicion.adoptar_partido_propio(String(datos_partido.get("partido_base", "")))  # tu partido es aliado permanente que pide poder (PR-01)
 	estado.promesas_campana.clear()
 	var ind_ini: Dictionary = estado.partido["indicadores_iniciales"]
 	for clave in ind_ini.keys():
@@ -161,57 +161,40 @@ func resolver_eleccion_presidencial() -> Dictionary: return mandato.resolver_ele
 # ---------------------------------------------------------------- Fachada (la UI y los tests usan estos nombres)
 func procesar_eventos_semana() -> Array[Dictionary]: return eventos.procesar_semana()
 
-
 func costo_carta(carta: Dictionary, ministro_id: String = "") -> int: return cartas.costo_carta(carta, ministro_id)
-
 
 func es_unica(carta: Dictionary) -> bool: return cartas.es_unica(carta)
 
-
 func vista_carta(idx: int, ministro_id: String = "") -> Dictionary: return cartas.vista_carta(idx, ministro_id)
-
 
 func jugar_carta(idx: int, ministro_id: String = "", region_id: String = "") -> Dictionary: return cartas.jugar_carta(idx, ministro_id, region_id)
 
-
 func aprobar_propuesta(prop_id: String, variante_id: String, region_id: String = "", custom: Dictionary = {}, nombres: Dictionary = {}) -> Dictionary: return cartas.aprobar_propuesta(prop_id, variante_id, region_id, custom, nombres)
 
-
 func impulsar_proyecto(pid: String) -> Dictionary: return sectra.impulsar(pid)
-
 
 func calcular_puntaje() -> int: return mandato.calcular_puntaje()
 
 
 func robar_mano(n: int = 5) -> void: mazo.robar(n)
 
-
 func carta_disponible(carta: Dictionary) -> bool: return gabinete.disponible(carta)
-
 
 func elegir_gabinete(ids: Array) -> Dictionary: return gabinete.elegir(ids)
 
-
 func delegar_carta(idx: int, ministro_id: String, region_id: String = "") -> Dictionary: return cartas.jugar_carta(idx, ministro_id, region_id, true)
-
 
 func prob_fallo_delegacion(idx: int, ministro_id: String) -> float: return gabinete.prob_fallo(estado.mano[idx], ministro_id)
 
-
 func buscar_meta(meta_id: String) -> Dictionary: return movimientos.buscar_meta(meta_id)
-
 
 func ajustar_sector(sector: String, direccion: int) -> Dictionary: return movimientos.ajustar_sector(sector, direccion)
 
-
 func reducir_errores() -> Dictionary: return movimientos.reducir_errores()
-
 
 func acelerar_proyecto(idx: int) -> Dictionary: return movimientos.acelerar_proyecto(idx)
 
-
 func contratar_asesor(id: String) -> Dictionary: return equipo.contratar(id)
-
 
 func despedir_asesor(id: String) -> Dictionary: return equipo.despedir(id)
 func unirse_coalicion(id: String) -> Dictionary: return coalicion.unirse(id)

@@ -23,6 +23,7 @@ const TEXTOS := {
 	"limite_asesores": "Ya tienes el máximo de asesores; despide a uno primero.",
 	"asesor_inexistente": "Ese asesor no existe.",
 	"no_contratado": "Ese asesor no está contratado.",
+	"partido_propio": "Tu partido no se abandona: si lo desatiendes, rompe contigo.",
 	"ya_aliado": "Ese partido ya es parte de tu coalición.",
 	"limite_aliados": "Tu coalición está completa; deja salir a un aliado primero.",
 	"no_aliado": "Ese partido no es tu aliado.",

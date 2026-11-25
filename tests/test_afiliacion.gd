@@ -25,8 +25,12 @@ func _init() -> void:
 	_check(String(exi["partido_base"]) == String(base["id"]) and exi["afiliacion"] == "existente", "el existente recuerda su partido")
 	_check(absf(float(exi["eje_eco"]) - float(base["ideologia"]["eco"])) <= float(cfg["opciones"]["existente"]["peso_postura"]) * 3.0 + 0.001, "la ideología del existente parte de la del partido")
 	var m := Partida.crear(datos, 11, exi)
-	_check(not m.coalicion.partidos.has(String(base["id"])), "tu propio partido no es aliado")
-	_check(m.coalicion.partidos.size() == datos["coalicion"].size() - 1, "los demás partidos siguen disponibles")
+	_check(m.estado.coalicion.has(String(base["id"])) and bool(m.estado.coalicion[String(base["id"])]["propio"]), "tu partido entra como aliado permanente")
+	_check(not bool(m.coalicion.salir(String(base["id"]))["ok"]), "tu partido no se abandona a voluntad")
+	m.estado.coalicion[String(base["id"])]["ministros"] = []  # sin sus ministerios
+	for _s2 in range(40):  # si lo desatiendes rompe y te cuesta cohesión
+		m.coalicion.amanecer()
+	_check(not m.estado.coalicion.has(String(base["id"])), "un partido ignorado rompe")
 	var m2 := Partida.crear(datos, 11, ind)
 	_check(m2.coalicion.partidos.size() == datos["coalicion"].size(), "el independiente puede aliarse con todos")
 	for _s in range(3):
@@ -46,6 +50,18 @@ func _init() -> void:
 	_check(float(pp["indicadores_iniciales"]["capital"]) > cap0 and pp["habilidad"] == "gestor" and pp["color_emblema"] == "#3D7EA6", "la habilidad suma capital y guarda el color")
 	GeneradorPartido.aplicar_habilidad(pp, "inexistente", "#000000", datos["leyes"]["habilidades"])
 	_check(pp["habilidad"] == "negociador" and pp["color_emblema"] == "#C23B2E", "valores inválidos vuelven al defecto")
+	# U3: sin promesas eres intrascendente y pierdes votos
+	var umbral := float(datos["leyes"]["hemiciclo"]["umbral_victoria_presidencial"])
+	var mp := Partida.crear(datos, 5, propio)
+	mp.estado.turno_actual = int(datos["leyes"]["hemiciclo"]["semanas_campana"]) + 1
+	mp.estado.indicadores["aprobacion"] = umbral + 6.0
+	_check(not bool(mp.resolver_eleccion_presidencial()["electo"]), "sin promesas no se gana aunque la aprobación supere el umbral")
+	var mq := Partida.crear(datos, 5, propio)
+	mq.estado.turno_actual = int(datos["leyes"]["hemiciclo"]["semanas_campana"]) + 1
+	mq.estado.indicadores["aprobacion"] = umbral + 6.0
+	mq.estado.promesas_campana.append({"carta_id": "a", "cumplida": false})
+	mq.estado.promesas_campana.append({"carta_id": "b", "cumplida": false})
+	_check(bool(mq.resolver_eleccion_presidencial()["electo"]), "con promesas suficientes se gana")
 	print("test_afiliacion: ", "OK" if _fallos == 0 else "FALLO")
 	quit(1 if _fallos > 0 else 0)
 

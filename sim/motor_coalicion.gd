@@ -31,6 +31,22 @@ func afinidad(id: String) -> float:
 	return clampf(1.0 - dist / float(_cfg()["distancia_max"]), 0.0, 1.0)
 
 
+func adoptar_partido_propio(id: String) -> void:
+	## PR-01: quien entra a un partido existente lo lleva como aliado permanente que pide poder (sus ministerios) y castiga si se le ignora.
+	if not partidos.has(id):
+		return
+	var pet: Dictionary = partidos[id]["peticion"]
+	var mins: Array = []
+	for mid in partidos[id]["ministerios_pedidos"]:
+		if m.estado.gabinete.has(mid) and mins.size() < int(pet["ministerios"]):
+			mins.append(mid)
+	m.estado.coalicion[id] = {"satisfaccion": float(_cfg()["satisfaccion_inicial"]), "ministros": mins, "asesores": [], "propio": true}
+
+
+func _n_aliados() -> int:
+	return m.estado.coalicion.values().filter(func(c: Dictionary) -> bool: return not bool(c.get("propio", false))).size()
+
+
 func unirse(id: String) -> Dictionary:
 	var est := m.estado
 	if est.etapa != "campana" and est.etapa != "gobierno":
@@ -39,7 +55,7 @@ func unirse(id: String) -> Dictionary:
 		return {"ok": false, "razon": "partido_inexistente"}
 	if est.coalicion.has(id):
 		return {"ok": false, "razon": "ya_aliado"}
-	if est.coalicion.size() >= int(_cfg()["max_aliados"]):
+	if _n_aliados() >= int(_cfg()["max_aliados"]):
 		return {"ok": false, "razon": "limite_aliados"}
 	est.registrar_entrada("coalicion", {"accion": "unirse", "id": id})
 	est.coalicion[id] = {"satisfaccion": float(_cfg()["satisfaccion_inicial"]), "ministros": [], "asesores": []}
@@ -52,6 +68,8 @@ func salir(id: String, ruptura: bool = false) -> Dictionary:
 	var est := m.estado
 	if not est.coalicion.has(id):
 		return {"ok": false, "razon": "no_aliado"}
+	if not ruptura and bool(est.coalicion[id].get("propio", false)):
+		return {"ok": false, "razon": "partido_propio"}  # tu partido no se abandona: se rompe solo si lo desatiendes
 	if not ruptura:
 		est.registrar_entrada("coalicion", {"accion": "salir", "id": id})
 	est.coalicion.erase(id)
@@ -145,6 +163,8 @@ func _recalcular_apoyo() -> void:
 	var sen := 0.0
 	var cam := 0.0
 	for id in m.estado.coalicion.keys():
+		if bool(m.estado.coalicion[id].get("propio", false)):
+			continue  # sus escaños ya son «propios» (partido de origen)
 		var f := float(m.estado.coalicion[id]["satisfaccion"]) / 100.0
 		sen += float(partidos[id]["escanos_senado"]) * f
 		cam += float(partidos[id]["escanos_camara"]) * f

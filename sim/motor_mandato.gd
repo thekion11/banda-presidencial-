@@ -40,7 +40,7 @@ func calcular_puntaje() -> int:
 	var p: Dictionary = m.catalogo_leyes["puntaje"]
 	var total := m.estado.promesas_campana.size()
 	var cumplidas := total - m.estado.promesas_pendientes().size()
-	var legado := float(cumplidas) / float(total) if total > 0 else 1.0
+	var legado := float(cumplidas) / float(total) if total > 0 else 0.0  # sin promesas no hay legado (U3: intrascendente)
 	return roundi(m.estado.ind("aprobacion") * float(p["peso_aprobacion"]) + legado * float(p["peso_legado"])
 			+ float(m.estado.obras_terminadas.size()) * float(p["peso_obras"])
 			+ m.estado.ind("fiscal") * float(p["peso_fiscal"]) + m.estado.ind("capital") * float(p["peso_capital"]))
@@ -95,11 +95,13 @@ func epilogo() -> Dictionary:
 	## Final variado (solo texto, no toca el estado): primer epílogo de data/leyes.json «finales» cuyas condiciones se cumplen.
 	var e := m.estado
 	var total := e.promesas_campana.size()
-	var legado := float(total - e.promesas_pendientes().size()) / float(total) if total > 0 else 1.0
+	var legado := float(total - e.promesas_pendientes().size()) / float(total) if total > 0 else 0.0
 	for f in m.catalogo_leyes["finales"]["lista"]:
 		if String(f["motivo"]) != e.etapa:
 			continue
 		if f.has("carta_ejecutada") and not e.cartas_ejecutadas.has(String(f["carta_ejecutada"])):
+			continue
+		if f.has("promesas_max") and total > int(f["promesas_max"]):
 			continue
 		if f.has("aprobacion_min") and e.ind("aprobacion") < float(f["aprobacion_min"]):
 			continue
@@ -130,7 +132,9 @@ func resolver_eleccion() -> Dictionary:
 	if not m.estado.eleccion_pendiente(int(h["semanas_campana"])):  # solo se vota cuando la campaña terminó (nada se registra ni cambia)
 		return {"ok": false, "electo": false, "balotaje": false, "ronda": m.estado.ronda_electoral, "voto_final": 0.0, "umbral": umbral}
 	var ruido := float(m.catalogo_leyes["campana"]["ruido_eleccion"])
-	var voto_final := clampf(m.estado.ind("aprobacion") + m.rng.randf_range(-ruido, ruido), 0.0, 100.0)
+	var camp: Dictionary = m.catalogo_leyes["campana"]
+	var sin_prom := float(camp["penal_sin_promesas"]) if m.estado.promesas_campana.size() < int(camp["min_promesas"]) else 0.0  # U3: sin compromisos pierdes votos
+	var voto_final := clampf(m.estado.ind("aprobacion") + m.rng.randf_range(-ruido, ruido) - sin_prom, 0.0, 100.0)
 	var ronda := m.estado.ronda_electoral
 	var electo := voto_final >= umbral
 	var balotaje := ronda == 1 and not electo and voto_final >= float(h["umbral_pasa_balotaje"])

@@ -72,3 +72,10 @@ Aceptados y hechos: mapa limpio con enfoque por línea, comparación con las lí
 3. **U3:** ¿legado completo a quien no promete nada en campaña? ¿una ley de 7 días se resuelve en 1 o 2 cierres?
 4. **U9:** modelo de monetización (condiciona D1/D7 y el bono de legado entre partidas).
 5. Resto de la lista de «Necesito del usuario» en `docs/PENDIENTES_USUARIO.md` (U1, U4 a U8).
+
+## H. Decisiones del 25-nov-2026 (respuesta a las consultas abiertas)
+| Origen | Decisión | Estado |
+|---|---|---|
+| U | **PR-01:** el partido existente «pide poder y castiga»: queda como aliado permanente (no se abandona), pide sus ministerios; si lo desatiendes rompe y cuesta cohesión y capital. | Hecho |
+| U | **U3:** quien no promete nada es «intrascendente»: pierde votos en la elección (`campana.min_promesas`, `penal_sin_promesas`), su legado vale cero y recibe el epílogo «Un presidente intrascendente»; el juego avisa antes de ir a las urnas. | Hecho |
+| U | **PR-12 ampliado, «Carrera política»:** en una misma partida el jugador puede perder elecciones y pasar a ser oposición, volver a ganar, ser oposición otra vez, ser reelecto si cambió la Constitución y seguir; con un sistema completo de oposición, debates, entrevistas y campaña con franja televisiva. | En construcción (ver abajo) |

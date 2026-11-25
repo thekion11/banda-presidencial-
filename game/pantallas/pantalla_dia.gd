@@ -237,11 +237,13 @@ func _gesto_mano(pos: Vector2) -> void:
 
 
 func _avanzar() -> void:
-	## Botón del medio. Si sobran movimientos pide confirmar con una segunda pulsación (PR-02c).
+	## Botón del medio. Pide confirmar con una segunda pulsación si sobran movimientos (PR-02c) o si vas a votar con pocas promesas (U3).
 	var est := motor.estado
-	if est.pa_actual > 0 and not _confirmar_fin and not est.eleccion_pendiente(int(datos["leyes"]["hemiciclo"]["semanas_campana"])):
+	var urnas := est.eleccion_pendiente(int(datos["leyes"]["hemiciclo"]["semanas_campana"]))
+	var minimo := int(datos["leyes"]["campana"]["min_promesas"])
+	if not _confirmar_fin and ((urnas and est.promesas_campana.size() < minimo) or (not urnas and est.pa_actual > 0)):
 		_confirmar_fin = true
-		_avisar("Te quedan %d movimientos. Pulsa de nuevo para terminar la semana." % est.pa_actual)
+		_avisar("Con menos de %d promesas serás intrascendente y perderás votos. Pulsa de nuevo para votar igual." % minimo if urnas else "Te quedan %d movimientos. Pulsa de nuevo para terminar la semana." % est.pa_actual)
 		return
 	_confirmar_fin = false
 	_terminar_turno()
