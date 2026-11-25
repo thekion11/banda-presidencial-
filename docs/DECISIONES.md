@@ -87,3 +87,6 @@ Aceptados y hechos: mapa limpio con enfoque por línea, comparación con las lí
 - **Reelección:** solo si la carta «Reforma constitucional: reelección presidencial» se ejecutó en el gobierno (mecánica ilustrativa; el artículo 25 real sigue sin contrastarse con el texto oficial).
 - **Reglas:** los hitos con fecha real ocurren una sola vez; las decisiones se reinician por periodo; el calendario avanza con un solo reloj; todo se guarda y se reproduce exacto (`test_carrera.gd`: derrota → oposición → campaña → gobierno → reelección y replay idéntico).
 - **Pendiente:** pantallas propias de debate y entrevista (hoy son eventos con decisión), Congreso y votaciones en oposición, un rival que gobierne mientras tú eres oposición (que tu aprobación dependa de su desempeño), la franja con spots elegibles y medición de audiencia. El PantallaOposicion ligero anterior fue reemplazado.
+
+## J. Análisis de profundidad (25-nov-2026)
+El usuario pidió un análisis profundo porque «estamos ampliando mucho y profundizando poco». Resultado en `docs/ANALISIS_PROFUNDIDAD.md` (9 hallazgos medidos, 6 fases de trabajo y métricas de éxito). **Propuesta de Claude pendiente de aprobación:** congelar mecánicas nuevas hasta terminar la Fase A (ritmo de eventos) y la Fase B (mazo con intención); decidir la duración (semanas silenciosas, turno = mes o capítulos de 20 minutos).
