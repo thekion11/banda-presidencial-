@@ -4,7 +4,7 @@ extends Control
 ## las que ya estaban se reacomodan. Las que traen el registro `reposicion` entran con un giro dorado.
 
 signal tocada(indice: int)
-signal arrastrada  # gesto de jugar la carta elegida: deslizarla hacia arriba, hacia el mapa (PR-02)
+signal arrastrada(pos: Vector2)  # gesto de jugar la carta elegida: deslizarla hacia arriba, hacia el mapa (PR-02)
 
 const ANCHO := 104.0
 const ALTO := 170.0
@@ -26,8 +26,8 @@ func _input(ev: InputEvent) -> void:
 	elif _activo:
 		_activo = false
 		var d: Vector2 = ev.position - _inicio
-		if d.y < -70.0 and absf(d.x) < absf(d.y) * 0.8:
-			arrastrada.emit()
+		if d.y < -70.0 and absf(d.x) < absf(d.y) * 0.8 or d.length() > 70.0 and not get_global_rect().has_point(ev.position):
+			arrastrada.emit(ev.position)
 
 
 static func texto_movimientos(est: EstadoSimulacion) -> String:

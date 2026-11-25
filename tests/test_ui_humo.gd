@@ -84,19 +84,16 @@ func _una(semilla: int, idx: int = 0) -> void:
 		await process_frame
 	print("  botón fundación: %s · botón gabinete: %s" % [r_fundar, conf.get_global_rect()])
 	_check(conf.get_global_rect() == r_fundar, "el botón principal del gabinete debe estar donde el de la fundación (%s vs %s)" % [conf.get_global_rect(), r_fundar])
-	_check(not conf.disabled, "el gabinete por defecto (8 ministros) debe poder confirmarse")
+	_check(not conf.disabled, "el gabinete por defecto (los 25 ministerios) debe poder confirmarse")
 	var rel: Array = main._pantalla.find_children("*", "Button", true, false).filter(func(b: Button) -> bool: return b.text in ["Equilibrado", "Máxima eficacia"])
 	_check(rel.size() == 2, "PR-05: dos botones de relleno (equilibrado y máxima eficacia)")
 	var filas: Array = sel_g.filter(func(b: Button) -> bool: return b.text == "" and b.get_child_count() > 0)
 	_check(filas.size() == 25, "deben listarse los 25 ministros, hay %d" % filas.size())
 	var tam: int = int(main.datos["leyes"]["gabinete"]["tamano"])
-	var libre: Button = filas.filter(func(b: Button) -> bool: return not String((b.get_child(0).get_child(0) as Label).text).begins_with("EN EL GABINETE"))[0]
-	libre.pressed.emit()  # con tamano+1 no se agrega: sigue habilitado
-	_check(not conf.disabled, "no se debe poder pasar del tamaño del gabinete")
 	var elegido: Button = filas.filter(func(b: Button) -> bool: return String((b.get_child(0).get_child(0) as Label).text).begins_with("EN EL GABINETE"))[0]
 	elegido.pressed.emit()
 	_check(conf.disabled, "con menos de %d ministros no se puede confirmar" % tam)
-	libre.pressed.emit()
+	elegido.pressed.emit()  # vuelve a elegirlo
 	_check(not conf.disabled, "con %d ministros se puede confirmar" % tam)
 	conf.pressed.emit()
 	await process_frame
@@ -193,6 +190,8 @@ func _recorrer_v2(main: Node, dia: Node) -> void:
 		AyudaUI.deslizar_arriba(dia._mano)
 		await process_frame
 		_check(est.pa_actual < pa_antes, "deslizar la carta hacia arriba debe jugarla")
+	for f in AyudaUI.controles_dia(dia):
+		_check(false, f)
 	# delegación
 	dia._sel = 0
 	dia._delegar()

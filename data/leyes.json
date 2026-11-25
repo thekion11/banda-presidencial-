@@ -381,7 +381,7 @@
         "eficaz": {"nombre": "Máxima eficacia", "cobertura": 0.5, "ejecucion": 8.0, "ahorro": 1.5, "escandalo": 1.0}
       }
     },
-    "tamano": 8,
+    "tamano": 25,
     "anios_mandato": 4,
     "categorias_siempre": [
       "politica",

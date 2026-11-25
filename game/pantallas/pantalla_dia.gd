@@ -23,7 +23,8 @@ var _mano: ManoUI
 var _lbl_corrector: RichTextLabel
 var _tw_toast: Tween
 var _btn_jugar: Button
-var _btn_fin: Button
+var _confirmar_fin: bool = false
+var _mano_tocada: bool = false  # ya hay una carta elegida por toque (el siguiente toque sobre ella la juega)
 var _btn_deleg: Button
 var _zona_panel: Control
 var _capa: Control
@@ -59,7 +60,7 @@ func _ready() -> void:
 	if Tutorial.debe_mostrar() and motor.estado.etapa == "campana" and motor.estado.turno_actual == 1:
 		var tut := Tutorial.new()
 		tut.leyes = motor.catalogo_leyes
-		tut.objetivos = [_mano, _r["pa"], _btn_deleg, _nav, _btn_fin]
+		tut.objetivos = [_mano, _r["pa"], _btn_deleg, _nav, _btn_jugar]
 		_capa.add_child(tut)
 
 
@@ -108,7 +109,7 @@ func _construir_cuerpo() -> Control:
 	_mano.custom_minimum_size = Vector2(0, 214)
 	_mano.clip_contents = false
 	_mano.tocada.connect(_on_carta)
-	_mano.arrastrada.connect(func() -> void: if not _btn_jugar.disabled: _jugar())  # deslizar hacia el mapa (PR-02)
+	_mano.arrastrada.connect(_gesto_mano)  # deslizar hacia el mapa juega; soltar sobre el ícono izquierdo delega (PR-02)
 	vista.add_child(_mano)
 	var corr := PanelContainer.new()
 	corr.add_theme_stylebox_override("panel", Tema.caja(Tema.CREMA, 10, Color("#E8D9A8"), 1))
@@ -137,14 +138,15 @@ func _construir_cuerpo() -> Control:
 	_badge = Tema.etiqueta_corta("", 10, Tema.ORO, true)
 	_badge.position = Vector2(36, 34)
 	_btn_deleg.add_child(_badge)
-	_btn_jugar = Barras.boton_jugar()
+	_btn_jugar = Barras.boton_jugar()  # botón del medio: avanzar la semana (PR-02); las cartas se juegan deslizándolas o tocándolas dos veces
 	_btn_jugar.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	_btn_jugar.pressed.connect(_jugar)
-	_btn_fin = Barras.boton_redondo("play")
-	_btn_fin.pressed.connect(_terminar_turno)
+	_btn_jugar.clip_text = true
+	_btn_jugar.pressed.connect(_avanzar)
+	var libre := Control.new()  # la esquina inferior derecha queda vacía a propósito
+	libre.custom_minimum_size = Vector2(54, 54)
 	acciones.add_child(_btn_deleg)
 	acciones.add_child(_btn_jugar)
-	acciones.add_child(_btn_fin)
+	acciones.add_child(libre)
 	var ma := MarginContainer.new()
 	ma.add_theme_constant_override("margin_left", 12)
 	ma.add_theme_constant_override("margin_right", 12)
@@ -190,28 +192,7 @@ func _refrescar() -> void:
 
 
 func _actualizar_region() -> void:
-	var est := motor.estado
-	if _region == "" or not est.aprobacion_regional.has(_region):
-		_r["rg_nombre"].text = "Elige una región"
-		_r["rg_valor"].text = ""
-		_r["rg_sub"].text = "Toca el mapa para %s." % ("dirigir tu promesa de campaña" if est.etapa == "campana" else "ver su aprobación")
-		_r["rg_barra"].value = 0
-		return
-	var nombre := _region
-	for r in datos["regiones"]:
-		if r["id"] == _region:
-			nombre = String(r["nombre"]).replace(" de Santiago", "")
-	var n_obras := 0
-	for o in est.obras_en_curso:
-		if o["region"] == _region:
-			n_obras += 1
-	var v := float(est.aprobacion_regional[_region])
-	_r["rg_nombre"].text = nombre
-	_r["rg_valor"].text = Tema.pct(v)
-	_r["rg_valor"].add_theme_color_override("font_color", Tema.color_aprobacion(v + 12.0))
-	_r["rg_sub"].text = "%d obra(s) en curso%s" % [n_obras, " · 1 propuesta nueva" if est.propuestas_abiertas.size() > 0 and _region == "metropolitana" else ""]
-	_r["rg_barra"].value = v
-	_r["rg_barra"].add_theme_stylebox_override("fill", Tema.caja(Tema.color_aprobacion(v + 12.0), 4))
+	PanelesDia.pintar_region(_r, motor, datos, _region)
 
 
 func _pintar_mano() -> void:
@@ -230,42 +211,47 @@ func _pintar_mano() -> void:
 	if est.etapa == "campana":
 		_lbl_corrector.text = cabeza + "[b]Campaña:[/b] cada carta es una promesa: sube la aprobación de la región elegida y queda como meta de legado."
 	elif v["corrector"]["aplica"]:
-		_lbl_corrector.text = cabeza + "[b]Corrector:[/b] " + _caber(String(v["corrector"]["mensaje"]))
+		_lbl_corrector.text = cabeza + "[b]Corrector:[/b] " + FichaCarta.caber(String(v["corrector"]["mensaje"]))
 	else:
 		_lbl_corrector.text = cabeza + "[b]Corrector:[/b] sin observaciones; la meta es viable."
-
-
-func _caber(msg: String) -> String:
-	## El panel del corrector mide 66 px (cabecera + 3 líneas de 10 pt): si el mensaje no cabe se corta en una palabra y termina en "…".
-	var f := Tema.fuente_texto(400)
-	var palabras := msg.split(" ")
-	while palabras.size() > 1 and f.get_multiline_string_size("Corrector: " + " ".join(palabras), HORIZONTAL_ALIGNMENT_LEFT, 304, 10).y > f.get_height(10) * 3.05:
-		palabras.remove_at(palabras.size() - 1)
-		palabras[palabras.size() - 1] = palabras[palabras.size() - 1].rstrip(".,;:") + "…"
-	return " ".join(palabras)
 
 
 func _actualizar_botones() -> void:
 	var est := motor.estado
 	var n := est.mano.size()
-	if n > 0:
-		var costo := motor.costo_carta(est.mano[_sel], _ministro)
-		_btn_jugar.text = "Jugar · %d mov" % costo
-		_btn_jugar.disabled = costo > est.pa_actual
-	else:
-		_btn_jugar.text = "Sin cartas"
-		_btn_jugar.disabled = true
+	var elec := est.eleccion_pendiente(int(datos["leyes"]["hemiciclo"]["semanas_campana"]))
+	_btn_jugar.text = "Ir a las urnas" if elec else ("Terminar semana · %d mov" % est.pa_actual if est.pa_actual > 0 else "Siguiente semana")
+	_btn_jugar.disabled = false
 	var max_deleg := int(motor.catalogo_leyes["delegacion"]["max_por_turno"])
 	_btn_deleg.disabled = est.etapa != "gobierno" or n == 0 or est.delegadas_turno >= max_deleg
-	_btn_deleg.tooltip_text = "Delegar la carta elegida en un ministro"
+	_btn_deleg.tooltip_text = "Delegar la carta elegida en un ministro (suelta la carta aquí)"
 	_badge.text = str(max_deleg - est.delegadas_turno) if est.etapa == "gobierno" else ""
-	var elec := est.eleccion_pendiente(int(datos["leyes"]["hemiciclo"]["semanas_campana"]))
-	_btn_fin.tooltip_text = "Urnas" if elec else "Terminar turno"
-	_btn_jugar.disabled = _btn_jugar.disabled or elec
 
 
 # ------------------------------------------------------------------ interacción
+func _gesto_mano(pos: Vector2) -> void:
+	if _btn_deleg.get_global_rect().has_point(pos):
+		_delegar()
+	elif pos.y <= _mano.get_global_rect().end.y:  # soltar hacia el mapa juega; soltar más abajo (fuera del ícono) cancela
+		_jugar()
+
+
+func _avanzar() -> void:
+	## Botón del medio. Si sobran movimientos pide confirmar con una segunda pulsación (PR-02c).
+	var est := motor.estado
+	if est.pa_actual > 0 and not _confirmar_fin and not est.eleccion_pendiente(int(datos["leyes"]["hemiciclo"]["semanas_campana"])):
+		_confirmar_fin = true
+		_avisar("Te quedan %d movimientos. Pulsa de nuevo para terminar la semana." % est.pa_actual)
+		return
+	_confirmar_fin = false
+	_terminar_turno()
+
+
 func _on_carta(i: int) -> void:
+	if i == _sel and _mano_tocada:  # tocar de nuevo la carta elegida la juega (respaldo del gesto de deslizar)
+		_jugar()
+		return
+	_mano_tocada = true
 	_sel = i
 	_pintar_mano()
 	_actualizar_botones()
@@ -279,6 +265,7 @@ func _on_region(id: String) -> void:
 func _jugar() -> void:
 	var n_reg := motor.estado.registro_acciones.size()
 	var antes := motor.estado.indicadores.duplicate()
+	_mano_tocada = false
 	var r := motor.jugar_carta(_sel, _ministro, _region)
 	if not bool(r["ok"]):
 		_avisar(Razones.texto(r))

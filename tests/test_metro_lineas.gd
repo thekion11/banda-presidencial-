@@ -96,7 +96,8 @@ func _lineas_del_jugador() -> void:
 			var r2 := m.aprobar_propuesta(String(prop2["id"]), "A", "", c)
 			_check(bool(r2["ok"]) and m.estado.lineas_jugador.size() == 2 and m.estado.lineas_jugador[1]["id"] == "P2" and m.estado.lineas_jugador[1]["variante"] == "M", "una línea a gusto debe guardarse como P2 (variante M)")
 		_check(m.estado.exportar_guardado("h")["entradas"].size() > 0, "el guardado debe traer los eventos que reconstruyen la línea")
-		m.obras.avanzar(m.estado, 100000, m.fx.aplicar_efecto, m.fx.marcar_cumplida)
+		for _i in range(8):  # un avance puede retrasarse por azar (riesgo de ejecución): se reintenta hasta terminar
+			m.obras.avanzar(m.estado, 100000, m.fx.aplicar_efecto, m.fx.marcar_cumplida)
 		for l in m.estado.lineas_jugador:
 			_check(l["estado"] == "operativa", "al terminar la obra la línea debe quedar operativa")
 		huellas.append(m.estado.calcular_huella())

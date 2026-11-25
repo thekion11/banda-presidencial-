@@ -24,3 +24,13 @@ static func exigencia(carta: Dictionary) -> String:
 static func linea(carta: Dictionary, leyes: Dictionary) -> String:
 	var ex := exigencia(carta)
 	return "impacto " + impacto(carta, leyes) + ((" · " + ex) if ex != "" else "")
+
+
+static func caber(msg: String) -> String:
+	## El panel del corrector mide 66 px (cabecera + 3 líneas de 10 pt): si el mensaje no cabe se corta en una palabra y termina en "…".
+	var f := Tema.fuente_texto(400)
+	var palabras := msg.split(" ")
+	while palabras.size() > 1 and f.get_multiline_string_size("Corrector: " + " ".join(palabras), HORIZONTAL_ALIGNMENT_LEFT, 304, 10).y > f.get_height(10) * 3.05:
+		palabras.remove_at(palabras.size() - 1)
+		palabras[palabras.size() - 1] = palabras[palabras.size() - 1].rstrip(".,;:") + "…"
+	return " ".join(palabras)

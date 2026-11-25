@@ -17,14 +17,10 @@ func _cfg() -> Dictionary:
 
 
 func por_defecto() -> Array[String]:
-	## Gabinete inicial determinista: el primer ministro de cada categoría, en el orden de data/ministros.json, hasta completar el tamaño.
+	## Gabinete inicial determinista: el relleno automático equilibrado sobre un gabinete vacío (con tamaño 25, todos los ministerios).
 	var res: Array[String] = []
-	var vistas := {}
-	for id in m.catalogo_ministros.keys():
-		var cat := String(m.catalogo_ministros[id]["categoria_afin"])
-		if res.size() < int(_cfg()["tamano"]) and not vistas.has(cat):
-			vistas[cat] = true
-			res.append(String(id))
+	for n in rellenar([], ""):
+		res.append(String(n["id"]))
 	return res
 
 

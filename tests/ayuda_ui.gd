@@ -26,3 +26,26 @@ static func oposicion(arbol: SceneTree) -> void:
 	await arbol.process_frame
 	assert(o._i == datos["leyes"]["oposicion"]["escenas"].size())
 	o.queue_free()
+
+
+static func controles_dia(dia: Control) -> Array[String]:
+	## PR-02: tocar dos veces la carta elegida la juega; el botón del medio pide confirmar si sobran movimientos. Devuelve los fallos.
+	var fallos: Array[String] = []
+	var est: EstadoSimulacion = dia.motor.estado
+	if est.pa_actual > 0 and est.mano.size() > 0:
+		var pa0: int = est.pa_actual
+		dia._mano_tocada = false
+		dia._on_carta(0)
+		if est.pa_actual != pa0:
+			fallos.append("el primer toque solo elige la carta")
+		dia._on_carta(0)
+		if est.pa_actual >= pa0:
+			fallos.append("el segundo toque sobre la carta elegida debe jugarla")
+	if est.pa_actual > 0:
+		var turno0: int = est.turno_actual
+		dia._confirmar_fin = false
+		dia._avanzar()
+		if est.turno_actual != turno0 or not dia._confirmar_fin:
+			fallos.append("con movimientos sin usar, avanzar pide confirmación")
+		dia._confirmar_fin = false
+	return fallos

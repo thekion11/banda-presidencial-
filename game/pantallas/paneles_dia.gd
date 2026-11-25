@@ -105,3 +105,29 @@ static func congreso(motor: MotorTurno, al_abrir_obra: Callable = Callable(), al
 		bc.pressed.connect(al_cartera)
 		col.add_child(bc)
 	return _scroll(col)
+
+
+static func pintar_region(_r: Dictionary, motor: MotorTurno, datos: Dictionary, _region: String) -> void:
+	## Tarjeta de la región elegida (nombre, aprobación, obras en curso).
+	var est := motor.estado
+	if _region == "" or not est.aprobacion_regional.has(_region):
+		_r["rg_nombre"].text = "Elige una región"
+		_r["rg_valor"].text = ""
+		_r["rg_sub"].text = "Toca el mapa para %s." % ("dirigir tu promesa de campaña" if est.etapa == "campana" else "ver su aprobación")
+		_r["rg_barra"].value = 0
+		return
+	var nombre := _region
+	for r in datos["regiones"]:
+		if r["id"] == _region:
+			nombre = String(r["nombre"]).replace(" de Santiago", "")
+	var n_obras := 0
+	for o in est.obras_en_curso:
+		if o["region"] == _region:
+			n_obras += 1
+	var v := float(est.aprobacion_regional[_region])
+	_r["rg_nombre"].text = nombre
+	_r["rg_valor"].text = Tema.pct(v)
+	_r["rg_valor"].add_theme_color_override("font_color", Tema.color_aprobacion(v + 12.0))
+	_r["rg_sub"].text = "%d obra(s) en curso%s" % [n_obras, " · 1 propuesta nueva" if est.propuestas_abiertas.size() > 0 and _region == "metropolitana" else ""]
+	_r["rg_barra"].value = v
+	_r["rg_barra"].add_theme_stylebox_override("fill", Tema.caja(Tema.color_aprobacion(v + 12.0), 4))
