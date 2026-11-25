@@ -6,21 +6,22 @@ const DIAS := ["Dom", "Lun", "Mar", "Mié", "Jue", "Vie", "Sáb"]
 const MESES := ["ene", "feb", "mar", "abr", "may", "jun", "jul", "ago", "sep", "oct", "nov", "dic"]
 
 
-static func _fecha(leyes: Dictionary, etapa: String, turno: int, dia: int) -> Dictionary:
+static func _fecha(leyes: Dictionary, etapa: String, turno: int, dia: int, ciclo: int = 1, dias_carrera: int = 0) -> Dictionary:
+	## Desde el ciclo 2 de la carrera hay un solo reloj: inicio del mandato + días de los periodos cerrados + días del periodo actual.
 	var cal: Dictionary = leyes["calendario"]
-	var base := String(cal["fecha_inicio_mandato"] if etapa == "gobierno" else cal["fecha_inicio_campana"])
+	var base := String(cal["fecha_inicio_mandato"] if (etapa == "gobierno" or ciclo > 1) else cal["fecha_inicio_campana"])
 	var t := Time.get_unix_time_from_datetime_string(base + "T00:00:00")
 	var dias := (dia - 1) if etapa == "gobierno" else (turno - 1) * 7
-	return Time.get_datetime_dict_from_unix_time(t + dias * 86400)
+	return Time.get_datetime_dict_from_unix_time(t + (dias + (dias_carrera if ciclo > 1 else 0)) * 86400)
 
 
-static func fecha_iso(leyes: Dictionary, etapa: String, turno: int, dia: int) -> String:
-	var d := _fecha(leyes, etapa, turno, dia)
+static func fecha_iso(leyes: Dictionary, etapa: String, turno: int, dia: int, ciclo: int = 1, dias_carrera: int = 0) -> String:
+	var d := _fecha(leyes, etapa, turno, dia, ciclo, dias_carrera)
 	return "%04d-%02d-%02d" % [int(d["year"]), int(d["month"]), int(d["day"])]
 
 
-static func fecha_texto(leyes: Dictionary, etapa: String, turno: int, dia: int) -> String:
-	var d := _fecha(leyes, etapa, turno, dia)
+static func fecha_texto(leyes: Dictionary, etapa: String, turno: int, dia: int, ciclo: int = 1, dias_carrera: int = 0) -> String:
+	var d := _fecha(leyes, etapa, turno, dia, ciclo, dias_carrera)
 	return "%s %d %s %d" % [DIAS[int(d["weekday"])], int(d["day"]), MESES[int(d["month"]) - 1], int(d["year"])]
 
 

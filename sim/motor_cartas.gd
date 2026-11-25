@@ -66,11 +66,11 @@ func vista_carta(idx: int, ministro_id: String = "") -> Dictionary:
 
 func jugar_carta(idx: int, ministro_id: String = "", region_id: String = "", delegada: bool = false) -> Dictionary:
 	## `delegada`: la carta la ejecuta un ministro del gabinete sin gastar movimientos, pero puede salir mal (DISENO_V2 §5).
-	if m.estado.etapa != "campana" and m.estado.etapa != "gobierno":
+	if not MotorTurno.ETAPAS_JUEGO.has(m.estado.etapa):
 		return {"ok": false, "razon": "partida_terminada"}
 	if idx < 0 or idx >= m.estado.mano.size():
 		return {"ok": false, "razon": "indice_invalido"}
-	if ministro_id != "" and (m.estado.etapa == "campana" or not m.catalogo_ministros.has(ministro_id)):
+	if ministro_id != "" and (m.estado.etapa != "gobierno" or not m.catalogo_ministros.has(ministro_id)):
 		return {"ok": false, "razon": "ministro_no_disponible"}
 	if ministro_id != "" and not m.estado.gabinete.has(ministro_id):
 		return {"ok": false, "razon": "ministro_fuera_del_gabinete"}  # solo el gabinete elegido da bonos y reduce costos

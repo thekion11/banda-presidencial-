@@ -116,7 +116,7 @@ func continuar_guardado() -> void:
 
 
 func mostrar_dia() -> void:
-	if motor.estado.etapa not in ["campana", "gobierno"] and not motor.estado.eleccion_pendiente(int(datos["leyes"]["hemiciclo"]["semanas_campana"])):
+	if not MotorTurno.ETAPAS_JUEGO.has(motor.estado.etapa) and not motor.estado.eleccion_pendiente(int(datos["leyes"]["hemiciclo"]["semanas_campana"])):
 		mostrar_fin()
 		return
 	var d := PantallaDia.new()
@@ -138,12 +138,12 @@ func mostrar_fin() -> void:
 	f.otra_vez.connect(func() -> void:
 		DirAccess.remove_absolute(ProjectSettings.globalize_path(RUTA_GUARDADO))
 		mostrar_menu())
-	f.oposicion.connect(func() -> void:
-		DirAccess.remove_absolute(ProjectSettings.globalize_path(RUTA_GUARDADO))
-		var o := PantallaOposicion.new()
-		o.datos = datos
-		o.terminada.connect(mostrar_menu)
-		_cambiar(o))
+	f.continuar.connect(func() -> void:  # carrera política: oposición o reelección, y vuelta a jugar
+		if bool(motor.continuar_carrera()["ok"]):
+			motor.iniciar_turno()
+			UrbanoBase.reiniciar()
+			guardar()
+			mostrar_dia())
 	f.reintentar.connect(func() -> void:
 		DirAccess.remove_absolute(ProjectSettings.globalize_path(RUTA_GUARDADO))
 		mostrar_partido())

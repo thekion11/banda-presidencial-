@@ -14,20 +14,6 @@ static func deslizar_arriba(mano: Control) -> void:
 		mano._input(ev)
 
 
-static func oposicion(arbol: SceneTree) -> void:
-	## PR-13: recorre las cuatro escenas del Modo Oposición y comprueba que llega al resultado final.
-	var datos := Datos.cargar_todo()
-	var o := PantallaOposicion.new()
-	o.datos = datos
-	arbol.root.add_child(o)
-	await arbol.process_frame
-	for _k in range(datos["leyes"]["oposicion"]["escenas"].size()):
-		o.elegir(datos["leyes"]["oposicion"]["escenas"][o._i]["opciones"][0])
-	await arbol.process_frame
-	assert(o._i == datos["leyes"]["oposicion"]["escenas"].size())
-	o.queue_free()
-
-
 static func controles_dia(dia: Control) -> Array[String]:
 	## PR-02: tocar dos veces la carta elegida la juega; el botón del medio pide confirmar si sobran movimientos. Devuelve los fallos.
 	var fallos: Array[String] = []
@@ -48,4 +34,34 @@ static func controles_dia(dia: Control) -> Array[String]:
 		if est.turno_actual != turno0 or not dia._confirmar_fin:
 			fallos.append("con movimientos sin usar, avanzar pide confirmación")
 		dia._confirmar_fin = false
+	return fallos
+
+
+static func carrera(arbol: SceneTree) -> Array[String]:
+	## Carrera política en la interfaz: tras una derrota el botón «Seguir tu carrera» lleva a la oposición, con su cabecera y su mano.
+	var fallos: Array[String] = []
+	var main: Node = load("res://game/main.tscn").instantiate()
+	arbol.root.add_child(main)
+	await arbol.process_frame
+	var resp: Array[Dictionary] = []
+	for p in main.datos["ideologia"]["preguntas"]:
+		resp.append(p["opciones"][1])
+	main.motor = Partida.crear(main.datos, 9, GeneradorPartido.construir_partido("U", "UUU", "metropolitana", resp, main.datos["ideologia"]))
+	for _i in range(int(main.datos["leyes"]["hemiciclo"]["semanas_campana"])):
+		main.motor.terminar_turno()
+	main.motor.resolver_eleccion_presidencial()
+	main.mostrar_fin()
+	await arbol.process_frame
+	var bs: Array = main._pantalla.find_children("*", "Button", true, false).filter(func(b: Button) -> bool: return b.text.begins_with("Seguir tu carrera"))
+	if bs.size() != 1:
+		fallos.append("la pantalla de fin ofrece seguir la carrera")
+	else:
+		bs[0].pressed.emit()
+		for _k in range(4):
+			await arbol.process_frame
+		if not (main._pantalla is PantallaDia) or main.motor.estado.etapa != "oposicion":
+			fallos.append("seguir la carrera lleva a la oposición")
+		elif not String(main._pantalla._r["dia"].text).begins_with("Oposición"):
+			fallos.append("la cabecera dice Oposición")
+	main.queue_free()
 	return fallos

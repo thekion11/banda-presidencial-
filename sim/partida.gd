@@ -50,6 +50,9 @@ static func reproducir(datos: Dictionary, guardado: Dictionary) -> MotorTurno:
 				motor.aprobar_propuesta(String(e["prop"]), String(e["variante"]), String(e["region"]), e.get("custom", {}), e.get("nombres", {}))
 			"sectra":
 				motor.impulsar_proyecto(String(e["pid"]))
+			"continuar":
+				if bool(motor.continuar_carrera()["ok"]):
+					motor.iniciar_turno()
 			"decision":
 				motor.eventos.decidir(String(e["evento"]), int(e["idx"]))
 			"cerrar":

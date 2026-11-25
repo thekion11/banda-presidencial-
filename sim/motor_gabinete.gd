@@ -103,6 +103,11 @@ func anio_gobierno() -> int:
 func bloqueo(carta: Dictionary) -> Dictionary:
 	## Única regla de disponibilidad: {} si la carta circula; si no, {"codigo": gabinete|anio_desde|anio_hasta|evento|fiscal|meta, "valor": ...}.
 	var cat := String(carta["categoria"])
+	var oposicion := m.estado.etapa == "oposicion"
+	if oposicion != (cat == "oposicion"):  # en oposición solo circulan sus cartas; en campaña y gobierno, nunca
+		return {"codigo": "etapa", "valor": "oposicion" if cat == "oposicion" else "gobierno"}
+	if oposicion:
+		return {}
 	if not categoria_activa(cat):
 		return {"codigo": "gabinete", "valor": cat}
 	var d: Variant = carta.get("disponibilidad", null)

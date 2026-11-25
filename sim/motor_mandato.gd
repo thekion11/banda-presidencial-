@@ -64,7 +64,7 @@ func hitos(maximo: int = 8) -> Array[Dictionary]:
 		var texto := ""
 		match String(a["tipo"]):
 			"eleccion_presidencial":
-				texto = "Ganaste la elección con %.1f %% de apoyo." % float(d["voto_final"]) if bool(d["electo"]) else "Pasaste a segunda vuelta con %.1f %%." % float(d["voto_final"])
+				texto = "Ganaste la elección con %.1f %% de apoyo." % float(d["voto_final"]) if bool(d["electo"]) else ("Pasaste a segunda vuelta con %.1f %%." % float(d["voto_final"]) if bool(d["balotaje"]) else "Perdiste la elección con %.1f %% de apoyo." % float(d["voto_final"]))
 			"votacion":
 				if bool(d["aprobada"]) and not primera_ley:
 					primera_ley = true
@@ -117,6 +117,47 @@ func epilogo() -> Dictionary:
 			continue
 		return f
 	return {"id": "", "titulo": "Fin de partida", "texto": ""}
+
+
+func continuar_carrera() -> Dictionary:
+	## Tras un fin de periodo (mandato completo, caída del gobierno o derrota electoral) la carrera sigue: oposición, o campaña de reelección
+	## si la Constitución se reformó durante el gobierno. Se registra para el replay; el llamador inicia el turno (iniciar_turno).
+	var e := m.estado
+	if not (e.etapa in ["fin_mandato", "crisis", "derrota_electoral"]):
+		return {"ok": false, "razon": "periodo_en_curso"}
+	var previa := e.etapa
+	e.registrar_entrada("continuar", {})
+	e.carrera.append({"ciclo": e.ciclo, "resultado": previa, "puntaje": int(e.resultado_final.get("puntaje", 0)),
+			"aprobacion": snappedf(e.ind("aprobacion"), 0.01), "turnos": e.turno_actual})
+	var dias := 0 if previa == "derrota_electoral" else (e.turno_actual - 1) * e.dias_por_turno
+	_abrir_periodo("campana" if previa == "fin_mandato" and e.cartas_ejecutadas.has("reforma_reeleccion") else "oposicion", dias)
+	return {"ok": true, "etapa": e.etapa}
+
+
+func cerrar_oposicion() -> void:
+	## Terminadas las semanas de oposición empieza la campaña siguiente (cierre automático dentro de cerrar_turno).
+	_abrir_periodo("campana", e_dias_oposicion())
+
+
+func e_dias_oposicion() -> int:
+	return (m.estado.turno_actual - 1) * m.estado.dias_por_turno
+
+
+func _abrir_periodo(etapa: String, dias_cerrados: int) -> void:
+	var e := m.estado
+	e.dias_carrera += dias_cerrados
+	e.ciclo += 1
+	e.etapa = etapa
+	e.turno_actual = 1
+	e.dia_actual = 1
+	e.resultado_final = {}
+	e.ronda_electoral = 1
+	e.promesas_campana.clear()
+	e.decisiones.clear()
+	e.semanas_en_crisis = 0
+	e.legado_evaluado.clear()
+	e.pa_actual = e.pa_maximo
+	e.registrar_accion("periodo_nuevo", {"etapa": etapa, "ciclo": e.ciclo})
 
 
 func nivel() -> Dictionary:

@@ -5,6 +5,7 @@ extends RefCounted
 var estado: EstadoSimulacion
 var rng: RandomNumberGenerator
 var catalogo_cartas: Array[Dictionary] = []
+const ETAPAS_JUEGO := ["campana", "gobierno", "oposicion"]  # etapas con turnos (el resto son fines de periodo)
 var catalogo_eventos: Array[Dictionary] = []
 var catalogo_leyes: Dictionary = {}
 var catalogo_ministros: Dictionary = {}
@@ -96,7 +97,7 @@ func terminar_turno() -> Array[Dictionary]:
 	cerrar_turno()
 	if estado.eleccion_pendiente(int(_h("semanas_campana"))):
 		return []
-	if estado.etapa == "campana" or estado.etapa == "gobierno":
+	if ETAPAS_JUEGO.has(estado.etapa):
 		return iniciar_turno()
 	return []
 
@@ -131,7 +132,7 @@ func ejecutar_amanecer() -> void:
 
 
 func cerrar_turno() -> void:
-	if estado.etapa != "campana" and estado.etapa != "gobierno":
+	if not ETAPAS_JUEGO.has(estado.etapa):
 		return
 	if estado.eleccion_pendiente(int(_h("semanas_campana"))):
 		return  # terminada la campaña toca votar: no se pueden seguir cerrando turnos
@@ -147,15 +148,20 @@ func cerrar_turno() -> void:
 	estado.registrar_accion("cierre_turno", {"aprobacion": snappedf(estado.ind("aprobacion"), 0.01), "resumen": resumen.size()})
 	estado.registrar_entrada("cerrar", {})
 	cartas.descartar_mano()
-	if estado.etapa != "gobierno" and estado.etapa != "campana":
+	if not ETAPAS_JUEGO.has(estado.etapa):
 		return
 	estado.turno_actual += 1
 	estado.dia_actual += estado.dias_por_turno
+	if estado.etapa == "oposicion" and estado.turno_actual > int(catalogo_leyes["oposicion"]["semanas"]):
+		mandato.cerrar_oposicion()
 	if estado.etapa == "gobierno" and estado.turno_actual > turnos_mandato():
 		mandato.finalizar("fin_mandato")
 
 
 func resolver_eleccion_presidencial() -> Dictionary: return mandato.resolver_eleccion()
+
+
+func continuar_carrera() -> Dictionary: return mandato.continuar_carrera()
 
 
 # ---------------------------------------------------------------- Fachada (la UI y los tests usan estos nombres)

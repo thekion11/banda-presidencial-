@@ -19,6 +19,8 @@ func procesar_semana() -> Array[Dictionary]:
 	for evt in m.catalogo_eventos:
 		if String(evt.get("etapa", "gobierno")) != m.estado.etapa:
 			continue
+		if m.estado.ciclo > 1 and evt.has("meta") and evt["meta"].has("fecha_real"):
+			continue  # los hitos con fecha real ocurren una sola vez (primer periodo)
 		var ocurre := false
 		if evt["tipo"] == "programado":
 			var d_obj := int(evt["dia_objetivo"])

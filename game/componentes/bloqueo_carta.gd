@@ -18,6 +18,7 @@ static func motivo(motor: MotorTurno, carta: Dictionary) -> String:
 	var v: Variant = b["valor"]
 	match String(b["codigo"]):
 		"gabinete": return "Falta un ministro de %s en el gabinete" % nombre_cat(String(v))
+		"etapa": return "Solo disponible en %s" % ("la oposición" if String(v) == "oposicion" else "el gobierno")
 		"anio_desde": return "Disponible desde el año %d de gobierno" % int(v)
 		"anio_hasta": return "Solo existía hasta el año %d de gobierno" % int(v)
 		"evento": return "Se activa con un evento (%s)" % String(v)

@@ -3825,5 +3825,687 @@
       "id": "min_ciencia",
       "nombre": "Ministerio: Ciencia"
     }
+  },
+  {
+    "id": "evt_camp_franja1",
+    "tipo": "programado",
+    "dia_objetivo": 8,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 1.0,
+    "titulo": "Franja televisiva: tu primer spot",
+    "descripcion": "Dispones de minutos gratuitos en televisión. ¿Qué mostrarás?",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "campana",
+    "fuente": "fuentes.json#ficticio_2026",
+    "opciones": [
+      {
+        "texto": "Un spot emotivo con tu historia",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 2
+          },
+          {
+            "ind": "capital",
+            "delta": -1
+          }
+        ]
+      },
+      {
+        "texto": "Un spot con propuestas y cifras",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          },
+          {
+            "ind": "cohesion",
+            "delta": 1
+          }
+        ]
+      },
+      {
+        "texto": "Un spot contra tus rivales",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          },
+          {
+            "ind": "cohesion",
+            "delta": -2
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "evt_camp_debate_radio",
+    "tipo": "programado",
+    "dia_objetivo": 24,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 1.0,
+    "titulo": "Debate en radio",
+    "descripcion": "Un programa de radio reúne a los candidatos.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "campana",
+    "fuente": "fuentes.json#ficticio_2026",
+    "opciones": [
+      {
+        "texto": "Preparar a fondo y atacar con datos",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 2
+          },
+          {
+            "ind": "capital",
+            "delta": -1
+          }
+        ]
+      },
+      {
+        "texto": "Ir con un mensaje conciliador",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          },
+          {
+            "ind": "cohesion",
+            "delta": 1
+          }
+        ]
+      },
+      {
+        "texto": "No asistir",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": -2
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "evt_camp_entrevista_tv",
+    "tipo": "programado",
+    "dia_objetivo": 16,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 1.0,
+    "titulo": "Entrevista en televisión abierta",
+    "descripcion": "Un conductor te interroga por tu programa.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "campana",
+    "fuente": "fuentes.json#ficticio_2026",
+    "opciones": [
+      {
+        "texto": "Responder con humor y cercanía",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 2
+          }
+        ]
+      },
+      {
+        "texto": "Responder con tecnicismos",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": -1
+          },
+          {
+            "ind": "capital",
+            "delta": 1
+          }
+        ]
+      },
+      {
+        "texto": "Pedir las preguntas antes",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": -1
+          },
+          {
+            "ind": "cohesion",
+            "delta": 1
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "evt_camp_franja2",
+    "tipo": "programado",
+    "dia_objetivo": 44,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 1.0,
+    "titulo": "Franja televisiva: tu segundo spot",
+    "descripcion": "Es la última semana de franja. ¿Cómo cierras?",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "campana",
+    "fuente": "fuentes.json#ficticio_2026",
+    "opciones": [
+      {
+        "texto": "Un llamado a votar con esperanza",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 2
+          },
+          {
+            "ind": "cohesion",
+            "delta": 1
+          }
+        ]
+      },
+      {
+        "texto": "Una advertencia sobre el rival",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          },
+          {
+            "ind": "cohesion",
+            "delta": -1
+          }
+        ]
+      },
+      {
+        "texto": "Repetir el primer spot",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 0
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "evt_camp_debate_final",
+    "tipo": "programado",
+    "dia_objetivo": 47,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 1.0,
+    "titulo": "Debate presidencial final",
+    "descripcion": "El debate más visto de la campaña.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "campana",
+    "fuente": "fuentes.json#ficticio_2026",
+    "opciones": [
+      {
+        "texto": "Atacar al favorito",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 2
+          },
+          {
+            "ind": "cohesion",
+            "delta": -1
+          },
+          {
+            "ind": "capital",
+            "delta": -1
+          }
+        ]
+      },
+      {
+        "texto": "Mostrarte como el que une",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 2
+          },
+          {
+            "ind": "cohesion",
+            "delta": 1
+          }
+        ]
+      },
+      {
+        "texto": "Defender solo tu programa",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "evt_opo_debate_parlamentario",
+    "tipo": "programado",
+    "dia_objetivo": 14,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 1.0,
+    "titulo": "Debate parlamentario clave",
+    "descripcion": "El gobierno presenta su proyecto estrella.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "oposicion",
+    "fuente": "fuentes.json#ficticio_2026",
+    "opciones": [
+      {
+        "texto": "Presentar una contrapropuesta",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 2
+          },
+          {
+            "ind": "capital",
+            "delta": -1
+          }
+        ]
+      },
+      {
+        "texto": "Votar en contra con un discurso duro",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          },
+          {
+            "ind": "cohesion",
+            "delta": 1
+          }
+        ]
+      },
+      {
+        "texto": "Abstenerte para negociar",
+        "efectos": [
+          {
+            "ind": "capital",
+            "delta": 2
+          },
+          {
+            "ind": "aprobacion",
+            "delta": -1
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "evt_opo_entrevista",
+    "tipo": "programado",
+    "dia_objetivo": 35,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 1.0,
+    "titulo": "Entrevista a fondo sobre tu rol de oposición",
+    "descripcion": "Te preguntan si eres constructivo u obstruccionista.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "oposicion",
+    "fuente": "fuentes.json#ficticio_2026",
+    "opciones": [
+      {
+        "texto": "Marcar diferencias claras",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 2
+          },
+          {
+            "ind": "capital",
+            "delta": -1
+          }
+        ]
+      },
+      {
+        "texto": "Mostrar disposición a acuerdos",
+        "efectos": [
+          {
+            "ind": "capital",
+            "delta": 1
+          },
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          }
+        ]
+      },
+      {
+        "texto": "Esquivar la pregunta",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": -1
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "evt_opo_acusacion",
+    "tipo": "programado",
+    "dia_objetivo": 63,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 1.0,
+    "titulo": "Tu bancada propone una acusación constitucional",
+    "descripcion": "Hay presión de las bases para acusar a un ministro.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "oposicion",
+    "fuente": "fuentes.json#ficticio_2026",
+    "opciones": [
+      {
+        "texto": "Encabezar la acusación",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 3
+          },
+          {
+            "ind": "capital",
+            "delta": -2
+          },
+          {
+            "ind": "cohesion",
+            "delta": 1
+          }
+        ]
+      },
+      {
+        "texto": "Pedir más antecedentes",
+        "efectos": [
+          {
+            "ind": "capital",
+            "delta": 1
+          },
+          {
+            "ind": "cohesion",
+            "delta": 1
+          }
+        ]
+      },
+      {
+        "texto": "No respaldarla",
+        "efectos": [
+          {
+            "ind": "cohesion",
+            "delta": -2
+          },
+          {
+            "ind": "aprobacion",
+            "delta": -1
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "evt_opo_presupuesto",
+    "tipo": "programado",
+    "dia_objetivo": 91,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 1.0,
+    "titulo": "Discusión del presupuesto desde la oposición",
+    "descripcion": "Puedes proponer recortes o reasignaciones.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "oposicion",
+    "fuente": "fuentes.json#ficticio_2026",
+    "opciones": [
+      {
+        "texto": "Proponer reasignar gasto a salud y educación",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 2
+          },
+          {
+            "ind": "capital",
+            "delta": -1
+          }
+        ]
+      },
+      {
+        "texto": "Aprobar con reparos",
+        "efectos": [
+          {
+            "ind": "capital",
+            "delta": 2
+          }
+        ]
+      },
+      {
+        "texto": "Rechazar en bloque",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          },
+          {
+            "ind": "cohesion",
+            "delta": 1
+          },
+          {
+            "ind": "capital",
+            "delta": -2
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "evt_opo_congreso_partido",
+    "tipo": "programado",
+    "dia_objetivo": 126,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 1.0,
+    "titulo": "Tu partido te pide definir el rumbo",
+    "descripcion": "Hay que decidir el programa para la próxima elección.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "oposicion",
+    "fuente": "fuentes.json#ficticio_2026",
+    "opciones": [
+      {
+        "texto": "Renovar la directiva y el programa",
+        "efectos": [
+          {
+            "ind": "cohesion",
+            "delta": 3
+          },
+          {
+            "ind": "capital",
+            "delta": -1
+          }
+        ]
+      },
+      {
+        "texto": "Mantener a la directiva",
+        "efectos": [
+          {
+            "ind": "cohesion",
+            "delta": 1
+          },
+          {
+            "ind": "aprobacion",
+            "delta": -1
+          }
+        ]
+      },
+      {
+        "texto": "Convocar a primarias",
+        "efectos": [
+          {
+            "ind": "cohesion",
+            "delta": 2
+          },
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          },
+          {
+            "ind": "capital",
+            "delta": -2
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "evt_opo_encuesta",
+    "tipo": "programado",
+    "dia_objetivo": 154,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 1.0,
+    "titulo": "Una encuesta te muestra estancado",
+    "descripcion": "Los medios hablan de tu liderazgo.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "oposicion",
+    "fuente": "fuentes.json#ficticio_2026",
+    "opciones": [
+      {
+        "texto": "Reforzar tu presencia en regiones",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 2
+          },
+          {
+            "ind": "capital",
+            "delta": -1
+          }
+        ]
+      },
+      {
+        "texto": "Cambiar a tu vocero",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          },
+          {
+            "ind": "cohesion",
+            "delta": -1
+          }
+        ]
+      },
+      {
+        "texto": "Ignorar la encuesta",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": -1
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "evt_opo_filtracion",
+    "tipo": "aleatorio_semilla",
+    "dia_objetivo": null,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 0.04,
+    "titulo": "Se filtra una conversación interna de tu partido",
+    "descripcion": "Los medios publican diferencias entre tus dirigentes.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "oposicion",
+    "fuente": "fuentes.json#ficticio_2026",
+    "opciones": [
+      {
+        "texto": "Pedir disculpas y ordenar al partido",
+        "efectos": [
+          {
+            "ind": "cohesion",
+            "delta": 1
+          },
+          {
+            "ind": "aprobacion",
+            "delta": -1
+          }
+        ]
+      },
+      {
+        "texto": "Atribuirlo a una operación política",
+        "efectos": [
+          {
+            "ind": "cohesion",
+            "delta": 1
+          },
+          {
+            "ind": "capital",
+            "delta": -1
+          }
+        ]
+      },
+      {
+        "texto": "Sancionar a quien filtró",
+        "efectos": [
+          {
+            "ind": "cohesion",
+            "delta": -1
+          },
+          {
+            "ind": "capital",
+            "delta": 1
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "evt_opo_comision",
+    "tipo": "aleatorio_semilla",
+    "dia_objetivo": null,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 0.04,
+    "titulo": "Se abre una comisión investigadora",
+    "descripcion": "Puedes liderarla o dejarla pasar.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "oposicion",
+    "fuente": "fuentes.json#ficticio_2026",
+    "opciones": [
+      {
+        "texto": "Liderarla con dureza",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 2
+          },
+          {
+            "ind": "capital",
+            "delta": -1
+          }
+        ]
+      },
+      {
+        "texto": "Participar con moderación",
+        "efectos": [
+          {
+            "ind": "capital",
+            "delta": 1
+          }
+        ]
+      },
+      {
+        "texto": "No participar",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": -1
+          }
+        ]
+      }
+    ]
   }
 ]

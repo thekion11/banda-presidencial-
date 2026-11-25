@@ -55,6 +55,9 @@ var entradas: Array[Dictionary] = []  # decisiones del jugador, para reproducir 
 var semanas_en_crisis: int = 0
 var legado_evaluado: Array[int] = []
 var resultado_final: Dictionary = {}
+var ciclo: int = 1  # periodo de la carrera política (1 = primera campaña; sube cada vez que continúas tras un gobierno o una derrota)
+var carrera: Array[Dictionary] = []  # periodos ya cerrados: {ciclo, resultado, puntaje, aprobacion, turnos}
+var dias_carrera: int = 0  # días jugados en periodos cerrados desde el inicio del mandato (reloj del calendario desde el ciclo 2)
 
 
 func configurar(p_semilla: int, p_dias_turno: int = 7, p_leyes: Dictionary = {}) -> void:
@@ -105,6 +108,9 @@ func configurar(p_semilla: int, p_dias_turno: int = 7, p_leyes: Dictionary = {})
 	semanas_en_crisis = 0
 	legado_evaluado.clear()
 	resultado_final = {}
+	ciclo = 1
+	carrera.clear()
+	dias_carrera = 0
 
 
 static func normalizar(v: Variant) -> Variant:
@@ -184,6 +190,9 @@ func exportar_resumen() -> Dictionary:
 		"cartas_ejecutadas": cartas_ejecutadas.keys(),
 		"sectra": sectra.duplicate(true),
 		"ronda_electoral": ronda_electoral,
+		"ciclo": ciclo,
+		"carrera": carrera.duplicate(true),
+		"dias_carrera": dias_carrera,
 		"propuestas_abiertas": propuestas_abiertas.duplicate(),
 		"propuestas_aprobadas": propuestas_aprobadas.duplicate(),
 		"total_acciones": registro_acciones.size(),

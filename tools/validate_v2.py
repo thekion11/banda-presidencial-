@@ -23,7 +23,7 @@ def validar_metas(metas: list, cartas: list, ids_fuentes: set) -> None:
         for cid in m["desbloquea"]:
             if cid not in ids_cartas:
                 raise ValueError(f"{ctx}: desbloquea una carta inexistente '{cid}'")
-    for cat in cats:
+    for cat in cats - {"oposicion"}:  # las cartas de oposición no tienen sector interno ni metas
         for i in (1, 2, 3):
             if f"meta_{cat}_{i}" not in ids:
                 raise ValueError(f"falta la meta meta_{cat}_{i}")

@@ -173,7 +173,7 @@ def validar_eventos(eventos: list, ids_fuentes: set, tipos: set, dias_mandato: i
         validar_efectos(e["efectos_base"], ctx)
         if e["tipo"] == "programado":
             d = e["dia_objetivo"]
-            limite = dias_mandato if e.get("etapa", "gobierno") == "gobierno" else 56
+            limite = {"gobierno": dias_mandato, "oposicion": 26 * 7}.get(e.get("etapa", "gobierno"), 56)  # oposición: leyes.json oposicion.semanas x 7
             if d is None or not 1 <= d <= limite:
                 raise ValueError(f"{ctx}: dia_objetivo fuera del período")
         if e["votacion"] and e["votacion"]["tipo_ley"] not in tipos:

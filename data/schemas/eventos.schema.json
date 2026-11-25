@@ -43,7 +43,8 @@
       "etapa": {
         "enum": [
           "campana",
-          "gobierno"
+          "gobierno",
+          "oposicion"
         ]
       },
       "efectos_base": {

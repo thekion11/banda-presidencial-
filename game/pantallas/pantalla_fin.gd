@@ -4,7 +4,7 @@ extends Control
 ## de los eventos reales vividos (fecha y fuente). Solo lee el estado.
 
 signal otra_vez
-signal oposicion  # tras una derrota electoral: Modo Oposición ligero (PR-13)
+signal continuar  # la carrera sigue: oposición o campaña de reelección (carrera política)
 signal reintentar  # solo tras una derrota electoral: nueva partida directa
 
 var motor: MotorTurno
@@ -92,10 +92,14 @@ func _ready() -> void:
 		et.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 		col.add_child(et)
 	var lista := FilasUI.col(8)
-	if est.etapa == "derrota_electoral":
-		var bo := Tema.boton("Pasar a la oposición", Tema.PANEL, Tema.TEXTO, 14, 48)
-		bo.pressed.connect(func() -> void: oposicion.emit())
-		lista.add_child(bo)
+	var reelige := est.etapa == "fin_mandato" and est.cartas_ejecutadas.has("reforma_reeleccion")
+	var bo := Tema.boton("Postularte a la reelección" if reelige else "Seguir tu carrera: pasar a la oposición", Tema.ROJO, Tema.TEXTO, 14, 48)
+	bo.pressed.connect(func() -> void: continuar.emit())
+	lista.add_child(bo)
+	if not est.carrera.is_empty():
+		lista.add_child(FilasUI.titulo("Tu carrera política"))
+		for c in est.carrera:
+			lista.add_child(Tema.etiqueta("· Periodo %d: %s (aprobación %.0f %%)" % [int(c["ciclo"]), String({"fin_mandato": "mandato completo", "crisis": "gobierno caído", "derrota_electoral": "derrota electoral"}.get(c["resultado"], c["resultado"])), float(c["aprobacion"])], 12, Tema.TEXTO))
 	var total_prom := est.promesas_campana.size()
 	var leyes := leyes_aprobadas()
 	var fila1 := HBoxContainer.new()

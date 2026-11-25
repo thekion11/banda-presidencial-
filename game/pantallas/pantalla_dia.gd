@@ -168,9 +168,11 @@ func _refrescar() -> void:
 	var sem_camp := int(datos["leyes"]["hemiciclo"]["semanas_campana"])
 	if est.etapa == "campana":
 		_r["dia"].text = "Campaña · Semana %d de %d" % [mini(est.turno_actual, sem_camp), sem_camp]
+	elif est.etapa == "oposicion":
+		_r["dia"].text = "Oposición · Sem. %d/%d" % [est.turno_actual, int(datos["leyes"]["oposicion"]["semanas"])]
 	else:
 		_r["dia"].text = "Día %d" % est.dia_actual
-	_r["fecha"].text = Barras.fecha_texto(datos["leyes"], est.etapa, est.turno_actual, est.dia_actual)
+	_r["fecha"].text = Barras.fecha_texto(datos["leyes"], est.etapa, est.turno_actual, est.dia_actual, est.ciclo, est.dias_carrera)
 	_r["pa"].text = ManoUI.texto_pastilla(est)
 	_lbl_mov.text = ManoUI.texto_movimientos(est)
 	for k in _r["chips"].keys():
@@ -335,7 +337,7 @@ func _terminar_turno() -> void:
 	accion_hecha.emit()
 	if est.eleccion_pendiente(sem):
 		_avisar("Termina la campaña: toca el botón de avanzar para ir a las urnas.")
-	elif est.etapa != "campana" and est.etapa != "gobierno":
+	elif not MotorTurno.ETAPAS_JUEGO.has(est.etapa):
 		terminado.emit()
 		return
 	_cola_eventos = OverlaysDia.eventos_de_votaciones(motor)
