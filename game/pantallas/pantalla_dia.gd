@@ -168,8 +168,7 @@ func _refrescar() -> void:
 		_r["dia"].text = "Día %d" % est.dia_actual
 	_r["fecha"].text = Barras.fecha_texto(datos["leyes"], est.etapa, est.turno_actual, est.dia_actual, est.ciclo, est.dias_carrera)
 	var pa_txt := ManoUI.texto_pastilla(est)
-	if _r["pa"].text != "" and _r["pa"].text != pa_txt:
-		Movimiento.latido((_r["pa"] as Control).get_parent().get_parent())  # la pastilla late cuando cambian los movimientos
+	Movimiento.movimientos((_r["pa"] as Control).get_parent().get_parent(), _btn_jugar, est.pa_actual, _r["pa"].text != "" and _r["pa"].text != pa_txt)
 	_r["pa"].text = pa_txt
 	_lbl_mov.text = ManoUI.texto_movimientos(est)
 	Barras.pintar_chips(_r, est)
@@ -289,7 +288,9 @@ func _jugar() -> void:
 	_avisar((msg if cambios == "" else msg + " " + cambios) + Barras.sufijo_carta(r))
 	var color := Tema.BAJA if bool(r.get("salio_mal", false)) or bool(r.get("escandalo", false)) else Tema.SUBE
 	ManoVuelo.lanzar(_capa, vuelo, _mapa, _region, color, func(destino: Vector2) -> void:
-		Feedback.tras_jugar(_capa, r, cambios, _capa.get_global_transform().affine_inverse() * destino + Vector2(-40, -30)))
+		Feedback.tras_jugar(_capa, r, cambios, _capa.get_global_transform().affine_inverse() * destino + Vector2(-40, -30))
+		if bool(r.get("escandalo", false)):  # escándalo con peso: destello rojo, titular y chips que tiemblan
+			GolpePrensa.mostrar(_capa, GolpePrensa.ministro_del_escandalo(motor, n_reg), [_r["chips"]["aprobacion"].get_parent().get_parent(), _r["chips"]["capital"].get_parent().get_parent()]))
 	accion_hecha.emit()
 	_refrescar()
 
@@ -326,6 +327,8 @@ func _terminar_turno() -> void:
 	if est.eleccion_pendiente(sem):
 		_resolver_eleccion()
 		return
+	var antes := [String(_r["dia"].text), String(_r["fecha"].text)]
+	var ind_antes := est.indicadores.duplicate()
 	var nuevos := motor.terminar_turno()
 	accion_hecha.emit()
 	if est.eleccion_pendiente(sem):
@@ -336,7 +339,7 @@ func _terminar_turno() -> void:
 	_cola_eventos = OverlaysDia.eventos_de_votaciones(motor)
 	_cola_eventos.append_array(nuevos)
 	_refrescar()
-	_siguiente_evento()
+	TelonSemana.mostrar(_capa, antes, [String(_r["dia"].text), String(_r["fecha"].text)], ind_antes, est.indicadores, est.etapa == "oposicion", _siguiente_evento)
 
 
 func _resolver_eleccion() -> void:

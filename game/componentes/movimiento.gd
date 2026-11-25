@@ -109,10 +109,48 @@ static func halo(b: Control, color: Color = Tema.ORO, radio: int = 27) -> void:
 	h.add_theme_stylebox_override("panel", sb)
 	b.add_child(h)
 	b.move_child(h, 0)
-	h.modulate.a = 0.1
+	b.set_meta("_halo_panel", h)
+	_respirar(h, false)
+
+
+static func _respirar(h: Panel, intenso: bool) -> void:
+	if h.has_meta("_tw") and is_instance_valid(h.get_meta("_tw")):
+		(h.get_meta("_tw") as Tween).kill()
+	var sb := h.get_theme_stylebox("panel") as StyleBoxFlat
+	if sb != null:
+		sb.shadow_size = 22 if intenso else 12
+		sb.set_border_width_all(3 if intenso else 2)
+	var d := 0.42 if intenso else 1.2
+	h.modulate.a = 0.35 if intenso else 0.1
 	var tw := h.create_tween().set_loops()
-	tw.tween_property(h, "modulate:a", 0.9, 1.2).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
-	tw.tween_property(h, "modulate:a", 0.1, 1.2).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+	tw.tween_property(h, "modulate:a", 1.0 if intenso else 0.9, d).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+	tw.tween_property(h, "modulate:a", 0.35 if intenso else 0.1, d).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+	h.set_meta("_tw", tw)
+
+
+static func realzar(b: Control, intenso: bool) -> void:
+	## El halo del botón principal pulsa más rápido y fuerte (p. ej. sin movimientos: toca terminar la semana).
+	if not activo() or not b.has_meta("_halo_panel"):
+		return
+	if bool(b.get_meta("_intenso", false)) == intenso:
+		return
+	b.set_meta("_intenso", intenso)
+	_respirar(b.get_meta("_halo_panel"), intenso)
+
+
+static func movimientos(pastilla: Control, boton: Control, quedan: int, cambio: bool) -> void:
+	## Pastilla de movimientos: late al cambiar; al llegar a 0 se sacude, se apaga y el botón principal se realza.
+	var previo := int(pastilla.get_meta("_quedan", quedan))
+	pastilla.set_meta("_quedan", quedan)
+	realzar(boton, quedan == 0)
+	if not activo():
+		return
+	if quedan == 0 and previo > 0:
+		latido(pastilla, 1.22)
+		GolpePrensa.temblar(pastilla, 5.0)
+	elif cambio:
+		latido(pastilla)
+	pastilla.create_tween().tween_property(pastilla, "modulate", Color(0.62, 0.62, 0.66) if quedan == 0 else Color.WHITE, 0.4)
 
 
 static func contar(l: Label, hasta: float, formato: Callable, desde: float = 0.0, dur: float = ENFASIS, demora: float = 0.0) -> void:

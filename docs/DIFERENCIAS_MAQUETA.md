@@ -98,4 +98,15 @@ Referencia: lienzo de Claude Design «Presidente de Chile — Dirección visual 
 | Elección | Estática | La cifra cuenta, la barra se llena, regiones escalonadas, confeti oro/rojo/crema al ganar | `pantalla_eleccion.gd` |
 | Fin de partida, afiliación, test, gabinete, ajustes | Estáticas | Entradas escalonadas; cifras del resumen cuentan; barra del test se desliza; tarjetas de afiliación con degradado | varias |
 
+### Paquete visual del 25-nov-2026 (pedido por el usuario)
+| Elemento | Antes | Ahora | Archivo |
+|---|---|---|---|
+| Fin de semana | Se pasaba directo a los eventos | Telón que baja con «Semana N → N+1» (o «Día N → N+7»), cada indicador contando de su valor anterior al nuevo con su diferencia en verde o coral; se va solo en ~2 s o al tocarlo, y entonces siguen los eventos | `telon_semana.gd` |
+| Hemiciclo de votación | Se llenaba de golpe; la cifra subía proporcional | Los votos caen uno a uno con rebote; el contador va sincronizado con los votos a favor posados; línea dorada «mín. N» que se enciende (con sonido) al cruzarla; si la votación es ajustada (±3 del mínimo), el tramo final va lento; el sello cae al terminar | `hemiciclo.gd › animar_votacion` |
+| Escándalo ministerial | Solo un aviso de texto | Destello rojo, titular de diario que entra girando con el ministerio y el alias del ministro, y los chips de Aprobación y Capital tiemblan | `golpe_prensa.gd` |
+| Movimientos agotados | El botón cambiaba de texto | La pastilla se sacude y se apaga; el halo de «Siguiente semana» pulsa más rápido y fuerte | `movimiento.gd › movimientos` |
+| Mapa vivo | Estático entre jugadas | Las regiones que se movieron en el último cambio laten en verde o coral; el bastión tiene un pulso dorado; las obras se mecen y las propuestas laten. Capa animada aparte: el mapa completo no se redibuja cada cuadro | `mapa_chile.gd › _dibujar_vivo` |
+
+Limitación: los eventos del juego (`data/eventos.json`) no traen región, así que no hay «pin del evento en su región»; agregarlo exigiría datos nuevos con fuente.
+
 Reglas: todo el movimiento respeta Ajustes › «Animaciones y movimiento» y se apaga en modo headless, así que las pruebas miden siempre el estado final. El azar de las partículas es solo visual y no toca la semilla de la partida. Prueba propia: `tests/test_movimiento.gd`.

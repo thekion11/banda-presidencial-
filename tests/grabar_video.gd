@@ -87,7 +87,7 @@ func _correr() -> void:
 	Tutorial.ruta = "user://preferencias_video.json"
 	DirAccess.remove_absolute(ProjectSettings.globalize_path(Tutorial.ruta))
 	_poner_dedo()
-	create_timer(110.0).timeout.connect(quit)  # tope de seguridad: el video nunca pasa de 110 s
+	create_timer(130.0).timeout.connect(quit)  # tope de seguridad: el video nunca pasa de 130 s
 	process_frame.connect(func() -> void: _process_dedo(1.0 / 30.0))
 	var main: Node = load("res://game/main.tscn").instantiate()
 	root.add_child(main)
@@ -143,6 +143,30 @@ func _correr() -> void:
 			dia._on_carta(maxi(0, dia.motor.estado.mano.size() - 1))
 			await _esperar(1.2)
 
+	# 3b) Gastar los movimientos que quedan: la pastilla se apaga y «Siguiente semana» pulsa más fuerte.
+	for _k in range(3):
+		var est: EstadoSimulacion = dia.motor.estado
+		if est.pa_actual <= 0:
+			break
+		var elegible := -1
+		for j in range(est.mano.size()):
+			if dia.motor.costo_carta(est.mano[j], "") <= est.pa_actual:
+				elegible = j
+				break
+		if elegible < 0:
+			break
+		dia._on_carta(elegible)
+		await _esperar(0.5)
+		var r2: Rect2 = dia._mano.get_global_rect()
+		await _deslizar(Vector2(r2.get_center().x, r2.position.y + 110.0), Vector2(r2.get_center().x, r2.position.y - 120.0))
+		dia._jugar()
+		await _esperar(1.8)
+	await _esperar(1.0)
+	# 3c) Escándalo con peso (vitrina: el motor lo sortea con la semilla; aquí se muestra su efecto visual).
+	var mins: Array = dia.motor.catalogo_ministros.keys()
+	GolpePrensa.mostrar(dia._capa, dia.motor.catalogo_ministros[mins[0]], [dia._r["chips"]["aprobacion"].get_parent().get_parent(), dia._r["chips"]["capital"].get_parent().get_parent()])
+	await _esperar(2.8)
+
 	# 4) Paneles de la barra inferior.
 	var nav: Array = dia._nav.find_children("*", "Button", true, false)
 	for idx in [2, 3, 0]:
@@ -150,11 +174,12 @@ func _correr() -> void:
 		await _tocar(nav[idx])
 		await _esperar(2.6 if idx != 0 else 1.2)
 
-	# 5) Terminar la semana: chips que cuentan y mano nueva.
+	# 5) Terminar la semana: telón con el resumen, chips que cuentan y mano nueva.
 	await _tocar(dia._btn_jugar)
-	await _esperar(0.5)
-	await _tocar(dia._btn_jugar)
-	await _esperar(2.4)
+	if dia.motor.estado.pa_actual > 0:  # con movimientos sobrantes pide confirmar
+		await _esperar(0.5)
+		await _tocar(dia._btn_jugar)
+	await _esperar(3.4)
 	for h in dia._capa.get_children():  # eventos de la semana nueva fuera, para seguir el recorrido
 		if h is Control and h != dia._toast and not (h is Tutorial):
 			h.queue_free()
@@ -162,9 +187,9 @@ func _correr() -> void:
 
 	# 6) Votación en el Senado.
 	var ev := {"titulo": "Ley de quórum calificado de energía", "hora": "16:00", "descripcion": "Requiere 26 votos de 50 senadores", "efectos": [{"ind": "capital", "delta": 4}, {"ind": "cohesion", "delta": 2}, {"ind": "fiscal", "delta": -2}],
-		"votacion": {"origen": "senado", "voto": {"aprobada": true, "senado": 29, "camara": 96, "min_senado": 26, "min_camara": 78, "total_senado": 50, "total_camara": 155, "abst_senado": 7, "abst_camara": 21, "contra_senado": 14, "contra_camara": 38}, "tc": {"recurso": true, "cae": false}, "aprobada": true}}
+		"votacion": {"origen": "senado", "voto": {"aprobada": true, "senado": 27, "camara": 96, "min_senado": 26, "min_camara": 78, "total_senado": 50, "total_camara": 155, "abst_senado": 5, "abst_camara": 21, "contra_senado": 18, "contra_camara": 38}, "tc": {"recurso": true, "cae": false}, "aprobada": true}}
 	dia._capa.add_child(OverlaysDia.evento(ev, func() -> void: pass, main.motor.catalogo_leyes["congreso"]["nombres"], 36))
-	await _esperar(4.2)
+	await _esperar(5.4)  # votación ajustada: el conteo final va lento
 	var bs: Array = dia._capa.find_children("*", "Button", true, false)
 	await _tocar(bs[bs.size() - 1])
 	await _esperar(3.4)

@@ -41,7 +41,7 @@ static func _pagina_votacion(col: VBoxContainer, camara: String, voto: Dictionar
 	h.custom_minimum_size = Vector2(0, 230)
 	h.configurar_votos(total, favor, abst, contra)
 	col.add_child(h)
-	h.animar(1.3)
+	var dur := h.animar_votacion(minimo, favor)  # los votos caen; ajustada = más lenta
 	var leyenda := HBoxContainer.new()
 	leyenda.alignment = BoxContainer.ALIGNMENT_CENTER
 	leyenda.add_theme_constant_override("separation", 12)
@@ -49,7 +49,7 @@ static func _pagina_votacion(col: VBoxContainer, camara: String, voto: Dictionar
 		leyenda.add_child(Icono.crear("dot", par[0], 12.0))
 		leyenda.add_child(Tema.etiqueta_corta(par[1], 11, Tema.TEXTO_SUAVE))
 	col.add_child(leyenda)
-	col.add_child(SelloVoto.crear(favor >= minimo, 1.35))  # cae al terminar de llenarse el hemiciclo
+	col.add_child(SelloVoto.crear(favor >= minimo, dur + 0.05))  # cae al terminar de llenarse el hemiciclo
 
 
 static func _camino(col: VBoxContainer, paginas: Array, i: int, nombres: Dictionary) -> void:
