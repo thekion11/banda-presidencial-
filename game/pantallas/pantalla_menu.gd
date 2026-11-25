@@ -42,10 +42,9 @@ func _ready() -> void:
 	n.text = "Nueva partida"
 	n.pressed.connect(func() -> void: nueva.emit())
 	col.add_child(n)
-	if hay_ultima:
-		var rp := Tema.boton("Nueva partida como la última vez", Tema.OCEANO.lightened(0.1), Tema.TEXTO, 13, 44)
-		rp.pressed.connect(func() -> void: repetir.emit())
-		col.add_child(rp)
+	var rp := Tema.boton("Partida rápida (como la última vez)" if hay_ultima else "Partida rápida", Tema.OCEANO.lightened(0.1), Tema.TEXTO, 13, 44)
+	rp.pressed.connect(func() -> void: repetir.emit())
+	col.add_child(rp)
 	var ca := Tema.boton("Cartera de proyectos", Tema.OCEANO.lightened(0.1), Tema.TEXTO, 13, 44)
 	ca.pressed.connect(func() -> void: add_child(PantallaCartera.crear(datos)))
 	col.add_child(ca)

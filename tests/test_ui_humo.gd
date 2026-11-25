@@ -69,11 +69,11 @@ func _una(semilla: int, idx: int = 0) -> void:
 	if idx == 0:  # «Nueva partida como la última vez»
 		main.mostrar_menu()
 		await process_frame
-		var rb: Array = main._pantalla.find_children("*", "Button", true, false).filter(func(b: Button) -> bool: return b.text == "Nueva partida como la última vez")
-		_check(rb.size() == 1, "el menú ofrece repetir la última configuración")
+		var rb: Array = main._pantalla.find_children("*", "Button", true, false).filter(func(b: Button) -> bool: return b.text.begins_with("Partida rápida"))
+		_check(rb.size() == 1, "el menú ofrece la partida rápida")
 		main._repetir_ultima()
 		await process_frame
-		_check(main.motor != null and String(main.motor.estado.partido["nombre"]) == String(partido["nombre"]), "repetir la última configuración crea la misma partida de partido")
+		_check(main.motor != null and String(main.motor.estado.partido["nombre"]) == String(partido["nombre"]) and main._pantalla is PantallaDia, "la partida rápida repite el partido y va directo al mapa (1 toque)")
 	partido["indicadores_iniciales"]["aprobacion"] = 90.0  # la prueba recorre el gobierno: que la campaña no la pierda al azar
 	main.motor = Partida.crear(main.datos, semilla, partido)  # semilla fija: la prueba no depende del reloj
 	main.mostrar_gabinete()

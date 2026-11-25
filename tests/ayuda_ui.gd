@@ -63,5 +63,11 @@ static func carrera(arbol: SceneTree) -> Array[String]:
 			fallos.append("seguir la carrera lleva a la oposición")
 		elif not String(main._pantalla._r["dia"].text).begins_with("Oposición"):
 			fallos.append("la cabecera dice Oposición")
+	DirAccess.remove_absolute(ProjectSettings.globalize_path("user://ultima_config.json"))  # instalación nueva: la partida rápida usa el partido por defecto
+	main._repetir_ultima()
+	await arbol.process_frame
+	if not (main._pantalla is PantallaDia) or main.motor.estado.etapa != "campana":
+		fallos.append("la partida rápida sin configuración previa va directo al mapa")
+	DirAccess.remove_absolute(ProjectSettings.globalize_path("user://ultima_config.json"))
 	main.queue_free()
 	return fallos

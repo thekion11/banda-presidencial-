@@ -74,21 +74,32 @@ func mostrar_partido(afiliacion: String = "propio", base: Dictionary = {}) -> vo
 
 
 func _repetir_ultima() -> void:
-	var p: Variant = Datos.leer_json(RUTA_ULTIMA)
+	## Partida rápida (1 toque): la última configuración o, si no hay, un partido por defecto; sin pasar por afiliación, test ni gabinete.
+	var p: Variant = Datos.leer_json(RUTA_ULTIMA) if FileAccess.file_exists(RUTA_ULTIMA) else null
 	if p is Dictionary and p.has("indicadores_iniciales"):
-		_iniciar_campana(p)
-	else:
-		DirAccess.remove_absolute(ProjectSettings.globalize_path(RUTA_ULTIMA))  # archivo dañado: se descarta y se vuelve al menú
-		mostrar_menu("No se pudo repetir la configuración anterior.")
+		_iniciar_campana(p, true)
+		return
+	if FileAccess.file_exists(RUTA_ULTIMA):
+		DirAccess.remove_absolute(ProjectSettings.globalize_path(RUTA_ULTIMA))  # archivo dañado: se descarta
+	var resp: Array[Dictionary] = []
+	for q in datos["ideologia"]["preguntas"]:
+		resp.append(q["opciones"][1])
+	var base := GeneradorPartido.construir_partido_afiliado("propio", {}, "Movimiento Cívico Austral", "MCA", "metropolitana", resp, datos["ideologia"], datos["leyes"]["afiliacion"])
+	GeneradorPartido.aplicar_habilidad(base, String(datos["leyes"]["habilidades"]["defecto"]), String(datos["leyes"]["habilidades"]["colores"][0]), datos["leyes"]["habilidades"])
+	_iniciar_campana(base, true)
 
 
-func _iniciar_campana(partido: Dictionary) -> void:
+func _iniciar_campana(partido: Dictionary, directo: bool = false) -> void:
 	var f := FileAccess.open(RUTA_ULTIMA, FileAccess.WRITE)
 	if f != null:
 		f.store_string(JSON.stringify(partido))
 	var semilla := int(Time.get_unix_time_from_system()) % 2000000000
 	motor = Partida.crear(datos, semilla, partido)
 	UrbanoBase.reiniciar()  # líneas ocultas y líneas del jugador de la partida anterior no pasan a la nueva
+	if directo:  # el gabinete real (25) ya viene relleno; se puede cambiar después desde la pestaña Gabinete
+		guardar()
+		mostrar_dia()
+		return
 	mostrar_gabinete()
 
 

@@ -5,10 +5,18 @@
     "dias_por_turno": 7,
     "duracion_mandato_dias": 1460,
     "semanas_campana": 8,
-    "umbral_victoria_presidencial": 51.0,
+    "umbral_victoria_presidencial": 52.0,
     "bono_aprobacion_promesa": 1.5,
     "semanas_balotaje": 4,
     "umbral_pasa_balotaje": 38.0
+  },
+  "director_eventos": {
+    "nota": "Director de eventos: peso_sorteo es RELATIVO (no una probabilidad). Cada semana, con prob_semana ocurre como máximo un evento aleatorio; prob_decision es la parte de esos que pide una decisión. Ningún evento se repite antes de cooldown_evento semanas, ninguno de su misma familia antes de cooldown_familia, y entre decisiones pasan al menos cooldown_decision semanas. Los eventos programados no pasan por el director.",
+    "prob_semana": 0.5,
+    "prob_decision": 0.5,
+    "cooldown_evento": 40,
+    "cooldown_familia": 6,
+    "cooldown_decision": 4
   },
   "campana": {
     "min_promesas": 2,
@@ -51,7 +59,7 @@
     "desgaste_aprobacion_semanal": 0.35,
     "regen_capital_semanal": 0.5,
     "regen_cohesion_semanal": 0.2,
-    "umbral_crisis_aprobacion": 12.0,
+    "umbral_crisis_aprobacion": 24.0,
     "semanas_crisis_para_caida": 3,
     "ancla_base": 6.0,
     "ancla_peso_fiscal": 0.18,

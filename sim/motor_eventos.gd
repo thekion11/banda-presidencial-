@@ -12,24 +12,71 @@ func _init(p_motor: MotorTurno) -> void:
 	_ref = weakref(p_motor)
 
 
+func semana_abs() -> int:
+	## Semana absoluta de la carrera (los periodos reinician el turno, no esta cuenta).
+	return m.estado.dias_carrera / m.estado.dias_por_turno + m.estado.turno_actual
+
+
 func procesar_semana() -> Array[Dictionary]:
 	var dia_inicio := m.estado.dia_actual
 	var dia_fin := m.estado.dia_actual + m.estado.dias_por_turno - 1
 	var ocurridos: Array[Dictionary] = []
+	var aleatorios: Array[Dictionary] = []
 	for evt in m.catalogo_eventos:
 		if String(evt.get("etapa", "gobierno")) != m.estado.etapa:
 			continue
 		if m.estado.ciclo > 1 and evt.has("meta") and evt["meta"].has("fecha_real"):
 			continue  # los hitos con fecha real ocurren una sola vez (primer periodo)
-		var ocurre := false
 		if evt["tipo"] == "programado":
 			var d_obj := int(evt["dia_objetivo"])
-			ocurre = d_obj >= dia_inicio and d_obj <= dia_fin
+			if d_obj >= dia_inicio and d_obj <= dia_fin:
+				ocurridos.append(aplicar_evento(evt))
 		elif evt["tipo"] == "aleatorio_semilla":
-			ocurre = m.rng.randf() < float(evt.get("peso_sorteo", 0.0))
-		if ocurre:
-			ocurridos.append(aplicar_evento(evt))
+			aleatorios.append(evt)
+	var elegido := _director(aleatorios)
+	if not elegido.is_empty():
+		ocurridos.append(aplicar_evento(elegido))
 	return ocurridos
+
+
+func _en_cooldown(evt: Dictionary, cfg: Dictionary, ahora: int) -> bool:
+	var oc: Dictionary = m.estado.eventos_ocurridos
+	if oc.has(String(evt["id"])) and ahora - int(oc[String(evt["id"])]) < int(cfg["cooldown_evento"]):
+		return true
+	for otro in m.catalogo_eventos:  # familia y decisiones: se mira la última ocurrencia de cada evento
+		if not oc.has(String(otro["id"])):
+			continue
+		var hace := ahora - int(oc[String(otro["id"])])
+		if String(otro.get("familia", "")) == String(evt.get("familia", "?")) and hace < int(cfg["cooldown_familia"]):
+			return true
+		if evt.has("opciones") and otro.has("opciones") and hace < int(cfg["cooldown_decision"]):
+			return true
+	return false
+
+
+func _director(pool: Array[Dictionary]) -> Dictionary:
+	## Como máximo un evento aleatorio por semana, sin repeticiones cercanas (data/leyes.json «director_eventos»). Determinista con la semilla.
+	var cfg: Dictionary = m.catalogo_leyes["director_eventos"]
+	if m.rng.randf() >= float(cfg["prob_semana"]):
+		return {}
+	var quiere_decision := m.rng.randf() < float(cfg["prob_decision"])
+	var ahora := semana_abs()
+	for tipo in [quiere_decision, not quiere_decision]:  # si no hay del tipo pedido, se prueba el otro
+		var cand: Array[Dictionary] = []
+		var total := 0.0
+		for evt in pool:
+			if evt.has("opciones") == tipo and not _en_cooldown(evt, cfg, ahora):
+				cand.append(evt)
+				total += float(evt.get("peso_sorteo", 0.0))
+		if cand.is_empty() or total <= 0.0:
+			continue
+		var r := m.rng.randf() * total
+		for evt in cand:
+			r -= float(evt.get("peso_sorteo", 0.0))
+			if r <= 0.0:
+				return evt
+		return cand[cand.size() - 1]
+	return {}
 
 
 func aplicar_evento(evt: Dictionary) -> Dictionary:
@@ -54,7 +101,7 @@ func aplicar_evento(evt: Dictionary) -> Dictionary:
 		for ef in evt["efectos_base"]:
 			m.fx.aplicar_efecto(ef, 1.0, "")
 	m.estado.registrar_accion("evento", {"id": evt["id"], "aplicado": aplicar})
-	m.estado.eventos_ocurridos[String(evt["id"])] = m.estado.turno_actual
+	m.estado.eventos_ocurridos[String(evt["id"])] = semana_abs()
 	m.mazo.incorporar(m.mazo.ids_con_disponibilidad("evento", String(evt["id"])))  # desbloquea cartas ligadas a este evento
 	return res
 

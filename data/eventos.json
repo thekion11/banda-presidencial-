@@ -28,14 +28,15 @@
       }
     ],
     "etapa": "gobierno",
-    "fuente": "fuentes.json#cpr_chile_2026"
+    "fuente": "fuentes.json#cpr_chile_2026",
+    "familia": "politica"
   },
   {
     "id": "evt_sequia_norte",
     "tipo": "aleatorio_semilla",
     "dia_objetivo": null,
     "hora_etiqueta": "09:00",
-    "peso_sorteo": 0.25,
+    "peso_sorteo": 0.12,
     "titulo": "Déficit hídrico en valles transversales",
     "descripcion": "Presión regional por subsidios de riego y agua potable.",
     "votacion": null,
@@ -50,7 +51,8 @@
       }
     ],
     "etapa": "gobierno",
-    "fuente": "fuentes.json#dipres_2026"
+    "fuente": "fuentes.json#dipres_2026",
+    "familia": "naturaleza"
   },
   {
     "id": "evt_terremoto",
@@ -80,7 +82,8 @@
       }
     ],
     "etapa": "gobierno",
-    "fuente": "fuentes.json#ficticio_2026"
+    "fuente": "fuentes.json#ficticio_2026",
+    "familia": "naturaleza"
   },
   {
     "id": "evt_paro_transporte",
@@ -102,7 +105,8 @@
       }
     ],
     "etapa": "gobierno",
-    "fuente": "fuentes.json#ficticio_2026"
+    "fuente": "fuentes.json#ficticio_2026",
+    "familia": "economia"
   },
   {
     "id": "evt_alza_cobre",
@@ -124,7 +128,8 @@
       }
     ],
     "etapa": "gobierno",
-    "fuente": "fuentes.json#ficticio_2026"
+    "fuente": "fuentes.json#ficticio_2026",
+    "familia": "economia"
   },
   {
     "id": "evt_baja_cobre",
@@ -142,7 +147,8 @@
       }
     ],
     "etapa": "gobierno",
-    "fuente": "fuentes.json#ficticio_2026"
+    "fuente": "fuentes.json#ficticio_2026",
+    "familia": "economia"
   },
   {
     "id": "evt_incendios",
@@ -164,7 +170,8 @@
       }
     ],
     "etapa": "gobierno",
-    "fuente": "fuentes.json#ficticio_2026"
+    "fuente": "fuentes.json#ficticio_2026",
+    "familia": "naturaleza"
   },
   {
     "id": "evt_protesta_estudiantil",
@@ -186,7 +193,8 @@
       }
     ],
     "etapa": "gobierno",
-    "fuente": "fuentes.json#ficticio_2026"
+    "fuente": "fuentes.json#ficticio_2026",
+    "familia": "social"
   },
   {
     "id": "evt_cuenta_publica_a1",
@@ -208,7 +216,8 @@
       }
     ],
     "etapa": "gobierno",
-    "fuente": "fuentes.json#ficticio_2026"
+    "fuente": "fuentes.json#ficticio_2026",
+    "familia": "politica"
   },
   {
     "id": "evt_presupuesto_a1",
@@ -230,7 +239,8 @@
       }
     ],
     "etapa": "gobierno",
-    "fuente": "fuentes.json#ficticio_2026"
+    "fuente": "fuentes.json#ficticio_2026",
+    "familia": "politica"
   },
   {
     "id": "evt_cuenta_publica_a2",
@@ -252,7 +262,8 @@
       }
     ],
     "etapa": "gobierno",
-    "fuente": "fuentes.json#ficticio_2026"
+    "fuente": "fuentes.json#ficticio_2026",
+    "familia": "politica"
   },
   {
     "id": "evt_presupuesto_a2",
@@ -274,7 +285,8 @@
       }
     ],
     "etapa": "gobierno",
-    "fuente": "fuentes.json#ficticio_2026"
+    "fuente": "fuentes.json#ficticio_2026",
+    "familia": "politica"
   },
   {
     "id": "evt_cuenta_publica_a3",
@@ -296,7 +308,8 @@
       }
     ],
     "etapa": "gobierno",
-    "fuente": "fuentes.json#ficticio_2026"
+    "fuente": "fuentes.json#ficticio_2026",
+    "familia": "politica"
   },
   {
     "id": "evt_presupuesto_a3",
@@ -318,7 +331,8 @@
       }
     ],
     "etapa": "gobierno",
-    "fuente": "fuentes.json#ficticio_2026"
+    "fuente": "fuentes.json#ficticio_2026",
+    "familia": "politica"
   },
   {
     "id": "evt_cuenta_publica_a4",
@@ -340,7 +354,8 @@
       }
     ],
     "etapa": "gobierno",
-    "fuente": "fuentes.json#ficticio_2026"
+    "fuente": "fuentes.json#ficticio_2026",
+    "familia": "politica"
   },
   {
     "id": "evt_franja",
@@ -358,7 +373,8 @@
       }
     ],
     "etapa": "campana",
-    "fuente": "fuentes.json#ficticio_2026"
+    "fuente": "fuentes.json#ficticio_2026",
+    "familia": "politica"
   },
   {
     "id": "evt_debate",
@@ -380,7 +396,8 @@
       }
     ],
     "etapa": "campana",
-    "fuente": "fuentes.json#ficticio_2026"
+    "fuente": "fuentes.json#ficticio_2026",
+    "familia": "politica"
   },
   {
     "id": "evt_polemica_rival",
@@ -398,7 +415,8 @@
       }
     ],
     "etapa": "campana",
-    "fuente": "fuentes.json#ficticio_2026"
+    "fuente": "fuentes.json#ficticio_2026",
+    "familia": "politica"
   },
   {
     "id": "evt_gaffe",
@@ -420,7 +438,8 @@
       }
     ],
     "etapa": "campana",
-    "fuente": "fuentes.json#ficticio_2026"
+    "fuente": "fuentes.json#ficticio_2026",
+    "familia": "politica"
   },
   {
     "id": "evt_ola_calor",
@@ -442,7 +461,8 @@
       }
     ],
     "etapa": "gobierno",
-    "fuente": "fuentes.json#ficticio_2026"
+    "fuente": "fuentes.json#ficticio_2026",
+    "familia": "naturaleza"
   },
   {
     "id": "evt_marejadas",
@@ -464,7 +484,8 @@
       }
     ],
     "etapa": "gobierno",
-    "fuente": "fuentes.json#ficticio_2026"
+    "fuente": "fuentes.json#ficticio_2026",
+    "familia": "naturaleza"
   },
   {
     "id": "evt_paro_salud",
@@ -486,7 +507,8 @@
       }
     ],
     "etapa": "gobierno",
-    "fuente": "fuentes.json#ficticio_2026"
+    "fuente": "fuentes.json#ficticio_2026",
+    "familia": "social"
   },
   {
     "id": "evt_huelga_mineria",
@@ -508,7 +530,8 @@
       }
     ],
     "etapa": "gobierno",
-    "fuente": "fuentes.json#ficticio_2026"
+    "fuente": "fuentes.json#ficticio_2026",
+    "familia": "economia"
   },
   {
     "id": "evt_inflacion_baja",
@@ -530,7 +553,8 @@
       }
     ],
     "etapa": "gobierno",
-    "fuente": "fuentes.json#ficticio_2026"
+    "fuente": "fuentes.json#ficticio_2026",
+    "familia": "economia"
   },
   {
     "id": "evt_dolar_alto",
@@ -552,7 +576,8 @@
       }
     ],
     "etapa": "gobierno",
-    "fuente": "fuentes.json#ficticio_2026"
+    "fuente": "fuentes.json#ficticio_2026",
+    "familia": "economia"
   },
   {
     "id": "evt_inversion_privada",
@@ -574,7 +599,8 @@
       }
     ],
     "etapa": "gobierno",
-    "fuente": "fuentes.json#ficticio_2026"
+    "fuente": "fuentes.json#ficticio_2026",
+    "familia": "economia"
   },
   {
     "id": "evt_acusacion",
@@ -596,7 +622,8 @@
       }
     ],
     "etapa": "gobierno",
-    "fuente": "fuentes.json#ficticio_2026"
+    "fuente": "fuentes.json#ficticio_2026",
+    "familia": "politica"
   },
   {
     "id": "evt_cumbre",
@@ -618,7 +645,8 @@
       }
     ],
     "etapa": "gobierno",
-    "fuente": "fuentes.json#ficticio_2026"
+    "fuente": "fuentes.json#ficticio_2026",
+    "familia": "politica"
   },
   {
     "id": "evt_lluvias",
@@ -640,7 +668,8 @@
       }
     ],
     "etapa": "gobierno",
-    "fuente": "fuentes.json#ficticio_2026"
+    "fuente": "fuentes.json#ficticio_2026",
+    "familia": "naturaleza"
   },
   {
     "id": "evt_fiestas_patrias_a1",
@@ -662,7 +691,8 @@
       }
     ],
     "etapa": "gobierno",
-    "fuente": "fuentes.json#ficticio_2026"
+    "fuente": "fuentes.json#ficticio_2026",
+    "familia": "politica"
   },
   {
     "id": "evt_fiestas_patrias_a2",
@@ -684,7 +714,8 @@
       }
     ],
     "etapa": "gobierno",
-    "fuente": "fuentes.json#ficticio_2026"
+    "fuente": "fuentes.json#ficticio_2026",
+    "familia": "politica"
   },
   {
     "id": "evt_fiestas_patrias_a3",
@@ -706,7 +737,8 @@
       }
     ],
     "etapa": "gobierno",
-    "fuente": "fuentes.json#ficticio_2026"
+    "fuente": "fuentes.json#ficticio_2026",
+    "familia": "politica"
   },
   {
     "id": "evt_fiestas_patrias_a4",
@@ -728,7 +760,8 @@
       }
     ],
     "etapa": "gobierno",
-    "fuente": "fuentes.json#ficticio_2026"
+    "fuente": "fuentes.json#ficticio_2026",
+    "familia": "politica"
   },
   {
     "id": "evt_vota_presupuesto_a1",
@@ -755,7 +788,8 @@
       }
     ],
     "etapa": "gobierno",
-    "fuente": "fuentes.json#dipres_2026"
+    "fuente": "fuentes.json#dipres_2026",
+    "familia": "politica"
   },
   {
     "id": "evt_vota_presupuesto_a2",
@@ -782,7 +816,8 @@
       }
     ],
     "etapa": "gobierno",
-    "fuente": "fuentes.json#dipres_2026"
+    "fuente": "fuentes.json#dipres_2026",
+    "familia": "politica"
   },
   {
     "id": "evt_vota_presupuesto_a3",
@@ -809,7 +844,8 @@
       }
     ],
     "etapa": "gobierno",
-    "fuente": "fuentes.json#dipres_2026"
+    "fuente": "fuentes.json#dipres_2026",
+    "familia": "politica"
   },
   {
     "id": "evt_vota_presupuesto_a4",
@@ -836,7 +872,8 @@
       }
     ],
     "etapa": "gobierno",
-    "fuente": "fuentes.json#dipres_2026"
+    "fuente": "fuentes.json#dipres_2026",
+    "familia": "politica"
   },
   {
     "id": "evt_encuesta_camp",
@@ -854,7 +891,8 @@
       }
     ],
     "etapa": "campana",
-    "fuente": "fuentes.json#ficticio_2026"
+    "fuente": "fuentes.json#ficticio_2026",
+    "familia": "politica"
   },
   {
     "id": "evt_apoyo_gremio",
@@ -876,7 +914,8 @@
       }
     ],
     "etapa": "campana",
-    "fuente": "fuentes.json#ficticio_2026"
+    "fuente": "fuentes.json#ficticio_2026",
+    "familia": "politica"
   },
   {
     "id": "evt_cadena_falsa",
@@ -898,7 +937,8 @@
       }
     ],
     "etapa": "campana",
-    "fuente": "fuentes.json#ficticio_2026"
+    "fuente": "fuentes.json#ficticio_2026",
+    "familia": "politica"
   },
   {
     "id": "evt_vecino_arg_crisis",
@@ -922,7 +962,8 @@
     "etapa": "gobierno",
     "fuente": "fuentes.json#ficticio_2026",
     "pais": "ARG",
-    "relacion_delta": -6
+    "relacion_delta": -6,
+    "familia": "vecino"
   },
   {
     "id": "evt_vecino_arg_acuerdo",
@@ -946,7 +987,8 @@
     "etapa": "gobierno",
     "fuente": "fuentes.json#ficticio_2026",
     "pais": "ARG",
-    "relacion_delta": 8
+    "relacion_delta": 8,
+    "familia": "vecino"
   },
   {
     "id": "evt_vecino_bol_gas",
@@ -966,7 +1008,8 @@
     "etapa": "gobierno",
     "fuente": "fuentes.json#ficticio_2026",
     "pais": "BOL",
-    "relacion_delta": -8
+    "relacion_delta": -8,
+    "familia": "vecino"
   },
   {
     "id": "evt_vecino_per_elecciones",
@@ -986,7 +1029,8 @@
     "etapa": "gobierno",
     "fuente": "fuentes.json#ficticio_2026",
     "pais": "PER",
-    "relacion_delta": 6
+    "relacion_delta": 6,
+    "familia": "vecino"
   },
   {
     "id": "evt_vecino_ven_migracion",
@@ -1006,7 +1050,8 @@
     "etapa": "gobierno",
     "fuente": "fuentes.json#ficticio_2026",
     "pais": "VEN",
-    "relacion_delta": -5
+    "relacion_delta": -5,
+    "familia": "vecino"
   },
   {
     "id": "evt_vecino_bra_comercio",
@@ -1026,7 +1071,8 @@
     "etapa": "gobierno",
     "fuente": "fuentes.json#ficticio_2026",
     "pais": "BRA",
-    "relacion_delta": 5
+    "relacion_delta": 5,
+    "familia": "vecino"
   },
   {
     "id": "evt_vecino_col_pacifico",
@@ -1046,7 +1092,8 @@
     "etapa": "gobierno",
     "fuente": "fuentes.json#ficticio_2026",
     "pais": "COL",
-    "relacion_delta": 6
+    "relacion_delta": 6,
+    "familia": "vecino"
   },
   {
     "id": "evt_vecino_ury_mercosur",
@@ -1066,7 +1113,8 @@
     "etapa": "gobierno",
     "fuente": "fuentes.json#ficticio_2026",
     "pais": "URY",
-    "relacion_delta": 5
+    "relacion_delta": 5,
+    "familia": "vecino"
   },
   {
     "id": "evt_ext_terremoto",
@@ -1120,7 +1168,8 @@
           }
         ]
       }
-    ]
+    ],
+    "familia": "externo"
   },
   {
     "id": "evt_ext_cobre",
@@ -1170,7 +1219,8 @@
           }
         ]
       }
-    ]
+    ],
+    "familia": "externo"
   },
   {
     "id": "evt_ext_incendio",
@@ -1228,7 +1278,8 @@
           }
         ]
       }
-    ]
+    ],
+    "familia": "externo"
   },
   {
     "id": "evt_ext_paro",
@@ -1282,7 +1333,8 @@
           }
         ]
       }
-    ]
+    ],
+    "familia": "externo"
   },
   {
     "id": "evt_min_hacienda",
@@ -1347,7 +1399,8 @@
     "actor": {
       "id": "min_hacienda",
       "nombre": "Ministerio: Hacienda"
-    }
+    },
+    "familia": "ministerio"
   },
   {
     "id": "evt_min_salud",
@@ -1408,7 +1461,8 @@
     "actor": {
       "id": "min_salud",
       "nombre": "Ministerio: Salud"
-    }
+    },
+    "familia": "ministerio"
   },
   {
     "id": "evt_min_educacion",
@@ -1469,7 +1523,8 @@
     "actor": {
       "id": "min_educacion",
       "nombre": "Ministerio: Educacion"
-    }
+    },
+    "familia": "ministerio"
   },
   {
     "id": "evt_min_seguridad",
@@ -1534,7 +1589,8 @@
     "actor": {
       "id": "min_seguridad",
       "nombre": "Ministerio: Seguridad"
-    }
+    },
+    "familia": "ministerio"
   },
   {
     "id": "evt_min_obras",
@@ -1591,7 +1647,8 @@
     "actor": {
       "id": "min_obras",
       "nombre": "Ministerio: Obras"
-    }
+    },
+    "familia": "ministerio"
   },
   {
     "id": "evt_min_energia",
@@ -1660,7 +1717,8 @@
     "actor": {
       "id": "min_energia",
       "nombre": "Ministerio: Energia"
-    }
+    },
+    "familia": "ministerio"
   },
   {
     "id": "evt_presup_decision_a1",
@@ -1718,7 +1776,8 @@
           }
         ]
       }
-    ]
+    ],
+    "familia": "politica"
   },
   {
     "id": "evt_presup_decision_a2",
@@ -1776,7 +1835,8 @@
           }
         ]
       }
-    ]
+    ],
+    "familia": "politica"
   },
   {
     "id": "evt_presup_decision_a3",
@@ -1834,7 +1894,8 @@
           }
         ]
       }
-    ]
+    ],
+    "familia": "politica"
   },
   {
     "id": "evt_presup_decision_a4",
@@ -1892,7 +1953,8 @@
           }
         ]
       }
-    ]
+    ],
+    "familia": "politica"
   },
   {
     "id": "evt_elecciones_a2",
@@ -1946,7 +2008,8 @@
           }
         ]
       }
-    ]
+    ],
+    "familia": "politica"
   },
   {
     "id": "evt_elecciones_a4",
@@ -2000,7 +2063,8 @@
           }
         ]
       }
-    ]
+    ],
+    "familia": "politica"
   },
   {
     "id": "evt_comision_hacienda",
@@ -2065,7 +2129,8 @@
     "actor": {
       "id": "comision_hacienda",
       "nombre": "Comisión de Hacienda"
-    }
+    },
+    "familia": "comision"
   },
   {
     "id": "evt_comision_salud",
@@ -2126,7 +2191,8 @@
     "actor": {
       "id": "comision_salud",
       "nombre": "Comisión de Salud"
-    }
+    },
+    "familia": "comision"
   },
   {
     "id": "evt_contraloria_objeta",
@@ -2187,7 +2253,8 @@
     "actor": {
       "id": "contraloria",
       "nombre": "Contraloría"
-    }
+    },
+    "familia": "institucion"
   },
   {
     "id": "evt_contraloria_auditoria",
@@ -2248,7 +2315,8 @@
     "actor": {
       "id": "contraloria",
       "nombre": "Contraloría"
-    }
+    },
+    "familia": "institucion"
   },
   {
     "id": "evt_bcentral_tasa",
@@ -2309,7 +2377,8 @@
     "actor": {
       "id": "bcentral",
       "nombre": "Banco Central"
-    }
+    },
+    "familia": "institucion"
   },
   {
     "id": "evt_tc_fallo",
@@ -2370,7 +2439,8 @@
     "actor": {
       "id": "tc",
       "nombre": "Tribunal Constitucional"
-    }
+    },
+    "familia": "institucion"
   },
   {
     "id": "evt_fiscalia_caso",
@@ -2427,7 +2497,8 @@
     "actor": {
       "id": "fiscalia",
       "nombre": "Fiscalía"
-    }
+    },
+    "familia": "institucion"
   },
   {
     "id": "evt_medios_reportaje",
@@ -2484,7 +2555,8 @@
     "actor": {
       "id": "medios",
       "nombre": "Medios de comunicación"
-    }
+    },
+    "familia": "medios"
   },
   {
     "id": "evt_medios_entrevista",
@@ -2537,7 +2609,8 @@
     "actor": {
       "id": "medios",
       "nombre": "Medios de comunicación"
-    }
+    },
+    "familia": "medios"
   },
   {
     "id": "evt_camp_entrevista1",
@@ -2587,7 +2660,8 @@
           }
         ]
       }
-    ]
+    ],
+    "familia": "politica"
   },
   {
     "id": "evt_camp_cabildo",
@@ -2637,7 +2711,8 @@
           }
         ]
       }
-    ]
+    ],
+    "familia": "politica"
   },
   {
     "id": "evt_camp_entrevista2",
@@ -2691,7 +2766,8 @@
           }
         ]
       }
-    ]
+    ],
+    "familia": "politica"
   },
   {
     "id": "evt_camp_cierre",
@@ -2741,7 +2817,8 @@
           }
         ]
       }
-    ]
+    ],
+    "familia": "politica"
   },
   {
     "id": "evt_min_interior",
@@ -2798,7 +2875,8 @@
     "actor": {
       "id": "min_interior",
       "nombre": "Ministerio: Interior"
-    }
+    },
+    "familia": "ministerio"
   },
   {
     "id": "evt_min_exteriores",
@@ -2855,7 +2933,8 @@
     "actor": {
       "id": "min_exteriores",
       "nombre": "Ministerio: Exteriores"
-    }
+    },
+    "familia": "ministerio"
   },
   {
     "id": "evt_min_defensa",
@@ -2912,7 +2991,8 @@
     "actor": {
       "id": "min_defensa",
       "nombre": "Ministerio: Defensa"
-    }
+    },
+    "familia": "ministerio"
   },
   {
     "id": "evt_min_segegob",
@@ -2969,7 +3049,8 @@
     "actor": {
       "id": "min_segegob",
       "nombre": "Ministerio: Segegob"
-    }
+    },
+    "familia": "ministerio"
   },
   {
     "id": "evt_min_economia",
@@ -3026,7 +3107,8 @@
     "actor": {
       "id": "min_economia",
       "nombre": "Ministerio: Economia"
-    }
+    },
+    "familia": "ministerio"
   },
   {
     "id": "evt_min_social",
@@ -3083,7 +3165,8 @@
     "actor": {
       "id": "min_social",
       "nombre": "Ministerio: Social"
-    }
+    },
+    "familia": "ministerio"
   },
   {
     "id": "evt_min_justicia",
@@ -3140,7 +3223,8 @@
     "actor": {
       "id": "min_justicia",
       "nombre": "Ministerio: Justicia"
-    }
+    },
+    "familia": "ministerio"
   },
   {
     "id": "evt_min_trabajo",
@@ -3197,7 +3281,8 @@
     "actor": {
       "id": "min_trabajo",
       "nombre": "Ministerio: Trabajo"
-    }
+    },
+    "familia": "ministerio"
   },
   {
     "id": "evt_min_vivienda",
@@ -3254,7 +3339,8 @@
     "actor": {
       "id": "min_vivienda",
       "nombre": "Ministerio: Vivienda"
-    }
+    },
+    "familia": "ministerio"
   },
   {
     "id": "evt_min_agricultura",
@@ -3311,7 +3397,8 @@
     "actor": {
       "id": "min_agricultura",
       "nombre": "Ministerio: Agricultura"
-    }
+    },
+    "familia": "ministerio"
   },
   {
     "id": "evt_min_mineria",
@@ -3368,7 +3455,8 @@
     "actor": {
       "id": "min_mineria",
       "nombre": "Ministerio: Mineria"
-    }
+    },
+    "familia": "ministerio"
   },
   {
     "id": "evt_min_transportes",
@@ -3425,7 +3513,8 @@
     "actor": {
       "id": "min_transportes",
       "nombre": "Ministerio: Transportes"
-    }
+    },
+    "familia": "ministerio"
   },
   {
     "id": "evt_min_bienes",
@@ -3482,7 +3571,8 @@
     "actor": {
       "id": "min_bienes",
       "nombre": "Ministerio: Bienes"
-    }
+    },
+    "familia": "ministerio"
   },
   {
     "id": "evt_min_ambiente",
@@ -3539,7 +3629,8 @@
     "actor": {
       "id": "min_ambiente",
       "nombre": "Ministerio: Ambiente"
-    }
+    },
+    "familia": "ministerio"
   },
   {
     "id": "evt_min_segpres",
@@ -3596,7 +3687,8 @@
     "actor": {
       "id": "min_segpres",
       "nombre": "Ministerio: Segpres"
-    }
+    },
+    "familia": "ministerio"
   },
   {
     "id": "evt_min_deporte",
@@ -3653,7 +3745,8 @@
     "actor": {
       "id": "min_deporte",
       "nombre": "Ministerio: Deporte"
-    }
+    },
+    "familia": "ministerio"
   },
   {
     "id": "evt_min_mujer",
@@ -3710,7 +3803,8 @@
     "actor": {
       "id": "min_mujer",
       "nombre": "Ministerio: Mujer"
-    }
+    },
+    "familia": "ministerio"
   },
   {
     "id": "evt_min_cultura",
@@ -3767,7 +3861,8 @@
     "actor": {
       "id": "min_cultura",
       "nombre": "Ministerio: Cultura"
-    }
+    },
+    "familia": "ministerio"
   },
   {
     "id": "evt_min_ciencia",
@@ -3824,7 +3919,8 @@
     "actor": {
       "id": "min_ciencia",
       "nombre": "Ministerio: Ciencia"
-    }
+    },
+    "familia": "ministerio"
   },
   {
     "id": "evt_camp_franja1",
@@ -3878,7 +3974,8 @@
           }
         ]
       }
-    ]
+    ],
+    "familia": "politica"
   },
   {
     "id": "evt_camp_debate_radio",
@@ -3928,7 +4025,8 @@
           }
         ]
       }
-    ]
+    ],
+    "familia": "politica"
   },
   {
     "id": "evt_camp_entrevista_tv",
@@ -3978,7 +4076,8 @@
           }
         ]
       }
-    ]
+    ],
+    "familia": "politica"
   },
   {
     "id": "evt_camp_franja2",
@@ -4028,7 +4127,8 @@
           }
         ]
       }
-    ]
+    ],
+    "familia": "politica"
   },
   {
     "id": "evt_camp_debate_final",
@@ -4082,7 +4182,8 @@
           }
         ]
       }
-    ]
+    ],
+    "familia": "politica"
   },
   {
     "id": "evt_opo_debate_parlamentario",
@@ -4136,7 +4237,8 @@
           }
         ]
       }
-    ]
+    ],
+    "familia": "politica"
   },
   {
     "id": "evt_opo_entrevista",
@@ -4186,7 +4288,8 @@
           }
         ]
       }
-    ]
+    ],
+    "familia": "politica"
   },
   {
     "id": "evt_opo_acusacion",
@@ -4244,7 +4347,8 @@
           }
         ]
       }
-    ]
+    ],
+    "familia": "politica"
   },
   {
     "id": "evt_opo_presupuesto",
@@ -4298,7 +4402,8 @@
           }
         ]
       }
-    ]
+    ],
+    "familia": "politica"
   },
   {
     "id": "evt_opo_congreso_partido",
@@ -4356,7 +4461,8 @@
           }
         ]
       }
-    ]
+    ],
+    "familia": "politica"
   },
   {
     "id": "evt_opo_encuesta",
@@ -4406,7 +4512,8 @@
           }
         ]
       }
-    ]
+    ],
+    "familia": "politica"
   },
   {
     "id": "evt_opo_filtracion",
@@ -4460,7 +4567,8 @@
           }
         ]
       }
-    ]
+    ],
+    "familia": "politica"
   },
   {
     "id": "evt_opo_comision",
@@ -4506,6 +4614,7 @@
           }
         ]
       }
-    ]
+    ],
+    "familia": "comision"
   }
 ]

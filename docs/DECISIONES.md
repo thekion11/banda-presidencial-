@@ -90,3 +90,10 @@ Aceptados y hechos: mapa limpio con enfoque por línea, comparación con las lí
 
 ## J. Análisis de profundidad (25-nov-2026)
 El usuario pidió un análisis profundo porque «estamos ampliando mucho y profundizando poco». Resultado en `docs/ANALISIS_PROFUNDIDAD.md` (9 hallazgos medidos, 6 fases de trabajo y métricas de éxito). **Propuesta de Claude pendiente de aprobación:** congelar mecánicas nuevas hasta terminar la Fase A (ritmo de eventos) y la Fase B (mazo con intención); decidir la duración (semanas silenciosas, turno = mes o capítulos de 20 minutos).
+
+## K. Fase A del análisis de profundidad (hecha el 25-nov-2026; el usuario dejó abierta la dirección de duración)
+Instrucción del usuario: «dejaría la dirección del juego abierta, haría todo lo demás, puedes poner más secciones, bots también, que sea lo mejor posible sin límite de recursos».
+- **Director de eventos** (`leyes.json` → `director_eventos`; `MotorEventos._director`): `peso_sorteo` pasó a ser peso relativo; máximo un evento aleatorio por semana; cooldown por evento (40 semanas), por familia (6) y entre decisiones (4). Resultado medido (`test_ritmo.gd`): de 4,14 a 0,77 eventos por semana; de ≈ 270 a ≈ 27 decisiones por mandato; 117 eventos distintos.
+- **Partida rápida:** un toque desde el menú (última configuración o partido por defecto) lleva directo al mapa.
+- **Rebalanceo por el nuevo ritmo:** al haber menos eventos el juego se volvió demasiado fácil (bot codicioso 100 % y 0 % de crisis); se ajustó `umbral_victoria_presidencial` 51 → 52 y `umbral_crisis_aprobacion` 12 → 24. Bots ahora: codicioso ≈ 90–98 % de elecciones y ≈ 14 % de crisis; azar ≈ 25 % de elecciones y crisis casi segura. Dificultad difícil: 7 de 24.
+- Sigue abierta (decisión del usuario): duración del juego (semanas silenciosas, turno = mes o capítulos).
