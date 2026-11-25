@@ -373,7 +373,8 @@ func _siguiente_evento() -> void:
 	if _cola_eventos.is_empty():
 		return
 	var ev: Dictionary = _cola_eventos.pop_front()
-	_capa.add_child(OverlaysDia.evento(ev, _siguiente_evento, motor.catalogo_leyes["congreso"]["nombres"], motor.estado.dia_actual))
+	_capa.add_child(OverlaysDia.evento(ev, _siguiente_evento, motor.catalogo_leyes["congreso"]["nombres"], motor.estado.dia_actual,
+			func(i: int) -> void: motor.eventos.decidir(String(ev["id"]), i); _refrescar()))
 
 
 func _poner_nav(nacion: bool) -> void:

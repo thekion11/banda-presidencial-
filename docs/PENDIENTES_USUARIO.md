@@ -53,3 +53,7 @@ En curso, en este orden: PR-09 estadísticas de cartas → PR-08 ministros con p
 ## PR-09 Estadísticas de las cartas (primera etapa, 24-nov-2026)
 - Hecho: el panel de detalle de la carta muestra su impacto (pequeño, mediano o grande; umbrales en `data/leyes.json` → `impacto_carta`) y si pasa por el Congreso (`FichaCarta`).
 - Pendiente (más grande, requiere rebalancear con bots): efectos diferenciados por sector y tipo de carta, efectos a futuro («sube cohesión hoy, baja fiscal en 8 semanas»), texto de sabor por carta. Las 1.685 cartas reales se generan por plantilla; cambiar la plantilla en `tools/` y regenerar es el camino.
+
+## PR-07 y PR-08: eventos con decisión (primera etapa, 25-nov-2026)
+- Hecho: mecánica de eventos con opciones (`opciones` en `data/eventos.json`): el jugador elige entre 2-3 respuestas sin gastar movimientos; los efectos dependen de la respuesta; queda registrado (entrada `decision`, `estado.decisiones`) y se reproduce. 4 eventos externos (terremoto, caída del cobre, incendios, paro de camioneros) y 6 peticiones de ministerios clave (Hacienda, Salud, Educación, Seguridad, Obras, Energía). Si no respondes, el evento no aplica efectos. `test_decisiones.gd`. Los hashes de oro cambiaron a propósito.
+- Pendiente: cadenas (una decisión desencadena algo 3-6 semanas después), crisis con cuenta regresiva, ventanas de oportunidad, retratos de ministros (arte), eventos propios de los otros 19 ministerios, mostrar al jugador qué ministro pide. Cada una necesita estado nuevo y rebalanceo con bots.

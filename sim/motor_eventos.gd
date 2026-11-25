@@ -33,6 +33,11 @@ func procesar_semana() -> Array[Dictionary]:
 func aplicar_evento(evt: Dictionary) -> Dictionary:
 	var res := {"id": evt["id"], "titulo": evt["titulo"], "descripcion": evt["descripcion"], "hora": evt["hora_etiqueta"], "votacion": null, "efectos": evt["efectos_base"]}
 	var aplicar := true
+	var opciones: Variant = evt.get("opciones", null)
+	if opciones != null:  # evento con decisión (PR-07/PR-08): los efectos dependen de la respuesta del jugador (decidir)
+		res["opciones"] = opciones
+		res["efectos"] = []
+		aplicar = false
 	var v: Variant = evt.get("votacion", null)
 	if v != null:
 		var voto := m.legal.votar(m.estado, String(v["tipo_ley"]), int(v["votos_firmes_base"]) if v.get("votos_firmes_base", null) != null else -1)
@@ -43,7 +48,7 @@ func aplicar_evento(evt: Dictionary) -> Dictionary:
 			m.fx.sumar_ind("capital", -float(m.catalogo_leyes["congreso"]["penal_capital_rechazo"]))
 		elif bool(tc["cae"]):
 			m.fx.sumar_ind("capital", -float(m.catalogo_leyes["tc"]["capital_perdido_si_cae"]))
-	if aplicar:
+	if aplicar and opciones == null:
 		for ef in evt["efectos_base"]:
 			m.fx.aplicar_efecto(ef, 1.0, "")
 	m.estado.registrar_accion("evento", {"id": evt["id"], "aplicado": aplicar})
@@ -59,3 +64,24 @@ func relacion_exterior(iso: String, base: float) -> float:
 		if String(evt.get("pais", "")) == iso and m.estado.eventos_ocurridos.has(String(evt["id"])):
 			rel += float(evt.get("relacion_delta", 0.0))
 	return clampf(rel, 0.0, 100.0)
+
+
+func decidir(evento_id: String, idx: int) -> Dictionary:
+	## Responde a un evento con opciones (no gasta movimientos): aplica los efectos de la opción y queda registrado para el replay.
+	var evt: Dictionary = {}
+	for e in m.catalogo_eventos:
+		if String(e["id"]) == evento_id:
+			evt = e
+	if evt.is_empty() or not evt.has("opciones") or not m.estado.eventos_ocurridos.has(evento_id):
+		return {"ok": false, "razon": "evento_sin_decision"}
+	if m.estado.decisiones.has(evento_id):
+		return {"ok": false, "razon": "ya_decidido"}
+	var ops: Array = evt["opciones"]
+	if idx < 0 or idx >= ops.size():
+		return {"ok": false, "razon": "opcion_invalida"}
+	for ef in ops[idx]["efectos"]:
+		m.fx.aplicar_efecto(ef, 1.0, "")
+	m.estado.decisiones[evento_id] = idx
+	m.estado.registrar_entrada("decision", {"evento": evento_id, "idx": idx})
+	m.estado.registrar_accion("decision", {"evento": evento_id, "idx": idx})
+	return {"ok": true, "efectos": ops[idx]["efectos"]}

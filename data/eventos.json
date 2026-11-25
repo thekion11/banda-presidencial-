@@ -1067,5 +1067,557 @@
     "fuente": "fuentes.json#ficticio_2026",
     "pais": "URY",
     "relacion_delta": 5
+  },
+  {
+    "id": "evt_ext_terremoto",
+    "tipo": "aleatorio_semilla",
+    "dia_objetivo": null,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 0.04,
+    "titulo": "Terremoto en la zona central",
+    "descripcion": "Un sismo fuerte deja daños en viviendas y rutas. Debes decidir cómo responder.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "gobierno",
+    "fuente": "fuentes.json#ficticio_2026",
+    "opciones": [
+      {
+        "texto": "Declarar catástrofe y reconstruir ya",
+        "efectos": [
+          {
+            "ind": "capital",
+            "delta": -2
+          },
+          {
+            "ind": "fiscal",
+            "delta": -3
+          },
+          {
+            "ind": "aprobacion",
+            "delta": 3
+          }
+        ]
+      },
+      {
+        "texto": "Ayuda focalizada y subsidios",
+        "efectos": [
+          {
+            "ind": "fiscal",
+            "delta": -1
+          },
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          }
+        ]
+      },
+      {
+        "texto": "Esperar los informes técnicos",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": -3
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "evt_ext_cobre",
+    "tipo": "aleatorio_semilla",
+    "dia_objetivo": null,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 0.04,
+    "titulo": "Cae el precio del cobre",
+    "descripcion": "El cobre baja y los ingresos fiscales se resienten.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "gobierno",
+    "fuente": "fuentes.json#ficticio_2026",
+    "opciones": [
+      {
+        "texto": "Usar el fondo de estabilización",
+        "efectos": [
+          {
+            "ind": "fiscal",
+            "delta": -2
+          },
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          }
+        ]
+      },
+      {
+        "texto": "Recortar gasto en ministerios",
+        "efectos": [
+          {
+            "ind": "cohesion",
+            "delta": -3
+          },
+          {
+            "ind": "fiscal",
+            "delta": 1
+          }
+        ]
+      },
+      {
+        "texto": "No hacer nada por ahora",
+        "efectos": [
+          {
+            "ind": "fiscal",
+            "delta": -3
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "evt_ext_incendio",
+    "tipo": "aleatorio_semilla",
+    "dia_objetivo": null,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 0.04,
+    "titulo": "Incendios forestales en el sur",
+    "descripcion": "Hay evacuaciones y pérdidas de bosque nativo.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "gobierno",
+    "fuente": "fuentes.json#ficticio_2026",
+    "opciones": [
+      {
+        "texto": "Movilizar brigadas y Fuerzas Armadas",
+        "efectos": [
+          {
+            "ind": "capital",
+            "delta": -1
+          },
+          {
+            "ind": "fiscal",
+            "delta": -1
+          },
+          {
+            "ind": "aprobacion",
+            "delta": 2
+          }
+        ]
+      },
+      {
+        "texto": "Apoyar solo con recursos regionales",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": -1
+          }
+        ]
+      },
+      {
+        "texto": "Culpar a la gestión anterior",
+        "efectos": [
+          {
+            "ind": "capital",
+            "delta": 1
+          },
+          {
+            "ind": "aprobacion",
+            "delta": -2
+          },
+          {
+            "ind": "cohesion",
+            "delta": -1
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "evt_ext_paro",
+    "tipo": "aleatorio_semilla",
+    "dia_objetivo": null,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 0.04,
+    "titulo": "Paro nacional de camioneros",
+    "descripcion": "Las rutas están bloqueadas y suben los precios.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "gobierno",
+    "fuente": "fuentes.json#ficticio_2026",
+    "opciones": [
+      {
+        "texto": "Negociar con los gremios",
+        "efectos": [
+          {
+            "ind": "capital",
+            "delta": -2
+          },
+          {
+            "ind": "fiscal",
+            "delta": -1
+          },
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          }
+        ]
+      },
+      {
+        "texto": "Aplicar la ley con firmeza",
+        "efectos": [
+          {
+            "ind": "capital",
+            "delta": 1
+          },
+          {
+            "ind": "aprobacion",
+            "delta": -2
+          }
+        ]
+      },
+      {
+        "texto": "Dejar que se desgasten",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": -3
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "evt_min_hacienda",
+    "tipo": "aleatorio_semilla",
+    "dia_objetivo": null,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 0.04,
+    "titulo": "Hacienda pide un ajuste",
+    "descripcion": "Tu ministro de Hacienda propone recortar gasto para cuidar la caja fiscal.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "gobierno",
+    "fuente": "fuentes.json#ficticio_2026",
+    "opciones": [
+      {
+        "texto": "Apoyar el ajuste",
+        "efectos": [
+          {
+            "ind": "fiscal",
+            "delta": 3
+          },
+          {
+            "ind": "aprobacion",
+            "delta": -2
+          },
+          {
+            "ind": "cohesion",
+            "delta": -1
+          }
+        ]
+      },
+      {
+        "texto": "Pedir un ajuste menor",
+        "efectos": [
+          {
+            "ind": "fiscal",
+            "delta": 1
+          },
+          {
+            "ind": "capital",
+            "delta": -1
+          }
+        ]
+      },
+      {
+        "texto": "Rechazarlo",
+        "efectos": [
+          {
+            "ind": "fiscal",
+            "delta": -2
+          },
+          {
+            "ind": "cohesion",
+            "delta": 1
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "evt_min_salud",
+    "tipo": "aleatorio_semilla",
+    "dia_objetivo": null,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 0.04,
+    "titulo": "Salud pide más presupuesto",
+    "descripcion": "La ministra de Salud advierte por listas de espera.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "gobierno",
+    "fuente": "fuentes.json#ficticio_2026",
+    "opciones": [
+      {
+        "texto": "Aprobar el refuerzo",
+        "efectos": [
+          {
+            "ind": "fiscal",
+            "delta": -2
+          },
+          {
+            "ind": "aprobacion",
+            "delta": 3
+          }
+        ]
+      },
+      {
+        "texto": "Reasignar dentro del ministerio",
+        "efectos": [
+          {
+            "ind": "capital",
+            "delta": -1
+          },
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          }
+        ]
+      },
+      {
+        "texto": "Postergar la petición",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": -2
+          },
+          {
+            "ind": "cohesion",
+            "delta": -1
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "evt_min_educacion",
+    "tipo": "aleatorio_semilla",
+    "dia_objetivo": null,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 0.04,
+    "titulo": "Educación pide respaldo ante un paro docente",
+    "descripcion": "El ministro quiere tu apoyo público frente al conflicto.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "gobierno",
+    "fuente": "fuentes.json#ficticio_2026",
+    "opciones": [
+      {
+        "texto": "Respaldarlo en público",
+        "efectos": [
+          {
+            "ind": "capital",
+            "delta": -1
+          },
+          {
+            "ind": "cohesion",
+            "delta": 2
+          }
+        ]
+      },
+      {
+        "texto": "Mediar con los docentes",
+        "efectos": [
+          {
+            "ind": "capital",
+            "delta": -2
+          },
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          }
+        ]
+      },
+      {
+        "texto": "Mantener distancia",
+        "efectos": [
+          {
+            "ind": "cohesion",
+            "delta": -2
+          },
+          {
+            "ind": "aprobacion",
+            "delta": -1
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "evt_min_seguridad",
+    "tipo": "aleatorio_semilla",
+    "dia_objetivo": null,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 0.04,
+    "titulo": "Seguridad pide facultades especiales",
+    "descripcion": "El ministro de Seguridad plantea medidas más duras tras una ola de delitos.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "gobierno",
+    "fuente": "fuentes.json#ficticio_2026",
+    "opciones": [
+      {
+        "texto": "Apoyar las medidas",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 2
+          },
+          {
+            "ind": "capital",
+            "delta": -2
+          },
+          {
+            "ind": "cohesion",
+            "delta": -1
+          }
+        ]
+      },
+      {
+        "texto": "Apoyar solo una parte",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          },
+          {
+            "ind": "capital",
+            "delta": -1
+          }
+        ]
+      },
+      {
+        "texto": "Frenar la propuesta",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": -2
+          },
+          {
+            "ind": "cohesion",
+            "delta": 1
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "evt_min_obras",
+    "tipo": "aleatorio_semilla",
+    "dia_objetivo": null,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 0.04,
+    "titulo": "Obras Públicas pide acelerar una licitación",
+    "descripcion": "La cartera propone saltarse etapas para inaugurar antes del invierno.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "gobierno",
+    "fuente": "fuentes.json#ficticio_2026",
+    "opciones": [
+      {
+        "texto": "Acelerar la licitación",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 2
+          },
+          {
+            "ind": "capital",
+            "delta": -2
+          }
+        ]
+      },
+      {
+        "texto": "Mantener el calendario",
+        "efectos": [
+          {
+            "ind": "capital",
+            "delta": 1
+          }
+        ]
+      },
+      {
+        "texto": "Revisar la propuesta con Contraloría",
+        "efectos": [
+          {
+            "ind": "capital",
+            "delta": -1
+          },
+          {
+            "ind": "cohesion",
+            "delta": 1
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "evt_min_energia",
+    "tipo": "aleatorio_semilla",
+    "dia_objetivo": null,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 0.04,
+    "titulo": "Energía pide aprobar una nueva línea de transmisión",
+    "descripcion": "El ministro quiere apoyo político para un proyecto sensible.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "gobierno",
+    "fuente": "fuentes.json#ficticio_2026",
+    "opciones": [
+      {
+        "texto": "Respaldarlo con fuerza",
+        "efectos": [
+          {
+            "ind": "capital",
+            "delta": -2
+          },
+          {
+            "ind": "fiscal",
+            "delta": 1
+          },
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          }
+        ]
+      },
+      {
+        "texto": "Pedir más consulta ciudadana",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          },
+          {
+            "ind": "cohesion",
+            "delta": 1
+          },
+          {
+            "ind": "capital",
+            "delta": -1
+          }
+        ]
+      },
+      {
+        "texto": "Congelar el proyecto",
+        "efectos": [
+          {
+            "ind": "fiscal",
+            "delta": -1
+          },
+          {
+            "ind": "aprobacion",
+            "delta": -1
+          }
+        ]
+      }
+    ]
   }
 ]

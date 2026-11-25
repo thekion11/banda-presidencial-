@@ -3,7 +3,7 @@ extends SceneTree
 
 ## Huella de referencia: es idéntica en Godot 4.3 y 4.7.2 (Huella escribe los números igual en todas las versiones). Si un cambio de reglas o de datos
 ## es intencional, actualízala con el valor que imprime el fallo.
-const ORO := "4e6db0a763451b1b6316ead415a16881a90dc9355a5f2fdacff1fd42680b0f06"
+const ORO := "18a3ea69a012a76aa7e2e1802f842eedc54b81b013b3ec33c5f4c59d203a5eb4"
 
 var _fallos: int = 0
 

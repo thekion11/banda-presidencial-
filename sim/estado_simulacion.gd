@@ -27,6 +27,7 @@ var partido: Dictionary = {}
 var promesas_campana: Array[Dictionary] = []
 
 var gabinete: Array[String] = []  # ids de ministros nombrados (data/ministros.json)
+var decisiones: Dictionary = {}  # id de evento con opciones -> índice elegido por el jugador (PR-07/PR-08)
 var eventos_ocurridos: Dictionary = {}  # id de evento -> turno en que ocurrió (activa cartas con disponibilidad.evento)
 var metas_cumplidas: Dictionary = {}  # id de meta interna -> turno (data/metas.json)
 var indices_sector: Dictionary = {}  # categoría -> índice sectorial 0..100 (movimiento interno ajustar_sector)
@@ -76,6 +77,7 @@ func configurar(p_semilla: int, p_dias_turno: int = 7, p_leyes: Dictionary = {})
 	pa_actual = pa_maximo
 	gabinete.clear()
 	eventos_ocurridos.clear()
+	decisiones.clear()
 	metas_cumplidas.clear()
 	indices_sector.clear()
 	asesores.clear()
@@ -160,6 +162,7 @@ func exportar_resumen() -> Dictionary:
 		"pa_actual": pa_actual,
 		"gabinete": gabinete.duplicate(),
 		"eventos_ocurridos": eventos_ocurridos.duplicate(),
+		"decisiones": decisiones.duplicate(),
 		"metas_cumplidas": metas_cumplidas.duplicate(),
 		"indices_sector": indices_sector.duplicate(),
 		"asesores": asesores.duplicate(),

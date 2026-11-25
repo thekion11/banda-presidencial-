@@ -136,7 +136,7 @@ static func _fila_efectos(efectos: Array) -> HBoxContainer:
 	return fila
 
 
-static func evento(ev: Dictionary, al_continuar: Callable, nombres: Dictionary, dia: int = 0) -> Control:
+static func evento(ev: Dictionary, al_continuar: Callable, nombres: Dictionary, dia: int = 0, al_decidir: Callable = Callable()) -> Control:
 	## Evento del día. Si trae votación, se muestra cámara por cámara en el orden de tramitación (origen -> revisora).
 	var capa := Control.new()
 	capa.set_anchors_preset(Control.PRESET_FULL_RECT)
@@ -185,6 +185,18 @@ static func evento(ev: Dictionary, al_continuar: Callable, nombres: Dictionary, 
 		var esp := Control.new()
 		esp.size_flags_vertical = Control.SIZE_EXPAND_FILL
 		col.add_child(esp)
+		if ev.get("opciones", null) != null and al_decidir.is_valid():  # decisión del jugador: no gasta movimientos
+			var ops: Array = ev["opciones"]
+			for k in range(ops.size()):
+				var ob := Tema.boton(String(ops[k]["texto"]), Tema.ROJO if k == 0 else Tema.PANEL, Tema.TEXTO, 13, 56)
+				ob.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+				ob.pressed.connect(func() -> void:
+					estado.erase("armar")
+					al_decidir.call(k)
+					capa.queue_free()
+					al_continuar.call())
+				col.add_child(ob)
+			return
 		var b := Barras.boton_jugar()
 		b.custom_minimum_size = Vector2(0, 52)
 		var ultima := v == null or int(estado["i"]) == 1 or not _pasa(v, paginas, int(estado["i"]))

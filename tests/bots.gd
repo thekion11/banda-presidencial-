@@ -93,6 +93,9 @@ static func _extras(motor: MotorTurno) -> void:
 
 static func jugar_turno(motor: MotorTurno, politica: String, rng: RandomNumberGenerator) -> void:
 	var est := motor.estado
+	for ev in motor.ultimos_eventos:  # decisiones de eventos con opciones: el bot elige la primera (azar: una al azar)
+		if ev.has("opciones") and not est.decisiones.has(String(ev["id"])):
+			motor.eventos.decidir(String(ev["id"]), rng.randi_range(0, (ev["opciones"] as Array).size() - 1) if politica == "azar" else 0)
 	if politica == "completo":
 		politica = "codicioso"
 		if est.etapa == "gobierno":
