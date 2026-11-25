@@ -1,4 +1,6 @@
-# Pendientes (actualizado el 24-nov-2026)
+# Pendientes (actualizado el 25-nov-2026)
+
+> Todo lo aceptado (del usuario y de Claude) está registrado en `docs/DECISIONES.md`.
 
 Este archivo lo mantiene Claude. Lo que depende del usuario queda en «Necesito del usuario» y **no detiene** el trabajo: se sigue con la sección «Para hacer yo».
 
