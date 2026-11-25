@@ -115,11 +115,33 @@ func incorporar(ids: Array) -> Array[String]:
 	return nuevas
 
 
+var _disp: Dictionary = {}  # clave de disponibilidad -> valor (normalizado) -> cartas, en el orden del catálogo; se arma en la primera consulta
+
+
+static func _k(v: Variant) -> String:
+	return str(int(v)) if (v is float or v is int) and float(v) == floorf(float(v)) else str(v)
+
+
 func ids_con_disponibilidad(clave: String, valor: Variant, solo_no_reales: bool = false) -> Array[String]:
+	## Cartas ligadas a una condición (evento, año...). Antes recorría las ~2.000 cartas por cada evento que ocurría.
+	if _disp.is_empty():
+		for c in m.catalogo_cartas:
+			var d: Variant = c.get("disponibilidad", null)
+			if d == null:
+				continue
+			for k in d.keys():
+				if d[k] == null:
+					continue
+				if not _disp.has(k):
+					_disp[k] = {}
+				var vk := _k(d[k])
+				if not _disp[k].has(vk):
+					_disp[k][vk] = []
+				_disp[k][vk].append(c)
+		_disp["_listo"] = {}
 	var res: Array[String] = []
-	for c in m.catalogo_cartas:
-		var d: Variant = c.get("disponibilidad", null)
-		if d != null and d.get(clave, null) == valor and not (solo_no_reales and m.cartas.es_real(c)):
+	for c in _disp.get(clave, {}).get(_k(valor), []):
+		if not (solo_no_reales and m.cartas.es_real(c)):
 			res.append(String(c["id"]))
 	return res
 

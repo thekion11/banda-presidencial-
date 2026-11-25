@@ -16,7 +16,7 @@ var _huella_datos: String = ""
 func _ready() -> void:
 	Ajustes.cargar()
 	datos = Datos.cargar_todo()
-	_huella_datos = Datos.huella(datos)  # una sola vez: calcularla en cada guardado costaría ~1 s en un teléfono modesto
+	_huella_datos = Datos.huella_rapida(datos)  # una sola vez por arranque, y en disco por versión de datos: calcularla cada vez costaría ~1-2 s en un teléfono modesto
 	geo = Datos.leer_json("res://data/geo/regiones_mapa.json")
 	var g := Gradient.new()
 	g.colors = PackedColorArray([Color("#154F7A"), Color("#0B2236"), Color("#07182A")])
