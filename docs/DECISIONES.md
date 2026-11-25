@@ -142,3 +142,5 @@ Instrucción del usuario: «dejaría la dirección del juego abierta, haría tod
 - Eventos menores (aleatorios informativos con suma de efectos ≤ 3) se muestran como aviso breve, no como pantalla completa.
 - Medido (`test_ritmo`): 0,49 eventos por semana (antes 0,76), 32 decisiones por mandato (meta 30–45 ✔), 101 eventos distintos, silencio máximo 11 semanas, máx. 11 decisiones en 52 semanas. Bots: codicioso 93 % elecciones / 11 % crisis; experto 93 % / 0 %.
 - Pendiente: arranque con test ideológico rápido (3 preguntas); la dirección de duración sigue abierta (decisión del usuario).
+
+- Ablación con el director v2 (25-nov, n=24, puntaje medio; completo 2.922): sin internos 1.974 (−32 %), sin delegación 2.000 (−32 %), sin mano continua 2.179 (−25 %, 9 % crisis), sin asesores 2.580 (−12 %), sin coalición 2.839 (−3 %) y sin bono por aprobación 2.836 (−3 %). Coalición y bono siguen inertes (decidir función real o retirar); delegación e internos dominan.
