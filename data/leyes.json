@@ -236,7 +236,17 @@
   },
   "oposicion": {
     "nota": "Carrera política: periodo de oposición jugable (semanas) tras una derrota, una caída o un mandato sin reelección. Solo circulan las cartas de categoría «oposicion»; los eventos con etapa «oposicion» traen entrevistas, debates y decisiones. Al terminar empieza una nueva campaña.",
-    "semanas": 26
+    "semanas": 26,
+    "rival_inicial": 55.0,
+    "rival_media": 42.0,
+    "rival_reversion": 0.04,
+    "rival_ruido": 2.0,
+    "ancla_base": 30.0,
+    "peso_rival": 0.6,
+    "reversion_aprobacion": 0.2,
+    "herencia_campana": 0.04,
+    "nota_herencia": "Al empezar una nueva campaña tu aprobación vuelve a la base de tu partido más herencia_campana de lo que subiste (o bajaste) durante el periodo anterior.",
+    "nota_rival": "Un gobierno rival gobierna mientras eres oposición: su aprobación (indicador «rival») parte alta, tiende a su media con ruido, y tus cartas pueden bajarla. Tu aprobación converge a ancla_base + peso_rival * (50 - rival): si el rival va mal, tu base sube."
   },
   "habilidades": {
     "nota": "PR-16: habilidad personal elegida al fundar. Suma a los indicadores iniciales. colores: PR-15, color del emblema del partido (paleta fija).",

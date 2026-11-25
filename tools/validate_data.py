@@ -15,7 +15,7 @@ import sys
 ROOT = Path(__file__).resolve().parents[1]
 ROOT_GAME = Path(__file__).resolve().parents[1] / "game" / "arte" / "cartas"
 DATA_DIR = ROOT / "data"
-INDICADORES = {"aprobacion", "capital", "cohesion", "fiscal", "riesgo_ejecucion", "viviendas_anio"}
+INDICADORES = {"aprobacion", "capital", "cohesion", "fiscal", "riesgo_ejecucion", "viviendas_anio", "rival"}
 MAX_CARTAS_CAMPANA_PA = 16
 
 

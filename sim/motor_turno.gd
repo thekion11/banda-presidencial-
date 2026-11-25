@@ -109,6 +109,8 @@ func ejecutar_amanecer() -> void:
 	if estado.etapa == "campana":
 		regiones.revertir_a_base(estado, float(catalogo_leyes["campana"]["reversion_semanal"]))
 	if estado.etapa != "gobierno":
+		if estado.etapa == "oposicion":
+			mandato.amanecer_oposicion()
 		movimientos.fijar_movimientos()
 		return
 	var d: Dictionary = catalogo_leyes["dinamica"]

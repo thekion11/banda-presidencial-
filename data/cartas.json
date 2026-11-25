@@ -2075,11 +2075,15 @@
     "efectos": [
       {
         "ind": "aprobacion",
-        "delta": 1
+        "delta": 0.5
       },
       {
         "ind": "capital",
         "delta": 1
+      },
+      {
+        "ind": "rival",
+        "delta": -1
       }
     ],
     "requisitos": {
@@ -2098,7 +2102,7 @@
     "efectos": [
       {
         "ind": "aprobacion",
-        "delta": 3
+        "delta": 1.5
       },
       {
         "ind": "capital",
@@ -2107,6 +2111,10 @@
       {
         "ind": "cohesion",
         "delta": 1
+      },
+      {
+        "ind": "rival",
+        "delta": -3
       }
     ],
     "requisitos": {
@@ -2134,6 +2142,10 @@
       {
         "ind": "cohesion",
         "delta": 1
+      },
+      {
+        "ind": "rival",
+        "delta": -1.5
       }
     ],
     "requisitos": {
@@ -2157,6 +2169,10 @@
       {
         "ind": "cohesion",
         "delta": 1
+      },
+      {
+        "ind": "rival",
+        "delta": 0.5
       }
     ],
     "requisitos": {
@@ -2175,7 +2191,7 @@
     "efectos": [
       {
         "ind": "aprobacion",
-        "delta": 2
+        "delta": 1.0
       },
       {
         "ind": "cohesion",
@@ -2198,7 +2214,7 @@
     "efectos": [
       {
         "ind": "aprobacion",
-        "delta": 1
+        "delta": 0.5
       },
       {
         "ind": "capital",
@@ -2221,11 +2237,15 @@
     "efectos": [
       {
         "ind": "aprobacion",
-        "delta": 2
+        "delta": 1.0
       },
       {
         "ind": "capital",
         "delta": 1
+      },
+      {
+        "ind": "rival",
+        "delta": -1
       }
     ],
     "requisitos": {
@@ -2275,7 +2295,7 @@
       },
       {
         "ind": "aprobacion",
-        "delta": 1
+        "delta": 0.5
       }
     ],
     "requisitos": {
@@ -2294,11 +2314,15 @@
     "efectos": [
       {
         "ind": "aprobacion",
-        "delta": 2
+        "delta": 1.0
       },
       {
         "ind": "capital",
         "delta": -1
+      },
+      {
+        "ind": "rival",
+        "delta": -0.5
       }
     ],
     "requisitos": {
@@ -2317,7 +2341,7 @@
     "efectos": [
       {
         "ind": "aprobacion",
-        "delta": 2
+        "delta": 1.0
       },
       {
         "ind": "capital",
@@ -2326,6 +2350,10 @@
       {
         "ind": "cohesion",
         "delta": -1
+      },
+      {
+        "ind": "rival",
+        "delta": -2
       }
     ],
     "requisitos": {
@@ -2344,7 +2372,7 @@
     "efectos": [
       {
         "ind": "aprobacion",
-        "delta": 1
+        "delta": 0.5
       }
     ],
     "requisitos": {
@@ -2363,7 +2391,7 @@
     "efectos": [
       {
         "ind": "aprobacion",
-        "delta": 1
+        "delta": 0.5
       },
       {
         "ind": "cohesion",
@@ -2413,7 +2441,7 @@
       },
       {
         "ind": "aprobacion",
-        "delta": 1
+        "delta": 0.5
       },
       {
         "ind": "cohesion",
@@ -2444,6 +2472,10 @@
       },
       {
         "ind": "aprobacion",
+        "delta": 0.5
+      },
+      {
+        "ind": "rival",
         "delta": 1
       }
     ],
@@ -2454,5 +2486,361 @@
     "corrector": null,
     "abre_propuesta_comite": null,
     "fuente": "fuentes.json#ficticio_2026"
+  },
+  {
+    "id": "opo_denuncia_contraloria",
+    "categoria": "oposicion",
+    "costo_pa": 2,
+    "titulo": "Denunciar al gobierno ante la Contraloría",
+    "efectos": [
+      {
+        "ind": "aprobacion",
+        "delta": 0.5
+      },
+      {
+        "ind": "rival",
+        "delta": -2
+      },
+      {
+        "ind": "capital",
+        "delta": -1
+      }
+    ],
+    "requisitos": {
+      "ley": null,
+      "quorum": null
+    },
+    "corrector": null,
+    "abre_propuesta_comite": null,
+    "fuente": "fuentes.json#ficticio_2026",
+    "riesgo": {
+      "prob": 0.35,
+      "efectos": [
+        {
+          "ind": "aprobacion",
+          "delta": -1
+        },
+        {
+          "ind": "capital",
+          "delta": -1
+        }
+      ]
+    }
+  },
+  {
+    "id": "opo_primarias",
+    "categoria": "oposicion",
+    "costo_pa": 3,
+    "titulo": "Primarias abiertas de tu sector",
+    "efectos": [
+      {
+        "ind": "cohesion",
+        "delta": 2
+      },
+      {
+        "ind": "aprobacion",
+        "delta": 0.5
+      }
+    ],
+    "requisitos": {
+      "ley": null,
+      "quorum": null
+    },
+    "corrector": null,
+    "abre_propuesta_comite": null,
+    "fuente": "fuentes.json#ficticio_2026",
+    "diferido": {
+      "semanas": 8,
+      "texto": "Las primarias ordenan a tu sector y generan entusiasmo.",
+      "efectos": [
+        {
+          "ind": "cohesion",
+          "delta": 2
+        },
+        {
+          "ind": "aprobacion",
+          "delta": 1
+        }
+      ]
+    }
+  },
+  {
+    "id": "opo_gira",
+    "categoria": "oposicion",
+    "costo_pa": 3,
+    "titulo": "Gira por regiones con tu equipo",
+    "efectos": [
+      {
+        "ind": "aprobacion",
+        "delta": 1.0
+      },
+      {
+        "ind": "capital",
+        "delta": -1
+      }
+    ],
+    "requisitos": {
+      "ley": null,
+      "quorum": null
+    },
+    "corrector": null,
+    "abre_propuesta_comite": null,
+    "fuente": "fuentes.json#ficticio_2026",
+    "diferido": {
+      "semanas": 6,
+      "texto": "Los dirigentes locales te recuerdan y suman apoyos.",
+      "efectos": [
+        {
+          "ind": "aprobacion",
+          "delta": 1
+        },
+        {
+          "ind": "cohesion",
+          "delta": 1
+        }
+      ]
+    }
+  },
+  {
+    "id": "opo_libro",
+    "categoria": "oposicion",
+    "costo_pa": 2,
+    "titulo": "Presentar tu libro programático",
+    "efectos": [
+      {
+        "ind": "capital",
+        "delta": 1
+      },
+      {
+        "ind": "aprobacion",
+        "delta": 0.5
+      }
+    ],
+    "requisitos": {
+      "ley": null,
+      "quorum": null
+    },
+    "corrector": null,
+    "abre_propuesta_comite": null,
+    "fuente": "fuentes.json#ficticio_2026",
+    "diferido": {
+      "semanas": 10,
+      "texto": "Tu programa se cita en la discusión pública.",
+      "efectos": [
+        {
+          "ind": "aprobacion",
+          "delta": 1
+        }
+      ]
+    }
+  },
+  {
+    "id": "opo_afiliacion",
+    "categoria": "oposicion",
+    "costo_pa": 2,
+    "titulo": "Campaña de afiliación al partido",
+    "efectos": [
+      {
+        "ind": "cohesion",
+        "delta": 2
+      },
+      {
+        "ind": "capital",
+        "delta": -1
+      }
+    ],
+    "requisitos": {
+      "ley": null,
+      "quorum": null
+    },
+    "corrector": null,
+    "abre_propuesta_comite": null,
+    "fuente": "fuentes.json#ficticio_2026",
+    "riesgo": {
+      "prob": 0.25,
+      "efectos": [
+        {
+          "ind": "cohesion",
+          "delta": -1
+        }
+      ]
+    }
+  },
+  {
+    "id": "opo_franja_opo",
+    "categoria": "oposicion",
+    "costo_pa": 2,
+    "titulo": "Franja de oposición en televisión",
+    "efectos": [
+      {
+        "ind": "aprobacion",
+        "delta": 1.0
+      },
+      {
+        "ind": "rival",
+        "delta": -1
+      },
+      {
+        "ind": "capital",
+        "delta": -1
+      }
+    ],
+    "requisitos": {
+      "ley": null,
+      "quorum": null
+    },
+    "corrector": null,
+    "abre_propuesta_comite": null,
+    "fuente": "fuentes.json#ficticio_2026"
+  },
+  {
+    "id": "opo_think_tank",
+    "categoria": "oposicion",
+    "costo_pa": 2,
+    "titulo": "Crear un centro de estudios aliado",
+    "efectos": [
+      {
+        "ind": "capital",
+        "delta": 1
+      },
+      {
+        "ind": "cohesion",
+        "delta": 1
+      }
+    ],
+    "requisitos": {
+      "ley": null,
+      "quorum": null
+    },
+    "corrector": null,
+    "abre_propuesta_comite": null,
+    "fuente": "fuentes.json#ficticio_2026",
+    "diferido": {
+      "semanas": 12,
+      "texto": "El centro de estudios publica propuestas que se discuten.",
+      "efectos": [
+        {
+          "ind": "aprobacion",
+          "delta": 1
+        },
+        {
+          "ind": "capital",
+          "delta": 1
+        }
+      ]
+    }
+  },
+  {
+    "id": "opo_pacto_ley",
+    "categoria": "oposicion",
+    "costo_pa": 2,
+    "titulo": "Pactar una ley de consenso con el gobierno",
+    "efectos": [
+      {
+        "ind": "capital",
+        "delta": 2
+      },
+      {
+        "ind": "rival",
+        "delta": 1
+      },
+      {
+        "ind": "cohesion",
+        "delta": -1
+      }
+    ],
+    "requisitos": {
+      "ley": null,
+      "quorum": null
+    },
+    "corrector": null,
+    "abre_propuesta_comite": null,
+    "fuente": "fuentes.json#ficticio_2026",
+    "diferido": {
+      "semanas": 6,
+      "texto": "El acuerdo muestra a una oposición responsable.",
+      "efectos": [
+        {
+          "ind": "aprobacion",
+          "delta": 1
+        }
+      ]
+    }
+  },
+  {
+    "id": "opo_filtrar",
+    "categoria": "oposicion",
+    "costo_pa": 1,
+    "titulo": "Filtrar un dato incómodo del gobierno",
+    "efectos": [
+      {
+        "ind": "rival",
+        "delta": -2
+      },
+      {
+        "ind": "aprobacion",
+        "delta": 0.5
+      }
+    ],
+    "requisitos": {
+      "ley": null,
+      "quorum": null
+    },
+    "corrector": null,
+    "abre_propuesta_comite": null,
+    "fuente": "fuentes.json#ficticio_2026",
+    "riesgo": {
+      "prob": 0.45,
+      "efectos": [
+        {
+          "ind": "aprobacion",
+          "delta": -2
+        },
+        {
+          "ind": "capital",
+          "delta": -1
+        }
+      ]
+    }
+  },
+  {
+    "id": "opo_movilizar",
+    "categoria": "oposicion",
+    "costo_pa": 3,
+    "titulo": "Convocar a una movilización social",
+    "efectos": [
+      {
+        "ind": "aprobacion",
+        "delta": 1.0
+      },
+      {
+        "ind": "cohesion",
+        "delta": 1
+      },
+      {
+        "ind": "rival",
+        "delta": -1.5
+      },
+      {
+        "ind": "capital",
+        "delta": -2
+      }
+    ],
+    "requisitos": {
+      "ley": null,
+      "quorum": null
+    },
+    "corrector": null,
+    "abre_propuesta_comite": null,
+    "fuente": "fuentes.json#ficticio_2026",
+    "riesgo": {
+      "prob": 0.3,
+      "efectos": [
+        {
+          "ind": "aprobacion",
+          "delta": -2
+        }
+      ]
+    }
   }
 ]

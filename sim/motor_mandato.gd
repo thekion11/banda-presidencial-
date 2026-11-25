@@ -134,6 +134,15 @@ func continuar_carrera() -> Dictionary:
 	return {"ok": true, "etapa": e.etapa}
 
 
+func amanecer_oposicion() -> void:
+	## Cada semana de oposición: el gobierno rival se mueve (camino aleatorio hacia su media) y tu aprobación converge a un ancla que sube si el rival lo hace mal.
+	var o: Dictionary = m.catalogo_leyes["oposicion"]
+	var rival := m.estado.ind("rival")
+	m.fx.sumar_ind("rival", (float(o["rival_media"]) - rival) * float(o["rival_reversion"]) + m.rng.randf_range(-float(o["rival_ruido"]), float(o["rival_ruido"])))
+	var ancla := float(o["ancla_base"]) + float(o["peso_rival"]) * (50.0 - m.estado.ind("rival"))
+	m.fx.sumar_ind("aprobacion", (ancla - m.estado.ind("aprobacion")) * float(o["reversion_aprobacion"]))
+
+
 func cerrar_oposicion() -> void:
 	## Terminadas las semanas de oposición empieza la campaña siguiente (cierre automático dentro de cerrar_turno).
 	_abrir_periodo("campana", e_dias_oposicion())
@@ -157,6 +166,13 @@ func _abrir_periodo(etapa: String, dias_cerrados: int) -> void:
 	e.semanas_en_crisis = 0
 	e.legado_evaluado.clear()
 	e.pa_actual = e.pa_maximo
+	if etapa == "campana":  # nueva campaña: la aprobación vuelve a la base del partido, con parte de lo ganado antes
+		var base := float(e.partido["indicadores_iniciales"]["aprobacion"]) + float(nivel()["aprobacion_inicial"])
+		e.indicadores["aprobacion"] = clampf(base + float(m.catalogo_leyes["oposicion"]["herencia_campana"]) * (e.ind("aprobacion") - base), 0.0, 100.0)
+		var camp: Dictionary = m.catalogo_leyes["campana"]
+		m.regiones.inicializar(e, e.ind("aprobacion"), String(e.partido.get("region_bastion", "")), float(camp.get("bono_bastion", 0.0)), float(camp.get("variacion_regional_inicial", 0.0)))
+	if etapa == "oposicion":
+		e.indicadores["rival"] = float(m.catalogo_leyes["oposicion"]["rival_inicial"])  # el nuevo gobierno parte con luna de miel
 	e.registrar_accion("periodo_nuevo", {"etapa": etapa, "ciclo": e.ciclo})
 
 

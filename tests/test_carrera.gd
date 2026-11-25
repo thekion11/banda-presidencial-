@@ -26,7 +26,21 @@ func _init() -> void:
 	_check(bool(m.continuar_carrera().get("ok", false)), "tras la derrota la carrera continúa")
 	_check(m.estado.etapa == "oposicion" and m.estado.ciclo == 2, "pasa a la oposición (ciclo 2)")
 	m.iniciar_turno()
+	_check(m.estado.ind("rival") > 50.0, "el gobierno rival parte con luna de miel (%.1f)" % m.estado.ind("rival"))
 	_check(m.estado.mano.size() == 5 and m.estado.mano.all(func(c: Dictionary) -> bool: return c["categoria"] == "oposicion"), "en oposición solo circulan cartas de oposición")
+	# rival: una acusación constitucional baja su aprobación (en una copia, sin tocar la partida principal)
+	var mb := Partida.crear(datos, 78, partido)
+	for _i in range(sem):
+		mb.terminar_turno()
+	mb.resolver_eleccion_presidencial()
+	mb.continuar_carrera()
+	mb.iniciar_turno()
+	for c in datos["cartas"]:
+		if c["id"] == "opo_acusacion":
+			mb.estado.mano[0] = c
+	var rival0 := mb.estado.ind("rival")
+	mb.jugar_carta(0)
+	_check(mb.estado.ind("rival") < rival0, "una acusación constitucional baja la aprobación del gobierno rival")
 	# 2) oposición jugable
 	var semanas_opo := int(datos["leyes"]["oposicion"]["semanas"])
 	var aprob0 := m.estado.ind("aprobacion")

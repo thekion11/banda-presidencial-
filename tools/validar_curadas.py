@@ -10,10 +10,10 @@ import jsonschema
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT / "data"
-INDICADORES = {"aprobacion", "capital", "cohesion", "fiscal", "riesgo_ejecucion", "viviendas_anio"}
+INDICADORES = {"aprobacion", "capital", "cohesion", "fiscal", "riesgo_ejecucion", "viviendas_anio", "rival"}
 CATEGORIAS = {"politica", "educacion", "energia", "medioambiente", "descentralizacion", "economia", "transportes", "obras", "seguridad", "salud", "vivienda", "hacienda", "social"}
 LEYES = {None, "ley_simple", "quorum_calificado", "ley_interpretativa", "ley_organica_constitucional", "reforma_constitucional"}
-RANGO = {"aprobacion": (-5, 5), "capital": (-4, 3), "cohesion": (-3, 3), "fiscal": (-6, 5), "riesgo_ejecucion": (-3, 4), "viviendas_anio": (-12000, 12000)}
+RANGO = {"aprobacion": (-5, 5), "capital": (-4, 3), "cohesion": (-3, 3), "fiscal": (-6, 5), "riesgo_ejecucion": (-3, 4), "viviendas_anio": (-12000, 12000), "rival": (-6, 6)}
 
 
 def efectos_ok(efs: list, ctx: str, errores: list) -> None:

@@ -114,3 +114,9 @@ Instrucción del usuario: «dejaría la dirección del juego abierta, haría tod
 **Bots y balance**
 - El bot codicioso ahora valora riesgo y efectos a futuro, y no juega cartas que le hacen daño en gobierno. `umbral_crisis_aprobacion` 24 → 15. Resultado (24 partidas de gobierno): azar ≈ 50 % de caídas, codicioso ≈ 17–21 %, «completo» (con asesores, delegación y movimientos internos) 0 %.
 - `test_carrera` verifica replay exacto de toda la carrera; `test_identidad` cubre candidatos, titular, renuncias y composición de la mano.
+
+## N. Fase E: oposición con rival que gobierna (hecha el 25-nov-2026)
+- Nuevo indicador `rival` (aprobación del gobierno rival, 0 a 100): parte en 55 («luna de miel»), camina con ruido hacia su media (42) y tus cartas pueden bajarla o subirla; en oposición el chip de Fiscal de la cabecera pasa a mostrar «Rival». Tu aprobación converge a un ancla que sube si el rival lo hace mal (`leyes.json` → `oposicion`).
+- Contenido: 10 cartas más de oposición (denuncia a la Contraloría, primarias, gira, libro programático, afiliación, franja, centro de estudios, pacto de ley, filtración, movilización; con riesgo y efectos a futuro), `rival` en las existentes, y 10 eventos nuevos (reforma tributaria del gobierno, escándalo, acuerdo, ley de seguridad, reajuste, encuesta, liderazgo joven, candidatura única, crisis climática, debate televisivo).
+- Al empezar una nueva campaña la aprobación vuelve a la base de tu partido más una pequeña herencia (`herencia_campana` 0,04) para que la segunda campaña no sea más fácil que la primera. Medido con bots: tras una oposición jugada, la segunda elección la gana ≈ 33 % el bot al azar y ≈ 97 % el codicioso.
+- Sigue sin contrastarse el artículo 25 de la Constitución (la fuente oficial exige autenticación y no se intentó eludirla): la reelección permanece como mecánica ilustrativa hasta que el usuario aporte el texto o autorice otra fuente.

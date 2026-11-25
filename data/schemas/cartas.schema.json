@@ -49,7 +49,8 @@
                 "cohesion",
                 "fiscal",
                 "riesgo_ejecucion",
-                "viviendas_anio"
+                "viviendas_anio",
+                "rival"
               ]
             },
             "delta": {
@@ -85,7 +86,8 @@
               "cohesion",
               "fiscal",
               "riesgo_ejecucion",
-              "viviendas_anio"
+              "viviendas_anio",
+                "rival"
             ]
           },
           "modo": {

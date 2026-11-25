@@ -76,13 +76,16 @@ static func cabecera(refs: Dictionary) -> Control:
 	var chips := HBoxContainer.new()
 	chips.add_theme_constant_override("separation", 5)
 	refs["chips"] = {}
+	refs["captions"] = {}
 	for par in [["aprobacion", "Aprob."], ["capital", "Capital"], ["cohesion", "Cohes."], ["fiscal", "Fiscal"]]:
 		var p := PanelContainer.new()
 		p.add_theme_stylebox_override("panel", Tema.caja_degradada(Color("#17476C"), Color("#0F3355"), 10, Color("#2A6290"), 1))
 		p.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		var h := HBoxContainer.new()
 		h.add_theme_constant_override("separation", 3)
-		h.add_child(Tema.etiqueta_corta(par[1], 10, Tema.TEXTO_SUAVE))
+		var cap := Tema.etiqueta_corta(par[1], 10, Tema.TEXTO_SUAVE)
+		refs["captions"][par[0]] = cap
+		h.add_child(cap)
 		var val := Tema.etiqueta_corta("", 13, Tema.TEXTO, true)
 		val.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		val.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
@@ -254,7 +257,7 @@ static func actualizar_evento(refs: Dictionary, motor: MotorTurno) -> void:
 static func resumen_cambios(antes: Dictionary, despues: Dictionary) -> String:
 	## «Aprob. +2 · Capital −3»: lo que la carta cambió en los indicadores visibles (solo los que se movieron al menos 0,5).
 	var partes: Array[String] = []
-	for par in [["aprobacion", "Aprob."], ["capital", "Capital"], ["cohesion", "Cohes."], ["fiscal", "Fiscal"]]:
+	for par in [["aprobacion", "Aprob."], ["capital", "Capital"], ["cohesion", "Cohes."], ["fiscal", "Fiscal"], ["rival", "Rival"]]:
 		var d := float(despues.get(par[0], 0.0)) - float(antes.get(par[0], 0.0))
 		if absf(d) >= 0.5:
 			partes.append("%s %s" % [par[1], Tema.signo(d)])
@@ -290,3 +293,14 @@ static func texto_consecuencia(ev: Dictionary) -> String:
 		d[String(ef["ind"])] = float(ef["delta"])
 	var c := resumen_cambios({}, d)
 	return "Consecuencia: %s%s" % [String(ev["descripcion"]), (" " + c + ".") if c != "" else ""]
+
+
+static func pintar_chips(refs: Dictionary, est: EstadoSimulacion) -> void:
+	## Indicadores de la cabecera. En oposición el chip de Fiscal pasa a mostrar la aprobación del gobierno rival.
+	for k in refs["chips"].keys():
+		var oposicion: bool = est.etapa == "oposicion" and k == "fiscal"
+		var ind: String = "rival" if oposicion else String(k)
+		(refs["captions"][k] as Label).text = "Rival" if oposicion else {"aprobacion": "Aprob.", "capital": "Capital", "cohesion": "Cohes.", "fiscal": "Fiscal"}[k]
+		var l: Label = refs["chips"][k]
+		l.text = str(roundi(est.ind(ind)))
+		l.add_theme_color_override("font_color", Tema.SUBE if (k == "aprobacion" and est.ind(ind) >= 50.0) else Tema.TEXTO)

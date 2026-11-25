@@ -4,7 +4,8 @@ extends RefCounted
 
 const IND_DEFECTO := {
 	"aprobacion": 90.0, "capital": 65.0, "cohesion": 85.0,
-	"fiscal": 67.0, "riesgo_ejecucion": 20.0, "viviendas_anio": 55000.0
+	"fiscal": 67.0, "riesgo_ejecucion": 20.0, "viviendas_anio": 55000.0,
+	"rival": 45.0  # aprobación del gobierno rival (solo cuenta en oposición)
 }
 
 var semilla: int = 20260415

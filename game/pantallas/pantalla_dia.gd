@@ -175,10 +175,7 @@ func _refrescar() -> void:
 	_r["fecha"].text = Barras.fecha_texto(datos["leyes"], est.etapa, est.turno_actual, est.dia_actual, est.ciclo, est.dias_carrera)
 	_r["pa"].text = ManoUI.texto_pastilla(est)
 	_lbl_mov.text = ManoUI.texto_movimientos(est)
-	for k in _r["chips"].keys():
-		var l: Label = _r["chips"][k]
-		l.text = str(roundi(est.ind(k)))
-		l.add_theme_color_override("font_color", Tema.SUBE if (k == "aprobacion" and est.ind(k) >= 50.0) else Tema.TEXTO)
+	Barras.pintar_chips(_r, est)
 	var obras: Dictionary = {}
 	for o in est.obras_en_curso:
 		obras[o["region"]] = int(obras.get(o["region"], 0)) + 1

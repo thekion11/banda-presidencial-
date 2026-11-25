@@ -4428,6 +4428,10 @@
           {
             "ind": "capital",
             "delta": -1
+          },
+          {
+            "ind": "rival",
+            "delta": -1
           }
         ]
       },
@@ -4538,6 +4542,10 @@
           {
             "ind": "cohesion",
             "delta": 1
+          },
+          {
+            "ind": "rival",
+            "delta": -3
           }
         ],
         "cadena": {
@@ -4596,6 +4604,10 @@
           },
           {
             "ind": "capital",
+            "delta": -1
+          },
+          {
+            "ind": "rival",
             "delta": -1
           }
         ]
@@ -4817,6 +4829,10 @@
           {
             "ind": "capital",
             "delta": -1
+          },
+          {
+            "ind": "rival",
+            "delta": -2
           }
         ]
       },
@@ -5770,5 +5786,610 @@
       "id": "medios",
       "nombre": "Medios de comunicación"
     }
+  },
+  {
+    "id": "evt_opo_reforma_tributaria",
+    "tipo": "aleatorio_semilla",
+    "dia_objetivo": null,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 0.4,
+    "titulo": "El gobierno presenta una reforma tributaria",
+    "descripcion": "La mayoría oficialista exige apoyo para aprobarla sin cambios.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "oposicion",
+    "fuente": "fuentes.json#ficticio_2026",
+    "familia": "oposicion",
+    "opciones": [
+      {
+        "texto": "Bloquearla en el Senado",
+        "efectos": [
+          {
+            "ind": "rival",
+            "delta": -2
+          },
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          },
+          {
+            "ind": "capital",
+            "delta": -1
+          }
+        ],
+        "riesgo": {
+          "prob": 0.35,
+          "efectos": [
+            {
+              "ind": "aprobacion",
+              "delta": -2
+            }
+          ]
+        }
+      },
+      {
+        "texto": "Negociar cambios a cambio de apoyo",
+        "efectos": [
+          {
+            "ind": "capital",
+            "delta": 2
+          },
+          {
+            "ind": "rival",
+            "delta": 0.5
+          }
+        ]
+      },
+      {
+        "texto": "Apoyarla sin condiciones",
+        "efectos": [
+          {
+            "ind": "cohesion",
+            "delta": -2
+          },
+          {
+            "ind": "rival",
+            "delta": 1
+          },
+          {
+            "ind": "aprobacion",
+            "delta": -1
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "evt_opo_escandalo_gobierno",
+    "tipo": "aleatorio_semilla",
+    "dia_objetivo": null,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 0.3,
+    "titulo": "Escándalo en el gobierno",
+    "descripcion": "Un ministro del gobierno rival queda en el centro de una polémica.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "oposicion",
+    "fuente": "fuentes.json#ficticio_2026",
+    "familia": "oposicion",
+    "opciones": [
+      {
+        "texto": "Pedir su renuncia con fuerza",
+        "efectos": [
+          {
+            "ind": "rival",
+            "delta": -4
+          },
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          },
+          {
+            "ind": "capital",
+            "delta": -1
+          }
+        ]
+      },
+      {
+        "texto": "Mantener un tono prudente",
+        "efectos": [
+          {
+            "ind": "rival",
+            "delta": -1
+          },
+          {
+            "ind": "capital",
+            "delta": 1
+          }
+        ]
+      },
+      {
+        "texto": "No pronunciarte",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": -1
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "evt_opo_acuerdo_gobierno",
+    "tipo": "aleatorio_semilla",
+    "dia_objetivo": null,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 0.3,
+    "titulo": "El gobierno logra un acuerdo importante",
+    "descripcion": "El oficialismo anuncia un pacto con sectores de oposición.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "oposicion",
+    "fuente": "fuentes.json#ficticio_2026",
+    "familia": "oposicion",
+    "opciones": [
+      {
+        "texto": "Felicitar y marcar tus diferencias",
+        "efectos": [
+          {
+            "ind": "rival",
+            "delta": 1
+          },
+          {
+            "ind": "capital",
+            "delta": 1
+          }
+        ]
+      },
+      {
+        "texto": "Descalificar el acuerdo",
+        "efectos": [
+          {
+            "ind": "rival",
+            "delta": -1
+          },
+          {
+            "ind": "cohesion",
+            "delta": -1
+          }
+        ]
+      },
+      {
+        "texto": "Sumarte al acuerdo",
+        "efectos": [
+          {
+            "ind": "capital",
+            "delta": 2
+          },
+          {
+            "ind": "cohesion",
+            "delta": -1
+          },
+          {
+            "ind": "rival",
+            "delta": 2
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "evt_opo_ley_seguridad",
+    "tipo": "aleatorio_semilla",
+    "dia_objetivo": null,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 0.4,
+    "titulo": "Ley de seguridad del gobierno",
+    "descripcion": "Una ley dura de seguridad llega a votación.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "oposicion",
+    "fuente": "fuentes.json#ficticio_2026",
+    "familia": "oposicion",
+    "opciones": [
+      {
+        "texto": "Votar a favor con reparos",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          },
+          {
+            "ind": "cohesion",
+            "delta": -1
+          }
+        ]
+      },
+      {
+        "texto": "Votar en contra y proponer una alternativa",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          },
+          {
+            "ind": "rival",
+            "delta": -1
+          },
+          {
+            "ind": "capital",
+            "delta": -1
+          }
+        ]
+      },
+      {
+        "texto": "Pedir un plebiscito",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 2
+          },
+          {
+            "ind": "capital",
+            "delta": -2
+          },
+          {
+            "ind": "rival",
+            "delta": -1
+          }
+        ],
+        "riesgo": {
+          "prob": 0.4,
+          "efectos": [
+            {
+              "ind": "aprobacion",
+              "delta": -2
+            },
+            {
+              "ind": "cohesion",
+              "delta": -1
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "evt_opo_reajuste",
+    "tipo": "aleatorio_semilla",
+    "dia_objetivo": null,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 0.4,
+    "titulo": "Debate del reajuste del sector público",
+    "descripcion": "Los gremios piden más que lo ofrecido por el gobierno.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "oposicion",
+    "fuente": "fuentes.json#ficticio_2026",
+    "familia": "oposicion",
+    "opciones": [
+      {
+        "texto": "Respaldar a los gremios",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          },
+          {
+            "ind": "cohesion",
+            "delta": 1
+          },
+          {
+            "ind": "rival",
+            "delta": -1
+          }
+        ]
+      },
+      {
+        "texto": "Proponer un acuerdo intermedio",
+        "efectos": [
+          {
+            "ind": "capital",
+            "delta": 1
+          },
+          {
+            "ind": "aprobacion",
+            "delta": 0.5
+          }
+        ]
+      },
+      {
+        "texto": "Apoyar al gobierno",
+        "efectos": [
+          {
+            "ind": "cohesion",
+            "delta": -1
+          },
+          {
+            "ind": "capital",
+            "delta": 1
+          },
+          {
+            "ind": "rival",
+            "delta": 1
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "evt_opo_encuesta_rival",
+    "tipo": "aleatorio_semilla",
+    "dia_objetivo": null,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 0.3,
+    "titulo": "Una encuesta muestra al gobierno en alza",
+    "descripcion": "El gobierno rival recupera apoyo tras un anuncio.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "oposicion",
+    "fuente": "fuentes.json#ficticio_2026",
+    "familia": "oposicion",
+    "opciones": [
+      {
+        "texto": "Redoblar la presencia en regiones",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          },
+          {
+            "ind": "capital",
+            "delta": -1
+          }
+        ]
+      },
+      {
+        "texto": "Cambiar la estrategia comunicacional",
+        "efectos": [
+          {
+            "ind": "capital",
+            "delta": -1
+          },
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          }
+        ]
+      },
+      {
+        "texto": "Esperar a que baje el entusiasmo",
+        "efectos": [
+          {
+            "ind": "rival",
+            "delta": 0.5
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "evt_opo_liderazgo",
+    "tipo": "aleatorio_semilla",
+    "dia_objetivo": null,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 0.4,
+    "titulo": "Surge un liderazgo joven en tu sector",
+    "descripcion": "Un nuevo dirigente gana notoriedad y compite contigo.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "oposicion",
+    "fuente": "fuentes.json#ficticio_2026",
+    "familia": "partido",
+    "opciones": [
+      {
+        "texto": "Integrarlo a tu equipo",
+        "efectos": [
+          {
+            "ind": "cohesion",
+            "delta": 2
+          },
+          {
+            "ind": "capital",
+            "delta": -1
+          }
+        ]
+      },
+      {
+        "texto": "Marcar tu liderazgo",
+        "efectos": [
+          {
+            "ind": "cohesion",
+            "delta": -1
+          },
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          }
+        ]
+      },
+      {
+        "texto": "Ignorarlo",
+        "efectos": [
+          {
+            "ind": "cohesion",
+            "delta": -1
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "evt_opo_coalicion",
+    "tipo": "aleatorio_semilla",
+    "dia_objetivo": null,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 0.4,
+    "titulo": "Tus aliados piden definir la candidatura única",
+    "descripcion": "Los partidos de oposición exigen un solo candidato.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "oposicion",
+    "fuente": "fuentes.json#ficticio_2026",
+    "familia": "partido",
+    "opciones": [
+      {
+        "texto": "Proponerte como candidato",
+        "efectos": [
+          {
+            "ind": "cohesion",
+            "delta": -1
+          },
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          },
+          {
+            "ind": "capital",
+            "delta": -1
+          }
+        ]
+      },
+      {
+        "texto": "Impulsar primarias",
+        "efectos": [
+          {
+            "ind": "cohesion",
+            "delta": 1
+          },
+          {
+            "ind": "capital",
+            "delta": -1
+          }
+        ]
+      },
+      {
+        "texto": "Postergar la decisión",
+        "efectos": [
+          {
+            "ind": "cohesion",
+            "delta": -2
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "evt_opo_crisis_gobierno",
+    "tipo": "aleatorio_semilla",
+    "dia_objetivo": null,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 0.3,
+    "titulo": "El gobierno enfrenta una crisis climática",
+    "descripcion": "Una emergencia pone a prueba al gobierno rival.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "oposicion",
+    "fuente": "fuentes.json#ficticio_2026",
+    "familia": "externo",
+    "opciones": [
+      {
+        "texto": "Ofrecer colaboración en la emergencia",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          },
+          {
+            "ind": "capital",
+            "delta": 1
+          },
+          {
+            "ind": "rival",
+            "delta": 1
+          }
+        ]
+      },
+      {
+        "texto": "Fiscalizar su respuesta",
+        "efectos": [
+          {
+            "ind": "rival",
+            "delta": -2
+          },
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          }
+        ]
+      },
+      {
+        "texto": "Aprovechar políticamente",
+        "efectos": [
+          {
+            "ind": "rival",
+            "delta": -2
+          },
+          {
+            "ind": "aprobacion",
+            "delta": -1
+          }
+        ],
+        "riesgo": {
+          "prob": 0.5,
+          "efectos": [
+            {
+              "ind": "aprobacion",
+              "delta": -2
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "evt_opo_debate_tv",
+    "tipo": "aleatorio_semilla",
+    "dia_objetivo": null,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 0.4,
+    "titulo": "Te invitan a un debate televisivo sobre el rumbo del país",
+    "descripcion": "Un canal reúne a los referentes de la oposición.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "oposicion",
+    "fuente": "fuentes.json#ficticio_2026",
+    "familia": "medios",
+    "opciones": [
+      {
+        "texto": "Ir y atacar al gobierno",
+        "efectos": [
+          {
+            "ind": "rival",
+            "delta": -2
+          },
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          },
+          {
+            "ind": "cohesion",
+            "delta": -1
+          }
+        ]
+      },
+      {
+        "texto": "Ir con propuestas",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 2
+          },
+          {
+            "ind": "capital",
+            "delta": -1
+          }
+        ]
+      },
+      {
+        "texto": "No asistir",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": -1
+          }
+        ]
+      }
+    ]
   }
 ]
