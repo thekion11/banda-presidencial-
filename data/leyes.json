@@ -247,6 +247,14 @@
   "oposicion": {
     "nota": "Carrera política: periodo de oposición jugable (semanas) tras una derrota, una caída o un mandato sin reelección. Solo circulan las cartas de categoría «oposicion»; los eventos con etapa «oposicion» traen entrevistas, debates y decisiones. Al terminar empieza una nueva campaña.",
     "semanas": 26,
+    "congreso": {
+      "base": 0.1,
+      "peso_escanos": 1.0,
+      "peso_cohesion": 0.004,
+      "min": 0.1,
+      "max": 0.85,
+      "nota": "Votaciones del gobierno rival en el Congreso (PR-12 ampliado). Probabilidad de que tu bloqueo o tu enmienda prosperen = base + peso_escanos x (tu bancada + aliados del Senado) / total + peso_cohesion x (cohesión - 50), acotada. Cifras ilustrativas."
+    },
     "rival_inicial": 55.0,
     "rival_media": 42.0,
     "rival_reversion": 0.04,

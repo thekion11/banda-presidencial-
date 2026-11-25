@@ -6885,5 +6885,465 @@
         ]
       }
     ]
+  },
+  {
+    "id": "evt_opo_congreso_presupuesto",
+    "tipo": "programado",
+    "dia_objetivo": 28,
+    "hora_etiqueta": "10:00",
+    "peso_sorteo": 1.0,
+    "titulo": "Votación: Ley de Presupuestos del gobierno",
+    "descripcion": "El gobierno rival lleva su presupuesto al Congreso y necesita votos de la oposición.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "oposicion",
+    "fuente": "fuentes.json#ficticio_2026",
+    "familia": "politica",
+    "opciones": [
+      {
+        "texto": "Rechazar y buscar bloquearlo",
+        "efectos": [
+          {
+            "ind": "capital",
+            "delta": -1
+          }
+        ],
+        "congreso": {
+          "exito": [
+            {
+              "ind": "aprobacion",
+              "delta": 2
+            },
+            {
+              "ind": "rival",
+              "delta": -2
+            },
+            {
+              "ind": "fiscal",
+              "delta": 1
+            }
+          ],
+          "derrota": [
+            {
+              "ind": "aprobacion",
+              "delta": -1
+            },
+            {
+              "ind": "rival",
+              "delta": 1
+            },
+            {
+              "ind": "cohesion",
+              "delta": -1
+            }
+          ]
+        }
+      },
+      {
+        "texto": "Negociar enmiendas",
+        "efectos": [
+          {
+            "ind": "capital",
+            "delta": -1
+          }
+        ],
+        "congreso": {
+          "exito": [
+            {
+              "ind": "aprobacion",
+              "delta": 1
+            },
+            {
+              "ind": "rival",
+              "delta": -1
+            },
+            {
+              "ind": "capital",
+              "delta": 2
+            },
+            {
+              "ind": "fiscal",
+              "delta": 0
+            }
+          ],
+          "derrota": [
+            {
+              "ind": "capital",
+              "delta": -1
+            },
+            {
+              "ind": "cohesion",
+              "delta": -1
+            }
+          ]
+        }
+      },
+      {
+        "texto": "Apoyarlo por responsabilidad",
+        "efectos": [
+          {
+            "ind": "capital",
+            "delta": 1
+          },
+          {
+            "ind": "aprobacion",
+            "delta": -1
+          },
+          {
+            "ind": "rival",
+            "delta": 1
+          },
+          {
+            "ind": "fiscal",
+            "delta": 0
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "evt_opo_congreso_pensiones",
+    "tipo": "programado",
+    "dia_objetivo": 70,
+    "hora_etiqueta": "10:00",
+    "peso_sorteo": 1.0,
+    "titulo": "Votación: reforma de pensiones del gobierno",
+    "descripcion": "El oficialismo busca aprobar su reforma de pensiones con tu bancada como fiel de la balanza.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "oposicion",
+    "fuente": "fuentes.json#ficticio_2026",
+    "familia": "politica",
+    "opciones": [
+      {
+        "texto": "Rechazar y buscar bloquearlo",
+        "efectos": [
+          {
+            "ind": "capital",
+            "delta": -1
+          }
+        ],
+        "congreso": {
+          "exito": [
+            {
+              "ind": "aprobacion",
+              "delta": 2
+            },
+            {
+              "ind": "rival",
+              "delta": -2
+            },
+            {
+              "ind": "cohesion",
+              "delta": 1
+            }
+          ],
+          "derrota": [
+            {
+              "ind": "aprobacion",
+              "delta": -1
+            },
+            {
+              "ind": "rival",
+              "delta": 1
+            },
+            {
+              "ind": "cohesion",
+              "delta": -1
+            }
+          ]
+        }
+      },
+      {
+        "texto": "Negociar enmiendas",
+        "efectos": [
+          {
+            "ind": "capital",
+            "delta": -1
+          }
+        ],
+        "congreso": {
+          "exito": [
+            {
+              "ind": "aprobacion",
+              "delta": 1
+            },
+            {
+              "ind": "rival",
+              "delta": -1
+            },
+            {
+              "ind": "capital",
+              "delta": 2
+            },
+            {
+              "ind": "cohesion",
+              "delta": 0
+            }
+          ],
+          "derrota": [
+            {
+              "ind": "capital",
+              "delta": -1
+            },
+            {
+              "ind": "cohesion",
+              "delta": -1
+            }
+          ]
+        }
+      },
+      {
+        "texto": "Apoyarlo por responsabilidad",
+        "efectos": [
+          {
+            "ind": "capital",
+            "delta": 1
+          },
+          {
+            "ind": "aprobacion",
+            "delta": -1
+          },
+          {
+            "ind": "rival",
+            "delta": 1
+          },
+          {
+            "ind": "cohesion",
+            "delta": 0
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "evt_opo_congreso_tributaria",
+    "tipo": "programado",
+    "dia_objetivo": 112,
+    "hora_etiqueta": "10:00",
+    "peso_sorteo": 1.0,
+    "titulo": "Votación: reforma tributaria del gobierno",
+    "descripcion": "La reforma tributaria llega a sala y el gobierno cuenta los votos uno a uno.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "oposicion",
+    "fuente": "fuentes.json#ficticio_2026",
+    "familia": "politica",
+    "opciones": [
+      {
+        "texto": "Rechazar y buscar bloquearlo",
+        "efectos": [
+          {
+            "ind": "capital",
+            "delta": -1
+          }
+        ],
+        "congreso": {
+          "exito": [
+            {
+              "ind": "aprobacion",
+              "delta": 2
+            },
+            {
+              "ind": "rival",
+              "delta": -2
+            },
+            {
+              "ind": "fiscal",
+              "delta": 1
+            }
+          ],
+          "derrota": [
+            {
+              "ind": "aprobacion",
+              "delta": -1
+            },
+            {
+              "ind": "rival",
+              "delta": 1
+            },
+            {
+              "ind": "cohesion",
+              "delta": -1
+            }
+          ]
+        }
+      },
+      {
+        "texto": "Negociar enmiendas",
+        "efectos": [
+          {
+            "ind": "capital",
+            "delta": -1
+          }
+        ],
+        "congreso": {
+          "exito": [
+            {
+              "ind": "aprobacion",
+              "delta": 1
+            },
+            {
+              "ind": "rival",
+              "delta": -1
+            },
+            {
+              "ind": "capital",
+              "delta": 2
+            },
+            {
+              "ind": "fiscal",
+              "delta": 0
+            }
+          ],
+          "derrota": [
+            {
+              "ind": "capital",
+              "delta": -1
+            },
+            {
+              "ind": "cohesion",
+              "delta": -1
+            }
+          ]
+        }
+      },
+      {
+        "texto": "Apoyarlo por responsabilidad",
+        "efectos": [
+          {
+            "ind": "capital",
+            "delta": 1
+          },
+          {
+            "ind": "aprobacion",
+            "delta": -1
+          },
+          {
+            "ind": "rival",
+            "delta": 1
+          },
+          {
+            "ind": "fiscal",
+            "delta": 0
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "evt_opo_congreso_seguridad",
+    "tipo": "programado",
+    "dia_objetivo": 154,
+    "hora_etiqueta": "10:00",
+    "peso_sorteo": 1.0,
+    "titulo": "Votación: ley de seguridad del gobierno",
+    "descripcion": "El gobierno pide urgencia para su ley de seguridad antes del receso.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "oposicion",
+    "fuente": "fuentes.json#ficticio_2026",
+    "familia": "politica",
+    "opciones": [
+      {
+        "texto": "Rechazar y buscar bloquearlo",
+        "efectos": [
+          {
+            "ind": "capital",
+            "delta": -1
+          }
+        ],
+        "congreso": {
+          "exito": [
+            {
+              "ind": "aprobacion",
+              "delta": 2
+            },
+            {
+              "ind": "rival",
+              "delta": -2
+            },
+            {
+              "ind": "cohesion",
+              "delta": 1
+            }
+          ],
+          "derrota": [
+            {
+              "ind": "aprobacion",
+              "delta": -1
+            },
+            {
+              "ind": "rival",
+              "delta": 1
+            },
+            {
+              "ind": "cohesion",
+              "delta": -1
+            }
+          ]
+        }
+      },
+      {
+        "texto": "Negociar enmiendas",
+        "efectos": [
+          {
+            "ind": "capital",
+            "delta": -1
+          }
+        ],
+        "congreso": {
+          "exito": [
+            {
+              "ind": "aprobacion",
+              "delta": 1
+            },
+            {
+              "ind": "rival",
+              "delta": -1
+            },
+            {
+              "ind": "capital",
+              "delta": 2
+            },
+            {
+              "ind": "cohesion",
+              "delta": 0
+            }
+          ],
+          "derrota": [
+            {
+              "ind": "capital",
+              "delta": -1
+            },
+            {
+              "ind": "cohesion",
+              "delta": -1
+            }
+          ]
+        }
+      },
+      {
+        "texto": "Apoyarlo por responsabilidad",
+        "efectos": [
+          {
+            "ind": "capital",
+            "delta": 1
+          },
+          {
+            "ind": "aprobacion",
+            "delta": -1
+          },
+          {
+            "ind": "rival",
+            "delta": 1
+          },
+          {
+            "ind": "cohesion",
+            "delta": 0
+          }
+        ]
+      }
+    ]
   }
 ]

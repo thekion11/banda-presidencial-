@@ -49,7 +49,7 @@ func _n_aliados() -> int:
 
 func unirse(id: String) -> Dictionary:
 	var est := m.estado
-	if est.etapa != "campana" and est.etapa != "gobierno":
+	if est.etapa != "campana" and est.etapa != "gobierno" and est.etapa != "oposicion":
 		return {"ok": false, "razon": "partida_terminada"}
 	if not partidos.has(id):
 		return {"ok": false, "razon": "partido_inexistente"}

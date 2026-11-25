@@ -272,7 +272,9 @@ static func texto_decision(r: Dictionary, antes: Dictionary, despues: Dictionary
 	var c := resumen_cambios(antes, despues)
 	if c != "":
 		t += " " + c + "."
-	if bool(r.get("salio_mal", false)):
+	if bool(r.get("congreso", false)):
+		t += " Perdiste la votación." if bool(r.get("salio_mal", false)) else " Ganaste la votación."
+	elif bool(r.get("salio_mal", false)):
 		t += " Salió mal."
 	if int(r.get("futuro", 0)) > 0:
 		t += " Habrá consecuencias en unas %d semanas." % int(r["futuro"])

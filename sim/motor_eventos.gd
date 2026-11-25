@@ -174,6 +174,8 @@ func _director(pool: Array[Dictionary]) -> Dictionary:
 
 func aplicar_evento(evt: Dictionary) -> Dictionary:
 	var res := {"id": evt["id"], "titulo": evt["titulo"], "descripcion": evt["descripcion"], "hora": evt["hora_etiqueta"], "votacion": null, "efectos": evt["efectos_base"]}
+	if evt.has("opciones") and (evt["opciones"] as Array).any(func(o: Dictionary) -> bool: return o.has("congreso")):
+		res["descripcion"] = "%s Con tu bancada y tus aliados, tu postura prospera con un %d %% de probabilidad." % [String(evt["descripcion"]), roundi(100.0 * prob_bloqueo())]
 	if evt.has("escena"):
 		res["escena"] = evt["escena"]  # debate o entrevista de varias rondas: la interfaz muestra el avance
 	var aplicar := true
@@ -231,7 +233,17 @@ func decidir(evento_id: String, idx: int) -> Dictionary:
 	for ef in op["efectos"]:
 		m.fx.aplicar_efecto(ef, 1.0, "")
 	var salio_mal := false
-	if op.has("riesgo") and m.rng.randf() < float(op["riesgo"]["prob"]):  # opción arriesgada: puede salir mal
+	var exito: Array = []
+	if op.has("congreso"):  # votación del gobierno rival: tu bancada decide si la postura prospera
+		var pb := prob_bloqueo()
+		salio_mal = m.rng.randf() >= pb
+		exito = op["congreso"]["exito"] if not salio_mal else []
+		for ef in exito:
+			m.fx.aplicar_efecto(ef, 1.0, "")
+		if salio_mal:
+			for ef in op["congreso"]["derrota"]:
+				m.fx.aplicar_efecto(ef, 1.0, "")
+	elif op.has("riesgo") and m.rng.randf() < float(op["riesgo"]["prob"]):  # opción arriesgada: puede salir mal
 		salio_mal = true
 		for ef in op["riesgo"]["efectos"]:
 			m.fx.aplicar_efecto(ef, 1.0, "")
@@ -247,7 +259,15 @@ func decidir(evento_id: String, idx: int) -> Dictionary:
 	m.estado.registrar_entrada("decision", {"evento": evento_id, "idx": idx})
 	m.estado.registrar_accion("decision", {"evento": evento_id, "idx": idx, "mal": salio_mal})
 	var renuncia := m.gabinete.revisar_renuncia(String(evt["actor"]["id"])) if evt.has("actor") else {}
-	return {"ok": true, "renuncia": renuncia, "efectos": op["efectos"], "salio_mal": salio_mal, "efectos_riesgo": op.get("riesgo", {}).get("efectos", []) if salio_mal else [], "futuro": futuro}
+	return {"ok": true, "renuncia": renuncia, "efectos": op["efectos"] + exito, "salio_mal": salio_mal, "efectos_riesgo": op.get("riesgo", {}).get("efectos", op.get("congreso", {}).get("derrota", [])) if salio_mal else [], "futuro": futuro, "congreso": op.has("congreso")}
+
+
+func prob_bloqueo() -> float:
+	## Probabilidad de que tu postura prospere en el Congreso (oposición): bancada propia y aliados del Senado más la cohesión del partido.
+	var c: Dictionary = m.catalogo_leyes["oposicion"]["congreso"]
+	var propios := float(m.estado.partido.get("escanos_propios", m.catalogo_leyes["congreso"]["escanos_propios_defecto"])) + float(m.estado.apoyo_coalicion["senado"])
+	var p := float(c["base"]) + float(c["peso_escanos"]) * propios / float(m.catalogo_leyes["hemiciclo"]["total_senadores"]) + float(c["peso_cohesion"]) * (m.estado.ind("cohesion") - 50.0)
+	return clampf(p, float(c["min"]), float(c["max"]))
 
 
 func relaciones_actores() -> Array[Dictionary]:

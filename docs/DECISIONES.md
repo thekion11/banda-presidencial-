@@ -167,3 +167,8 @@ Instrucción del usuario: «dejaría la dirección del juego abierta, haría tod
 ## V. Accesibilidad básica (25-nov-2026, Fase F del análisis de profundidad)
 - Ajustes nuevos, desactivados por defecto: «Texto grande» (+15 % en las etiquetas con ajuste de línea; las cortas no cambian para no desbordar) y «Colores para daltonismo» (escala de aprobación azul–naranja de Okabe-Ito). La paleta congelada sigue siendo la predeterminada. Prueba: `test_accesibilidad`.
 - Pendiente: probar el texto grande en cada pantalla con personas (U1) y música.
+
+## W. Congreso y votaciones en oposición (25-nov-2026, PR-12 ampliado)
+- Cuatro votaciones del gobierno rival por periodo de oposición (presupuesto, pensiones, reforma tributaria y seguridad; días 28, 70, 112 y 154). Cada una ofrece rechazar y buscar bloquear, negociar enmiendas o apoyar. Rechazar y negociar se sortean con la semilla: la probabilidad de que prospere tu postura = 0,10 + bancada propia y aliados del Senado / 50 + 0,004 × (cohesión − 50), entre 10 % y 85 % (`leyes.json › oposicion.congreso`). Si ganas, sube tu aprobación y baja la del rival; si pierdes, cuesta cohesión. La descripción del evento muestra la probabilidad.
+- Se puede formar coalición también en oposición (más escaños = más probabilidad). Pendiente: botón de coalición visible en la pantalla de oposición.
+- Prueba: `test_congreso_oposicion` (probabilidad según aliados y cohesión, votación en oposición y replay exacto).
