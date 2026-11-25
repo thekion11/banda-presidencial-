@@ -12,7 +12,7 @@ func _check(c: bool, msg: String) -> void:
 func _init() -> void:
 	var datos := Datos.cargar_todo()
 	var con_ops: Array = datos["eventos"].filter(func(e: Dictionary) -> bool: return e.has("opciones"))
-	_check(con_ops.size() >= 10, "hay al menos 10 eventos con opciones (%d)" % con_ops.size())
+	_check(con_ops.size() >= 45, "hay al menos 45 eventos con opciones (%d)" % con_ops.size())
 	for e in con_ops:
 		_check(e["opciones"].size() >= 2, "%s: al menos 2 opciones" % e["id"])
 	var m := AyudaV2.gobierno(datos, 21)

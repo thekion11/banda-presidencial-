@@ -2637,5 +2637,955 @@
         ]
       }
     ]
+  },
+  {
+    "id": "evt_min_interior",
+    "tipo": "aleatorio_semilla",
+    "dia_objetivo": null,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 0.03,
+    "titulo": "Interior pide respaldo ante una protesta masiva",
+    "descripcion": "El ministro advierte desórdenes en varias ciudades.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "gobierno",
+    "fuente": "fuentes.json#ficticio_2026",
+    "opciones": [
+      {
+        "texto": "Autorizar diálogo con los dirigentes",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          },
+          {
+            "ind": "capital",
+            "delta": -1
+          }
+        ]
+      },
+      {
+        "texto": "Reforzar el control del orden público",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          },
+          {
+            "ind": "cohesion",
+            "delta": -1
+          }
+        ]
+      },
+      {
+        "texto": "Esperar a que baje la tensión",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": -2
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "evt_min_exteriores",
+    "tipo": "aleatorio_semilla",
+    "dia_objetivo": null,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 0.03,
+    "titulo": "Relaciones Exteriores pide definir una postura en una crisis regional",
+    "descripcion": "Un conflicto en la región exige una declaración oficial.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "gobierno",
+    "fuente": "fuentes.json#ficticio_2026",
+    "opciones": [
+      {
+        "texto": "Condenar y ofrecer mediación",
+        "efectos": [
+          {
+            "ind": "capital",
+            "delta": -1
+          },
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          }
+        ]
+      },
+      {
+        "texto": "Declaración cauta y neutral",
+        "efectos": [
+          {
+            "ind": "capital",
+            "delta": 1
+          },
+          {
+            "ind": "cohesion",
+            "delta": 1
+          }
+        ]
+      },
+      {
+        "texto": "No pronunciarte",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": -1
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "evt_min_defensa",
+    "tipo": "aleatorio_semilla",
+    "dia_objetivo": null,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 0.03,
+    "titulo": "Defensa pide renovar equipos de las Fuerzas Armadas",
+    "descripcion": "Hay equipos con vida útil vencida.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "gobierno",
+    "fuente": "fuentes.json#ficticio_2026",
+    "opciones": [
+      {
+        "texto": "Aprobar la compra completa",
+        "efectos": [
+          {
+            "ind": "fiscal",
+            "delta": -3
+          },
+          {
+            "ind": "cohesion",
+            "delta": 1
+          }
+        ]
+      },
+      {
+        "texto": "Aprobar una renovación parcial",
+        "efectos": [
+          {
+            "ind": "fiscal",
+            "delta": -1
+          },
+          {
+            "ind": "capital",
+            "delta": -1
+          }
+        ]
+      },
+      {
+        "texto": "Postergar la decisión",
+        "efectos": [
+          {
+            "ind": "cohesion",
+            "delta": -1
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "evt_min_segegob",
+    "tipo": "aleatorio_semilla",
+    "dia_objetivo": null,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 0.03,
+    "titulo": "La Segegob propone cambiar la estrategia comunicacional",
+    "descripcion": "Plantea una cadena nacional y una nueva vocería.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "gobierno",
+    "fuente": "fuentes.json#ficticio_2026",
+    "opciones": [
+      {
+        "texto": "Hacer la cadena nacional",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 2
+          },
+          {
+            "ind": "capital",
+            "delta": -2
+          }
+        ]
+      },
+      {
+        "texto": "Reforzar solo las redes sociales",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          },
+          {
+            "ind": "capital",
+            "delta": -1
+          }
+        ]
+      },
+      {
+        "texto": "Mantener la estrategia",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": -1
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "evt_min_economia",
+    "tipo": "aleatorio_semilla",
+    "dia_objetivo": null,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 0.03,
+    "titulo": "Economía pide un plan de apoyo a las pymes",
+    "descripcion": "Las pymes sufren por el costo del crédito.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "gobierno",
+    "fuente": "fuentes.json#ficticio_2026",
+    "opciones": [
+      {
+        "texto": "Subsidio amplio",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 2
+          },
+          {
+            "ind": "fiscal",
+            "delta": -2
+          }
+        ]
+      },
+      {
+        "texto": "Plan focalizado",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          },
+          {
+            "ind": "fiscal",
+            "delta": -1
+          }
+        ]
+      },
+      {
+        "texto": "Dejar al mercado",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": -2
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "evt_min_social",
+    "tipo": "aleatorio_semilla",
+    "dia_objetivo": null,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 0.03,
+    "titulo": "Desarrollo Social pide ampliar un bono familiar",
+    "descripcion": "Hay familias que quedaron fuera de la ayuda.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "gobierno",
+    "fuente": "fuentes.json#ficticio_2026",
+    "opciones": [
+      {
+        "texto": "Ampliar el bono",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 3
+          },
+          {
+            "ind": "fiscal",
+            "delta": -2
+          }
+        ]
+      },
+      {
+        "texto": "Ampliarlo con fiscalización",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          },
+          {
+            "ind": "fiscal",
+            "delta": -1
+          }
+        ]
+      },
+      {
+        "texto": "Mantener el bono actual",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": -2
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "evt_min_justicia",
+    "tipo": "aleatorio_semilla",
+    "dia_objetivo": null,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 0.03,
+    "titulo": "Justicia pide una reforma al sistema carcelario",
+    "descripcion": "Hay hacinamiento y reclamos de organismos de derechos humanos.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "gobierno",
+    "fuente": "fuentes.json#ficticio_2026",
+    "opciones": [
+      {
+        "texto": "Impulsar la reforma",
+        "efectos": [
+          {
+            "ind": "capital",
+            "delta": -2
+          },
+          {
+            "ind": "cohesion",
+            "delta": 1
+          }
+        ]
+      },
+      {
+        "texto": "Plan de mejoras graduales",
+        "efectos": [
+          {
+            "ind": "capital",
+            "delta": -1
+          },
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          }
+        ]
+      },
+      {
+        "texto": "Postergar",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": -1
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "evt_min_trabajo",
+    "tipo": "aleatorio_semilla",
+    "dia_objetivo": null,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 0.03,
+    "titulo": "Trabajo pide mediar en una huelga de un sector clave",
+    "descripcion": "Una huelga larga afecta el abastecimiento.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "gobierno",
+    "fuente": "fuentes.json#ficticio_2026",
+    "opciones": [
+      {
+        "texto": "Mediar personalmente",
+        "efectos": [
+          {
+            "ind": "capital",
+            "delta": -2
+          },
+          {
+            "ind": "aprobacion",
+            "delta": 2
+          }
+        ]
+      },
+      {
+        "texto": "Dejar que mediación técnica trabaje",
+        "efectos": [
+          {
+            "ind": "capital",
+            "delta": -1
+          },
+          {
+            "ind": "cohesion",
+            "delta": 1
+          }
+        ]
+      },
+      {
+        "texto": "No intervenir",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": -2
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "evt_min_vivienda",
+    "tipo": "aleatorio_semilla",
+    "dia_objetivo": null,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 0.03,
+    "titulo": "Vivienda pide ampliar un subsidio de arriendo",
+    "descripcion": "La demanda de arriendos subió con la migración interna.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "gobierno",
+    "fuente": "fuentes.json#ficticio_2026",
+    "opciones": [
+      {
+        "texto": "Ampliar el subsidio",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 2
+          },
+          {
+            "ind": "fiscal",
+            "delta": -2
+          }
+        ]
+      },
+      {
+        "texto": "Ampliar con focalización",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          },
+          {
+            "ind": "fiscal",
+            "delta": -1
+          }
+        ]
+      },
+      {
+        "texto": "Mantenerlo igual",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": -1
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "evt_min_agricultura",
+    "tipo": "aleatorio_semilla",
+    "dia_objetivo": null,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 0.03,
+    "titulo": "Agricultura pide ayuda por la sequía",
+    "descripcion": "Productores del sur piden apoyo urgente.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "gobierno",
+    "fuente": "fuentes.json#ficticio_2026",
+    "opciones": [
+      {
+        "texto": "Plan de emergencia",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 2
+          },
+          {
+            "ind": "fiscal",
+            "delta": -2
+          }
+        ]
+      },
+      {
+        "texto": "Apoyo solo con créditos",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          },
+          {
+            "ind": "fiscal",
+            "delta": -1
+          }
+        ]
+      },
+      {
+        "texto": "Esperar las lluvias",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": -2
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "evt_min_mineria",
+    "tipo": "aleatorio_semilla",
+    "dia_objetivo": null,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 0.03,
+    "titulo": "Minería pide acelerar permisos de un proyecto de litio",
+    "descripcion": "Una inversión grande espera aprobación.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "gobierno",
+    "fuente": "fuentes.json#ficticio_2026",
+    "opciones": [
+      {
+        "texto": "Acelerar los permisos",
+        "efectos": [
+          {
+            "ind": "fiscal",
+            "delta": 2
+          },
+          {
+            "ind": "aprobacion",
+            "delta": -1
+          }
+        ]
+      },
+      {
+        "texto": "Exigir más estudios ambientales",
+        "efectos": [
+          {
+            "ind": "fiscal",
+            "delta": 1
+          },
+          {
+            "ind": "cohesion",
+            "delta": 1
+          }
+        ]
+      },
+      {
+        "texto": "Frenar el proyecto",
+        "efectos": [
+          {
+            "ind": "fiscal",
+            "delta": -1
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "evt_min_transportes",
+    "tipo": "aleatorio_semilla",
+    "dia_objetivo": null,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 0.03,
+    "titulo": "Transportes pide subsidio al transporte público",
+    "descripcion": "Suben los costos y baja la frecuencia de buses.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "gobierno",
+    "fuente": "fuentes.json#ficticio_2026",
+    "opciones": [
+      {
+        "texto": "Subsidiar sin condiciones",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 2
+          },
+          {
+            "ind": "fiscal",
+            "delta": -2
+          }
+        ]
+      },
+      {
+        "texto": "Subsidiar con metas de calidad",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          },
+          {
+            "ind": "fiscal",
+            "delta": -1
+          }
+        ]
+      },
+      {
+        "texto": "No subsidiar",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": -2
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "evt_min_bienes",
+    "tipo": "aleatorio_semilla",
+    "dia_objetivo": null,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 0.03,
+    "titulo": "Bienes Nacionales pide definir el uso de terrenos fiscales",
+    "descripcion": "Hay terrenos que podrían usarse para vivienda o parques.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "gobierno",
+    "fuente": "fuentes.json#ficticio_2026",
+    "opciones": [
+      {
+        "texto": "Destinarlos a vivienda",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 2
+          },
+          {
+            "ind": "capital",
+            "delta": -1
+          }
+        ]
+      },
+      {
+        "texto": "Destinarlos a un parque",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          },
+          {
+            "ind": "cohesion",
+            "delta": 1
+          }
+        ]
+      },
+      {
+        "texto": "Dejarlos sin uso",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": -1
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "evt_min_ambiente",
+    "tipo": "aleatorio_semilla",
+    "dia_objetivo": null,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 0.03,
+    "titulo": "Medio Ambiente pide declarar una zona de protección",
+    "descripcion": "Un humedal está bajo presión inmobiliaria.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "gobierno",
+    "fuente": "fuentes.json#ficticio_2026",
+    "opciones": [
+      {
+        "texto": "Declarar la protección",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          },
+          {
+            "ind": "fiscal",
+            "delta": -1
+          }
+        ]
+      },
+      {
+        "texto": "Protección parcial",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          },
+          {
+            "ind": "capital",
+            "delta": -1
+          }
+        ]
+      },
+      {
+        "texto": "Postergar",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": -1
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "evt_min_segpres",
+    "tipo": "aleatorio_semilla",
+    "dia_objetivo": null,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 0.03,
+    "titulo": "La Segpres pide priorizar la agenda legislativa",
+    "descripcion": "Hay demasiados proyectos y poco tiempo.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "gobierno",
+    "fuente": "fuentes.json#ficticio_2026",
+    "opciones": [
+      {
+        "texto": "Priorizar tres proyectos clave",
+        "efectos": [
+          {
+            "ind": "capital",
+            "delta": -1
+          },
+          {
+            "ind": "cohesion",
+            "delta": 1
+          }
+        ]
+      },
+      {
+        "texto": "Mantener toda la agenda",
+        "efectos": [
+          {
+            "ind": "cohesion",
+            "delta": -1
+          },
+          {
+            "ind": "capital",
+            "delta": -1
+          }
+        ]
+      },
+      {
+        "texto": "Dejar que el Congreso decida",
+        "efectos": [
+          {
+            "ind": "capital",
+            "delta": 1
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "evt_min_deporte",
+    "tipo": "aleatorio_semilla",
+    "dia_objetivo": null,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 0.03,
+    "titulo": "Deporte pide apoyo para una candidatura a un evento internacional",
+    "descripcion": "Es una oportunidad de prestigio con costo fiscal.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "gobierno",
+    "fuente": "fuentes.json#ficticio_2026",
+    "opciones": [
+      {
+        "texto": "Respaldar la candidatura",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 2
+          },
+          {
+            "ind": "fiscal",
+            "delta": -2
+          }
+        ]
+      },
+      {
+        "texto": "Apoyo con límite de gasto",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          },
+          {
+            "ind": "fiscal",
+            "delta": -1
+          }
+        ]
+      },
+      {
+        "texto": "Declinar",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": -1
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "evt_min_mujer",
+    "tipo": "aleatorio_semilla",
+    "dia_objetivo": null,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 0.03,
+    "titulo": "La ministra de la Mujer pide respaldo a una agenda de equidad",
+    "descripcion": "Plantea un proyecto polémico en el Congreso.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "gobierno",
+    "fuente": "fuentes.json#ficticio_2026",
+    "opciones": [
+      {
+        "texto": "Respaldarla con fuerza",
+        "efectos": [
+          {
+            "ind": "capital",
+            "delta": -2
+          },
+          {
+            "ind": "cohesion",
+            "delta": 1
+          }
+        ]
+      },
+      {
+        "texto": "Negociar el contenido",
+        "efectos": [
+          {
+            "ind": "capital",
+            "delta": -1
+          },
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          }
+        ]
+      },
+      {
+        "texto": "Mantener distancia",
+        "efectos": [
+          {
+            "ind": "cohesion",
+            "delta": -1
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "evt_min_cultura",
+    "tipo": "aleatorio_semilla",
+    "dia_objetivo": null,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 0.03,
+    "titulo": "Cultura pide financiar un festival nacional",
+    "descripcion": "Hay presión de gremios culturales.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "gobierno",
+    "fuente": "fuentes.json#ficticio_2026",
+    "opciones": [
+      {
+        "texto": "Financiarlo completo",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 2
+          },
+          {
+            "ind": "fiscal",
+            "delta": -1
+          }
+        ]
+      },
+      {
+        "texto": "Cofinanciar con privados",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          },
+          {
+            "ind": "fiscal",
+            "delta": -1
+          }
+        ]
+      },
+      {
+        "texto": "Rechazar",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": -1
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "evt_min_ciencia",
+    "tipo": "aleatorio_semilla",
+    "dia_objetivo": null,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 0.03,
+    "titulo": "Ciencia pide más fondos para investigación",
+    "descripcion": "Investigadores advierten que se van del país.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "gobierno",
+    "fuente": "fuentes.json#ficticio_2026",
+    "opciones": [
+      {
+        "texto": "Aumentar los fondos",
+        "efectos": [
+          {
+            "ind": "fiscal",
+            "delta": -2
+          },
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          }
+        ]
+      },
+      {
+        "texto": "Convocar un concurso nuevo",
+        "efectos": [
+          {
+            "ind": "fiscal",
+            "delta": -1
+          },
+          {
+            "ind": "cohesion",
+            "delta": 1
+          }
+        ]
+      },
+      {
+        "texto": "Mantener el presupuesto",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": -1
+          }
+        ]
+      }
+    ]
   }
 ]

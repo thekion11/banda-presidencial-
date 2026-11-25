@@ -90,3 +90,4 @@ Sigue pendiente U4: revisión por un abogado chileno (esta nota es de una fuente
 - PR-13 oposición: «Pasar a la oposición» tras perder la elección → 4 escenas con decisiones (fiscalizar, acusación constitucional, reconstruir el partido, preparar candidatura) y un resultado según visibilidad, partido y alianzas (`leyes.json` → `oposicion`). Es un modo LIGERO: no hay Congreso ni cartas en oposición.
 - PR-14 internos: sin cambios nuevos; ya muestran aviso por acción. Vincularlos a personas queda con PR-24.
 - PR-24 marco de actores: NO hecho. Necesita estado por actor (relación de cada ministro, aliado, institución y medio) y unificar los eventos con decisión bajo un solo modelo; sin eso sería decoración. Es el siguiente paso grande y cambia hashes y balance.
+- PR-08: los 25 ministerios ya tienen su petición (evento con decisión); 6 ministerios clave + 19 más. Los retratos siguen pendientes (U7).
