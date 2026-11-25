@@ -112,7 +112,7 @@ El usuario dejó abierta la **dirección de duración** (semanas silenciosas, tu
 | decisiones por mandato | ≈ 270 | ≈ 25 | 30–45 (algo bajo; ajustable con `prob_decision`) |
 | eventos distintos en un mandato | 116 | ≈ 122 | ≥ 40 ✔ |
 | toques antes del primer turno | ≥ 12 + 5 de tutorial | 1 (partida rápida) | ≤ 3 ✔ |
-| cartas | 1.775 | 1.955 (180 curadas con riesgo y efectos a futuro) | — |
+| cartas | 1.775 (322 firmas de efecto distintas) | 1.965 (556 firmas; 180 curadas con riesgo y efectos a futuro) | — |
 | mano con cartas diseñadas | ≈ 37 % | ≥ 2 de 5 siempre (`test_identidad`) | ✔ |
 | ministros intercambiables | 25 casi iguales | 75 candidatos con estilo, afinidad, riesgo y renuncia | ✔ |
 | mecánicas con efecto medible | 4 de 7 | sin medir de nuevo (falta correr `tests/ablacion.gd`) | 7 de 7 |
