@@ -48,9 +48,9 @@ func _draw() -> void:
 			var largo := h * 0.75
 			var punta := origen + dir * largo
 			draw_colored_polygon(PackedVector2Array([origen - nor * 6.0, punta - nor * 120.0, punta + nor * 120.0, origen + nor * 6.0]),
-				Color(1.0, 0.95, 0.8, 0.07))
+				Color(1.0, 0.95, 0.8, 0.12))
 			draw_colored_polygon(PackedVector2Array([origen - nor * 3.0, punta - nor * 55.0, punta + nor * 55.0, origen + nor * 3.0]),
-				Color(1.0, 0.95, 0.8, 0.06))
+				Color(1.0, 0.95, 0.8, 0.10))
 		var m := 10.0  # marco de visor de cámara en las cuatro esquinas
 		for c: Vector2 in [Vector2(m, m), Vector2(w - m, m), Vector2(m, h - m), Vector2(w - m, h - m)]:
 			var sx := 1.0 if c.x < w * 0.5 else -1.0

@@ -258,15 +258,15 @@ func _dibujar_fuegos(v: Control) -> void:
 		var base := centro(String(f["id"])) + Vector2(float(f["dx"]), 0.0)
 		var col: Color = f["color"]
 		if l < 0.4:  # sube el cohete
-			var p := base + Vector2(0.0, -70.0 * (l / 0.4))
+			var p := base + Vector2(0.0, -36.0 * (l / 0.4))
 			v.draw_circle(p, 2.5, col)
 			v.draw_line(p, p + Vector2(0.0, 10.0), Color(col, 0.5), 1.5)
 			continue
 		var k := (l - 0.4) / 1.2  # estalla en 16 chispas con caída
-		var c := base + Vector2(0.0, -70.0)
+		var c := base + Vector2(0.0, -36.0)  # sube poco: el mapa es angosto y la explosión debe quedar sobre la región
 		for i in range(16):
 			var a := TAU * float(i) / 16.0
-			var p2 := c + Vector2(cos(a), sin(a)) * 34.0 * sqrt(k) + Vector2(0.0, 22.0 * k * k)
+			var p2 := c + Vector2(cos(a), sin(a)) * 26.0 * sqrt(k) + Vector2(0.0, 16.0 * k * k)
 			v.draw_circle(p2, 2.2 * (1.0 - k) + 0.6, Color(col, 1.0 - k))
 	_fuegos = vivos
 
