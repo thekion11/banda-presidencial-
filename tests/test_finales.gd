@@ -16,6 +16,12 @@ func _init() -> void:
 				print("FALLO: la sucesión solo existe al terminar el mandato"); fallos += 1
 			if m.estado.etapa == "fin_mandato" and m.mandato.hitos().is_empty():
 				print("FALLO: un mandato completo debe tener hitos"); fallos += 1
+	var mr := Bots.partida_completa(datos, 61, "codicioso>codicioso")
+	if mr.estado.etapa == "fin_mandato":
+		mr.estado.cartas_ejecutadas["reforma_reeleccion"] = true
+		var er := String(mr.mandato.epilogo()["id"])
+		if er != "reelegido" and er != "reeleccion_fallida":
+			print("FALLO: la reforma de reelección debe dar su epílogo (%s)" % er); fallos += 1
 	print("epílogos vistos: ", ids.keys())
 	if ids.size() < 3:
 		print("FALLO: muy poca variedad de finales"); fallos += 1

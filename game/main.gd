@@ -138,6 +138,12 @@ func mostrar_fin() -> void:
 	f.otra_vez.connect(func() -> void:
 		DirAccess.remove_absolute(ProjectSettings.globalize_path(RUTA_GUARDADO))
 		mostrar_menu())
+	f.oposicion.connect(func() -> void:
+		DirAccess.remove_absolute(ProjectSettings.globalize_path(RUTA_GUARDADO))
+		var o := PantallaOposicion.new()
+		o.datos = datos
+		o.terminada.connect(mostrar_menu)
+		_cambiar(o))
 	f.reintentar.connect(func() -> void:
 		DirAccess.remove_absolute(ProjectSettings.globalize_path(RUTA_GUARDADO))
 		mostrar_partido())

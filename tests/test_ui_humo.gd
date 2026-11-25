@@ -28,6 +28,7 @@ func _correr() -> void:
 		idx += 1
 	DirAccess.remove_absolute(ProjectSettings.globalize_path(Tutorial.ruta))
 	DirAccess.remove_absolute(ProjectSettings.globalize_path("user://ultima_config.json"))
+	await AyudaUI.oposicion(self)
 	await _informe()
 	if _fallos == 0:
 		print("HUMO DE UI OK (%d semillas)" % SEMILLAS.size())

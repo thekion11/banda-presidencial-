@@ -99,6 +99,8 @@ func epilogo() -> Dictionary:
 	for f in m.catalogo_leyes["finales"]["lista"]:
 		if String(f["motivo"]) != e.etapa:
 			continue
+		if f.has("carta_ejecutada") and not e.cartas_ejecutadas.has(String(f["carta_ejecutada"])):
+			continue
 		if f.has("aprobacion_min") and e.ind("aprobacion") < float(f["aprobacion_min"]):
 			continue
 		if f.has("aprobacion_max") and e.ind("aprobacion") > float(f["aprobacion_max"]):

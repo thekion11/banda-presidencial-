@@ -2031,5 +2031,40 @@
     "abre_propuesta_comite": null,
     "unica": true,
     "fuente": "fuentes.json#ficticio_2026"
+  },
+  {
+    "id": "reforma_reeleccion",
+    "categoria": "politica",
+    "costo_pa": 3,
+    "titulo": "Reforma constitucional: reelección presidencial",
+    "efectos": [
+      {
+        "ind": "aprobacion",
+        "delta": -3
+      },
+      {
+        "ind": "cohesion",
+        "delta": -3
+      },
+      {
+        "ind": "capital",
+        "delta": -3
+      }
+    ],
+    "requisitos": {
+      "ley": "reforma_constitucional",
+      "quorum": "reforma_constitucional"
+    },
+    "corrector": null,
+    "abre_propuesta_comite": null,
+    "camara_origen": "senado",
+    "disponibilidad": {
+      "anio_desde": 3,
+      "anio_hasta": 4,
+      "evento": null,
+      "fiscal_min": null,
+      "meta": null
+    },
+    "fuente": "fuentes.json#ficticio_2026"
   }
 ]

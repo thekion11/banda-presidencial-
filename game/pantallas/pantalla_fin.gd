@@ -4,6 +4,7 @@ extends Control
 ## de los eventos reales vividos (fecha y fuente). Solo lee el estado.
 
 signal otra_vez
+signal oposicion  # tras una derrota electoral: Modo Oposición ligero (PR-13)
 signal reintentar  # solo tras una derrota electoral: nueva partida directa
 
 var motor: MotorTurno
@@ -91,6 +92,10 @@ func _ready() -> void:
 		et.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 		col.add_child(et)
 	var lista := FilasUI.col(8)
+	if est.etapa == "derrota_electoral":
+		var bo := Tema.boton("Pasar a la oposición", Tema.PANEL, Tema.TEXTO, 14, 48)
+		bo.pressed.connect(func() -> void: oposicion.emit())
+		lista.add_child(bo)
 	var total_prom := est.promesas_campana.size()
 	var leyes := leyes_aprobadas()
 	var fila1 := HBoxContainer.new()

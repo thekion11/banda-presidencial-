@@ -12,3 +12,17 @@ static func deslizar_arriba(mano: Control) -> void:
 		ev.pressed = par[0]
 		ev.position = par[1]
 		mano._input(ev)
+
+
+static func oposicion(arbol: SceneTree) -> void:
+	## PR-13: recorre las cuatro escenas del Modo Oposición y comprueba que llega al resultado final.
+	var datos := Datos.cargar_todo()
+	var o := PantallaOposicion.new()
+	o.datos = datos
+	arbol.root.add_child(o)
+	await arbol.process_frame
+	for _k in range(datos["leyes"]["oposicion"]["escenas"].size()):
+		o.elegir(datos["leyes"]["oposicion"]["escenas"][o._i]["opciones"][0])
+	await arbol.process_frame
+	assert(o._i == datos["leyes"]["oposicion"]["escenas"].size())
+	o.queue_free()

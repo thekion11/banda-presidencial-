@@ -217,6 +217,32 @@
     ,"tope_prob_retraso": 0.5
   },
   "repeticion_promesa": 0.5,
+  "oposicion": {
+    "nota": "PR-13: Modo Oposición ligero tras perder la elección. Cuatro escenas con decisiones; cada opción suma a visibilidad, partido y alianzas (0 a 3 cada una). El resultado final depende de la suma. Sin estado de simulación: es un epílogo jugable.",
+    "escenas": [
+      {"titulo": "Fiscalizar al gobierno", "texto": "El nuevo gobierno presenta su primer proyecto. ¿Cómo actúas?", "opciones": [
+        {"texto": "Pedir un informe técnico y votar en contra", "visibilidad": 2, "partido": 1, "alianzas": 0},
+        {"texto": "Negociar cambios y apoyar", "visibilidad": 0, "partido": 0, "alianzas": 2},
+        {"texto": "Hacer una cuestión de procedimiento", "visibilidad": 1, "partido": 1, "alianzas": 1}]},
+      {"titulo": "Una acusación constitucional", "texto": "Tu bancada propone acusar a un ministro. ¿La respaldas?", "opciones": [
+        {"texto": "Respaldarla con fuerza", "visibilidad": 3, "partido": 1, "alianzas": 0},
+        {"texto": "Pedir antecedentes primero", "visibilidad": 1, "partido": 1, "alianzas": 2},
+        {"texto": "No participar", "visibilidad": 0, "partido": 0, "alianzas": 1}]},
+      {"titulo": "Reconstruir el partido", "texto": "Tras la derrota, la militancia está dividida.", "opciones": [
+        {"texto": "Convocar un congreso interno", "visibilidad": 1, "partido": 3, "alianzas": 0},
+        {"texto": "Renovar la directiva con nuevos rostros", "visibilidad": 2, "partido": 2, "alianzas": 0},
+        {"texto": "Esperar a que pase el tiempo", "visibilidad": 0, "partido": 0, "alianzas": 0}]},
+      {"titulo": "Preparar la próxima candidatura", "texto": "Se acerca la próxima elección presidencial.", "opciones": [
+        {"texto": "Recorrer el país con un programa nuevo", "visibilidad": 2, "partido": 1, "alianzas": 1},
+        {"texto": "Armar una gran alianza de oposición", "visibilidad": 1, "partido": 0, "alianzas": 3},
+        {"texto": "Concentrarte en tu bancada", "visibilidad": 0, "partido": 2, "alianzas": 0}]}
+    ],
+    "resultados": [
+      {"minimo": 15, "titulo": "Favorito para la próxima elección", "texto": "Reconstruiste tu partido, te hiciste visible y tienes aliados. La próxima vez, la Moneda está a tu alcance."},
+      {"minimo": 9, "titulo": "Una oposición competitiva", "texto": "Mantienes tu espacio y puedes pelear la próxima elección, aunque aún falta camino."},
+      {"minimo": 0, "titulo": "Una oposición debilitada", "texto": "El partido salió golpeado. Necesitarás tiempo y nuevas ideas para volver."}
+    ]
+  },
   "habilidades": {
     "nota": "PR-16: habilidad personal elegida al fundar. Suma a los indicadores iniciales. colores: PR-15, color del emblema del partido (paleta fija).",
     "defecto": "negociador",
@@ -256,6 +282,8 @@
   "finales": {
     "nota": "Epílogos del mandato. Se evalúan en orden y gana el primero que cumpla todas sus condiciones (motivo, aprobacion_min/max, obras_min, legado_min = proporción de promesas cumplidas, fiscal_min/max). Solo texto: no cambia el estado ni el puntaje.",
     "lista": [
+      {"id": "reelegido", "motivo": "fin_mandato", "carta_ejecutada": "reforma_reeleccion", "aprobacion_min": 55.0, "titulo": "Un segundo mandato", "texto": "Reformaste la Constitución para poder continuar y la gente te respaldó. (Mecánica ilustrativa del juego: la regla real de reelección se verificará contra el texto oficial.)"},
+      {"id": "reeleccion_fallida", "motivo": "fin_mandato", "carta_ejecutada": "reforma_reeleccion", "titulo": "Quisiste quedarte y no te acompañaron", "texto": "Impulsaste la reelección y pagaste el costo político: el respaldo no alcanzó. (Mecánica ilustrativa.)"},
       {"id": "derrota", "motivo": "derrota_electoral", "titulo": "La Moneda quedó lejos", "texto": "Tu campaña no convenció a suficientes votantes. La historia te recordará como quien casi llegó."},
       {"id": "caida", "motivo": "crisis", "titulo": "Un gobierno que no resistió", "texto": "La crisis política superó a tu administración. Tus reformas quedaron a medias y tu sucesor deberá retomarlas."},
       {"id": "estadista", "motivo": "fin_mandato", "aprobacion_min": 60.0, "legado_min": 0.75, "obras_min": 3, "titulo": "El mandato del estadista", "texto": "Cumpliste tus promesas, dejaste obras visibles y terminaste con aprobación alta. Te recuerdan como un presidente que gobernó."},
