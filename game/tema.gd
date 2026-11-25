@@ -16,6 +16,7 @@ const GRIS_CLARO := Color("#566171")  # texto secundario sobre fondos claros (co
 const SUBE := Color("#4CC38A")
 const BAJA := Color("#E8705A")
 const ESCALA_APROBACION: Array[Color] = [Color("#E8705A"), Color("#F0A857"), Color("#E8D067"), Color("#8CCB6B"), Color("#4CC38A")]
+const ESCALA_DALTONICA: Array[Color] = [Color("#D55E00"), Color("#E69F00"), Color("#F0E442"), Color("#56B4E9"), Color("#2A8BD6")]  # opcional (Ajustes): distinguible con daltonismo
 
 const ANCHO := 390.0
 const ALTO := 844.0
@@ -49,9 +50,10 @@ static func color_aprobacion(v: float) -> Color:
 	## Escala de aprobación de mayor a menor: verde -> naranja/rojo.
 	var t := clampf((v - 30.0) / 30.0, 0.0, 1.0) * 4.0
 	var i := int(floor(t))
+	var escala: Array[Color] = ESCALA_DALTONICA if Ajustes.daltonico else ESCALA_APROBACION
 	if i >= 4:
-		return ESCALA_APROBACION[4]
-	return ESCALA_APROBACION[i].lerp(ESCALA_APROBACION[i + 1], t - float(i))
+		return escala[4]
+	return escala[i].lerp(escala[i + 1], t - float(i))
 
 
 static var _cache_grad: Dictionary = {}
@@ -238,7 +240,7 @@ static func etiqueta(texto: String, tam: int = 12, color: Color = TEXTO, titulo:
 	var l := Label.new()
 	l.text = texto
 	l.add_theme_font_override("font", fuente_titulo() if titulo else fuente_texto(peso))
-	l.add_theme_font_size_override("font_size", tam)
+	l.add_theme_font_size_override("font_size", roundi(float(tam) * 1.15) if Ajustes.texto_grande else tam)
 	l.add_theme_color_override("font_color", color)
 	l.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	l.mouse_filter = Control.MOUSE_FILTER_IGNORE
@@ -247,6 +249,7 @@ static func etiqueta(texto: String, tam: int = 12, color: Color = TEXTO, titulo:
 
 static func etiqueta_corta(texto: String, tam: int = 12, color: Color = TEXTO, titulo: bool = false, peso: int = 400) -> Label:
 	var l := etiqueta(texto, tam, color, titulo, peso)
+	l.add_theme_font_size_override("font_size", tam)  # sin ajuste de línea: no se agranda para no desbordar
 	l.autowrap_mode = TextServer.AUTOWRAP_OFF
 	return l
 

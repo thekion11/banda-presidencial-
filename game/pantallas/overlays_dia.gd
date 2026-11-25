@@ -160,6 +160,8 @@ static func evento(ev: Dictionary, al_continuar: Callable, nombres: Dictionary, 
 		for h in col.get_children():
 			h.queue_free()
 		var cab := ("EVENTO · %s" % String(ev["hora"]))
+		if ev.has("escena"):  # debate o entrevista: cabecera de escena con el avance de las rondas
+			cab = "%s · RONDA %d DE %d" % [String(ev["escena"]["nombre"]).to_upper(), int(ev["escena"]["ronda"]), int(ev["escena"]["rondas"])]
 		if dia > 0:
 			cab += " · DÍA %d" % dia
 		col.add_child(_centrada(cab, 11, Tema.ORO, true))

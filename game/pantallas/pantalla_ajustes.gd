@@ -21,7 +21,7 @@ func _ready() -> void:
 	col.add_theme_constant_override("separation", 12)
 	mc.add_child(col)
 	col.add_child(Tema.etiqueta("Ajustes", 24, Tema.TEXTO, true))
-	for fila in [["Sonido", "sonido"], ["Vibración", "vibracion"], ["Animaciones y movimiento", "animaciones"]]:
+	for fila in [["Sonido", "sonido"], ["Vibración", "vibracion"], ["Animaciones y movimiento", "animaciones"], ["Texto grande", "texto_grande"], ["Colores para daltonismo", "daltonico"]]:
 		var cb := CheckButton.new()
 		cb.text = fila[0]
 		cb.custom_minimum_size = Vector2(0, 52)
@@ -32,6 +32,7 @@ func _ready() -> void:
 			Ajustes.guardar()
 			Feedback.sonar("toque"))
 		col.add_child(cb)
+	col.add_child(Tema.etiqueta("El texto grande se aplica al abrir cada pantalla; los colores para daltonismo cambian la escala de aprobación a azul y naranja.", 11, Tema.TEXTO_SUAVE))
 	Movimiento.escalonar(col, 0.0, 0.05)
 	var esp := Control.new()
 	esp.size_flags_vertical = Control.SIZE_EXPAND_FILL
