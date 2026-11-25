@@ -4,12 +4,30 @@ extends Control
 ## las que ya estaban se reacomodan. Las que traen el registro `reposicion` entran con un giro dorado.
 
 signal tocada(indice: int)
+signal arrastrada  # gesto de jugar la carta elegida: deslizarla hacia arriba, hacia el mapa (PR-02)
 
 const ANCHO := 104.0
 const ALTO := 170.0
 
 var _pos_prev: Dictionary = {}  # id de carta -> última posición de reposo
 var _sel_prev: int = -1
+var _inicio: Vector2 = Vector2.ZERO
+var _activo: bool = false
+
+
+func _input(ev: InputEvent) -> void:
+	## Deslizar hacia arriba (≥ 70 px, más vertical que horizontal) desde la mano juega la carta elegida; tocar sigue sirviendo como respaldo.
+	if not (ev is InputEventMouseButton and ev.button_index == MOUSE_BUTTON_LEFT):
+		return
+	if ev.pressed:
+		var sobre := get_viewport().gui_get_hovered_control()  # si una capa (evento, tutorial) tapa la mano, el gesto no cuenta
+		_activo = is_visible_in_tree() and get_global_rect().has_point(ev.position) and (sobre == null or sobre == self or is_ancestor_of(sobre))
+		_inicio = ev.position
+	elif _activo:
+		_activo = false
+		var d: Vector2 = ev.position - _inicio
+		if d.y < -70.0 and absf(d.x) < absf(d.y) * 0.8:
+			arrastrada.emit()
 
 
 static func texto_movimientos(est: EstadoSimulacion) -> String:

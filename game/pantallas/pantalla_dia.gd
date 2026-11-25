@@ -108,6 +108,7 @@ func _construir_cuerpo() -> Control:
 	_mano.custom_minimum_size = Vector2(0, 214)
 	_mano.clip_contents = false
 	_mano.tocada.connect(_on_carta)
+	_mano.arrastrada.connect(func() -> void: if not _btn_jugar.disabled: _jugar())  # deslizar hacia el mapa (PR-02)
 	vista.add_child(_mano)
 	var corr := PanelContainer.new()
 	corr.add_theme_stylebox_override("panel", Tema.caja(Tema.CREMA, 10, Color("#E8D9A8"), 1))

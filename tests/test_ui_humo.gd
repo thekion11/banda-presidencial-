@@ -186,6 +186,22 @@ func _recorrer_v2(main: Node, dia: Node) -> void:
 	_check(est.pa_actual < antes or est.mano.size() == 5, "jugar debe gastar movimientos")
 	_check(est.mano.size() == 5, "tras jugar entra otra carta (mano continua)")
 	await process_frame
+	# PR-02: deslizar hacia arriba desde la mano juega la carta elegida
+	if est.pa_actual > 0:
+		var pa_antes: int = est.pa_actual
+		var c0: Vector2 = dia._mano.get_global_rect().get_center()
+		var ev_p := InputEventMouseButton.new()
+		ev_p.button_index = MOUSE_BUTTON_LEFT
+		ev_p.pressed = true
+		ev_p.position = c0
+		dia._mano._input(ev_p)
+		var ev_r := InputEventMouseButton.new()
+		ev_r.button_index = MOUSE_BUTTON_LEFT
+		ev_r.pressed = false
+		ev_r.position = c0 + Vector2(5, -120)
+		dia._mano._input(ev_r)
+		await process_frame
+		_check(est.pa_actual < pa_antes or dia._btn_jugar.disabled, "deslizar la carta hacia arriba debe jugarla (capa %d, disabled %s, visible %s, rect %s)" % [dia._capa.get_child_count(), dia._btn_jugar.disabled, dia._mano.is_visible_in_tree(), dia._mano.get_global_rect()])
 	# delegación
 	dia._sel = 0
 	dia._delegar()
