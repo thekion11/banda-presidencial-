@@ -26,7 +26,7 @@ Origen: **U** = idea u orden del usuario · **C** = propuesta o duda de Claude a
 | PR-07 | U + C | Eventos con opciones sin gastar movimientos, externos y sorpresa. | Hecho (4 eventos externos). Falta: cadenas, cuenta regresiva, ventanas de oportunidad | `f60e13d` |
 | PR-08 | U + C | Ministros con peticiones y decisiones. | Hecho (25 ministerios). Falta: retratos (U7) y eventos propios más variados | `f60e13d`, `11d6b8b` |
 | PR-09 | U + C | Estadísticas de cartas más claras. | Parcial: impacto pequeño/mediano/grande y exigencia legal; consecuencia visible al jugar. Falta: efectos por sector, a futuro y texto de sabor | `d614692`, `2965cbb` |
-| PR-10 | U + C | Campaña con entrevistas y decisiones. | Hecho en versión de eventos (4 hitos). Falta: pantallas propias de debate/entrevista | `0706883` |
+| PR-10 | U + C | Campaña con entrevistas y decisiones. | Hecho en versión de eventos (4 hitos). Escenas de varias rondas hechas (sección U); falta audiencia/encuestas | `0706883` |
 | PR-11 | U + C | Cierre del mandato: epílogo, hitos y sucesión. | Hecho. Falta: bono de legado entre partidas (decisión de datos, U9) | `cc228ae`, `f7ec506`, `796434d` |
 | PR-12 | U + C | Reelección mediante reforma constitucional. | Carta + epílogos hechos (mecánica ilustrativa; art. 25 sin contrastar). **Consulta abierta a ti:** ¿segundo mandato dentro de la misma partida? | `d5802c3` |
 | PR-13 | U + C | Modo Oposición tras perder. | Hecho en versión ligera (4 escenas). Falta: Congreso y cartas en oposición | `d5802c3` |
@@ -158,3 +158,8 @@ Instrucción del usuario: «dejaría la dirección del juego abierta, haría tod
 ## T. Delegación e internos: medido y sin cambio (25-nov-2026)
 - Prueba: costo de capital por delegar (1 y 2 puntos) y movimientos internos 3 → 2 (n=12, bot «completo»). El costo de capital no movió el puntaje (3.046 → 3.076): el capital sobra, así que no crea dilema. Sin delegación −30 % (2.896 → 2.035); sin internos −23 % (3.076 → 2.379).
 - Lectura: ambos valen lo que aportan en acciones extra (2 cartas y 3 movimientos por semana sobre ~4 propios), no son jugadas «siempre mejores» en abstracto; la delegación ya tiene riesgo real (fallo, anulación, escándalo). Se revirtió el cambio para no sumar ruido; queda a revisar con jugadores reales (U1) antes de tocar.
+
+## U. Escenas de debate y entrevista por rondas (25-nov-2026, PR-10 «Carrera por la presidencia como pantallas distintas»)
+- Fuente: PR-10 (`docs/PROPUESTAS.md`, prioridad media-alta, autorizada por el usuario con la carrera política PR-12 ampliado). Sin arte nuevo y sin mecánica nueva en el motor: cada ronda es un evento con decisión del mismo día (mismo sistema de guardado y replay), con el campo `escena {nombre, ronda, rondas}` que la interfaz muestra en la cabecera («DEBATE PRESIDENCIAL FINAL · RONDA 2 DE 3»).
+- Escenas: debate presidencial final (3 rondas: economía, seguridad, cierre), debate en radio (2), entrevista en televisión abierta (2) y debate parlamentario en oposición (2). Cada ronda mezcla tono (ataque, unidad, programa) con efectos pequeños; el total equivale a lo que daba el evento único.
+- Prueba: `test_escenas` (3 rondas en orden el mismo día, decisión y replay exacto). Pendiente: audiencia/encuestas por ronda y retratos del moderador (arte, U7).

@@ -174,6 +174,8 @@ func _director(pool: Array[Dictionary]) -> Dictionary:
 
 func aplicar_evento(evt: Dictionary) -> Dictionary:
 	var res := {"id": evt["id"], "titulo": evt["titulo"], "descripcion": evt["descripcion"], "hora": evt["hora_etiqueta"], "votacion": null, "efectos": evt["efectos_base"]}
+	if evt.has("escena"):
+		res["escena"] = evt["escena"]  # debate o entrevista de varias rondas: la interfaz muestra el avance
 	var aplicar := true
 	var abs_ef := 0.0
 	for ef in evt["efectos_base"]:
