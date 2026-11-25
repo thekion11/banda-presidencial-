@@ -144,3 +144,9 @@ Instrucción del usuario: «dejaría la dirección del juego abierta, haría tod
 - Pendiente: arranque con test ideológico rápido (3 preguntas); la dirección de duración sigue abierta (decisión del usuario).
 
 - Ablación con el director v2 (25-nov, n=24, puntaje medio; completo 2.922): sin internos 1.974 (−32 %), sin delegación 2.000 (−32 %), sin mano continua 2.179 (−25 %, 9 % crisis), sin asesores 2.580 (−12 %), sin coalición 2.839 (−3 %) y sin bono por aprobación 2.836 (−3 %). Coalición y bono siguen inertes (decidir función real o retirar); delegación e internos dominan.
+
+## R. Coalición y bono por aprobación con función real (25-nov-2026, el usuario: «dales función real»)
+- Coalición: un aliado con satisfacción ≥ 75 potencia +12 % el efecto de las cartas de las categorías que pide; uno bajo 35 frena −10 % las que rechaza (tope ±30 %). Claves en `leyes.json › coalicion` (`bono_efecto_afin`, `penal_efecto_rechazada`, `tope_bono_efecto`); código en `MotorCoalicion.mult_carta`, aplicado en `MotorCartas`. El bot «completo» ahora entrega las cuotas que piden sus aliados.
+- Bono por aprobación recalibrado: +1 movimiento por cada umbral 45, 55, 65, 75, 85 y 95 (antes 60+, que casi nunca se alcanzaba).
+- Director: tras 8 semanas sin evento (`silencio_max`) el siguiente es seguro (silencio máximo medido 9).
+- Ablación (n=16): sin coalición −7 % (antes −3 %), sin bono −5 % (antes −3 %), sin delegación −31 %, sin internos −22 %, sin asesores −14 %, sin mano continua −32 % con 43 % de crisis. Bots: codicioso 93 %/4 % crisis, completo y experto 93 %/0 %.

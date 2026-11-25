@@ -139,6 +139,20 @@ func carta_jugada(carta: Dictionary) -> void:
 	_recalcular_apoyo()
 
 
+func mult_carta(carta: Dictionary) -> float:
+	## Multiplicador del efecto de una carta de gobierno: un aliado satisfecho potencia las cartas de las categorías que pide;
+	## uno descontento (bajo el umbral de malestar) frena las que rechaza. Sin aliados vale 1.
+	var cfg := _cfg()
+	var bono := 0.0
+	for id in m.estado.coalicion.keys():
+		var sat := float(m.estado.coalicion[id]["satisfaccion"])
+		if sat >= float(cfg["umbral_satisfechos"]) and partidos[id]["categorias_pedidas"].has(carta["categoria"]):
+			bono += float(cfg["bono_efecto_afin"])
+		elif sat < float(cfg["umbral_malestar"]) and partidos[id]["categorias_rechazadas"].has(carta["categoria"]):
+			bono -= float(cfg["penal_efecto_rechazada"])
+	return 1.0 + clampf(bono, -float(cfg["tope_bono_efecto"]), float(cfg["tope_bono_efecto"]))
+
+
 func amanecer() -> void:
 	## Cada turno de gobierno: la satisfacción converge a su objetivo y se aplican cohesión, votos y movimientos internos.
 	var est := m.estado

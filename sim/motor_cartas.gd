@@ -135,7 +135,7 @@ func _jugar_en_gobierno(carta: Dictionary, ministro_id: String, region_id: Strin
 	var res := {"escandalo": false, "fallo": false, "corrector": {}, "proyecto": null, "propuesta": null}
 	var corr := m.legal.corregir(carta, m.estado)
 	res["corrector"] = corr
-	var escala := float(corr["ratio"]) * m.equipo.mult_categoria(String(carta["categoria"]))  # asesores
+	var escala := float(corr["ratio"]) * m.equipo.mult_categoria(String(carta["categoria"])) * m.coalicion.mult_carta(carta)  # asesores y aliados
 	if delegada:
 		var d := m.gabinete.resolver_delegacion(carta, ministro_id)
 		escala *= float(d["escala"])

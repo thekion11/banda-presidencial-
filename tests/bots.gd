@@ -95,6 +95,22 @@ static func _internos(motor: MotorTurno) -> void:
 		motor.reducir_errores()
 
 
+static func _cuotas(motor: MotorTurno) -> void:
+	## Entrega a cada aliado los ministerios y asesores que pide (lo que haría una persona atenta); se revisa cada turno por si hubo renuncias.
+	var est := motor.estado
+	for id in est.coalicion.keys():
+		var pet: Dictionary = motor.coalicion.partidos[id]["peticion"]
+		var c: Dictionary = est.coalicion[id]
+		for mid in est.gabinete:
+			if c["ministros"].size() >= int(pet["ministerios"]):
+				break
+			motor.asignar_cuota(String(id), "ministerio", String(mid))
+		for aid in est.asesores:
+			if c["asesores"].size() >= int(pet["asesores"]):
+				break
+			motor.asignar_cuota(String(id), "asesor", String(aid))
+
+
 static func _extras(motor: MotorTurno) -> void:
 	## Política "completo": además de jugar cartas como el codicioso usa asesores, coalición, delegación y movimientos internos.
 	var est := motor.estado
@@ -107,6 +123,7 @@ static func _extras(motor: MotorTurno) -> void:
 		pids.sort_custom(func(a: String, b: String) -> bool: return motor.coalicion.afinidad(a) > motor.coalicion.afinidad(b))
 		for id in pids.slice(0, 2):
 			motor.unirse_coalicion(String(id))
+	_cuotas(motor)
 	for _d in range(2):  # delegar las cartas más baratas en el ministro con menor probabilidad de fallo
 		if est.mano.is_empty() or est.gabinete.is_empty():
 			break

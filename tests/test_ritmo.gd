@@ -87,7 +87,7 @@ func _init() -> void:
 	_check(dec_mand >= 25.0 and dec_mand <= 70.0, "decisiones por mandato entre 25 y 70 (%.0f)" % dec_mand)
 	_check(vistos.size() >= 40, "variedad: al menos 40 eventos distintos (%d)" % vistos.size())
 	print("silencio máximo %d semanas · máximo de decisiones en 52 semanas %d" % [max_silencio, max_dec_anio])
-	_check(max_silencio <= 12, "sin silencios largos (%d semanas)" % max_silencio)
+	_check(max_silencio <= 10, "sin silencios largos (%d semanas)" % max_silencio)
 	_check(max_dec_anio <= int(cfg["decisiones_max_anio"]) + 1, "tope anual de decisiones (%d)" % max_dec_anio)
 	print("test_ritmo: ", "OK" if _fallos == 0 else "FALLO")
 	quit(1 if _fallos > 0 else 0)

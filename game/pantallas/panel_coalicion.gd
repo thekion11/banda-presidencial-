@@ -50,7 +50,7 @@ static func crear(motor: MotorTurno, avisar: Callable, cambio: Callable) -> Cont
 	var col := FilasUI.col(8)
 	col.add_child(Tema.etiqueta("COALICIÓN · %d DE %d ALIADOS" % [est.coalicion.size(), int(cfg["max_aliados"])], 10, Tema.ORO, true))
 	col.add_child(Tema.etiqueta("Apoyo en el Congreso: %d senadores y %d diputados votan contigo." % [int(est.apoyo_coalicion["senado"]), int(est.apoyo_coalicion["camara"])], 12, Tema.TEXTO))
-	col.add_child(Tema.etiqueta("Los aliados piden ministerios y asesores. Si no los atiendes, baja su satisfacción, tu cohesión y tus movimientos internos.", 11, Tema.TEXTO_SUAVE))
+	col.add_child(Tema.etiqueta("Los aliados piden ministerios y asesores. Si no los atiendes, baja su satisfacción, tu cohesión y tus movimientos internos. Un aliado satisfecho (%d o más) potencia un %d %% las cartas de lo que pide." % [int(cfg["umbral_satisfechos"]), roundi(100.0 * float(cfg["bono_efecto_afin"]))], 11, Tema.TEXTO_SUAVE))
 	for pid in motor.coalicion.partidos.keys():
 		var p: Dictionary = motor.coalicion.partidos[pid]
 		var aliado := est.coalicion.has(pid)

@@ -27,6 +27,16 @@ func _init() -> void:
 	_check(datos["coalicion"].size() == 15, "coalición con los 15 partidos replicados")
 	_check(est.apoyo_coalicion["senado"] > 0 and est.apoyo_coalicion["camara"] > 0, "los aliados aportan escaños")
 	_check(int(m.legal.composicion(est, false)["aliados"]) > int(sin.legal.composicion(sin.estado, false)["aliados"]), "la composición del Senado incluye a los aliados")
+	# efecto de cartas: un aliado satisfecho potencia las categorías que pide; uno descontento frena las que rechaza
+	var c_social := {"categoria": "social"}
+	var c_seg := {"categoria": "seguridad"}
+	est.coalicion["laborismo_austral"]["satisfaccion"] = 90.0
+	_check(is_equal_approx(m.coalicion.mult_carta(c_social), 1.0 + float(cfg["bono_efecto_afin"])), "aliado satisfecho potencia su categoría")
+	_check(is_equal_approx(m.coalicion.mult_carta(c_seg), 1.0), "sin descontento no hay freno")
+	est.coalicion["laborismo_austral"]["satisfaccion"] = 20.0
+	_check(is_equal_approx(m.coalicion.mult_carta(c_seg), 1.0 - float(cfg["penal_efecto_rechazada"])), "aliado descontento frena la categoría que rechaza")
+	_check(is_equal_approx(sin.coalicion.mult_carta(c_social), 1.0), "sin aliados el multiplicador es 1")
+	est.coalicion["laborismo_austral"]["satisfaccion"] = float(cfg["satisfaccion_inicial"])
 	# cuotas
 	var ministros: Array = est.gabinete.slice(0, 2)
 	_check(bool(m.asignar_cuota("laborismo_austral", "ministerio", ministros[0])["ok"]), "asignar un ministerio")

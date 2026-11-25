@@ -18,6 +18,7 @@
     "cooldown_familia": 6,
     "cooldown_decision": 4,
     "silencio_libre": 2,
+    "silencio_max": 8,
     "ajuste_silencio": 0.12,
     "prob_max": 0.9,
     "decisiones_min_anio": 8,
@@ -477,19 +478,13 @@
   "bono_movimientos": {
     "tramos": [
       {
-        "desde": 60.0,
-        "hasta": 80.0,
-        "paso": 5.0,
+        "desde": 45.0,
+        "hasta": 95.0,
+        "paso": 10.0,
         "mov": 1
-      },
-      {
-        "desde": 85.0,
-        "hasta": 100.0,
-        "paso": 5.0,
-        "mov": 2
       }
     ],
-    "nota": "DISENO_V2 §11. Por cada umbral de aprobación superado (60,65,70,75,80: +1 c/u; 85,90,95,100: +2 c/u) se suman movimientos al amanecer del turno de gobierno. Cifras ilustrativas."
+    "nota": "DISENO_V2 §11 (recalibrado 25-nov: con la aprobación real de una partida, 60 casi nunca se alcanzaba). +1 movimiento por cada umbral de aprobación superado (45, 55, 65, 75, 85, 95). Cifras ilustrativas."
   },
   "asesores": {
     "max": 3,
@@ -514,6 +509,9 @@
     "penal_ruptura_cohesion": 3.0,
     "penal_ruptura_capital": 2.0,
     "nota": "DISENO_V2 §10. Satisfacción 0..100 de cada partido aliado: converge hacia (cuota cumplida) x (1 - peso_ideologia x (1 - afinidad ideológica)). Afecta cohesión por turno, escaños que votan con el gobierno y movimientos internos. Partidos ficticios; cifras ilustrativas.",
-    "penal_carta_rechazada": 2.0
+    "penal_carta_rechazada": 2.0,
+    "bono_efecto_afin": 0.12,
+    "penal_efecto_rechazada": 0.10,
+    "tope_bono_efecto": 0.3
   }
 }

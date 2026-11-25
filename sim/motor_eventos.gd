@@ -143,8 +143,9 @@ func _director(pool: Array[Dictionary]) -> Dictionary:
 	var cfg: Dictionary = m.catalogo_leyes["director_eventos"]
 	var ahora := semana_abs()
 	var p := minf(float(cfg["prob_max"]), float(cfg["prob_semana"]) + float(cfg["ajuste_silencio"]) * float(maxi(0, _silencio(ahora) - int(cfg["silencio_libre"]))))
-	if m.rng.randf() >= p:
-		return {}
+	var silencio := _silencio(ahora)
+	if silencio < int(cfg["silencio_max"]) and m.rng.randf() >= p:
+		return {}  # pasada la espera máxima, el evento es seguro
 	var dec_anio := _decisiones_ultimo_anio(ahora)
 	var p_dec := float(cfg["prob_decision"])
 	if dec_anio < int(cfg["decisiones_min_anio"]):
