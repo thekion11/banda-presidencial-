@@ -81,6 +81,11 @@ static func cabecera(refs: Dictionary) -> Control:
 		var p := PanelContainer.new()
 		p.add_theme_stylebox_override("panel", Tema.caja_degradada(Color("#17476C"), Color("#0F3355"), 10, Color("#2A6290"), 1))
 		p.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		p.set_meta("frac", 0.0)
+		p.draw.connect(func() -> void:  # mini barra del indicador dentro del chip (no cambia su alto: el mapa sigue > 1/3)
+			var w := (p.size.x - 16.0)
+			p.draw_rect(Rect2(8, p.size.y - 5, w, 2), Color("#274A66"))
+			p.draw_rect(Rect2(8, p.size.y - 5, w * clampf(float(p.get_meta("frac")), 0.0, 1.0), 2), p.get_meta("tinta", Tema.ORO)))
 		var h := HBoxContainer.new()
 		h.add_theme_constant_override("separation", 3)
 		var cap := Tema.etiqueta_corta(par[1], 10, Tema.TEXTO_SUAVE)
@@ -189,8 +194,9 @@ static func _boton_central(texto: String, al_avanzar: Callable) -> Control:
 	return b
 
 
-static func nav(al_pulsar: Callable, nacion: bool = false, texto_dia: String = "", al_avanzar: Callable = Callable()) -> Control:
+static func nav(al_pulsar: Callable, nacion: bool = false, texto_dia: String = "", al_avanzar: Callable = Callable(), activo: String = "mapa") -> Control:
 	## Barra inferior. En "Nación" la maqueta usa Cartas / Comité / [Día N] / Congreso / Gabinete.
+	## La pestaña abierta va en oro con un filo arriba (dirección visual v4).
 	var fila := HBoxContainer.new()
 	fila.custom_minimum_size = Vector2(0, 58)
 	var items: Array = [["Mapa", "mapa", "map"], ["Comité", "comite", "bars"], ["Congreso", "congreso", "building"], ["Gabinete", "gabinete", "people"]]
@@ -211,10 +217,14 @@ static func nav(al_pulsar: Callable, nacion: bool = false, texto_dia: String = "
 		col.alignment = BoxContainer.ALIGNMENT_CENTER
 		col.add_theme_constant_override("separation", 2)
 		col.mouse_filter = Control.MOUSE_FILTER_IGNORE
-		var ic := Icono.crear(par[2], Tema.TEXTO, 20.0)
+		var es_activo: bool = par[1] == activo
+		var tinta: Color = Tema.ORO if es_activo else Tema.TEXTO
+		var ic := Icono.crear(par[2], tinta, 20.0)
 		ic.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
 		col.add_child(ic)
-		var l := Tema.etiqueta_corta(par[0], 11, Tema.TEXTO, false, 600)
+		if es_activo:
+			b.draw.connect(func() -> void: b.draw_rect(Rect2(b.size.x * 0.5 - 14.0, 0, 28, 3), Tema.ORO))
+		var l := Tema.etiqueta_corta(par[0], 11, tinta, false, 600)
 		l.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 		col.add_child(l)
 		b.add_child(col)
@@ -303,5 +313,20 @@ static func pintar_chips(refs: Dictionary, est: EstadoSimulacion) -> void:
 		var ind: String = "rival" if oposicion else String(k)
 		(refs["captions"][k] as Label).text = "Rival" if oposicion else {"aprobacion": "Aprob.", "capital": "Capital", "cohesion": "Cohes.", "fiscal": "Fiscal"}[k]
 		var l: Label = refs["chips"][k]
-		l.text = str(roundi(est.ind(ind)))
+		var nuevo := float(roundi(est.ind(ind)))
+		var previo := float(l.get_meta("valor", nuevo)) if l.get_meta("ind", ind) == ind else nuevo
+		l.set_meta("valor", nuevo)
+		l.set_meta("ind", ind)
+		Movimiento.contar(l, nuevo, func(x: float) -> String: return str(roundi(x)), previo, 0.55)  # la cifra cuenta hasta su valor
+		var chip: Control = l.get_parent().get_parent()
+		chip.set_meta("tinta", Tema.color_aprobacion(nuevo + 12.0) if k == "aprobacion" or oposicion else Tema.ORO)
+		if Movimiento.activo():
+			chip.create_tween().tween_method(func(f: float) -> void:
+				chip.set_meta("frac", f)
+				chip.queue_redraw(), float(chip.get_meta("frac")), nuevo / 100.0, 0.55).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
+		else:
+			chip.set_meta("frac", nuevo / 100.0)
+			chip.queue_redraw()
+		if not is_equal_approx(previo, nuevo):  # el chip destella: verde si subió, coral si bajó (en «Rival», subir es malo)
+			Movimiento.destello(l.get_parent().get_parent(), Tema.SUBE if (nuevo > previo) != (ind == "rival") else Tema.BAJA)
 		l.add_theme_color_override("font_color", Tema.SUBE if (k == "aprobacion" and est.ind(ind) >= 50.0) else Tema.TEXTO)

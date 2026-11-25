@@ -135,6 +135,7 @@ func _construir_cuerpo() -> Control:
 	_btn_jugar.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	_btn_jugar.clip_text = true
 	_btn_jugar.pressed.connect(_avanzar)
+	Movimiento.halo(_btn_jugar)  # el botón principal respira; su rectángulo no cambia
 	var libre := Control.new()  # la esquina inferior derecha queda vacía a propósito
 	libre.custom_minimum_size = Vector2(54, 54)
 	acciones.add_child(_btn_deleg)
@@ -166,7 +167,10 @@ func _refrescar() -> void:
 	else:
 		_r["dia"].text = "Día %d" % est.dia_actual
 	_r["fecha"].text = Barras.fecha_texto(datos["leyes"], est.etapa, est.turno_actual, est.dia_actual, est.ciclo, est.dias_carrera)
-	_r["pa"].text = ManoUI.texto_pastilla(est)
+	var pa_txt := ManoUI.texto_pastilla(est)
+	if _r["pa"].text != "" and _r["pa"].text != pa_txt:
+		Movimiento.latido((_r["pa"] as Control).get_parent().get_parent())  # la pastilla late cuando cambian los movimientos
+	_r["pa"].text = pa_txt
 	_lbl_mov.text = ManoUI.texto_movimientos(est)
 	Barras.pintar_chips(_r, est)
 	var obras: Dictionary = {}
@@ -364,10 +368,10 @@ func _siguiente_evento() -> void:
 				_refrescar()))
 
 
-func _poner_nav(nacion: bool) -> void:
+func _poner_nav(nacion: bool, activo: String = "mapa") -> void:
 	var nuevo := Barras.nav(_abrir_panel, nacion, "al día %d" % (motor.estado.dia_actual + motor.estado.dias_por_turno), func() -> void:
 		_abrir_panel("mapa")
-		_terminar_turno())
+		_terminar_turno(), activo)
 	_raiz.add_child(nuevo)
 	_raiz.move_child(nuevo, _nav.get_index())
 	_nav.queue_free()
@@ -375,7 +379,7 @@ func _poner_nav(nacion: bool) -> void:
 
 
 func _abrir_panel(cual: String) -> void:
-	_poner_nav(cual == "nacion")
+	_poner_nav(cual == "nacion", cual)
 	for h in _zona_panel.get_children():
 		h.queue_free()
 	if cual == "mapa":
@@ -411,6 +415,7 @@ func _abrir_panel(cual: String) -> void:
 		m.add_theme_constant_override("margin_top", 0)
 	m.add_child(contenido)
 	_zona_panel.add_child(m)
+	Movimiento.aparecer(m)  # la hoja se funde y se asienta al abrirse
 
 
 func _aprobar(pid: String, variante: String, custom: Dictionary = {}, nombres: Dictionary = {}) -> void:

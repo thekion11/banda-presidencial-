@@ -13,17 +13,27 @@ var _creditos: PanelContainer
 
 
 func _ready() -> void:
+	## Dirección visual v4 (lienzo de Claude Design, artboard «Menú principal»): insignia, cinta tricolor,
+	## motas de ambiente, botón principal con halo y secundarios en grilla. Mismos textos y acciones que antes.
 	add_child(Tema.fondo_hero("politica", 0.78, 0.22, "res://game/arte/marca/portada.jpg"))  # portada nueva (vector plano); si falta, usa la de la categoría
+	add_child(Particulas.new())
 	var col := VBoxContainer.new()
 	col.set_anchors_preset(Control.PRESET_FULL_RECT)
 	col.offset_left = 24
 	col.offset_right = -24
-	col.offset_top = 90
+	col.offset_top = 84
 	col.offset_bottom = -40
-	col.add_theme_constant_override("separation", 14)
+	col.add_theme_constant_override("separation", 12)
 	add_child(col)
-	col.add_child(Tema.etiqueta("SIMULADOR POLÍTICO POR TURNOS", 11, Tema.ORO, true))
-	col.add_child(Tema.etiqueta("Presidente\nde Chile", 44, Tema.TEXTO, true))
+	var marca := HBoxContainer.new()
+	marca.add_theme_constant_override("separation", 10)
+	marca.add_child(Barras.insignia())
+	var sup := Tema.etiqueta_corta("SIMULADOR POLÍTICO POR TURNOS", 11, Tema.ORO, true)
+	sup.size_flags_vertical = Control.SIZE_SHRINK_CENTER
+	marca.add_child(sup)
+	col.add_child(marca)
+	col.add_child(Tema.etiqueta("Presidente\nde Chile", 46, Tema.TEXTO, true))
+	col.add_child(_cinta())
 	col.add_child(Tema.etiqueta("Funda tu partido, gana la elección y gobierna cuatro años, una semana por turno.", 14, Tema.TEXTO_SUAVE))
 	var esp := Control.new()
 	esp.size_flags_vertical = Control.SIZE_EXPAND_FILL
@@ -33,31 +43,58 @@ func _ready() -> void:
 		av.add_theme_stylebox_override("panel", Tema.caja(Color("#FBEFD2"), 12, Tema.ORO, 2))
 		av.add_child(Tema.etiqueta(aviso, 12, Tema.TINTA, false, 600))
 		col.add_child(av)
-	if hay_guardado:
-		var c := Tema.boton("Continuar partida", Tema.PANEL)
-		c.add_theme_stylebox_override("normal", Tema.caja_degradada(Color("#1B4F78"), Color("#0F2F4A"), 18, Color("#4C84AE"), 2))
-		c.pressed.connect(func() -> void: continuar.emit())
-		col.add_child(c)
 	var n := Barras.boton_jugar()
 	n.text = "Nueva partida"
 	n.pressed.connect(func() -> void: nueva.emit())
 	col.add_child(n)
-	var rp := Tema.boton("Partida rápida (como la última vez)" if hay_ultima else "Partida rápida", Tema.OCEANO.lightened(0.1), Tema.TEXTO, 13, 44)
+	if hay_guardado:
+		var c := Tema.boton("Continuar partida", Tema.PANEL, Tema.CREMA, 15, 50)
+		for e in ["normal", "hover"]:
+			c.add_theme_stylebox_override(e, Tema.caja_degradada(Color("#1B4F78") if e == "normal" else Color("#22608F"), Color("#0F2F4A"), 25, Color("#4C84AE"), 2))
+		c.pressed.connect(func() -> void: continuar.emit())
+		col.add_child(c)
+	var rp := Tema.boton_secundario("Partida rápida (como la última vez)" if hay_ultima else "Partida rápida")
 	rp.pressed.connect(func() -> void: repetir.emit())
 	col.add_child(rp)
-	var ca := Tema.boton("Cartera de proyectos", Tema.OCEANO.lightened(0.1), Tema.TEXTO, 13, 44)
-	ca.pressed.connect(func() -> void: add_child(PantallaCartera.crear(datos)))
-	col.add_child(ca)
-	var inf := Tema.boton("Informe de prueba", Tema.OCEANO.lightened(0.1), Tema.TEXTO_SUAVE, 13, 44)
-	inf.pressed.connect(func() -> void: add_child(PantallaInforme.crear()))
-	col.add_child(inf)
-	var aj := Tema.boton("Ajustes", Tema.OCEANO.lightened(0.1), Tema.TEXTO_SUAVE, 13, 44)
-	aj.pressed.connect(func() -> void: add_child(PantallaAjustes.new()))
-	col.add_child(aj)
-	var cr := Tema.boton("Créditos", Tema.OCEANO.lightened(0.1), Tema.TEXTO_SUAVE, 13, 44)
-	cr.pressed.connect(_mostrar_creditos)
-	col.add_child(cr)
+	var grilla := GridContainer.new()
+	grilla.columns = 2
+	grilla.add_theme_constant_override("h_separation", 8)
+	grilla.add_theme_constant_override("v_separation", 8)
+	var acciones := [
+		["Cartera de proyectos", Tema.CREMA, func() -> void: add_child(PantallaCartera.crear(datos))],
+		["Informe de prueba", Tema.TEXTO_SUAVE, func() -> void: add_child(PantallaInforme.crear())],
+		["Ajustes", Tema.TEXTO_SUAVE, func() -> void: add_child(PantallaAjustes.new())],
+		["Créditos", Tema.TEXTO_SUAVE, _mostrar_creditos],
+	]
+	for a in acciones:
+		var b := Tema.boton_secundario(String(a[0]), a[1])
+		b.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		b.pressed.connect(a[2])
+		grilla.add_child(b)
+	col.add_child(grilla)
 	col.add_child(Tema.etiqueta("Obra de ficción satírica. Políticos reales con alias; personajes y cifras ilustrativas rotuladas como tales.", 10, Tema.TEXTO_SUAVE))
+	Movimiento.escalonar(col, 0.05, 0.045)
+	Movimiento.halo(n)
+
+
+func _cinta() -> Control:
+	## Cinta tricolor bajo el título (rojo, crema y panel, con filo dorado): la banda presidencial en la paleta congelada.
+	var c := Control.new()
+	c.custom_minimum_size = Vector2(150, 6)
+	c.size_flags_horizontal = Control.SIZE_SHRINK_BEGIN
+	c.set_meta("avance", 0.0 if Movimiento.activo() else 1.0)
+	c.draw.connect(func() -> void:
+		var w := 150.0 * float(c.get_meta("avance"))
+		c.draw_rect(Rect2(-1, -1, w + 2, 8), Tema.ORO)
+		for i in range(3):
+			var x0 := 50.0 * i
+			if x0 < w:
+				c.draw_rect(Rect2(x0, 0, minf(50.0, w - x0), 6), [Tema.ROJO, Tema.CREMA, Tema.PANEL][i]))
+	if Movimiento.activo():
+		c.create_tween().tween_method(func(t: float) -> void:
+			c.set_meta("avance", t)
+			c.queue_redraw(), 0.0, 1.0, 0.6).set_delay(0.25).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
+	return c
 
 
 func _mostrar_creditos() -> void:

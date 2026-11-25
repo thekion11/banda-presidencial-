@@ -92,6 +92,14 @@ func _actualizar_franja() -> void:
 	_franja_escanos.text = "Proyección: %d de %d escaños en el Senado" % [GeneradorPartido.escanos_para(ejes.x, ejes.y), int(datos["leyes"]["hemiciclo"]["total_senadores"])]
 
 
+func _avance(fraccion: float) -> void:
+	## La barra de progreso del test se desliza al siguiente paso (sin animaciones, salta).
+	if not Movimiento.activo():
+		_barra.anchor_right = fraccion
+		return
+	_barra.create_tween().tween_property(_barra, "anchor_right", fraccion, Movimiento.BASE + 0.1).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
+
+
 func _limpiar() -> void:
 	for h in _contenido.get_children():
 		h.queue_free()
@@ -101,11 +109,12 @@ func _mostrar_pregunta() -> void:
 	_limpiar()
 	var total := _preguntas().size()
 	_titulo.text = "%s · Pregunta %d de %d" % ["Confirma tus posturas" if afiliacion == "existente" else "Fundación de Partido", _paso + 1, total]
-	_barra.anchor_right = float(_paso) / float(total + 1)
+	_avance(float(_paso) / float(total + 1))
 	_actualizar_franja()
 	var p: Dictionary = _preguntas()[_paso]
 	var img := Tema.imagen(String(p.get("arte", "politica")), 150.0, 16.0)
 	_contenido.add_child(img)
+	Movimiento.aparecer(img)
 	var tarjeta := PanelContainer.new()
 	tarjeta.add_theme_stylebox_override("panel", Tema.caja_degradada(Color("#1A4C73"), Color("#133C5C"), 16, Color("#2E6490"), 1))
 	tarjeta.add_child(Tema.etiqueta(String(p["texto"]), 17, Tema.TEXTO, true))
@@ -115,8 +124,7 @@ func _mostrar_pregunta() -> void:
 		var b := _boton_opcion(["A", "B", "C"][i], String(op["etiqueta"]))
 		b.pressed.connect(_responder.bind(op))
 		_contenido.add_child(b)
-		b.modulate.a = 0.0
-		b.create_tween().tween_property(b, "modulate:a", 1.0, 0.25).set_delay(0.08 * float(i))
+		Movimiento.aparecer(b, 0.12 + 0.07 * float(i))
 		i += 1
 	if afiliacion != "existente" and _paso == 0:
 		var alt := Button.new()
@@ -176,7 +184,7 @@ func _responder(op: Dictionary) -> void:
 func _mostrar_fundacion() -> void:
 	_limpiar()
 	_titulo.text = "Tu candidatura · Identidad" if afiliacion != "propio" else "Fundación de Partido · Identidad"
-	_barra.anchor_right = float(_preguntas().size()) / float(_preguntas().size() + 1)
+	_avance(float(_preguntas().size()) / float(_preguntas().size() + 1))
 	_actualizar_franja()
 	var ficha := PanelContainer.new()
 	ficha.add_theme_stylebox_override("panel", Tema.caja_degradada(Color("#1A4C73"), Color("#133C5C"), 18, Color("#2E6490"), 1))
@@ -291,6 +299,7 @@ func _mostrar_fundacion() -> void:
 	var ir := Tema.boton("Iniciar Campaña · %d Semanas" % int(datos["leyes"]["hemiciclo"]["semanas_campana"]), Tema.ROJO)
 	ir.pressed.connect(_fundar)
 	_contenido.add_child(ir)
+	Movimiento.escalonar(_contenido, 0.0, 0.06)
 
 
 func _fundar() -> void:

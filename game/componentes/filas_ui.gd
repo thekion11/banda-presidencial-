@@ -96,4 +96,5 @@ static func boton_pie(texto: String) -> Button:
 	b.offset_right = -16.0
 	b.offset_top = -105.0
 	b.offset_bottom = -53.0
+	Movimiento.halo(b, Tema.ORO, 26)  # halo del botón principal (no cambia su rectángulo)
 	return b

@@ -30,8 +30,10 @@ func _tarjetas() -> void:
 	for k in ["propio", "independiente", "existente"]:
 		var b := Tema.boton("%s\n%s" % [ops[k]["nombre"], ops[k]["descripcion"]], Tema.PANEL, Tema.TEXTO, 14, 104)
 		b.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+		Tema.estilo_tarjeta(b)
 		b.pressed.connect(_elegir.bind(k))
 		_col.add_child(b)
+	Movimiento.escalonar(_col, 0.05, 0.07)
 
 
 func _elegir(k: String) -> void:
@@ -56,8 +58,11 @@ func _lista_partidos() -> void:
 	_col.add_child(sc)
 	for p in datos["coalicion"]:
 		var b := Tema.boton("%s · %s\n%s" % [p["sigla"], p["nombre"], p["alias_bloque"]], Tema.PANEL, Tema.TEXTO, 13, 60)
+		Tema.estilo_tarjeta(b)
 		b.pressed.connect(func() -> void: elegida.emit("existente", p))
 		lista.add_child(b)
+	Movimiento.escalonar(_col, 0.0, 0.05)
+	Movimiento.escalonar(lista, 0.12, 0.03, 12)
 	var volver := Tema.boton("Volver", Tema.OCEANO.lightened(0.14), Tema.TEXTO, 14, 48)
 	volver.pressed.connect(_tarjetas)
 	_col.add_child(volver)

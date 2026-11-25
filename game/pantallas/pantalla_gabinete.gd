@@ -28,3 +28,4 @@ func _ready() -> void:
 	var sel := PanelGabinete.crear(motor, "Comenzar campaña · %d semanas" % int(motor.catalogo_leyes["hemiciclo"]["semanas_campana"]), listo.emit, func(t: String) -> void: _aviso.text = t)
 	sel.size_flags_vertical = Control.SIZE_EXPAND_FILL
 	v.add_child(sel)
+	Movimiento.escalonar(v, 0.05, 0.05)

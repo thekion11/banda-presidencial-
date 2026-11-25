@@ -34,7 +34,13 @@ func _ready() -> void:
 	fondo.set_anchors_preset(Control.PRESET_FULL_RECT)
 	add_child(fondo)
 	Feedback.iniciar(self)
+	get_tree().node_added.connect(_al_agregar)  # todo botón del juego se hunde y rebota al tocarlo (Movimiento.presion)
 	mostrar_menu()
+
+
+func _al_agregar(n: Node) -> void:
+	if n is BaseButton:
+		Movimiento.presion(n)
 
 
 func _cambiar(p: Control) -> void:
@@ -42,9 +48,8 @@ func _cambiar(p: Control) -> void:
 		_pantalla.queue_free()
 	_pantalla = p
 	p.set_anchors_preset(Control.PRESET_FULL_RECT)
-	p.modulate.a = 0.0
 	add_child(p)
-	p.create_tween().tween_property(p, "modulate:a", 1.0, 0.22)  # el tween muere con la pantalla (antes: aviso «Target object freed»)
+	Movimiento.entrar_pantalla(p)  # se funde y sube; el tween muere con la pantalla
 
 
 func mostrar_menu(aviso: String = "") -> void:

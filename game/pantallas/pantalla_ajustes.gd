@@ -21,7 +21,7 @@ func _ready() -> void:
 	col.add_theme_constant_override("separation", 12)
 	mc.add_child(col)
 	col.add_child(Tema.etiqueta("Ajustes", 24, Tema.TEXTO, true))
-	for fila in [["Sonido", "sonido"], ["Vibración", "vibracion"], ["Animaciones (números flotantes)", "animaciones"]]:
+	for fila in [["Sonido", "sonido"], ["Vibración", "vibracion"], ["Animaciones y movimiento", "animaciones"]]:
 		var cb := CheckButton.new()
 		cb.text = fila[0]
 		cb.custom_minimum_size = Vector2(0, 52)
@@ -32,6 +32,7 @@ func _ready() -> void:
 			Ajustes.guardar()
 			Feedback.sonar("toque"))
 		col.add_child(cb)
+	Movimiento.escalonar(col, 0.0, 0.05)
 	var esp := Control.new()
 	esp.size_flags_vertical = Control.SIZE_EXPAND_FILL
 	col.add_child(esp)

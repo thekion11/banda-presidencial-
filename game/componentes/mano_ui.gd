@@ -111,3 +111,5 @@ func pintar(motor: MotorTurno, sel: int, ministro: String = "", nuevas: Array = 
 			c.rotation_degrees = rot
 			c.scale = esc
 			tw.tween_property(c, "position", destino, 0.25)
+		if i == sel:
+			Movimiento.mecer(c, destino.y, 3.0, 0.8)  # la elegida se mece suave tras posarse; el resto queda quieta

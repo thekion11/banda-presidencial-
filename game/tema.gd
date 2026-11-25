@@ -267,6 +267,23 @@ static func boton(texto: String, fondo: Color, color_texto: Color = TEXTO, tam: 
 	return b
 
 
+static func boton_secundario(texto: String, color_texto: Color = CREMA, alto: float = 46.0) -> Button:
+	## Botón secundario de la dirección visual v4: panel translúcido con filo azul (mismo alto táctil en toda pantalla).
+	var b := boton(texto, PANEL, color_texto, 13, alto)
+	b.add_theme_font_override("font", fuente_texto(600))
+	b.add_theme_stylebox_override("normal", caja(Color(PANEL, 0.78), 14, Color("#2A6290"), 1))
+	b.add_theme_stylebox_override("hover", caja(Color(PANEL.lightened(0.08), 0.9), 14, Color("#4C84AE"), 1))
+	b.add_theme_stylebox_override("pressed", caja(Color(PANEL.darkened(0.2), 0.95), 14, ORO, 1))
+	return b
+
+
+static func estilo_tarjeta(b: Button) -> void:
+	## Botón-tarjeta (opciones de afiliación, listas de elección): degradado de panel con filo azul y filo dorado al tocar.
+	b.add_theme_stylebox_override("normal", caja_degradada(Color("#1A4C73"), Color("#133C5C"), 16, Color("#2E6490"), 1))
+	b.add_theme_stylebox_override("hover", caja_degradada(Color("#1F5885"), Color("#164466"), 16, Color("#4C84AE"), 1))
+	b.add_theme_stylebox_override("pressed", caja_degradada(Color("#133C5C"), Color("#0F3150"), 16, ORO, 2))
+
+
 static func pct(v: float) -> String:
 	return "%d %%" % roundi(v)
 

@@ -89,8 +89,8 @@ func _mostrar() -> void:
 	_siguiente.text = "Siguiente" if _paso < PASOS.size() - 1 else "Entendido"
 	if _paso < objetivos.size() and objetivos[_paso] is Control and is_instance_valid(objetivos[_paso]):
 		var r: Rect2 = (objetivos[_paso] as Control).get_global_rect().grow(6.0)
-		_marco.position = r.position
 		_marco.size = r.size
+		_marco.global_position = r.position  # global: sigue alineado aunque la pantalla esté entrando (Movimiento.entrar_pantalla)
 		_marco.visible = true
 	else:
 		_marco.visible = false

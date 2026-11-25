@@ -77,3 +77,23 @@ La prueba falla si la posición cambia: la sesión de UI revirtió la correcció
 
 ### Corrección: botón principal de la configuración de gabinete (23-nov-2026)
 La diferencia que quedaba abierta ("Comenzar campaña" fijo al pie vs botón de fundación al final del contenido) está CORREGIDA: ambos botones miden 358×52 y están en (16, 739) a 390×844. `tests/test_ui_humo.gd` lo exige en las 6 semillas (compara el rectángulo del botón de la fundación con el del gabinete).
+
+## Dirección visual v4: movimiento e integración — 25-nov-2026
+Referencia: lienzo de Claude Design «Presidente de Chile — Dirección visual v4» (artboards Menú principal, Pantalla del día, Votación, Resultado de la elección y Sistema de movimiento). Paleta, tipografías, 390×844, zonas táctiles ≥ 44 px y botón principal fijo sin cambios. Comparación antes/después: `docs/comparacion/v4_antes_despues.jpg` (arriba antes, abajo después; `tests/captura_comparar.gd`).
+
+| Elemento | Antes | Ahora | Archivo |
+|---|---|---|---|
+| Sistema de movimiento | Tweens sueltos por pantalla | Un módulo único: duraciones 120 / 260 / 700 ms, salida cúbica; entradas escalonadas, presión de botones, halo, cifras que cuentan, barras que se llenan, vaivén | `game/componentes/movimiento.gd` |
+| Cambio de pantalla | Fundido de 0,22 s | Fundido + subida de 16 px | `game/main.gd` |
+| Botones | Estáticos | Todos se hunden a 0,95 y rebotan al soltar (enganche global en `main.gd`) | `movimiento.gd › presion` |
+| Botón principal (día, pie de pantallas, menú) | Plano | Halo dorado que respira, dibujado detrás: el rectángulo no cambia (`tests/test_ui_humo.gd`, `tests/test_movimiento.gd`) | `movimiento.gd › halo` |
+| Menú | Lista vertical de 7 botones iguales | Insignia + rótulo, cinta tricolor animada bajo el título, motas de ambiente, «Nueva partida» primero con halo, secundarios en grilla 2×2 | `pantalla_menu.gd`, `particulas.gd` |
+| Chips de indicadores | Cifra fija | La cifra cuenta, el chip destella verde/coral al cambiar y lleva una mini barra interna (sin cambiar su alto: el mapa sigue > 1/3) | `barras.gd` |
+| Pastilla de movimientos | Fija | Late al gastar o recuperar movimientos | `pantalla_dia.gd` |
+| Mano | Carta elegida fija | La elegida se mece 3 px tras posarse | `mano_ui.gd` |
+| Barra inferior | Sin estado | Pestaña abierta en oro con filo superior | `barras.gd › nav` |
+| Hojas (Comité, Congreso, Gabinete) | Aparecen de golpe | Se funden y asientan | `pantalla_dia.gd` |
+| Elección | Estática | La cifra cuenta, la barra se llena, regiones escalonadas, confeti oro/rojo/crema al ganar | `pantalla_eleccion.gd` |
+| Fin de partida, afiliación, test, gabinete, ajustes | Estáticas | Entradas escalonadas; cifras del resumen cuentan; barra del test se desliza; tarjetas de afiliación con degradado | varias |
+
+Reglas: todo el movimiento respeta Ajustes › «Animaciones y movimiento» y se apaga en modo headless, así que las pruebas miden siempre el estado final. El azar de las partículas es solo visual y no toca la semilla de la partida. Prueba propia: `tests/test_movimiento.gd`.
