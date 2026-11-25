@@ -9,6 +9,7 @@ var afiliacion: String = "propio"  # propio | independiente | existente (PR-01)
 var base: Dictionary = {}  # partido existente elegido (data/coalicion.json)
 var _respuestas: Array[Dictionary] = []
 var _paso: int = 0
+var _rapido: bool = true  # test rápido de 3 preguntas (data/ideologia.json › rapido); «test completo» lo desactiva
 var _contenido: VBoxContainer
 var _franja_perfil: Label
 var _franja_escanos: Label
@@ -75,6 +76,9 @@ func _preguntas() -> Array:
 	var todas: Array = datos["ideologia"]["preguntas"]
 	if afiliacion == "existente":  # quien entra a un partido solo confirma unas pocas posturas
 		return todas.slice(0, int(datos["leyes"]["afiliacion"]["opciones"]["existente"]["preguntas"]))
+	if _rapido:
+		var ids: Array = datos["ideologia"]["rapido"]["preguntas"]
+		return todas.filter(func(q: Dictionary) -> bool: return ids.has(q["id"]))
 	return todas
 
 
@@ -114,6 +118,17 @@ func _mostrar_pregunta() -> void:
 		b.modulate.a = 0.0
 		b.create_tween().tween_property(b, "modulate:a", 1.0, 0.25).set_delay(0.08 * float(i))
 		i += 1
+	if afiliacion != "existente" and _paso == 0:
+		var alt := Button.new()
+		alt.text = "Hacer el test completo (8 preguntas)" if _rapido else "Volver al test rápido (3 preguntas)"
+		alt.flat = true
+		alt.custom_minimum_size = Vector2(0, 44)
+		alt.add_theme_font_size_override("font_size", 12)
+		alt.add_theme_color_override("font_color", Tema.ORO)
+		alt.pressed.connect(func() -> void:
+			_rapido = not _rapido
+			_mostrar_pregunta())
+		_contenido.add_child(alt)
 
 
 func _boton_opcion(letra: String, texto: String) -> Button:
@@ -145,6 +160,11 @@ func _boton_opcion(letra: String, texto: String) -> Button:
 
 
 func _responder(op: Dictionary) -> void:
+	if afiliacion != "existente" and _rapido:  # el test rápido cubre el mismo rango de ejes con menos preguntas
+		var f := float(datos["ideologia"]["rapido"]["escala"])
+		op = op.duplicate()
+		op["delta_eco"] = float(op["delta_eco"]) * f
+		op["delta_inst"] = float(op["delta_inst"]) * f
 	_respuestas.append(op)
 	_paso += 1
 	if _paso < _preguntas().size():

@@ -150,3 +150,7 @@ Instrucción del usuario: «dejaría la dirección del juego abierta, haría tod
 - Bono por aprobación recalibrado: +1 movimiento por cada umbral 45, 55, 65, 75, 85 y 95 (antes 60+, que casi nunca se alcanzaba).
 - Director: tras 8 semanas sin evento (`silencio_max`) el siguiente es seguro (silencio máximo medido 9).
 - Ablación (n=16): sin coalición −7 % (antes −3 %), sin bono −5 % (antes −3 %), sin delegación −31 %, sin internos −22 %, sin asesores −14 %, sin mano continua −32 % con 43 % de crisis. Bots: codicioso 93 %/4 % crisis, completo y experto 93 %/0 %.
+
+## S. Arranque corto: test ideológico rápido (25-nov-2026, cierre de la Fase A)
+- Quien funda partido o va de independiente empieza con un test rápido de 3 preguntas (rol del Estado, regla fiscal, quórum de reformas) con sus deltas ×1,8 (`data/ideologia.json › rapido`), que llega a los mismos extremos que las 8. Un botón en la primera pregunta cambia al test completo y de vuelta. Quien entra a un partido existente sigue confirmando 3 posturas.
+- Con la partida rápida (1 toque) y este test (3 toques + identidad) se cumple la meta de ≤ 3 toques de decisión antes del primer turno. Pruebas: `test_afiliacion` (extremos) y `test_ui_humo` (3 preguntas).

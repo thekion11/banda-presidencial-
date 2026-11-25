@@ -54,8 +54,10 @@ func _una(semilla: int, idx: int = 0) -> void:
 	main.mostrar_partido()
 	await process_frame
 	var pp: Node = main._pantalla
-	for p in main.datos["ideologia"]["preguntas"]:
+	_check(pp._preguntas().size() == 3, "el test ideológico empieza en modo rápido (3 preguntas)")
+	for p in pp._preguntas():
 		pp._responder(p["opciones"][1])
+	_check(pp._respuestas.size() == 3, "el test rápido se completa en 3 toques")
 	for _k in range(4):
 		await process_frame
 	var r_fundar := Rect2()

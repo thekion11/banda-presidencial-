@@ -28,6 +28,8 @@ func _correr() -> void:
 	main.mostrar_partido()
 	await _guardar("02_test")
 	var pp: Node = main._pantalla
+	pp._rapido = false  # la maqueta muestra el test completo de 8 preguntas
+	pp._mostrar_pregunta()
 	pp._responder(main.datos["ideologia"]["preguntas"][0]["opciones"][1])
 	pp._responder(main.datos["ideologia"]["preguntas"][1]["opciones"][0])
 	await _guardar("03_test_pregunta3")

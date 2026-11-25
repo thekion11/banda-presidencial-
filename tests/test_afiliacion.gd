@@ -15,6 +15,19 @@ func _init() -> void:
 	var resp: Array[Dictionary] = []
 	for p in datos["ideologia"]["preguntas"]:
 		resp.append(p["opciones"][1])
+	# test rápido: 3 preguntas escaladas llegan a los extremos de los ejes igual que las 8
+	var rap: Dictionary = datos["ideologia"]["rapido"]
+	var izq: Array = []
+	var der: Array = []
+	for p in datos["ideologia"]["preguntas"]:
+		if (rap["preguntas"] as Array).has(p["id"]):
+			for lado in [[0, izq], [2, der]]:
+				var op: Dictionary = (p["opciones"][lado[0]] as Dictionary).duplicate()
+				op["delta_eco"] = float(op["delta_eco"]) * float(rap["escala"])
+				op["delta_inst"] = float(op["delta_inst"]) * float(rap["escala"])
+				(lado[1] as Array).append(op)
+	_check(izq.size() == 3 and GeneradorPartido.calcular_ejes(izq).x <= -0.95, "el test rápido llega al extremo izquierdo")
+	_check(GeneradorPartido.calcular_ejes(der).x >= 0.95, "el test rápido llega al extremo derecho")
 	var propio := GeneradorPartido.construir_partido_afiliado("propio", {}, "Mi Partido", "MPA", "metropolitana", resp, datos["ideologia"], cfg)
 	var base: Dictionary = datos["coalicion"][0]
 	var ind := GeneradorPartido.construir_partido_afiliado("independiente", {}, "Candidatura Independiente", "IND", "metropolitana", resp, datos["ideologia"], cfg)

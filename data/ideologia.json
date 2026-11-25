@@ -247,6 +247,7 @@
       "inst_max": 1.0
     }
   ],
+  "rapido": {"preguntas": ["preg_rol_estado", "preg_regla_fiscal", "preg_quorum_reformas"], "escala": 1.8, "nota": "Test rápido (arranque corto, Fase A): 3 preguntas que separan los dos ejes; sus deltas se multiplican por escala para cubrir el mismo rango que las 8. El test completo sigue disponible."},
   "inicio": {
     "nota": "Indicadores iniciales del partido: base + k * (eje o distancia al centro). Antes vivían en sim/generador_partido.gd.",
     "cohesion": {
