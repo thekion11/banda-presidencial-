@@ -154,3 +154,7 @@ Instrucción del usuario: «dejaría la dirección del juego abierta, haría tod
 ## S. Arranque corto: test ideológico rápido (25-nov-2026, cierre de la Fase A)
 - Quien funda partido o va de independiente empieza con un test rápido de 3 preguntas (rol del Estado, regla fiscal, quórum de reformas) con sus deltas ×1,8 (`data/ideologia.json › rapido`), que llega a los mismos extremos que las 8. Un botón en la primera pregunta cambia al test completo y de vuelta. Quien entra a un partido existente sigue confirmando 3 posturas.
 - Con la partida rápida (1 toque) y este test (3 toques + identidad) se cumple la meta de ≤ 3 toques de decisión antes del primer turno. Pruebas: `test_afiliacion` (extremos) y `test_ui_humo` (3 preguntas).
+
+## T. Delegación e internos: medido y sin cambio (25-nov-2026)
+- Prueba: costo de capital por delegar (1 y 2 puntos) y movimientos internos 3 → 2 (n=12, bot «completo»). El costo de capital no movió el puntaje (3.046 → 3.076): el capital sobra, así que no crea dilema. Sin delegación −30 % (2.896 → 2.035); sin internos −23 % (3.076 → 2.379).
+- Lectura: ambos valen lo que aportan en acciones extra (2 cartas y 3 movimientos por semana sobre ~4 propios), no son jugadas «siempre mejores» en abstracto; la delegación ya tiene riesgo real (fallo, anulación, escándalo). Se revirtió el cambio para no sumar ruido; queda a revisar con jugadores reales (U1) antes de tocar.
