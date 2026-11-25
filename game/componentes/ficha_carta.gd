@@ -23,7 +23,12 @@ static func exigencia(carta: Dictionary) -> String:
 
 static func linea(carta: Dictionary, leyes: Dictionary) -> String:
 	var ex := exigencia(carta)
-	return "impacto " + impacto(carta, leyes) + ((" · " + ex) if ex != "" else "")
+	var extra := ""
+	if carta.has("riesgo"):
+		extra += " · con riesgo"
+	if carta.has("diferido"):
+		extra += " · efecto a futuro"
+	return "impacto " + impacto(carta, leyes) + ((" · " + ex) if ex != "" else "") + extra
 
 
 static func caber(msg: String) -> String:

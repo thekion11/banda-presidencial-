@@ -26,6 +26,34 @@ func robar(n: int) -> void:
 			e.descarte.append(id)  # no disponible ahora: vuelve al descarte y se reevalúa en la próxima reposición
 			continue
 		e.mano.append(m._cartas_por_id[id])
+	_asegurar_disenadas()
+
+
+func _asegurar_disenadas() -> void:
+	## Composición de la mano (Fase B): al menos `mano.min_disenadas` cartas diseñadas a mano (no generadas de proyectos reales).
+	## Si faltan, una carta real de la mano vuelve al fondo del mazo y entra una diseñada disponible.
+	var e := m.estado
+	var minimo := int(m.catalogo_leyes["mano"].get("min_disenadas", 0))
+	var n_dis := e.mano.filter(func(c: Dictionary) -> bool: return not m.cartas.es_real(c)).size()
+	while n_dis < minimo:
+		var ia := -1
+		for i in range(e.mazo.size() - 1, -1, -1):
+			var c: Dictionary = m._cartas_por_id[e.mazo[i]]
+			if not m.cartas.es_real(c) and not e.cartas_ejecutadas.has(String(c["id"])) and m.gabinete.disponible(c):
+				ia = i
+				break
+		var ir := -1
+		for j in range(e.mano.size() - 1, -1, -1):
+			if m.cartas.es_real(e.mano[j]):
+				ir = j
+				break
+		if ia < 0 or ir < 0:
+			return
+		var real: Dictionary = e.mano[ir]
+		e.mano[ir] = m._cartas_por_id[e.mazo[ia]]
+		e.mazo.remove_at(ia)
+		e.mazo.insert(0, String(real["id"]))
+		n_dis += 1
 
 
 func reponer() -> bool:

@@ -54,6 +54,7 @@ func _init() -> void:
 			Bots.jugar_turno(m, "codicioso", rng)
 			m.terminar_turno()
 		print("el segundo periodo de gobierno terminó en: ", m.estado.etapa)
+		_replay(m, datos, "replay idéntico de la carrera hasta el fin del mandato")  # antes de forzar la reforma (que no es una entrada del jugador)
 		if m.estado.etapa == "fin_mandato":
 			m.estado.cartas_ejecutadas["reforma_reeleccion"] = true
 			_check(String(m.continuar_carrera()["etapa"]) == "campana", "con la reforma aprobada se puede postular a la reelección")
@@ -62,9 +63,12 @@ func _init() -> void:
 			_check(String(m.continuar_carrera()["etapa"]) == "oposicion", "tras una caída se pasa a la oposición")
 			m.iniciar_turno()
 	_check(m.estado.carrera.size() >= 2, "la carrera registra los periodos cerrados")
-	# 4) guardado y replay exactos de toda la carrera
-	var g: Dictionary = JSON.parse_string(JSON.stringify(m.estado.exportar_guardado(Datos.huella(datos))))
-	var re := Partida.reproducir(datos, g)
-	_check(re.estado.calcular_huella() == m.estado.calcular_huella(), "replay idéntico de toda la carrera")
+	_replay(m, datos, "replay idéntico de la carrera completa") if not m.estado.cartas_ejecutadas.has("reforma_reeleccion") else null
 	print("test_carrera: ", "OK" if _fallos == 0 else "FALLO", " (ciclos: %d)" % m.estado.ciclo)
 	quit(1 if _fallos > 0 else 0)
+
+
+func _replay(m: MotorTurno, datos: Dictionary, msg: String) -> void:
+	var g: Dictionary = JSON.parse_string(JSON.stringify(m.estado.exportar_guardado(Datos.huella(datos))))
+	var re := Partida.reproducir(datos, g)
+	_check(re.estado.calcular_huella() == m.estado.calcular_huella(), msg)

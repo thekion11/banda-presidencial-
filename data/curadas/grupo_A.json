@@ -1,0 +1,2313 @@
+[
+ {
+  "id": "cur_politica_mesa_oposicion",
+  "categoria": "politica",
+  "costo_pa": 1,
+  "titulo": "Mesa de diálogo con bancadas de oposición",
+  "efectos": [
+   {
+    "ind": "capital",
+    "delta": 1.0
+   },
+   {
+    "ind": "cohesion",
+    "delta": 1.0
+   },
+   {
+    "ind": "aprobacion",
+    "delta": -0.5
+   }
+  ],
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Café, galletas y una agenda de tres puntos que nadie quiere filtrar."
+ },
+ {
+  "id": "cur_politica_cadena_balance",
+  "categoria": "politica",
+  "costo_pa": 1,
+  "titulo": "Cadena nacional de balance de gestión",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 2.0
+   },
+   {
+    "ind": "capital",
+    "delta": -1
+   }
+  ],
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Quince minutos de logros, con gráficos que casi todos entienden.",
+  "riesgo": {
+   "prob": 0.3,
+   "efectos": [
+    {
+     "ind": "aprobacion",
+     "delta": -1
+    }
+   ]
+  }
+ },
+ {
+  "id": "cur_politica_ronda_alcaldes",
+  "categoria": "politica",
+  "costo_pa": 1,
+  "titulo": "Ronda de reuniones con alcaldes de todos los colores",
+  "efectos": [
+   {
+    "ind": "capital",
+    "delta": 2.0
+   },
+   {
+    "ind": "cohesion",
+    "delta": 1.0
+   }
+  ],
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Cada alcalde llega con una lista de pendientes y una foto para el recuerdo."
+ },
+ {
+  "id": "cur_politica_protocolo_comites",
+  "categoria": "politica",
+  "costo_pa": 1,
+  "titulo": "Protocolo de acuerdos entre comités parlamentarios",
+  "efectos": [
+   {
+    "ind": "capital",
+    "delta": 1.0
+   },
+   {
+    "ind": "riesgo_ejecucion",
+    "delta": -1
+   },
+   {
+    "ind": "aprobacion",
+    "delta": -0.5
+   }
+  ],
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Un papel de dos páginas que ahorra tres semanas de pasillos."
+ },
+ {
+  "id": "cur_politica_agenda_audiencias",
+  "categoria": "politica",
+  "costo_pa": 1,
+  "titulo": "Agenda pública de audiencias del gabinete",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 1.0
+   },
+   {
+    "ind": "riesgo_ejecucion",
+    "delta": -1
+   },
+   {
+    "ind": "capital",
+    "delta": -1
+   }
+  ],
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Si todo se agenda y se publica, también se puede revisar.",
+  "diferido": {
+   "semanas": 6,
+   "texto": "La transparencia genera confianza en las reuniones oficiales.",
+   "efectos": [
+    {
+     "ind": "aprobacion",
+     "delta": 1.0
+    }
+   ]
+  }
+ },
+ {
+  "id": "cur_politica_gira_rezago",
+  "categoria": "politica",
+  "costo_pa": 1,
+  "titulo": "Gira por las zonas de rezago",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 2.5
+   },
+   {
+    "ind": "capital",
+    "delta": -0.5
+   },
+   {
+    "ind": "fiscal",
+    "delta": -0.5
+   }
+  ],
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Tres regiones en cuatro días y un termo que nunca se enfría.",
+  "diferido": {
+   "semanas": 4,
+   "texto": "Las comunidades visitadas recuerdan que el gobierno llegó.",
+   "efectos": [
+    {
+     "ind": "aprobacion",
+     "delta": 1.0
+    }
+   ]
+  }
+ },
+ {
+  "id": "cur_politica_pacto_centro",
+  "categoria": "politica",
+  "costo_pa": 2,
+  "titulo": "Pacto de gobernabilidad con el centro",
+  "efectos": [
+   {
+    "ind": "capital",
+    "delta": 3
+   },
+   {
+    "ind": "cohesion",
+    "delta": 1.0
+   },
+   {
+    "ind": "aprobacion",
+    "delta": -1.5
+   }
+  ],
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Un acuerdo que firma el centro y que la izquierda y la derecha leen con lupa.",
+  "riesgo": {
+   "prob": 0.3,
+   "efectos": [
+    {
+     "ind": "cohesion",
+     "delta": -2
+    },
+    {
+     "ind": "capital",
+     "delta": -1
+    }
+   ]
+  }
+ },
+ {
+  "id": "cur_politica_reforma_partidos",
+  "categoria": "politica",
+  "costo_pa": 2,
+  "titulo": "Ley de umbral y financiamiento de partidos",
+  "efectos": [
+   {
+    "ind": "cohesion",
+    "delta": 2.5
+   },
+   {
+    "ind": "capital",
+    "delta": -2
+   },
+   {
+    "ind": "aprobacion",
+    "delta": -1
+   }
+  ],
+  "requisitos": {
+   "ley": "ley_organica_constitucional",
+   "quorum": "ley_organica_constitucional"
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Menos partidos en la papeleta y más reclamos en la sala.",
+  "camara_origen": "camara",
+  "diferido": {
+   "semanas": 20,
+   "texto": "El Congreso negocia con menos bancadas y más estables.",
+   "efectos": [
+    {
+     "ind": "riesgo_ejecucion",
+     "delta": -1
+    },
+    {
+     "ind": "aprobacion",
+     "delta": 1.0
+    }
+   ]
+  }
+ },
+ {
+  "id": "cur_politica_comision_probidad",
+  "categoria": "politica",
+  "costo_pa": 2,
+  "titulo": "Comisión de probidad y ética en el Estado",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 3.0
+   },
+   {
+    "ind": "capital",
+    "delta": -1
+   },
+   {
+    "ind": "riesgo_ejecucion",
+    "delta": -1
+   }
+  ],
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Cuatro expertos, doce informes y un correo que se filtra.",
+  "diferido": {
+   "semanas": 10,
+   "texto": "Los primeros informes bajan la desconfianza ciudadana.",
+   "efectos": [
+    {
+     "ind": "aprobacion",
+     "delta": 1.0
+    }
+   ]
+  }
+ },
+ {
+  "id": "cur_politica_voto_asistido",
+  "categoria": "politica",
+  "costo_pa": 2,
+  "titulo": "Voto voluntario con inscripción asistida",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 1.0
+   },
+   {
+    "ind": "cohesion",
+    "delta": 1.0
+   },
+   {
+    "ind": "capital",
+    "delta": -1.5
+   }
+  ],
+  "requisitos": {
+   "ley": "ley_simple",
+   "quorum": "ley_simple"
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Menos trámite para votar, más debate sobre quién vota.",
+  "camara_origen": "senado"
+ },
+ {
+  "id": "cur_politica_ley_lobby",
+  "categoria": "politica",
+  "costo_pa": 2,
+  "titulo": "Ley de lobby y gestión de intereses reforzada",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 2.5
+   },
+   {
+    "ind": "capital",
+    "delta": -2
+   },
+   {
+    "ind": "cohesion",
+    "delta": 1.0
+   }
+  ],
+  "requisitos": {
+   "ley": "ley_simple",
+   "quorum": "ley_simple"
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Cada reunión queda registrada. Algunas serán más breves.",
+  "camara_origen": "camara",
+  "riesgo": {
+   "prob": 0.25,
+   "efectos": [
+    {
+     "ind": "aprobacion",
+     "delta": -1.5
+    }
+   ]
+  }
+ },
+ {
+  "id": "cur_politica_agenda_senado",
+  "categoria": "politica",
+  "costo_pa": 2,
+  "titulo": "Agenda legislativa compartida con el Senado",
+  "efectos": [
+   {
+    "ind": "capital",
+    "delta": 2.5
+   },
+   {
+    "ind": "riesgo_ejecucion",
+    "delta": -1.5
+   },
+   {
+    "ind": "aprobacion",
+    "delta": -0.5
+   }
+  ],
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Una pizarra común en la que a nadie le gusta que le corrijan la letra."
+ },
+ {
+  "id": "cur_politica_participacion_digital",
+  "categoria": "politica",
+  "costo_pa": 2,
+  "titulo": "Plataforma de participación ciudadana digital",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 2.5
+   },
+   {
+    "ind": "cohesion",
+    "delta": 1.0
+   },
+   {
+    "ind": "fiscal",
+    "delta": -1.0
+   }
+  ],
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Mil propuestas al día y un equipo de seis para leerlas.",
+  "riesgo": {
+   "prob": 0.3,
+   "efectos": [
+    {
+     "ind": "aprobacion",
+     "delta": -1.5
+    }
+   ]
+  }
+ },
+ {
+  "id": "cur_politica_reforma_regimen",
+  "categoria": "politica",
+  "costo_pa": 3,
+  "titulo": "Reforma constitucional del régimen político",
+  "efectos": [
+   {
+    "ind": "capital",
+    "delta": -3
+   },
+   {
+    "ind": "cohesion",
+    "delta": 3
+   },
+   {
+    "ind": "aprobacion",
+    "delta": 1.0
+   }
+  ],
+  "requisitos": {
+   "ley": "reforma_constitucional",
+   "quorum": "reforma_constitucional"
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Cambiar las reglas de la partida mientras se está jugando.",
+  "camara_origen": "senado",
+  "riesgo": {
+   "prob": 0.5,
+   "efectos": [
+    {
+     "ind": "capital",
+     "delta": -2
+    },
+    {
+     "ind": "cohesion",
+     "delta": -2
+    }
+   ]
+  },
+  "diferido": {
+   "semanas": 26,
+   "texto": "El nuevo régimen asienta mayorías más estables.",
+   "efectos": [
+    {
+     "ind": "aprobacion",
+     "delta": 2.5
+    },
+    {
+     "ind": "riesgo_ejecucion",
+     "delta": -1
+    }
+   ]
+  }
+ },
+ {
+  "id": "cur_politica_acuerdo_legislatura",
+  "categoria": "politica",
+  "costo_pa": 3,
+  "titulo": "Gran acuerdo nacional de legislatura",
+  "efectos": [
+   {
+    "ind": "capital",
+    "delta": 3
+   },
+   {
+    "ind": "cohesion",
+    "delta": 2.5
+   },
+   {
+    "ind": "aprobacion",
+    "delta": -2
+   },
+   {
+    "ind": "fiscal",
+    "delta": -0.5
+   }
+  ],
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Treinta compromisos para cuatro años. Faltan treinta firmas.",
+  "diferido": {
+   "semanas": 12,
+   "texto": "Los compromisos mutuos dan certeza a la legislatura.",
+   "efectos": [
+    {
+     "ind": "aprobacion",
+     "delta": 2.5
+    }
+   ]
+  }
+ },
+ {
+  "id": "cur_hacienda_auditoria_gasto",
+  "categoria": "hacienda",
+  "costo_pa": 1,
+  "titulo": "Auditoría exprés del gasto corriente",
+  "efectos": [
+   {
+    "ind": "fiscal",
+    "delta": 2
+   },
+   {
+    "ind": "aprobacion",
+    "delta": -1
+   },
+   {
+    "ind": "cohesion",
+    "delta": -0.5
+   }
+  ],
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Se encuentran licencias duplicadas y un contrato con vista al mar.",
+  "diferido": {
+   "semanas": 6,
+   "texto": "Los ahorros identificados llegan a las arcas fiscales.",
+   "efectos": [
+    {
+     "ind": "fiscal",
+     "delta": 1
+    }
+   ]
+  }
+ },
+ {
+  "id": "cur_hacienda_congelar_honorarios",
+  "categoria": "hacienda",
+  "costo_pa": 1,
+  "titulo": "Congelar nuevas contrataciones a honorarios",
+  "efectos": [
+   {
+    "ind": "fiscal",
+    "delta": 1.5
+   },
+   {
+    "ind": "capital",
+    "delta": -1
+   },
+   {
+    "ind": "riesgo_ejecucion",
+    "delta": 1
+   }
+  ],
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Se ahorra en la partida, pero los programas se quedan sin manos."
+ },
+ {
+  "id": "cur_hacienda_licitacion_unificada",
+  "categoria": "hacienda",
+  "costo_pa": 1,
+  "titulo": "Licitación unificada de compras públicas",
+  "efectos": [
+   {
+    "ind": "fiscal",
+    "delta": 1
+   },
+   {
+    "ind": "riesgo_ejecucion",
+    "delta": -0.5
+   },
+   {
+    "ind": "capital",
+    "delta": -0.5
+   }
+  ],
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Un solo formulario para mil servicios. Un hito burocrático."
+ },
+ {
+  "id": "cur_hacienda_bono_invierno",
+  "categoria": "hacienda",
+  "costo_pa": 1,
+  "titulo": "Bono de invierno focalizado",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 3.0
+   },
+   {
+    "ind": "fiscal",
+    "delta": -2.0
+   }
+  ],
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Llega antes del frío, pero hay que revisar la lista."
+ },
+ {
+  "id": "cur_hacienda_subasta_inmuebles",
+  "categoria": "hacienda",
+  "costo_pa": 1,
+  "titulo": "Subasta de inmuebles fiscales ociosos",
+  "efectos": [
+   {
+    "ind": "fiscal",
+    "delta": 2.5
+   },
+   {
+    "ind": "aprobacion",
+    "delta": -0.5
+   },
+   {
+    "ind": "capital",
+    "delta": -1
+   }
+  ],
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Terrenos de la Nación que nadie visitaba hace décadas.",
+  "riesgo": {
+   "prob": 0.25,
+   "efectos": [
+    {
+     "ind": "aprobacion",
+     "delta": -1.5
+    }
+   ]
+  }
+ },
+ {
+  "id": "cur_hacienda_fondo_catastrofes",
+  "categoria": "hacienda",
+  "costo_pa": 1,
+  "titulo": "Fondo de contingencia para catástrofes",
+  "efectos": [
+   {
+    "ind": "fiscal",
+    "delta": -0.5
+   },
+   {
+    "ind": "riesgo_ejecucion",
+    "delta": -1.5
+   },
+   {
+    "ind": "cohesion",
+    "delta": 1.0
+   }
+  ],
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Nadie lo celebra hasta el día en que llueve de más.",
+  "diferido": {
+   "semanas": 12,
+   "texto": "El fondo permite responder rápido ante una emergencia.",
+   "efectos": [
+    {
+     "ind": "aprobacion",
+     "delta": 1.0
+    }
+   ]
+  }
+ },
+ {
+  "id": "cur_hacienda_royalty_escalonado",
+  "categoria": "hacienda",
+  "costo_pa": 2,
+  "titulo": "Royalty minero escalonado",
+  "efectos": [
+   {
+    "ind": "fiscal",
+    "delta": 4
+   },
+   {
+    "ind": "aprobacion",
+    "delta": -1
+   },
+   {
+    "ind": "capital",
+    "delta": -1.5
+   }
+  ],
+  "requisitos": {
+   "ley": "ley_simple",
+   "quorum": "ley_simple"
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Más ingresos cuando el cobre sube. Ya no es noticia.",
+  "camara_origen": "camara",
+  "riesgo": {
+   "prob": 0.3,
+   "efectos": [
+    {
+     "ind": "capital",
+     "delta": -1
+    }
+   ]
+  }
+ },
+ {
+  "id": "cur_hacienda_reforma_primera_categoria",
+  "categoria": "hacienda",
+  "costo_pa": 2,
+  "titulo": "Ajuste al impuesto de primera categoría",
+  "efectos": [
+   {
+    "ind": "fiscal",
+    "delta": 3
+   },
+   {
+    "ind": "aprobacion",
+    "delta": -1.5
+   },
+   {
+    "ind": "capital",
+    "delta": -2
+   },
+   {
+    "ind": "cohesion",
+    "delta": -1
+   }
+  ],
+  "requisitos": {
+   "ley": "ley_simple",
+   "quorum": "ley_simple"
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Más recaudación hoy; la inversión mira de reojo.",
+  "camara_origen": "camara"
+ },
+ {
+  "id": "cur_hacienda_regla_fiscal",
+  "categoria": "hacienda",
+  "costo_pa": 2,
+  "titulo": "Regla fiscal estructural reforzada",
+  "efectos": [
+   {
+    "ind": "fiscal",
+    "delta": 2
+   },
+   {
+    "ind": "capital",
+    "delta": 1.0
+   },
+   {
+    "ind": "aprobacion",
+    "delta": -1
+   }
+  ],
+  "requisitos": {
+   "ley": "ley_simple",
+   "quorum": "ley_simple"
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Un ancla que da tranquilidad a los mercados y reclamos a las regiones.",
+  "camara_origen": "senado",
+  "diferido": {
+   "semanas": 16,
+   "texto": "La disciplina fiscal baja el costo de la deuda.",
+   "efectos": [
+    {
+     "ind": "riesgo_ejecucion",
+     "delta": -1
+    }
+   ]
+  }
+ },
+ {
+  "id": "cur_hacienda_cobro_morosos",
+  "categoria": "hacienda",
+  "costo_pa": 2,
+  "titulo": "Cobro a deudores morosos del fisco",
+  "efectos": [
+   {
+    "ind": "fiscal",
+    "delta": 2.5
+   },
+   {
+    "ind": "aprobacion",
+    "delta": -1
+   }
+  ],
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Unos cuantos grandes deben más que muchos pequeños.",
+  "riesgo": {
+   "prob": 0.3,
+   "efectos": [
+    {
+     "ind": "aprobacion",
+     "delta": -1.5
+    }
+   ]
+  }
+ },
+ {
+  "id": "cur_hacienda_recorte_franquicias",
+  "categoria": "hacienda",
+  "costo_pa": 2,
+  "titulo": "Recorte de franquicias tributarias",
+  "efectos": [
+   {
+    "ind": "fiscal",
+    "delta": 3
+   },
+   {
+    "ind": "capital",
+    "delta": -1.5
+   },
+   {
+    "ind": "cohesion",
+    "delta": -1
+   },
+   {
+    "ind": "aprobacion",
+    "delta": -0.5
+   }
+  ],
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Cada franquicia tiene un lobby. Se hace una lista y se cuenta."
+ },
+ {
+  "id": "cur_hacienda_garantia_pymes",
+  "categoria": "hacienda",
+  "costo_pa": 2,
+  "titulo": "Garantía estatal para créditos a pymes",
+  "efectos": [
+   {
+    "ind": "fiscal",
+    "delta": -2.0
+   },
+   {
+    "ind": "aprobacion",
+    "delta": 2.0
+   },
+   {
+    "ind": "capital",
+    "delta": 1.0
+   }
+  ],
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Si el crédito se paga, todos ganan. Si no, paga el fisco.",
+  "riesgo": {
+   "prob": 0.35,
+   "efectos": [
+    {
+     "ind": "fiscal",
+     "delta": -2
+    }
+   ]
+  },
+  "diferido": {
+   "semanas": 10,
+   "texto": "El crédito fluye y las pymes sostienen el empleo.",
+   "efectos": [
+    {
+     "ind": "aprobacion",
+     "delta": 1.0
+    }
+   ]
+  }
+ },
+ {
+  "id": "cur_hacienda_reforma_integral",
+  "categoria": "hacienda",
+  "costo_pa": 3,
+  "titulo": "Reforma tributaria integral",
+  "efectos": [
+   {
+    "ind": "fiscal",
+    "delta": 5
+   },
+   {
+    "ind": "aprobacion",
+    "delta": -3
+   },
+   {
+    "ind": "capital",
+    "delta": -3
+   },
+   {
+    "ind": "cohesion",
+    "delta": -1.5
+   }
+  ],
+  "requisitos": {
+   "ley": "ley_simple",
+   "quorum": "ley_simple"
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Un solo proyecto, cien artículos y mil críticas con matices.",
+  "camara_origen": "camara",
+  "diferido": {
+   "semanas": 24,
+   "texto": "La mayor recaudación financia programas sociales.",
+   "efectos": [
+    {
+     "ind": "aprobacion",
+     "delta": 1.0
+    },
+    {
+     "ind": "riesgo_ejecucion",
+     "delta": -1
+    }
+   ]
+  }
+ },
+ {
+  "id": "cur_hacienda_austeridad",
+  "categoria": "hacienda",
+  "costo_pa": 3,
+  "titulo": "Paquete de austeridad fiscal",
+  "efectos": [
+   {
+    "ind": "fiscal",
+    "delta": 4.5
+   },
+   {
+    "ind": "aprobacion",
+    "delta": -2.5
+   },
+   {
+    "ind": "cohesion",
+    "delta": -2
+   },
+   {
+    "ind": "riesgo_ejecucion",
+    "delta": 1
+   }
+  ],
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "El Estado aprieta el cinturón y los gremios aprietan los puños.",
+  "riesgo": {
+   "prob": 0.4,
+   "efectos": [
+    {
+     "ind": "aprobacion",
+     "delta": -2
+    }
+   ]
+  },
+  "diferido": {
+   "semanas": 6,
+   "texto": "El ajuste muestra su costo político en las calles.",
+   "efectos": [
+    {
+     "ind": "capital",
+     "delta": -1
+    }
+   ]
+  }
+ },
+ {
+  "id": "cur_hacienda_inversion_contraciclica",
+  "categoria": "hacienda",
+  "costo_pa": 3,
+  "titulo": "Plan de inversión pública contracíclico",
+  "efectos": [
+   {
+    "ind": "fiscal",
+    "delta": -4.0
+   },
+   {
+    "ind": "aprobacion",
+    "delta": 4.0
+   },
+   {
+    "ind": "riesgo_ejecucion",
+    "delta": 1.5
+   },
+   {
+    "ind": "cohesion",
+    "delta": 1.0
+   }
+  ],
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Obras en marcha cuando el mercado se frena.",
+  "diferido": {
+   "semanas": 20,
+   "texto": "Las obras reactivan la economía y recuperan parte del gasto.",
+   "efectos": [
+    {
+     "ind": "fiscal",
+     "delta": 1.5
+    }
+   ]
+  }
+ },
+ {
+  "id": "cur_economia_ventanilla_unica",
+  "categoria": "economia",
+  "costo_pa": 1,
+  "titulo": "Ventanilla única de permisos de inversión",
+  "efectos": [
+   {
+    "ind": "riesgo_ejecucion",
+    "delta": -1.5
+   },
+   {
+    "ind": "fiscal",
+    "delta": -0.5
+   },
+   {
+    "ind": "aprobacion",
+    "delta": 1.0
+   }
+  ],
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Un solo timbre para todos los permisos. Falta que el timbre suene."
+ },
+ {
+  "id": "cur_economia_feria_emprendimiento",
+  "categoria": "economia",
+  "costo_pa": 1,
+  "titulo": "Feria nacional de emprendimiento",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 2.0
+   },
+   {
+    "ind": "fiscal",
+    "delta": -0.5
+   },
+   {
+    "ind": "capital",
+    "delta": 1.0
+   }
+  ],
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Mil stands, quinientas tarjetas y una idea genial perdida entre dos."
+ },
+ {
+  "id": "cur_economia_mesa_salario",
+  "categoria": "economia",
+  "costo_pa": 1,
+  "titulo": "Mesa tripartita del salario mínimo",
+  "efectos": [
+   {
+    "ind": "capital",
+    "delta": 1.0
+   },
+   {
+    "ind": "cohesion",
+    "delta": 2.0
+   },
+   {
+    "ind": "fiscal",
+    "delta": -0.5
+   }
+  ],
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Gobierno, empresarios y trabajadores en una mesa y en un acuerdo de tiempo."
+ },
+ {
+  "id": "cur_economia_capital_semilla",
+  "categoria": "economia",
+  "costo_pa": 1,
+  "titulo": "Capital semilla para empresas de base tecnológica",
+  "efectos": [
+   {
+    "ind": "fiscal",
+    "delta": -1.0
+   },
+   {
+    "ind": "aprobacion",
+    "delta": 1.0
+   },
+   {
+    "ind": "capital",
+    "delta": 1.0
+   }
+  ],
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Pocas empresas harán la diferencia. Hay que financiar a muchas.",
+  "diferido": {
+   "semanas": 18,
+   "texto": "Las primeras empresas financiadas pagan impuestos y crean empleo.",
+   "efectos": [
+    {
+     "ind": "fiscal",
+     "delta": 1.5
+    }
+   ]
+  }
+ },
+ {
+  "id": "cur_economia_comercio_ilegal",
+  "categoria": "economia",
+  "costo_pa": 1,
+  "titulo": "Cruzada contra el comercio ilegal",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 2.0
+   },
+   {
+    "ind": "capital",
+    "delta": -0.5
+   },
+   {
+    "ind": "riesgo_ejecucion",
+    "delta": 1
+   }
+  ],
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Operativos visibles, resultados medibles y un debate de calle."
+ },
+ {
+  "id": "cur_economia_acuerdos_asia",
+  "categoria": "economia",
+  "costo_pa": 1,
+  "titulo": "Actualización de acuerdos comerciales con Asia",
+  "efectos": [
+   {
+    "ind": "capital",
+    "delta": 2.0
+   },
+   {
+    "ind": "fiscal",
+    "delta": 0.5
+   },
+   {
+    "ind": "aprobacion",
+    "delta": -0.5
+   }
+  ],
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Los aranceles bajan para todos y los gremios agrícolas piden garantías.",
+  "diferido": {
+   "semanas": 15,
+   "texto": "Se abren nuevos mercados para las exportaciones.",
+   "efectos": [
+    {
+     "ind": "fiscal",
+     "delta": 1.5
+    }
+   ]
+  }
+ },
+ {
+  "id": "cur_economia_hidrogeno_verde",
+  "categoria": "economia",
+  "costo_pa": 2,
+  "titulo": "Plan de hidrógeno verde en el norte",
+  "efectos": [
+   {
+    "ind": "fiscal",
+    "delta": -2.5
+   },
+   {
+    "ind": "aprobacion",
+    "delta": 1.0
+   },
+   {
+    "ind": "riesgo_ejecucion",
+    "delta": 1
+   }
+  ],
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Una promesa energética que depende de agua, puertos y paciencia.",
+  "riesgo": {
+   "prob": 0.3,
+   "efectos": [
+    {
+     "ind": "aprobacion",
+     "delta": -1.5
+    }
+   ]
+  },
+  "diferido": {
+   "semanas": 26,
+   "texto": "Las primeras plantas exportan y generan empleo calificado.",
+   "efectos": [
+    {
+     "ind": "fiscal",
+     "delta": 3
+    },
+    {
+     "ind": "aprobacion",
+     "delta": 2.5
+    }
+   ]
+  }
+ },
+ {
+  "id": "cur_economia_litio_socios",
+  "categoria": "economia",
+  "costo_pa": 2,
+  "titulo": "Estrategia del litio con socios privados",
+  "efectos": [
+   {
+    "ind": "fiscal",
+    "delta": 2.5
+   },
+   {
+    "ind": "aprobacion",
+    "delta": -1
+   },
+   {
+    "ind": "capital",
+    "delta": -1
+   }
+  ],
+  "requisitos": {
+   "ley": "ley_simple",
+   "quorum": "ley_simple"
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Un recurso estratégico: lo explota quien lo cuida y lo fiscaliza.",
+  "camara_origen": "senado",
+  "diferido": {
+   "semanas": 18,
+   "texto": "Los contratos entregan regalías crecientes.",
+   "efectos": [
+    {
+     "ind": "fiscal",
+     "delta": 1.5
+    }
+   ]
+  }
+ },
+ {
+  "id": "cur_economia_empleo_joven",
+  "categoria": "economia",
+  "costo_pa": 2,
+  "titulo": "Subsidio al empleo joven y de mujeres",
+  "efectos": [
+   {
+    "ind": "fiscal",
+    "delta": -2.0
+   },
+   {
+    "ind": "aprobacion",
+    "delta": 3.0
+   },
+   {
+    "ind": "cohesion",
+    "delta": 1.0
+   }
+  ],
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Contratar sale menos caro; renunciar al subsidio, más.",
+  "diferido": {
+   "semanas": 12,
+   "texto": "Más contratos formales sostienen la aprobación.",
+   "efectos": [
+    {
+     "ind": "aprobacion",
+     "delta": 1.0
+    }
+   ]
+  }
+ },
+ {
+  "id": "cur_economia_seguro_cesantia",
+  "categoria": "economia",
+  "costo_pa": 2,
+  "titulo": "Ley de ampliación del seguro de cesantía",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 2.0
+   },
+   {
+    "ind": "fiscal",
+    "delta": -1.0
+   },
+   {
+    "ind": "cohesion",
+    "delta": 2.0
+   }
+  ],
+  "requisitos": {
+   "ley": "ley_simple",
+   "quorum": "ley_simple"
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Un colchón que dura más cuando el empleo cae.",
+  "camara_origen": "camara"
+ },
+ {
+  "id": "cur_economia_pago_30_dias",
+  "categoria": "economia",
+  "costo_pa": 2,
+  "titulo": "Ley de pago a 30 días a proveedores pyme",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 1.0
+   },
+   {
+    "ind": "cohesion",
+    "delta": 1.0
+   },
+   {
+    "ind": "capital",
+    "delta": -1
+   },
+   {
+    "ind": "fiscal",
+    "delta": -0.5
+   }
+  ],
+  "requisitos": {
+   "ley": "ley_simple",
+   "quorum": "ley_simple"
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Facturas que se pagan en un mes. Se agradece y se fiscaliza.",
+  "camara_origen": "camara"
+ },
+ {
+  "id": "cur_economia_reconversion_carbon",
+  "categoria": "economia",
+  "costo_pa": 2,
+  "titulo": "Reconversión laboral de zonas carboníferas",
+  "efectos": [
+   {
+    "ind": "fiscal",
+    "delta": -2.5
+   },
+   {
+    "ind": "cohesion",
+    "delta": 2.0
+   },
+   {
+    "ind": "aprobacion",
+    "delta": 1.0
+   }
+  ],
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Cerrar una central sin cerrar un pueblo.",
+  "diferido": {
+   "semanas": 16,
+   "texto": "Las nuevas industrias absorben a trabajadores reconvertidos.",
+   "efectos": [
+    {
+     "ind": "riesgo_ejecucion",
+     "delta": -1
+    }
+   ]
+  }
+ },
+ {
+  "id": "cur_economia_cabotaje",
+  "categoria": "economia",
+  "costo_pa": 2,
+  "titulo": "Apertura del cabotaje marítimo",
+  "efectos": [
+   {
+    "ind": "fiscal",
+    "delta": 1
+   },
+   {
+    "ind": "aprobacion",
+    "delta": -1
+   },
+   {
+    "ind": "capital",
+    "delta": -1.5
+   }
+  ],
+  "requisitos": {
+   "ley": "ley_simple",
+   "quorum": "ley_simple"
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Más navieras, más competencia y una larga fila de reclamos.",
+  "camara_origen": "senado",
+  "riesgo": {
+   "prob": 0.35,
+   "efectos": [
+    {
+     "ind": "cohesion",
+     "delta": -1.5
+    }
+   ]
+  }
+ },
+ {
+  "id": "cur_economia_permisos_sectoriales",
+  "categoria": "economia",
+  "costo_pa": 3,
+  "titulo": "Reforma a los permisos ambientales y sectoriales",
+  "efectos": [
+   {
+    "ind": "riesgo_ejecucion",
+    "delta": -3
+   },
+   {
+    "ind": "aprobacion",
+    "delta": -1.5
+   },
+   {
+    "ind": "capital",
+    "delta": -2
+   },
+   {
+    "ind": "fiscal",
+    "delta": 1.5
+   }
+  ],
+  "requisitos": {
+   "ley": "ley_simple",
+   "quorum": "ley_simple"
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Menos trámites sin menos controles es la promesa. La discusión es el cómo.",
+  "camara_origen": "camara",
+  "riesgo": {
+   "prob": 0.4,
+   "efectos": [
+    {
+     "ind": "aprobacion",
+     "delta": -2
+    }
+   ]
+  }
+ },
+ {
+  "id": "cur_economia_plan_crecimiento",
+  "categoria": "economia",
+  "costo_pa": 3,
+  "titulo": "Gran plan de crecimiento y empleo",
+  "efectos": [
+   {
+    "ind": "fiscal",
+    "delta": -3.5
+   },
+   {
+    "ind": "aprobacion",
+    "delta": 4.0
+   },
+   {
+    "ind": "riesgo_ejecucion",
+    "delta": 1
+   },
+   {
+    "ind": "capital",
+    "delta": 1.0
+   }
+  ],
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Una apuesta contundente por crecer más rápido de lo previsto.",
+  "diferido": {
+   "semanas": 18,
+   "texto": "La economía crece y devuelve parte del gasto.",
+   "efectos": [
+    {
+     "ind": "fiscal",
+     "delta": 2.5
+    },
+    {
+     "ind": "aprobacion",
+     "delta": 1.0
+    }
+   ]
+  }
+ },
+ {
+  "id": "cur_descentralizacion_oficina_regional",
+  "categoria": "descentralizacion",
+  "costo_pa": 1,
+  "titulo": "Oficina regional de atención ciudadana",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 2.0
+   },
+   {
+    "ind": "fiscal",
+    "delta": -0.5
+   },
+   {
+    "ind": "cohesion",
+    "delta": 1.0
+   }
+  ],
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Menos viaje a la capital y más trámites en la comuna."
+ },
+ {
+  "id": "cur_descentralizacion_competencias_turismo",
+  "categoria": "descentralizacion",
+  "costo_pa": 1,
+  "titulo": "Traspaso de competencias en turismo",
+  "efectos": [
+   {
+    "ind": "cohesion",
+    "delta": 1.0
+   },
+   {
+    "ind": "capital",
+    "delta": 1.0
+   },
+   {
+    "ind": "riesgo_ejecucion",
+    "delta": 0.5
+   }
+  ],
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "La región elige sus rutas y su propaganda."
+ },
+ {
+  "id": "cur_descentralizacion_cabildo_provincias",
+  "categoria": "descentralizacion",
+  "costo_pa": 1,
+  "titulo": "Cabildo abierto en provincias aisladas",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 2.5
+   },
+   {
+    "ind": "capital",
+    "delta": -1
+   }
+  ],
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Una sala con mapa, un micrófono y todas las quejas del año.",
+  "diferido": {
+   "semanas": 8,
+   "texto": "Las comunidades se sienten escuchadas y colaboran más.",
+   "efectos": [
+    {
+     "ind": "cohesion",
+     "delta": 1.0
+    }
+   ]
+  }
+ },
+ {
+  "id": "cur_descentralizacion_convenio_programacion",
+  "categoria": "descentralizacion",
+  "costo_pa": 1,
+  "titulo": "Convenio de programación con un gobierno regional",
+  "efectos": [
+   {
+    "ind": "cohesion",
+    "delta": 1.0
+   },
+   {
+    "ind": "fiscal",
+    "delta": -0.5
+   },
+   {
+    "ind": "capital",
+    "delta": 1.0
+   }
+  ],
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Dos firmas, un plan y un cronograma que vale la pena cumplir."
+ },
+ {
+  "id": "cur_descentralizacion_capacitacion_municipal",
+  "categoria": "descentralizacion",
+  "costo_pa": 1,
+  "titulo": "Capacitación de equipos municipales en proyectos",
+  "efectos": [
+   {
+    "ind": "riesgo_ejecucion",
+    "delta": -1.5
+   },
+   {
+    "ind": "fiscal",
+    "delta": -0.5
+   },
+   {
+    "ind": "capital",
+    "delta": -0.5
+   }
+  ],
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Diez comunas aprenden a presentar proyectos sin que los devuelvan."
+ },
+ {
+  "id": "cur_descentralizacion_fondo_comunas_chicas",
+  "categoria": "descentralizacion",
+  "costo_pa": 1,
+  "titulo": "Fondo de equidad para comunas pequeñas",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 2.0
+   },
+   {
+    "ind": "fiscal",
+    "delta": -1.0
+   },
+   {
+    "ind": "cohesion",
+    "delta": 1.0
+   }
+  ],
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Menos habitantes, mismos problemas y presupuesto más pequeño."
+ },
+ {
+  "id": "cur_descentralizacion_competencias_fomento",
+  "categoria": "descentralizacion",
+  "costo_pa": 2,
+  "titulo": "Traspaso de competencias en fomento productivo",
+  "efectos": [
+   {
+    "ind": "cohesion",
+    "delta": 2.5
+   },
+   {
+    "ind": "riesgo_ejecucion",
+    "delta": 1
+   },
+   {
+    "ind": "capital",
+    "delta": -1
+   },
+   {
+    "ind": "aprobacion",
+    "delta": 1.0
+   }
+  ],
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Cada región apoya a sus empresas, pero con equipos propios.",
+  "riesgo": {
+   "prob": 0.3,
+   "efectos": [
+    {
+     "ind": "aprobacion",
+     "delta": -1
+    }
+   ]
+  }
+ },
+ {
+  "id": "cur_descentralizacion_rentas_regionales",
+  "categoria": "descentralizacion",
+  "costo_pa": 2,
+  "titulo": "Ley de rentas regionales",
+  "efectos": [
+   {
+    "ind": "fiscal",
+    "delta": -2.0
+   },
+   {
+    "ind": "cohesion",
+    "delta": 3
+   },
+   {
+    "ind": "capital",
+    "delta": -1.5
+   },
+   {
+    "ind": "aprobacion",
+    "delta": 1.0
+   }
+  ],
+  "requisitos": {
+   "ley": "ley_simple",
+   "quorum": "ley_simple"
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Las regiones recaudan y gastan lo propio, con sus propios dolores de cabeza.",
+  "camara_origen": "senado",
+  "diferido": {
+   "semanas": 20,
+   "texto": "Los gobiernos regionales ejecutan con más autonomía.",
+   "efectos": [
+    {
+     "ind": "riesgo_ejecucion",
+     "delta": -1.5
+    }
+   ]
+  }
+ },
+ {
+  "id": "cur_descentralizacion_gobernadores_atribuciones",
+  "categoria": "descentralizacion",
+  "costo_pa": 2,
+  "titulo": "Atribuciones reforzadas para los gobernadores regionales",
+  "efectos": [
+   {
+    "ind": "capital",
+    "delta": -2
+   },
+   {
+    "ind": "cohesion",
+    "delta": 2.5
+   },
+   {
+    "ind": "aprobacion",
+    "delta": 1.0
+   },
+   {
+    "ind": "riesgo_ejecucion",
+    "delta": 1
+   }
+  ],
+  "requisitos": {
+   "ley": "ley_organica_constitucional",
+   "quorum": "ley_organica_constitucional"
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Más poder en las regiones y menos control desde el nivel central.",
+  "camara_origen": "camara",
+  "diferido": {
+   "semanas": 14,
+   "texto": "Los gobernadores consolidan su liderazgo.",
+   "efectos": [
+    {
+     "ind": "aprobacion",
+     "delta": 1.0
+    }
+   ]
+  }
+ },
+ {
+  "id": "cur_descentralizacion_zonas_extremas",
+  "categoria": "descentralizacion",
+  "costo_pa": 2,
+  "titulo": "Plan de zonas extremas",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 2.5
+   },
+   {
+    "ind": "fiscal",
+    "delta": -2.5
+   },
+   {
+    "ind": "cohesion",
+    "delta": 1.0
+   }
+  ],
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Llegar más lejos exige más financiamiento.",
+  "diferido": {
+   "semanas": 12,
+   "texto": "La conectividad aumenta y las localidades se sienten parte del país.",
+   "efectos": [
+    {
+     "ind": "cohesion",
+     "delta": 1.0
+    }
+   ]
+  }
+ },
+ {
+  "id": "cur_descentralizacion_apr_regiones",
+  "categoria": "descentralizacion",
+  "costo_pa": 2,
+  "titulo": "Delegación del programa de agua potable rural",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 2.0
+   },
+   {
+    "ind": "fiscal",
+    "delta": -1.0
+   },
+   {
+    "ind": "riesgo_ejecucion",
+    "delta": -1
+   }
+  ],
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Un camión aljibe menos y un estanque más en la ruta.",
+  "riesgo": {
+   "prob": 0.25,
+   "efectos": [
+    {
+     "ind": "riesgo_ejecucion",
+     "delta": 1.5
+    }
+   ]
+  }
+ },
+ {
+  "id": "cur_descentralizacion_conectividad_digital",
+  "categoria": "descentralizacion",
+  "costo_pa": 2,
+  "titulo": "Convenio de conectividad digital entre regiones",
+  "efectos": [
+   {
+    "ind": "fiscal",
+    "delta": -2.0
+   },
+   {
+    "ind": "aprobacion",
+    "delta": 1.0
+   },
+   {
+    "ind": "cohesion",
+    "delta": 2.0
+   },
+   {
+    "ind": "riesgo_ejecucion",
+    "delta": -0.5
+   }
+  ],
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "La fibra óptica une a las regiones, pero los cortes a las comunidades.",
+  "diferido": {
+   "semanas": 10,
+   "texto": "El internet rural permite teleservicios y mejora la aprobación.",
+   "efectos": [
+    {
+     "ind": "aprobacion",
+     "delta": 1.0
+    }
+   ]
+  }
+ },
+ {
+  "id": "cur_descentralizacion_sedes_regionales",
+  "categoria": "descentralizacion",
+  "costo_pa": 2,
+  "titulo": "Sedes regionales de servicios públicos",
+  "efectos": [
+   {
+    "ind": "fiscal",
+    "delta": -1.0
+   },
+   {
+    "ind": "cohesion",
+    "delta": 2.5
+   },
+   {
+    "ind": "capital",
+    "delta": -1
+   },
+   {
+    "ind": "riesgo_ejecucion",
+    "delta": 0.5
+   }
+  ],
+  "requisitos": {
+   "ley": "ley_simple",
+   "quorum": "ley_simple"
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Servicios que se trasladan para que la región también decida.",
+  "camara_origen": "camara"
+ },
+ {
+  "id": "cur_descentralizacion_reforma_gobiernos_regionales",
+  "categoria": "descentralizacion",
+  "costo_pa": 3,
+  "titulo": "Reforma constitucional de gobiernos regionales",
+  "efectos": [
+   {
+    "ind": "cohesion",
+    "delta": 3
+   },
+   {
+    "ind": "capital",
+    "delta": -3
+   },
+   {
+    "ind": "aprobacion",
+    "delta": 1.0
+   },
+   {
+    "ind": "riesgo_ejecucion",
+    "delta": 1.5
+   }
+  ],
+  "requisitos": {
+   "ley": "reforma_constitucional",
+   "quorum": "reforma_constitucional"
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Una nueva distribución del poder territorial, con apoyo y recelo.",
+  "camara_origen": "senado",
+  "riesgo": {
+   "prob": 0.4,
+   "efectos": [
+    {
+     "ind": "capital",
+     "delta": -2
+    }
+   ]
+  },
+  "diferido": {
+   "semanas": 26,
+   "texto": "Las regiones consolidan su autonomía y sus capacidades.",
+   "efectos": [
+    {
+     "ind": "aprobacion",
+     "delta": 2.5
+    },
+    {
+     "ind": "cohesion",
+     "delta": 1.0
+    }
+   ]
+  }
+ },
+ {
+  "id": "cur_descentralizacion_polos_desarrollo",
+  "categoria": "descentralizacion",
+  "costo_pa": 3,
+  "titulo": "Plan de polos de desarrollo en regiones",
+  "efectos": [
+   {
+    "ind": "fiscal",
+    "delta": -3.5
+   },
+   {
+    "ind": "aprobacion",
+    "delta": 3.0
+   },
+   {
+    "ind": "cohesion",
+    "delta": 2.5
+   },
+   {
+    "ind": "riesgo_ejecucion",
+    "delta": 1.5
+   }
+  ],
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Cada región con su especialidad y su propio plan de desarrollo.",
+  "diferido": {
+   "semanas": 22,
+   "texto": "Los polos producen empleo local y retornan parte de lo invertido.",
+   "efectos": [
+    {
+     "ind": "fiscal",
+     "delta": 2
+    },
+    {
+     "ind": "aprobacion",
+     "delta": 1.0
+    }
+   ]
+  }
+ }
+]

@@ -102,3 +102,15 @@ Instrucción del usuario: «dejaría la dirección del juego abierta, haría tod
 - **Riesgo** (`opciones[].riesgo {prob, efectos}`), **efecto a futuro** (`diferido {semanas, efectos, texto}`), **cadenas** (`cadena {evento, semanas}`: eventos de tipo `cadena` que aparecen semanas después) y **memoria** (`requiere {decision | relacion}`: eventos que solo salen si decidiste algo antes o si tu relación con un actor es muy baja o muy alta). Estado nuevo: `pendientes` (consecuencias programadas), guardado y replay exactos.
 - Contenido: 11 eventos en cadena, 5 eventos con memoria y 23 opciones existentes con riesgo, efecto diferido o cadena. La pantalla de decisión rotula «con riesgo» y «con efecto a futuro»; tras decidir, el aviso dice qué cambió, si salió mal y cuándo habrá consecuencias.
 - `EstadoSimulacion.exportar_resumen` pasó a `sim/resumen_estado.gd` (el archivo estaba al límite). La validación de datos comprueba riesgos, plazos, cadenas y memorias.
+
+## M. Fases B y C (hechas el 25-nov-2026)
+**Fase B, mazo con intención**
+- `data/cartas_curadas.json` (180 cartas diseñadas a mano en `data/curadas/grupo_A|B|C.json`, escritas por subagentes y validadas con `tools/validar_curadas.py`): 13 categorías, con riesgo (≈ 28 %), efecto a futuro (≈ 40 %) y leyes (≈ 28 %); valor medio calibrado (≈ 0,98 por movimiento, frente a 0,87 de las cartas reales generadas).
+- Mecánica nueva en cartas: `riesgo {prob, efectos}` y `diferido {semanas, texto, efectos}` (mismo modelo que las decisiones de eventos); la consecuencia diferida de una carta sale como aviso breve, no como pantalla completa. El panel de la carta rotula «con riesgo» y «efecto a futuro».
+- Composición de la mano: al menos 2 cartas diseñadas (`leyes.json` → `mano.min_disenadas`).
+**Fase C, gabinete con identidad**
+- 3 candidatos por ministerio (75 en total; alias ficticios): cada uno con estilo (técnico, político, comunicador, negociador), ejecución, riesgo de escándalo, ahorro de costo, perfil ideológico y un rasgo. La pantalla de gabinete deja elegir uno por cargo; el relleno (equilibrado o máxima eficacia) elige por puntaje, incluida la afinidad con tu partido.
+- Efectos reales: el **ministro titular** del área lleva cada carta (su ahorro de costo y su bono cuentan, y una fracción de su riesgo de escándalo); cada semana el estilo de los ministros y la afinidad ideológica media del gabinete mueven indicadores; con relación muy baja el ministro **renuncia** y asume el mejor candidato restante; con relación alta es **estrella** y rinde más. Las cuotas de coalición se guardan por ministerio.
+**Bots y balance**
+- El bot codicioso ahora valora riesgo y efectos a futuro, y no juega cartas que le hacen daño en gobierno. `umbral_crisis_aprobacion` 24 → 15. Resultado (24 partidas de gobierno): azar ≈ 50 % de caídas, codicioso ≈ 17–21 %, «completo» (con asesores, delegación y movimientos internos) 0 %.
+- `test_carrera` verifica replay exacto de toda la carrera; `test_identidad` cubre candidatos, titular, renuncias y composición de la mano.

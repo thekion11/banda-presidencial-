@@ -67,7 +67,7 @@ func _cumplir_pendientes() -> Array[Dictionary]:
 		if String(p["tipo"]) == "efecto":
 			for ef in p["efectos"]:
 				m.fx.aplicar_efecto(ef, 1.0, "")
-			res.append({"id": "dif_" + String(p["origen"]), "titulo": "Consecuencia de tu decisión", "descripcion": String(p.get("texto", "")), "hora": "09:00", "votacion": null, "efectos": p["efectos"]})
+			res.append({"id": "dif_" + String(p["origen"]), "titulo": "Consecuencia de tu decisión", "descripcion": String(p.get("texto", "")), "hora": "09:00", "votacion": null, "efectos": p["efectos"], "menor": bool(p.get("carta", false))})
 			m.estado.registrar_accion("consecuencia", {"origen": p["origen"]})
 		else:
 			for evt in m.catalogo_eventos:
@@ -193,7 +193,8 @@ func decidir(evento_id: String, idx: int) -> Dictionary:
 	m.estado.decisiones[evento_id] = idx
 	m.estado.registrar_entrada("decision", {"evento": evento_id, "idx": idx})
 	m.estado.registrar_accion("decision", {"evento": evento_id, "idx": idx, "mal": salio_mal})
-	return {"ok": true, "efectos": op["efectos"], "salio_mal": salio_mal, "efectos_riesgo": op.get("riesgo", {}).get("efectos", []) if salio_mal else [], "futuro": futuro}
+	var renuncia := m.gabinete.revisar_renuncia(String(evt["actor"]["id"])) if evt.has("actor") else {}
+	return {"ok": true, "renuncia": renuncia, "efectos": op["efectos"], "salio_mal": salio_mal, "efectos_riesgo": op.get("riesgo", {}).get("efectos", []) if salio_mal else [], "futuro": futuro}
 
 
 func relaciones_actores() -> Array[Dictionary]:

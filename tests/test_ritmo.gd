@@ -44,6 +44,8 @@ func _init() -> void:
 			semanas += 1
 			var aleatorios := 0
 			for ev in evs:
+				if ev.get("menor", false):
+					continue  # consecuencia de una carta: aviso breve, no cuenta como evento
 				eventos += 1
 				vistos[String(ev["id"])] = true
 				if not por_id.has(String(ev["id"])):

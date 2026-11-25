@@ -88,6 +88,7 @@ godot --headless --path . -s tests/test_finales.gd
 godot --headless --path . -s tests/test_decisiones.gd
 godot --headless --path . -s tests/test_carrera.gd
 godot --headless --path . -s tests/test_ritmo.gd
+godot --headless --path . -s tests/test_identidad.gd
 godot --headless --path . -s tests/test_balance.gd
 godot --headless --path . -s tests/test_ui_humo.gd
 godot --headless --path . -s tests/montecarlo.gd -- 200        # informe de balance

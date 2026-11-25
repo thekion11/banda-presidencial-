@@ -25,12 +25,15 @@ static func carta_sintetica(id: String, categoria: String, disp: Dictionary) -> 
 static func ministros_de(datos: Dictionary, categorias: Array, tamano: int) -> Array:
 	## Gabinete con los primeros ministros de las categorías pedidas, completado con otros hasta `tamano`.
 	var ids: Array = []
+	var slots := {}
 	for cat in categorias:
 		for mi in datos["ministros"]:
-			if mi["categoria_afin"] == cat and not ids.has(mi["id"]):
+			if mi["categoria_afin"] == cat and not ids.has(mi["id"]) and not slots.has(mi["ministerio"]):
 				ids.append(mi["id"])
+				slots[mi["ministerio"]] = true
 				break
-	for mi in datos["ministros"]:
-		if ids.size() < tamano and not ids.has(mi["id"]):
+	for mi in datos["ministros"]:  # un candidato por ministerio
+		if ids.size() < tamano and not slots.has(mi["ministerio"]):
 			ids.append(mi["id"])
+			slots[mi["ministerio"]] = true
 	return ids

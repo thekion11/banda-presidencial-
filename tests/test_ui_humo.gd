@@ -89,9 +89,10 @@ func _una(semilla: int, idx: int = 0) -> void:
 	var rel: Array = main._pantalla.find_children("*", "Button", true, false).filter(func(b: Button) -> bool: return b.text in ["Equilibrado", "Máxima eficacia"])
 	_check(rel.size() == 2, "PR-05: dos botones de relleno (equilibrado y máxima eficacia)")
 	var filas: Array = sel_g.filter(func(b: Button) -> bool: return b.text == "" and b.get_child_count() > 0)
-	_check(filas.size() == 25, "deben listarse los 25 ministros, hay %d" % filas.size())
+	_check(filas.size() == 75, "deben listarse los 75 candidatos (3 por ministerio), hay %d" % filas.size())
 	var tam: int = int(main.datos["leyes"]["gabinete"]["tamano"])
-	var elegido: Button = filas.filter(func(b: Button) -> bool: return String((b.get_child(0).get_child(0) as Label).text).begins_with("EN EL GABINETE"))[0]
+	var alias_elegidos: Array = main.motor.estado.gabinete.map(func(i: String) -> String: return String(main.motor.catalogo_ministros[i]["alias"]))
+	var elegido: Button = filas.filter(func(b: Button) -> bool: return alias_elegidos.has(String((b.get_child(0).get_child(0) as Label).text)))[0]
 	elegido.pressed.emit()
 	_check(conf.disabled, "con menos de %d ministros no se puede confirmar" % tam)
 	elegido.pressed.emit()  # vuelve a elegirlo

@@ -14,6 +14,12 @@ static func _valor(carta: Dictionary, estado: EstadoSimulacion) -> float:
 		if ef["ind"] == "capital" and estado.ind("capital") < 30.0:
 			w *= 2.0
 		v += w * float(ef["delta"])
+	if carta.has("riesgo"):  # valor esperado de que salga mal
+		for ef in carta["riesgo"]["efectos"]:
+			v += float(carta["riesgo"]["prob"]) * float(PESOS.get(ef["ind"], 0.0)) * float(ef["delta"])
+	if carta.has("diferido"):  # consecuencia futura, algo descontada
+		for ef in carta["diferido"]["efectos"]:
+			v += 0.8 * float(PESOS.get(ef["ind"], 0.0)) * float(ef["delta"])
 	v /= float(carta["costo_pa"])
 	if carta["requisitos"]["ley"] != null:
 		v *= 0.8
@@ -122,6 +128,8 @@ static func jugar_turno(motor: MotorTurno, politica: String, rng: RandomNumberGe
 				mejor = i
 		if mejor < 0 or politica == "pasivo":
 			break
+		if est.etapa == "gobierno" and politica != "azar" and mejor_v <= 0.0:
+			break  # un jugador competente no juega cartas que le hacen daño: guarda los movimientos
 		var region := ""
 		if est.etapa == "campana" and not motor.regiones.catalogo.is_empty():
 			region = String(motor.regiones.catalogo[rng.randi_range(0, motor.regiones.catalogo.size() - 1)]["id"]) if politica == "azar" else _region_objetivo(motor)

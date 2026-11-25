@@ -4,27 +4,48 @@
     "cartera": "Ministerio del Interior",
     "alias": "El Vigía del Pasillo",
     "categoria_afin": "politica",
-    "reduccion_costo_pa": 1,
+    "reduccion_costo_pa": 0,
     "bono_ejecucion": 0.1,
-    "riesgo_escandalo": 0.06
+    "riesgo_escandalo": 0.06,
+    "ministerio": "min_interior",
+    "estilo": "tecnico",
+    "rasgo": "Perfil equilibrado del equipo inicial",
+    "perfil": {
+      "eco": 0.32,
+      "inst": 1.0
+    }
   },
   {
     "id": "min_exteriores",
     "cartera": "Ministerio de Relaciones Exteriores",
     "alias": "El Embajador de Bolsillo",
     "categoria_afin": "politica",
-    "reduccion_costo_pa": 1,
+    "reduccion_costo_pa": 0,
     "bono_ejecucion": 0.11,
-    "riesgo_escandalo": 0.07
+    "riesgo_escandalo": 0.07,
+    "ministerio": "min_exteriores",
+    "estilo": "negociador",
+    "rasgo": "Perfil equilibrado del equipo inicial",
+    "perfil": {
+      "eco": -0.54,
+      "inst": -0.53
+    }
   },
   {
     "id": "min_defensa",
     "cartera": "Ministerio de Defensa Nacional",
     "alias": "La Guardiana del Sur",
     "categoria_afin": "seguridad",
-    "reduccion_costo_pa": 1,
+    "reduccion_costo_pa": 0,
     "bono_ejecucion": 0.12,
-    "riesgo_escandalo": 0.08
+    "riesgo_escandalo": 0.08,
+    "ministerio": "min_defensa",
+    "estilo": "comunicador",
+    "rasgo": "Perfil equilibrado del equipo inicial",
+    "perfil": {
+      "eco": -0.99,
+      "inst": -0.74
+    }
   },
   {
     "id": "min_hacienda",
@@ -33,25 +54,46 @@
     "categoria_afin": "hacienda",
     "reduccion_costo_pa": 1,
     "bono_ejecucion": 0.15,
-    "riesgo_escandalo": 0.05
+    "riesgo_escandalo": 0.05,
+    "ministerio": "min_hacienda",
+    "estilo": "politico",
+    "rasgo": "Perfil equilibrado del equipo inicial",
+    "perfil": {
+      "eco": 0.81,
+      "inst": 0.78
+    }
   },
   {
     "id": "min_segegob",
     "cartera": "Ministerio Secretaría General de Gobierno",
     "alias": "La Voz Oficial",
     "categoria_afin": "politica",
-    "reduccion_costo_pa": 1,
+    "reduccion_costo_pa": 0,
     "bono_ejecucion": 0.14,
-    "riesgo_escandalo": 0.06
+    "riesgo_escandalo": 0.06,
+    "ministerio": "min_segegob",
+    "estilo": "negociador",
+    "rasgo": "Perfil equilibrado del equipo inicial",
+    "perfil": {
+      "eco": -0.75,
+      "inst": 0.42
+    }
   },
   {
     "id": "min_economia",
     "cartera": "Ministerio de Economía, Fomento y Turismo",
     "alias": "El Aprendiz de Mercader",
     "categoria_afin": "economia",
-    "reduccion_costo_pa": 1,
+    "reduccion_costo_pa": 0,
     "bono_ejecucion": 0.1,
-    "riesgo_escandalo": 0.07
+    "riesgo_escandalo": 0.07,
+    "ministerio": "min_economia",
+    "estilo": "negociador",
+    "rasgo": "Perfil equilibrado del equipo inicial",
+    "perfil": {
+      "eco": -0.17,
+      "inst": 0.54
+    }
   },
   {
     "id": "min_social",
@@ -60,7 +102,14 @@
     "categoria_afin": "social",
     "reduccion_costo_pa": 1,
     "bono_ejecucion": 0.11,
-    "riesgo_escandalo": 0.08
+    "riesgo_escandalo": 0.08,
+    "ministerio": "min_social",
+    "estilo": "tecnico",
+    "rasgo": "Perfil equilibrado del equipo inicial",
+    "perfil": {
+      "eco": 0.49,
+      "inst": -0.18
+    }
   },
   {
     "id": "min_educacion",
@@ -69,34 +118,62 @@
     "categoria_afin": "educacion",
     "reduccion_costo_pa": 1,
     "bono_ejecucion": 0.12,
-    "riesgo_escandalo": 0.09
+    "riesgo_escandalo": 0.09,
+    "ministerio": "min_educacion",
+    "estilo": "comunicador",
+    "rasgo": "Perfil equilibrado del equipo inicial",
+    "perfil": {
+      "eco": 0.6,
+      "inst": 0.73
+    }
   },
   {
     "id": "min_justicia",
     "cartera": "Ministerio de Justicia y Derechos Humanos",
     "alias": "La Balanza Inquieta",
     "categoria_afin": "seguridad",
-    "reduccion_costo_pa": 1,
+    "reduccion_costo_pa": 0,
     "bono_ejecucion": 0.13,
-    "riesgo_escandalo": 0.06
+    "riesgo_escandalo": 0.06,
+    "ministerio": "min_justicia",
+    "estilo": "politico",
+    "rasgo": "Perfil equilibrado del equipo inicial",
+    "perfil": {
+      "eco": -0.98,
+      "inst": 0.76
+    }
   },
   {
     "id": "min_trabajo",
     "cartera": "Ministerio del Trabajo y Previsión Social",
     "alias": "El Gremialista Tranquilo",
     "categoria_afin": "social",
-    "reduccion_costo_pa": 1,
+    "reduccion_costo_pa": 0,
     "bono_ejecucion": 0.14,
-    "riesgo_escandalo": 0.07
+    "riesgo_escandalo": 0.07,
+    "ministerio": "min_trabajo",
+    "estilo": "politico",
+    "rasgo": "Perfil equilibrado del equipo inicial",
+    "perfil": {
+      "eco": -0.26,
+      "inst": -0.1
+    }
   },
   {
     "id": "min_obras",
     "cartera": "Ministerio de Obras Públicas",
     "alias": "El Constructor de Puentes",
     "categoria_afin": "obras",
-    "reduccion_costo_pa": 1,
+    "reduccion_costo_pa": 0,
     "bono_ejecucion": 0.1,
-    "riesgo_escandalo": 0.08
+    "riesgo_escandalo": 0.08,
+    "ministerio": "min_obras",
+    "estilo": "comunicador",
+    "rasgo": "Perfil equilibrado del equipo inicial",
+    "perfil": {
+      "eco": 0.17,
+      "inst": 0.41
+    }
   },
   {
     "id": "min_salud",
@@ -105,7 +182,14 @@
     "categoria_afin": "salud",
     "reduccion_costo_pa": 1,
     "bono_ejecucion": 0.11,
-    "riesgo_escandalo": 0.09
+    "riesgo_escandalo": 0.09,
+    "ministerio": "min_salud",
+    "estilo": "tecnico",
+    "rasgo": "Perfil equilibrado del equipo inicial",
+    "perfil": {
+      "eco": -0.82,
+      "inst": -0.19
+    }
   },
   {
     "id": "min_vivienda",
@@ -114,7 +198,14 @@
     "categoria_afin": "vivienda",
     "reduccion_costo_pa": 1,
     "bono_ejecucion": 0.2,
-    "riesgo_escandalo": 0.12
+    "riesgo_escandalo": 0.12,
+    "ministerio": "min_vivienda",
+    "estilo": "tecnico",
+    "rasgo": "Perfil equilibrado del equipo inicial",
+    "perfil": {
+      "eco": 0.87,
+      "inst": 0.24
+    }
   },
   {
     "id": "min_agricultura",
@@ -123,34 +214,62 @@
     "categoria_afin": "economia",
     "reduccion_costo_pa": 1,
     "bono_ejecucion": 0.13,
-    "riesgo_escandalo": 0.07
+    "riesgo_escandalo": 0.07,
+    "ministerio": "min_agricultura",
+    "estilo": "negociador",
+    "rasgo": "Perfil equilibrado del equipo inicial",
+    "perfil": {
+      "eco": -0.57,
+      "inst": 0.96
+    }
   },
   {
     "id": "min_mineria",
     "cartera": "Ministerio de Minería",
     "alias": "El Minero de Escritorio",
     "categoria_afin": "economia",
-    "reduccion_costo_pa": 1,
+    "reduccion_costo_pa": 0,
     "bono_ejecucion": 0.14,
-    "riesgo_escandalo": 0.08
+    "riesgo_escandalo": 0.08,
+    "ministerio": "min_mineria",
+    "estilo": "negociador",
+    "rasgo": "Perfil equilibrado del equipo inicial",
+    "perfil": {
+      "eco": -0.14,
+      "inst": -0.16
+    }
   },
   {
     "id": "min_transportes",
     "cartera": "Ministerio de Transportes y Telecomunicaciones",
     "alias": "La Estratega de los Rieles",
     "categoria_afin": "transportes",
-    "reduccion_costo_pa": 1,
+    "reduccion_costo_pa": 0,
     "bono_ejecucion": 0.15,
-    "riesgo_escandalo": 0.08
+    "riesgo_escandalo": 0.08,
+    "ministerio": "min_transportes",
+    "estilo": "politico",
+    "rasgo": "Perfil equilibrado del equipo inicial",
+    "perfil": {
+      "eco": 0.11,
+      "inst": 0.86
+    }
   },
   {
     "id": "min_bienes",
     "cartera": "Ministerio de Bienes Nacionales",
     "alias": "El Cartógrafo del Fisco",
     "categoria_afin": "obras",
-    "reduccion_costo_pa": 1,
+    "reduccion_costo_pa": 0,
     "bono_ejecucion": 0.11,
-    "riesgo_escandalo": 0.06
+    "riesgo_escandalo": 0.06,
+    "ministerio": "min_bienes",
+    "estilo": "politico",
+    "rasgo": "Perfil equilibrado del equipo inicial",
+    "perfil": {
+      "eco": -0.98,
+      "inst": 0.11
+    }
   },
   {
     "id": "min_energia",
@@ -159,69 +278,925 @@
     "categoria_afin": "energia",
     "reduccion_costo_pa": 1,
     "bono_ejecucion": 0.12,
-    "riesgo_escandalo": 0.07
+    "riesgo_escandalo": 0.07,
+    "ministerio": "min_energia",
+    "estilo": "politico",
+    "rasgo": "Perfil equilibrado del equipo inicial",
+    "perfil": {
+      "eco": -0.08,
+      "inst": 0.48
+    }
   },
   {
     "id": "min_ambiente",
     "cartera": "Ministerio del Medio Ambiente",
     "alias": "La Guardabosques",
     "categoria_afin": "medioambiente",
-    "reduccion_costo_pa": 1,
+    "reduccion_costo_pa": 0,
     "bono_ejecucion": 0.13,
-    "riesgo_escandalo": 0.08
+    "riesgo_escandalo": 0.08,
+    "ministerio": "min_ambiente",
+    "estilo": "comunicador",
+    "rasgo": "Perfil equilibrado del equipo inicial",
+    "perfil": {
+      "eco": 0.82,
+      "inst": 0.81
+    }
   },
   {
     "id": "min_segpres",
     "cartera": "Ministerio Secretaría General de la Presidencia",
     "alias": "El Contador de Votos",
     "categoria_afin": "politica",
-    "reduccion_costo_pa": 1,
+    "reduccion_costo_pa": 0,
     "bono_ejecucion": 0.14,
-    "riesgo_escandalo": 0.09
+    "riesgo_escandalo": 0.09,
+    "ministerio": "min_segpres",
+    "estilo": "negociador",
+    "rasgo": "Perfil equilibrado del equipo inicial",
+    "perfil": {
+      "eco": 0.91,
+      "inst": 0.35
+    }
   },
   {
     "id": "min_deporte",
     "cartera": "Ministerio del Deporte",
     "alias": "El Entrenador Cívico",
     "categoria_afin": "social",
-    "reduccion_costo_pa": 1,
+    "reduccion_costo_pa": 0,
     "bono_ejecucion": 0.1,
-    "riesgo_escandalo": 0.06
+    "riesgo_escandalo": 0.06,
+    "ministerio": "min_deporte",
+    "estilo": "negociador",
+    "rasgo": "Perfil equilibrado del equipo inicial",
+    "perfil": {
+      "eco": -0.54,
+      "inst": 0.16
+    }
   },
   {
     "id": "min_mujer",
     "cartera": "Ministerio de la Mujer y la Equidad de Género",
     "alias": "La Voz de las Mil",
     "categoria_afin": "social",
-    "reduccion_costo_pa": 1,
+    "reduccion_costo_pa": 0,
     "bono_ejecucion": 0.11,
-    "riesgo_escandalo": 0.07
+    "riesgo_escandalo": 0.07,
+    "ministerio": "min_mujer",
+    "estilo": "comunicador",
+    "rasgo": "Perfil equilibrado del equipo inicial",
+    "perfil": {
+      "eco": -0.05,
+      "inst": 0.82
+    }
   },
   {
     "id": "min_cultura",
     "cartera": "Ministerio de las Culturas, las Artes y el Patrimonio",
     "alias": "El Archivista del Alma",
     "categoria_afin": "social",
-    "reduccion_costo_pa": 1,
+    "reduccion_costo_pa": 0,
     "bono_ejecucion": 0.12,
-    "riesgo_escandalo": 0.08
+    "riesgo_escandalo": 0.08,
+    "ministerio": "min_cultura",
+    "estilo": "tecnico",
+    "rasgo": "Perfil equilibrado del equipo inicial",
+    "perfil": {
+      "eco": -0.43,
+      "inst": -0.43
+    }
   },
   {
     "id": "min_ciencia",
     "cartera": "Ministerio de Ciencia, Tecnología, Conocimiento e Innovación",
     "alias": "La Curiosa de Laboratorio",
     "categoria_afin": "economia",
-    "reduccion_costo_pa": 1,
+    "reduccion_costo_pa": 0,
     "bono_ejecucion": 0.13,
-    "riesgo_escandalo": 0.09
+    "riesgo_escandalo": 0.09,
+    "ministerio": "min_ciencia",
+    "estilo": "tecnico",
+    "rasgo": "Perfil equilibrado del equipo inicial",
+    "perfil": {
+      "eco": -0.81,
+      "inst": 0.44
+    }
   },
   {
     "id": "min_seguridad",
     "cartera": "Ministerio de Seguridad Pública",
     "alias": "El Centinela de Barrio",
     "categoria_afin": "seguridad",
-    "reduccion_costo_pa": 1,
+    "reduccion_costo_pa": 0,
     "bono_ejecucion": 0.14,
-    "riesgo_escandalo": 0.06
+    "riesgo_escandalo": 0.06,
+    "ministerio": "min_seguridad",
+    "estilo": "politico",
+    "rasgo": "Perfil equilibrado del equipo inicial",
+    "perfil": {
+      "eco": -0.67,
+      "inst": 0.32
+    }
+  },
+  {
+    "id": "min_interior_b",
+    "ministerio": "min_interior",
+    "cartera": "Ministerio del Interior",
+    "alias": "El Portero del Poder",
+    "categoria_afin": "politica",
+    "reduccion_costo_pa": 0,
+    "bono_ejecucion": 0.24,
+    "riesgo_escandalo": 0.15,
+    "estilo": "politico",
+    "rasgo": "Hace cumplir la agenda, pero mide cada palabra",
+    "perfil": {
+      "eco": -0.75,
+      "inst": -0.39
+    }
+  },
+  {
+    "id": "min_interior_c",
+    "ministerio": "min_interior",
+    "cartera": "Ministerio del Interior",
+    "alias": "La Cerradura Cortés",
+    "categoria_afin": "politica",
+    "reduccion_costo_pa": 0,
+    "bono_ejecucion": 0.12,
+    "riesgo_escandalo": 0.03,
+    "estilo": "politico",
+    "rasgo": "Negocia hasta con quien no quiere sentarse",
+    "perfil": {
+      "eco": 0.34,
+      "inst": 0.38
+    }
+  },
+  {
+    "id": "min_exteriores_b",
+    "ministerio": "min_exteriores",
+    "cartera": "Ministerio de Relaciones Exteriores",
+    "alias": "El Mapamundi Ambulante",
+    "categoria_afin": "politica",
+    "reduccion_costo_pa": 0,
+    "bono_ejecucion": 0.22,
+    "riesgo_escandalo": 0.12,
+    "estilo": "politico",
+    "rasgo": "Conoce cada cancillería, viaja demasiado",
+    "perfil": {
+      "eco": 0.08,
+      "inst": -0.37
+    }
+  },
+  {
+    "id": "min_exteriores_c",
+    "ministerio": "min_exteriores",
+    "cartera": "Ministerio de Relaciones Exteriores",
+    "alias": "La Diplomática de Termo",
+    "categoria_afin": "politica",
+    "reduccion_costo_pa": 0,
+    "bono_ejecucion": 0.07,
+    "riesgo_escandalo": 0.05,
+    "estilo": "tecnico",
+    "rasgo": "Calma las crisis con una taza de té",
+    "perfil": {
+      "eco": 0.23,
+      "inst": -0.46
+    }
+  },
+  {
+    "id": "min_defensa_b",
+    "ministerio": "min_defensa",
+    "cartera": "Ministerio de Defensa Nacional",
+    "alias": "El Brigadier de Escritorio",
+    "categoria_afin": "seguridad",
+    "reduccion_costo_pa": 1,
+    "bono_ejecucion": 0.26,
+    "riesgo_escandalo": 0.1,
+    "estilo": "politico",
+    "rasgo": "Ordenado y técnico, poco político",
+    "perfil": {
+      "eco": -0.9,
+      "inst": 0.34
+    }
+  },
+  {
+    "id": "min_defensa_c",
+    "ministerio": "min_defensa",
+    "cartera": "Ministerio de Defensa Nacional",
+    "alias": "La Almirante de Agua Dulce",
+    "categoria_afin": "seguridad",
+    "reduccion_costo_pa": 0,
+    "bono_ejecucion": 0.09,
+    "riesgo_escandalo": 0.05,
+    "estilo": "negociador",
+    "rasgo": "Respetada en los cuarteles, cauta en la prensa",
+    "perfil": {
+      "eco": -0.22,
+      "inst": 0.54
+    }
+  },
+  {
+    "id": "min_hacienda_b",
+    "ministerio": "min_hacienda",
+    "cartera": "Ministerio de Hacienda",
+    "alias": "El Contador de Estrellas",
+    "categoria_afin": "hacienda",
+    "reduccion_costo_pa": 0,
+    "bono_ejecucion": 0.25,
+    "riesgo_escandalo": 0.09,
+    "estilo": "negociador",
+    "rasgo": "Austero a ultranza: sube la caja, enfría la calle",
+    "perfil": {
+      "eco": -0.62,
+      "inst": 0.02
+    }
+  },
+  {
+    "id": "min_hacienda_c",
+    "ministerio": "min_hacienda",
+    "cartera": "Ministerio de Hacienda",
+    "alias": "La Planilla Viviente",
+    "categoria_afin": "hacienda",
+    "reduccion_costo_pa": 0,
+    "bono_ejecucion": 0.07,
+    "riesgo_escandalo": 0.02,
+    "estilo": "comunicador",
+    "rasgo": "Equilibra las cuentas con humor y paciencia",
+    "perfil": {
+      "eco": 0.85,
+      "inst": 0.56
+    }
+  },
+  {
+    "id": "min_segegob_b",
+    "ministerio": "min_segegob",
+    "cartera": "Ministerio Secretaría General de Gobierno",
+    "alias": "El Tuitero Mayor",
+    "categoria_afin": "politica",
+    "reduccion_costo_pa": 0,
+    "bono_ejecucion": 0.21,
+    "riesgo_escandalo": 0.15,
+    "estilo": "tecnico",
+    "rasgo": "Gana la conversación, pierde el detalle",
+    "perfil": {
+      "eco": -0.19,
+      "inst": -0.37
+    }
+  },
+  {
+    "id": "min_segegob_c",
+    "ministerio": "min_segegob",
+    "cartera": "Ministerio Secretaría General de Gobierno",
+    "alias": "La Vocera Sin Aliento",
+    "categoria_afin": "politica",
+    "reduccion_costo_pa": 0,
+    "bono_ejecucion": 0.08,
+    "riesgo_escandalo": 0.04,
+    "estilo": "negociador",
+    "rasgo": "Siempre lista para la cámara, a veces sin datos",
+    "perfil": {
+      "eco": 0.07,
+      "inst": 0.63
+    }
+  },
+  {
+    "id": "min_economia_b",
+    "ministerio": "min_economia",
+    "cartera": "Ministerio de Economía, Fomento y Turismo",
+    "alias": "El Emprendedor Itinerante",
+    "categoria_afin": "economia",
+    "reduccion_costo_pa": 1,
+    "bono_ejecucion": 0.2,
+    "riesgo_escandalo": 0.09,
+    "estilo": "negociador",
+    "rasgo": "Entusiasta con las pymes, impaciente con los trámites",
+    "perfil": {
+      "eco": 0.61,
+      "inst": 0.54
+    }
+  },
+  {
+    "id": "min_economia_c",
+    "ministerio": "min_economia",
+    "cartera": "Ministerio de Economía, Fomento y Turismo",
+    "alias": "La Economista de Almacén",
+    "categoria_afin": "economia",
+    "reduccion_costo_pa": 0,
+    "bono_ejecucion": 0.12,
+    "riesgo_escandalo": 0.02,
+    "estilo": "negociador",
+    "rasgo": "Mide el precio del pan antes de opinar",
+    "perfil": {
+      "eco": -0.75,
+      "inst": -0.44
+    }
+  },
+  {
+    "id": "min_social_b",
+    "ministerio": "min_social",
+    "cartera": "Ministerio de Desarrollo Social y Familia",
+    "alias": "El Asistente de Esquina",
+    "categoria_afin": "social",
+    "reduccion_costo_pa": 0,
+    "bono_ejecucion": 0.22,
+    "riesgo_escandalo": 0.12,
+    "estilo": "comunicador",
+    "rasgo": "Conoce los barrios, no los reglamentos",
+    "perfil": {
+      "eco": -0.15,
+      "inst": 0.82
+    }
+  },
+  {
+    "id": "min_social_c",
+    "ministerio": "min_social",
+    "cartera": "Ministerio de Desarrollo Social y Familia",
+    "alias": "La Gestora de Ventanilla",
+    "categoria_afin": "social",
+    "reduccion_costo_pa": 0,
+    "bono_ejecucion": 0.07,
+    "riesgo_escandalo": 0.03,
+    "estilo": "comunicador",
+    "rasgo": "Ordena los beneficios y baja las filas",
+    "perfil": {
+      "eco": 0.17,
+      "inst": 0.67
+    }
+  },
+  {
+    "id": "min_educacion_b",
+    "ministerio": "min_educacion",
+    "cartera": "Ministerio de Educación",
+    "alias": "La Inspectora Generosa",
+    "categoria_afin": "educacion",
+    "reduccion_costo_pa": 0,
+    "bono_ejecucion": 0.27,
+    "riesgo_escandalo": 0.1,
+    "estilo": "politico",
+    "rasgo": "Cercana con docentes, dura con las cifras",
+    "perfil": {
+      "eco": 0.24,
+      "inst": 0.04
+    }
+  },
+  {
+    "id": "min_educacion_c",
+    "ministerio": "min_educacion",
+    "cartera": "Ministerio de Educación",
+    "alias": "El Rector de Pasillo",
+    "categoria_afin": "educacion",
+    "reduccion_costo_pa": 0,
+    "bono_ejecucion": 0.1,
+    "riesgo_escandalo": 0.04,
+    "estilo": "negociador",
+    "rasgo": "Reformista, sabe cuánto cuesta cada sala",
+    "perfil": {
+      "eco": -0.65,
+      "inst": 0.12
+    }
+  },
+  {
+    "id": "min_justicia_b",
+    "ministerio": "min_justicia",
+    "cartera": "Ministerio de Justicia y Derechos Humanos",
+    "alias": "El Fiscal Reciclado",
+    "categoria_afin": "seguridad",
+    "reduccion_costo_pa": 0,
+    "bono_ejecucion": 0.24,
+    "riesgo_escandalo": 0.15,
+    "estilo": "politico",
+    "rasgo": "Firme en lo penal, lento en lo social",
+    "perfil": {
+      "eco": -0.13,
+      "inst": -0.16
+    }
+  },
+  {
+    "id": "min_justicia_c",
+    "ministerio": "min_justicia",
+    "cartera": "Ministerio de Justicia y Derechos Humanos",
+    "alias": "La Jueza de Bolsillo",
+    "categoria_afin": "seguridad",
+    "reduccion_costo_pa": 0,
+    "bono_ejecucion": 0.12,
+    "riesgo_escandalo": 0.02,
+    "estilo": "comunicador",
+    "rasgo": "Cuida las garantías con paciencia",
+    "perfil": {
+      "eco": -0.44,
+      "inst": 0.96
+    }
+  },
+  {
+    "id": "min_trabajo_b",
+    "ministerio": "min_trabajo",
+    "cartera": "Ministerio del Trabajo y Previsión Social",
+    "alias": "La Sindicalista de Escritorio",
+    "categoria_afin": "social",
+    "reduccion_costo_pa": 0,
+    "bono_ejecucion": 0.26,
+    "riesgo_escandalo": 0.14,
+    "estilo": "tecnico",
+    "rasgo": "Habla con los gremios en su idioma",
+    "perfil": {
+      "eco": 0.57,
+      "inst": -0.74
+    }
+  },
+  {
+    "id": "min_trabajo_c",
+    "ministerio": "min_trabajo",
+    "cartera": "Ministerio del Trabajo y Previsión Social",
+    "alias": "El Actuario Gentil",
+    "categoria_afin": "social",
+    "reduccion_costo_pa": 0,
+    "bono_ejecucion": 0.1,
+    "riesgo_escandalo": 0.05,
+    "estilo": "negociador",
+    "rasgo": "Cuadra los números de las pensiones",
+    "perfil": {
+      "eco": -0.03,
+      "inst": -0.68
+    }
+  },
+  {
+    "id": "min_obras_b",
+    "ministerio": "min_obras",
+    "cartera": "Ministerio de Obras Públicas",
+    "alias": "El Capataz Ilustrado",
+    "categoria_afin": "obras",
+    "reduccion_costo_pa": 1,
+    "bono_ejecucion": 0.22,
+    "riesgo_escandalo": 0.12,
+    "estilo": "tecnico",
+    "rasgo": "Cumple plazos aunque cueste enojos",
+    "perfil": {
+      "eco": -0.51,
+      "inst": -0.74
+    }
+  },
+  {
+    "id": "min_obras_c",
+    "ministerio": "min_obras",
+    "cartera": "Ministerio de Obras Públicas",
+    "alias": "La Ingeniera de Cemento Fino",
+    "categoria_afin": "obras",
+    "reduccion_costo_pa": 0,
+    "bono_ejecucion": 0.07,
+    "riesgo_escandalo": 0.02,
+    "estilo": "comunicador",
+    "rasgo": "Obra bien hecha, aunque más lenta",
+    "perfil": {
+      "eco": 0.98,
+      "inst": -0.81
+    }
+  },
+  {
+    "id": "min_salud_b",
+    "ministerio": "min_salud",
+    "cartera": "Ministerio de Salud",
+    "alias": "El Cirujano de Urgencia",
+    "categoria_afin": "salud",
+    "reduccion_costo_pa": 0,
+    "bono_ejecucion": 0.26,
+    "riesgo_escandalo": 0.13,
+    "estilo": "comunicador",
+    "rasgo": "Decide rápido, comunica poco",
+    "perfil": {
+      "eco": 0.43,
+      "inst": -0.04
+    }
+  },
+  {
+    "id": "min_salud_c",
+    "ministerio": "min_salud",
+    "cartera": "Ministerio de Salud",
+    "alias": "La Matrona de Barrio",
+    "categoria_afin": "salud",
+    "reduccion_costo_pa": 0,
+    "bono_ejecucion": 0.07,
+    "riesgo_escandalo": 0.05,
+    "estilo": "tecnico",
+    "rasgo": "Querida por las regiones, sensible a las críticas",
+    "perfil": {
+      "eco": -0.33,
+      "inst": -0.29
+    }
+  },
+  {
+    "id": "min_vivienda_b",
+    "ministerio": "min_vivienda",
+    "cartera": "Ministerio de Vivienda y Urbanismo",
+    "alias": "El Maestro Constructor",
+    "categoria_afin": "vivienda",
+    "reduccion_costo_pa": 1,
+    "bono_ejecucion": 0.26,
+    "riesgo_escandalo": 0.12,
+    "estilo": "politico",
+    "rasgo": "Quiere cifras de viviendas ya, con riesgo",
+    "perfil": {
+      "eco": -0.85,
+      "inst": -0.22
+    }
+  },
+  {
+    "id": "min_vivienda_c",
+    "ministerio": "min_vivienda",
+    "cartera": "Ministerio de Vivienda y Urbanismo",
+    "alias": "La Urbanista de Plaza",
+    "categoria_afin": "vivienda",
+    "reduccion_costo_pa": 0,
+    "bono_ejecucion": 0.1,
+    "riesgo_escandalo": 0.03,
+    "estilo": "tecnico",
+    "rasgo": "Prefiere barrios completos antes que entregas rápidas",
+    "perfil": {
+      "eco": 0.57,
+      "inst": 0.58
+    }
+  },
+  {
+    "id": "min_agricultura_b",
+    "ministerio": "min_agricultura",
+    "cartera": "Ministerio de Agricultura",
+    "alias": "El Regador Veterano",
+    "categoria_afin": "economia",
+    "reduccion_costo_pa": 1,
+    "bono_ejecucion": 0.25,
+    "riesgo_escandalo": 0.09,
+    "estilo": "comunicador",
+    "rasgo": "Defiende al campo, desconfía de Santiago",
+    "perfil": {
+      "eco": -0.14,
+      "inst": -0.51
+    }
+  },
+  {
+    "id": "min_agricultura_c",
+    "ministerio": "min_agricultura",
+    "cartera": "Ministerio de Agricultura",
+    "alias": "La Agrónoma de Frontera",
+    "categoria_afin": "economia",
+    "reduccion_costo_pa": 0,
+    "bono_ejecucion": 0.09,
+    "riesgo_escandalo": 0.04,
+    "estilo": "tecnico",
+    "rasgo": "Moderniza el riego con paciencia",
+    "perfil": {
+      "eco": -0.32,
+      "inst": 0.69
+    }
+  },
+  {
+    "id": "min_mineria_b",
+    "ministerio": "min_mineria",
+    "cartera": "Ministerio de Minería",
+    "alias": "El Capataz de Tronadura",
+    "categoria_afin": "economia",
+    "reduccion_costo_pa": 0,
+    "bono_ejecucion": 0.26,
+    "riesgo_escandalo": 0.12,
+    "estilo": "negociador",
+    "rasgo": "Impulsa proyectos grandes, divide opiniones",
+    "perfil": {
+      "eco": -0.42,
+      "inst": -0.15
+    }
+  },
+  {
+    "id": "min_mineria_c",
+    "ministerio": "min_mineria",
+    "cartera": "Ministerio de Minería",
+    "alias": "La Geóloga Cauta",
+    "categoria_afin": "economia",
+    "reduccion_costo_pa": 0,
+    "bono_ejecucion": 0.11,
+    "riesgo_escandalo": 0.04,
+    "estilo": "negociador",
+    "rasgo": "Exige estudios, evita escándalos",
+    "perfil": {
+      "eco": -0.02,
+      "inst": 0.53
+    }
+  },
+  {
+    "id": "min_transportes_b",
+    "ministerio": "min_transportes",
+    "cartera": "Ministerio de Transportes y Telecomunicaciones",
+    "alias": "El Conductor Estoico",
+    "categoria_afin": "transportes",
+    "reduccion_costo_pa": 0,
+    "bono_ejecucion": 0.25,
+    "riesgo_escandalo": 0.12,
+    "estilo": "comunicador",
+    "rasgo": "Optimiza rutas y horarios, cuida la regularidad",
+    "perfil": {
+      "eco": 0.6,
+      "inst": -0.67
+    }
+  },
+  {
+    "id": "min_transportes_c",
+    "ministerio": "min_transportes",
+    "cartera": "Ministerio de Transportes y Telecomunicaciones",
+    "alias": "La Planificadora de Andenes",
+    "categoria_afin": "transportes",
+    "reduccion_costo_pa": 0,
+    "bono_ejecucion": 0.08,
+    "riesgo_escandalo": 0.04,
+    "estilo": "politico",
+    "rasgo": "Piensa a veinte años, lenta a corto plazo",
+    "perfil": {
+      "eco": -0.77,
+      "inst": -0.2
+    }
+  },
+  {
+    "id": "min_bienes_b",
+    "ministerio": "min_bienes",
+    "cartera": "Ministerio de Bienes Nacionales",
+    "alias": "El Catastro Andante",
+    "categoria_afin": "obras",
+    "reduccion_costo_pa": 1,
+    "bono_ejecucion": 0.23,
+    "riesgo_escandalo": 0.1,
+    "estilo": "politico",
+    "rasgo": "Ordena los terrenos fiscales, poco carisma",
+    "perfil": {
+      "eco": -0.75,
+      "inst": 0.32
+    }
+  },
+  {
+    "id": "min_bienes_c",
+    "ministerio": "min_bienes",
+    "cartera": "Ministerio de Bienes Nacionales",
+    "alias": "La Inspectora de Terrenos",
+    "categoria_afin": "obras",
+    "reduccion_costo_pa": 0,
+    "bono_ejecucion": 0.11,
+    "riesgo_escandalo": 0.03,
+    "estilo": "negociador",
+    "rasgo": "Recupera suelo para vivienda y parques",
+    "perfil": {
+      "eco": -0.86,
+      "inst": 0.07
+    }
+  },
+  {
+    "id": "min_energia_b",
+    "ministerio": "min_energia",
+    "cartera": "Ministerio de Energía",
+    "alias": "El Vigilante del Voltaje",
+    "categoria_afin": "energia",
+    "reduccion_costo_pa": 0,
+    "bono_ejecucion": 0.23,
+    "riesgo_escandalo": 0.11,
+    "estilo": "politico",
+    "rasgo": "Prioriza la seguridad del suministro",
+    "perfil": {
+      "eco": 0.17,
+      "inst": 0.27
+    }
+  },
+  {
+    "id": "min_energia_c",
+    "ministerio": "min_energia",
+    "cartera": "Ministerio de Energía",
+    "alias": "La Solar de Atacama",
+    "categoria_afin": "energia",
+    "reduccion_costo_pa": 0,
+    "bono_ejecucion": 0.12,
+    "riesgo_escandalo": 0.02,
+    "estilo": "politico",
+    "rasgo": "Apuesta fuerte por renovables, algo temeraria",
+    "perfil": {
+      "eco": 0.02,
+      "inst": 0.38
+    }
+  },
+  {
+    "id": "min_ambiente_b",
+    "ministerio": "min_ambiente",
+    "cartera": "Ministerio del Medio Ambiente",
+    "alias": "El Guardián de Humedales",
+    "categoria_afin": "medioambiente",
+    "reduccion_costo_pa": 0,
+    "bono_ejecucion": 0.26,
+    "riesgo_escandalo": 0.1,
+    "estilo": "tecnico",
+    "rasgo": "Intransigente en lo ambiental, bien valorado",
+    "perfil": {
+      "eco": -0.08,
+      "inst": 0.74
+    }
+  },
+  {
+    "id": "min_ambiente_c",
+    "ministerio": "min_ambiente",
+    "cartera": "Ministerio del Medio Ambiente",
+    "alias": "La Negociadora Verde",
+    "categoria_afin": "medioambiente",
+    "reduccion_costo_pa": 0,
+    "bono_ejecucion": 0.11,
+    "riesgo_escandalo": 0.02,
+    "estilo": "negociador",
+    "rasgo": "Busca acuerdos con la industria",
+    "perfil": {
+      "eco": -0.81,
+      "inst": -0.62
+    }
+  },
+  {
+    "id": "min_segpres_b",
+    "ministerio": "min_segpres",
+    "cartera": "Ministerio Secretaría General de la Presidencia",
+    "alias": "La Tejedora de Quórum",
+    "categoria_afin": "politica",
+    "reduccion_costo_pa": 0,
+    "bono_ejecucion": 0.26,
+    "riesgo_escandalo": 0.13,
+    "estilo": "politico",
+    "rasgo": "Cuenta votos con precisión de relojera",
+    "perfil": {
+      "eco": -0.25,
+      "inst": -0.12
+    }
+  },
+  {
+    "id": "min_segpres_c",
+    "ministerio": "min_segpres",
+    "cartera": "Ministerio Secretaría General de la Presidencia",
+    "alias": "El Escribano del Congreso",
+    "categoria_afin": "politica",
+    "reduccion_costo_pa": 0,
+    "bono_ejecucion": 0.12,
+    "riesgo_escandalo": 0.05,
+    "estilo": "tecnico",
+    "rasgo": "Conoce cada comisión, poco flexible",
+    "perfil": {
+      "eco": -0.46,
+      "inst": -0.15
+    }
+  },
+  {
+    "id": "min_deporte_b",
+    "ministerio": "min_deporte",
+    "cartera": "Ministerio del Deporte",
+    "alias": "La Velocista Cívica",
+    "categoria_afin": "social",
+    "reduccion_costo_pa": 0,
+    "bono_ejecucion": 0.27,
+    "riesgo_escandalo": 0.09,
+    "estilo": "politico",
+    "rasgo": "Moviliza a los clubes, descuida el presupuesto",
+    "perfil": {
+      "eco": -0.04,
+      "inst": -0.74
+    }
+  },
+  {
+    "id": "min_deporte_c",
+    "ministerio": "min_deporte",
+    "cartera": "Ministerio del Deporte",
+    "alias": "El Árbitro Sereno",
+    "categoria_afin": "social",
+    "reduccion_costo_pa": 0,
+    "bono_ejecucion": 0.08,
+    "riesgo_escandalo": 0.02,
+    "estilo": "comunicador",
+    "rasgo": "Ordena las federaciones sin aspavientos",
+    "perfil": {
+      "eco": 0.76,
+      "inst": -0.56
+    }
+  },
+  {
+    "id": "min_mujer_b",
+    "ministerio": "min_mujer",
+    "cartera": "Ministerio de la Mujer y la Equidad de Género",
+    "alias": "La Constituyente de Plaza",
+    "categoria_afin": "social",
+    "reduccion_costo_pa": 0,
+    "bono_ejecucion": 0.24,
+    "riesgo_escandalo": 0.1,
+    "estilo": "negociador",
+    "rasgo": "Convoca y moviliza, genera debate",
+    "perfil": {
+      "eco": 0.8,
+      "inst": 0.12
+    }
+  },
+  {
+    "id": "min_mujer_c",
+    "ministerio": "min_mujer",
+    "cartera": "Ministerio de la Mujer y la Equidad de Género",
+    "alias": "La Gestora de Equidad",
+    "categoria_afin": "social",
+    "reduccion_costo_pa": 0,
+    "bono_ejecucion": 0.1,
+    "riesgo_escandalo": 0.02,
+    "estilo": "negociador",
+    "rasgo": "Avanza lento pero con acuerdos amplios",
+    "perfil": {
+      "eco": -0.31,
+      "inst": -0.84
+    }
+  },
+  {
+    "id": "min_cultura_b",
+    "ministerio": "min_cultura",
+    "cartera": "Ministerio de las Culturas, las Artes y el Patrimonio",
+    "alias": "El Mecenas Austero",
+    "categoria_afin": "social",
+    "reduccion_costo_pa": 1,
+    "bono_ejecucion": 0.22,
+    "riesgo_escandalo": 0.11,
+    "estilo": "comunicador",
+    "rasgo": "Cuida el patrimonio y el presupuesto",
+    "perfil": {
+      "eco": -0.12,
+      "inst": 0.83
+    }
+  },
+  {
+    "id": "min_cultura_c",
+    "ministerio": "min_cultura",
+    "cartera": "Ministerio de las Culturas, las Artes y el Patrimonio",
+    "alias": "La Gestora de Escenarios",
+    "categoria_afin": "social",
+    "reduccion_costo_pa": 0,
+    "bono_ejecucion": 0.1,
+    "riesgo_escandalo": 0.02,
+    "estilo": "politico",
+    "rasgo": "Llena teatros, pide fondos",
+    "perfil": {
+      "eco": 0.66,
+      "inst": -0.74
+    }
+  },
+  {
+    "id": "min_ciencia_b",
+    "ministerio": "min_ciencia",
+    "cartera": "Ministerio de Ciencia, Tecnología, Conocimiento e Innovación",
+    "alias": "El Doctor de Pizarrón",
+    "categoria_afin": "economia",
+    "reduccion_costo_pa": 0,
+    "bono_ejecucion": 0.25,
+    "riesgo_escandalo": 0.08,
+    "estilo": "comunicador",
+    "rasgo": "Académico de nota, poco práctico",
+    "perfil": {
+      "eco": -0.52,
+      "inst": 0.29
+    }
+  },
+  {
+    "id": "min_ciencia_c",
+    "ministerio": "min_ciencia",
+    "cartera": "Ministerio de Ciencia, Tecnología, Conocimiento e Innovación",
+    "alias": "La Innovadora de Garaje",
+    "categoria_afin": "economia",
+    "reduccion_costo_pa": 0,
+    "bono_ejecucion": 0.08,
+    "riesgo_escandalo": 0.04,
+    "estilo": "tecnico",
+    "rasgo": "Conecta universidades con empresas",
+    "perfil": {
+      "eco": 0.02,
+      "inst": 0.31
+    }
+  },
+  {
+    "id": "min_seguridad_b",
+    "ministerio": "min_seguridad",
+    "cartera": "Ministerio de Seguridad Pública",
+    "alias": "El Comisario Ilustrado",
+    "categoria_afin": "seguridad",
+    "reduccion_costo_pa": 0,
+    "bono_ejecucion": 0.24,
+    "riesgo_escandalo": 0.09,
+    "estilo": "tecnico",
+    "rasgo": "Combina mano firme con datos",
+    "perfil": {
+      "eco": 0.57,
+      "inst": 0.1
+    }
+  },
+  {
+    "id": "min_seguridad_c",
+    "ministerio": "min_seguridad",
+    "cartera": "Ministerio de Seguridad Pública",
+    "alias": "La Estratega de Cuadrante",
+    "categoria_afin": "seguridad",
+    "reduccion_costo_pa": 0,
+    "bono_ejecucion": 0.11,
+    "riesgo_escandalo": 0.05,
+    "estilo": "comunicador",
+    "rasgo": "Prioriza prevención y coordinación",
+    "perfil": {
+      "eco": 0.53,
+      "inst": 0.47
+    }
   }
 ]

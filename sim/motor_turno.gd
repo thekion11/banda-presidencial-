@@ -128,6 +128,7 @@ func ejecutar_amanecer() -> void:
 		fx.delta_aprobacion(-float(d["penal_aprobacion_riesgo"]), "")
 	fx.sumar_ind("capital", float(d["regen_capital_semanal"]))
 	fx.sumar_ind("cohesion", float(d["regen_cohesion_semanal"]))
+	gabinete.amanecer()  # estilos y afinidad de los ministros (Fase C)
 	movimientos.fijar_movimientos()
 
 

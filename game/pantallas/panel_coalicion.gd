@@ -22,7 +22,7 @@ static func _cuotas(motor: MotorTurno, pid: String, avisar: Callable, cambio: Ca
 	var item := func(tipo: String, valor: String, nombre: String) -> void:
 		var dueno := ""
 		for otro in est.coalicion.keys():
-			if est.coalicion[otro]["ministros" if tipo == "ministerio" else "asesores"].has(valor):
+			if est.coalicion[otro]["ministros" if tipo == "ministerio" else "asesores"].has(motor.gabinete.slot_de(valor) if tipo == "ministerio" else valor):
 				dueno = String(otro)
 		var propio := dueno == pid
 		var estado_txt := "Asignado a este partido" if propio else ("Asignado a %s" % motor.coalicion.partidos[dueno]["sigla"] if dueno != "" else "Libre")

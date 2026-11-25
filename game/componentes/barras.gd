@@ -273,4 +273,20 @@ static func texto_decision(r: Dictionary, antes: Dictionary, despues: Dictionary
 		t += " Salió mal."
 	if int(r.get("futuro", 0)) > 0:
 		t += " Habrá consecuencias en unas %d semanas." % int(r["futuro"])
+	if not r.get("renuncia", {}).is_empty():
+		t += " Renunció %s; asume %s." % [r["renuncia"]["ministro"], r["renuncia"]["nuevo"]]
 	return t
+
+
+static func sufijo_carta(r: Dictionary) -> String:
+	## Texto que se suma al aviso de una carta con riesgo o efecto a futuro.
+	return (" Salió mal." if bool(r.get("salio_mal", false)) else "") + (" Habrá consecuencias en unas %d semanas." % int(r["futuro"]) if int(r.get("futuro", 0)) > 0 else "")
+
+
+static func texto_consecuencia(ev: Dictionary) -> String:
+	## Aviso de una consecuencia programada por una carta: su frase y lo que cambió.
+	var d := {}
+	for ef in ev["efectos"]:
+		d[String(ef["ind"])] = float(ef["delta"])
+	var c := resumen_cambios({}, d)
+	return "Consecuencia: %s%s" % [String(ev["descripcion"]), (" " + c + ".") if c != "" else ""]

@@ -38,8 +38,8 @@ func adoptar_partido_propio(id: String) -> void:
 	var pet: Dictionary = partidos[id]["peticion"]
 	var mins: Array = []
 	for mid in partidos[id]["ministerios_pedidos"]:
-		if m.estado.gabinete.has(mid) and mins.size() < int(pet["ministerios"]):
-			mins.append(mid)
+		if m.gabinete.tiene_ministerio(String(mid)) and mins.size() < int(pet["ministerios"]):
+			mins.append(mid)  # las cuotas se guardan por ministerio (cargo), no por persona
 	m.estado.coalicion[id] = {"satisfaccion": float(_cfg()["satisfaccion_inicial"]), "ministros": mins, "asesores": [], "propio": true}
 
 
@@ -90,11 +90,15 @@ func asignar_cuota(id: String, tipo: String, valor: String, quitar: bool = false
 		return {"ok": false, "razon": "tipo_invalido"}
 	var clave := "ministros" if tipo == "ministerio" else "asesores"
 	var lista: Array = est.coalicion[id][clave]
+	if tipo == "ministerio":
+		valor = m.gabinete.slot_de(valor)
 	if quitar:
 		if not lista.has(valor):
 			return {"ok": false, "razon": "no_asignado"}
 	else:
-		if not (est.gabinete if tipo == "ministerio" else est.asesores).has(valor):
+		if tipo == "ministerio":
+			valor = m.gabinete.slot_de(valor)  # se acepta el id de un candidato: la cuota es del ministerio
+		if not (m.gabinete.tiene_ministerio(valor) if tipo == "ministerio" else est.asesores.has(valor)):
 			return {"ok": false, "razon": "fuera_del_gabinete" if tipo == "ministerio" else "asesor_no_contratado"}
 		for otro in est.coalicion.values():
 			if otro[clave].has(valor):
@@ -111,7 +115,7 @@ func cumplimiento(id: String) -> float:
 	## Fracción 0..1 de la petición del partido (ministerios y asesores asignados que siguen vigentes).
 	var pet: Dictionary = partidos[id]["peticion"]
 	var c: Dictionary = m.estado.coalicion[id]
-	var vig_min: int = c["ministros"].filter(func(x: String) -> bool: return m.estado.gabinete.has(x)).size()
+	var vig_min: int = c["ministros"].filter(func(x: String) -> bool: return m.gabinete.tiene_ministerio(x)).size()
 	var vig_ase: int = c["asesores"].filter(func(x: String) -> bool: return m.estado.asesores.has(x)).size()
 	var demanda := int(pet["ministerios"]) + int(pet["asesores"])
 	if demanda == 0:

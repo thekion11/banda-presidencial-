@@ -380,6 +380,28 @@ def main() -> int:
     if faltan:
         print(f"[AVISO] Arte sin archivo en game/arte/cartas (las cartas usan el de su categoría): {', '.join(faltan)}")
     datos["cartas"] = datos["cartas"] + reales
+    ruta_cur = DATA_DIR / "cartas_curadas.json"
+    if ruta_cur.exists():  # Fase B: cartas diseñadas a mano
+        curadas = json.loads(ruta_cur.read_text(encoding="utf-8"))
+        validar_schema("cartas.json", curadas)
+        ya = {c["id"] for c in datos["cartas"]}
+        titulos_ya = {c["titulo"] for c in datos["cartas"]}
+        for c in curadas:
+            ctx = f"carta curada {c['id']}"
+            if c["id"] in ya or c["titulo"] in titulos_ya:
+                raise ValueError(f"{ctx}: id o título duplicado")
+            if not c.get("curada") or not c.get("cifras_ilustrativas"):
+                raise ValueError(f"{ctx}: debe llevar curada=true y cifras_ilustrativas=true")
+            if not 1 <= c["costo_pa"] <= 3 or len(c["titulo"]) > 60:
+                raise ValueError(f"{ctx}: costo 1-3 y título ≤ 60")
+            if "riesgo" in c:
+                if not 0.0 < c["riesgo"]["prob"] < 1.0:
+                    raise ValueError(f"{ctx}: riesgo.prob entre 0 y 1")
+                validar_efectos(c["riesgo"]["efectos"], ctx + " riesgo")
+            if "diferido" in c:
+                validar_efectos(c["diferido"]["efectos"], ctx + " diferido")
+        datos["cartas"] = datos["cartas"] + curadas
+        print(f"[INFO] Cartas curadas: {len(curadas)}")
     validar_cartas(datos["cartas"], ids_fuentes, tipos, props)
     from validate_v2 import validar_v2
     validar_v2(datos, ids_fuentes)

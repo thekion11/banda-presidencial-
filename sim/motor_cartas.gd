@@ -12,7 +12,15 @@ func _init(p_motor: MotorTurno) -> void:
 	_ref = weakref(p_motor)
 
 
+func _con_titular(carta: Dictionary, ministro_id: String) -> String:
+	## Sin delegar, en gobierno, la carta la lleva el ministro titular de su área (Fase C): su ahorro de costo y su bono cuentan.
+	if ministro_id != "" or m.estado.etapa != "gobierno":
+		return ministro_id
+	return m.gabinete.titular(String(carta["categoria"]))
+
+
 func costo_carta(carta: Dictionary, ministro_id: String = "") -> int:
+	ministro_id = _con_titular(carta, ministro_id)
 	var costo := int(carta["costo_pa"])
 	if ministro_id != "" and m.catalogo_ministros.has(ministro_id):
 		var mi: Dictionary = m.catalogo_ministros[ministro_id]
@@ -138,16 +146,21 @@ func _jugar_en_gobierno(carta: Dictionary, ministro_id: String, region_id: Strin
 		if bool(d["anulada"]):
 			m.estado.registrar_accion("delegacion_anulada", {"carta": carta["id"], "ministro": ministro_id})
 			return res
-	elif ministro_id != "":
-		var mi: Dictionary = m.catalogo_ministros[ministro_id]
-		if mi["categoria_afin"] == carta["categoria"]:
+	elif _con_titular(carta, ministro_id) != "":
+		var auto := ministro_id == ""  # titular automático: el riesgo de escándalo cuenta solo en parte
+		var tid := _con_titular(carta, ministro_id)
+		var mi: Dictionary = m.catalogo_ministros[tid]
+		var ident: Dictionary = m.catalogo_leyes["gabinete"]["identidad"]
+		if mi["categoria_afin"] == carta["categoria"] or auto:
 			escala *= 1.0 + float(mi["bono_ejecucion"])
-		if m.rng.randf() < float(mi["riesgo_escandalo"]):
+		if m.eventos.relacion_actor(m.gabinete.slot_de(tid)) >= float(ident["estrella_sobre"]):
+			escala *= 1.0 + float(ident["estrella_bono"])  # ministro estrella: tu buena relación se nota
+		if m.rng.randf() < float(mi["riesgo_escandalo"]) * (float(ident["escala_riesgo_auto"]) if auto else 1.0):
 			res["escandalo"] = true
 			var esc: Dictionary = m.catalogo_leyes["escandalo"]
 			m.fx.delta_aprobacion(-float(esc["penal_aprobacion"]), "")
 			m.fx.sumar_ind("capital", -float(esc["penal_capital"]))
-			m.estado.registrar_accion("escandalo_ministro", {"ministro": ministro_id})
+			m.estado.registrar_accion("escandalo_ministro", {"ministro": tid})
 	if es_unica(carta):
 		m.estado.cartas_ejecutadas[String(carta["id"])] = true
 	var ley: Variant = carta["requisitos"]["ley"]
@@ -165,7 +178,20 @@ func _jugar_en_gobierno(carta: Dictionary, ministro_id: String, region_id: Strin
 		res["propuesta"] = prop
 	else:
 		_ejecutar_carta(carta, escala, region_id)
+	_consecuencias_carta(carta, res)
 	return res
+
+
+func _consecuencias_carta(carta: Dictionary, res: Dictionary) -> void:
+	## Cartas con riesgo (puede salir mal) o efecto a futuro (consecuencia programada): mismo modelo que las decisiones de eventos.
+	if carta.has("riesgo") and m.rng.randf() < float(carta["riesgo"]["prob"]):
+		res["salio_mal"] = true
+		for ef in carta["riesgo"]["efectos"]:
+			m.fx.aplicar_efecto(ef, 1.0, "")
+	if carta.has("diferido"):
+		var d: Dictionary = carta["diferido"]
+		res["futuro"] = int(d["semanas"])
+		m.estado.pendientes.append({"tipo": "efecto", "semana": m.eventos.semana_abs() + int(d["semanas"]), "origen": String(carta["id"]), "efectos": d["efectos"], "texto": String(d.get("texto", "")), "carta": true})
 
 
 func _ejecutar_carta(carta: Dictionary, escala: float, region_id: String) -> void:

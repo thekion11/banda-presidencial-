@@ -289,7 +289,7 @@ func _jugar() -> void:
 	elif r["corrector"].get("aplica", false):
 		msg = "Versión viable aplicada (%d %%)." % roundi(float(r["corrector"]["ratio"]) * 100.0)
 	var cambios := Barras.resumen_cambios(antes, motor.estado.indicadores)  # consecuencia visible de la carta
-	_avisar(msg if cambios == "" else msg + " " + cambios)
+	_avisar((msg if cambios == "" else msg + " " + cambios) + Barras.sufijo_carta(r))
 	accion_hecha.emit()
 	_refrescar()
 
@@ -365,6 +365,10 @@ func _siguiente_evento() -> void:
 	if _cola_eventos.is_empty():
 		return
 	var ev: Dictionary = _cola_eventos.pop_front()
+	if ev.get("menor", false):  # consecuencia de una carta: un aviso, no una pantalla completa
+		_avisar(Barras.texto_consecuencia(ev))
+		_siguiente_evento()
+		return
 	_capa.add_child(OverlaysDia.evento(ev, _siguiente_evento, motor.catalogo_leyes["congreso"]["nombres"], motor.estado.dia_actual,
 			func(i: int) -> void:
 				var a := motor.estado.indicadores.duplicate()

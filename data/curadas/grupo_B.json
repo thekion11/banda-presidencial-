@@ -1,0 +1,2343 @@
+[
+ {
+  "id": "cur_salud_teleconsulta_rural",
+  "categoria": "salud",
+  "costo_pa": 1,
+  "titulo": "Plan nacional de teleconsulta rural",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 2.5
+   },
+   {
+    "ind": "fiscal",
+    "delta": -0.5
+   }
+  ],
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Un médico en la pantalla, a cuatro horas de camino.",
+  "riesgo": {
+   "prob": 0.2,
+   "efectos": [
+    {
+     "ind": "aprobacion",
+     "delta": -1
+    }
+   ]
+  },
+  "diferido": {
+   "semanas": 8,
+   "texto": "La conectividad rural mejora y la teleconsulta se masifica.",
+   "efectos": [
+    {
+     "ind": "aprobacion",
+     "delta": 1.0
+    }
+   ]
+  }
+ },
+ {
+  "id": "cur_salud_listas_espera_pabellon",
+  "categoria": "salud",
+  "costo_pa": 2,
+  "titulo": "Pabellones extra para reducir listas de espera",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 4.0
+   },
+   {
+    "ind": "fiscal",
+    "delta": -2.0
+   },
+   {
+    "ind": "riesgo_ejecucion",
+    "delta": 1
+   }
+  ],
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Los fines de semana, el pabellón también trabaja.",
+  "diferido": {
+   "semanas": 6,
+   "texto": "Baja la lista de espera quirúrgica más antigua.",
+   "efectos": [
+    {
+     "ind": "aprobacion",
+     "delta": 1.0
+    }
+   ]
+  }
+ },
+ {
+  "id": "cur_salud_turnos_extendidos",
+  "categoria": "salud",
+  "costo_pa": 1,
+  "titulo": "Turnos extendidos en consultorios",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 2.0
+   },
+   {
+    "ind": "fiscal",
+    "delta": -0.5
+   },
+   {
+    "ind": "riesgo_ejecucion",
+    "delta": -1
+   }
+  ],
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Atender hasta las ocho de la tarde, cuando la gente sale del trabajo."
+ },
+ {
+  "id": "cur_salud_farmacia_comunal",
+  "categoria": "salud",
+  "costo_pa": 2,
+  "titulo": "Farmacias comunales con precio de costo",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 3.0
+   },
+   {
+    "ind": "fiscal",
+    "delta": -2.0
+   },
+   {
+    "ind": "capital",
+    "delta": 1.0
+   }
+  ],
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Un remedio más barato vale más que cien discursos."
+ },
+ {
+  "id": "cur_salud_reforma_seguro",
+  "categoria": "salud",
+  "costo_pa": 3,
+  "titulo": "Reforma al seguro de salud: fondo común",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": -2
+   },
+   {
+    "ind": "fiscal",
+    "delta": 4
+   },
+   {
+    "ind": "capital",
+    "delta": -1
+   },
+   {
+    "ind": "cohesion",
+    "delta": 1.0
+   }
+  ],
+  "requisitos": {
+   "ley": "quorum_calificado",
+   "quorum": "quorum_calificado"
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Quien más cotiza ayuda al que más necesita, y no todos lo celebran.",
+  "camara_origen": "camara",
+  "riesgo": {
+   "prob": 0.4,
+   "efectos": [
+    {
+     "ind": "aprobacion",
+     "delta": -2
+    }
+   ]
+  },
+  "diferido": {
+   "semanas": 20,
+   "texto": "El fondo común reduce las diferencias entre regiones.",
+   "efectos": [
+    {
+     "ind": "aprobacion",
+     "delta": 2.5
+    }
+   ]
+  }
+ },
+ {
+  "id": "cur_salud_atencion_primaria",
+  "categoria": "salud",
+  "costo_pa": 2,
+  "titulo": "Atención primaria con equipos de cabecera",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 2.5
+   },
+   {
+    "ind": "fiscal",
+    "delta": -2.5
+   },
+   {
+    "ind": "riesgo_ejecucion",
+    "delta": -1
+   },
+   {
+    "ind": "cohesion",
+    "delta": 1.0
+   }
+  ],
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Que cada familia conozca el nombre de su médico.",
+  "diferido": {
+   "semanas": 12,
+   "texto": "Menos urgencias colapsadas, ahorro sostenido.",
+   "efectos": [
+    {
+     "ind": "aprobacion",
+     "delta": 2.5
+    },
+    {
+     "ind": "fiscal",
+     "delta": 1
+    }
+   ]
+  }
+ },
+ {
+  "id": "cur_salud_vacunacion_escolar",
+  "categoria": "salud",
+  "costo_pa": 1,
+  "titulo": "Campaña de vacunación escolar",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 1.0
+   },
+   {
+    "ind": "cohesion",
+    "delta": 1.0
+   },
+   {
+    "ind": "fiscal",
+    "delta": -0.5
+   }
+  ],
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Un buzo, una fila y un pinchazo que evita un invierno de licencias."
+ },
+ {
+  "id": "cur_salud_cupos_convenio",
+  "categoria": "salud",
+  "costo_pa": 1,
+  "titulo": "Compra de cupos a clínicas por convenio",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 2.5
+   },
+   {
+    "ind": "fiscal",
+    "delta": -1.0
+   },
+   {
+    "ind": "capital",
+    "delta": -0.5
+   }
+  ],
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Resuelve la espera rápido, pero deja dudas sobre la red pública.",
+  "riesgo": {
+   "prob": 0.3,
+   "efectos": [
+    {
+     "ind": "aprobacion",
+     "delta": -2
+    }
+   ]
+  }
+ },
+ {
+  "id": "cur_salud_salud_mental",
+  "categoria": "salud",
+  "costo_pa": 2,
+  "titulo": "Ley de salud mental comunitaria",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 2.0
+   },
+   {
+    "ind": "cohesion",
+    "delta": 2.5
+   },
+   {
+    "ind": "fiscal",
+    "delta": -2.0
+   }
+  ],
+  "requisitos": {
+   "ley": "ley_simple",
+   "quorum": "ley_simple"
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Un psicólogo en el consultorio, no a seis meses de distancia.",
+  "camara_origen": "senado"
+ },
+ {
+  "id": "cur_salud_medicos_zonas_extremas",
+  "categoria": "salud",
+  "costo_pa": 2,
+  "titulo": "Dotación de médicos en zonas extremas",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 2.0
+   },
+   {
+    "ind": "fiscal",
+    "delta": -1.0
+   },
+   {
+    "ind": "cohesion",
+    "delta": 1.0
+   },
+   {
+    "ind": "riesgo_ejecucion",
+    "delta": 1
+   }
+  ],
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Un incentivo para que Putre y Puerto Williams no queden sin médico.",
+  "riesgo": {
+   "prob": 0.3,
+   "efectos": [
+    {
+     "ind": "aprobacion",
+     "delta": -1
+    },
+    {
+     "ind": "riesgo_ejecucion",
+     "delta": 1
+    }
+   ]
+  },
+  "diferido": {
+   "semanas": 10,
+   "texto": "Los médicos que llegaron se quedan y atienden más localidades.",
+   "efectos": [
+    {
+     "ind": "aprobacion",
+     "delta": 2.0
+    }
+   ]
+  }
+ },
+ {
+  "id": "cur_salud_hospital_digital",
+  "categoria": "salud",
+  "costo_pa": 3,
+  "titulo": "Hospital digital y ficha clínica nacional",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 2.5
+   },
+   {
+    "ind": "fiscal",
+    "delta": -3.5
+   },
+   {
+    "ind": "riesgo_ejecucion",
+    "delta": 2
+   },
+   {
+    "ind": "capital",
+    "delta": 1.0
+   }
+  ],
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Un solo expediente para cada paciente, de Arica a Punta Arenas.",
+  "riesgo": {
+   "prob": 0.35,
+   "efectos": [
+    {
+     "ind": "riesgo_ejecucion",
+     "delta": 2
+    },
+    {
+     "ind": "aprobacion",
+     "delta": -1
+    }
+   ]
+  },
+  "diferido": {
+   "semanas": 16,
+   "texto": "La ficha única ahorra exámenes repetidos.",
+   "efectos": [
+    {
+     "ind": "aprobacion",
+     "delta": 2.5
+    },
+    {
+     "ind": "fiscal",
+     "delta": 1
+    }
+   ]
+  }
+ },
+ {
+  "id": "cur_salud_auditoria_licencias",
+  "categoria": "salud",
+  "costo_pa": 1,
+  "titulo": "Auditoría a licencias médicas",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": -1
+   },
+   {
+    "ind": "fiscal",
+    "delta": 2
+   },
+   {
+    "ind": "capital",
+    "delta": 1.0
+   }
+  ],
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Revisar el abuso sin castigar al que de verdad está enfermo.",
+  "riesgo": {
+   "prob": 0.3,
+   "efectos": [
+    {
+     "ind": "capital",
+     "delta": -1
+    }
+   ]
+  }
+ },
+ {
+  "id": "cur_salud_medicamentos_alto_costo",
+  "categoria": "salud",
+  "costo_pa": 2,
+  "titulo": "Cobertura de medicamentos de alto costo",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 4.5
+   },
+   {
+    "ind": "fiscal",
+    "delta": -2.5
+   },
+   {
+    "ind": "cohesion",
+    "delta": 1.0
+   }
+  ],
+  "requisitos": {
+   "ley": "ley_simple",
+   "quorum": "ley_simple"
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Ninguna familia debería vender la casa por un tratamiento.",
+  "camara_origen": "camara"
+ },
+ {
+  "id": "cur_salud_samu_regional",
+  "categoria": "salud",
+  "costo_pa": 1,
+  "titulo": "Ambulancias y SAMU para cada región",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 1.0
+   },
+   {
+    "ind": "riesgo_ejecucion",
+    "delta": -1.5
+   },
+   {
+    "ind": "fiscal",
+    "delta": -0.5
+   }
+  ],
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Llegar en veinte minutos, no en dos horas."
+ },
+ {
+  "id": "cur_salud_copago_tope",
+  "categoria": "salud",
+  "costo_pa": 2,
+  "titulo": "Copago único con tope anual",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 2.5
+   },
+   {
+    "ind": "fiscal",
+    "delta": -0.5
+   },
+   {
+    "ind": "cohesion",
+    "delta": 1.0
+   },
+   {
+    "ind": "capital",
+    "delta": -0.5
+   }
+  ],
+  "requisitos": {
+   "ley": "ley_simple",
+   "quorum": "ley_simple"
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Una cuenta que nunca pase de cierto monto cambia la tranquilidad de un hogar.",
+  "camara_origen": "camara"
+ },
+ {
+  "id": "cur_educacion_tutorias_lectura",
+  "categoria": "educacion",
+  "costo_pa": 1,
+  "titulo": "Tutorías de lectura en primero básico",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 2.0
+   },
+   {
+    "ind": "cohesion",
+    "delta": 1.0
+   },
+   {
+    "ind": "fiscal",
+    "delta": -0.5
+   }
+  ],
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Leer a los seis años es llegar a tiempo.",
+  "diferido": {
+   "semanas": 12,
+   "texto": "Mejoran los resultados de lectura en cuarto básico.",
+   "efectos": [
+    {
+     "ind": "aprobacion",
+     "delta": 2.0
+    }
+   ]
+  }
+ },
+ {
+  "id": "cur_educacion_traspaso_slep",
+  "categoria": "educacion",
+  "costo_pa": 2,
+  "titulo": "Traspaso acelerado de escuelas a los SLEP",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": -1
+   },
+   {
+    "ind": "cohesion",
+    "delta": 2.0
+   },
+   {
+    "ind": "riesgo_ejecucion",
+    "delta": -1
+   }
+  ],
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Menos burocracia municipal, pero el cambio genera nervios en los colegios.",
+  "riesgo": {
+   "prob": 0.4,
+   "efectos": [
+    {
+     "ind": "riesgo_ejecucion",
+     "delta": 2
+    },
+    {
+     "ind": "aprobacion",
+     "delta": -1
+    }
+   ]
+  },
+  "diferido": {
+   "semanas": 14,
+   "texto": "Los servicios locales ya gestionan con más autonomía.",
+   "efectos": [
+    {
+     "ind": "aprobacion",
+     "delta": 2.5
+    }
+   ]
+  }
+ },
+ {
+  "id": "cur_educacion_alimentacion_escolar",
+  "categoria": "educacion",
+  "costo_pa": 1,
+  "titulo": "Más raciones: alimentación escolar ampliada",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 2.5
+   },
+   {
+    "ind": "fiscal",
+    "delta": -1.0
+   },
+   {
+    "ind": "cohesion",
+    "delta": 1.0
+   }
+  ],
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Nadie aprende bien con el estómago vacío."
+ },
+ {
+  "id": "cur_educacion_reforma_universidades",
+  "categoria": "educacion",
+  "costo_pa": 3,
+  "titulo": "Reforma al financiamiento universitario",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": -2
+   },
+   {
+    "ind": "fiscal",
+    "delta": 3
+   },
+   {
+    "ind": "capital",
+    "delta": -1
+   },
+   {
+    "ind": "cohesion",
+    "delta": 1.0
+   }
+  ],
+  "requisitos": {
+   "ley": "ley_organica_constitucional",
+   "quorum": "ley_organica_constitucional"
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Ordenar quién paga y quién se beneficia, con asambleas incluidas.",
+  "camara_origen": "senado",
+  "riesgo": {
+   "prob": 0.4,
+   "efectos": [
+    {
+     "ind": "capital",
+     "delta": -2
+    }
+   ]
+  },
+  "diferido": {
+   "semanas": 20,
+   "texto": "El nuevo esquema da certeza a las universidades.",
+   "efectos": [
+    {
+     "ind": "aprobacion",
+     "delta": 1.0
+    }
+   ]
+  }
+ },
+ {
+  "id": "cur_educacion_gratuidad_tecnica",
+  "categoria": "educacion",
+  "costo_pa": 2,
+  "titulo": "Gratuidad en carreras técnicas",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 4.0
+   },
+   {
+    "ind": "fiscal",
+    "delta": -2.5
+   },
+   {
+    "ind": "cohesion",
+    "delta": 1.0
+   }
+  ],
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Un título técnico, sin deudas, para el que quiere trabajar ya.",
+  "diferido": {
+   "semanas": 10,
+   "texto": "Sube la matrícula técnica y la mano de obra calificada.",
+   "efectos": [
+    {
+     "ind": "aprobacion",
+     "delta": 1.0
+    }
+   ]
+  }
+ },
+ {
+  "id": "cur_educacion_conectividad_rural",
+  "categoria": "educacion",
+  "costo_pa": 1,
+  "titulo": "Conectividad en escuelas rurales",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 1.0
+   },
+   {
+    "ind": "fiscal",
+    "delta": -0.5
+   },
+   {
+    "ind": "riesgo_ejecucion",
+    "delta": -0.5
+   },
+   {
+    "ind": "cohesion",
+    "delta": 1.0
+   }
+  ],
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Una antena en el cerro y una sala de computación que sí funciona."
+ },
+ {
+  "id": "cur_educacion_evaluacion_docente",
+  "categoria": "educacion",
+  "costo_pa": 2,
+  "titulo": "Evaluación docente con incentivos",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": -1
+   },
+   {
+    "ind": "capital",
+    "delta": -0.5
+   },
+   {
+    "ind": "riesgo_ejecucion",
+    "delta": -1.5
+   },
+   {
+    "ind": "fiscal",
+    "delta": -0.5
+   }
+  ],
+  "requisitos": {
+   "ley": "ley_simple",
+   "quorum": "ley_simple"
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Premiar la buena enseñanza y acompañar a quien necesita ayuda.",
+  "camara_origen": "camara",
+  "diferido": {
+   "semanas": 16,
+   "texto": "Los docentes mejor evaluados lideran los colegios.",
+   "efectos": [
+    {
+     "ind": "aprobacion",
+     "delta": 2.5
+    }
+   ]
+  }
+ },
+ {
+  "id": "cur_educacion_ausentismo_escolar",
+  "categoria": "educacion",
+  "costo_pa": 1,
+  "titulo": "Plan contra el ausentismo escolar",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 1.0
+   },
+   {
+    "ind": "cohesion",
+    "delta": 2.0
+   },
+   {
+    "ind": "riesgo_ejecucion",
+    "delta": 0.5
+   }
+  ],
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Llamar a casa antes de que un niño deje de venir."
+ },
+ {
+  "id": "cur_educacion_jornada_extendida",
+  "categoria": "educacion",
+  "costo_pa": 2,
+  "titulo": "Jornada escolar extendida con talleres",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 2.5
+   },
+   {
+    "ind": "fiscal",
+    "delta": -2.5
+   },
+   {
+    "ind": "cohesion",
+    "delta": -0.5
+   }
+  ],
+  "requisitos": {
+   "ley": "ley_simple",
+   "quorum": "ley_simple"
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Más horas en el colegio, menos tiempo en la calle, y un debate con los apoderados.",
+  "camara_origen": "senado",
+  "riesgo": {
+   "prob": 0.3,
+   "efectos": [
+    {
+     "ind": "aprobacion",
+     "delta": -2
+    }
+   ]
+  }
+ },
+ {
+  "id": "cur_educacion_subvencion_preferencial",
+  "categoria": "educacion",
+  "costo_pa": 2,
+  "titulo": "Reajuste de la subvención preferencial",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 2.0
+   },
+   {
+    "ind": "capital",
+    "delta": 1.0
+   },
+   {
+    "ind": "fiscal",
+    "delta": -2.0
+   }
+  ],
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Más recursos para quienes más lo necesitan, con rendición de cuentas."
+ },
+ {
+  "id": "cur_educacion_convivencia_escolar",
+  "categoria": "educacion",
+  "costo_pa": 2,
+  "titulo": "Mediación y convivencia en los colegios",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 2.0
+   },
+   {
+    "ind": "cohesion",
+    "delta": 2.5
+   },
+   {
+    "ind": "riesgo_ejecucion",
+    "delta": 1
+   }
+  ],
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Aprender a resolver conflictos sin llegar a los golpes."
+ },
+ {
+  "id": "cur_educacion_bono_zonas_aisladas",
+  "categoria": "educacion",
+  "costo_pa": 1,
+  "titulo": "Bono de retención docente en zonas aisladas",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 1.0
+   },
+   {
+    "ind": "fiscal",
+    "delta": -1.0
+   },
+   {
+    "ind": "cohesion",
+    "delta": 1.0
+   },
+   {
+    "ind": "riesgo_ejecucion",
+    "delta": -1
+   }
+  ],
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "El profesor se queda si el camino y el sueldo ayudan."
+ },
+ {
+  "id": "cur_educacion_infraestructura_escolar",
+  "categoria": "educacion",
+  "costo_pa": 3,
+  "titulo": "Plan de infraestructura escolar nacional",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 3.0
+   },
+   {
+    "ind": "fiscal",
+    "delta": -3.5
+   },
+   {
+    "ind": "riesgo_ejecucion",
+    "delta": 2
+   },
+   {
+    "ind": "capital",
+    "delta": 1.0
+   }
+  ],
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Salas nuevas, techos sin goteras y calefacción de verdad.",
+  "diferido": {
+   "semanas": 14,
+   "texto": "Las escuelas renovadas atraen y retienen matrícula.",
+   "efectos": [
+    {
+     "ind": "aprobacion",
+     "delta": 2.5
+    }
+   ]
+  }
+ },
+ {
+  "id": "cur_educacion_ley_tecnico_profesional",
+  "categoria": "educacion",
+  "costo_pa": 2,
+  "titulo": "Ley de reconocimiento de la educación técnica",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 1.0
+   },
+   {
+    "ind": "cohesion",
+    "delta": 1.0
+   },
+   {
+    "ind": "capital",
+    "delta": 1.0
+   },
+   {
+    "ind": "fiscal",
+    "delta": -1.0
+   }
+  ],
+  "requisitos": {
+   "ley": "ley_simple",
+   "quorum": "ley_simple"
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Un liceo técnico que abra puertas, no que las cierre.",
+  "camara_origen": "senado"
+ },
+ {
+  "id": "cur_educacion_nivelacion_matematica",
+  "categoria": "educacion",
+  "costo_pa": 1,
+  "titulo": "Becas de nivelación en matemática",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 1.0
+   },
+   {
+    "ind": "fiscal",
+    "delta": -0.5
+   },
+   {
+    "ind": "riesgo_ejecucion",
+    "delta": -1
+   }
+  ],
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Una segunda oportunidad para entender las fracciones.",
+  "diferido": {
+   "semanas": 10,
+   "texto": "Suben los resultados de matemática en educación media.",
+   "efectos": [
+    {
+     "ind": "aprobacion",
+     "delta": 1.0
+    }
+   ]
+  }
+ },
+ {
+  "id": "cur_social_subsidio_electrico",
+  "categoria": "social",
+  "costo_pa": 1,
+  "titulo": "Subsidio eléctrico focalizado",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 2.5
+   },
+   {
+    "ind": "fiscal",
+    "delta": -1.0
+   },
+   {
+    "ind": "cohesion",
+    "delta": 1.0
+   }
+  ],
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Menos cuentas de luz en el invierno de las familias más vulnerables."
+ },
+ {
+  "id": "cur_social_pensiones_aporte",
+  "categoria": "social",
+  "costo_pa": 2,
+  "titulo": "Reforma de pensiones: aporte del empleador",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": -1
+   },
+   {
+    "ind": "fiscal",
+    "delta": 3
+   },
+   {
+    "ind": "capital",
+    "delta": -1.5
+   },
+   {
+    "ind": "cohesion",
+    "delta": 2.0
+   }
+  ],
+  "requisitos": {
+   "ley": "quorum_calificado",
+   "quorum": "quorum_calificado"
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Un aporte más por cada trabajador, con debate en las cámaras.",
+  "camara_origen": "senado",
+  "riesgo": {
+   "prob": 0.4,
+   "efectos": [
+    {
+     "ind": "aprobacion",
+     "delta": -2
+    }
+   ]
+  },
+  "diferido": {
+   "semanas": 24,
+   "texto": "Las pensiones futuras mejoran de manera sostenida.",
+   "efectos": [
+    {
+     "ind": "aprobacion",
+     "delta": 2.5
+    },
+    {
+     "ind": "fiscal",
+     "delta": 1
+    }
+   ]
+  }
+ },
+ {
+  "id": "cur_social_pension_garantizada",
+  "categoria": "social",
+  "costo_pa": 3,
+  "titulo": "Pensión garantizada reajustada",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 5
+   },
+   {
+    "ind": "fiscal",
+    "delta": -3.5
+   },
+   {
+    "ind": "capital",
+    "delta": 1.0
+   }
+  ],
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Un piso más alto para los adultos mayores con menos recursos."
+ },
+ {
+  "id": "cur_social_red_cuidadoras",
+  "categoria": "social",
+  "costo_pa": 2,
+  "titulo": "Red local de apoyo a cuidadoras",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 2.5
+   },
+   {
+    "ind": "cohesion",
+    "delta": 2.5
+   },
+   {
+    "ind": "fiscal",
+    "delta": -2.0
+   }
+  ],
+  "requisitos": {
+   "ley": "ley_simple",
+   "quorum": "ley_simple"
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Quien cuida a otros también merece descanso.",
+  "camara_origen": "camara"
+ },
+ {
+  "id": "cur_social_empleo_mayores_50",
+  "categoria": "social",
+  "costo_pa": 1,
+  "titulo": "Programa de empleo para mayores de 50",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 2.0
+   },
+   {
+    "ind": "fiscal",
+    "delta": -0.5
+   },
+   {
+    "ind": "cohesion",
+    "delta": 1.0
+   },
+   {
+    "ind": "riesgo_ejecucion",
+    "delta": 0.5
+   }
+  ],
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "La experiencia también contrata."
+ },
+ {
+  "id": "cur_social_registro_social",
+  "categoria": "social",
+  "costo_pa": 2,
+  "titulo": "Depuración del Registro Social de Hogares",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": -0.5
+   },
+   {
+    "ind": "fiscal",
+    "delta": 1.5
+   },
+   {
+    "ind": "riesgo_ejecucion",
+    "delta": -1
+   },
+   {
+    "ind": "capital",
+    "delta": 1.0
+   }
+  ],
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Ordenar los datos para que la ayuda llegue a quien corresponde.",
+  "riesgo": {
+   "prob": 0.3,
+   "efectos": [
+    {
+     "ind": "aprobacion",
+     "delta": -2
+    }
+   ]
+  }
+ },
+ {
+  "id": "cur_social_ingreso_minimo",
+  "categoria": "social",
+  "costo_pa": 3,
+  "titulo": "Ingreso mínimo garantizado",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 4.0
+   },
+   {
+    "ind": "fiscal",
+    "delta": -4.0
+   },
+   {
+    "ind": "cohesion",
+    "delta": 1.0
+   },
+   {
+    "ind": "capital",
+    "delta": -1
+   }
+  ],
+  "requisitos": {
+   "ley": "ley_simple",
+   "quorum": "ley_simple"
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Un colchón para tiempos difíciles, con un costo grande.",
+  "camara_origen": "camara",
+  "riesgo": {
+   "prob": 0.35,
+   "efectos": [
+    {
+     "ind": "aprobacion",
+     "delta": -2
+    }
+   ]
+  },
+  "diferido": {
+   "semanas": 12,
+   "texto": "El colchón sostiene el consumo en la crisis.",
+   "efectos": [
+    {
+     "ind": "aprobacion",
+     "delta": 1.0
+    }
+   ]
+  }
+ },
+ {
+  "id": "cur_social_abandono_mayores",
+  "categoria": "social",
+  "costo_pa": 1,
+  "titulo": "Campaña contra el abandono de adultos mayores",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 1.0
+   },
+   {
+    "ind": "cohesion",
+    "delta": 2.0
+   }
+  ],
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Una visita a tiempo evita muchas soledades."
+ },
+ {
+  "id": "cur_social_sala_cuna",
+  "categoria": "social",
+  "costo_pa": 2,
+  "titulo": "Sala cuna universal",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 3.0
+   },
+   {
+    "ind": "fiscal",
+    "delta": -2.5
+   },
+   {
+    "ind": "cohesion",
+    "delta": 2.0
+   },
+   {
+    "ind": "capital",
+    "delta": 1.0
+   }
+  ],
+  "requisitos": {
+   "ley": "ley_simple",
+   "quorum": "ley_simple"
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Una sala cuna para cada trabajadora y cada trabajador.",
+  "camara_origen": "senado",
+  "diferido": {
+   "semanas": 18,
+   "texto": "Más madres vuelven al trabajo con tranquilidad.",
+   "efectos": [
+    {
+     "ind": "aprobacion",
+     "delta": 2.0
+    }
+   ]
+  }
+ },
+ {
+  "id": "cur_social_bono_invierno",
+  "categoria": "social",
+  "costo_pa": 1,
+  "titulo": "Bono de invierno para adultos mayores",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 3.0
+   },
+   {
+    "ind": "fiscal",
+    "delta": -0.5
+   }
+  ],
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Un respiro cuando llega el frío."
+ },
+ {
+  "id": "cur_social_primera_infancia_ong",
+  "categoria": "social",
+  "costo_pa": 2,
+  "titulo": "Alianza con ONG para la primera infancia",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 2.0
+   },
+   {
+    "ind": "cohesion",
+    "delta": 1.0
+   },
+   {
+    "ind": "fiscal",
+    "delta": -0.5
+   },
+   {
+    "ind": "capital",
+    "delta": 1.0
+   }
+  ],
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Los jardines comunitarios llegan donde el Estado aún no llega."
+ },
+ {
+  "id": "cur_social_fiscalizar_beneficios",
+  "categoria": "social",
+  "costo_pa": 1,
+  "titulo": "Fiscalización de beneficios mal cobrados",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": -1
+   },
+   {
+    "ind": "fiscal",
+    "delta": 2
+   },
+   {
+    "ind": "cohesion",
+    "delta": -0.5
+   }
+  ],
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Devolver lo que no corresponde y cuidar a quien sí lo necesita.",
+  "riesgo": {
+   "prob": 0.3,
+   "efectos": [
+    {
+     "ind": "aprobacion",
+     "delta": -2
+    }
+   ]
+  }
+ },
+ {
+  "id": "cur_social_reinsercion_jovenes",
+  "categoria": "social",
+  "costo_pa": 2,
+  "titulo": "Reinserción laboral para jóvenes sin estudios",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 1.0
+   },
+   {
+    "ind": "cohesion",
+    "delta": 2.0
+   },
+   {
+    "ind": "fiscal",
+    "delta": -2.0
+   },
+   {
+    "ind": "riesgo_ejecucion",
+    "delta": 1
+   }
+  ],
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Un oficio y una segunda oportunidad.",
+  "diferido": {
+   "semanas": 14,
+   "texto": "Los jóvenes capacitados se emplean y pagan impuestos.",
+   "efectos": [
+    {
+     "ind": "aprobacion",
+     "delta": 1.0
+    },
+    {
+     "ind": "fiscal",
+     "delta": 1
+    }
+   ]
+  }
+ },
+ {
+  "id": "cur_social_seguro_cesantia",
+  "categoria": "social",
+  "costo_pa": 3,
+  "titulo": "Seguro de cesantía con tramos de reinserción",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 2.5
+   },
+   {
+    "ind": "fiscal",
+    "delta": -2.5
+   },
+   {
+    "ind": "capital",
+    "delta": 1.0
+   },
+   {
+    "ind": "cohesion",
+    "delta": 1.0
+   }
+  ],
+  "requisitos": {
+   "ley": "ley_simple",
+   "quorum": "ley_simple"
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Que quien pierde su trabajo no pierda además su tranquilidad.",
+  "camara_origen": "camara",
+  "riesgo": {
+   "prob": 0.3,
+   "efectos": [
+    {
+     "ind": "aprobacion",
+     "delta": -2
+    }
+   ]
+  }
+ },
+ {
+  "id": "cur_social_inclusion_discapacidad",
+  "categoria": "social",
+  "costo_pa": 1,
+  "titulo": "Programa de inclusión para personas con discapacidad",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 1.0
+   },
+   {
+    "ind": "cohesion",
+    "delta": 2.5
+   },
+   {
+    "ind": "fiscal",
+    "delta": -0.5
+   },
+   {
+    "ind": "riesgo_ejecucion",
+    "delta": 0.5
+   }
+  ],
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Accesibilidad también es una política económica."
+ },
+ {
+  "id": "cur_vivienda_campamentos_sitios",
+  "categoria": "vivienda",
+  "costo_pa": 2,
+  "titulo": "Urbanización de sitios en campamentos",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 2.5
+   },
+   {
+    "ind": "cohesion",
+    "delta": 1.0
+   },
+   {
+    "ind": "fiscal",
+    "delta": -2.5
+   },
+   {
+    "ind": "viviendas_anio",
+    "delta": 3000
+   }
+  ],
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Agua, luz y alcantarillado para cientos de familias.",
+  "diferido": {
+   "semanas": 12,
+   "texto": "Las familias consolidan sus barrios y se regularizan.",
+   "efectos": [
+    {
+     "ind": "aprobacion",
+     "delta": 2.0
+    }
+   ]
+  }
+ },
+ {
+  "id": "cur_vivienda_arriendo_joven",
+  "categoria": "vivienda",
+  "costo_pa": 1,
+  "titulo": "Subsidio de arriendo joven",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 2.5
+   },
+   {
+    "ind": "fiscal",
+    "delta": -1.0
+   },
+   {
+    "ind": "viviendas_anio",
+    "delta": 1000
+   }
+  ],
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Alquilar sin ahogarse, para quien recién parte."
+ },
+ {
+  "id": "cur_vivienda_emergencia_habitacional",
+  "categoria": "vivienda",
+  "costo_pa": 3,
+  "titulo": "Plan de emergencia habitacional ampliado",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 4.0
+   },
+   {
+    "ind": "fiscal",
+    "delta": -4.0
+   },
+   {
+    "ind": "viviendas_anio",
+    "delta": 10000
+   },
+   {
+    "ind": "riesgo_ejecucion",
+    "delta": 2
+   }
+  ],
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Miles de viviendas, con obras que deben terminarse a tiempo.",
+  "riesgo": {
+   "prob": 0.4,
+   "efectos": [
+    {
+     "ind": "aprobacion",
+     "delta": -2
+    },
+    {
+     "ind": "riesgo_ejecucion",
+     "delta": 1
+    }
+   ]
+  }
+ },
+ {
+  "id": "cur_vivienda_integracion_urbana",
+  "categoria": "vivienda",
+  "costo_pa": 2,
+  "titulo": "Ley de integración social urbana",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 1.0
+   },
+   {
+    "ind": "cohesion",
+    "delta": 2.5
+   },
+   {
+    "ind": "viviendas_anio",
+    "delta": 4000
+   },
+   {
+    "ind": "capital",
+    "delta": -1
+   }
+  ],
+  "requisitos": {
+   "ley": "ley_simple",
+   "quorum": "ley_simple"
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Barrios donde convivan hogares de todos los ingresos.",
+  "camara_origen": "camara",
+  "diferido": {
+   "semanas": 20,
+   "texto": "Los nuevos barrios se integran y bajan los costos de transporte.",
+   "efectos": [
+    {
+     "ind": "viviendas_anio",
+     "delta": 1500
+    }
+   ]
+  }
+ },
+ {
+  "id": "cur_vivienda_banco_suelo",
+  "categoria": "vivienda",
+  "costo_pa": 1,
+  "titulo": "Banco de suelo fiscal para vivienda",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 1.0
+   },
+   {
+    "ind": "fiscal",
+    "delta": -0.5
+   },
+   {
+    "ind": "viviendas_anio",
+    "delta": 2000
+   },
+   {
+    "ind": "capital",
+    "delta": 1.0
+   }
+  ],
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Terreno público disponible para construir donde hace falta."
+ },
+ {
+  "id": "cur_vivienda_reparacion_antiguas",
+  "categoria": "vivienda",
+  "costo_pa": 2,
+  "titulo": "Reparación de viviendas sociales antiguas",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 3.0
+   },
+   {
+    "ind": "fiscal",
+    "delta": -2.0
+   },
+   {
+    "ind": "cohesion",
+    "delta": 1.0
+   },
+   {
+    "ind": "riesgo_ejecucion",
+    "delta": 1
+   }
+  ],
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Techos, ventanas y sellos que llevan veinte años pendientes."
+ },
+ {
+  "id": "cur_vivienda_ventanilla_permisos",
+  "categoria": "vivienda",
+  "costo_pa": 1,
+  "titulo": "Ventanilla única de permisos de edificación",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 1.0
+   },
+   {
+    "ind": "riesgo_ejecucion",
+    "delta": -2
+   },
+   {
+    "ind": "viviendas_anio",
+    "delta": 1500
+   }
+  ],
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Un trámite, no doce, para construir."
+ },
+ {
+  "id": "cur_vivienda_cooperativas",
+  "categoria": "vivienda",
+  "costo_pa": 2,
+  "titulo": "Cooperativas de vivienda",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 2.0
+   },
+   {
+    "ind": "cohesion",
+    "delta": 2.0
+   },
+   {
+    "ind": "fiscal",
+    "delta": -1.0
+   },
+   {
+    "ind": "viviendas_anio",
+    "delta": 2500
+   }
+  ],
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Familias que se organizan y construyen juntas.",
+  "diferido": {
+   "semanas": 10,
+   "texto": "Las primeras cooperativas entregan sus viviendas.",
+   "efectos": [
+    {
+     "ind": "viviendas_anio",
+     "delta": 1000
+    }
+   ]
+  }
+ },
+ {
+  "id": "cur_vivienda_titulos_dominio",
+  "categoria": "vivienda",
+  "costo_pa": 1,
+  "titulo": "Regularización de títulos de dominio",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 2.5
+   },
+   {
+    "ind": "cohesion",
+    "delta": 1.0
+   },
+   {
+    "ind": "viviendas_anio",
+    "delta": 1200
+   }
+  ],
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Una escritura vale más que una promesa."
+ },
+ {
+  "id": "cur_vivienda_densificar_metro",
+  "categoria": "vivienda",
+  "costo_pa": 2,
+  "titulo": "Densificación en torno al metro",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 1.0
+   },
+   {
+    "ind": "fiscal",
+    "delta": 1
+   },
+   {
+    "ind": "viviendas_anio",
+    "delta": 5000
+   },
+   {
+    "ind": "cohesion",
+    "delta": -1
+   }
+  ],
+  "requisitos": {
+   "ley": "ley_simple",
+   "quorum": "ley_simple"
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Más vivienda cerca del transporte, con vecinos que se oponen.",
+  "camara_origen": "senado",
+  "riesgo": {
+   "prob": 0.35,
+   "efectos": [
+    {
+     "ind": "aprobacion",
+     "delta": -2
+    }
+   ]
+  }
+ },
+ {
+  "id": "cur_vivienda_barrios_reconstruccion",
+  "categoria": "vivienda",
+  "costo_pa": 3,
+  "titulo": "Programa de barrios en reconstrucción",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 2.5
+   },
+   {
+    "ind": "fiscal",
+    "delta": -3.5
+   },
+   {
+    "ind": "cohesion",
+    "delta": 2.5
+   },
+   {
+    "ind": "viviendas_anio",
+    "delta": 6000
+   }
+  ],
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Recuperar barrios completos, no solo casas.",
+  "diferido": {
+   "semanas": 16,
+   "texto": "Los barrios recuperados atraen comercio y servicios.",
+   "efectos": [
+    {
+     "ind": "aprobacion",
+     "delta": 2.5
+    }
+   ]
+  }
+ },
+ {
+  "id": "cur_vivienda_mesa_inmobiliarias",
+  "categoria": "vivienda",
+  "costo_pa": 1,
+  "titulo": "Mesa con inmobiliarias por precios",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 1.0
+   },
+   {
+    "ind": "capital",
+    "delta": 1.0
+   },
+   {
+    "ind": "viviendas_anio",
+    "delta": 1500
+   }
+  ],
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Un acuerdo voluntario, con más confianza que garantías.",
+  "riesgo": {
+   "prob": 0.3,
+   "efectos": [
+    {
+     "ind": "capital",
+     "delta": -1.5
+    }
+   ]
+  }
+ },
+ {
+  "id": "cur_vivienda_subsidio_pie",
+  "categoria": "vivienda",
+  "costo_pa": 2,
+  "titulo": "Subsidio a la clase media para el pie",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 4.0
+   },
+   {
+    "ind": "fiscal",
+    "delta": -2.5
+   },
+   {
+    "ind": "viviendas_anio",
+    "delta": 3500
+   },
+   {
+    "ind": "capital",
+    "delta": -0.5
+   }
+  ],
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Ayuda al pie, pero puede subir los precios.",
+  "diferido": {
+   "semanas": 8,
+   "texto": "Los precios suben y parte del beneficio se diluye.",
+   "efectos": [
+    {
+     "ind": "aprobacion",
+     "delta": -1
+    }
+   ]
+  }
+ },
+ {
+  "id": "cur_vivienda_mejoramiento_condominios",
+  "categoria": "vivienda",
+  "costo_pa": 1,
+  "titulo": "Fondo de mejoramiento de condominios",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 2.0
+   },
+   {
+    "ind": "fiscal",
+    "delta": -0.5
+   },
+   {
+    "ind": "cohesion",
+    "delta": 1.0
+   },
+   {
+    "ind": "viviendas_anio",
+    "delta": 500
+   }
+  ],
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Ascensores, fachadas y áreas comunes en los blocks."
+ },
+ {
+  "id": "cur_vivienda_dialogo_tomas",
+  "categoria": "vivienda",
+  "costo_pa": 2,
+  "titulo": "Fiscalización de tomas y mesa de diálogo",
+  "efectos": [
+   {
+    "ind": "aprobacion",
+    "delta": 1.0
+   },
+   {
+    "ind": "cohesion",
+    "delta": 1.0
+   },
+   {
+    "ind": "riesgo_ejecucion",
+    "delta": 1
+   },
+   {
+    "ind": "capital",
+    "delta": -0.5
+   }
+  ],
+  "requisitos": {
+   "ley": null,
+   "quorum": null
+  },
+  "corrector": null,
+  "abre_propuesta_comite": null,
+  "fuente": "fuentes.json#ficticio_2026",
+  "curada": true,
+  "cifras_ilustrativas": true,
+  "sabor": "Cumplir la ley y buscar una solución habitacional.",
+  "riesgo": {
+   "prob": 0.4,
+   "efectos": [
+    {
+     "ind": "aprobacion",
+     "delta": -3
+    }
+   ]
+  }
+ }
+]
