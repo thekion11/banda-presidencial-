@@ -18,6 +18,8 @@ var _nombre: LineEdit
 var _sigla: LineEdit
 var _region: OptionButton
 var _dificultad: OptionButton
+var _habilidad: OptionButton
+var _color: String = ""
 
 
 func _ready() -> void:
@@ -176,18 +178,26 @@ func _mostrar_fundacion() -> void:
 	fh.add_child(fv)
 	ficha.add_child(fh)
 	_contenido.add_child(ficha)
-	_contenido.add_child(Tema.etiqueta("Nombre del partido", 12, Tema.TEXTO_SUAVE))
+	var scroll := ScrollContainer.new()  # el formulario crece (habilidad, color, dificultad): se desplaza y el botón principal queda fijo
+	scroll.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+	var form := VBoxContainer.new()
+	form.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	form.add_theme_constant_override("separation", 8)
+	scroll.add_child(form)
+	_contenido.add_child(scroll)
+	form.add_child(Tema.etiqueta("Nombre del partido", 12, Tema.TEXTO_SUAVE))
 	_nombre = LineEdit.new()
 	_nombre.text = "Movimiento Cívico Austral"
 	_nombre.max_length = 32
 	_nombre.custom_minimum_size = Vector2(0, 48)
-	_contenido.add_child(_nombre)
-	_contenido.add_child(Tema.etiqueta("Sigla (hasta 5 letras)", 12, Tema.TEXTO_SUAVE))
+	form.add_child(_nombre)
+	form.add_child(Tema.etiqueta("Sigla (hasta 5 letras)", 12, Tema.TEXTO_SUAVE))
 	_sigla = LineEdit.new()
 	_sigla.text = "MCA"
 	_sigla.max_length = 5
 	_sigla.custom_minimum_size = Vector2(0, 48)
-	_contenido.add_child(_sigla)
+	form.add_child(_sigla)
 	if afiliacion == "independiente":
 		_nombre.text = "Candidatura Independiente"
 		_sigla.text = "IND"
@@ -201,7 +211,7 @@ func _mostrar_fundacion() -> void:
 	nombre_prev.text = _nombre.text
 	_nombre.text_changed.connect(func(t: String) -> void: nombre_prev.text = t)
 	_sigla.text_changed.connect(func(t: String) -> void: emblema.text = t.to_upper())
-	_contenido.add_child(Tema.etiqueta("Región bastión (+ aprobación inicial)", 12, Tema.TEXTO_SUAVE))
+	form.add_child(Tema.etiqueta("Región bastión (+ aprobación inicial)", 12, Tema.TEXTO_SUAVE))
 	_region = OptionButton.new()
 	_region.custom_minimum_size = Vector2(0, 48)
 	for r in datos["regiones"]:
@@ -209,8 +219,40 @@ func _mostrar_fundacion() -> void:
 		_region.set_item_metadata(_region.item_count - 1, String(r["id"]))
 		if r["id"] == "metropolitana":
 			_region.select(_region.item_count - 1)
-	_contenido.add_child(_region)
-	_contenido.add_child(Tema.etiqueta("Dificultad", 12, Tema.TEXTO_SUAVE))
+	form.add_child(_region)
+	form.add_child(Tema.etiqueta("Tu habilidad personal", 12, Tema.TEXTO_SUAVE))
+	var hab: Dictionary = datos["leyes"]["habilidades"]
+	_habilidad = OptionButton.new()
+	_habilidad.custom_minimum_size = Vector2(0, 48)
+	for k in hab["opciones"]:
+		_habilidad.add_item(String(hab["opciones"][k]["nombre"]))
+		_habilidad.set_item_metadata(_habilidad.item_count - 1, String(k))
+		if k == hab["defecto"]:
+			_habilidad.select(_habilidad.item_count - 1)
+	form.add_child(_habilidad)
+	var hdesc := Tema.etiqueta("", 11, Tema.TEXTO_SUAVE)
+	hdesc.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	var _mh := func(_i: int = 0) -> void: hdesc.text = String(hab["opciones"][String(_habilidad.get_item_metadata(_habilidad.selected))]["descripcion"])
+	_habilidad.item_selected.connect(_mh)
+	_mh.call()
+	form.add_child(hdesc)
+	form.add_child(Tema.etiqueta("Color de tu emblema", 12, Tema.TEXTO_SUAVE))
+	var fila_col := HBoxContainer.new()
+	fila_col.add_theme_constant_override("separation", 6)
+	_color = String(hab["colores"][0])
+	for hexa in hab["colores"]:
+		var bc := Button.new()
+		bc.custom_minimum_size = Vector2(44, 44)
+		bc.add_theme_stylebox_override("normal", Tema.caja(Color(String(hexa)), 22))
+		bc.add_theme_stylebox_override("hover", Tema.caja(Color(String(hexa)).lightened(0.15), 22))
+		bc.add_theme_stylebox_override("pressed", Tema.caja(Color(String(hexa)), 22, Tema.CREMA, 3))
+		bc.focus_mode = Control.FOCUS_NONE
+		bc.pressed.connect(func() -> void:
+			_color = String(hexa)
+			emblema.add_theme_stylebox_override("normal", Tema.caja_degradada(Color(_color).lightened(0.25), Color(_color).darkened(0.15), 36, Color("#FFF0B8"), 3)))
+		fila_col.add_child(bc)
+	form.add_child(fila_col)
+	form.add_child(Tema.etiqueta("Dificultad", 12, Tema.TEXTO_SUAVE))
 	_dificultad = OptionButton.new()
 	_dificultad.custom_minimum_size = Vector2(0, 48)
 	var niveles: Dictionary = datos["leyes"]["dificultad"]["niveles"]
@@ -219,16 +261,13 @@ func _mostrar_fundacion() -> void:
 		_dificultad.set_item_metadata(_dificultad.item_count - 1, String(k))
 		if k == datos["leyes"]["dificultad"]["defecto"]:
 			_dificultad.select(_dificultad.item_count - 1)
-	_contenido.add_child(_dificultad)
+	form.add_child(_dificultad)
 	var desc := Tema.etiqueta("", 11, Tema.TEXTO_SUAVE)
 	desc.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	var _mostrar := func(_i: int = 0) -> void: desc.text = String(niveles[String(_dificultad.get_item_metadata(_dificultad.selected))]["descripcion"])
 	_dificultad.item_selected.connect(_mostrar)
 	_mostrar.call()
-	_contenido.add_child(desc)
-	var esp := Control.new()
-	esp.size_flags_vertical = Control.SIZE_EXPAND_FILL
-	_contenido.add_child(esp)
+	form.add_child(desc)
 	var ir := Tema.boton("Iniciar Campaña · %d Semanas" % int(datos["leyes"]["hemiciclo"]["semanas_campana"]), Tema.ROJO)
 	ir.pressed.connect(_fundar)
 	_contenido.add_child(ir)
@@ -244,4 +283,5 @@ func _fundar() -> void:
 	var region := String(_region.get_item_metadata(_region.selected))
 	var partido := GeneradorPartido.construir_partido_afiliado(afiliacion, base, nombre, sigla, region, _respuestas, datos["ideologia"], datos["leyes"]["afiliacion"])
 	partido["dificultad"] = String(_dificultad.get_item_metadata(_dificultad.selected))
+	GeneradorPartido.aplicar_habilidad(partido, String(_habilidad.get_item_metadata(_habilidad.selected)), _color, datos["leyes"]["habilidades"])
 	fundado.emit(partido)

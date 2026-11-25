@@ -39,6 +39,13 @@ func _init() -> void:
 	m3.estado.eventos_ocurridos["evt_vecino_arg_crisis"] = 1
 	_check(m3.eventos.relacion_exterior("ARG", 62.0) < rel0, "una crisis en Argentina baja la relación")
 	_check(m3.eventos.relacion_exterior("BRA", 66.0) == 66.0, "otros países no cambian")
+	# PR-16/PR-15: habilidad y color del emblema
+	var pp := GeneradorPartido.construir_partido("X", "XXX", "metropolitana", resp, datos["ideologia"])
+	var cap0 := float(pp["indicadores_iniciales"]["capital"])
+	GeneradorPartido.aplicar_habilidad(pp, "gestor", "#3D7EA6", datos["leyes"]["habilidades"])
+	_check(float(pp["indicadores_iniciales"]["capital"]) > cap0 and pp["habilidad"] == "gestor" and pp["color_emblema"] == "#3D7EA6", "la habilidad suma capital y guarda el color")
+	GeneradorPartido.aplicar_habilidad(pp, "inexistente", "#000000", datos["leyes"]["habilidades"])
+	_check(pp["habilidad"] == "negociador" and pp["color_emblema"] == "#C23B2E", "valores inválidos vuelven al defecto")
 	print("test_afiliacion: ", "OK" if _fallos == 0 else "FALLO")
 	quit(1 if _fallos > 0 else 0)
 

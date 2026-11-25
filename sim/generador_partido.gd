@@ -58,6 +58,17 @@ static func construir_partido_afiliado(afiliacion: String, base: Dictionary, nom
 	return p
 
 
+static func aplicar_habilidad(partido: Dictionary, habilidad: String, color: String, cfg: Dictionary) -> void:
+	## PR-16/PR-15: la habilidad suma a los indicadores iniciales (datos en leyes.json «habilidades»); el color es solo apariencia (debe estar en la paleta).
+	var op: Dictionary = cfg["opciones"].get(habilidad, cfg["opciones"][cfg["defecto"]])
+	var ind: Dictionary = partido["indicadores_iniciales"]
+	for k in ["aprobacion", "capital", "cohesion", "fiscal"]:
+		if op.has(k):
+			ind[k] = clampf(float(ind[k]) + float(op[k]), 0.0, 100.0)
+	partido["habilidad"] = habilidad if cfg["opciones"].has(habilidad) else String(cfg["defecto"])
+	partido["color_emblema"] = color if (cfg["colores"] as Array).has(color) else String(cfg["colores"][0])
+
+
 static func construir_partido(
 		nombre: String,
 		sigla: String,

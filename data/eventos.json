@@ -1619,5 +1619,1023 @@
         ]
       }
     ]
+  },
+  {
+    "id": "evt_presup_decision_a1",
+    "tipo": "programado",
+    "dia_objetivo": 210,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 1.0,
+    "titulo": "Ley de Presupuestos, año 1: ¿qué priorizas?",
+    "descripcion": "Debes decidir cómo repartir el gasto del próximo año. El Congreso solo podrá reducirlo.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "gobierno",
+    "fuente": "fuentes.json#ficticio_2026",
+    "opciones": [
+      {
+        "texto": "Priorizar salud y educación",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 3
+          },
+          {
+            "ind": "fiscal",
+            "delta": -3
+          }
+        ]
+      },
+      {
+        "texto": "Priorizar inversión en obras",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          },
+          {
+            "ind": "fiscal",
+            "delta": -2
+          },
+          {
+            "ind": "cohesion",
+            "delta": 1
+          }
+        ]
+      },
+      {
+        "texto": "Presupuesto austero",
+        "efectos": [
+          {
+            "ind": "fiscal",
+            "delta": 3
+          },
+          {
+            "ind": "aprobacion",
+            "delta": -2
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "evt_presup_decision_a2",
+    "tipo": "programado",
+    "dia_objetivo": 575,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 1.0,
+    "titulo": "Ley de Presupuestos, año 2: ¿qué priorizas?",
+    "descripcion": "Debes decidir cómo repartir el gasto del próximo año. El Congreso solo podrá reducirlo.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "gobierno",
+    "fuente": "fuentes.json#ficticio_2026",
+    "opciones": [
+      {
+        "texto": "Priorizar salud y educación",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 3
+          },
+          {
+            "ind": "fiscal",
+            "delta": -3
+          }
+        ]
+      },
+      {
+        "texto": "Priorizar inversión en obras",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          },
+          {
+            "ind": "fiscal",
+            "delta": -2
+          },
+          {
+            "ind": "cohesion",
+            "delta": 1
+          }
+        ]
+      },
+      {
+        "texto": "Presupuesto austero",
+        "efectos": [
+          {
+            "ind": "fiscal",
+            "delta": 3
+          },
+          {
+            "ind": "aprobacion",
+            "delta": -2
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "evt_presup_decision_a3",
+    "tipo": "programado",
+    "dia_objetivo": 940,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 1.0,
+    "titulo": "Ley de Presupuestos, año 3: ¿qué priorizas?",
+    "descripcion": "Debes decidir cómo repartir el gasto del próximo año. El Congreso solo podrá reducirlo.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "gobierno",
+    "fuente": "fuentes.json#ficticio_2026",
+    "opciones": [
+      {
+        "texto": "Priorizar salud y educación",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 3
+          },
+          {
+            "ind": "fiscal",
+            "delta": -3
+          }
+        ]
+      },
+      {
+        "texto": "Priorizar inversión en obras",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          },
+          {
+            "ind": "fiscal",
+            "delta": -2
+          },
+          {
+            "ind": "cohesion",
+            "delta": 1
+          }
+        ]
+      },
+      {
+        "texto": "Presupuesto austero",
+        "efectos": [
+          {
+            "ind": "fiscal",
+            "delta": 3
+          },
+          {
+            "ind": "aprobacion",
+            "delta": -2
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "evt_presup_decision_a4",
+    "tipo": "programado",
+    "dia_objetivo": 1305,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 1.0,
+    "titulo": "Ley de Presupuestos, año 4: ¿qué priorizas?",
+    "descripcion": "Debes decidir cómo repartir el gasto del próximo año. El Congreso solo podrá reducirlo.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "gobierno",
+    "fuente": "fuentes.json#ficticio_2026",
+    "opciones": [
+      {
+        "texto": "Priorizar salud y educación",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 3
+          },
+          {
+            "ind": "fiscal",
+            "delta": -3
+          }
+        ]
+      },
+      {
+        "texto": "Priorizar inversión en obras",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          },
+          {
+            "ind": "fiscal",
+            "delta": -2
+          },
+          {
+            "ind": "cohesion",
+            "delta": 1
+          }
+        ]
+      },
+      {
+        "texto": "Presupuesto austero",
+        "efectos": [
+          {
+            "ind": "fiscal",
+            "delta": 3
+          },
+          {
+            "ind": "aprobacion",
+            "delta": -2
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "evt_elecciones_a2",
+    "tipo": "programado",
+    "dia_objetivo": 640,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 1.0,
+    "titulo": "Elecciones del año 2: cómo participas",
+    "descripcion": "Se acerca una elección y tu partido te pide definir su estrategia.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "gobierno",
+    "fuente": "fuentes.json#ficticio_2026",
+    "opciones": [
+      {
+        "texto": "Hacer campaña activa por tus candidatos",
+        "efectos": [
+          {
+            "ind": "capital",
+            "delta": -2
+          },
+          {
+            "ind": "cohesion",
+            "delta": 2
+          },
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          }
+        ]
+      },
+      {
+        "texto": "Mantener distancia institucional",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          }
+        ]
+      },
+      {
+        "texto": "Concentrarte en la gestión",
+        "efectos": [
+          {
+            "ind": "capital",
+            "delta": 1
+          },
+          {
+            "ind": "cohesion",
+            "delta": -1
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "evt_elecciones_a4",
+    "tipo": "programado",
+    "dia_objetivo": 1370,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 1.0,
+    "titulo": "Elecciones del año 4: cómo participas",
+    "descripcion": "Se acerca una elección y tu partido te pide definir su estrategia.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "gobierno",
+    "fuente": "fuentes.json#ficticio_2026",
+    "opciones": [
+      {
+        "texto": "Hacer campaña activa por tus candidatos",
+        "efectos": [
+          {
+            "ind": "capital",
+            "delta": -2
+          },
+          {
+            "ind": "cohesion",
+            "delta": 2
+          },
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          }
+        ]
+      },
+      {
+        "texto": "Mantener distancia institucional",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          }
+        ]
+      },
+      {
+        "texto": "Concentrarte en la gestión",
+        "efectos": [
+          {
+            "ind": "capital",
+            "delta": 1
+          },
+          {
+            "ind": "cohesion",
+            "delta": -1
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "evt_comision_hacienda",
+    "tipo": "aleatorio_semilla",
+    "dia_objetivo": null,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 0.03,
+    "titulo": "El presidente de la Comisión de Hacienda pide negociar",
+    "descripcion": "Condiciona su voto a cambios en tu proyecto.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "gobierno",
+    "fuente": "fuentes.json#ficticio_2026",
+    "opciones": [
+      {
+        "texto": "Aceptar sus cambios",
+        "efectos": [
+          {
+            "ind": "capital",
+            "delta": -1
+          },
+          {
+            "ind": "fiscal",
+            "delta": -1
+          },
+          {
+            "ind": "cohesion",
+            "delta": 1
+          }
+        ]
+      },
+      {
+        "texto": "Negociar a medias",
+        "efectos": [
+          {
+            "ind": "capital",
+            "delta": -1
+          },
+          {
+            "ind": "cohesion",
+            "delta": 1
+          }
+        ]
+      },
+      {
+        "texto": "Rechazar y presionar",
+        "efectos": [
+          {
+            "ind": "capital",
+            "delta": 1
+          },
+          {
+            "ind": "cohesion",
+            "delta": -2
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "evt_comision_salud",
+    "tipo": "aleatorio_semilla",
+    "dia_objetivo": null,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 0.03,
+    "titulo": "La Comisión de Salud cita a tu ministra",
+    "descripcion": "Piden explicaciones por las listas de espera.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "gobierno",
+    "fuente": "fuentes.json#ficticio_2026",
+    "opciones": [
+      {
+        "texto": "Enviar a la ministra con datos",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          },
+          {
+            "ind": "capital",
+            "delta": -1
+          }
+        ]
+      },
+      {
+        "texto": "Ir tú con un plan",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 2
+          },
+          {
+            "ind": "capital",
+            "delta": -2
+          }
+        ]
+      },
+      {
+        "texto": "Postergar la sesión",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": -1
+          },
+          {
+            "ind": "cohesion",
+            "delta": -1
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "evt_contraloria_objeta",
+    "tipo": "aleatorio_semilla",
+    "dia_objetivo": null,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 0.03,
+    "titulo": "La Contraloría objeta un decreto",
+    "descripcion": "Dice que el decreto excede las facultades del Ejecutivo.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "gobierno",
+    "fuente": "fuentes.json#ficticio_2026",
+    "opciones": [
+      {
+        "texto": "Acatar y reformularlo",
+        "efectos": [
+          {
+            "ind": "capital",
+            "delta": -1
+          },
+          {
+            "ind": "cohesion",
+            "delta": 1
+          }
+        ]
+      },
+      {
+        "texto": "Insistir con la firma de todos los ministros",
+        "efectos": [
+          {
+            "ind": "capital",
+            "delta": -3
+          },
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          }
+        ]
+      },
+      {
+        "texto": "Pedir un dictamen aclaratorio",
+        "efectos": [
+          {
+            "ind": "capital",
+            "delta": -1
+          },
+          {
+            "ind": "fiscal",
+            "delta": -1
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "evt_contraloria_auditoria",
+    "tipo": "aleatorio_semilla",
+    "dia_objetivo": null,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 0.03,
+    "titulo": "La Contraloría anuncia una auditoría",
+    "descripcion": "Revisará contratos de una obra en curso.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "gobierno",
+    "fuente": "fuentes.json#ficticio_2026",
+    "opciones": [
+      {
+        "texto": "Colaborar con total transparencia",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          },
+          {
+            "ind": "capital",
+            "delta": -1
+          }
+        ]
+      },
+      {
+        "texto": "Defender la gestión",
+        "efectos": [
+          {
+            "ind": "cohesion",
+            "delta": 1
+          },
+          {
+            "ind": "aprobacion",
+            "delta": -1
+          }
+        ]
+      },
+      {
+        "texto": "Reservar los antecedentes",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": -2
+          },
+          {
+            "ind": "capital",
+            "delta": 1
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "evt_bcentral_tasa",
+    "tipo": "aleatorio_semilla",
+    "dia_objetivo": null,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 0.03,
+    "titulo": "El Banco Central sube la tasa de interés",
+    "descripcion": "La decisión enfría la economía y complica a las pymes.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "gobierno",
+    "fuente": "fuentes.json#ficticio_2026",
+    "opciones": [
+      {
+        "texto": "Respetar su autonomía",
+        "efectos": [
+          {
+            "ind": "fiscal",
+            "delta": 1
+          },
+          {
+            "ind": "aprobacion",
+            "delta": -1
+          }
+        ]
+      },
+      {
+        "texto": "Pedir públicamente una pausa",
+        "efectos": [
+          {
+            "ind": "capital",
+            "delta": -2
+          },
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          }
+        ]
+      },
+      {
+        "texto": "Anunciar subsidio a pymes",
+        "efectos": [
+          {
+            "ind": "fiscal",
+            "delta": -2
+          },
+          {
+            "ind": "aprobacion",
+            "delta": 2
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "evt_tc_fallo",
+    "tipo": "aleatorio_semilla",
+    "dia_objetivo": null,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 0.03,
+    "titulo": "El Tribunal Constitucional frena una norma",
+    "descripcion": "Un fallo ajustado deja sin efecto parte de tu reforma.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "gobierno",
+    "fuente": "fuentes.json#ficticio_2026",
+    "opciones": [
+      {
+        "texto": "Acatar y reformular",
+        "efectos": [
+          {
+            "ind": "capital",
+            "delta": -1
+          },
+          {
+            "ind": "cohesion",
+            "delta": 1
+          }
+        ]
+      },
+      {
+        "texto": "Criticar el fallo",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          },
+          {
+            "ind": "capital",
+            "delta": -2
+          }
+        ]
+      },
+      {
+        "texto": "Presentar una nueva versión",
+        "efectos": [
+          {
+            "ind": "capital",
+            "delta": -1
+          },
+          {
+            "ind": "fiscal",
+            "delta": -1
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "evt_fiscalia_caso",
+    "tipo": "aleatorio_semilla",
+    "dia_objetivo": null,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 0.03,
+    "titulo": "La Fiscalía abre una investigación que roza a tu coalición",
+    "descripcion": "Un partido aliado queda en el centro de la polémica.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "gobierno",
+    "fuente": "fuentes.json#ficticio_2026",
+    "opciones": [
+      {
+        "texto": "Pedir transparencia",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 2
+          },
+          {
+            "ind": "cohesion",
+            "delta": -2
+          }
+        ]
+      },
+      {
+        "texto": "Respaldar a tu aliado",
+        "efectos": [
+          {
+            "ind": "cohesion",
+            "delta": 2
+          },
+          {
+            "ind": "aprobacion",
+            "delta": -2
+          }
+        ]
+      },
+      {
+        "texto": "Evitar comentar",
+        "efectos": [
+          {
+            "ind": "capital",
+            "delta": -1
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "evt_medios_reportaje",
+    "tipo": "aleatorio_semilla",
+    "dia_objetivo": null,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 0.03,
+    "titulo": "Un reportaje critica a tu gobierno",
+    "descripcion": "Un medio importante publica un reportaje duro sobre tu gestión.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "gobierno",
+    "fuente": "fuentes.json#ficticio_2026",
+    "opciones": [
+      {
+        "texto": "Responder con datos",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          },
+          {
+            "ind": "capital",
+            "delta": -1
+          }
+        ]
+      },
+      {
+        "texto": "Ir a un programa en vivo",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 2
+          },
+          {
+            "ind": "capital",
+            "delta": -2
+          }
+        ]
+      },
+      {
+        "texto": "Ignorarlo",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": -2
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "evt_medios_entrevista",
+    "tipo": "aleatorio_semilla",
+    "dia_objetivo": null,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 0.03,
+    "titulo": "Te piden una entrevista de fin de año",
+    "descripcion": "Es una oportunidad de explicar tu rumbo.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "gobierno",
+    "fuente": "fuentes.json#ficticio_2026",
+    "opciones": [
+      {
+        "texto": "Aceptar y preparar un anuncio",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 2
+          },
+          {
+            "ind": "capital",
+            "delta": -1
+          }
+        ]
+      },
+      {
+        "texto": "Dar solo una declaración escrita",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          }
+        ]
+      },
+      {
+        "texto": "Rechazarla",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": -1
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "evt_camp_entrevista1",
+    "tipo": "programado",
+    "dia_objetivo": 12,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 1.0,
+    "titulo": "Entrevista matinal",
+    "descripcion": "Un conductor popular te pregunta por tu programa y tus cuentas.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "campana",
+    "fuente": "fuentes.json#ficticio_2026",
+    "opciones": [
+      {
+        "texto": "Mostrar propuestas concretas",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 2
+          },
+          {
+            "ind": "capital",
+            "delta": -1
+          }
+        ]
+      },
+      {
+        "texto": "Hablar de tu historia personal",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          },
+          {
+            "ind": "cohesion",
+            "delta": 1
+          }
+        ]
+      },
+      {
+        "texto": "Esquivar las preguntas",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": -2
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "evt_camp_cabildo",
+    "tipo": "programado",
+    "dia_objetivo": 20,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 1.0,
+    "titulo": "Cabildo abierto en regiones",
+    "descripcion": "Vecinos y dirigentes te esperan para plantearte sus demandas.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "campana",
+    "fuente": "fuentes.json#ficticio_2026",
+    "opciones": [
+      {
+        "texto": "Prometer una obra local",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 2
+          },
+          {
+            "ind": "fiscal",
+            "delta": -1
+          }
+        ]
+      },
+      {
+        "texto": "Escuchar y comprometer una mesa de trabajo",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          },
+          {
+            "ind": "cohesion",
+            "delta": 1
+          }
+        ]
+      },
+      {
+        "texto": "Llegar tarde y salir rápido",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": -2
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "evt_camp_entrevista2",
+    "tipo": "programado",
+    "dia_objetivo": 34,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 1.0,
+    "titulo": "Entrevista de fondo en un diario",
+    "descripcion": "Te preguntan por tus alianzas y por quién financia tu campaña.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "campana",
+    "fuente": "fuentes.json#ficticio_2026",
+    "opciones": [
+      {
+        "texto": "Transparentar los aportes",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 2
+          },
+          {
+            "ind": "capital",
+            "delta": -1
+          }
+        ]
+      },
+      {
+        "texto": "Defender tu financiamiento",
+        "efectos": [
+          {
+            "ind": "cohesion",
+            "delta": 1
+          },
+          {
+            "ind": "aprobacion",
+            "delta": -1
+          }
+        ]
+      },
+      {
+        "texto": "Atacar a tus rivales",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          },
+          {
+            "ind": "cohesion",
+            "delta": -2
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "evt_camp_cierre",
+    "tipo": "programado",
+    "dia_objetivo": 50,
+    "hora_etiqueta": "09:00",
+    "peso_sorteo": 1.0,
+    "titulo": "Cierre de campaña",
+    "descripcion": "Última semana: decides cómo cerrar.",
+    "votacion": null,
+    "efectos_base": [],
+    "etapa": "campana",
+    "fuente": "fuentes.json#ficticio_2026",
+    "opciones": [
+      {
+        "texto": "Gran acto masivo",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 3
+          },
+          {
+            "ind": "capital",
+            "delta": -2
+          }
+        ]
+      },
+      {
+        "texto": "Recorrido puerta a puerta",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 2
+          },
+          {
+            "ind": "cohesion",
+            "delta": 1
+          }
+        ]
+      },
+      {
+        "texto": "Un mensaje por redes sociales",
+        "efectos": [
+          {
+            "ind": "aprobacion",
+            "delta": 1
+          }
+        ]
+      }
+    ]
   }
 ]

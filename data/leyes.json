@@ -217,6 +217,17 @@
     ,"tope_prob_retraso": 0.5
   },
   "repeticion_promesa": 0.5,
+  "habilidades": {
+    "nota": "PR-16: habilidad personal elegida al fundar. Suma a los indicadores iniciales. colores: PR-15, color del emblema del partido (paleta fija).",
+    "defecto": "negociador",
+    "opciones": {
+      "negociador": {"nombre": "Negociador", "descripcion": "Más cohesión de partida: tu coalición te sigue.", "cohesion": 6.0},
+      "comunicador": {"nombre": "Comunicador", "descripcion": "Más aprobación de partida: conectas con la gente.", "aprobacion": 3.0},
+      "gestor": {"nombre": "Gestor", "descripcion": "Más capital político: sabes cómo se hacen las cosas.", "capital": 6.0},
+      "economista": {"nombre": "Economista", "descripcion": "Caja fiscal más sana desde el primer día.", "fiscal": 6.0}
+    },
+    "colores": ["#C23B2E", "#F2C14E", "#4CC38A", "#3D7EA6", "#7E6BB0", "#E8705A"]
+  },
   "afiliacion": {
     "defecto": "propio",
     "nota": "PR-01: cómo entra el jugador a la política. aprobacion y cohesion se suman a los indicadores iniciales; escanos: independiente = escaños del test * factor (mínimo); existente = escaños del partido * multiplicador (mínimo). peso_postura: cuánto desplaza al partido existente lo que respondes en las preguntas de confirmación.",
@@ -262,7 +273,7 @@
     "niveles": {
       "facil": {"nombre": "Fácil", "descripcion": "Más aprobación de partida y menos desgaste. Para aprender el juego.", "umbral_delta": -5.0, "aprobacion_inicial": 6.0, "desgaste": 0.85},
       "normal": {"nombre": "Normal", "descripcion": "La experiencia pensada para el juego.", "umbral_delta": 0.0, "aprobacion_inicial": 0.0, "desgaste": 1.0},
-      "dificil": {"nombre": "Difícil", "descripcion": "Parte con menos apoyo, el cargo desgasta más y ganar exige más votos.", "umbral_delta": 0.5, "aprobacion_inicial": -2.0, "desgaste": 1.05}
+      "dificil": {"nombre": "Difícil", "descripcion": "Parte con menos apoyo, el cargo desgasta más y ganar exige más votos.", "umbral_delta": 1.2, "aprobacion_inicial": -3.0, "desgaste": 1.08}
     }
   },
   "calendario": {
