@@ -107,6 +107,8 @@ Referencia: lienzo de Claude Design «Presidente de Chile — Dirección visual 
 | Movimientos agotados | El botón cambiaba de texto | La pastilla se sacude y se apaga; el halo de «Siguiente semana» pulsa más rápido y fuerte | `movimiento.gd › movimientos` |
 | Mapa vivo | Estático entre jugadas | Las regiones que se movieron en el último cambio laten en verde o coral; el bastión tiene un pulso dorado; las obras se mecen y las propuestas laten. Capa animada aparte: el mapa completo no se redibuja cada cuadro | `mapa_chile.gd › _dibujar_vivo` |
 
+Cuadros del recorrido grabado (`tests/grabar_video.gd`, 780×1688): `docs/comparacion/v4_paquete_visual.jpg` (movimientos agotados, escándalo, telón, votación ajustada, sello aprobado y rechazado).
+
 Limitación: los eventos del juego (`data/eventos.json`) no traen región, así que no hay «pin del evento en su región»; agregarlo exigiría datos nuevos con fuente.
 
 Reglas: todo el movimiento respeta Ajustes › «Animaciones y movimiento» y se apaga en modo headless, así que las pruebas miden siempre el estado final. El azar de las partículas es solo visual y no toca la semilla de la partida. Prueba propia: `tests/test_movimiento.gd`.
