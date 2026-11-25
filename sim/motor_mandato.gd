@@ -169,6 +169,8 @@ func _abrir_periodo(etapa: String, dias_cerrados: int) -> void:
 	if etapa == "campana":  # nueva campaña: la aprobación vuelve a la base del partido, con parte de lo ganado antes
 		var base := float(e.partido["indicadores_iniciales"]["aprobacion"]) + float(nivel()["aprobacion_inicial"])
 		e.indicadores["aprobacion"] = clampf(base + float(m.catalogo_leyes["oposicion"]["herencia_campana"]) * (e.ind("aprobacion") - base), 0.0, 100.0)
+		for k in ["capital", "cohesion", "fiscal", "riesgo_ejecucion"]:  # el resto de los indicadores también vuelve a su punto de partida
+			e.indicadores[k] = float(e.partido["indicadores_iniciales"][k])
 		var camp: Dictionary = m.catalogo_leyes["campana"]
 		m.regiones.inicializar(e, e.ind("aprobacion"), String(e.partido.get("region_bastion", "")), float(camp.get("bono_bastion", 0.0)), float(camp.get("variacion_regional_inicial", 0.0)))
 	if etapa == "oposicion":
@@ -191,7 +193,9 @@ func resolver_eleccion() -> Dictionary:
 	var ruido := float(m.catalogo_leyes["campana"]["ruido_eleccion"])
 	var camp: Dictionary = m.catalogo_leyes["campana"]
 	var sin_prom := float(camp["penal_sin_promesas"]) if m.estado.promesas_campana.size() < int(camp["min_promesas"]) else 0.0  # U3: sin compromisos pierdes votos
-	var voto_final := clampf(m.estado.ind("aprobacion") + m.rng.randf_range(-ruido, ruido) - sin_prom, 0.0, 100.0)
+	var opo: Dictionary = m.catalogo_leyes["oposicion"]
+	var efecto_rival := float(opo["peso_rival_voto"]) * (float(opo["rival_neutro"]) - m.estado.ind("rival")) if m.estado.ciclo > 1 else 0.0  # un rival débil te ayuda
+	var voto_final := clampf(m.estado.ind("aprobacion") + m.rng.randf_range(-ruido, ruido) - sin_prom + efecto_rival, 0.0, 100.0)
 	var ronda := m.estado.ronda_electoral
 	var electo := voto_final >= umbral
 	var balotaje := ronda == 1 and not electo and voto_final >= float(h["umbral_pasa_balotaje"])

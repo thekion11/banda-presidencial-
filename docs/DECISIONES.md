@@ -127,3 +127,9 @@ Instrucción del usuario: «dejaría la dirección del juego abierta, haría tod
 - **Ajustes** (menú → Ajustes): sonido, vibración y animaciones, guardados en `user://ajustes.json`.
 - El aviso (toast) pasó a su propio componente (`game/componentes/toast.gd`).
 - Pendiente de esta fase: tamaño de letra y modo daltónico (el diseño fijo de 390×844 exige rehacer medidas), música de fondo, telemetría opcional (depende de U9).
+
+## P. Bots y métricas (hecho el 25-nov-2026)
+- Nuevas políticas de bot (`tests/bots.gd`): **humano** (casual: se salta ≈ 20 % de las semanas, hasta 3 cartas, decide bien el 70 % de las veces, no usa mecánicas avanzadas), **experto** (completo con gabinete de máxima eficacia y decisiones óptimas); todas las políticas no aleatorias eligen la opción de mayor valor esperado en los eventos (riesgo y efectos a futuro incluidos).
+- `tests/informe_bots.gd` compara las seis políticas en 1.ª campaña, gobierno y carrera (2.ª elección tras oposición); con `--escribir` guarda `docs/INFORME_BOTS.md`. No está en la suite (tarda ≈ 4 min).
+- Calibración final: `umbral_crisis_aprobacion` 12; en campañas posteriores a la primera el voto suma `peso_rival_voto × (42 − aprobación del rival)`; la herencia de aprobación entre periodos quedó en 0. Codicioso: ≈ 90 % de elecciones y ≈ 15 % de caídas; azar: ≈ 22 % y ≈ 60 %; humano: ≈ 70 % y ≈ 14 %.
+- **CI**: desde el commit de la carrera política el paso «Validar datos y límites» fallaba (informe de alcanzabilidad: las cartas de oposición no dependen del gabinete) y por eso el resto de pruebas no corría en CI. Corregido en `8c25601`.
