@@ -82,6 +82,10 @@ func _ready() -> void:
 		_:
 			detalle = "Completaste los 4 años con %.1f %% de aprobación." % float(r.get("aprobacion", 0.0))
 	col.add_child(Tema.etiqueta(detalle, 13, Tema.TEXTO_SUAVE))
+	if motor.mandato.sucesion() != "":
+		var su := Tema.etiqueta("Sucesión: " + motor.mandato.sucesion(), 12, Tema.ORO)
+		su.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+		col.add_child(su)
 	if String(epi["texto"]) != "":
 		var et := Tema.etiqueta(String(epi["texto"]), 12, Tema.TEXTO)
 		et.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART

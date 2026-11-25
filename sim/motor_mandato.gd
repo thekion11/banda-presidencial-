@@ -82,6 +82,15 @@ func hitos(maximo: int = 8) -> Array[Dictionary]:
 	return res.slice(maxi(0, res.size() - maximo)) if res.size() > maximo else res
 
 
+func sucesion() -> String:
+	## Texto de la sucesión presidencial (solo mandato completo): depende de la aprobación final; umbrales en data/leyes.json «sucesion».
+	if m.estado.etapa != "fin_mandato":
+		return ""
+	var c: Dictionary = m.catalogo_leyes["sucesion"]
+	var ap := m.estado.ind("aprobacion")
+	return String(c["textos"]["gana" if ap >= float(c["umbral_gana"]) else ("renida" if ap >= float(c["umbral_renida"]) else "pierde")])
+
+
 func epilogo() -> Dictionary:
 	## Final variado (solo texto, no toca el estado): primer epílogo de data/leyes.json «finales» cuyas condiciones se cumplen.
 	var e := m.estado

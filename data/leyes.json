@@ -231,6 +231,17 @@
     "pequeno": 3.0,
     "mediano": 4.5
   },
+  "sucesion": {
+    "nota": "PR-11: resultado de la sucesión al terminar el mandato (solo texto). Se evalúa con la aprobación final: gana tu sector si aprobacion >= umbral_gana; reñida entre ambos umbrales; si no, gana la oposición. legado_bono: puntos de bono ilustrativos para una próxima partida (no implementado: solo se muestra).",
+    "umbral_gana": 55.0,
+    "umbral_renida": 42.0,
+    "legado_bono": 5,
+    "textos": {
+      "gana": "Tu candidato ganó la presidencia: el proyecto continúa.",
+      "renida": "Fue reñida y se definió en segunda vuelta; el resultado quedó abierto.",
+      "pierde": "La oposición ganó la presidencia: parte de tus reformas quedará en discusión."
+    }
+  },
   "finales": {
     "nota": "Epílogos del mandato. Se evalúan en orden y gana el primero que cumpla todas sus condiciones (motivo, aprobacion_min/max, obras_min, legado_min = proporción de promesas cumplidas, fiscal_min/max). Solo texto: no cambia el estado ni el puntaje.",
     "lista": [

@@ -61,3 +61,8 @@ En curso, en este orden: PR-09 estadísticas de cartas → PR-08 ministros con p
 ## PR-02 Arrastrar cartas (primera etapa, 25-nov-2026)
 - Hecho: deslizar la carta elegida hacia arriba (≥ 70 px, más vertical que horizontal) desde la mano la juega; tocar «Jugar» sigue funcionando como respaldo. Si una capa (evento, tutorial) tapa la mano, el gesto no cuenta. Prueba en `test_ui_humo.gd`.
 - NO hecho a propósito (contradice reglas congeladas hasta que lo confirmes): mover el botón de avanzar al centro y dejar vacía la esquina derecha (CLAUDE.md §5: botón principal siempre en la misma posición), soltar sobre una región del mapa para elegirla, soltar sobre el ícono de delegar, confirmación al terminar la semana con movimientos sin usar, sonido y vibración (no hay sonido en el juego; faltan efectos CC0). Decisiones (a)–(d) de PR-02 siguen abiertas.
+
+## PR-11 / PR-12 / PR-13 (25-nov-2026)
+- PR-11 hecho en parte: epílogo (finales variados), hitos y **resultado de la sucesión** (texto según aprobación final; umbrales en `leyes.json` → `sucesion`). Pendiente: bono de legado que pase a la próxima partida (requiere guardar progreso entre partidas: decisión de datos/privacidad, U9) y la puerta a una nueva candidatura.
+- PR-12 (reelección): NO implementado. El artículo 25 de la Constitución debe contrastarse con el texto oficial antes de modelarlo (regla de CLAUDE.md §6) y hoy no está en `data/bcn/normas.json`; además exige un segundo mandato como sesión nueva con estado heredado. Necesito que confirmes si lo quieres como partida nueva heredada.
+- PR-13 (oposición): NO implementado. Es un modo casi nuevo (verbos distintos: bloquear, fiscalizar, acusar, reconstruir el partido); conviene validar primero el modo de gobierno con personas (D-02).
