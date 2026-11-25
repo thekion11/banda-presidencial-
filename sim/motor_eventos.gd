@@ -12,6 +12,32 @@ func _init(p_motor: MotorTurno) -> void:
 	_ref = weakref(p_motor)
 
 
+var _por_id: Dictionary = {}  # índice del catálogo (se arma una vez; evita recorrer ~150 eventos en cada consulta)
+var _por_etapa: Dictionary = {}  # etapa -> {"prog": [...], "alea": [...]}, en el orden del catálogo
+var _decisiones_alea: Array[String] = []  # ids de eventos aleatorios con opciones
+var _n_catalogo: int = -1
+
+
+func _indice() -> void:
+	if _n_catalogo == m.catalogo_eventos.size():
+		return
+	_n_catalogo = m.catalogo_eventos.size()
+	_por_id.clear()
+	_por_etapa.clear()
+	_decisiones_alea.clear()
+	for evt in m.catalogo_eventos:
+		_por_id[String(evt["id"])] = evt
+		var et := String(evt.get("etapa", "gobierno"))
+		if not _por_etapa.has(et):
+			_por_etapa[et] = {"prog": [], "alea": []}
+		if evt["tipo"] == "programado":
+			_por_etapa[et]["prog"].append(evt)
+		elif evt["tipo"] == "aleatorio_semilla":
+			_por_etapa[et]["alea"].append(evt)
+			if evt.has("opciones"):
+				_decisiones_alea.append(String(evt["id"]))
+
+
 func semana_abs() -> int:
 	## Semana absoluta de la carrera (los periodos reinician el turno, no esta cuenta).
 	return m.estado.dias_carrera / m.estado.dias_por_turno + m.estado.turno_actual
@@ -21,18 +47,16 @@ func procesar_semana() -> Array[Dictionary]:
 	var dia_inicio := m.estado.dia_actual
 	var dia_fin := m.estado.dia_actual + m.estado.dias_por_turno - 1
 	var ocurridos: Array[Dictionary] = _cumplir_pendientes()
+	_indice()
+	var grupo: Dictionary = _por_etapa.get(m.estado.etapa, {"prog": [], "alea": []})
 	var aleatorios: Array[Dictionary] = []
-	for evt in m.catalogo_eventos:
-		if String(evt.get("etapa", "gobierno")) != m.estado.etapa:
-			continue
+	aleatorios.assign(grupo["alea"])
+	for evt in grupo["prog"]:
 		if m.estado.ciclo > 1 and evt.has("meta") and evt["meta"].has("fecha_real"):
 			continue  # los hitos con fecha real ocurren una sola vez (primer periodo)
-		if evt["tipo"] == "programado":
-			var d_obj := int(evt["dia_objetivo"])
-			if d_obj >= dia_inicio and d_obj <= dia_fin:
-				ocurridos.append(aplicar_evento(evt))
-		elif evt["tipo"] == "aleatorio_semilla":
-			aleatorios.append(evt)
+		var d_obj := int(evt["dia_objetivo"])
+		if d_obj >= dia_inicio and d_obj <= dia_fin:
+			ocurridos.append(aplicar_evento(evt))
 	var elegido := _director(aleatorios)
 	if not elegido.is_empty():
 		ocurridos.append(aplicar_evento(elegido))
@@ -70,34 +94,57 @@ func _cumplir_pendientes() -> Array[Dictionary]:
 			res.append({"id": "dif_" + String(p["origen"]), "titulo": "Consecuencia de tu decisión", "descripcion": String(p.get("texto", "")), "hora": "09:00", "votacion": null, "efectos": p["efectos"], "menor": bool(p.get("carta", false))})
 			m.estado.registrar_accion("consecuencia", {"origen": p["origen"]})
 		else:
-			for evt in m.catalogo_eventos:
-				if String(evt["id"]) == String(p["evento"]):
-					m.estado.decisiones.erase(String(evt["id"]))  # un seguimiento puede repetirse en otro periodo
-					res.append(aplicar_evento(evt))
+			_indice()
+			if _por_id.has(String(p["evento"])):
+				var evt: Dictionary = _por_id[String(p["evento"])]
+				m.estado.decisiones.erase(String(evt["id"]))  # un seguimiento puede repetirse en otro periodo
+				res.append(aplicar_evento(evt))
 	m.estado.pendientes = quedan
 	return res
 
 
 func relacion_actor(id: String) -> float:
+	if _usando_cache and _rel_cache.has(id):
+		return float(_rel_cache[id])
+	var r := float(m.catalogo_leyes["actores"]["base"])
 	for a in relaciones_actores():
 		if String(a["id"]) == id:
-			return float(a["relacion"])
-	return float(m.catalogo_leyes["actores"]["base"])
+			r = float(a["relacion"])
+	if _usando_cache:
+		_rel_cache[id] = r
+	return r
+
+
+var _cd_familias: Dictionary = {}  # familia -> true si hubo un evento de esa familia hace menos de cooldown_familia (se arma una vez por semana)
+var _cd_decision: bool = false  # hubo una decisión hace menos de cooldown_decision
+var _rel_cache: Dictionary = {}  # actor -> relación, solo mientras el director elige (_usando_cache)
+var _usando_cache: bool = false
+
+
+func _preparar_cooldowns(cfg: Dictionary, ahora: int) -> void:
+	## Una sola pasada por lo ocurrido (antes: candidatos x catálogo). Mismo resultado que mirar evento por evento.
+	_indice()
+	_cd_familias.clear()
+	_cd_decision = false
+	_rel_cache.clear()
+	for id in m.estado.eventos_ocurridos.keys():
+		var otro: Dictionary = _por_id.get(String(id), {})
+		if otro.is_empty():
+			continue
+		var hace := ahora - int(m.estado.eventos_ocurridos[id])
+		if hace < int(cfg["cooldown_familia"]):
+			_cd_familias[String(otro.get("familia", ""))] = true
+		if otro.has("opciones") and hace < int(cfg["cooldown_decision"]):
+			_cd_decision = true
 
 
 func _en_cooldown(evt: Dictionary, cfg: Dictionary, ahora: int) -> bool:
 	var oc: Dictionary = m.estado.eventos_ocurridos
 	if oc.has(String(evt["id"])) and ahora - int(oc[String(evt["id"])]) < int(cfg["cooldown_evento"]):
 		return true
-	for otro in m.catalogo_eventos:  # familia y decisiones: se mira la última ocurrencia de cada evento
-		if not oc.has(String(otro["id"])):
-			continue
-		var hace := ahora - int(oc[String(otro["id"])])
-		if String(otro.get("familia", "")) == String(evt.get("familia", "?")) and hace < int(cfg["cooldown_familia"]):
-			return true
-		if evt.has("opciones") and otro.has("opciones") and hace < int(cfg["cooldown_decision"]):
-			return true
-	return false
+	if _cd_familias.has(String(evt.get("familia", "?"))):
+		return true
+	return evt.has("opciones") and _cd_decision
 
 
 func mes_actual() -> int:
@@ -130,18 +177,27 @@ func _silencio(ahora: int) -> int:
 
 
 func _decisiones_ultimo_anio(ahora: int) -> int:
+	_indice()
 	var n := 0
-	for e in m.catalogo_eventos:
-		if e.has("opciones") and e["tipo"] == "aleatorio_semilla" and m.estado.eventos_ocurridos.has(String(e["id"])) and ahora - int(m.estado.eventos_ocurridos[String(e["id"])]) < 52:
+	for id in _decisiones_alea:
+		if m.estado.eventos_ocurridos.has(id) and ahora - int(m.estado.eventos_ocurridos[id]) < 52:
 			n += 1
 	return n
 
 
 func _director(pool: Array[Dictionary]) -> Dictionary:
+	_usando_cache = true  # las relaciones no cambian mientras se elige el evento de la semana
+	var r := _elegir(pool)
+	_usando_cache = false
+	return r
+
+
+func _elegir(pool: Array[Dictionary]) -> Dictionary:
 	## Director v2 (data/leyes.json «director_eventos»): a lo sumo un evento aleatorio por semana, con probabilidad que sube con el silencio,
 	## decisiones entre un mínimo y un máximo por año, estaciones y contexto. Determinista con la semilla.
 	var cfg: Dictionary = m.catalogo_leyes["director_eventos"]
 	var ahora := semana_abs()
+	_preparar_cooldowns(cfg, ahora)
 	var p := minf(float(cfg["prob_max"]), float(cfg["prob_semana"]) + float(cfg["ajuste_silencio"]) * float(maxi(0, _silencio(ahora) - int(cfg["silencio_libre"]))))
 	var silencio := _silencio(ahora)
 	if silencio < int(cfg["silencio_max"]) and m.rng.randf() >= p:
@@ -218,10 +274,8 @@ func relacion_exterior(iso: String, base: float) -> float:
 
 func decidir(evento_id: String, idx: int) -> Dictionary:
 	## Responde a un evento con opciones (no gasta movimientos): aplica los efectos de la opción y queda registrado para el replay.
-	var evt: Dictionary = {}
-	for e in m.catalogo_eventos:
-		if String(e["id"]) == evento_id:
-			evt = e
+	_indice()
+	var evt: Dictionary = _por_id.get(evento_id, {})
 	if evt.is_empty() or not evt.has("opciones") or not m.estado.eventos_ocurridos.has(evento_id):
 		return {"ok": false, "razon": "evento_sin_decision"}
 	if m.estado.decisiones.has(evento_id):

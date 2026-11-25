@@ -125,13 +125,20 @@ func elegir(ids: Array) -> Dictionary:
 	return {"ok": true, "categorias": categorias_activas().keys()}
 
 
+var _cats_firma: int = -1  # firma del gabinete con que se calculó _cats (se consulta una vez por carta: ~4.000 veces al rearmar el mazo)
+var _cats: Dictionary = {}
+
+
 func categorias_activas() -> Dictionary:
-	var cats := {}
-	for c in _cfg()["categorias_siempre"]:
-		cats[String(c)] = true
-	for id in m.estado.gabinete:
-		cats[String(m.catalogo_ministros[id]["categoria_afin"])] = true
-	return cats
+	var firma := m.estado.gabinete.hash()
+	if firma != _cats_firma:
+		_cats = {}
+		for c in _cfg()["categorias_siempre"]:
+			_cats[String(c)] = true
+		for id in m.estado.gabinete:
+			_cats[String(m.catalogo_ministros[id]["categoria_afin"])] = true
+		_cats_firma = firma
+	return _cats
 
 
 func categoria_activa(cat: String) -> bool:
