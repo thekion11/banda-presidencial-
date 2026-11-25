@@ -167,3 +167,14 @@ Instrucción del usuario: «dejaría la dirección del juego abierta, haría tod
 ## V. Accesibilidad básica (25-nov-2026, Fase F del análisis de profundidad)
 - Ajustes nuevos, desactivados por defecto: «Texto grande» (+15 % en las etiquetas con ajuste de línea; las cortas no cambian para no desbordar) y «Colores para daltonismo» (escala de aprobación azul–naranja de Okabe-Ito). La paleta congelada sigue siendo la predeterminada. Prueba: `test_accesibilidad`.
 - Pendiente: probar el texto grande en cada pantalla con personas (U1) y música.
+
+## W. Congreso y votaciones en oposición (25-nov-2026, PR-12 ampliado)
+- Cuatro votaciones del gobierno rival por periodo de oposición (presupuesto, pensiones, reforma tributaria y seguridad; días 28, 70, 112 y 154). Cada una ofrece rechazar y buscar bloquear, negociar enmiendas o apoyar. Rechazar y negociar se sortean con la semilla: la probabilidad de que prospere tu postura = 0,10 + bancada propia y aliados del Senado / 50 + 0,004 × (cohesión − 50), entre 10 % y 85 % (`leyes.json › oposicion.congreso`). Si ganas, sube tu aprobación y baja la del rival; si pierdes, cuesta cohesión. La descripción del evento muestra la probabilidad.
+- Se puede formar coalición también en oposición (más escaños = más probabilidad). En la pantalla de oposición la pestaña inferior pasa de «Gabinete» a «Coalición» y solo muestra las alianzas (sin gabinete ni internos).
+- Prueba: `test_congreso_oposicion` (probabilidad según aliados y cohesión, votación en oposición y replay exacto).
+
+## X. Optimización del motor por código (25-nov-2026, a pedido del usuario)
+- Medido en un mandato completo (208 turnos, bot codicioso, escritorio): 7,6 → 5,5 ms por turno (−28 %); reproducir un guardado de mandato completo 1.500 → 850 ms (−43 %, el costo que se paga al cargar una partida; en un teléfono es varias veces mayor). Cargar los datos (~95 ms) y crear la partida (~80 ms) no cambian.
+- Causas y arreglos (todos con resultado idéntico: las pruebas de oro no cambiaron): (1) `MotorGabinete.categorias_activas` reconstruía un diccionario con los 25 ministros por cada carta consultada (~4.000 veces al rearmar el mazo) → caché con firma del gabinete (la mano se rearma 170 → 62 ms por mandato); (2) el director de eventos comparaba cada candidato contra todo el catálogo para los descansos (O(n²)) → un solo recorrido de lo ocurrido por semana; relación con actores memorizada mientras elige; (3) índice de eventos por etapa e id; (4) `es_real` con caché y mazo de cartas reales con conjuntos en vez de búsquedas lineales.
+- Lo que no hacía falta tocar: la interfaz (animaciones a 20 fps, rotación 3D solo si es visible) y el guardado (la huella de datos ya se calcula una vez).
+- Prueba: `test_rendimiento` (tope de 40 ms por turno y 8 s de replay con margen para el CI, replay idéntico y caché que se invalida al cambiar el gabinete).

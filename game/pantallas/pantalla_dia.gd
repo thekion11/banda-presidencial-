@@ -39,7 +39,7 @@ func _ready() -> void:
 	raiz.add_child(Barras.cabecera(_r))
 	raiz.add_child(_construir_cuerpo())
 	_raiz = raiz
-	_nav = Barras.nav(_abrir_panel)
+	_nav = Barras.nav(_abrir_panel, false, "", Callable(), "Coalición" if motor.estado.etapa == "oposicion" else "Gabinete")
 	raiz.add_child(_nav)
 	_capa = Control.new()
 	_capa.set_anchors_preset(Control.PRESET_FULL_RECT)
@@ -377,7 +377,7 @@ func _siguiente_evento() -> void:
 func _poner_nav(nacion: bool, activo: String = "mapa") -> void:
 	var nuevo := Barras.nav(_abrir_panel, nacion, "al día %d" % (motor.estado.dia_actual + motor.estado.dias_por_turno), func() -> void:
 		_abrir_panel("mapa")
-		_terminar_turno(), activo)
+		_terminar_turno(), "Coalición" if motor.estado.etapa == "oposicion" else "Gabinete", activo)
 	_raiz.add_child(nuevo)
 	_raiz.move_child(nuevo, _nav.get_index())
 	_nav.queue_free()

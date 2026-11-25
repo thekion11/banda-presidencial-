@@ -194,14 +194,14 @@ static func _boton_central(texto: String, al_avanzar: Callable) -> Control:
 	return b
 
 
-static func nav(al_pulsar: Callable, nacion: bool = false, texto_dia: String = "", al_avanzar: Callable = Callable(), activo: String = "mapa") -> Control:
+static func nav(al_pulsar: Callable, nacion: bool = false, texto_dia: String = "", al_avanzar: Callable = Callable(), etq_gestion: String = "Gabinete", activo: String = "mapa") -> Control:
 	## Barra inferior. En "Nación" la maqueta usa Cartas / Comité / [Día N] / Congreso / Gabinete.
 	## La pestaña abierta va en oro con un filo arriba (dirección visual v4).
 	var fila := HBoxContainer.new()
 	fila.custom_minimum_size = Vector2(0, 58)
-	var items: Array = [["Mapa", "mapa", "map"], ["Comité", "comite", "bars"], ["Congreso", "congreso", "building"], ["Gabinete", "gabinete", "people"]]
+	var items: Array = [["Mapa", "mapa", "map"], ["Comité", "comite", "bars"], ["Congreso", "congreso", "building"], [etq_gestion, "gabinete", "people"]]
 	if nacion:
-		items = [["Cartas", "mapa", "card"], ["Comité", "comite", "bars"], ["", "", ""], ["Congreso", "congreso", "building"], ["Gabinete", "gabinete", "people"]]
+		items = [["Cartas", "mapa", "card"], ["Comité", "comite", "bars"], ["", "", ""], ["Congreso", "congreso", "building"], [etq_gestion, "gabinete", "people"]]
 	for par in items:
 		if par[1] == "":
 			fila.add_child(_boton_central(texto_dia, al_avanzar))
@@ -282,7 +282,9 @@ static func texto_decision(r: Dictionary, antes: Dictionary, despues: Dictionary
 	var c := resumen_cambios(antes, despues)
 	if c != "":
 		t += " " + c + "."
-	if bool(r.get("salio_mal", false)):
+	if bool(r.get("congreso", false)):
+		t += " Perdiste la votación." if bool(r.get("salio_mal", false)) else " Ganaste la votación."
+	elif bool(r.get("salio_mal", false)):
 		t += " Salió mal."
 	if int(r.get("futuro", 0)) > 0:
 		t += " Habrá consecuencias en unas %d semanas." % int(r["futuro"])

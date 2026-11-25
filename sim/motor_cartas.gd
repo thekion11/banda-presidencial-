@@ -37,17 +37,27 @@ func descartar_mano() -> void:
 		m.estado.descarte.append(String(m.estado.mano.pop_front()["id"]))
 
 
+var _es_real: Dictionary = {}  # id -> bool; el tipo de una carta no cambia y esta consulta se repite miles de veces al armar la mano
+
+
 func es_real(carta: Dictionary) -> bool:
-	return carta.get("meta", {}).get("tipo", "") in ["proyecto_publico", "proyecto_de_ley", "reforma_constitucional", "propuesta_constitucional"]
+	var id: String = carta["id"]
+	if not _es_real.has(id):
+		_es_real[id] = carta.get("meta", {}).get("tipo", "") in ["proyecto_publico", "proyecto_de_ley", "reforma_constitucional", "propuesta_constitucional"]
+	return _es_real[id]
 
 
 func reales_para_mazo() -> Array[String]:
 	## Una carta por proyecto público real: en cada mazo circula un subconjunto sorteado con la semilla (leyes.json › mano.reales_en_mazo).
 	var libres: Array[String] = []
+	var apartadas := {}  # descarte y mano como conjunto: antes eran búsquedas lineales por cada una de las ~1.700 cartas reales
+	for id in m.estado.descarte:
+		apartadas[id] = true
+	for x in m.estado.mano:
+		apartadas[String(x["id"])] = true
 	for c in m.catalogo_cartas:
 		var id := String(c["id"])
-		if es_real(c) and not m.estado.cartas_ejecutadas.has(id) and not m.estado.descarte.has(id) and m.gabinete.disponible(c) \
-				and not m.estado.mano.any(func(x: Dictionary) -> bool: return x["id"] == id):
+		if es_real(c) and not m.estado.cartas_ejecutadas.has(id) and not apartadas.has(id) and m.gabinete.disponible(c):
 			libres.append(id)
 	for i in range(libres.size() - 1, 0, -1):
 		var j := m.rng.randi_range(0, i)
