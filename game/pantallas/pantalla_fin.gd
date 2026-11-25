@@ -126,6 +126,11 @@ func _ready() -> void:
 		lista.add_child(FilasUI.titulo("Hitos de tu mandato"))
 		for h in hitos:
 			lista.add_child(Tema.etiqueta("· Semana %d: %s" % [int(h["turno"]), String(h["texto"])], 12, Tema.TEXTO))
+	var actores := motor.eventos.relaciones_actores()
+	if not actores.is_empty():
+		lista.add_child(FilasUI.titulo("Tu relación con los actores"))
+		for a in actores.slice(0, 6):
+			lista.add_child(Tema.etiqueta("· %s: %d/100" % [String(a["nombre"]), roundi(float(a["relacion"]))], 12, Tema.TEXTO))
 	lista.add_child(FilasUI.titulo("Línea de tiempo: eventos reales que viviste"))
 	var evs := eventos_reales()
 	if evs.is_empty():

@@ -37,5 +37,12 @@ func _init() -> void:
 	_check(m2.cartas.es_unica(balas[0]), "una bala de plata es de un solo uso")
 	var cap := m2.estado.ind("capital")
 	_check(bool(m2.jugar_carta(0)["ok"]) and m2.estado.cartas_ejecutadas.has(String(balas[0]["id"])) and m2.estado.ind("capital") < cap, "usarla cuesta capital y no se repite")
+	# PR-24: relación con actores derivada de las decisiones
+	var m3 := AyudaV2.gobierno(datos, 23)
+	var ev_act: Dictionary = datos["eventos"].filter(func(e: Dictionary) -> bool: return e.has("actor"))[0]
+	m3.eventos.aplicar_evento(ev_act)
+	m3.eventos.decidir(String(ev_act["id"]), 0)
+	var rel := m3.eventos.relaciones_actores()
+	_check(rel.size() == 1 and float(rel[0]["relacion"]) > 50.0, "apoyar a un actor sube la relación")
 	print("test_decisiones: ", "OK" if _fallos == 0 else "FALLO")
 	quit(1 if _fallos > 0 else 0)

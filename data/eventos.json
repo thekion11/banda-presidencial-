@@ -1312,7 +1312,8 @@
             "ind": "cohesion",
             "delta": -1
           }
-        ]
+        ],
+        "relacion": 1
       },
       {
         "texto": "Pedir un ajuste menor",
@@ -1325,7 +1326,8 @@
             "ind": "capital",
             "delta": -1
           }
-        ]
+        ],
+        "relacion": 0
       },
       {
         "texto": "Rechazarlo",
@@ -1338,9 +1340,14 @@
             "ind": "cohesion",
             "delta": 1
           }
-        ]
+        ],
+        "relacion": -1
       }
-    ]
+    ],
+    "actor": {
+      "id": "min_hacienda",
+      "nombre": "Ministerio: Hacienda"
+    }
   },
   {
     "id": "evt_min_salud",
@@ -1366,7 +1373,8 @@
             "ind": "aprobacion",
             "delta": 3
           }
-        ]
+        ],
+        "relacion": 1
       },
       {
         "texto": "Reasignar dentro del ministerio",
@@ -1379,7 +1387,8 @@
             "ind": "aprobacion",
             "delta": 1
           }
-        ]
+        ],
+        "relacion": 0
       },
       {
         "texto": "Postergar la petición",
@@ -1392,9 +1401,14 @@
             "ind": "cohesion",
             "delta": -1
           }
-        ]
+        ],
+        "relacion": -1
       }
-    ]
+    ],
+    "actor": {
+      "id": "min_salud",
+      "nombre": "Ministerio: Salud"
+    }
   },
   {
     "id": "evt_min_educacion",
@@ -1420,7 +1434,8 @@
             "ind": "cohesion",
             "delta": 2
           }
-        ]
+        ],
+        "relacion": 1
       },
       {
         "texto": "Mediar con los docentes",
@@ -1433,7 +1448,8 @@
             "ind": "aprobacion",
             "delta": 1
           }
-        ]
+        ],
+        "relacion": 0
       },
       {
         "texto": "Mantener distancia",
@@ -1446,9 +1462,14 @@
             "ind": "aprobacion",
             "delta": -1
           }
-        ]
+        ],
+        "relacion": -1
       }
-    ]
+    ],
+    "actor": {
+      "id": "min_educacion",
+      "nombre": "Ministerio: Educacion"
+    }
   },
   {
     "id": "evt_min_seguridad",
@@ -1478,7 +1499,8 @@
             "ind": "cohesion",
             "delta": -1
           }
-        ]
+        ],
+        "relacion": 1
       },
       {
         "texto": "Apoyar solo una parte",
@@ -1491,7 +1513,8 @@
             "ind": "capital",
             "delta": -1
           }
-        ]
+        ],
+        "relacion": 0
       },
       {
         "texto": "Frenar la propuesta",
@@ -1504,9 +1527,14 @@
             "ind": "cohesion",
             "delta": 1
           }
-        ]
+        ],
+        "relacion": -1
       }
-    ]
+    ],
+    "actor": {
+      "id": "min_seguridad",
+      "nombre": "Ministerio: Seguridad"
+    }
   },
   {
     "id": "evt_min_obras",
@@ -1532,7 +1560,8 @@
             "ind": "capital",
             "delta": -2
           }
-        ]
+        ],
+        "relacion": 1
       },
       {
         "texto": "Mantener el calendario",
@@ -1541,7 +1570,8 @@
             "ind": "capital",
             "delta": 1
           }
-        ]
+        ],
+        "relacion": 0
       },
       {
         "texto": "Revisar la propuesta con Contraloría",
@@ -1554,9 +1584,14 @@
             "ind": "cohesion",
             "delta": 1
           }
-        ]
+        ],
+        "relacion": -1
       }
-    ]
+    ],
+    "actor": {
+      "id": "min_obras",
+      "nombre": "Ministerio: Obras"
+    }
   },
   {
     "id": "evt_min_energia",
@@ -1586,7 +1621,8 @@
             "ind": "aprobacion",
             "delta": 1
           }
-        ]
+        ],
+        "relacion": 1
       },
       {
         "texto": "Pedir más consulta ciudadana",
@@ -1603,7 +1639,8 @@
             "ind": "capital",
             "delta": -1
           }
-        ]
+        ],
+        "relacion": 0
       },
       {
         "texto": "Congelar el proyecto",
@@ -1616,9 +1653,14 @@
             "ind": "aprobacion",
             "delta": -1
           }
-        ]
+        ],
+        "relacion": -1
       }
-    ]
+    ],
+    "actor": {
+      "id": "min_energia",
+      "nombre": "Ministerio: Energia"
+    }
   },
   {
     "id": "evt_presup_decision_a1",
@@ -1988,7 +2030,8 @@
             "ind": "cohesion",
             "delta": 1
           }
-        ]
+        ],
+        "relacion": 1
       },
       {
         "texto": "Negociar a medias",
@@ -2001,7 +2044,8 @@
             "ind": "cohesion",
             "delta": 1
           }
-        ]
+        ],
+        "relacion": 0
       },
       {
         "texto": "Rechazar y presionar",
@@ -2014,9 +2058,14 @@
             "ind": "cohesion",
             "delta": -2
           }
-        ]
+        ],
+        "relacion": -1
       }
-    ]
+    ],
+    "actor": {
+      "id": "comision_hacienda",
+      "nombre": "Comisión de Hacienda"
+    }
   },
   {
     "id": "evt_comision_salud",
@@ -2042,7 +2091,8 @@
             "ind": "capital",
             "delta": -1
           }
-        ]
+        ],
+        "relacion": 1
       },
       {
         "texto": "Ir tú con un plan",
@@ -2055,7 +2105,8 @@
             "ind": "capital",
             "delta": -2
           }
-        ]
+        ],
+        "relacion": 0
       },
       {
         "texto": "Postergar la sesión",
@@ -2068,9 +2119,14 @@
             "ind": "cohesion",
             "delta": -1
           }
-        ]
+        ],
+        "relacion": -1
       }
-    ]
+    ],
+    "actor": {
+      "id": "comision_salud",
+      "nombre": "Comisión de Salud"
+    }
   },
   {
     "id": "evt_contraloria_objeta",
@@ -2096,7 +2152,8 @@
             "ind": "cohesion",
             "delta": 1
           }
-        ]
+        ],
+        "relacion": 1
       },
       {
         "texto": "Insistir con la firma de todos los ministros",
@@ -2109,7 +2166,8 @@
             "ind": "aprobacion",
             "delta": 1
           }
-        ]
+        ],
+        "relacion": 0
       },
       {
         "texto": "Pedir un dictamen aclaratorio",
@@ -2122,9 +2180,14 @@
             "ind": "fiscal",
             "delta": -1
           }
-        ]
+        ],
+        "relacion": -1
       }
-    ]
+    ],
+    "actor": {
+      "id": "contraloria",
+      "nombre": "Contraloría"
+    }
   },
   {
     "id": "evt_contraloria_auditoria",
@@ -2150,7 +2213,8 @@
             "ind": "capital",
             "delta": -1
           }
-        ]
+        ],
+        "relacion": 1
       },
       {
         "texto": "Defender la gestión",
@@ -2163,7 +2227,8 @@
             "ind": "aprobacion",
             "delta": -1
           }
-        ]
+        ],
+        "relacion": 0
       },
       {
         "texto": "Reservar los antecedentes",
@@ -2176,9 +2241,14 @@
             "ind": "capital",
             "delta": 1
           }
-        ]
+        ],
+        "relacion": -1
       }
-    ]
+    ],
+    "actor": {
+      "id": "contraloria",
+      "nombre": "Contraloría"
+    }
   },
   {
     "id": "evt_bcentral_tasa",
@@ -2204,7 +2274,8 @@
             "ind": "aprobacion",
             "delta": -1
           }
-        ]
+        ],
+        "relacion": 1
       },
       {
         "texto": "Pedir públicamente una pausa",
@@ -2217,7 +2288,8 @@
             "ind": "aprobacion",
             "delta": 1
           }
-        ]
+        ],
+        "relacion": 0
       },
       {
         "texto": "Anunciar subsidio a pymes",
@@ -2230,9 +2302,14 @@
             "ind": "aprobacion",
             "delta": 2
           }
-        ]
+        ],
+        "relacion": -1
       }
-    ]
+    ],
+    "actor": {
+      "id": "bcentral",
+      "nombre": "Banco Central"
+    }
   },
   {
     "id": "evt_tc_fallo",
@@ -2258,7 +2335,8 @@
             "ind": "cohesion",
             "delta": 1
           }
-        ]
+        ],
+        "relacion": 1
       },
       {
         "texto": "Criticar el fallo",
@@ -2271,7 +2349,8 @@
             "ind": "capital",
             "delta": -2
           }
-        ]
+        ],
+        "relacion": 0
       },
       {
         "texto": "Presentar una nueva versión",
@@ -2284,9 +2363,14 @@
             "ind": "fiscal",
             "delta": -1
           }
-        ]
+        ],
+        "relacion": -1
       }
-    ]
+    ],
+    "actor": {
+      "id": "tc",
+      "nombre": "Tribunal Constitucional"
+    }
   },
   {
     "id": "evt_fiscalia_caso",
@@ -2312,7 +2396,8 @@
             "ind": "cohesion",
             "delta": -2
           }
-        ]
+        ],
+        "relacion": 1
       },
       {
         "texto": "Respaldar a tu aliado",
@@ -2325,7 +2410,8 @@
             "ind": "aprobacion",
             "delta": -2
           }
-        ]
+        ],
+        "relacion": 0
       },
       {
         "texto": "Evitar comentar",
@@ -2334,9 +2420,14 @@
             "ind": "capital",
             "delta": -1
           }
-        ]
+        ],
+        "relacion": -1
       }
-    ]
+    ],
+    "actor": {
+      "id": "fiscalia",
+      "nombre": "Fiscalía"
+    }
   },
   {
     "id": "evt_medios_reportaje",
@@ -2362,7 +2453,8 @@
             "ind": "capital",
             "delta": -1
           }
-        ]
+        ],
+        "relacion": 1
       },
       {
         "texto": "Ir a un programa en vivo",
@@ -2375,7 +2467,8 @@
             "ind": "capital",
             "delta": -2
           }
-        ]
+        ],
+        "relacion": 0
       },
       {
         "texto": "Ignorarlo",
@@ -2384,9 +2477,14 @@
             "ind": "aprobacion",
             "delta": -2
           }
-        ]
+        ],
+        "relacion": -1
       }
-    ]
+    ],
+    "actor": {
+      "id": "medios",
+      "nombre": "Medios de comunicación"
+    }
   },
   {
     "id": "evt_medios_entrevista",
@@ -2412,7 +2510,8 @@
             "ind": "capital",
             "delta": -1
           }
-        ]
+        ],
+        "relacion": 1
       },
       {
         "texto": "Dar solo una declaración escrita",
@@ -2421,7 +2520,8 @@
             "ind": "aprobacion",
             "delta": 1
           }
-        ]
+        ],
+        "relacion": 0
       },
       {
         "texto": "Rechazarla",
@@ -2430,9 +2530,14 @@
             "ind": "aprobacion",
             "delta": -1
           }
-        ]
+        ],
+        "relacion": -1
       }
-    ]
+    ],
+    "actor": {
+      "id": "medios",
+      "nombre": "Medios de comunicación"
+    }
   },
   {
     "id": "evt_camp_entrevista1",
@@ -2662,7 +2767,8 @@
             "ind": "capital",
             "delta": -1
           }
-        ]
+        ],
+        "relacion": 1
       },
       {
         "texto": "Reforzar el control del orden público",
@@ -2675,7 +2781,8 @@
             "ind": "cohesion",
             "delta": -1
           }
-        ]
+        ],
+        "relacion": 0
       },
       {
         "texto": "Esperar a que baje la tensión",
@@ -2684,9 +2791,14 @@
             "ind": "aprobacion",
             "delta": -2
           }
-        ]
+        ],
+        "relacion": -1
       }
-    ]
+    ],
+    "actor": {
+      "id": "min_interior",
+      "nombre": "Ministerio: Interior"
+    }
   },
   {
     "id": "evt_min_exteriores",
@@ -2712,7 +2824,8 @@
             "ind": "aprobacion",
             "delta": 1
           }
-        ]
+        ],
+        "relacion": 1
       },
       {
         "texto": "Declaración cauta y neutral",
@@ -2725,7 +2838,8 @@
             "ind": "cohesion",
             "delta": 1
           }
-        ]
+        ],
+        "relacion": 0
       },
       {
         "texto": "No pronunciarte",
@@ -2734,9 +2848,14 @@
             "ind": "aprobacion",
             "delta": -1
           }
-        ]
+        ],
+        "relacion": -1
       }
-    ]
+    ],
+    "actor": {
+      "id": "min_exteriores",
+      "nombre": "Ministerio: Exteriores"
+    }
   },
   {
     "id": "evt_min_defensa",
@@ -2762,7 +2881,8 @@
             "ind": "cohesion",
             "delta": 1
           }
-        ]
+        ],
+        "relacion": 1
       },
       {
         "texto": "Aprobar una renovación parcial",
@@ -2775,7 +2895,8 @@
             "ind": "capital",
             "delta": -1
           }
-        ]
+        ],
+        "relacion": 0
       },
       {
         "texto": "Postergar la decisión",
@@ -2784,9 +2905,14 @@
             "ind": "cohesion",
             "delta": -1
           }
-        ]
+        ],
+        "relacion": -1
       }
-    ]
+    ],
+    "actor": {
+      "id": "min_defensa",
+      "nombre": "Ministerio: Defensa"
+    }
   },
   {
     "id": "evt_min_segegob",
@@ -2812,7 +2938,8 @@
             "ind": "capital",
             "delta": -2
           }
-        ]
+        ],
+        "relacion": 1
       },
       {
         "texto": "Reforzar solo las redes sociales",
@@ -2825,7 +2952,8 @@
             "ind": "capital",
             "delta": -1
           }
-        ]
+        ],
+        "relacion": 0
       },
       {
         "texto": "Mantener la estrategia",
@@ -2834,9 +2962,14 @@
             "ind": "aprobacion",
             "delta": -1
           }
-        ]
+        ],
+        "relacion": -1
       }
-    ]
+    ],
+    "actor": {
+      "id": "min_segegob",
+      "nombre": "Ministerio: Segegob"
+    }
   },
   {
     "id": "evt_min_economia",
@@ -2862,7 +2995,8 @@
             "ind": "fiscal",
             "delta": -2
           }
-        ]
+        ],
+        "relacion": 1
       },
       {
         "texto": "Plan focalizado",
@@ -2875,7 +3009,8 @@
             "ind": "fiscal",
             "delta": -1
           }
-        ]
+        ],
+        "relacion": 0
       },
       {
         "texto": "Dejar al mercado",
@@ -2884,9 +3019,14 @@
             "ind": "aprobacion",
             "delta": -2
           }
-        ]
+        ],
+        "relacion": -1
       }
-    ]
+    ],
+    "actor": {
+      "id": "min_economia",
+      "nombre": "Ministerio: Economia"
+    }
   },
   {
     "id": "evt_min_social",
@@ -2912,7 +3052,8 @@
             "ind": "fiscal",
             "delta": -2
           }
-        ]
+        ],
+        "relacion": 1
       },
       {
         "texto": "Ampliarlo con fiscalización",
@@ -2925,7 +3066,8 @@
             "ind": "fiscal",
             "delta": -1
           }
-        ]
+        ],
+        "relacion": 0
       },
       {
         "texto": "Mantener el bono actual",
@@ -2934,9 +3076,14 @@
             "ind": "aprobacion",
             "delta": -2
           }
-        ]
+        ],
+        "relacion": -1
       }
-    ]
+    ],
+    "actor": {
+      "id": "min_social",
+      "nombre": "Ministerio: Social"
+    }
   },
   {
     "id": "evt_min_justicia",
@@ -2962,7 +3109,8 @@
             "ind": "cohesion",
             "delta": 1
           }
-        ]
+        ],
+        "relacion": 1
       },
       {
         "texto": "Plan de mejoras graduales",
@@ -2975,7 +3123,8 @@
             "ind": "aprobacion",
             "delta": 1
           }
-        ]
+        ],
+        "relacion": 0
       },
       {
         "texto": "Postergar",
@@ -2984,9 +3133,14 @@
             "ind": "aprobacion",
             "delta": -1
           }
-        ]
+        ],
+        "relacion": -1
       }
-    ]
+    ],
+    "actor": {
+      "id": "min_justicia",
+      "nombre": "Ministerio: Justicia"
+    }
   },
   {
     "id": "evt_min_trabajo",
@@ -3012,7 +3166,8 @@
             "ind": "aprobacion",
             "delta": 2
           }
-        ]
+        ],
+        "relacion": 1
       },
       {
         "texto": "Dejar que mediación técnica trabaje",
@@ -3025,7 +3180,8 @@
             "ind": "cohesion",
             "delta": 1
           }
-        ]
+        ],
+        "relacion": 0
       },
       {
         "texto": "No intervenir",
@@ -3034,9 +3190,14 @@
             "ind": "aprobacion",
             "delta": -2
           }
-        ]
+        ],
+        "relacion": -1
       }
-    ]
+    ],
+    "actor": {
+      "id": "min_trabajo",
+      "nombre": "Ministerio: Trabajo"
+    }
   },
   {
     "id": "evt_min_vivienda",
@@ -3062,7 +3223,8 @@
             "ind": "fiscal",
             "delta": -2
           }
-        ]
+        ],
+        "relacion": 1
       },
       {
         "texto": "Ampliar con focalización",
@@ -3075,7 +3237,8 @@
             "ind": "fiscal",
             "delta": -1
           }
-        ]
+        ],
+        "relacion": 0
       },
       {
         "texto": "Mantenerlo igual",
@@ -3084,9 +3247,14 @@
             "ind": "aprobacion",
             "delta": -1
           }
-        ]
+        ],
+        "relacion": -1
       }
-    ]
+    ],
+    "actor": {
+      "id": "min_vivienda",
+      "nombre": "Ministerio: Vivienda"
+    }
   },
   {
     "id": "evt_min_agricultura",
@@ -3112,7 +3280,8 @@
             "ind": "fiscal",
             "delta": -2
           }
-        ]
+        ],
+        "relacion": 1
       },
       {
         "texto": "Apoyo solo con créditos",
@@ -3125,7 +3294,8 @@
             "ind": "fiscal",
             "delta": -1
           }
-        ]
+        ],
+        "relacion": 0
       },
       {
         "texto": "Esperar las lluvias",
@@ -3134,9 +3304,14 @@
             "ind": "aprobacion",
             "delta": -2
           }
-        ]
+        ],
+        "relacion": -1
       }
-    ]
+    ],
+    "actor": {
+      "id": "min_agricultura",
+      "nombre": "Ministerio: Agricultura"
+    }
   },
   {
     "id": "evt_min_mineria",
@@ -3162,7 +3337,8 @@
             "ind": "aprobacion",
             "delta": -1
           }
-        ]
+        ],
+        "relacion": 1
       },
       {
         "texto": "Exigir más estudios ambientales",
@@ -3175,7 +3351,8 @@
             "ind": "cohesion",
             "delta": 1
           }
-        ]
+        ],
+        "relacion": 0
       },
       {
         "texto": "Frenar el proyecto",
@@ -3184,9 +3361,14 @@
             "ind": "fiscal",
             "delta": -1
           }
-        ]
+        ],
+        "relacion": -1
       }
-    ]
+    ],
+    "actor": {
+      "id": "min_mineria",
+      "nombre": "Ministerio: Mineria"
+    }
   },
   {
     "id": "evt_min_transportes",
@@ -3212,7 +3394,8 @@
             "ind": "fiscal",
             "delta": -2
           }
-        ]
+        ],
+        "relacion": 1
       },
       {
         "texto": "Subsidiar con metas de calidad",
@@ -3225,7 +3408,8 @@
             "ind": "fiscal",
             "delta": -1
           }
-        ]
+        ],
+        "relacion": 0
       },
       {
         "texto": "No subsidiar",
@@ -3234,9 +3418,14 @@
             "ind": "aprobacion",
             "delta": -2
           }
-        ]
+        ],
+        "relacion": -1
       }
-    ]
+    ],
+    "actor": {
+      "id": "min_transportes",
+      "nombre": "Ministerio: Transportes"
+    }
   },
   {
     "id": "evt_min_bienes",
@@ -3262,7 +3451,8 @@
             "ind": "capital",
             "delta": -1
           }
-        ]
+        ],
+        "relacion": 1
       },
       {
         "texto": "Destinarlos a un parque",
@@ -3275,7 +3465,8 @@
             "ind": "cohesion",
             "delta": 1
           }
-        ]
+        ],
+        "relacion": 0
       },
       {
         "texto": "Dejarlos sin uso",
@@ -3284,9 +3475,14 @@
             "ind": "aprobacion",
             "delta": -1
           }
-        ]
+        ],
+        "relacion": -1
       }
-    ]
+    ],
+    "actor": {
+      "id": "min_bienes",
+      "nombre": "Ministerio: Bienes"
+    }
   },
   {
     "id": "evt_min_ambiente",
@@ -3312,7 +3508,8 @@
             "ind": "fiscal",
             "delta": -1
           }
-        ]
+        ],
+        "relacion": 1
       },
       {
         "texto": "Protección parcial",
@@ -3325,7 +3522,8 @@
             "ind": "capital",
             "delta": -1
           }
-        ]
+        ],
+        "relacion": 0
       },
       {
         "texto": "Postergar",
@@ -3334,9 +3532,14 @@
             "ind": "aprobacion",
             "delta": -1
           }
-        ]
+        ],
+        "relacion": -1
       }
-    ]
+    ],
+    "actor": {
+      "id": "min_ambiente",
+      "nombre": "Ministerio: Ambiente"
+    }
   },
   {
     "id": "evt_min_segpres",
@@ -3362,7 +3565,8 @@
             "ind": "cohesion",
             "delta": 1
           }
-        ]
+        ],
+        "relacion": 1
       },
       {
         "texto": "Mantener toda la agenda",
@@ -3375,7 +3579,8 @@
             "ind": "capital",
             "delta": -1
           }
-        ]
+        ],
+        "relacion": 0
       },
       {
         "texto": "Dejar que el Congreso decida",
@@ -3384,9 +3589,14 @@
             "ind": "capital",
             "delta": 1
           }
-        ]
+        ],
+        "relacion": -1
       }
-    ]
+    ],
+    "actor": {
+      "id": "min_segpres",
+      "nombre": "Ministerio: Segpres"
+    }
   },
   {
     "id": "evt_min_deporte",
@@ -3412,7 +3622,8 @@
             "ind": "fiscal",
             "delta": -2
           }
-        ]
+        ],
+        "relacion": 1
       },
       {
         "texto": "Apoyo con límite de gasto",
@@ -3425,7 +3636,8 @@
             "ind": "fiscal",
             "delta": -1
           }
-        ]
+        ],
+        "relacion": 0
       },
       {
         "texto": "Declinar",
@@ -3434,9 +3646,14 @@
             "ind": "aprobacion",
             "delta": -1
           }
-        ]
+        ],
+        "relacion": -1
       }
-    ]
+    ],
+    "actor": {
+      "id": "min_deporte",
+      "nombre": "Ministerio: Deporte"
+    }
   },
   {
     "id": "evt_min_mujer",
@@ -3462,7 +3679,8 @@
             "ind": "cohesion",
             "delta": 1
           }
-        ]
+        ],
+        "relacion": 1
       },
       {
         "texto": "Negociar el contenido",
@@ -3475,7 +3693,8 @@
             "ind": "aprobacion",
             "delta": 1
           }
-        ]
+        ],
+        "relacion": 0
       },
       {
         "texto": "Mantener distancia",
@@ -3484,9 +3703,14 @@
             "ind": "cohesion",
             "delta": -1
           }
-        ]
+        ],
+        "relacion": -1
       }
-    ]
+    ],
+    "actor": {
+      "id": "min_mujer",
+      "nombre": "Ministerio: Mujer"
+    }
   },
   {
     "id": "evt_min_cultura",
@@ -3512,7 +3736,8 @@
             "ind": "fiscal",
             "delta": -1
           }
-        ]
+        ],
+        "relacion": 1
       },
       {
         "texto": "Cofinanciar con privados",
@@ -3525,7 +3750,8 @@
             "ind": "fiscal",
             "delta": -1
           }
-        ]
+        ],
+        "relacion": 0
       },
       {
         "texto": "Rechazar",
@@ -3534,9 +3760,14 @@
             "ind": "aprobacion",
             "delta": -1
           }
-        ]
+        ],
+        "relacion": -1
       }
-    ]
+    ],
+    "actor": {
+      "id": "min_cultura",
+      "nombre": "Ministerio: Cultura"
+    }
   },
   {
     "id": "evt_min_ciencia",
@@ -3562,7 +3793,8 @@
             "ind": "aprobacion",
             "delta": 1
           }
-        ]
+        ],
+        "relacion": 1
       },
       {
         "texto": "Convocar un concurso nuevo",
@@ -3575,7 +3807,8 @@
             "ind": "cohesion",
             "delta": 1
           }
-        ]
+        ],
+        "relacion": 0
       },
       {
         "texto": "Mantener el presupuesto",
@@ -3584,8 +3817,13 @@
             "ind": "aprobacion",
             "delta": -1
           }
-        ]
+        ],
+        "relacion": -1
       }
-    ]
+    ],
+    "actor": {
+      "id": "min_ciencia",
+      "nombre": "Ministerio: Ciencia"
+    }
   }
 ]

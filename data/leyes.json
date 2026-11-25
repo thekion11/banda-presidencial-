@@ -217,6 +217,11 @@
     ,"tope_prob_retraso": 0.5
   },
   "repeticion_promesa": 0.5,
+  "actores": {
+    "nota": "PR-24: relación con cada actor (ministerios, comisiones, instituciones, medios) = base + paso * suma de «relacion» de las opciones elegidas (+1 apoyar, 0 negociar, −1 ignorar). Se calcula del registro de decisiones: sin estado nuevo.",
+    "base": 50.0,
+    "paso": 10.0
+  },
   "oposicion": {
     "nota": "PR-13: Modo Oposición ligero tras perder la elección. Cuatro escenas con decisiones; cada opción suma a visibilidad, partido y alianzas (0 a 3 cada una). El resultado final depende de la suma. Sin estado de simulación: es un epílogo jugable.",
     "escenas": [

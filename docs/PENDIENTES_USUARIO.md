@@ -91,3 +91,7 @@ Sigue pendiente U4: revisión por un abogado chileno (esta nota es de una fuente
 - PR-14 internos: sin cambios nuevos; ya muestran aviso por acción. Vincularlos a personas queda con PR-24.
 - PR-24 marco de actores: NO hecho. Necesita estado por actor (relación de cada ministro, aliado, institución y medio) y unificar los eventos con decisión bajo un solo modelo; sin eso sería decoración. Es el siguiente paso grande y cambia hashes y balance.
 - PR-08: los 25 ministerios ya tienen su petición (evento con decisión); 6 ministerios clave + 19 más. Los retratos siguen pendientes (U7).
+
+## PR-24 Marco de actores (primera versión, 25-nov-2026)
+- Hecho: los eventos con decisión de 25 ministerios, 2 comisiones, Contraloría, Banco Central, TC, Fiscalía y medios declaran su `actor` y cada opción un `relacion` (+1 apoyar, 0 negociar, −1 ignorar). `MotorEventos.relaciones_actores()` deriva la relación (50 ± 10 por decisión; `leyes.json` → `actores`) del registro de decisiones, sin estado nuevo, y la pantalla de fin muestra «Tu relación con los actores». Prueba en `test_decisiones.gd`.
+- Pendiente: que la relación tenga consecuencias (p. ej. un ministro enojado renuncia, un medio hostil amplifica escándalos) y mostrarla durante la partida, no solo al final. Requiere rebalancear.

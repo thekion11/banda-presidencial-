@@ -85,3 +85,22 @@ func decidir(evento_id: String, idx: int) -> Dictionary:
 	m.estado.registrar_entrada("decision", {"evento": evento_id, "idx": idx})
 	m.estado.registrar_accion("decision", {"evento": evento_id, "idx": idx})
 	return {"ok": true, "efectos": ops[idx]["efectos"]}
+
+
+func relaciones_actores() -> Array[Dictionary]:
+	## Marco de actores (PR-24): [{id, nombre, relacion}] solo de los actores con quienes ya decidiste algo; derivado de estado.decisiones.
+	var cfg: Dictionary = m.catalogo_leyes["actores"]
+	var suma := {}
+	var nombres := {}
+	for evt in m.catalogo_eventos:
+		var eid := String(evt["id"])
+		if not evt.has("actor") or not m.estado.decisiones.has(eid):
+			continue
+		var a: Dictionary = evt["actor"]
+		suma[a["id"]] = float(suma.get(a["id"], 0.0)) + float(evt["opciones"][int(m.estado.decisiones[eid])].get("relacion", 0))
+		nombres[a["id"]] = String(a["nombre"])
+	var res: Array[Dictionary] = []
+	for id in suma.keys():
+		res.append({"id": id, "nombre": nombres[id], "relacion": clampf(float(cfg["base"]) + float(cfg["paso"]) * float(suma[id]), 0.0, 100.0)})
+	res.sort_custom(func(x: Dictionary, y: Dictionary) -> bool: return float(x["relacion"]) > float(y["relacion"]))
+	return res
