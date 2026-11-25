@@ -120,3 +120,10 @@ Instrucción del usuario: «dejaría la dirección del juego abierta, haría tod
 - Contenido: 10 cartas más de oposición (denuncia a la Contraloría, primarias, gira, libro programático, afiliación, franja, centro de estudios, pacto de ley, filtración, movilización; con riesgo y efectos a futuro), `rival` en las existentes, y 10 eventos nuevos (reforma tributaria del gobierno, escándalo, acuerdo, ley de seguridad, reajuste, encuesta, liderazgo joven, candidatura única, crisis climática, debate televisivo).
 - Al empezar una nueva campaña la aprobación vuelve a la base de tu partido más una pequeña herencia (`herencia_campana` 0,04) para que la segunda campaña no sea más fácil que la primera. Medido con bots: tras una oposición jugada, la segunda elección la gana ≈ 33 % el bot al azar y ≈ 97 % el codicioso.
 - Sigue sin contrastarse el artículo 25 de la Constitución (la fuente oficial exige autenticación y no se intentó eludirla): la reelección permanece como mecánica ilustrativa hasta que el usuario aporte el texto o autorice otra fuente.
+
+## O. Fase F, sensación de juego (primera parte, 25-nov-2026)
+- **Sonido:** 8 efectos sintetizados por código (`tools/audio/generar_sonidos.py` → `game/audio/*.wav`, ≈ 114 KB, sin muestras de terceros: no requieren licencia): toque, jugar, éxito, alerta, evento, decisión, turno y error. `Feedback.sonar`.
+- **Vibración** corta al jugar (más larga si sale mal o hay escándalo) y **números flotantes** con lo que cambió la carta.
+- **Ajustes** (menú → Ajustes): sonido, vibración y animaciones, guardados en `user://ajustes.json`.
+- El aviso (toast) pasó a su propio componente (`game/componentes/toast.gd`).
+- Pendiente de esta fase: tamaño de letra y modo daltónico (el diseño fijo de 390×844 exige rehacer medidas), música de fondo, telemetría opcional (depende de U9).

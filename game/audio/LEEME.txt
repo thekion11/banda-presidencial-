@@ -1,0 +1,1 @@
+Efectos de sonido sintetizados para este proyecto (ondas senoidales y ruido, generados por codigo en el repositorio). Sin muestras de terceros: sin licencias externas.

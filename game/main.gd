@@ -14,6 +14,7 @@ var _huella_datos: String = ""
 
 
 func _ready() -> void:
+	Ajustes.cargar()
 	datos = Datos.cargar_todo()
 	_huella_datos = Datos.huella(datos)  # una sola vez: calcularla en cada guardado costaría ~1 s en un teléfono modesto
 	geo = Datos.leer_json("res://data/geo/regiones_mapa.json")
@@ -32,6 +33,7 @@ func _ready() -> void:
 	fondo.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 	fondo.set_anchors_preset(Control.PRESET_FULL_RECT)
 	add_child(fondo)
+	Feedback.iniciar(self)
 	mostrar_menu()
 
 

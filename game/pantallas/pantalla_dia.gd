@@ -21,14 +21,13 @@ var _r: Dictionary = {}  # referencias de Barras
 var _mapa: MapaChile
 var _mano: ManoUI
 var _lbl_corrector: RichTextLabel
-var _tw_toast: Tween
 var _btn_jugar: Button
 var _confirmar_fin: bool = false
 var _mano_tocada: bool = false  # ya hay una carta elegida por toque (el siguiente toque sobre ella la juega)
 var _btn_deleg: Button
 var _zona_panel: Control
 var _capa: Control
-var _toast: Label
+var _toast: Toast
 var _cola_eventos: Array[Dictionary] = []
 
 
@@ -46,13 +45,7 @@ func _ready() -> void:
 	_capa.set_anchors_preset(Control.PRESET_FULL_RECT)
 	_capa.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	add_child(_capa)
-	_toast = Tema.etiqueta("", 12, Tema.TINTA, true)
-	_toast.add_theme_stylebox_override("normal", Tema.caja(Tema.ORO, 12))
-	_toast.position = Vector2(20, 112)
-	_toast.size = Vector2(350, 30)
-	_toast.custom_minimum_size = Vector2(350, 0)
-	_toast.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART  # con consecuencias el aviso puede ocupar dos líneas
-	_toast.visible = false
+	_toast = Toast.new()
 	_capa.add_child(_toast)
 	_cola_eventos = motor.ultimos_eventos.duplicate()
 	_refrescar()
@@ -249,6 +242,7 @@ func _avanzar() -> void:
 
 
 func _on_carta(i: int) -> void:
+	Feedback.sonar("toque")
 	if i == _sel and _mano_tocada:  # tocar de nuevo la carta elegida la juega (respaldo del gesto de deslizar)
 		_jugar()
 		return
@@ -269,6 +263,7 @@ func _jugar() -> void:
 	_mano_tocada = false
 	var r := motor.jugar_carta(_sel, _ministro, _region)
 	if not bool(r["ok"]):
+		Feedback.sonar("error")
 		_avisar(Razones.texto(r))
 		return
 	_leer_reposicion(n_reg)
@@ -287,6 +282,7 @@ func _jugar() -> void:
 		msg = "Versión viable aplicada (%d %%)." % roundi(float(r["corrector"]["ratio"]) * 100.0)
 	var cambios := Barras.resumen_cambios(antes, motor.estado.indicadores)  # consecuencia visible de la carta
 	_avisar((msg if cambios == "" else msg + " " + cambios) + Barras.sufijo_carta(r))
+	Feedback.tras_jugar(_capa, r, cambios)
 	accion_hecha.emit()
 	_refrescar()
 
@@ -313,18 +309,11 @@ func _delegar() -> void:
 
 
 func _avisar(txt: String) -> void:
-	_toast.text = txt
-	_toast.size = Vector2(350, 30)  # se reajusta al alto del texto
-	_toast.visible = true
-	if _tw_toast != null and _tw_toast.is_valid():
-		_tw_toast.kill()  # un aviso nuevo no debe ser ocultado por el temporizador del anterior
-	var tw := create_tween()
-	_tw_toast = tw
-	tw.tween_interval(2.6)
-	tw.tween_callback(func() -> void: _toast.visible = false)
+	_toast.mostrar(txt)
 
 
 func _terminar_turno() -> void:
+	Feedback.sonar("turno")
 	var est := motor.estado
 	var sem := int(datos["leyes"]["hemiciclo"]["semanas_campana"])
 	if est.eleccion_pendiente(sem):
@@ -366,9 +355,11 @@ func _siguiente_evento() -> void:
 		_avisar(Barras.texto_consecuencia(ev))
 		_siguiente_evento()
 		return
+	Feedback.sonar("evento")
 	_capa.add_child(OverlaysDia.evento(ev, _siguiente_evento, motor.catalogo_leyes["congreso"]["nombres"], motor.estado.dia_actual,
 			func(i: int) -> void:
 				var a := motor.estado.indicadores.duplicate()
+				Feedback.sonar("decision")
 				_avisar(Barras.texto_decision(motor.eventos.decidir(String(ev["id"]), i), a, motor.estado.indicadores))
 				_refrescar()))
 
