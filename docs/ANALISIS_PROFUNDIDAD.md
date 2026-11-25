@@ -99,3 +99,25 @@ Hoy añadimos decisiones y actores **sin medir** si cambian el resultado.
 | firmas de efecto distintas en las cartas | 322 de 1.685 | ≥ 800 o menos cartas |
 | mecánicas con efecto medible (> 3 %) | 4 de 7 | 7 de 7 |
 | partidas probadas con personas | 0 | ≥ 10 |
+
+---
+
+# Resultado de la ejecución (25-nov-2026)
+
+El usuario dejó abierta la **dirección de duración** (semanas silenciosas, turno = mes o capítulos) y pidió hacer todo lo demás, incluidos los bots. Estado frente a las métricas de éxito:
+
+| métrica | antes | ahora | meta |
+|---|---|---|---|
+| eventos por semana | 4,14 | 0,76 (`test_ritmo`) | ≤ 1 ✔ |
+| decisiones por mandato | ≈ 270 | ≈ 25 | 30–45 (algo bajo; ajustable con `prob_decision`) |
+| eventos distintos en un mandato | 116 | ≈ 122 | ≥ 40 ✔ |
+| toques antes del primer turno | ≥ 12 + 5 de tutorial | 1 (partida rápida) | ≤ 3 ✔ |
+| cartas | 1.775 | 1.955 (180 curadas con riesgo y efectos a futuro) | — |
+| mano con cartas diseñadas | ≈ 37 % | ≥ 2 de 5 siempre (`test_identidad`) | ✔ |
+| ministros intercambiables | 25 casi iguales | 75 candidatos con estilo, afinidad, riesgo y renuncia | ✔ |
+| mecánicas con efecto medible | 4 de 7 | sin medir de nuevo (falta correr `tests/ablacion.gd`) | 7 de 7 |
+| partidas probadas con personas | 0 | 0 | ≥ 10 (U1) |
+
+**Hecho:** Fase A (director de eventos y partida rápida), B (mazo curado y composición de la mano), C (gabinete con identidad), D (decisiones con riesgo, efectos a futuro, cadenas y memoria), E (oposición con gobierno rival) y la primera parte de F (sonido, vibración, números flotantes y ajustes). Bots: políticas «humano» y «experto», decisiones por valor esperado e `informe_bots` (`docs/INFORME_BOTS.md`).
+
+**Falta:** la duración (decisión del usuario); coalición y bono por aprobación siguen sin medirse tras los cambios; pantallas propias de debate y entrevista; Congreso y votaciones en oposición; tamaño de letra y modo daltónico; música; pruebas con personas (U1); artículo 25 de la Constitución sin contrastar.

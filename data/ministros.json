@@ -9,7 +9,7 @@
     "riesgo_escandalo": 0.06,
     "ministerio": "min_interior",
     "estilo": "tecnico",
-    "rasgo": "Perfil equilibrado del equipo inicial",
+    "rasgo": "Técnico de carrera: ordena, mide y cumple",
     "perfil": {
       "eco": 0.32,
       "inst": 1.0
@@ -25,7 +25,7 @@
     "riesgo_escandalo": 0.07,
     "ministerio": "min_exteriores",
     "estilo": "negociador",
-    "rasgo": "Perfil equilibrado del equipo inicial",
+    "rasgo": "Hábil para el acuerdo: baja la tensión",
     "perfil": {
       "eco": -0.54,
       "inst": -0.53
@@ -41,7 +41,7 @@
     "riesgo_escandalo": 0.08,
     "ministerio": "min_defensa",
     "estilo": "comunicador",
-    "rasgo": "Perfil equilibrado del equipo inicial",
+    "rasgo": "Buen vocero: gana la conversación pública",
     "perfil": {
       "eco": -0.99,
       "inst": -0.74
@@ -57,7 +57,7 @@
     "riesgo_escandalo": 0.05,
     "ministerio": "min_hacienda",
     "estilo": "politico",
-    "rasgo": "Perfil equilibrado del equipo inicial",
+    "rasgo": "Hombre o mujer de partido: abre puertas en el Congreso",
     "perfil": {
       "eco": 0.81,
       "inst": 0.78
@@ -73,7 +73,7 @@
     "riesgo_escandalo": 0.06,
     "ministerio": "min_segegob",
     "estilo": "negociador",
-    "rasgo": "Perfil equilibrado del equipo inicial",
+    "rasgo": "Hábil para el acuerdo: baja la tensión",
     "perfil": {
       "eco": -0.75,
       "inst": 0.42
@@ -89,7 +89,7 @@
     "riesgo_escandalo": 0.07,
     "ministerio": "min_economia",
     "estilo": "negociador",
-    "rasgo": "Perfil equilibrado del equipo inicial",
+    "rasgo": "Hábil para el acuerdo: baja la tensión",
     "perfil": {
       "eco": -0.17,
       "inst": 0.54
@@ -105,7 +105,7 @@
     "riesgo_escandalo": 0.08,
     "ministerio": "min_social",
     "estilo": "tecnico",
-    "rasgo": "Perfil equilibrado del equipo inicial",
+    "rasgo": "Técnico de carrera: ordena, mide y cumple",
     "perfil": {
       "eco": 0.49,
       "inst": -0.18
@@ -121,7 +121,7 @@
     "riesgo_escandalo": 0.09,
     "ministerio": "min_educacion",
     "estilo": "comunicador",
-    "rasgo": "Perfil equilibrado del equipo inicial",
+    "rasgo": "Buen vocero: gana la conversación pública",
     "perfil": {
       "eco": 0.6,
       "inst": 0.73
@@ -137,7 +137,7 @@
     "riesgo_escandalo": 0.06,
     "ministerio": "min_justicia",
     "estilo": "politico",
-    "rasgo": "Perfil equilibrado del equipo inicial",
+    "rasgo": "Hombre o mujer de partido: abre puertas en el Congreso",
     "perfil": {
       "eco": -0.98,
       "inst": 0.76
@@ -153,7 +153,7 @@
     "riesgo_escandalo": 0.07,
     "ministerio": "min_trabajo",
     "estilo": "politico",
-    "rasgo": "Perfil equilibrado del equipo inicial",
+    "rasgo": "Hombre o mujer de partido: abre puertas en el Congreso",
     "perfil": {
       "eco": -0.26,
       "inst": -0.1
@@ -169,7 +169,7 @@
     "riesgo_escandalo": 0.08,
     "ministerio": "min_obras",
     "estilo": "comunicador",
-    "rasgo": "Perfil equilibrado del equipo inicial",
+    "rasgo": "Buen vocero: gana la conversación pública",
     "perfil": {
       "eco": 0.17,
       "inst": 0.41
@@ -185,7 +185,7 @@
     "riesgo_escandalo": 0.09,
     "ministerio": "min_salud",
     "estilo": "tecnico",
-    "rasgo": "Perfil equilibrado del equipo inicial",
+    "rasgo": "Técnico de carrera: ordena, mide y cumple",
     "perfil": {
       "eco": -0.82,
       "inst": -0.19
@@ -201,7 +201,7 @@
     "riesgo_escandalo": 0.12,
     "ministerio": "min_vivienda",
     "estilo": "tecnico",
-    "rasgo": "Perfil equilibrado del equipo inicial",
+    "rasgo": "Técnico de carrera: ordena, mide y cumple",
     "perfil": {
       "eco": 0.87,
       "inst": 0.24
@@ -217,7 +217,7 @@
     "riesgo_escandalo": 0.07,
     "ministerio": "min_agricultura",
     "estilo": "negociador",
-    "rasgo": "Perfil equilibrado del equipo inicial",
+    "rasgo": "Hábil para el acuerdo: baja la tensión",
     "perfil": {
       "eco": -0.57,
       "inst": 0.96
@@ -233,7 +233,7 @@
     "riesgo_escandalo": 0.08,
     "ministerio": "min_mineria",
     "estilo": "negociador",
-    "rasgo": "Perfil equilibrado del equipo inicial",
+    "rasgo": "Hábil para el acuerdo: baja la tensión",
     "perfil": {
       "eco": -0.14,
       "inst": -0.16
@@ -249,7 +249,7 @@
     "riesgo_escandalo": 0.08,
     "ministerio": "min_transportes",
     "estilo": "politico",
-    "rasgo": "Perfil equilibrado del equipo inicial",
+    "rasgo": "Hombre o mujer de partido: abre puertas en el Congreso",
     "perfil": {
       "eco": 0.11,
       "inst": 0.86
@@ -265,7 +265,7 @@
     "riesgo_escandalo": 0.06,
     "ministerio": "min_bienes",
     "estilo": "politico",
-    "rasgo": "Perfil equilibrado del equipo inicial",
+    "rasgo": "Hombre o mujer de partido: abre puertas en el Congreso",
     "perfil": {
       "eco": -0.98,
       "inst": 0.11
@@ -281,7 +281,7 @@
     "riesgo_escandalo": 0.07,
     "ministerio": "min_energia",
     "estilo": "politico",
-    "rasgo": "Perfil equilibrado del equipo inicial",
+    "rasgo": "Hombre o mujer de partido: abre puertas en el Congreso",
     "perfil": {
       "eco": -0.08,
       "inst": 0.48
@@ -297,7 +297,7 @@
     "riesgo_escandalo": 0.08,
     "ministerio": "min_ambiente",
     "estilo": "comunicador",
-    "rasgo": "Perfil equilibrado del equipo inicial",
+    "rasgo": "Buen vocero: gana la conversación pública",
     "perfil": {
       "eco": 0.82,
       "inst": 0.81
@@ -313,7 +313,7 @@
     "riesgo_escandalo": 0.09,
     "ministerio": "min_segpres",
     "estilo": "negociador",
-    "rasgo": "Perfil equilibrado del equipo inicial",
+    "rasgo": "Hábil para el acuerdo: baja la tensión",
     "perfil": {
       "eco": 0.91,
       "inst": 0.35
@@ -329,7 +329,7 @@
     "riesgo_escandalo": 0.06,
     "ministerio": "min_deporte",
     "estilo": "negociador",
-    "rasgo": "Perfil equilibrado del equipo inicial",
+    "rasgo": "Hábil para el acuerdo: baja la tensión",
     "perfil": {
       "eco": -0.54,
       "inst": 0.16
@@ -345,7 +345,7 @@
     "riesgo_escandalo": 0.07,
     "ministerio": "min_mujer",
     "estilo": "comunicador",
-    "rasgo": "Perfil equilibrado del equipo inicial",
+    "rasgo": "Buen vocero: gana la conversación pública",
     "perfil": {
       "eco": -0.05,
       "inst": 0.82
@@ -361,7 +361,7 @@
     "riesgo_escandalo": 0.08,
     "ministerio": "min_cultura",
     "estilo": "tecnico",
-    "rasgo": "Perfil equilibrado del equipo inicial",
+    "rasgo": "Técnico de carrera: ordena, mide y cumple",
     "perfil": {
       "eco": -0.43,
       "inst": -0.43
@@ -377,7 +377,7 @@
     "riesgo_escandalo": 0.09,
     "ministerio": "min_ciencia",
     "estilo": "tecnico",
-    "rasgo": "Perfil equilibrado del equipo inicial",
+    "rasgo": "Técnico de carrera: ordena, mide y cumple",
     "perfil": {
       "eco": -0.81,
       "inst": 0.44
@@ -393,7 +393,7 @@
     "riesgo_escandalo": 0.06,
     "ministerio": "min_seguridad",
     "estilo": "politico",
-    "rasgo": "Perfil equilibrado del equipo inicial",
+    "rasgo": "Hombre o mujer de partido: abre puertas en el Congreso",
     "perfil": {
       "eco": -0.67,
       "inst": 0.32
