@@ -74,6 +74,18 @@ func _init() -> void:
 	var sin_estado := d.duplicate(true)
 	sin_estado["estado"] = {"semilla": 1}
 	_check(not Instantanea.vale_para(sin_estado, huella, "abc"), "con el estado recortado no vale")
+	var sin_clave := d.duplicate(true)
+	sin_clave.erase("estado")
+	var estado_int := d.duplicate(true)
+	estado_int["estado"] = 5
+	var sin_seed := d.duplicate(true)
+	sin_seed.erase("rng_seed")
+	var estado_vacio := d.duplicate(true)
+	estado_vacio["estado"] = {}
+	var indic_vacios := d.duplicate(true)
+	indic_vacios["estado"]["indicadores"] = {}
+	for caso in [sin_clave, estado_int, sin_seed, estado_vacio, indic_vacios]:
+		_check(not Instantanea.vale_para(caso, huella, "abc"), "una instantánea fabricada o recortada no vale")
 	var m3 := Partida.crear(datos, 12, GeneradorPartido.construir_partido("I", "III", "metropolitana", resp, datos["ideologia"]))
 	var r3 := RandomNumberGenerator.new()
 	r3.seed = 12
@@ -81,7 +93,7 @@ func _init() -> void:
 		Bots.jugar_turno(m3, "completo", r3)
 		m3.terminar_turno()
 	var inc2 := Instantanea.leer(Instantanea.tomar(m3, huella, "abc"))
-	inc2.erase("votaciones")
+	inc2["estado"] = {}  # el caso más grave: partida en blanco en silencio
 	var g3: Dictionary = JSON.parse_string(JSON.stringify(m3.estado.exportar_guardado(huella)))
 	var rec := Partida.cargar(datos, g3, inc2, huella, "abc")
 	_check(rec.estado.calcular_huella() == m3.estado.calcular_huella(), "una instantánea incompleta cae al historial y da el mismo estado")

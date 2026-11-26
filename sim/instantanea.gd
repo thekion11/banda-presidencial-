@@ -46,11 +46,13 @@ static func es_completa(d: Dictionary) -> bool:
 			return false
 	if not (d["estado"] is Dictionary) or not (d["ultimos_eventos"] is Array) or not (d["votaciones"] is Array):
 		return false
+	if not (d["rng_seed"] is int) or not (d["rng_state"] is int):
+		return false
 	var e: Dictionary = d["estado"]
 	for k in ["semilla", "etapa", "turno_actual", "indicadores", "mano", "mazo", "entradas"]:
 		if not e.has(k):
 			return false
-	return true
+	return (e["indicadores"] is Dictionary) and not (e["indicadores"] as Dictionary).is_empty() and (e["mano"] is Array) and (e["mazo"] is Array) and (e["entradas"] is Array) and e["etapa"] is String
 
 
 static func vale_para(d: Dictionary, huella_datos: String, sha_guardado: String) -> bool:
