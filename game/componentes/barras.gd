@@ -202,10 +202,7 @@ static func _boton_central(texto: String, al_avanzar: Callable) -> Control:
 	var ip := Icono.crear("play", Tema.TEXTO, 16.0)
 	ip.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
 	vc.add_child(ip)
-	var l1 := Tema.etiqueta_corta("Avanzar", 10, Tema.TEXTO, true)
-	l1.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	vc.add_child(l1)
-	var l2 := Tema.etiqueta_corta(texto, 10, Tema.TEXTO, false, 600)  # destino: "al día 43" (la cabecera muestra el día actual)
+	var l2 := Tema.etiqueta_corta(texto, 13, Tema.TEXTO, true)  # destino, como la maqueta («▶ Día 37»); la cabecera muestra el día actual
 	l2.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	vc.add_child(l2)
 	cc.add_child(vc)
