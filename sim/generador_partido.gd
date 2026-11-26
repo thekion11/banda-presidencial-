@@ -30,8 +30,14 @@ static func arquetipo_para(eco: float, catalogo: Dictionary) -> String:
 	return nombre
 
 
+static var _escanos: Dictionary = {}
+
+
 static func escanos_para(eco: float, inst: float) -> int:
-	return clampi(roundi(18.0 - 6.0 * sqrt(eco * eco + inst * inst)), 6, 22)
+	## Escaños propios según la distancia al centro; los números viven en data/ideologia.json › escanos.
+	if _escanos.is_empty():
+		_escanos = Datos.leer_json("res://data/ideologia.json")["escanos"]
+	return clampi(roundi(float(_escanos["base"]) - float(_escanos["pendiente"]) * sqrt(eco * eco + inst * inst)), int(_escanos["min"]), int(_escanos["max"]))
 
 
 static func construir_partido_afiliado(afiliacion: String, base: Dictionary, nombre: String, sigla: String, region_bastion: String,

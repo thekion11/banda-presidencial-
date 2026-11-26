@@ -23,6 +23,7 @@ jobs:
           pip install jsonschema
           python3 tools/validate_data.py
           python3 tools/check_limits.py
+          python3 tools/check_constantes.py
           python3 tools/validar_metro.py --verificar
           python3 tools/informe_alcanzabilidad.py
       - name: Instalar Godot
