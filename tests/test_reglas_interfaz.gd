@@ -1,7 +1,7 @@
 extends SceneTree
 ## Reglas congeladas de la interfaz (CLAUDE.md §5) con sus valores LITERALES, para que cambiar una constante de game/tema.gd rompa una prueba aunque las demás
 ## pruebas usen esa misma constante como umbral (test_tactil mide contra Tema.TACTIL: si alguien baja la constante, sus botones se achican y el test sigue en verde).
-## Cubre: zona táctil mínima 44 px, ancho de pantalla 390 px, paleta congelada y extremos de la escala de aprobación (con y sin daltonismo).
+## Cubre: zona táctil mínima 44 px, ancho de pantalla 390 px, paleta congelada, extremos de la escala de aprobación (con y sin daltonismo) y el redondeo de los porcentajes.
 
 var _fallos := 0
 
@@ -24,5 +24,8 @@ func _init() -> void:
 	Ajustes.daltonico = true
 	_check(Tema.color_aprobacion(60.0) != Tema.color_aprobacion(30.0), "con daltonismo los extremos siguen siendo distintos")
 	Ajustes.daltonico = false
+	# los porcentajes que ve el jugador se redondean (no se truncan): 52,6 es «53 %» y 52,4 es «52 %»
+	for caso in [[52.6, "53 %"], [52.4, "52 %"], [99.6, "100 %"], [0.4, "0 %"], [0.6, "1 %"], [61.0, "61 %"]]:
+		_check(Tema.pct(float(caso[0])) == String(caso[1]), "Tema.pct(%s) debe dar «%s» y da «%s»" % [str(caso[0]), caso[1], Tema.pct(float(caso[0]))])
 	print("test_reglas_interfaz: ", "OK" if _fallos == 0 else "FALLO")
 	quit(1 if _fallos > 0 else 0)
