@@ -160,6 +160,8 @@ func cerrar_turno() -> void:
 		mandato.cerrar_oposicion()
 	if estado.etapa == "gobierno" and estado.turno_actual > turnos_mandato():
 		mandato.finalizar("fin_mandato")
+	if estado.eleccion_pendiente(int(_h("semanas_campana"))):
+		Encuestas.registrar(self)  # la última encuesta antes de votar refleja la campaña ya terminada
 
 
 func resolver_eleccion_presidencial() -> Dictionary: return mandato.resolver_eleccion()
