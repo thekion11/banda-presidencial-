@@ -45,7 +45,7 @@ static func _pagina_votacion(col: VBoxContainer, camara: String, voto: Dictionar
 	var leyenda := HBoxContainer.new()
 	leyenda.alignment = BoxContainer.ALIGNMENT_CENTER
 	leyenda.add_theme_constant_override("separation", 12)
-	for par in [[Tema.SUBE, "A favor %d" % favor], [Color("#9AA9C0"), "Abstención %d" % abst], [Tema.BAJA, "En contra %d" % contra]]:
+	for par in [[Tema.bien(), "A favor %d" % favor], [Color("#9AA9C0"), "Abstención %d" % abst], [Tema.mal(), "En contra %d" % contra]]:
 		leyenda.add_child(Icono.crear("dot", par[0], 12.0))
 		leyenda.add_child(Tema.etiqueta_corta(par[1], 11, Tema.TEXTO_SUAVE))
 	col.add_child(leyenda)
@@ -65,7 +65,7 @@ static func _camino(col: VBoxContainer, paginas: Array, i: int, nombres: Diction
 		f.add_theme_constant_override("separation", 8)
 		var hecho := k < i or (k == i and i == 0)
 		var c := Tema.etiqueta_corta(pasos[k][0], 12, Tema.TINTA, true)
-		c.add_theme_stylebox_override("normal", Tema.caja(Tema.SUBE if hecho else Color("#9AA9C0"), 12))
+		c.add_theme_stylebox_override("normal", Tema.caja(Tema.bien() if hecho else Color("#9AA9C0"), 12))
 		f.add_child(c)
 		var txt := Tema.etiqueta(String(pasos[k][1]), 12, Tema.TEXTO if k <= i + 1 else Tema.TEXTO_SUAVE)
 		txt.size_flags_horizontal = Control.SIZE_EXPAND_FILL
@@ -125,7 +125,7 @@ static func _fila_efectos(efectos: Array) -> HBoxContainer:
 		var cvv := VBoxContainer.new()
 		cvv.add_theme_constant_override("separation", 0)
 		cvv.add_child(Tema.etiqueta(String(nombres[ef["ind"]]), 10, Tema.TEXTO_SUAVE))
-		cvv.add_child(Tema.etiqueta(Tema.signo(d), 16, Tema.SUBE if bueno else Tema.BAJA, true))
+		cvv.add_child(Tema.etiqueta(Tema.signo(d), 16, Tema.bien() if bueno else Tema.mal(), true))
 		cp.add_child(cvv)
 		fila.add_child(cp)
 	return fila

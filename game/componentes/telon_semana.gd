@@ -82,7 +82,7 @@ func _ready() -> void:
 	col.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	_panel.add_child(col)
 	col.add_child(Tema.etiqueta("FIN DE LA SEMANA", 12, Tema.ORO, true))
-	var tit := Tema.etiqueta(titulo_antes, 24, Tema.TEXTO_SUAVE, true)
+	var tit := Tema.etiqueta(titulo_antes, 22, Tema.TEXTO_SUAVE, true)  # con texto grande (+15 %) cabe en una línea
 	col.add_child(tit)
 	col.add_child(Tema.etiqueta(subtitulo, 13, Tema.TEXTO_SUAVE))
 	var sep := ColorRect.new()
@@ -122,7 +122,7 @@ func _fila(nombre: String, a: float, d: float, invertido: bool) -> Control:
 	var delta := roundi(d) - roundi(a)
 	var bueno := (delta > 0) != invertido
 	var txt := "= 0" if delta == 0 else Tema.signo(float(delta))
-	var dl := Tema.etiqueta_corta(txt, 14, Tema.TEXTO_SUAVE if delta == 0 else (Tema.SUBE if bueno else Tema.BAJA), true)
+	var dl := Tema.etiqueta_corta(txt, 14, Tema.TEXTO_SUAVE if delta == 0 else (Tema.bien() if bueno else Tema.mal()), true)
 	dl.custom_minimum_size = Vector2(58, 0)
 	dl.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
 	h.add_child(dl)
@@ -201,7 +201,7 @@ func _barra(valor: float, margen: float, umbral: float, rival: float) -> Control
 		if umbral > 0.0:
 			c.draw_rect(Rect2(w * umbral / 100.0 - 1.5, 0, 3, 20), Tema.ORO)
 		if rival > 0.0:
-			c.draw_rect(Rect2(w * rival / 100.0 - 1.0, 2, 2, 16), Tema.BAJA))
+			c.draw_rect(Rect2(w * rival / 100.0 - 1.0, 2, 2, 16), Tema.mal()))
 	if Movimiento.activo():
 		c.create_tween().tween_method(func(x: float) -> void:
 			c.set_meta("t", x)

@@ -33,7 +33,7 @@ static func _barra_umbral(valor: float, umbral: float, piso: float) -> Control:
 static func veredicto(res: Dictionary) -> Array:
 	## [título, color, texto del botón]
 	if res["electo"]:
-		return ["Eres Presidente electo" if int(res["ronda"]) == 1 else "Ganas la segunda vuelta", Tema.SUBE, "Asumir el gobierno"]
+		return ["Eres Presidente electo" if int(res["ronda"]) == 1 else "Ganas la segunda vuelta", Tema.bien(), "Asumir el gobierno"]
 	if res["balotaje"]:
 		return ["Vas a segunda vuelta", Tema.ORO, "Ir a la segunda vuelta"]
 	return ["No alcanzaste la presidencia", FilasUI.ROJO_TEXTO, "Ver resultado final"]

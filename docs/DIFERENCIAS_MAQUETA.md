@@ -138,6 +138,9 @@ Capturas a 390×844 generadas por `tests/captura_comparar.gd` (función `_v4`): 
 ### Encuestas en el telón (26-nov-2026)
 `estado.encuestas` (sim/encuestas.gd, sesión del motor; forma fijada por `tests/test_encuestas.gd`) se presenta dentro del telón de fin de semana, sin pantalla nueva: intención con su margen de error (franja clara en la barra), umbral de victoria en campaña (marca dorada) o gobierno rival en oposición (marca coral), cambio respecto de la semana anterior y las regiones donde más cuesta. Rotulada «ilustrativa». En gobierno no aparece. Captura: `docs/comparacion/v4_telon_semana.png`.
 
+### Daltonismo en todo lo que sube o baja (26-nov-2026)
+`Ajustes › Colores para daltonismo` antes solo cambiaba la escala de aprobación; el resto del juego seguía usando verde contra coral (difícil con deuteranopía). Ahora `Tema.bien()` / `Tema.mal()` (y `bien_tinta()` / `mal_tinta()` sobre crema) devuelven azul y naranja Okabe-Ito con el ajuste activo, y la paleta congelada sin él. Se usan en votos del hemiciclo, sellos, telón, mapa vivo, reacción del mapa, chips, ficha ampliada, número flotante y paneles. Contraste ≥ 4,5:1 comprobado en `tests/test_claridad.gd`. Con texto grande, el título del telón cabe en una línea.
+
 ### Lienzo de Claude Design (26-nov-2026)
 El lienzo «Presidente de Chile — Dirección visual v4» tiene dos páginas: **Dirección visual** (5 maquetas: menú, día, votación, elección y la hoja del sistema de movimiento, ampliada con todas las piezas nuevas) y **Juego actual** (24 capturas reales a 780×1688 de todas las pantallas: menú, créditos, afiliación, test con brújula, gabinete, tutorial con foco, día, ficha ampliada, carta al mapa, movimientos agotados, escándalo, Congreso, telón, votación con suspenso, aprobada y rechazada, evento claro, debate en TV y en radio, fuegos, elección, cambio de mando, fin y ajustes).
 

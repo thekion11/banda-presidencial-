@@ -286,7 +286,7 @@ func _jugar() -> void:
 		msg = "Versión viable aplicada (%d %%)." % roundi(float(r["corrector"]["ratio"]) * 100.0)
 	var cambios := Barras.resumen_cambios(antes, motor.estado.indicadores)  # consecuencia visible de la carta
 	_avisar((msg if cambios == "" else msg + " " + cambios) + Barras.sufijo_carta(r))
-	var color := Tema.BAJA if bool(r.get("salio_mal", false)) or bool(r.get("escandalo", false)) else Tema.SUBE
+	var color := Tema.mal() if bool(r.get("salio_mal", false)) or bool(r.get("escandalo", false)) else Tema.bien()
 	ManoVuelo.lanzar(_capa, vuelo, _mapa, _region, color, func(destino: Vector2) -> void:
 		Feedback.tras_jugar(_capa, r, cambios, _capa.get_global_transform().affine_inverse() * destino + Vector2(-40, -30))
 		if bool(r.get("escandalo", false)):  # escándalo con peso: destello rojo, titular y chips que tiemblan

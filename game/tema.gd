@@ -46,6 +46,25 @@ static func fuente_texto(peso: int = 400) -> Font:
 	return _fuentes_texto[peso]
 
 
+static func bien() -> Color:
+	## «Subió / a favor / salió bien». Con Ajustes › daltonismo pasa a azul (Okabe-Ito): verde y coral se confunden con deuteranopía.
+	return Color("#56B4E9") if Ajustes.daltonico else SUBE
+
+
+static func mal() -> Color:
+	## «Bajó / en contra / salió mal». Con daltonismo, naranja (contraste 7,2:1 sobre océano).
+	return Color("#E69F00") if Ajustes.daltonico else BAJA
+
+
+static func bien_tinta() -> Color:
+	## Igual que bien(), para texto sobre fondos claros (crema): contraste ≥ 4,8:1.
+	return Color("#0072B2") if Ajustes.daltonico else Color("#1F7A50")
+
+
+static func mal_tinta() -> Color:
+	return Color("#9A5200") if Ajustes.daltonico else Color("#B23A2B")
+
+
 static func color_aprobacion(v: float) -> Color:
 	## Escala de aprobación de mayor a menor: verde -> naranja/rojo.
 	var t := clampf((v - 30.0) / 30.0, 0.0, 1.0) * 4.0

@@ -23,7 +23,7 @@ static func crear(p_aprobada: bool, p_demora: float = 1.35) -> SelloVoto:
 
 
 func _color() -> Color:
-	return Tema.SUBE if aprobada else Tema.BAJA
+	return Tema.bien() if aprobada else Tema.mal()
 
 
 func _ready() -> void:
@@ -87,7 +87,7 @@ func _draw() -> void:
 	var c := size * 0.5
 	for v in (_chispas if Movimiento.intenso() else []):
 		var p := c + v * (_caja.size.x * 0.5 + 70.0 * _onda)
-		draw_circle(p, 3.5 * (1.0 - _onda), Color(col if aprobada else Tema.BAJA, 1.0 - _onda))
+		draw_circle(p, 3.5 * (1.0 - _onda), Color(col if aprobada else Tema.mal(), 1.0 - _onda))
 
 
 func _contorno(col: Color, a: float) -> StyleBoxFlat:

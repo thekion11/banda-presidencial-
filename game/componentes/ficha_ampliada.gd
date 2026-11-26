@@ -68,7 +68,7 @@ func _ready() -> void:
 		var d := float(ef["delta"])
 		var bueno := d >= 0.0 if String(ef["ind"]) != "riesgo_ejecucion" else d <= 0.0
 		var txt := "%s  %s" % [String(NOMBRES.get(ef["ind"], ef["ind"])), _cifra(d)]
-		efectos.add_child(Tema.etiqueta(txt, 14, Color("#1F7A50") if bueno else Color("#B23A2B"), false, 600))
+		efectos.add_child(Tema.etiqueta(txt, 14, Tema.bien_tinta() if bueno else Tema.mal_tinta(), false, 600))
 	v.add_child(efectos)
 	v.add_child(Tema.etiqueta("Suelta para cerrar", 11, Tema.GRIS_CLARO))
 	_ajustar_alto.call_deferred(marco, hoja)

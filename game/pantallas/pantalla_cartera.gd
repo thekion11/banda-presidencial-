@@ -60,7 +60,7 @@ func _estado_partida(c: Dictionary) -> Array:
 		return ["Sin partida abierta: estado real del proyecto", Tema.TEXTO_SUAVE]
 	var est := motor.estado
 	if est.cartas_ejecutadas.has(String(c["id"])):
-		return ["En tu partida: ya ejecutada", Tema.SUBE]
+		return ["En tu partida: ya ejecutada", Tema.bien()]
 	if est.mano.any(func(m: Dictionary) -> bool: return m["id"] == c["id"]):
 		return ["En tu mano ahora", Tema.ORO]
 	var mot := BloqueoCarta.motivo(motor, c)

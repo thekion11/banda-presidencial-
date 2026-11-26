@@ -334,7 +334,7 @@ func _dibujar_vivo() -> void:
 	v.draw_set_transform_matrix(_camara)
 	var pulso := 0.5 + 0.5 * sin(_t * 3.2)
 	for id in _tendencia.keys():
-		var col: Color = Tema.SUBE if int(_tendencia[id]) > 0 else Tema.BAJA
+		var col: Color = Tema.bien() if int(_tendencia[id]) > 0 else Tema.mal()
 		for pieza in _piezas.get(id, []):
 			if pieza.size() < 8:
 				continue

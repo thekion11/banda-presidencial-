@@ -49,7 +49,7 @@ func _correr() -> void:
 	root.add_child(c0)
 	var b0 := Barras.boton_jugar()
 	root.add_child(b0)
-	ManoVuelo.lanzar(c0, {}, mapa, "", Tema.SUBE, func(_p: Vector2) -> void: llego[0] = true)
+	ManoVuelo.lanzar(c0, {}, mapa, "", Tema.bien(), func(_p: Vector2) -> void: llego[0] = true)
 	_check(llego[0], "sin animaciones el vuelo de la carta avisa la llegada al instante (el número flotante no se pierde)")
 
 	var siguio := [false]
