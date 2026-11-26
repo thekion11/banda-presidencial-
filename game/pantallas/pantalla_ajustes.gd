@@ -6,8 +6,9 @@ signal cerrada
 
 
 func _ready() -> void:
+	set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)  # antes quedaba en tamaño 0: sin fondo, el menú se veía detrás
 	var fondo := ColorRect.new()
-	fondo.color = Color(0.03, 0.09, 0.15, 0.96)
+	fondo.color = Color(0.03, 0.09, 0.15, 1.0)
 	fondo.set_anchors_preset(Control.PRESET_FULL_RECT)
 	add_child(fondo)
 	var mc := MarginContainer.new()

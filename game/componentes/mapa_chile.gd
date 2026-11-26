@@ -30,6 +30,7 @@ var _camara := Transform2D.IDENTITY  # golpe de cámara al recibir una carta (di
 var _onda: Dictionary = {}  # {pos, t, color}: ondas del último impacto
 var _destello_id: String = ""
 var _destello: float = 0.0
+var _reaccion: Tween
 var _vivo: Control  # capa animada barata: tendencias, bastión, obras y propuestas (solo ella se redibuja cada cuadro)
 var _previos: Dictionary = {}
 var _tendencia: Dictionary = {}  # id -> +1 / -1 desde el último cambio de aprobación regional
@@ -197,7 +198,7 @@ func _draw() -> void:
 		var nombre := String(c["nombre"])
 		var ancho_txt := fuente.get_string_size(nombre, HORIZONTAL_ALIGNMENT_LEFT, -1, 10).x
 		draw_string(fuente, Vector2(pc.x - 8.0 - ancho_txt, pc.y + 3.5), nombre, HORIZONTAL_ALIGNMENT_LEFT, -1, 10, Tema.TEXTO)
-	if not _onda.is_empty():  # ondas del impacto de la carta en la región
+	if _onda.has("pos"):  # ondas del impacto de la carta en la región
 		var o := _onda
 		var t: float = o["t"]
 		for k in range(2):
@@ -221,19 +222,24 @@ func reaccionar(id: String, color: Color) -> void:
 	if not Movimiento.activo():
 		return
 	var p := centro(id) if _banda_y.has(id) else size * 0.5
-	_onda = {"pos": p, "t": 0.0, "color": color}
+	var onda := {"pos": p, "t": 0.0, "color": color}  # propia de esta reacción: dos cartas seguidas no se pisan
+	_onda = onda
 	_destello_id = id
+	if _reaccion != null and _reaccion.is_valid():
+		_reaccion.kill()  # la reacción nueva reemplaza a la anterior (cámara, destello y ondas)
 	var fuerza := 1.0 if Movimiento.intenso() else 0.0  # con «Reducir movimiento»: ondas y destello, sin golpe de cámara
-	create_tween().tween_method(func(t: float) -> void:
+	_reaccion = create_tween()
+	_reaccion.tween_method(func(t: float) -> void:
 		var s := 1.0 + 0.07 * fuerza * sin(t * 2.6 * PI) * exp(-3.2 * t)
 		var temblor := Vector2(sin(t * 41.0), cos(t * 33.0)) * 3.0 * fuerza * pow(1.0 - t, 2.0)
 		_camara = Transform2D(0.0, Vector2(s, s), 0.0, p * (1.0 - s) + temblor)
 		_destello = 1.0 - t
-		_onda["t"] = t
+		onda["t"] = t
 		if t >= 1.0:
 			_camara = Transform2D.IDENTITY
 			_destello = 0.0
-			_onda = {}
+			if _onda == onda:
+				_onda = {}
 		queue_redraw(), 0.0, 1.0, 0.9)
 
 
