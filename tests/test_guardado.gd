@@ -14,6 +14,20 @@ func _init() -> void:
 	var datos := Datos.cargar_todo()
 	var h := Datos.huella(datos)
 	_check(h.length() == 64 and h == Datos.huella(Datos.cargar_todo()), "huella estable entre cargas")
+	# huella rápida: igual que la completa, se guarda por versión de archivos y se invalida si cambia la clave
+	var cache := "user://_huella_prueba.json"
+	DirAccess.remove_absolute(ProjectSettings.globalize_path(cache))
+	var t0 := Time.get_ticks_usec()
+	_check(Datos.huella_rapida(datos, cache) == h, "la huella rápida coincide con la completa (primera vez)")
+	var t1 := Time.get_ticks_usec()
+	_check(Datos.huella_rapida(datos, cache) == h, "la huella rápida coincide con la completa (desde disco)")
+	var t2 := Time.get_ticks_usec()
+	_check((t2 - t1) < (t1 - t0) / 4, "desde disco es mucho más rápida (%d us contra %d us)" % [t2 - t1, t1 - t0])
+	var viejo := FileAccess.open(cache, FileAccess.WRITE)
+	viejo.store_string(JSON.stringify({"clave": "otra_version", "huella": "0".repeat(64)}))
+	viejo.close()
+	_check(Datos.huella_rapida(datos, cache) == h, "con una clave distinta se recalcula en vez de usar la huella vieja")
+	DirAccess.remove_absolute(ProjectSettings.globalize_path(cache))
 	var otro := Datos.cargar_todo()
 	otro["leyes"]["hemiciclo"]["umbral_victoria_presidencial"] = 77.0
 	_check(Datos.huella(otro) != h, "la huella cambia al cambiar un número de balance")

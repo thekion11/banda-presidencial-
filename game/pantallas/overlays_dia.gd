@@ -41,7 +41,7 @@ static func _pagina_votacion(col: VBoxContainer, camara: String, voto: Dictionar
 	h.custom_minimum_size = Vector2(0, 230)
 	h.configurar_votos(total, favor, abst, contra)
 	col.add_child(h)
-	h.animar(1.3)
+	var dur := h.animar_votacion(minimo, favor)  # los votos caen; ajustada = más lenta
 	var leyenda := HBoxContainer.new()
 	leyenda.alignment = BoxContainer.ALIGNMENT_CENTER
 	leyenda.add_theme_constant_override("separation", 12)
@@ -49,22 +49,7 @@ static func _pagina_votacion(col: VBoxContainer, camara: String, voto: Dictionar
 		leyenda.add_child(Icono.crear("dot", par[0], 12.0))
 		leyenda.add_child(Tema.etiqueta_corta(par[1], 11, Tema.TEXTO_SUAVE))
 	col.add_child(leyenda)
-	var ok := favor >= minimo
-	var color := Tema.SUBE if ok else Tema.BAJA
-	var sc := CenterContainer.new()
-	var caja := PanelContainer.new()
-	caja.add_theme_stylebox_override("panel", Tema.caja(Color(color, 0.12), 10, color, 3))
-	caja.add_child(Tema.etiqueta_corta("APROBADA" if ok else "RECHAZADA", 30, color, true))
-	caja.pivot_offset = Vector2(100, 24)
-	sc.add_child(caja)
-	sc.custom_minimum_size = Vector2(0, 70)
-	col.add_child(sc)
-	caja.set_deferred("rotation_degrees", -4.0)
-	caja.modulate.a = 0.0
-	caja.scale = Vector2(2.2, 2.2)
-	var tws := caja.create_tween().set_parallel(true)
-	tws.tween_property(caja, "modulate:a", 1.0, 0.12).set_delay(1.35)
-	tws.tween_property(caja, "scale", Vector2.ONE, 0.32).set_delay(1.35).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	col.add_child(SelloVoto.crear(favor >= minimo, dur + 0.05))  # cae al terminar de llenarse el hemiciclo
 
 
 static func _camino(col: VBoxContainer, paginas: Array, i: int, nombres: Dictionary) -> void:
@@ -117,6 +102,16 @@ static func _consecuencias(col: VBoxContainer, ev: Dictionary, voto: Dictionary,
 	col.add_child(tarjeta)
 
 
+static func descripcion_limpia(titulo: String, desc: String) -> String:
+	## Quita el título repetido al inicio («Se publica la Ley N° 21.810: Modifica…» → «Modifica…»).
+	var t := titulo.strip_edges()
+	if t != "" and desc.begins_with(t):
+		var resto := desc.substr(t.length()).lstrip(" :·-–—").strip_edges()
+		if resto.length() > 0:
+			return resto.left(1).to_upper() + resto.substr(1)
+	return desc
+
+
 static func _fila_efectos(efectos: Array) -> HBoxContainer:
 	var fila := HBoxContainer.new()
 	fila.add_theme_constant_override("separation", 8)
@@ -141,6 +136,11 @@ static func evento(ev: Dictionary, al_continuar: Callable, nombres: Dictionary, 
 	var capa := Control.new()
 	capa.set_anchors_preset(Control.PRESET_FULL_RECT)
 	capa.add_child(_fondo_radial())
+	if ev.get("votacion", null) != null:  # votación del Congreso: música de tensión mientras está en pantalla
+		Musica.tension(true)
+		capa.tree_exiting.connect(func() -> void: Musica.tension(false))
+	if ev.has("escena"):  # debate o entrevista: focos, EN VIVO / AL AIRE y puntos de ronda detrás del texto
+		capa.add_child(EscenaTV.crear(ev["escena"]))
 	var col := VBoxContainer.new()
 	col.set_anchors_preset(Control.PRESET_FULL_RECT)
 	col.offset_left = 16
@@ -166,10 +166,13 @@ static func evento(ev: Dictionary, al_continuar: Callable, nombres: Dictionary, 
 			cab += " · DÍA %d" % dia
 		col.add_child(_centrada(cab, 11, Tema.ORO, true))
 		col.add_child(_centrada(String(ev["titulo"]), 24, Tema.TEXTO, true))
-		if v == null:
-			col.add_child(_centrada(String(ev["descripcion"]), 13, Tema.TEXTO_SUAVE))
+		if v == null:  # P11: en un aviso el efecto va primero y la descripción no repite el título
 			var ef: Variant = ev.get("efectos", null)
-			if ef != null and not ef.is_empty():
+			var decide: bool = ev.get("opciones", null) != null
+			if ef != null and not ef.is_empty() and not decide:
+				col.add_child(_fila_efectos(ef))
+			col.add_child(_centrada(descripcion_limpia(String(ev["titulo"]), String(ev["descripcion"])), 13, Tema.TEXTO_SUAVE))
+			if ef != null and not ef.is_empty() and decide:
 				col.add_child(_fila_efectos(ef))
 		else:
 			var i: int = estado["i"]

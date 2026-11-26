@@ -4,6 +4,8 @@ extends RefCounted
 
 var catalogo: Array[Dictionary] = []
 var pesos: Dictionary = {}
+var _ids: Array = []  # ids y pesos en arrays paralelos: los recorridos por región son lo más frecuente de la simulación
+var _w := PackedFloat64Array()
 
 
 func cargar(p_regiones: Array) -> void:
@@ -13,8 +15,12 @@ func cargar(p_regiones: Array) -> void:
 	for r in p_regiones:
 		catalogo.append(r)
 		total += float(r["poblacion_miles"])
+	_ids.clear()
+	_w = PackedFloat64Array()
 	for r in catalogo:
 		pesos[r["id"]] = float(r["poblacion_miles"]) / total if total > 0.0 else 0.0
+		_ids.append(r["id"])
+		_w.append(float(pesos[r["id"]]))
 
 
 func existe(id: String) -> bool:
@@ -35,8 +41,9 @@ func inicializar(estado: EstadoSimulacion, aprobacion: float, bastion: String, b
 
 func promedio(estado: EstadoSimulacion) -> float:
 	var s: float = 0.0
-	for id in pesos.keys():
-		s += float(estado.aprobacion_regional.get(id, 0.0)) * float(pesos[id])
+	var reg: Dictionary = estado.aprobacion_regional
+	for i in range(_ids.size()):
+		s += float(reg.get(_ids[i], 0.0)) * _w[i]
 	return s
 
 
@@ -46,23 +53,32 @@ func recalcular(estado: EstadoSimulacion) -> void:
 
 
 func aplicar_delta(estado: EstadoSimulacion, delta: float, region: String, derrame: float) -> void:
-	## Si hay región objetivo, recibe el delta completo y el resto un derrame; si no, todas por igual.
-	for id in pesos.keys():
+	## Si hay región objetivo, recibe el delta completo y el resto un derrame; si no, todas por igual. Actualiza y promedia en una sola pasada.
+	var reg: Dictionary = estado.aprobacion_regional
+	var s := 0.0
+	for i in range(_ids.size()):
+		var id: String = _ids[i]
 		var f := 1.0
 		if region != "":
 			f = 1.0 if id == region else derrame
-		estado.aprobacion_regional[id] = clampf(float(estado.aprobacion_regional[id]) + delta * f, 0.0, 100.0)
-	recalcular(estado)
+		var v := clampf(float(reg[id]) + delta * f, 0.0, 100.0)
+		reg[id] = v
+		s += v * _w[i]
+	if not _ids.is_empty():
+		estado.indicadores["aprobacion"] = clampf(s, 0.0, 100.0)
 
 
 func revertir(estado: EstadoSimulacion, ancla: float, tasa: float, persistencia: float = 0.0) -> void:
+	var reg: Dictionary = estado.aprobacion_regional
+	var base: Dictionary = estado.aprobacion_base
 	var media_base := 0.0
-	for id in pesos.keys():
-		media_base += float(estado.aprobacion_base.get(id, 0.0)) * float(pesos[id])
-	for id in pesos.keys():
-		var a := float(estado.aprobacion_regional[id])
-		var sesgo := (float(estado.aprobacion_base.get(id, media_base)) - media_base) * persistencia  # cada región conserva su carácter
-		estado.aprobacion_regional[id] = clampf(a + (ancla + sesgo - a) * tasa, 0.0, 100.0)
+	for i in range(_ids.size()):
+		media_base += float(base.get(_ids[i], 0.0)) * _w[i]
+	for i in range(_ids.size()):
+		var id: String = _ids[i]
+		var a := float(reg[id])
+		var sesgo := (float(base.get(id, media_base)) - media_base) * persistencia  # cada región conserva su carácter
+		reg[id] = clampf(a + (ancla + sesgo - a) * tasa, 0.0, 100.0)
 	recalcular(estado)
 
 

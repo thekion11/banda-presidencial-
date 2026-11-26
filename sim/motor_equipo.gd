@@ -40,11 +40,12 @@ func contratar(id: String) -> Dictionary:
 
 
 func despedir(id: String) -> Dictionary:
-	if not m.estado.asesores.has(id):
+	var _m := m  # una sola resolución de la referencia débil por llamada (cada acceso a `m` cuesta ~0,5 us)
+	if not _m.estado.asesores.has(id):
 		return {"ok": false, "razon": "no_contratado"}
-	m.estado.registrar_entrada("asesor", {"accion": "despedir", "id": id})
-	m.estado.asesores.erase(id)
-	m.estado.registrar_accion("asesor_despedido", {"id": id})
+	_m.estado.registrar_entrada("asesor", {"accion": "despedir", "id": id})
+	_m.estado.asesores.erase(id)
+	_m.estado.registrar_accion("asesor_despedido", {"id": id})
 	return {"ok": true}
 
 

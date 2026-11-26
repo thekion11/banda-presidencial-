@@ -65,7 +65,8 @@ func unirse(id: String) -> Dictionary:
 
 
 func salir(id: String, ruptura: bool = false) -> Dictionary:
-	var est := m.estado
+	var _m := m  # una sola resolución de la referencia débil por llamada (cada acceso a `m` cuesta ~0,5 us)
+	var est := _m.estado
 	if not est.coalicion.has(id):
 		return {"ok": false, "razon": "no_aliado"}
 	if not ruptura and bool(est.coalicion[id].get("propio", false)):
@@ -75,15 +76,16 @@ func salir(id: String, ruptura: bool = false) -> Dictionary:
 	est.coalicion.erase(id)
 	_recalcular_apoyo()
 	if est.etapa == "gobierno":  # romper un pacto cuesta cohesión y capital político
-		m.fx.sumar_ind("cohesion", -float(_cfg()["penal_ruptura_cohesion"]))
-		m.fx.sumar_ind("capital", -float(_cfg()["penal_ruptura_capital"]))
+		_m.fx.sumar_ind("cohesion", -float(_cfg()["penal_ruptura_cohesion"]))
+		_m.fx.sumar_ind("capital", -float(_cfg()["penal_ruptura_capital"]))
 	est.registrar_accion("coalicion_ruptura" if ruptura else "coalicion_salida", {"id": id})
 	return {"ok": true}
 
 
 func asignar_cuota(id: String, tipo: String, valor: String, quitar: bool = false) -> Dictionary:
+	var _m := m  # una sola resolución de la referencia débil por llamada (cada acceso a `m` cuesta ~0,5 us)
 	## tipo "ministerio" (id de ministro del gabinete) o "asesor" (id de asesor contratado), entregado al partido aliado.
-	var est := m.estado
+	var est := _m.estado
 	if not est.coalicion.has(id):
 		return {"ok": false, "razon": "no_aliado"}
 	if tipo != "ministerio" and tipo != "asesor":
@@ -91,14 +93,14 @@ func asignar_cuota(id: String, tipo: String, valor: String, quitar: bool = false
 	var clave := "ministros" if tipo == "ministerio" else "asesores"
 	var lista: Array = est.coalicion[id][clave]
 	if tipo == "ministerio":
-		valor = m.gabinete.slot_de(valor)
+		valor = _m.gabinete.slot_de(valor)
 	if quitar:
 		if not lista.has(valor):
 			return {"ok": false, "razon": "no_asignado"}
 	else:
 		if tipo == "ministerio":
-			valor = m.gabinete.slot_de(valor)  # se acepta el id de un candidato: la cuota es del ministerio
-		if not (m.gabinete.tiene_ministerio(valor) if tipo == "ministerio" else est.asesores.has(valor)):
+			valor = _m.gabinete.slot_de(valor)  # se acepta el id de un candidato: la cuota es del ministerio
+		if not (_m.gabinete.tiene_ministerio(valor) if tipo == "ministerio" else est.asesores.has(valor)):
 			return {"ok": false, "razon": "fuera_del_gabinete" if tipo == "ministerio" else "asesor_no_contratado"}
 		for otro in est.coalicion.values():
 			if otro[clave].has(valor):
@@ -112,11 +114,12 @@ func asignar_cuota(id: String, tipo: String, valor: String, quitar: bool = false
 
 
 func cumplimiento(id: String) -> float:
+	var _m := m  # una sola resolución de la referencia débil por llamada (cada acceso a `m` cuesta ~0,5 us)
 	## Fracción 0..1 de la petición del partido (ministerios y asesores asignados que siguen vigentes).
 	var pet: Dictionary = partidos[id]["peticion"]
-	var c: Dictionary = m.estado.coalicion[id]
-	var vig_min: int = c["ministros"].filter(func(x: String) -> bool: return m.gabinete.tiene_ministerio(x)).size()
-	var vig_ase: int = c["asesores"].filter(func(x: String) -> bool: return m.estado.asesores.has(x)).size()
+	var c: Dictionary = _m.estado.coalicion[id]
+	var vig_min: int = c["ministros"].filter(func(x: String) -> bool: return _m.gabinete.tiene_ministerio(x)).size()
+	var vig_ase: int = c["asesores"].filter(func(x: String) -> bool: return _m.estado.asesores.has(x)).size()
 	var demanda := int(pet["ministerios"]) + int(pet["asesores"])
 	if demanda == 0:
 		return 1.0
@@ -130,13 +133,17 @@ func objetivo(id: String) -> float:
 func carta_jugada(carta: Dictionary) -> void:
 	## Jugar cartas de las categorías que pide un aliado mejora su satisfacción.
 	## Y las de una categoría que rechaza la empeoran.
+	var cambio := false
 	for id in m.estado.coalicion.keys():
 		var c: Dictionary = m.estado.coalicion[id]
 		if partidos[id]["categorias_pedidas"].has(carta["categoria"]):
 			c["satisfaccion"] = minf(100.0, float(c["satisfaccion"]) + float(_cfg()["bono_carta_afin"]))
+			cambio = true
 		elif partidos[id]["categorias_rechazadas"].has(carta["categoria"]):
 			c["satisfaccion"] = maxf(0.0, float(c["satisfaccion"]) - float(_cfg()["penal_carta_rechazada"]))
-	_recalcular_apoyo()
+			cambio = true
+	if cambio:  # el apoyo en el Congreso solo se recalcula si cambió alguna satisfacción
+		_recalcular_apoyo()
 
 
 func mult_carta(carta: Dictionary) -> float:
@@ -178,12 +185,13 @@ func amanecer() -> void:
 
 
 func _recalcular_apoyo() -> void:
+	var _m := m  # una sola resolución de la referencia débil por llamada (cada acceso a `m` cuesta ~0,5 us)
 	var sen := 0.0
 	var cam := 0.0
-	for id in m.estado.coalicion.keys():
-		if bool(m.estado.coalicion[id].get("propio", false)):
+	for id in _m.estado.coalicion.keys():
+		if bool(_m.estado.coalicion[id].get("propio", false)):
 			continue  # sus escaños ya son «propios» (partido de origen)
-		var f := float(m.estado.coalicion[id]["satisfaccion"]) / 100.0
+		var f := float(_m.estado.coalicion[id]["satisfaccion"]) / 100.0
 		sen += float(partidos[id]["escanos_senado"]) * f
 		cam += float(partidos[id]["escanos_camara"]) * f
-	m.estado.apoyo_coalicion = {"senado": roundi(sen), "camara": roundi(cam)}
+	_m.estado.apoyo_coalicion = {"senado": roundi(sen), "camara": roundi(cam)}

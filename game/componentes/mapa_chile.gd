@@ -26,6 +26,16 @@ var _relieve: Texture2D
 var x_centro_rel: float = 0.5
 var leyenda: bool = true
 var ciudades_visibles: bool = true
+var _camara := Transform2D.IDENTITY  # golpe de cámara al recibir una carta (dirección visual v4); el fondo no se mueve
+var _onda: Dictionary = {}  # {pos, t, color}: ondas del último impacto
+var _destello_id: String = ""
+var _destello: float = 0.0
+var _reaccion: Tween
+var _vivo: Control  # capa animada barata: tendencias, bastión, obras y propuestas (solo ella se redibuja cada cuadro)
+var _previos: Dictionary = {}
+var _tendencia: Dictionary = {}  # id -> +1 / -1 desde el último cambio de aprobación regional
+var _t: float = 0.0
+var _fuegos: Array[Dictionary] = []  # {pos, inicio, color}: obra terminada (dirección visual v4)
 
 
 func cargar_geo(geo: Dictionary) -> void:
@@ -41,6 +51,12 @@ func cargar_geo(geo: Dictionary) -> void:
 		_triangular(geo)
 		_cache = {"piezas": _piezas, "mallas": _mallas, "banda_y": _banda_y}
 	_calcular_borde_este()
+	if _vivo == null:
+		_vivo = Control.new()
+		_vivo.set_anchors_preset(Control.PRESET_FULL_RECT)
+		_vivo.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		_vivo.draw.connect(_dibujar_vivo)
+		add_child(_vivo)
 	if animar and _decor == null:
 		_decor = MapaDecor.new()
 		_decor.mapa = self
@@ -107,6 +123,16 @@ func _calcular_borde_este() -> void:
 
 
 func actualizar(p_valores: Dictionary, p_obras: Dictionary = {}, p_propuestas: Dictionary = {}) -> void:
+	var cambios := {}
+	for id in p_valores.keys():
+		if _previos.has(id) and absf(float(p_valores[id]) - float(_previos[id])) >= 0.3:
+			cambios[id] = 1 if float(p_valores[id]) > float(_previos[id]) else -1
+	if not cambios.is_empty():
+		_tendencia = cambios  # laten las regiones que se movieron en el último cambio
+	_previos = p_valores.duplicate()  # copia: el estado modifica el diccionario en su lugar
+	for id in obras.keys():  # una obra salió de «en curso»: se terminó esta semana
+		if int(p_obras.get(id, 0)) < int(obras[id]):
+			lanzar_fuegos(id, 2.6)  # tras el telón de fin de semana
 	valores = p_valores
 	obras = p_obras
 	propuestas = p_propuestas
@@ -131,21 +157,23 @@ func _draw() -> void:
 		for gx in range(int(fila % 2) * 15, int(size.x), 30):
 			draw_arc(Vector2(gx, gy), 4.5, PI * 0.15, PI * 0.85, 6, Color(0.55, 0.78, 1.0, 0.10), 1.2)
 		fila += 1
+	draw_set_transform_matrix(_camara)
 	for id in _piezas.keys():
 		var col := Tema.color_aprobacion(float(valores.get(id, 50.0)))
 		if id == seleccion:
 			col = col.lightened(0.18)
+		if id == _destello_id and _destello > 0.0:
+			col = col.lerp(Tema.CREMA, 0.55 * _destello)
 		if _mallas.has(id):
 			var h := size.y - 16.0
-			draw_set_transform(_transformar(Vector2.ZERO) + Vector2(5.0, 6.0), 0.0, Vector2(h * estirar_x, h))
+			draw_set_transform_matrix(_camara * Transform2D(0.0, Vector2(h * estirar_x, h), 0.0, _transformar(Vector2.ZERO) + Vector2(5.0, 6.0)))
 			draw_mesh(_mallas[id], null, Transform2D.IDENTITY, Color(0, 0, 0, 0.38))
-			draw_set_transform(Vector2.ZERO, 0.0, Vector2.ONE)
 			var origen := _transformar(Vector2.ZERO)
-			draw_set_transform(origen, 0.0, Vector2(h * estirar_x, h))
+			draw_set_transform_matrix(_camara * Transform2D(0.0, Vector2(h * estirar_x, h), 0.0, origen))
 			draw_mesh(_mallas[id], null, Transform2D.IDENTITY, col)
 			if _relieve != null:
 				draw_mesh(_mallas[id], _relieve, Transform2D.IDENTITY, Color(1, 1, 1, 0.7))
-			draw_set_transform(Vector2.ZERO, 0.0, Vector2.ONE)
+			draw_set_transform_matrix(_camara)
 		for pieza in _piezas[id]:
 			var pts := PackedVector2Array()
 			for p in pieza:
@@ -170,27 +198,88 @@ func _draw() -> void:
 		var nombre := String(c["nombre"])
 		var ancho_txt := fuente.get_string_size(nombre, HORIZONTAL_ALIGNMENT_LEFT, -1, 10).x
 		draw_string(fuente, Vector2(pc.x - 8.0 - ancho_txt, pc.y + 3.5), nombre, HORIZONTAL_ALIGNMENT_LEFT, -1, 10, Tema.TEXTO)
+	if _onda.has("pos"):  # ondas del impacto de la carta en la región
+		var o := _onda
+		var t: float = o["t"]
+		for k in range(2):
+			var tk := clampf(t * 1.25 - 0.22 * float(k), 0.0, 1.0)
+			if tk > 0.0:
+				draw_arc(o["pos"], 6.0 + 54.0 * tk, 0.0, TAU, 48, Color(o["color"], (1.0 - tk) * 0.9), 3.0 - 1.5 * tk, true)
+		draw_circle(o["pos"], 7.0 * (1.0 - t), Color(Tema.CREMA, 1.0 - t))
+	draw_set_transform_matrix(Transform2D.IDENTITY)
 	if leyenda:
 		var r := Rect2(size.x - 178.0, size.y - 34.0, 168.0, 26.0)
 		draw_style_box(Tema.caja(Color(0.04, 0.13, 0.21, 0.85), 10), r)
 		draw_string(Tema.fuente_texto(500), r.position + Vector2(8, 17), "Aprobación", HORIZONTAL_ALIGNMENT_LEFT, -1, 10, Tema.TEXTO_SUAVE)
 		for k in range(60):
 			draw_rect(Rect2(r.position.x + 74.0 + float(k) * 1.4, r.position.y + 9.0, 1.6, 8.0), Tema.color_aprobacion(30.0 + float(k) / 59.0 * 30.0))
-	for id in obras.keys():
-		if int(obras[id]) > 0 and _banda_y.has(id):
-			var c := centro(id) + Vector2(10.0, 0.0)
-			draw_circle(c, 11.0, Tema.OCEANO)
-			draw_circle(c, 9.5, Tema.ORO)
-			draw_string(Tema.fuente_titulo(), c + Vector2(-9.5, 4.5), str(int(obras[id])), HORIZONTAL_ALIGNMENT_CENTER, 19.0, 13, Tema.TINTA)
-	for id in propuestas.keys():
-		if bool(propuestas[id]) and _banda_y.has(id):
-			var c2 := centro(id) + Vector2(-12.0, -2.0)
-			draw_circle(c2, 11.0, Tema.CREMA)
-			draw_circle(c2, 9.5, Tema.ROJO)
-			draw_colored_polygon(PackedVector2Array([c2 + Vector2(-5, 1), c2 + Vector2(0, -5), c2 + Vector2(5, 1)]), Tema.TEXTO)
-			draw_rect(Rect2(c2 + Vector2(-3.5, 1), Vector2(7, 5)), Tema.TEXTO)
-	if bastion != "" and _banda_y.has(bastion):
-		pass
+	if _vivo != null:
+		_vivo.queue_redraw()  # obras y propuestas se dibujan en la capa viva (siguen al golpe de cámara)
+
+
+func reaccionar(id: String, color: Color) -> void:
+	## El mapa recibe la carta: golpe de cámara hacia la región (acerca y rebota con un leve temblor), ondas y destello.
+	if not Movimiento.activo():
+		return
+	var p := centro(id) if _banda_y.has(id) else size * 0.5
+	var onda := {"pos": p, "t": 0.0, "color": color}  # propia de esta reacción: dos cartas seguidas no se pisan
+	_onda = onda
+	_destello_id = id
+	if _reaccion != null and _reaccion.is_valid():
+		_reaccion.kill()  # la reacción nueva reemplaza a la anterior (cámara, destello y ondas)
+	var fuerza := 1.0 if Movimiento.intenso() else 0.0  # con «Reducir movimiento»: ondas y destello, sin golpe de cámara
+	_reaccion = create_tween()
+	_reaccion.tween_method(func(t: float) -> void:
+		var s := 1.0 + 0.07 * fuerza * sin(t * 2.6 * PI) * exp(-3.2 * t)
+		var temblor := Vector2(sin(t * 41.0), cos(t * 33.0)) * 3.0 * fuerza * pow(1.0 - t, 2.0)
+		_camara = Transform2D(0.0, Vector2(s, s), 0.0, p * (1.0 - s) + temblor)
+		_destello = 1.0 - t
+		onda["t"] = t
+		if t >= 1.0:
+			_camara = Transform2D.IDENTITY
+			_destello = 0.0
+			if _onda == onda:
+				_onda = {}
+		queue_redraw(), 0.0, 1.0, 0.9)
+
+
+func lanzar_fuegos(id: String, demora: float = 0.0) -> void:
+	## Tres fuegos artificiales (oro, crema y rojo) sobre la región de una obra terminada.
+	if not Movimiento.intenso() or not _banda_y.has(id):
+		return
+	for k in range(3):
+		_fuegos.append({"id": id, "dx": -18.0 + 18.0 * float(k), "inicio": _t + demora + 0.28 * float(k), "color": [Tema.ORO, Tema.CREMA, Tema.ROJO][k]})
+	get_tree().create_timer(demora).timeout.connect(func() -> void: Feedback.sonar("exito"))
+
+
+func _dibujar_fuegos(v: Control) -> void:
+	var vivos: Array[Dictionary] = []
+	for f in _fuegos:
+		var l := _t - float(f["inicio"])
+		if l > 1.6:
+			continue
+		vivos.append(f)
+		if l < 0.0:
+			continue
+		var base := centro(String(f["id"])) + Vector2(float(f["dx"]), 0.0)
+		var col: Color = f["color"]
+		if l < 0.4:  # sube el cohete
+			var p := base + Vector2(0.0, -36.0 * (l / 0.4))
+			v.draw_circle(p, 2.5, col)
+			v.draw_line(p, p + Vector2(0.0, 10.0), Color(col, 0.5), 1.5)
+			continue
+		var k := (l - 0.4) / 1.2  # estalla en 16 chispas con caída
+		var c := base + Vector2(0.0, -36.0)  # sube poco: el mapa es angosto y la explosión debe quedar sobre la región
+		for i in range(16):
+			var a := TAU * float(i) / 16.0
+			var p2 := c + Vector2(cos(a), sin(a)) * 26.0 * sqrt(k) + Vector2(0.0, 16.0 * k * k)
+			v.draw_circle(p2, 2.2 * (1.0 - k) + 0.6, Color(col, 1.0 - k))
+	_fuegos = vivos
+
+
+func posicion_global(id: String) -> Vector2:
+	## Punto de la región en coordenadas de pantalla (destino de la carta que vuela).
+	return get_global_transform() * (centro(id) if _banda_y.has(id) else size * 0.5)
 
 
 func centro(id: String) -> Vector2:
@@ -228,3 +317,51 @@ func _gui_input(event: InputEvent) -> void:
 		seleccion = mejor
 		queue_redraw()
 		region_tocada.emit(mejor)
+
+
+func _process(delta: float) -> void:
+	## Solo la capa viva se redibuja; con Animaciones apagado queda quieta (dibujada una vez por cambio).
+	if _vivo == null or not Movimiento.activo() or not is_visible_in_tree():
+		return
+	_t += delta
+	_vivo.queue_redraw()
+
+
+func _dibujar_vivo() -> void:
+	## Mapa vivo (dirección visual v4): regiones con tendencia laten en verde o coral, el bastión tiene un pulso
+	## dorado, las obras se mecen y las propuestas laten. Todo sigue al golpe de cámara.
+	var v := _vivo
+	v.draw_set_transform_matrix(_camara)
+	var pulso := 0.5 + 0.5 * sin(_t * 3.2)
+	for id in _tendencia.keys():
+		var col: Color = Tema.SUBE if int(_tendencia[id]) > 0 else Tema.BAJA
+		for pieza in _piezas.get(id, []):
+			if pieza.size() < 8:
+				continue
+			var pts := PackedVector2Array()
+			for p in pieza:
+				pts.append(_transformar(p))
+			pts.append(pts[0])
+			v.draw_polyline(pts, Color(col, 0.25 + 0.55 * pulso), 2.0 + 1.5 * pulso, true)
+	if bastion != "" and _banda_y.has(bastion):
+		var cb := centro(bastion) + Vector2(0.0, 12.0)
+		var k := fmod(_t, 2.2) / 2.2
+		v.draw_arc(cb, 5.0 + 16.0 * k, 0.0, TAU, 32, Color(Tema.ORO, 0.8 * (1.0 - k)), 2.0, true)
+		v.draw_circle(cb, 3.5 + 0.8 * pulso, Tema.ORO)
+		v.draw_arc(cb, 3.5 + 0.8 * pulso, 0.0, TAU, 20, Tema.OCEANO, 1.2, true)
+	for id in obras.keys():
+		if int(obras[id]) > 0 and _banda_y.has(id):
+			var c := centro(id) + Vector2(10.0, -2.0 * sin(_t * 2.4 + float(id.length())))
+			v.draw_circle(c, 11.0, Tema.OCEANO)
+			v.draw_circle(c, 9.5, Tema.ORO)
+			v.draw_string(Tema.fuente_titulo(), c + Vector2(-9.5, 4.5), str(int(obras[id])), HORIZONTAL_ALIGNMENT_CENTER, 19.0, 13, Tema.TINTA)
+	for id in propuestas.keys():
+		if bool(propuestas[id]) and _banda_y.has(id):
+			var c2 := centro(id) + Vector2(-12.0, -2.0)
+			var e := 1.0 + 0.12 * pulso
+			v.draw_circle(c2, 11.0 * e, Tema.CREMA)
+			v.draw_circle(c2, 9.5 * e, Tema.ROJO)
+			v.draw_colored_polygon(PackedVector2Array([c2 + Vector2(-5, 1), c2 + Vector2(0, -5), c2 + Vector2(5, 1)]), Tema.TEXTO)
+			v.draw_rect(Rect2(c2 + Vector2(-3.5, 1), Vector2(7, 5)), Tema.TEXTO)
+	_dibujar_fuegos(v)
+	v.draw_set_transform_matrix(Transform2D.IDENTITY)

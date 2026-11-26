@@ -77,3 +77,63 @@ La prueba falla si la posición cambia: la sesión de UI revirtió la correcció
 
 ### Corrección: botón principal de la configuración de gabinete (23-nov-2026)
 La diferencia que quedaba abierta ("Comenzar campaña" fijo al pie vs botón de fundación al final del contenido) está CORREGIDA: ambos botones miden 358×52 y están en (16, 739) a 390×844. `tests/test_ui_humo.gd` lo exige en las 6 semillas (compara el rectángulo del botón de la fundación con el del gabinete).
+
+## Dirección visual v4: movimiento e integración — 25-nov-2026
+Referencia: lienzo de Claude Design «Presidente de Chile — Dirección visual v4» (artboards Menú principal, Pantalla del día, Votación, Resultado de la elección y Sistema de movimiento). Paleta, tipografías, 390×844, zonas táctiles ≥ 44 px y botón principal fijo sin cambios. Comparación antes/después: `docs/comparacion/v4_antes_despues.jpg` (arriba antes, abajo después; `tests/captura_comparar.gd`).
+
+| Elemento | Antes | Ahora | Archivo |
+|---|---|---|---|
+| Sistema de movimiento | Tweens sueltos por pantalla | Un módulo único: duraciones 120 / 260 / 700 ms, salida cúbica; entradas escalonadas, presión de botones, halo, cifras que cuentan, barras que se llenan, vaivén | `game/componentes/movimiento.gd` |
+| Cambio de pantalla | Fundido de 0,22 s | Fundido + subida de 16 px | `game/main.gd` |
+| Botones | Estáticos | Todos se hunden a 0,95 y rebotan al soltar (enganche global en `main.gd`) | `movimiento.gd › presion` |
+| Botón principal (día, pie de pantallas, menú) | Plano | Halo dorado que respira, dibujado detrás: el rectángulo no cambia (`tests/test_ui_humo.gd`, `tests/test_movimiento.gd`) | `movimiento.gd › halo` |
+| Menú | Lista vertical de 7 botones iguales | Insignia + rótulo, cinta tricolor animada bajo el título, motas de ambiente, «Nueva partida» primero con halo, secundarios en grilla 2×2 | `pantalla_menu.gd`, `particulas.gd` |
+| Chips de indicadores | Cifra fija | La cifra cuenta, el chip destella verde/coral al cambiar y lleva una mini barra interna (sin cambiar su alto: el mapa sigue > 1/3) | `barras.gd` |
+| Pastilla de movimientos | Fija | Late al gastar o recuperar movimientos | `pantalla_dia.gd` |
+| Mano | Carta elegida fija | La elegida se mece 3 px tras posarse | `mano_ui.gd` |
+| Jugar una carta | La carta desaparecía de la mano | Una copia vuela a la región elegida (gira y se encoge); al llegar, el mapa reacciona con golpe de cámara (acerca, rebota y tiembla), ondas y destello de la región, y el número flotante sale en el punto de impacto | `mano_vuelo.gd`, `mapa_chile.gd › reaccionar` |
+| Sello de votación (Senado y Cámara) | APROBADA/RECHAZADA casi sin movimiento: el contenedor le reiniciaba giro y escala | Fuera del contenedor: cae girado desde grande, golpea con onda expansiva, chispas, temblor de la capa y sonido (éxito/error); RECHAZADA hace un vaivén de «no» | `sello_voto.gd` |
+| Barra inferior | Sin estado | Pestaña abierta en oro con filo superior | `barras.gd › nav` |
+| Hojas (Comité, Congreso, Gabinete) | Aparecen de golpe | Se funden y asientan | `pantalla_dia.gd` |
+| Elección | Estática | La cifra cuenta, la barra se llena, regiones escalonadas, confeti oro/rojo/crema al ganar | `pantalla_eleccion.gd` |
+| Fin de partida, afiliación, test, gabinete, ajustes | Estáticas | Entradas escalonadas; cifras del resumen cuentan; barra del test se desliza; tarjetas de afiliación con degradado | varias |
+
+### Paquete visual del 25-nov-2026 (pedido por el usuario)
+| Elemento | Antes | Ahora | Archivo |
+|---|---|---|---|
+| Fin de semana | Se pasaba directo a los eventos | Telón que baja con «Semana N → N+1» (o «Día N → N+7»), cada indicador contando de su valor anterior al nuevo con su diferencia en verde o coral; se va solo en ~2 s o al tocarlo, y entonces siguen los eventos | `telon_semana.gd` |
+| Hemiciclo de votación | Se llenaba de golpe; la cifra subía proporcional | Los votos caen uno a uno con rebote; el contador va sincronizado con los votos a favor posados; línea dorada «mín. N» que se enciende (con sonido) al cruzarla; si la votación es ajustada (±3 del mínimo), el tramo final va lento; el sello cae al terminar | `hemiciclo.gd › animar_votacion` |
+| Escándalo ministerial | Solo un aviso de texto | Destello rojo, titular de diario que entra girando con el ministerio y el alias del ministro, y los chips de Aprobación y Capital tiemblan | `golpe_prensa.gd` |
+| Movimientos agotados | El botón cambiaba de texto | La pastilla se sacude y se apaga; el halo de «Siguiente semana» pulsa más rápido y fuerte | `movimiento.gd › movimientos` |
+| Mapa vivo | Estático entre jugadas | Las regiones que se movieron en el último cambio laten en verde o coral; el bastión tiene un pulso dorado; las obras se mecen y las propuestas laten. Capa animada aparte: el mapa completo no se redibuja cada cuadro | `mapa_chile.gd › _dibujar_vivo` |
+
+Cuadros del recorrido grabado (`tests/grabar_video.gd`, 780×1688): `docs/comparacion/v4_paquete_visual.jpg` (movimientos agotados, escándalo, telón, votación ajustada, sello aprobado y rechazado).
+
+Limitación: los eventos del juego (`data/eventos.json`) no traen región, así que no hay «pin del evento en su región»; agregarlo exigiría datos nuevos con fuente.
+
+### Paquete 2 del 25-nov-2026: momentos y sonido (pedido por el usuario: «Sigue»)
+| Elemento | Antes | Ahora | Archivo |
+|---|---|---|---|
+| Ganar la elección | Del resultado se pasaba al primer día | Cambio de mando: la banda presidencial (azul, crema y rojo con filo dorado) cruza la pantalla sobre La Moneda, aparece la piocha dorada y la fecha del mandato; se va sola o al tocarla | `cambio_mando.gd` |
+| Debates y entrevistas (escenas por rondas) | Mismo diseño que un evento | Focos que barren, marco de cámara, insignia «EN VIVO» que late y puntos de ronda; en radio, «AL AIRE» y ondas de micrófono | `escena_tv.gd` |
+| Obra terminada | Solo desaparecía el marcador | Fuegos artificiales oro, crema y rojo sobre la región tras el telón de fin de semana | `mapa_chile.gd › lanzar_fuegos` |
+| Música | Sin música | Bucles sintetizados por etapa (campaña, gobierno, oposición; el menú usa gobierno) y pista de tensión mientras hay una votación en pantalla, con fundidos de 1,5 s; ajuste «Música» | `musica.gd`, `tools/audio/generar_musica.py` |
+| Ajustes | Animaciones sí/no | Nuevo «Reducir movimiento»: quita temblores, golpe de cámara, chispas, partículas y suaviza el destello rojo; deja fundidos, cifras y barras | `ajustes.gd`, `movimiento.gd › intenso` |
+
+### Claridad (video de prueba, docs/VIDEO_1.md) — 26-nov-2026
+| Hallazgo | Antes | Ahora | Archivo |
+|---|---|---|---|
+| P4 Créditos | Panel centrado que tapaba el título | Hoja inferior desde y=330 que sube al abrirse; el título queda visible | `pantalla_menu.gd` |
+| P5/P6 Test ideológico | ~40 % vacío bajo las opciones y «Perfil» sin explicar | Brújula del perfil: ejes Estado↔Mercado y movilización↔vía institucional (los de `data/ideologia.json`), zonas de los 6 perfiles, la tuya en dorado y el punto que se desliza tras cada respuesta | `brujula_perfil.gd` |
+| P9 Tutorial | Velo parejo y marco que no destacaba | Foco: todo oscuro salvo el elemento explicado; el marco dorado viaja de un paso a otro y late. La tarjeta y su botón no se mueven (regla del botón fijo) | `tutorial.gd` |
+| P10 Mano | Cartas tapadas y textos cortados | Mantener el dedo 0,45 s sobre una carta abre su ficha completa (título entero, costo, efectos con nombre, impacto y exigencia legal); soltar la cierra sin jugarla. El segundo toque sobre la elegida cuenta al soltar | `ficha_ampliada.gd`, `mano_ui.gd`, `carta_ui.gd` |
+| P11 Eventos | Título repetido al inicio de la descripción | En los avisos el efecto va primero y la descripción no repite el título («Se publica la Ley N° 21.770: Establece…» → «Establece…») | `overlays_dia.gd` |
+
+Prueba: `tests/test_claridad.gd`.
+
+Correcciones encontradas al capturar todas las pantallas: dos cartas jugadas seguidas dejaban la onda del mapa sin posición (fallaba el dibujo del mapa) y la pantalla de Ajustes quedaba en tamaño 0 (sin fondo, sobre el menú). Ambas corregidas.
+
+### Lienzo de Claude Design (26-nov-2026)
+El lienzo «Presidente de Chile — Dirección visual v4» tiene dos páginas: **Dirección visual** (5 maquetas: menú, día, votación, elección y la hoja del sistema de movimiento, ampliada con todas las piezas nuevas) y **Juego actual** (24 capturas reales a 780×1688 de todas las pantallas: menú, créditos, afiliación, test con brújula, gabinete, tutorial con foco, día, ficha ampliada, carta al mapa, movimientos agotados, escándalo, Congreso, telón, votación con suspenso, aprobada y rechazada, evento claro, debate en TV y en radio, fuegos, elección, cambio de mando, fin y ajustes).
+
+Reglas: todo el movimiento respeta Ajustes › «Animaciones y movimiento» y se apaga en modo headless, así que las pruebas miden siempre el estado final. El azar de las partículas es solo visual y no toca la semilla de la partida. Prueba propia: `tests/test_movimiento.gd`.

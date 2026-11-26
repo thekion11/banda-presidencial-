@@ -48,7 +48,10 @@ func eventos_reales() -> Array[Dictionary]:
 
 func _dato(titulo: String, valor: String) -> Control:
 	var v := FilasUI.col(0)
-	v.add_child(Tema.etiqueta(valor, 22, Tema.ORO, true))
+	var cifra := Tema.etiqueta(valor, 22, Tema.ORO, true)
+	if valor.is_valid_int():  # las cifras del resumen cuentan hasta su valor
+		Movimiento.contar(cifra, float(valor.to_int()), func(x: float) -> String: return str(roundi(x)), 0.0, 1.0, 0.35)
+	v.add_child(cifra)
 	v.add_child(Tema.etiqueta(titulo, 11, Tema.TEXTO_SUAVE))
 	var p := FilasUI.tarjeta(v)
 	p.size_flags_horizontal = Control.SIZE_EXPAND_FILL
@@ -146,6 +149,8 @@ func _ready() -> void:
 		lista.add_child(FilasUI.tarjeta(v, Tema.PANEL))
 	lista.add_child(Tema.etiqueta("Huella de la partida (para reproducirla): " + est.calcular_huella().substr(0, 16), 10, Tema.TEXTO_SUAVE))
 	col.add_child(FilasUI.scroll(lista))
+	Movimiento.escalonar(col, 0.05, 0.05)
+	Movimiento.escalonar(lista, 0.3, 0.04, 10)
 	var derrota := est.etapa == "derrota_electoral"
 	var b := FilasUI.boton_pie("Intentar de nuevo" if derrota else "Volver al inicio")
 	b.pressed.connect(func() -> void: (reintentar if derrota else otra_vez).emit())

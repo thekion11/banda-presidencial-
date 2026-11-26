@@ -29,6 +29,7 @@ static func cargar_todo(base: String = "res://data/") -> Dictionary:
 		d["eventos"] = Array(d["eventos"]) + Array(evs)
 	d["grafo"] = leer_json(base + "geo/grafo_urbano.json")
 	d["sectra"] = leer_json(base + "sectra_planes.json")
+	d["indices_cartas"] = IndicesCartas.construir(d["cartas"])  # una vez por carga de datos, no por partida
 	return d
 
 
@@ -38,3 +39,31 @@ static func huella(d: Dictionary) -> String:
 	for n in ["cartas", "eventos", "leyes", "ministros", "ideologia", "regiones", "propuestas", "sectra", "grafo", "metas", "asesores", "coalicion"]:
 		partes[n] = d.get(n, {})
 	return Huella.sha(partes)
+
+
+const EXTRAS: Array[String] = ["cartas_reales.json", "cartas_curadas.json", "juego_eventos_reales.json", "geo/grafo_urbano.json", "sectra_planes.json"]
+
+
+static func clave_archivos(base: String = "res://data/") -> String:
+	## SHA-256 nativo (milisegundos) de los archivos de los que sale `cargar_todo`: identifica una versión exacta de los datos.
+	var partes: PackedStringArray = []
+	for n in ARCHIVOS:
+		partes.append(FileAccess.get_sha256("%s%s.json" % [base, n]))
+	for n in EXTRAS:
+		partes.append(FileAccess.get_sha256(base + n))
+	return "\n".join(partes).sha256_text()
+
+
+static func huella_rapida(d: Dictionary, cache: String = "user://huella_datos.json", base: String = "res://data/") -> String:
+	## Igual que `huella(d)` para datos recién cargados, pero la primera vez la guarda junto a la clave de los archivos: los arranques
+	## siguientes (misma versión de la app) se ahorran el cálculo, que en un teléfono modesto tarda ~2 s. No usar con datos modificados en memoria.
+	var clave := clave_archivos(base)
+	if FileAccess.file_exists(cache):
+		var c: Variant = JSON.parse_string(FileAccess.get_file_as_string(cache))
+		if c is Dictionary and String(c.get("clave", "")) == clave and String(c.get("huella", "")).length() == 64:
+			return String(c["huella"])
+	var h := huella(d)
+	var f := FileAccess.open(cache, FileAccess.WRITE)
+	if f != null:
+		f.store_string(JSON.stringify({"clave": clave, "huella": h}))
+	return h

@@ -135,6 +135,7 @@ func _construir_cuerpo() -> Control:
 	_btn_jugar.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	_btn_jugar.clip_text = true
 	_btn_jugar.pressed.connect(_avanzar)
+	Movimiento.halo(_btn_jugar)  # el botón principal respira; su rectángulo no cambia
 	var libre := Control.new()  # la esquina inferior derecha queda vacía a propósito
 	libre.custom_minimum_size = Vector2(54, 54)
 	acciones.add_child(_btn_deleg)
@@ -166,7 +167,9 @@ func _refrescar() -> void:
 	else:
 		_r["dia"].text = "Día %d" % est.dia_actual
 	_r["fecha"].text = Barras.fecha_texto(datos["leyes"], est.etapa, est.turno_actual, est.dia_actual, est.ciclo, est.dias_carrera)
-	_r["pa"].text = ManoUI.texto_pastilla(est)
+	var pa_txt := ManoUI.texto_pastilla(est)
+	Movimiento.movimientos((_r["pa"] as Control).get_parent().get_parent(), _btn_jugar, est.pa_actual, _r["pa"].text != "" and _r["pa"].text != pa_txt)
+	_r["pa"].text = pa_txt
 	_lbl_mov.text = ManoUI.texto_movimientos(est)
 	Barras.pintar_chips(_r, est)
 	var obras: Dictionary = {}
@@ -260,6 +263,7 @@ func _on_region(id: String) -> void:
 func _jugar() -> void:
 	var n_reg := motor.estado.registro_acciones.size()
 	var antes := motor.estado.indicadores.duplicate()
+	var vuelo := ManoVuelo.datos(motor, _sel, _mano)  # la carta elegida (y dónde está) antes de que salga de la mano
 	_mano_tocada = false
 	var r := motor.jugar_carta(_sel, _ministro, _region)
 	if not bool(r["ok"]):
@@ -282,7 +286,11 @@ func _jugar() -> void:
 		msg = "Versión viable aplicada (%d %%)." % roundi(float(r["corrector"]["ratio"]) * 100.0)
 	var cambios := Barras.resumen_cambios(antes, motor.estado.indicadores)  # consecuencia visible de la carta
 	_avisar((msg if cambios == "" else msg + " " + cambios) + Barras.sufijo_carta(r))
-	Feedback.tras_jugar(_capa, r, cambios)
+	var color := Tema.BAJA if bool(r.get("salio_mal", false)) or bool(r.get("escandalo", false)) else Tema.SUBE
+	ManoVuelo.lanzar(_capa, vuelo, _mapa, _region, color, func(destino: Vector2) -> void:
+		Feedback.tras_jugar(_capa, r, cambios, _capa.get_global_transform().affine_inverse() * destino + Vector2(-40, -30))
+		if bool(r.get("escandalo", false)):  # escándalo con peso: destello rojo, titular y chips que tiemblan
+			GolpePrensa.mostrar(_capa, GolpePrensa.ministro_del_escandalo(motor, n_reg), [_r["chips"]["aprobacion"].get_parent().get_parent(), _r["chips"]["capital"].get_parent().get_parent()]))
 	accion_hecha.emit()
 	_refrescar()
 
@@ -319,6 +327,8 @@ func _terminar_turno() -> void:
 	if est.eleccion_pendiente(sem):
 		_resolver_eleccion()
 		return
+	var antes := [String(_r["dia"].text), String(_r["fecha"].text)]
+	var ind_antes := est.indicadores.duplicate()
 	var nuevos := motor.terminar_turno()
 	accion_hecha.emit()
 	if est.eleccion_pendiente(sem):
@@ -329,7 +339,7 @@ func _terminar_turno() -> void:
 	_cola_eventos = OverlaysDia.eventos_de_votaciones(motor)
 	_cola_eventos.append_array(nuevos)
 	_refrescar()
-	_siguiente_evento()
+	TelonSemana.mostrar(_capa, antes, [String(_r["dia"].text), String(_r["fecha"].text)], ind_antes, est.indicadores, est.etapa == "oposicion", _siguiente_evento)
 
 
 func _resolver_eleccion() -> void:
@@ -342,7 +352,9 @@ func _resolver_eleccion() -> void:
 		if res["electo"] or res["balotaje"]:
 			_cola_eventos = motor.ultimos_eventos.duplicate()
 			_refrescar()
-			_siguiente_evento()
+			var e := motor.estado  # cambio de mando al ganar: banda presidencial antes del primer día
+			if res["electo"]: CambioMando.mostrar(_capa, Barras.fecha_texto(datos["leyes"], e.etapa, e.turno_actual, e.dia_actual, e.ciclo, e.dias_carrera).substr(4), String(e.partido.get("nombre", "")), _siguiente_evento)
+			else: _siguiente_evento()
 		else:
 			terminado.emit()))
 
@@ -364,10 +376,10 @@ func _siguiente_evento() -> void:
 				_refrescar()))
 
 
-func _poner_nav(nacion: bool) -> void:
+func _poner_nav(nacion: bool, activo: String = "mapa") -> void:
 	var nuevo := Barras.nav(_abrir_panel, nacion, "al día %d" % (motor.estado.dia_actual + motor.estado.dias_por_turno), func() -> void:
 		_abrir_panel("mapa")
-		_terminar_turno(), "Coalición" if motor.estado.etapa == "oposicion" else "Gabinete")
+		_terminar_turno(), "Coalición" if motor.estado.etapa == "oposicion" else "Gabinete", activo)
 	_raiz.add_child(nuevo)
 	_raiz.move_child(nuevo, _nav.get_index())
 	_nav.queue_free()
@@ -375,7 +387,7 @@ func _poner_nav(nacion: bool) -> void:
 
 
 func _abrir_panel(cual: String) -> void:
-	_poner_nav(cual == "nacion")
+	_poner_nav(cual == "nacion", cual)
 	for h in _zona_panel.get_children():
 		h.queue_free()
 	if cual == "mapa":
@@ -411,6 +423,7 @@ func _abrir_panel(cual: String) -> void:
 		m.add_theme_constant_override("margin_top", 0)
 	m.add_child(contenido)
 	_zona_panel.add_child(m)
+	Movimiento.aparecer(m)  # la hoja se funde y se asienta al abrirse
 
 
 func _aprobar(pid: String, variante: String, custom: Dictionary = {}, nombres: Dictionary = {}) -> void:
