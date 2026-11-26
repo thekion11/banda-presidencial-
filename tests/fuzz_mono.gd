@@ -165,7 +165,8 @@ func _paso(main: Node, rng: RandomNumberGenerator, tam: Vector2i, ctx: String) -
 		k.pressed = false
 		_push(k)
 	elif t < 0.95:
-		main.propagate_notification(Node.NOTIFICATION_WM_GO_BACK_REQUEST)  # botón atrás de Android
+		if not (main._pantalla is PantallaMenu):  # en el menú el segundo Atrás sale del juego (get_tree().quit()): es lo esperado, pero cortaría la prueba
+			root.propagate_notification(Node.NOTIFICATION_WM_GO_BACK_REQUEST)  # botón atrás de Android, como lo manda el motor: a todo el árbol
 	else:
 		_pausar(main, ctx)
 	_entradas += 1
