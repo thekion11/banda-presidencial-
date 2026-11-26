@@ -44,3 +44,8 @@ jobs:
           done
       - name: Fuzzing del núcleo (acciones aleatorias e inválidas, replay idéntico)
         run: godot --headless --path . -s tests/fuzz_acciones.gd -- 60 7000
+      - name: "Fuzzing de carrera, instantáneas y propiedades (acotado)"
+        run: |
+          godot --headless --path . -s tests/fuzz_carrera.gd -- 4 700
+          godot --headless --path . -s tests/fuzz_instantanea.gd -- 100 31
+          godot --headless --path . -s tests/fuzz_propiedades.gd -- 1 800
