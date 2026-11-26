@@ -152,4 +152,7 @@ Lado a lado actualizado: `docs/comparacion/v4_dia_maqueta_vs_juego.png`. Se corr
 - **Hemiciclo:** con 5 filas (Senado) y 8 (Cámara), los asientos quedaban más separados a lo largo de cada fila que entre filas y se leían como rayos. Ahora son 4 y 6 filas, con anillos parejos como en la maqueta. Lado a lado: `docs/comparacion/v4_votacion_maqueta_vs_juego.png` y `v4_nacion_maqueta_vs_juego.png`.
 - Siguen apartándose a propósito: cifras reales de la partida, «Terminar semana» en lugar de «Jugar» (PR-02), «Camino de la ley» por la votación bicameral y la cifra central, que se vuelve verde al cruzar el mínimo.
 
+### Paleta congelada con prueba (26-nov-2026)
+`tests/test_paleta.gd` lee todos los colores escritos en `game/` y exige que cada uno sea un color de la paleta (CLAUDE.md §5, más las tintas Okabe-Ito del modo daltónico) o una mezcla de dos de ellos o con negro o blanco, con una diferencia perceptual de hasta ΔE 8. Detectó cinco colores fuera de la paleta: cuatro cintas de categoría (Comité, Educación, Social y Política, violetas y magentas) y el filtro «Cárceles» del mapa urbano. Ahora son mezclas de la paleta (#2476B6, #5873A4, #945360, #6E678A y #216EA9), siguen distinguibles entre sí (ΔE ≥ 12) y la cinta oscurecida mantiene contraste ≥ 4,5 con su texto crema.
+
 Reglas: todo el movimiento respeta Ajustes › «Animaciones y movimiento» y se apaga en modo headless, así que las pruebas miden siempre el estado final. El azar de las partículas es solo visual y no toca la semilla de la partida. Prueba propia: `tests/test_movimiento.gd`.
