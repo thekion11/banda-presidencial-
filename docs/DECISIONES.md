@@ -319,3 +319,7 @@ Regla (CLAUDE.md §2): políticos reales con alias satíricos, personajes de pan
 
 ## AS. Documentación de la API de sim/ (26-nov-2026, cola 7)
 - 127 de las 210 funciones públicas de `sim/` no tenían documentación; ahora todas la tienen (`##` en el cuerpo o comentario al final de la firma en los atajos de una línea y en `motor_turno.gd`, que está al límite de 220 líneas). `tools/generar_api.py` genera `docs/API_SIM.md` y con `--verificar` falla si una función pública queda sin documentar (en el CI y en `run_all_tests.sh`). Solo comentarios: las huellas no cambian.
+
+## AT. Consistencia de nombres y comentarios (26-nov-2026, cola 7)
+- Revisión de `sim/`, `tests/`, `tools/` y `game/`: no hay comentarios en inglés, ni identificadores de función en inglés, ni faltas de tilde en comentarios (las únicas coincidencias son claves de datos sin tilde a propósito, como `aprobacion` o `politica`, que son identificadores). Convención vigente: identificadores en español sin tildes (`snake_case`), comentarios y textos en español con tildes. No hubo nada que corregir.
+- Mutantes de «Búsqueda infinita de fallas» (M01 y siguientes): todavía no llegó ninguno; cuando lleguen, cada uno se mata con una prueba y se anota aquí.
