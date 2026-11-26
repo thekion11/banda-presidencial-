@@ -48,7 +48,10 @@ static func leer(bytes: PackedByteArray) -> Dictionary:
 	if crudo.size() != n:
 		return {}
 	var d: Variant = bytes_to_var(crudo)
-	return d if d is Dictionary and int(d.get("v", 0)) == VERSION else {}
+	if not (d is Dictionary):
+		return {}
+	var v: Variant = d.get("v", null)  # solo un número entero igual a la versión (ni Array, ni nulo, ni true)
+	return d if (v is int and int(v) == VERSION) else {}
 
 
 const CLAVES := ["estado", "rng_seed", "rng_state", "ultimos_eventos", "votaciones"]
