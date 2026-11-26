@@ -6,6 +6,7 @@ extends SceneTree
 ## Uso: godot --headless --path . -s tests/fuzz_carrera.gd -- [partidas] [semilla_inicial]
 
 var _fallos: int = 0
+var _ctx_actual: String = ""
 var _datos: Dictionary
 var _huella: String
 var _snapshots: int = 0
@@ -31,6 +32,7 @@ func _paso(m: MotorTurno, rng: RandomNumberGenerator) -> void:
 				Bots.jugar_turno(m, "codicioso", rng)
 			for _a in range(rng.randi_range(0, 8)):
 				AyudaFuzz.accion(m, rng)
+				_estado(m, "tras una acción aleatoria")
 			if e.eleccion_pendiente(int(_datos["leyes"]["hemiciclo"]["semanas_campana"])):
 				Bots.elegir(m, _datos, "codicioso", rng)
 			else:
@@ -60,6 +62,12 @@ func _encuestas(m: MotorTurno, ctx: String) -> void:
 		for r in q["regiones"]:
 			_check(float(r["valor"]) >= 0.0 and float(r["valor"]) <= 100.0 and float(r["valor"]) >= v_prev, "%s: regiones de la encuesta desordenadas o fuera de rango" % ctx)
 			v_prev = float(r["valor"])
+
+
+func _estado(m: MotorTurno, donde: String) -> void:
+	## Los invariantes del estado (mano, mazo, gabinete, coalición, obras, calendario, decisiones, etapa...) tras cada acción.
+	for f in AyudaInvariantes.revisar(m, "%s %s" % [_ctx_actual, donde]):
+		_check(false, f)
 
 
 func _guardado(m: MotorTurno) -> Dictionary:
@@ -132,6 +140,7 @@ func _init() -> void:
 			resp.append(p["opciones"][rng.randi_range(0, 2)])
 		var m := Partida.crear(_datos, semilla, GeneradorPartido.construir_partido("P", "P", "metropolitana", resp, _datos["ideologia"]))
 		var ctx := "semilla %d" % semilla
+		_ctx_actual = ctx
 		var pasos := 0
 		var ciclo_prev: int = m.estado.ciclo
 		var dias_prev: int = m.estado.dias_carrera
@@ -146,6 +155,7 @@ func _init() -> void:
 			_check(m.estado.ciclo >= ciclo_prev and m.estado.dias_carrera >= dias_prev, "%s: ciclo o dias_carrera retrocedieron (ciclo %d -> %d, días %d -> %d)" % [ctx, ciclo_prev, m.estado.ciclo, dias_prev, m.estado.dias_carrera])
 			ciclo_prev = m.estado.ciclo
 			_encuestas(m, ctx)
+			_estado(m, "paso %d (%s)" % [pasos, m.estado.etapa])
 			dias_prev = m.estado.dias_carrera
 			for k in m.estado.indicadores:
 				_check(is_finite(float(m.estado.indicadores[k])), "%s: indicador %s no finito" % [ctx, k])

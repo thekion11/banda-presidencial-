@@ -86,6 +86,8 @@ func _accion(m: MotorTurno, rng: RandomNumberGenerator, ctx: String) -> void:
 		_check(dif.is_empty(), "%s: «%s» fue rechazada (%s) pero cambió %s" % [ctx, nombre, str(r.get("razon", "?")), str(dif)])
 	elif r.has("ok"):
 		_aceptadas += 1
+	for f in AyudaInvariantes.revisar(m, "%s tras «%s»" % [ctx, nombre]):
+		_check(false, f)
 	# invariantes de límites
 	var cfg_d := int(_datos["leyes"]["delegacion"]["max_por_turno"])
 	var cfg_i := int(_datos["leyes"]["movimientos_internos"]["por_turno"])
