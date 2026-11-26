@@ -18,7 +18,7 @@ godot --headless --import --path .        # tras agregar clases nuevas
 tools/run_all_tests.sh godot               # TODO lo del CI (≈ 4 min): validadores, test_*.gd y fuzz
 godot --headless --path . -s tests/test_xxx.gd
 ```
-Una prueba que no compila **no falla sola**: el CI y `run_all_tests.sh` buscan «SCRIPT ERROR» y aplican 300 s de límite. Antes de subir: fetch, merge de `origin/main`, suite en verde. Las pruebas de oro (`test_prueba_oro_*`, `tests/oro/huellas.json`) se regeneran solo si el cambio de resultado es intencional (y se explica en el commit).
+Una prueba que no compila **no falla sola**: el CI y `run_all_tests.sh` buscan «SCRIPT ERROR» y aplican 300 s de límite. Antes de subir: fetch, merge de `origin/main`, suite en verde. Las pruebas de oro (`test_prueba_oro_*`, `tests/oro/huellas.json`) se regeneran solo si el cambio de resultado es intencional, **con el motivo explicado en el commit y tras correr `test_mutantes*` y `test_invariantes_estado`**: `test_determinismo` mata la mitad de los mutantes de `sim/`, y si se regenera sin mirar, esa red queda ciega. Al tocar `ValidarGuardado` o el formato del guardado, corre TODOS los `test_*.gd` (`tools/run_all_tests.sh`), no una lista corta.
 
 ## Convenciones
 - Identificadores en español sin tildes (`snake_case`); comentarios y textos en español con tildes; sin emojis.

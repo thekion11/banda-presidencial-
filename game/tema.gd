@@ -241,6 +241,16 @@ static func perilla(radio: float, relleno: Color, borde: Color) -> ImageTexture:
 	return _cache_perilla[clave]
 
 
+static func miles(n: int) -> String:
+	## Entero con punto de miles, como se escribe en Chile y en la maqueta: 1200 -> «1.200», -15400 -> «-15.400».
+	var s := str(absi(n))
+	var out := ""
+	while s.length() > 3:
+		out = "." + s.right(3) + out
+		s = s.left(s.length() - 3)
+	return ("-" if n < 0 else "") + s + out
+
+
 static func margen_superior(minimo: float = 12.0) -> float:
 	## Aire arriba de la pantalla: lo que pida la zona segura del teléfono (cámara, muesca) más 4 px, o `minimo` si no hay
 	## nada que esquivar (modo inmersivo sin muesca, escritorio, pruebas). Antes era un margen fijo de 30 px.

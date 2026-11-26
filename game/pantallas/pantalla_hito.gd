@@ -71,7 +71,7 @@ static func crear(obra: Dictionary, fases: Array, al_cerrar: Callable, al_ver_ma
 	col.set_anchors_preset(Control.PRESET_FULL_RECT)
 	col.offset_left = 16
 	col.offset_right = -16
-	col.offset_top = 40
+	col.offset_top = Tema.margen_superior() + 8.0  # zona segura del teléfono (antes 40 fijos; en la maqueta el título casi toca el borde)
 	col.offset_bottom = -22
 	col.add_theme_constant_override("separation", 10)
 	capa.add_child(col)
@@ -153,7 +153,7 @@ static func crear(obra: Dictionary, fases: Array, al_cerrar: Callable, al_ver_ma
 			ap += float(ef["delta"])
 	var chips := HBoxContainer.new()
 	chips.add_theme_constant_override("separation", 8)
-	chips.add_child(_chip("Empleo (ilustrativo)", "+%s" % str(roundi(float(obra["dias_totales"]) * 1.6 / 10.0) * 10), Color("#DDEFE6"), Color("#1F6B4A")))
+	chips.add_child(_chip("Empleo (ilustrativo)", "+" + Tema.miles(roundi(float(obra["dias_totales"]) * 1.6 / 10.0) * 10), Color("#DDEFE6"), Color("#1F6B4A")))
 	chips.add_child(_chip("Aprobación local", Tema.signo(ap), Color("#F7E7C4"), Color("#6F500C")))
 	chips.add_child(_chip("Riesgo de retraso", "Bajo" if int(obra["retrasos"]) == 0 else "Medio", Color("#F7D9D5"), Color("#9A3026")))
 	tv.add_child(chips)
