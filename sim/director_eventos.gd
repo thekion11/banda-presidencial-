@@ -59,15 +59,6 @@ func _preparar_cooldowns(cfg: Dictionary, ahora: int) -> void:
 	_cd_decision = ahora - _ult_dec < int(cfg["cooldown_decision"])
 
 
-func _en_cooldown(evt: Dictionary, cfg: Dictionary, ahora: int) -> bool:
-	var oc: Dictionary = m.estado.eventos_ocurridos
-	if oc.has(String(evt["id"])) and ahora - int(oc[String(evt["id"])]) < int(cfg["cooldown_evento"]):
-		return true
-	if _ult_fam.has(String(evt.get("familia", "?"))) and ahora - int(_ult_fam[String(evt.get("familia", "?"))]) < int(cfg["cooldown_familia"]):
-		return true
-	return evt.has("opciones") and _cd_decision
-
-
 func mes_actual() -> int:
 	## Mes del calendario (1 a 12) de la semana en curso: desde el ciclo 2 hay un solo reloj; en el ciclo 1 la campaña y el gobierno tienen su fecha base.
 	var cal: Dictionary = m.catalogo_leyes["calendario"]
