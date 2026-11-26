@@ -51,3 +51,9 @@ Hecha con `tools/auditar_apk.py` sobre el APK de depuración local del 24-nov (p
 | 16 KB de página | No verificable con el APK local | Verificar con la plantilla de Godot 4.7.2 antes de publicar (requisito de Android 15) |
 | Depuración | El APK de depuración es `debuggable` | Normal; el de Play se exporta en modo release |
 **Lista corta para publicar:** fijar `targetSdk ≥ 35`, decidir el renderizador (Vulkan requerido o compatibilidad), activar Gradle y exportar AAB, crear el keystore o activar Play App Signing, unificar versión, verificar 16 KB y repetir esta auditoría sobre el binario final.
+
+### 7b. Corrección con el APK que genera el CI (Godot 4.7.2, 26-nov-2026, ejecución 340)
+El primer análisis usó un APK local del 24-nov hecho con una plantilla antigua. El APK que **genera hoy el CI** (`tools/auditar_apk.py` en `android.yml`) dice: `compileSdk 36`, **`minSdk 24`, `targetSdk 36`**, sin permisos, vertical, `allowBackup` desactivado, solo `arm64-v8a` (24 MB comprimidos de bibliotecas, 40 MB el APK) y **Vulkan declarado como NO requerido** (`required="false"`). Por lo tanto:
+- **`targetSdk` ya cumple** (36 ≥ 35); no hay que cambiar nada en `export_presets.cfg` para eso.
+- **Vulkan ya no excluye teléfonos** en Play: el motor cae al renderizador compatible si el teléfono no tiene Vulkan (el filtro de tienda no lo exige). Decisión de renderizador: ver `docs/RENDERIZADORES.md`.
+- Quedan abiertos: 16 KB de páginas (el auditor ahora lee la alineación de cada biblioteca `.so` y la imprime en el CI), keystore de release, AAB con Gradle y la versión.
