@@ -62,6 +62,27 @@ func _vista_toque(pos: Vector2) -> void:
 		cambio_linea.emit()
 
 
+var _cache: UrbanoCache
+
+
+func _base_en_cache(esc: float) -> void:
+	if _cache == null:
+		_cache = UrbanoCache.new()
+		add_child(_cache)
+	var s := clampf(get_viewport().get_final_transform().get_scale().x, 1.0, 4.0)  # escala real de la pantalla
+	var suave := 1.0 if mostrar_metro else 0.0
+	var clave := "%s|%.4f|%.1f,%.1f|%s|%d|%s|%.2f" % [mostrar_metro, zoom, pan.x, pan.y, str(UrbanoBase.ocultas.keys()), hash(UrbanoBase.propias), UrbanoBase.fecha_iso, s]
+	var tam := size
+	var p := pan
+	var z := zoom
+	var con_metro := mostrar_metro
+	_cache.pintar = func(ci: CanvasItem) -> void:
+		ci.draw_rect(Rect2(Vector2.ZERO, tam * s), Color("#EFEADF"))
+		ci.draw_set_transform(p * s, 0.0, Vector2(z * s, z * s))
+		UrbanoBase.dibujar(ci, tam, MARGEN, con_metro, esc, suave, true)
+	_cache.preparar(size, s, clave)
+
+
 func cargar(_p_datos: Dictionary = {}) -> void:
 	datos = UrbanoBase.datos()
 	trazo = 0.0
@@ -80,8 +101,14 @@ func _draw() -> void:
 		draw_string(Tema.fuente_texto(400), Vector2(10, size.y - 8), "Esquema: posiciones relativas, no a escala", HORIZONTAL_ALIGNMENT_LEFT, size.x - 20, 10, Tema.GRIS_CLARO)  # mínimo 10 pt
 		return
 	var esc := (1.0 + 0.35 * (zoom - 1.0)) / zoom  # el grosor crece menos que el mapa: las líneas no se vuelven brochazos
-	draw_set_transform(pan, 0.0, Vector2(zoom, zoom))
-	UrbanoBase.dibujar(self, size, MARGEN, mostrar_metro, esc, 1.0 if mostrar_metro else 0.0, not _en_movimiento)
+	if _en_movimiento:  # mientras se arrastra o se acerca: en vivo y con menos detalle
+		draw_set_transform(pan, 0.0, Vector2(zoom, zoom))
+		UrbanoBase.dibujar(self, size, MARGEN, mostrar_metro, esc, 1.0 if mostrar_metro else 0.0, false)
+	else:  # quieto: la capa base sale de una textura pintada una vez (UrbanoCache): una sola llamada de dibujo
+		_base_en_cache(esc)
+		draw_texture_rect(_cache.get_texture(), Rect2(Vector2.ZERO, size), false)
+		draw_style_box(Tema.caja(Color(0, 0, 0, 0), 16, Tema.BORDE_CLARO, 1), Rect2(Vector2.ZERO, size))
+		draw_set_transform(pan, 0.0, Vector2(zoom, zoom))
 	if propuesta.size() >= 2:
 		var pp := PackedVector2Array()
 		for q in propuesta:
