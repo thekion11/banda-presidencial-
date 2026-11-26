@@ -323,3 +323,12 @@ Regla (CLAUDE.md §2): políticos reales con alias satíricos, personajes de pan
 ## AT. Consistencia de nombres y comentarios (26-nov-2026, cola 7)
 - Revisión de `sim/`, `tests/`, `tools/` y `game/`: no hay comentarios en inglés, ni identificadores de función en inglés, ni faltas de tilde en comentarios (las únicas coincidencias son claves de datos sin tilde a propósito, como `aprobacion` o `politica`, que son identificadores). Convención vigente: identificadores en español sin tildes (`snake_case`), comentarios y textos en español con tildes. No hubo nada que corregir.
 - Mutantes de «Búsqueda infinita de fallas» (M01 y siguientes): todavía no llegó ninguno; cuando lleguen, cada uno se mata con una prueba y se anota aquí.
+
+## AU. Mutantes vivos y su prueba (26-nov-2026, «Búsqueda infinita de fallas»)
+`tests/test_mutantes.gd` mata los cuatro mutantes que sobrevivían a la suite (se comprobó aplicando cada mutación a mano: la prueba falla, y con el código real pasa):
+| Mutante | Prueba |
+|---|---|
+| M01 `sen >= min_sen` → `>` en `MotorLegal.votar` | Con el Senado exactamente en el mínimo la ley se aprueba y un voto menos no |
+| M02 sin `clampf` en la intención de voto de `Encuestas.registrar` | Aprobación 0,5 / 1 / 99 / 99,5 en los 8 turnos: la intención queda en 0..100 |
+| M03 sin `maxi(0, …)` en la penalización por malestar de la coalición (equivalente con los datos actuales) | Con `penal_internos_malestar` = 10 los movimientos internos no bajan de 0 |
+| M04 tope del apoyo 1.0 → 2.0 en `votar` (equivalente con los datos actuales) | Con `apoyo_base` 0,6 y capital y cohesión 100, el ruido aún baja los votos del Senado bajo el total; y `composicion` no suma más que la cámara (el mismo tope en `composicion`) |
