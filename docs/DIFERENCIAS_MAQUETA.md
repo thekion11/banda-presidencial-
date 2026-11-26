@@ -31,7 +31,7 @@ Regla del proyecto: la maqueta manda. Esta lista deja explícito dónde el juego
 | Elemento | Maqueta | Juego | Motivo / estado |
 |---|---|---|---|
 | Botón "Jugar · 2 PA" y pastilla "16 PA" | PA | "Jugar · 2 mov", "4/8 mov" | DISENO_V2 renombra PA a movimientos y suma bono por aprobación y asesores. Texto, no estilo. |
-| Texto de la mano | "Toca una carta · 5 en mano" | "base 5 · aprob. +2 · asesor +1" | Explica el origen de los movimientos del turno. |
+| Texto de la mano | "Toca una carta · 5 en mano" | "5 mov base · aprob. +2 · asesor +1" | Explica el origen de los movimientos del turno. |
 | Franja del corrector | Una franja con el corrector | Primera línea con título, categoría y costo de la carta elegida, y alto fijo | El abanico tapa los títulos de las no elegidas (regla de la maqueta: solo la elegida muestra todo). Corregido: antes el título no se leía completo. |
 | Carta elegida | Sube con marco dorado | Sube y crece sin invadir la cabecera "Tu mano" | Bug corregido: con la carta 1 elegida cubría "Tu mano". |
 | Botón de delegar | Ícono de persona | Mismo ícono + insignia con delegaciones restantes | Compacto; el detalle va en la hoja de delegación. |
@@ -143,5 +143,13 @@ Capturas a 390×844 generadas por `tests/captura_comparar.gd` (función `_v4`): 
 
 ### Lienzo de Claude Design (26-nov-2026)
 El lienzo «Presidente de Chile — Dirección visual v4» tiene dos páginas: **Dirección visual** (5 maquetas: menú, día, votación, elección y la hoja del sistema de movimiento, ampliada con todas las piezas nuevas) y **Juego actual** (24 capturas reales a 780×1688 de todas las pantallas: menú, créditos, afiliación, test con brújula, gabinete, tutorial con foco, día, ficha ampliada, carta al mapa, movimientos agotados, escándalo, Congreso, telón, votación con suspenso, aprobada y rechazada, evento claro, debate en TV y en radio, fuegos, elección, cambio de mando, fin y ajustes).
+
+### Comparación v4 con la maqueta (26-nov-2026)
+Lado a lado actualizado: `docs/comparacion/v4_dia_maqueta_vs_juego.png`. Se corrigió lo que se apartaba sin motivo:
+- **Día:** vuelve la línea punteada dorada que une la región elegida con su tarjeta, y la región se marca con el contorno dorado desde que se abre la pantalla (antes solo al tocarla). «0 obra(s) en curso» pasa a «0 obras / 1 obra en curso»; «base 5» pasa a «5 mov base».
+- **Cabecera:** el título de campaña «Campaña · Semana 1 de 8» ensanchaba la pantalla a 403 px, y la barra inferior y el selector de Nación se salían 1 px. Ahora es «Campaña · Sem. 1/8», el mismo formato que la oposición, y `tests/test_textos.gd` exige que nada se salga de los 390 px.
+- **Nación:** vuelve el rótulo de la maqueta «Límites: datos abiertos (ilustrativo)» bajo la lista de regiones.
+- **Hemiciclo:** con 5 filas (Senado) y 8 (Cámara), los asientos quedaban más separados a lo largo de cada fila que entre filas y se leían como rayos. Ahora son 4 y 6 filas, con anillos parejos como en la maqueta. Lado a lado: `docs/comparacion/v4_votacion_maqueta_vs_juego.png` y `v4_nacion_maqueta_vs_juego.png`.
+- Siguen apartándose a propósito: cifras reales de la partida, «Terminar semana» en lugar de «Jugar» (PR-02), «Camino de la ley» por la votación bicameral y la cifra central, que se vuelve verde al cruzar el mínimo.
 
 Reglas: todo el movimiento respeta Ajustes › «Animaciones y movimiento» y se apaga en modo headless, así que las pruebas miden siempre el estado final. El azar de las partículas es solo visual y no toca la semilla de la partida. Prueba propia: `tests/test_movimiento.gd`.

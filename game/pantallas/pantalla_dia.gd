@@ -86,7 +86,7 @@ func _construir_cuerpo() -> Control:
 			else:
 				_abrir_panel("nacion"))
 	col_tarjetas.add_child(tr)
-	_mapa.add_child(col_tarjetas)
+	_mapa.add_child(col_tarjetas); _mapa.enlace = tr  # línea punteada región → tarjeta (maqueta)
 	var cab_mano := HBoxContainer.new()
 	var mm := MarginContainer.new()
 	mm.add_theme_constant_override("margin_left", 14)
@@ -187,7 +187,7 @@ func _refrescar() -> void:
 
 
 func _actualizar_region() -> void:
-	PanelesDia.pintar_region(_r, motor, datos, _region)
+	PanelesDia.pintar_region(_r, motor, datos, _region); _mapa.seleccion = _region  # contorno y línea siguen a la tarjeta
 
 
 func _pintar_mano() -> void:

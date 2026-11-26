@@ -78,7 +78,7 @@ func _correr() -> void:
 	var ev := {"titulo": "Ley de quórum calificado de energía", "hora": "16:00", "descripcion": "Requiere 26 votos de 50 senadores", "efectos": [{"ind": "capital", "delta": 4}, {"ind": "cohesion", "delta": 2}, {"ind": "fiscal", "delta": -2}],
 		"votacion": {"origen": "senado", "voto": {"aprobada": true, "senado": 29, "camara": 96, "min_senado": 26, "min_camara": 78, "total_senado": 50, "total_camara": 155, "abst_senado": 7, "abst_camara": 21, "contra_senado": 14, "contra_camara": 38}, "tc": {"recurso": true, "cae": false}, "aprobada": true}}
 	dia._capa.add_child(OverlaysDia.evento(ev, func() -> void: pass, m.catalogo_leyes["congreso"]["nombres"], 36))
-	await _guardar("cmp_votacion", 2.0)
+	await _guardar("cmp_votacion", 3.0)  # el sello y su onda terminan (~2,6 s)
 	var botones: Array = dia._capa.find_children("*", "Button", true, false)
 	botones[botones.size() - 1].pressed.emit()
 	await _guardar("cmp_votacion_pag2", 2.0)
