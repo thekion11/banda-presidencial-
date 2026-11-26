@@ -23,6 +23,7 @@ var _titulo: Label
 var _texto: Label
 var _contador: Label
 var _siguiente: Button
+var _velo: Control  # P9: oscurece todo salvo el elemento explicado (foco con hueco)
 
 
 static func debe_mostrar() -> bool:
@@ -40,10 +41,10 @@ static func marcar_visto() -> void:
 
 func _ready() -> void:
 	set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
-	var velo := ColorRect.new()
-	velo.color = Color(0, 0, 0, 0.5)
-	velo.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
-	add_child(velo)
+	_velo = Control.new()
+	_velo.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	_velo.draw.connect(_dibujar_velo)
+	add_child(_velo)
 	_marco = PanelContainer.new()
 	var sb := Tema.caja(Color(0, 0, 0, 0), 14, Tema.ORO, 3)
 	_marco.add_theme_stylebox_override("panel", sb)
@@ -89,8 +90,13 @@ func _mostrar() -> void:
 	_siguiente.text = "Siguiente" if _paso < PASOS.size() - 1 else "Entendido"
 	if _paso < objetivos.size() and objetivos[_paso] is Control and is_instance_valid(objetivos[_paso]):
 		var r: Rect2 = (objetivos[_paso] as Control).get_global_rect().grow(6.0)
-		_marco.position = r.position
-		_marco.size = r.size
+		if Movimiento.activo() and _marco.visible and _marco.size.x > 0.0:  # el foco viaja al siguiente elemento
+			var tw := _marco.create_tween().set_parallel(true).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
+			tw.tween_property(_marco, "global_position", r.position, 0.32)
+			tw.tween_property(_marco, "size", r.size, 0.32)
+		else:
+			_marco.size = r.size
+			_marco.global_position = r.position  # global: sigue alineado aunque la pantalla esté entrando (Movimiento.entrar_pantalla)
 		_marco.visible = true
 	else:
 		_marco.visible = false
@@ -108,3 +114,24 @@ func _cerrar() -> void:
 	marcar_visto()
 	cerrado.emit()
 	queue_free()
+
+
+func _process(_delta: float) -> void:
+	if _velo != null:
+		_velo.queue_redraw()
+	if _marco != null and Movimiento.activo():  # el marco dorado late
+		_marco.modulate.a = 0.7 + 0.3 * sin(float(Time.get_ticks_msec()) / 180.0)
+
+
+func _dibujar_velo() -> void:
+	## Velo oscuro con un hueco en el elemento explicado: se ve nítido y todo lo demás queda atenuado.
+	var oscuro := Color(0, 0, 0, 0.62)
+	var full := Rect2(Vector2.ZERO, _velo.size)
+	if _marco == null or not _marco.visible:
+		_velo.draw_rect(full, oscuro)
+		return
+	var h := Rect2(_marco.global_position - _velo.global_position, _marco.size).intersection(full)
+	_velo.draw_rect(Rect2(0, 0, full.size.x, h.position.y), oscuro)
+	_velo.draw_rect(Rect2(0, h.end.y, full.size.x, full.size.y - h.end.y), oscuro)
+	_velo.draw_rect(Rect2(0, h.position.y, h.position.x, h.size.y), oscuro)
+	_velo.draw_rect(Rect2(h.end.x, h.position.y, full.size.x - h.end.x, h.size.y), oscuro)

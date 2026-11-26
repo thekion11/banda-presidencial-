@@ -9,3 +9,6 @@ build/
 __pycache__/
 .env
 *.idsig
+
+# Ajuste local temporal (p. ej. grabar video a 2x con tests/grabar_video.gd); nunca se sube
+override.cfg

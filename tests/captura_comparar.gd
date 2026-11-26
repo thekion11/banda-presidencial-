@@ -14,7 +14,7 @@ func _init() -> void:
 func _guardar(nombre: String, espera: float = 0.3) -> void:
 	for i in range(4):
 		await process_frame
-	await create_timer(espera).timeout
+	await create_timer(espera + Movimiento.ENFASIS + 0.5).timeout  # deja terminar las entradas de la dirección visual v4 (estado final)
 	root.get_texture().get_image().save_png("%s/%s.png" % [_dir, nombre])
 
 

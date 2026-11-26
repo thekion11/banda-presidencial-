@@ -1,1 +1,3 @@
 Efectos de sonido sintetizados para este proyecto (ondas senoidales y ruido, generados por codigo en el repositorio). Sin muestras de terceros: sin licencias externas.
+
+Musica ambiente (musica_campana, musica_gobierno, musica_oposicion, musica_tension .ogg): sintetizada para este proyecto con tools/audio/generar_musica.py (colchones de sierras filtradas, arpegios y golpes; bucles sin costura). Sin muestras de terceros.

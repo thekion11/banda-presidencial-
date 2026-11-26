@@ -109,10 +109,24 @@ func _dibujar_sup() -> void:
 	_gema_en(_sup, Vector2(21, 21), 14.0)
 
 
+var _t0: int = -1  # pulsación sobre la carta elegida: su «segundo toque» cuenta al soltar (P10: mantener abre la ficha)
+var _p0: Vector2 = Vector2.ZERO
+
+
 func _gui_input(event: InputEvent) -> void:
-	if (event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT) \
-			or (event is InputEventScreenTouch and event.pressed):
-		tocada.emit(self)
+	var boton: bool = event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT
+	if not (boton or event is InputEventScreenTouch):
+		return
+	if event.pressed:
+		if not elegida:  # elegir otra carta: al presionar (el gesto de deslizar juega la que se presionó)
+			tocada.emit(self)
+			return
+		_t0 = Time.get_ticks_msec()
+		_p0 = event.position
+	elif elegida and _t0 >= 0:
+		if Time.get_ticks_msec() - _t0 < ManoUI.PULSACION_LARGA_MS and event.position.distance_to(_p0) < 14.0:
+			tocada.emit(self)  # toque breve sobre la elegida: la juega
+		_t0 = -1
 
 
 func _fondo_sin_arte(arte: Rect2, base: Color) -> void:

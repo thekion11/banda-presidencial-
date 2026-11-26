@@ -18,6 +18,7 @@ static func _barra_umbral(valor: float, umbral: float, piso: float) -> Control:
 	relleno.position = Vector2(0, 10)
 	relleno.size = Vector2(w * clampf(valor, 0.0, 100.0) / 100.0, 14)
 	c.add_child(relleno)
+	Movimiento.ancho(relleno, relleno.size.x, 0.25, 1.1)  # la barra se llena; las marcas de umbral quedan fijas
 	for par in [[umbral, Tema.ORO, 4.0], [piso, Tema.TEXTO_SUAVE, 2.0]]:
 		if float(par[0]) <= 0.0:
 			continue
@@ -60,7 +61,9 @@ static func crear(motor: MotorTurno, regiones: Array, regional: Dictionary, res:
 	v.add_child(Tema.etiqueta(String(ver[0]), 26, ver[1], true))
 	var tarjeta := FilasUI.col(4)
 	tarjeta.add_child(Tema.etiqueta("Aprobación el día de la elección", 12, Tema.TEXTO_SUAVE))
-	tarjeta.add_child(Tema.etiqueta("%.1f %% · umbral %.0f %%" % [valor, umbral], 22, Tema.TEXTO, true))
+	var cifra := Tema.etiqueta("", 22, Tema.TEXTO, true)
+	Movimiento.contar(cifra, valor, func(x: float) -> String: return "%.1f %% · umbral %.0f %%" % [x, umbral], 0.0, 1.1, 0.25)
+	tarjeta.add_child(cifra)
 	tarjeta.add_child(_barra_umbral(valor, umbral, piso))
 	var leyenda := "Marca dorada: umbral de victoria (%.0f %%)." % umbral
 	if ronda == 1:
@@ -94,6 +97,13 @@ static func crear(motor: MotorTurno, regiones: Array, regional: Dictionary, res:
 		lista.add_child(fila)
 	var sc := FilasUI.scroll(lista)
 	v.add_child(sc)
+	Movimiento.escalonar(v, 0.05, 0.05)
+	Movimiento.escalonar(lista, 0.45, 0.035, 18)
+	if res["electo"]:
+		var conf := Particulas.new()
+		conf.modo = "confeti"
+		conf.cantidad = 46
+		raiz.add_child(conf)  # oro, rojo y crema al ganar
 	var b := FilasUI.boton_pie(String(ver[2]))
 	b.pressed.connect(func() -> void:
 		raiz.queue_free()
