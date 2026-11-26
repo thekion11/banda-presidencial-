@@ -161,7 +161,7 @@ func _refrescar() -> void:
 	var est := motor.estado
 	var sem_camp := int(datos["leyes"]["hemiciclo"]["semanas_campana"])
 	if est.etapa == "campana":
-		_r["dia"].text = "Campaña · Semana %d de %d" % [mini(est.turno_actual, sem_camp), sem_camp]
+		_r["dia"].text = "Campaña · Sem. %d/%d" % [mini(est.turno_actual, sem_camp), sem_camp]
 	elif est.etapa == "oposicion":
 		_r["dia"].text = "Oposición · Sem. %d/%d" % [est.turno_actual, int(datos["leyes"]["oposicion"]["semanas"])]
 	else:

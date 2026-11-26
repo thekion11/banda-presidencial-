@@ -68,8 +68,10 @@ static func cabecera(refs: Dictionary) -> Control:
 	col.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	refs["dia"] = Tema.etiqueta_corta("", 18, Tema.TEXTO, true)
 	refs["fecha"] = Tema.etiqueta_corta("", 11, Tema.TEXTO_SUAVE)
-	col.add_child(refs["dia"])
-	col.add_child(refs["fecha"])
+	for l: Label in [refs["dia"], refs["fecha"]]:  # recortan con «…» en vez de ensanchar la barra más allá de los 390 px
+		l.clip_text = true
+		l.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
+		col.add_child(l)
 	fila.add_child(col)
 	fila.add_child(pastilla_pa(refs))
 	v.add_child(fila)

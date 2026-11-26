@@ -1,6 +1,6 @@
 extends SceneTree
 ## Textos (CLAUDE.md §5): todo texto visible mide al menos 10 pt y no lleva emojis; los rótulos de la interfaz
-## llevan sus tildes. Recorre las pantallas y paneles (RecorridoUI). Los textos dibujados a mano se revisan
+## llevan sus tildes y ningún texto se sale del ancho de la pantalla. Recorre las pantallas y paneles (RecorridoUI). Los textos dibujados a mano se revisan
 ## leyendo el código (draw_string con tamaño < 10).
 
 const MINIMO := 10
@@ -47,6 +47,8 @@ func _auditar(raiz: Node, donde: String) -> void:
 		_vistos += 1
 		var corto := t.replace("\n", " ").left(40)
 		_check(_tam(n) >= MINIMO, "%s: «%s» mide %d pt (mín. %d)" % [donde, corto, _tam(n), MINIMO])
+		var r := (n as Control).get_global_rect()  # nada se sale del ancho de la pantalla (390 px)
+		_check(r.position.x >= -0.5 and r.end.x <= Tema.ANCHO + 0.5, "%s: «%s» se sale de la pantalla (%s)" % [donde, corto, r])
 		for ch in t:
 			if ch.unicode_at(0) >= 0x1F300:
 				_check(false, "%s: «%s» tiene un emoji" % [donde, corto])
