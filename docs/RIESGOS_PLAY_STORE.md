@@ -57,3 +57,4 @@ El primer análisis usó un APK local del 24-nov hecho con una plantilla antigua
 - **`targetSdk` ya cumple** (36 ≥ 35); no hay que cambiar nada en `export_presets.cfg` para eso.
 - **Vulkan ya no excluye teléfonos** en Play: el motor cae al renderizador compatible si el teléfono no tiene Vulkan (el filtro de tienda no lo exige). Decisión de renderizador: ver `docs/RENDERIZADORES.md` (recomendación: pasar a `gl_compatibility`, que es lo que ya se prueba; no se cambió `project.godot`).
 - Quedan abiertos: 16 KB de páginas (el auditor ahora lee la alineación de cada biblioteca `.so` y la imprime en el CI), keystore de release, AAB con Gradle y la versión.
+- Parche propuesto (inactivo y sin verificar) para exportar un AAB firmado: `docs/parches/LEEME.md` y `docs/parches/android-release.yml`.
