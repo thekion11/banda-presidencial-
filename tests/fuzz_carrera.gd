@@ -45,14 +45,11 @@ func _encuestas(m: MotorTurno, ctx: String) -> void:
 	var lista: Array = m.estado.encuestas
 	_check(lista.size() <= int(cfg["historial_max"]), "%s: historial de encuestas sin acotar (%d)" % [ctx, lista.size()])
 	var semana_prev := -1
-	var repetidas := 0
 	for q in lista:
 		var claves: Array = q.keys()
 		claves.sort()
 		_check(claves == ["etapa", "intencion", "margen", "regiones", "rival", "semana", "turno", "umbral"], "%s: claves de la encuesta %s" % [ctx, str(claves)])
-		# no decrecen; una semana puede aparecer dos veces (la última encuesta antes de votar y la primera de la segunda vuelta), nunca tres
-		repetidas = repetidas + 1 if int(q["semana"]) == semana_prev else 1
-		_check(typeof(q["semana"]) == TYPE_INT and int(q["semana"]) >= semana_prev and repetidas <= 2, "%s: semanas de encuesta decrecientes o repetidas más de 2 veces (%s)" % [ctx, str(q["semana"])])
+		_check(typeof(q["semana"]) == TYPE_INT and int(q["semana"]) > semana_prev, "%s: una encuesta por semana, con semanas crecientes (%s tras %d)" % [ctx, str(q["semana"]), semana_prev])
 		semana_prev = int(q["semana"])
 		_check(["campana", "oposicion"].has(String(q["etapa"])), "%s: etapa de encuesta «%s»" % [ctx, q["etapa"]])
 		_check(is_finite(float(q["intencion"])) and float(q["intencion"]) >= 0.0 and float(q["intencion"]) <= 100.0, "%s: intención fuera de 0..100 (%s)" % [ctx, str(q["intencion"])])
