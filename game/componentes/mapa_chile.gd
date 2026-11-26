@@ -192,9 +192,14 @@ func _draw() -> void:
 			if _relieve != null:
 				draw_mesh(_mallas[id], _relieve, Transform2D.IDENTITY, Color(1, 1, 1, 0.7))
 			draw_set_transform_matrix(_camara)
-		for pts in _contornos(id):
-			var borde := Tema.ORO if id == seleccion else Color(1, 0.97, 0.9, 0.5)
-			draw_polyline(pts, borde, 2.5 if id == seleccion else 0.9, true)
+	var bordes := PackedVector2Array()  # contornos (116 piezas): uno solo draw_multiline tras los rellenos; la región elegida va encima
+	for id in _piezas.keys():
+		if id != seleccion:
+			for pts in _contornos(id):
+				bordes.append_array(_segmentos(pts))
+	draw_multiline(bordes, Color(1, 0.97, 0.9, 0.5), 0.9, true)
+	for pts in (_contornos(seleccion) if _piezas.has(seleccion) else []):
+		draw_polyline(pts, Tema.ORO, 2.5, true)
 	var cerros := PackedVector2Array()  # Cordillera: todos los cerros en un solo arreglo de triángulos (antes 3 llamadas por cerro)
 	var tonos := PackedColorArray()
 	for i in range(0, _este.size(), 2):
@@ -330,6 +335,14 @@ func _contornos(id: String) -> Array:
 	return _contornos_px[id]
 
 
+static func _segmentos(pts: PackedVector2Array) -> PackedVector2Array:
+	## Polilínea como pares de puntos para draw_multiline.
+	var r := PackedVector2Array()
+	for i in range(pts.size() - 1):
+		r.append_array([pts[i], pts[i + 1]])
+	return r
+
+
 func centro(id: String) -> Vector2:
 	## Centroide aproximado (en píxeles del control) de la pieza más grande de la región (en caché por tamaño).
 	_contornos(id)  # valida la caché con la clave actual
@@ -389,12 +402,15 @@ func _dibujar_vivo() -> void:
 	var v := _vivo
 	v.draw_set_transform_matrix(_camara)
 	var pulso := 0.5 + 0.5 * sin(_t * 3.2)
-	for id in _tendencia.keys():
-		var col: Color = Tema.bien() if int(_tendencia[id]) > 0 else Tema.mal()
-		for pts in _contornos(id):
-			if pts.size() < 9:
-				continue
-			v.draw_polyline(pts, Color(col, 0.25 + 0.55 * pulso), 2.0 + 1.5 * pulso, true)
+	for signo in [1, -1]:  # regiones que suben y que bajan: una llamada de dibujo por color
+		var segs := PackedVector2Array()
+		for id in _tendencia.keys():
+			if int(_tendencia[id]) == signo:
+				for pts in _contornos(id):
+					if pts.size() >= 9:
+						segs.append_array(_segmentos(pts))
+		if not segs.is_empty():
+			v.draw_multiline(segs, Color(Tema.bien() if signo > 0 else Tema.mal(), 0.25 + 0.55 * pulso), 2.0 + 1.5 * pulso, true)
 	if bastion != "" and _banda_y.has(bastion):
 		var cb := centro(bastion) + Vector2(0.0, 12.0)
 		var k := fmod(_t, 2.2) / 2.2
