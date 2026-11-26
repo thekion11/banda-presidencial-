@@ -354,3 +354,10 @@ Lección de proceso: `test_sectra` armaba el guardado a mano sin `version` y dej
 ## AX. Tanda 2 de mutantes y barrido de datos (26-nov-2026, «Búsqueda infinita de fallas»)
 - **Tanda 2 (M21-M38):** `tests/test_mutantes_3.gd` mata los 4 que sobrevivían de verdad: tope del historial de encuestas (`>` → `>=`), instantánea con SHA vacío, tipo de `delegada` en el guardado y piso de `prob_fallo_min` en la delegación (comprobado aplicando cada mutación). Quinto mutante (`mazo is Array` en `es_completa`): redundante con el esquema del estado, se deja.
 - **Barrido de 270 parámetros de `leyes.json`** (0, −1 y 10⁹): `tools/validate_data.py` ahora rechaza `encuestas.historial_max < 1` (bucle infinito), `gabinete.anios_mandato < 1`, `hemiciclo.dias_por_turno < 1` o `duracion_mandato_dias < dias_por_turno` (divisiones por cero) y `limites_indicadores` fuera de `0 ≤ min < max ≤ 100`; `tools/test_validate.py` lo comprueba con 7 valores peligrosos. La fracción de quórum con `den = 0` ya se rechazaba (`0 < num < den`). Los valores absurdamente grandes (`reales_en_mazo`, `hasta` = 10⁹) solo vuelven lenta la partida; sin acción.
+
+## AY. Cobertura de game/, equidad regional, higiene, monotonía (26-nov-2026, cola 9)
+- `tools/cobertura_funciones.py --game` mide `game/` con las pruebas de interfaz bajo xvfb: 420 de 451 funciones (93,1 %); lista y lectura en `docs/COBERTURA_GAME.md`.
+- `docs/EQUIDAD_REGIONAL.md`: las 16 regiones tienen contenido; sesgo a favor de las pequeñas; 95 de 97 eventos reales son «nacional» (propuesta de ≈ 16 eventos regionales, solo datos, sin implementar).
+- `docs/HIGIENE_REPO.md`: sin huérfanos reales; 6 ramas remotas ya fusionadas (sin borrar).
+- `docs/CONTRIBUIR.md` (guía de una página) y `tools/informe_partida.gd` (serie semanal CSV de una partida).
+- `tests/test_monotonia.gd`: 1.041 cartas con efecto positivo en la aprobación, sin riesgo, ley ni obra, jugadas en 12 carreras: ninguna baja la aprobación salvo escándalo de ministro (31 apartados por ser azar documentado en `leyes.json › escandalo`).
