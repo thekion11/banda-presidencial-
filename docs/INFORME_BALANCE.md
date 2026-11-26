@@ -87,3 +87,30 @@ Medición con bots sobre el juego actual (director de eventos v2, coalición y b
 | completo | difícil | 48 % | 0 % | 48 % | 53,6 |
 
 Lectura: de normal a difícil hay un escalón (≈ 5,7 puntos de golpe: −3,5 de aprobación inicial y +2,2 de umbral). Los remedios probados (umbral de normal +0,7; ruido de elección ±4) no mueven a quien juega bien; la decisión sobre la tasa de victoria deseada en normal queda para después de las pruebas con personas (`docs/DECISIONES.md` §AA). Ablación (n=16-24): sin delegación −30 %, sin internos −22 a −32 %, sin mano continua −25 a −32 % (y 43 % de crisis), sin asesores −12 %, sin coalición −7 %, sin bono −5 %. Reproducir: `tests/montecarlo.gd`, `tests/ablacion.gd`, `tests/informe_bots.gd`.
+
+## Monte Carlo grande del 26-nov-2026 (200 partidas por celda, semillas 20000-20199, main tras `149c458`)
+Intervalos de confianza de Wilson al 95 % entre paréntesis (puntos porcentuales). «Crisis» se calcula sobre las partidas que llegaron al gobierno; «puntaje» y «aprobación» sobre las que terminaron el mandato o cayeron. Reproducir: `godot --headless --path . -s tests/informe_dificultad.gd -- 200` (≈ 25 min).
+
+| Política | Dificultad | Gana la elección | Crisis (de las electas) | Completa el mandato | Puntaje mediano | Aprobación media |
+|---|---|---|---|---|---|---|
+| pasivo | facil | 16.5 % (12-22) | 100.0 % (90-100) | 0.0 % | 0 | 10.4 |
+| pasivo | normal | 0 % (0-2) | — | 0 % | — | — |
+| pasivo | dificil | 0 % (0-2) | — | 0 % | — | — |
+| azar | facil | 100.0 % (98-100) | 35.0 % (29-42) | 65.0 % | 2145 | 20.4 |
+| azar | normal | 39.5 % (33-46) | 39.2 % (29-50) | 24.0 % | 2134 | 19.2 |
+| azar | dificil | 0.5 % (0-3) | 100.0 % (21-100) | 0.0 % | 0 | 7.9 |
+| humano | facil | 100.0 % (98-100) | 6.0 % (3-10) | 94.0 % | 1523 | 28.1 |
+| humano | normal | 76.0 % (70-81) | 7.9 % (5-13) | 70.0 % | 1500 | 28.0 |
+| humano | dificil | 18.5 % (14-24) | 0.0 % (0-9) | 18.5 % | 1522 | 29.4 |
+| codicioso | facil | 100.0 % (98-100) | 11.0 % (7-16) | 89.0 % | 1852 | 25.4 |
+| codicioso | normal | 94.0 % (90-97) | 15.4 % (11-21) | 79.5 % | 1873 | 24.9 |
+| codicioso | dificil | 43.0 % (36-50) | 18.6 % (12-28) | 35.0 % | 1833 | 23.9 |
+| completo | facil | 100.0 % (98-100) | 0.0 % (0-2) | 100.0 % | 3042 | 53.0 |
+| completo | normal | 94.0 % (90-97) | 0.0 % (0-2) | 94.0 % | 3050 | 52.1 |
+| completo | dificil | 43.0 % (36-50) | 1.2 % (0-6) | 42.5 % | 3019 | 52.6 |
+
+**Lectura**
+- La escalera de dificultad existe pero es solo de campaña: el codicioso gana la elección el 100 % en fácil, ≈ 94 % en normal y ≈ 43 % en difícil; el azar, 100 %, ≈ 40 % y ≈ 0,5 %. Una vez en el gobierno, el puntaje mediano es igual en las tres dificultades (D16 en `docs/DECISIONES_PENDIENTES.md`).
+- Con la cohesión con desgaste (`regen_cohesion_semanal` −1,85), el codicioso que ignora la cohesión cae en crisis el 11 % (fácil), el 15 % (normal) y el 19 % (difícil) de las veces; «completo» (asesores, coalición, delegación, internos) casi nunca (0-1 %). Está por debajo del techo de 20 % de `test_balance`, pero los intervalos de normal y difícil llegan a ≈ 21 % y ≈ 28 %: `test_balance` solo exige el techo con el nivel por defecto; si se endurece, mirar estas celdas. El pasivo en fácil gana el 16,5 % y siempre cae en crisis.
+- Fácil es trivial para cualquiera que juegue (el azar gana el 100 %); difícil exige jugar bien (humano 18 %, codicioso 43 %).
+- El jugador casual simulado («humano») gana el 76 % en normal y completa el mandato el 70 %: no es un juego difícil para quien lo juega con atención.
