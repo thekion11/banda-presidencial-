@@ -54,6 +54,8 @@ func fijar_movimientos() -> void:
 	if e.etapa == "gobierno":
 		_m.equipo.efectos_amanecer()
 		_m.coalicion.amanecer()
+	else:
+		Encuestas.registrar(_m)  # campaña y oposición: encuesta de la semana
 
 
 func _cobrar(costo: int) -> Dictionary:

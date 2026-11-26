@@ -133,6 +133,8 @@ Prueba: `tests/test_claridad.gd`.
 
 Correcciones encontradas al capturar todas las pantallas: dos cartas jugadas seguidas dejaban la onda del mapa sin posición (fallaba el dibujo del mapa) y la pantalla de Ajustes quedaba en tamaño 0 (sin fondo, sobre el menú). Ambas corregidas.
 
+Capturas a 390×844 generadas por `tests/captura_comparar.gd` (función `_v4`): `docs/comparacion/v4_creditos.png`, `v4_test_brujula.png`, `v4_tutorial_foco.png`, `v4_ficha_ampliada.png`, `v4_escandalo.png`, `v4_telon_semana.png`, `v4_votacion_rechazada.png`, `v4_evento_claro.png`, `v4_debate_tv.png`, `v4_radio.png`, `v4_cambio_mando.png` y `v4_ajustes.png`.
+
 ### Lienzo de Claude Design (26-nov-2026)
 El lienzo «Presidente de Chile — Dirección visual v4» tiene dos páginas: **Dirección visual** (5 maquetas: menú, día, votación, elección y la hoja del sistema de movimiento, ampliada con todas las piezas nuevas) y **Juego actual** (24 capturas reales a 780×1688 de todas las pantallas: menú, créditos, afiliación, test con brújula, gabinete, tutorial con foco, día, ficha ampliada, carta al mapa, movimientos agotados, escándalo, Congreso, telón, votación con suspenso, aprobada y rechazada, evento claro, debate en TV y en radio, fuegos, elección, cambio de mando, fin y ajustes).
 

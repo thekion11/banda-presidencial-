@@ -35,6 +35,7 @@ var indices_sector: Dictionary = {}  # categoría -> índice sectorial 0..100 (m
 var asesores: Array[String] = []  # ids de asesores contratados (data/asesores.json)
 var bono_mov: Dictionary = {"aprobacion": 0, "asesores": 0}  # movimientos extra del turno por aprobación y asesores
 var coalicion: Dictionary = {}  # id de partido aliado -> {satisfaccion, ministros[], asesores[]} (data/coalicion.json)
+var encuestas: Array[Dictionary] = []  # encuestas semanales de campaña y oposición (sim/encuestas.gd): lo más reciente al final
 var apoyo_coalicion: Dictionary = {"senado": 0, "camara": 0}  # escaños aliados que votan con el gobierno
 var delegadas_turno: int = 0  # cartas delegadas en el turno (máximo en leyes.json › delegacion)
 var internos_actual: int = 0  # movimientos internos disponibles en el turno (solo gobierno)
@@ -89,6 +90,7 @@ func configurar(p_semilla: int, p_dias_turno: int = 7, p_leyes: Dictionary = {})
 	bono_mov = {"aprobacion": 0, "asesores": 0}
 	coalicion.clear()
 	apoyo_coalicion = {"senado": 0, "camara": 0}
+	encuestas.clear()
 	delegadas_turno = 0
 	internos_actual = 0
 	aprobacion_regional.clear()
