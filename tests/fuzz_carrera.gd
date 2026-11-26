@@ -39,6 +39,32 @@ func _paso(m: MotorTurno, rng: RandomNumberGenerator) -> void:
 			e.etapa = "fin_mandato"  # etapa desconocida: la prueba lo detecta más abajo
 
 
+func _encuestas(m: MotorTurno, ctx: String) -> void:
+	## Encuestas (estado.encuestas): historial acotado, forma y rangos fijos, semanas crecientes y del periodo en curso.
+	var cfg: Dictionary = _datos["leyes"]["encuestas"]
+	var lista: Array = m.estado.encuestas
+	_check(lista.size() <= int(cfg["historial_max"]), "%s: historial de encuestas sin acotar (%d)" % [ctx, lista.size()])
+	var semana_prev := -1
+	var repetidas := 0
+	for q in lista:
+		var claves: Array = q.keys()
+		claves.sort()
+		_check(claves == ["etapa", "intencion", "margen", "regiones", "rival", "semana", "turno", "umbral"], "%s: claves de la encuesta %s" % [ctx, str(claves)])
+		# no decrecen; una semana puede aparecer dos veces (la última encuesta antes de votar y la primera de la segunda vuelta), nunca tres
+		repetidas = repetidas + 1 if int(q["semana"]) == semana_prev else 1
+		_check(typeof(q["semana"]) == TYPE_INT and int(q["semana"]) >= semana_prev and repetidas <= 2, "%s: semanas de encuesta decrecientes o repetidas más de 2 veces (%s)" % [ctx, str(q["semana"])])
+		semana_prev = int(q["semana"])
+		_check(["campana", "oposicion"].has(String(q["etapa"])), "%s: etapa de encuesta «%s»" % [ctx, q["etapa"]])
+		_check(is_finite(float(q["intencion"])) and float(q["intencion"]) >= 0.0 and float(q["intencion"]) <= 100.0, "%s: intención fuera de 0..100 (%s)" % [ctx, str(q["intencion"])])
+		_check(float(q["margen"]) >= float(cfg["margen_final"]) - 0.06 and float(q["margen"]) <= float(cfg["margen_inicial"]) + 0.06, "%s: margen fuera de límites (%s)" % [ctx, str(q["margen"])])
+		_check(q["umbral"] == null or (float(q["umbral"]) > 0.0 and float(q["umbral"]) <= 100.0), "%s: umbral inválido" % ctx)
+		_check((q["regiones"] as Array).size() <= int(cfg["regiones_mostradas"]), "%s: demasiadas regiones" % ctx)
+		var v_prev := -1.0
+		for r in q["regiones"]:
+			_check(float(r["valor"]) >= 0.0 and float(r["valor"]) <= 100.0 and float(r["valor"]) >= v_prev, "%s: regiones de la encuesta desordenadas o fuera de rango" % ctx)
+			v_prev = float(r["valor"])
+
+
 func _guardado(m: MotorTurno) -> Dictionary:
 	return JSON.parse_string(JSON.stringify(m.estado.exportar_guardado(_huella)))
 
@@ -122,11 +148,13 @@ func _init() -> void:
 			_check(["campana", "gobierno", "oposicion", "fin_mandato", "crisis", "derrota_electoral"].has(m.estado.etapa), "%s: etapa inesperada «%s»" % [ctx, m.estado.etapa])
 			_check(m.estado.ciclo >= ciclo_prev and m.estado.dias_carrera >= dias_prev, "%s: ciclo o dias_carrera retrocedieron (ciclo %d -> %d, días %d -> %d)" % [ctx, ciclo_prev, m.estado.ciclo, dias_prev, m.estado.dias_carrera])
 			ciclo_prev = m.estado.ciclo
+			_encuestas(m, ctx)
 			dias_prev = m.estado.dias_carrera
 			for k in m.estado.indicadores:
 				_check(is_finite(float(m.estado.indicadores[k])), "%s: indicador %s no finito" % [ctx, k])
 		ciclos_max = maxi(ciclos_max, m.estado.ciclo)
 		var rep := Partida.reproducir(_datos, _guardado(m))
+		_check(Huella.texto(rep.estado.encuestas) == Huella.texto(m.estado.encuestas), "%s: las encuestas del replay no coinciden con las de la partida en vivo" % ctx)
 		_check(rep.estado.calcular_huella() == m.estado.calcular_huella(), "%s: el replay de la carrera (ciclo %d, etapa %s) no es idéntico" % [ctx, m.estado.ciclo, m.estado.etapa])
 	print("FUZZ CARRERA %s (%d partidas, ciclo máx. %d, etapas %s, %d instantáneas, %d dañadas, %d fallos)" % ["OK" if _fallos == 0 else "CON FALLOS", n, ciclos_max, str(etapas_vistas.keys()), _snapshots, _danados, _fallos])
 	quit(1 if _fallos > 0 else 0)
