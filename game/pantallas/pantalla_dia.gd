@@ -67,6 +67,10 @@ func _refrescar() -> void:
 	else:
 		_r["dia"].text = "Día %d" % est.dia_actual
 	_r["fecha"].text = Barras.fecha_texto(datos["leyes"], est.etapa, est.turno_actual, est.dia_actual, est.ciclo, est.dias_carrera)
+	var cri := Barras.crisis(est, datos["leyes"]["dinamica"])  # la cuenta regresiva reemplaza la fecha, en coral
+	if not cri.is_empty():
+		_r["fecha"].text = String(cri["corto"])
+	_r["fecha"].add_theme_color_override("font_color", Tema.mal() if not cri.is_empty() else Tema.TEXTO_SUAVE)
 	var pa_txt := ManoUI.texto_pastilla(est)
 	Movimiento.movimientos((_r["pa"] as Control).get_parent().get_parent(), _btn_jugar, est.pa_actual, _r["pa"].text != "" and _r["pa"].text != pa_txt)
 	_r["pa"].text = pa_txt
@@ -239,6 +243,9 @@ func _terminar_turno() -> void:
 		terminado.emit()
 		return
 	_cola_eventos = OverlaysDia.eventos_de_votaciones(motor)
+	var cri := Barras.crisis(est, datos["leyes"]["dinamica"])
+	if not cri.is_empty():
+		_avisar(String(cri["largo"]))
 	_cola_eventos.append_array(nuevos)
 	_refrescar()
 	TelonSemana.mostrar(_capa, antes, [String(_r["dia"].text), String(_r["fecha"].text)], ind_antes, est.indicadores, est.etapa == "oposicion", _siguiente_evento, est.encuestas if est.etapa in ["campana", "oposicion"] else [], datos["regiones"], sem)

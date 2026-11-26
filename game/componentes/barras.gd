@@ -20,6 +20,17 @@ static func fecha_iso(leyes: Dictionary, etapa: String, turno: int, dia: int, ci
 	return "%04d-%02d-%02d" % [int(d["year"]), int(d["month"]), int(d["day"])]
 
 
+static func crisis(est: EstadoSimulacion, din: Dictionary) -> Dictionary:
+	## Cuenta regresiva de la caída por crisis (MotorMandato.evaluar_crisis, solo en gobierno): con la aprobación bajo el
+	## umbral, cada cierre de semana suma una a la racha y al completarla el gobierno cae. {} si no hay crisis.
+	var umbral := float(din["umbral_crisis_aprobacion"])
+	if est.etapa != "gobierno" or est.ind("aprobacion") >= umbral:
+		return {}
+	var quedan := maxi(1, int(din["semanas_crisis_para_caida"]) - est.semanas_en_crisis)
+	return {"corto": "Crisis: caes en %d semana%s" % [quedan, "" if quedan == 1 else "s"],
+		"largo": "Aprobación bajo %d %%: si no sube, el gobierno cae %s." % [roundi(umbral), "al cerrar esta semana" if quedan == 1 else "en %d semanas" % quedan]}
+
+
 static func fecha_texto(leyes: Dictionary, etapa: String, turno: int, dia: int, ciclo: int = 1, dias_carrera: int = 0) -> String:
 	var d := _fecha(leyes, etapa, turno, dia, ciclo, dias_carrera)
 	return "%s %d %s %d" % [DIAS[int(d["weekday"])], int(d["day"]), MESES[int(d["month"]) - 1], int(d["year"])]
