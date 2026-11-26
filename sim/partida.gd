@@ -22,6 +22,8 @@ static func crear(datos: Dictionary, semilla: int, partido: Dictionary) -> Motor
 
 static func cargar(datos: Dictionary, guardado: Dictionary, instantanea: Dictionary = {}, huella_datos: String = "", sha_guardado: String = "") -> MotorTurno:
 	## Continúa un guardado: con una instantánea válida (ver Instantanea) restaura el estado directamente; si no, reproduce el historial.
+	if not ValidarGuardado.guardado_valido(guardado):
+		return null
 	if Instantanea.vale_para(instantanea, huella_datos, sha_guardado):
 		return Instantanea.restaurar(datos, int(guardado["semilla"]), instantanea)
 	return reproducir(datos, guardado)
@@ -29,6 +31,8 @@ static func cargar(datos: Dictionary, guardado: Dictionary, instantanea: Diction
 
 static func reproducir(datos: Dictionary, guardado: Dictionary) -> MotorTurno:
 	## Reconstruye la partida exacta desde semilla + partido + entradas del jugador.
+	if not ValidarGuardado.guardado_valido(guardado):
+		return null  # guardado con otra forma: se descarta antes de tocar el motor
 	var motor := crear(datos, int(guardado["semilla"]), guardado["partido"])
 	for e in guardado["entradas"]:
 		match String(e["tipo"]):

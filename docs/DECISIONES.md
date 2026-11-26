@@ -280,3 +280,8 @@ Regla (CLAUDE.md §2): políticos reales con alias satíricos, personajes de pan
 
 ## AK. Refactor de funciones largas en sim/ (26-nov-2026, tarea 8 de la cola 4)
 - Solo una función de `sim/` superaba las 60 líneas: `DirectorEventos._elegir` (65). Se partió en `_prob_decision` y `_sortear` sin cambiar el orden de uso del RNG: las huellas de oro (4 semanas, 30 días, completa) y `tests/oro/huellas.json` no cambian, y el turno sigue en ≈ 0,55 ms.
+
+## AL. Validación estructural de guardados (26-nov-2026, hallazgo de «Búsqueda infinita de fallas»)
+- Un guardado con la misma huella de datos, semilla y entradas pero con la forma de una entrada cambiada (clave borrada o retipada, tipo desconocido, partido sin indicadores) rompía `Partida.reproducir` (104 de 200 mutaciones daban error de script y «Continuar» fallaba en cada intento).
+- Nuevo `sim/validar_guardado.gd` (`ValidarGuardado.guardado_valido`): tabla de claves y tipos obligatorios por tipo de entrada (documenta el formato) y chequeo del partido. `Partida.reproducir` y `Partida.cargar` devuelven `null` ante un guardado inválido sin tocar el motor, y `game/main.gd` (`continuar_guardado`, cambio de 5 líneas) lo trata como un guardado dañado: lo renombra a `guardado_descartado.json` y vuelve al menú con aviso. Prueba: `tests/test_guardado_estructura.gd` (293 de 300 mutaciones rechazadas; las 7 restantes son claves opcionales que el motor ya tolera).
+- Si se agrega un tipo de entrada nuevo en `registrar_entrada`, hay que añadirlo a `ENTRADAS`; si no, ese guardado se descarta.
