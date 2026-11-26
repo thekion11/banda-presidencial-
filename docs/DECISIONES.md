@@ -332,3 +332,16 @@ Regla (CLAUDE.md §2): políticos reales con alias satíricos, personajes de pan
 | M02 sin `clampf` en la intención de voto de `Encuestas.registrar` | Aprobación 0,5 / 1 / 99 / 99,5 en los 8 turnos: la intención queda en 0..100 |
 | M03 sin `maxi(0, …)` en la penalización por malestar de la coalición (equivalente con los datos actuales) | Con `penal_internos_malestar` = 10 los movimientos internos no bajan de 0 |
 | M04 tope del apoyo 1.0 → 2.0 en `votar` (equivalente con los datos actuales) | Con `apoyo_base` 0,6 y capital y cohesión 100, el ruido aún baja los votos del Senado bajo el total; y `composicion` no suma más que la cámara (el mismo tope en `composicion`) |
+
+## AV. Resultado de `tools/mutar.py` y sus pruebas (26-nov-2026, cola 8)
+De 24 mutantes de operadores sobre `sim/` (conjunto rápido de 12 pruebas): 9 murieron al instante y 15 sobrevivieron al conjunto rápido. Se repitieron con las pruebas de su área; quedaron **5 reales**, ahora muertos con `tests/test_mutantes_2.gd` (comprobado aplicando cada mutación):
+| Mutante | Prueba |
+|---|---|
+| `grafo_trazado.gd:115` hijo derecho del montículo (`l + 1` → `l - 1`) | 300 elementos entran al montículo y salen ordenados |
+| `director_eventos.gd:94` ventana de 52 semanas (`< 52` → `<= 52`) | la decisión de hace 51 semanas cuenta y la de hace 52 no |
+| `motor_mandato.gd:77` «Primera ley aprobada» (`and` → `or`) | con varias leyes aprobadas el hito aparece una sola vez |
+| `motor_cartas.gd:281` propuesta con movimientos justos (`>` → `>=`) | costo igual a los movimientos disponibles no se rechaza |
+| `motor_mandato.gd:141` días de la carrera al continuar (`- 1` → `+ 1`) | fin de mandato en el turno 10 suma 9 semanas; crisis, 10 |
+**Equivalentes** (ninguna entrada distingue el resultado): `motor_gabinete.gd:78` (ids únicos), `motor_cartas.gd:66` (`k <= 0` con k = 0 no elige nada de todos modos), `director_eventos.gd:67` (`dia_actual - 1` y `(turno - 1) · 7` coinciden en todas las etapas), `director_eventos.gd:117` (`randf() < p` contra `<=`: probabilidad cero), `motor_mandato.gd:90` (recortar con `>=` da la misma lista) y `motor_mazo.gd:19` (el tope sigue positivo).
+Otros dos (`motor_sectra.gd:112`, `grafo_trazado.gd:151`) los mataban `test_sectra` y `test_grafo`.
+Lección de proceso: `test_sectra` armaba el guardado a mano sin `version` y dejó `main` en rojo cuando `ValidarGuardado` empezó a exigirla (lo vio la sesión de fallas). Corregido; tras tocar `ValidarGuardado` hay que correr todos los `test_*.gd` (`tools/run_all_tests.sh`), no una lista corta.
