@@ -74,6 +74,13 @@ func _init() -> void:
 	var sin_estado := d.duplicate(true)
 	sin_estado["estado"] = {"semilla": 1}
 	_check(not Instantanea.vale_para(sin_estado, huella, "abc"), "con el estado recortado no vale")
+	for v_malo in [true, [], {}, null, "1", 1.5]:  # «v» de tipo raro no debe dar error ni aceptarse como la versión
+		var crudo := var_to_bytes({"v": v_malo})
+		var paq := PackedByteArray()
+		paq.resize(4)
+		paq.encode_u32(0, crudo.size())
+		paq.append_array(crudo.compress(FileAccess.COMPRESSION_ZSTD))
+		_check(Instantanea.leer(paq).is_empty(), "leer rechaza una versión «v» que no es el entero esperado (%s)" % str(v_malo))
 	var sin_clave := d.duplicate(true)
 	sin_clave.erase("estado")
 	var estado_int := d.duplicate(true)

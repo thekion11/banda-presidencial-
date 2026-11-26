@@ -1390,33 +1390,6 @@
     "camara_origen": "senado"
   },
   {
-    "id": "des_zonas_extremas",
-    "categoria": "descentralizacion",
-    "costo_pa": 2,
-    "titulo": "Plan zonas extremas",
-    "efectos": [
-      {
-        "ind": "aprobacion",
-        "delta": 3
-      },
-      {
-        "ind": "fiscal",
-        "delta": -1
-      }
-    ],
-    "requisitos": {
-      "ley": null,
-      "quorum": null
-    },
-    "corrector": null,
-    "abre_propuesta_comite": null,
-    "fuente": "fuentes.json#ficticio_2026",
-    "obra": {
-      "nombre": "Conectividad zonas extremas",
-      "dias_totales": 330
-    }
-  },
-  {
     "id": "com_buses_maipu",
     "categoria": "comite",
     "costo_pa": 2,
