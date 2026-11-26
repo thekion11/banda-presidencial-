@@ -35,6 +35,16 @@ Fuzzing y pruebas sin tocar el código de las demás: acciones inválidas, flujo
 ## Mejora continua de sesiones (coordinadora)
 Ordenó cinco colas de trabajo (ver los mensajes en las sesiones) con foco en cobertura, auditorías, balance y documentación, y mantuvo el reparto de áreas.
 
+## Actualización de la tarde del 26-nov (colas 7 a 10 de la coordinadora)
+**Núcleo y datos**
+- **Errores corregidos:** el reloj del ciclo 2 retrocedía 56 días al ganar la elección (y la semana de la caída por crisis no contaba); la composición del Congreso con coalición sumaba más escaños que la cámara; un guardado con la forma cambiada rompía la carga (ahora `ValidarGuardado` valida estructura, versión, tipos y rangos del partido); una carta real aparecía duplicada en el mazo desde el turno ≈ 63 (lo halló `test_invariantes_estado`); `test_sectra` dejó `main` en rojo un rato por mi cambio del guardado (corregido; lección: correr toda la suite tras tocar el guardado).
+- **Pruebas nuevas:** `test_calendario_reloj`, `test_calendario_fechas`, `test_rechazos_legales`, `test_puntaje_tc`, `test_unidades_sim`, `test_gabinete_fuzz`, `test_director_invariantes`, `test_finales_limite`, `test_formato_guardado`, `test_guardado_estructura`, `test_invariantes_estado` (30 propiedades), `test_monotonia`, `test_partido_absurdo`, `test_mutantes`, `test_mutantes_2`, `test_mutantes_3` (14 mutantes reales muertos) y la matriz de dificultad en `test_balance`.
+- **Herramientas:** `mutar.py` (mutación acotada), `cobertura_funciones.py` (sim: 98,4 %; game: 93,1 %), `generar_api.py` (210 funciones públicas documentadas, verificado en el CI), `check_entradas.py`, `generar_changelog.py`, `informe_partida.gd` (CSV semanal), rangos de `leyes.json` en `validate_data.py`.
+- **Documentos nuevos:** `INDICE`, `CONTRIBUIR`, `RESUMEN_DECISIONES`, `DURACION_SESION`, `FORMATO_GUARDADO`, `ARQUITECTURA_SIM`, `API_SIM`, `LICENCIAS`, `RIESGOS_PLAY_STORE`, `FIRMA_APK_PRUEBA_CERRADA`, `TRAZABILIDAD_MECANICAS`, `EQUIDAD_REGIONAL`, `COBERTURA_GAME`, `HIGIENE_REPO`, `PROPUESTA_EVENTOS_REGIONALES` y las secciones AF a AZ de `DECISIONES.md`.
+- **Balance:** Monte Carlo de 200 partidas por política y dificultad con intervalos de confianza (`INFORME_BALANCE.md`); cohesión con desgaste; ritmo de eventos medido (sin cambios: nunca más de 4 semanas en silencio).
+**Diseño visual:** dirección v4 en producción, cuenta regresiva de crisis en la cabecera («caes en N semanas»), pantallas bajas (360×640) y letra ×1,3 y ×1,5 auditadas, mapa del continente en las auditorías.
+**Búsqueda infinita de fallas:** fuzz de guardado (1.000 mutaciones estructurales y 600 con valores absurdos), calendario, congreso, coalición, grafo, flujo completo de UI con pausas, última configuración y barrido de los 270 parámetros de `leyes.json`; 38 mutantes manuales de los que sobrevivían 8 (4 + 4, todos con prueba nueva). Su PR #8 sigue en borrador esperando CI y revisión del dueño.
+
 ## Pendiente del usuario (no decidido por ninguna sesión)
 Ver `docs/DECISIONES_PENDIENTES.md` (D1 a D16, U4 a U10) y `docs/PENDIENTES_USUARIO.md`. Lo más importante:
 1. **Duración de la partida** (semanas silenciosas, turno = mes o capítulos de 20 minutos).
