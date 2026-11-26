@@ -110,9 +110,18 @@ def validar_leyes_v2(leyes: dict) -> None:
 
 def validar_leyes(leyes: dict, ids_fuentes: set) -> set:
     h = leyes["hemiciclo"]
+    if h["dias_por_turno"] < 1 or h["duracion_mandato_dias"] < h["dias_por_turno"]:
+        raise ValueError("hemiciclo: dias_por_turno debe ser ≥ 1 y duracion_mandato_dias ≥ dias_por_turno")
     if h["dias_por_turno"] * 208 != h["duracion_mandato_dias"] + 0 and \
             abs(h["dias_por_turno"] * 208 - h["duracion_mandato_dias"]) > h["dias_por_turno"]:
         raise ValueError("hemiciclo: 208 turnos no cubren la duración del mandato")
+    if leyes["gabinete"]["anios_mandato"] < 1:
+        raise ValueError("gabinete: anios_mandato debe ser ≥ 1")
+    if leyes["encuestas"]["historial_max"] < 1 or leyes["encuestas"]["regiones_mostradas"] < 0:
+        raise ValueError("encuestas: historial_max debe ser ≥ 1 y regiones_mostradas ≥ 0")
+    lim = leyes["limites_indicadores"]
+    if not 0 <= lim["min"] < lim["max"] <= 100:
+        raise ValueError("limites_indicadores: debe cumplirse 0 ≤ min < max ≤ 100")
     if h["total_senadores"] != 50:
         raise ValueError("hemiciclo: el Senado debe tener 50 senadores")
     validar_leyes_v2(leyes)

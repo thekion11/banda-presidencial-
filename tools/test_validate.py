@@ -118,6 +118,37 @@ def fuzz_tipos() -> int:
     return fallos
 
 
+def rangos_leyes() -> int:
+    """Valores de leyes.json que el barrido de «Búsqueda infinita de fallas» mostró que cuelgan o dividen por cero: el validador debe rechazarlos."""
+    from validate_data import validar_leyes  # noqa: E402
+    import json
+    leyes = json.loads((Path(__file__).resolve().parents[1] / "data" / "leyes.json").read_text(encoding="utf-8"))
+    fuentes = {x["id"] for x in json.loads((Path(__file__).resolve().parents[1] / "data" / "fuentes.json").read_text(encoding="utf-8"))}
+    casos = [("encuestas.historial_max = -1", lambda l: l["encuestas"].__setitem__("historial_max", -1), "historial_max"),
+             ("encuestas.historial_max = 0", lambda l: l["encuestas"].__setitem__("historial_max", 0), "historial_max"),
+             ("gabinete.anios_mandato = 0", lambda l: l["gabinete"].__setitem__("anios_mandato", 0), "anios_mandato"),
+             ("hemiciclo.dias_por_turno = 0", lambda l: l["hemiciclo"].update({"dias_por_turno": 0, "duracion_mandato_dias": 0}), "dias_por_turno"),
+             ("hemiciclo.duracion_mandato_dias = -1", lambda l: l["hemiciclo"].__setitem__("duracion_mandato_dias", -1), "duracion_mandato_dias"),
+             ("limites_indicadores min >= max", lambda l: l["limites_indicadores"].update({"min": 10, "max": 5}), "limites_indicadores"),
+             ("limites_indicadores max > 100", lambda l: l["limites_indicadores"].__setitem__("max", 1000), "limites_indicadores")]
+    fallos = 0
+    validar_leyes(json.loads(json.dumps(leyes)), fuentes)  # los datos reales pasan
+    for nombre, romper, esperado in casos:
+        d = json.loads(json.dumps(leyes))
+        romper(d)
+        try:
+            validar_leyes(d, fuentes)
+        except (ValueError, KeyError) as exc:
+            if esperado not in str(exc):
+                print(f"FALLO: «{nombre}»: se detectó con otro mensaje: {exc}")
+                fallos += 1
+            continue
+        print(f"FALLO: «{nombre}»: el valor roto NO fue detectado")
+        fallos += 1
+    print(f"test_validate (rangos de leyes.json): {len(casos)} valores peligrosos probados, {fallos} fallos")
+    return fallos
+
+
 def main() -> int:
     base = cargar_datos()
     validar_referencias(copy.deepcopy(base))  # con los datos reales no debe fallar
@@ -136,6 +167,7 @@ def main() -> int:
         fallos += 1
     print(f"test_validate: {len(rotos())} datos rotos probados, {fallos} fallos")
     fallos += fuzz_tipos()
+    fallos += rangos_leyes()
     return 1 if fallos else 0
 
 
