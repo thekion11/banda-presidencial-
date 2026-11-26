@@ -4,7 +4,7 @@ extends SceneTree
 ## distinta), del que además se conserva una copia íntegra. Un guardado válido, en cambio, sí continúa.
 ## (Hallazgo del mutation testing: sin ValidarGuardado en continuar_guardado el juego se quedaba sin motor y ninguna prueba lo notaba.)
 
-const ARCHIVOS := ["guardado.json", "guardado.cache", "guardado_descartado.json"]
+const ARCHIVOS := ["guardado.json", "guardado.cache", "guardado.bak", "guardado_descartado.json"]
 var _fallos := 0
 
 func _check(c: bool, msg: String) -> void:

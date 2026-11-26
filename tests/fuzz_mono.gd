@@ -7,7 +7,7 @@ extends SceneTree
 ## No se debe correr en paralelo con otras pruebas que escriban en user:// (guardado.json): comparten archivo y darían falsos fallos.
 ## Uso: godot --headless --path . -s tests/fuzz_mono.gd -- [entradas_por_tamaño] [semilla]
 
-const ARCHIVOS := ["guardado.json", "guardado.cache", "ultima_config.json", "guardado_descartado.json"]
+const ARCHIVOS := ["guardado.json", "guardado.cache", "guardado.bak", "ultima_config.json", "guardado_descartado.json"]
 const TAMANOS := [Vector2i(360, 640), Vector2i(390, 844), Vector2i(480, 1000)]
 
 var _fallos: int = 0

@@ -7,7 +7,7 @@ extends SceneTree
 ## 3 afiliaciones × 3 dificultades (rotan con la semilla). Respalda y restaura los archivos de usuario (guardado, caché, última configuración, preferencias).
 ## Uso: godot --headless --path . -s tests/fuzz_flujo_ui.gd -- [partidas] [semilla_inicial]
 
-const ARCHIVOS := ["guardado.json", "guardado.cache", "ultima_config.json", "guardado_descartado.json"]
+const ARCHIVOS := ["guardado.json", "guardado.cache", "guardado.bak", "ultima_config.json", "guardado_descartado.json"]
 const AFILIACIONES := ["propio", "independiente", "existente"]
 const DIFICULTADES := ["facil", "normal", "dificil"]
 

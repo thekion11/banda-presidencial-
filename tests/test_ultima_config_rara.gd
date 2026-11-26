@@ -3,7 +3,7 @@ extends SceneTree
 ## el partido pasa la validación, la pantalla del día y el telón al cerrar la semana se muestran sin textos fuera de los 390 px ni errores de script.
 ## Respalda y restaura los archivos de usuario.
 
-const ARCHIVOS := ["guardado.json", "guardado.cache", "ultima_config.json", "guardado_descartado.json"]
+const ARCHIVOS := ["guardado.json", "guardado.cache", "guardado.bak", "ultima_config.json", "guardado_descartado.json"]
 var _fallos := 0
 
 

@@ -5,7 +5,7 @@ extends SceneTree
 ## por defecto); (4) lo que queda escrito en ultima_config.json es siempre un partido válido. Respalda y restaura los archivos de usuario.
 ## Uso: godot --headless --path . -s tests/fuzz_ultima_config.gd -- [mutaciones] [semilla]
 
-const ARCHIVOS := ["ultima_config.json", "guardado.json", "guardado.cache"]
+const ARCHIVOS := ["ultima_config.json", "guardado.json", "guardado.cache", "guardado.bak"]
 var _fallos := 0
 var _descartadas := 0
 var _aceptadas := 0

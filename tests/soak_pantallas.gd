@@ -5,7 +5,7 @@ extends SceneTree
 ## vuelta tras vuelta. Tras un calentamiento exige que el crecimiento sea pequeño. Respalda y restaura los archivos de usuario.
 ## Uso: godot --headless --path . -s tests/soak_pantallas.gd -- [vueltas]
 
-const ARCHIVOS := ["guardado.json", "guardado.cache", "ultima_config.json", "guardado_descartado.json"]
+const ARCHIVOS := ["guardado.json", "guardado.cache", "guardado.bak", "ultima_config.json", "guardado_descartado.json"]
 const CALENTAMIENTO := 5
 const TOPE_OBJETOS_POR_VUELTA := 30
 const TOPE_RSS_MB_TOTAL := 80.0
