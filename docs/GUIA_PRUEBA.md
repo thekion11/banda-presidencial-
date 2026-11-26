@@ -7,7 +7,7 @@
 2. Abre el juego. No necesita permisos ni internet.
 
 ## Qué hacer
-1. Pulsa **Nueva partida**, responde las 8 preguntas, funda tu partido y arma tu gabinete de 8 ministros.
+1. Pulsa **Nueva partida**, responde el test rápido (3 preguntas; hay un botón para el completo de 8), funda tu partido y mira tu gabinete de 25 ministros (viene relleno; se puede cambiar).
 2. Juega la campaña (8 semanas, más 4 si pasas a segunda vuelta) y luego gobierna. No hace falta terminar los 4 años: con 10-15 minutos basta.
 3. Prueba al menos una vez: jugar una carta, **delegar** una carta, un movimiento interno, contratar un asesor y mirar la **Cartera de proyectos** (menú principal).
 4. Al terminar (o cuando te canses) vuelve al menú → **Informe de prueba** → **Copiar informe** y pégalo en un mensaje.

@@ -112,6 +112,20 @@ func _init() -> void:
 	for _i in range(3):
 		Bots.jugar_turno(m3, "completo", r3)
 		m3.terminar_turno()
+	# «migración»: una instantánea de una versión anterior (otro número de versión, o con menos campos) nunca se aplica: se reproduce el historial y el estado es el mismo
+	var g_ant: Dictionary = JSON.parse_string(JSON.stringify(m3.estado.exportar_guardado(huella)))
+	var vieja := Instantanea.tomar(m3, huella, "abc")
+	var d_vieja := Instantanea.leer(vieja)
+	var crudo := var_to_bytes(d_vieja.merged({"v": Instantanea.VERSION - 1}, true))
+	var paq := PackedByteArray()
+	paq.resize(4)
+	paq.encode_u32(0, crudo.size())
+	paq.append_array(crudo.compress(FileAccess.COMPRESSION_ZSTD))
+	_check(Instantanea.leer(paq).is_empty(), "una instantánea de la versión anterior se descarta al leerla")
+	var menos_campos := Instantanea.leer(vieja)
+	menos_campos["estado"].erase("encuestas")  # el estado ganó «encuestas» después
+	_check(not Instantanea.vale_para(menos_campos, huella, "abc"), "una instantánea sin los campos nuevos no vale")
+	_check(Partida.cargar(datos, g_ant, menos_campos, huella, "abc").estado.calcular_huella() == m3.estado.calcular_huella(), "con una instantánea antigua se reproduce el historial y se llega al mismo estado")
 	var inc2 := Instantanea.leer(Instantanea.tomar(m3, huella, "abc"))
 	inc2["estado"] = {}  # el caso más grave: partida en blanco en silencio
 	var g3: Dictionary = JSON.parse_string(JSON.stringify(m3.estado.exportar_guardado(huella)))
