@@ -13,7 +13,7 @@ var _lienzo: Node2D
 
 func _init() -> void:
 	disable_3d = true
-	transparent_bg = false
+	transparent_bg = true  # las esquinas redondeadas del mapa quedan transparentes, como al dibujar en vivo
 	render_target_update_mode = SubViewport.UPDATE_DISABLED
 	_lienzo = Node2D.new()
 	_lienzo.draw.connect(func() -> void:
