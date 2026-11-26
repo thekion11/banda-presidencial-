@@ -197,7 +197,7 @@ func _draw() -> void:
 		if id != seleccion:
 			for pts in _contornos(id):
 				bordes.append_array(_segmentos(pts))
-	draw_multiline(bordes, Color(1, 0.97, 0.9, 0.5), 0.9, true)
+	draw_multiline(bordes, Color(1, 0.97, 0.9, 0.5), 0.9, false)  # sin suavizado: con suavizado la CPU de render se triplicaba (tests/medir_transiciones.gd)
 	for pts in (_contornos(seleccion) if _piezas.has(seleccion) else []):
 		draw_polyline(pts, Tema.ORO, 2.5, true)
 	var cerros := PackedVector2Array()  # Cordillera: todos los cerros en un solo arreglo de triángulos (antes 3 llamadas por cerro)
@@ -410,7 +410,7 @@ func _dibujar_vivo() -> void:
 					if pts.size() >= 9:
 						segs.append_array(_segmentos(pts))
 		if not segs.is_empty():
-			v.draw_multiline(segs, Color(Tema.bien() if signo > 0 else Tema.mal(), 0.25 + 0.55 * pulso), 2.0 + 1.5 * pulso, true)
+			v.draw_multiline(segs, Color(Tema.bien() if signo > 0 else Tema.mal(), 0.25 + 0.55 * pulso), 2.0 + 1.5 * pulso, false)
 	if bastion != "" and _banda_y.has(bastion):
 		var cb := centro(bastion) + Vector2(0.0, 12.0)
 		var k := fmod(_t, 2.2) / 2.2
