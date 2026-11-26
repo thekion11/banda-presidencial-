@@ -32,6 +32,8 @@ static func registrar(m: MotorTurno) -> void:
 	for id in e.aprobacion_regional.keys():
 		regs.append({"id": String(id), "valor": snappedf(float(e.aprobacion_regional[id]), 0.1)})
 	regs.sort_custom(func(a: Dictionary, b: Dictionary) -> bool: return float(a["valor"]) < float(b["valor"]) or (float(a["valor"]) == float(b["valor"]) and String(a["id"]) < String(b["id"])))
+	if not e.encuestas.is_empty() and int(e.encuestas.back()["semana"]) == semana and String(e.encuestas.back()["etapa"]) == e.etapa:
+		e.encuestas.pop_back()  # una encuesta por semana: la del amanecer de la 2ª vuelta reemplaza a la de «antes de votar» de esa misma semana
 	e.encuestas.append({"semana": semana, "turno": e.turno_actual, "etapa": e.etapa, "intencion": snappedf(clampf(base + u * margen, 0.0, 100.0), 0.1),
 			"margen": snappedf(margen, 0.1), "umbral": umbral, "rival": rival, "regiones": regs.slice(0, int(cfg["regiones_mostradas"]))})
 	while e.encuestas.size() > int(cfg["historial_max"]):
