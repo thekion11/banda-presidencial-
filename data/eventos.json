@@ -1690,7 +1690,7 @@
     ],
     "actor": {
       "id": "min_educacion",
-      "nombre": "Ministerio: Educacion"
+      "nombre": "Ministerio: Educación"
     },
     "familia": "ministerio"
   },
@@ -1937,7 +1937,7 @@
     ],
     "actor": {
       "id": "min_energia",
-      "nombre": "Ministerio: Energia"
+      "nombre": "Ministerio: Energía"
     },
     "familia": "ministerio"
   },
@@ -3184,7 +3184,7 @@
     "dia_objetivo": null,
     "hora_etiqueta": "09:00",
     "peso_sorteo": 0.03,
-    "titulo": "Relaciones Exteriores pide definir una postura en una crisis regional",
+    "titulo": "Exteriores pide una postura ante una crisis regional",
     "descripcion": "Un conflicto en la región exige una declaración oficial.",
     "votacion": null,
     "efectos_base": [],
@@ -3406,7 +3406,7 @@
     ],
     "actor": {
       "id": "min_economia",
-      "nombre": "Ministerio: Economia"
+      "nombre": "Ministerio: Economía"
     },
     "familia": "ministerio"
   },
@@ -4009,7 +4009,7 @@
     "dia_objetivo": null,
     "hora_etiqueta": "09:00",
     "peso_sorteo": 0.03,
-    "titulo": "Deporte pide apoyo para una candidatura a un evento internacional",
+    "titulo": "Deporte pide apoyo para una candidatura internacional",
     "descripcion": "Es una oportunidad de prestigio con costo fiscal.",
     "votacion": null,
     "efectos_base": [],
@@ -4067,7 +4067,7 @@
     "dia_objetivo": null,
     "hora_etiqueta": "09:00",
     "peso_sorteo": 0.03,
-    "titulo": "La ministra de la Mujer pide respaldo a una agenda de equidad",
+    "titulo": "La ministra de la Mujer pide respaldo a su agenda de equidad",
     "descripcion": "Plantea un proyecto polémico en el Congreso.",
     "votacion": null,
     "efectos_base": [],
