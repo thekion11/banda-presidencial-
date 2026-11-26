@@ -2,7 +2,9 @@
 """Cobertura de FUNCIONES de sim/ (GDScript no trae cobertura de líneas). Copia el proyecto a un directorio temporal, inserta una llamada
 `Cobertura.tocar("archivo:funcion")` al inicio de cada función de sim/ cuyo encabezado termina en «:» (las de una sola línea no se instrumentan),
 ejecuta todos los tests/test_*.gd y el fuzz, y lista las funciones que ningún test llegó a ejecutar. No modifica el repositorio.
-Uso: python3 tools/cobertura_funciones.py [ruta_godot]     (≈ 15 minutos)
+Con `--game` mide `game/` (interfaz) en lugar de `sim/`: corre las pruebas de interfaz bajo xvfb-run (test_ui_humo, test_textos, test_tactil, test_claridad, test_escenas…)
+y las capturas de la maqueta; lista las funciones de pantallas y componentes que ninguna prueba de interfaz ejercita.
+Uso: python3 tools/cobertura_funciones.py [ruta_godot] [--game]     (sim ≈ 15 minutos; game ≈ 20 minutos)
 """
 import glob
 import json
@@ -14,7 +16,10 @@ import sys
 import tempfile
 
 RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-GODOT = sys.argv[1] if len(sys.argv) > 1 else "godot"
+GODOT = next((a for a in sys.argv[1:] if not a.startswith("--")), "godot")
+JUEGO = "--game" in sys.argv
+UI = ["test_ui_humo", "test_textos", "test_tactil", "test_claridad", "test_escenas", "test_accesibilidad", "test_movimiento", "test_paleta", "test_estados", "test_tapa",
+      "test_mapa_entrada", "test_metro_lineas", "test_identidad", "captura_comparar"]
 REGISTRO = os.path.join(tempfile.gettempdir(), "cobertura_funciones.log")
 CLASE = '''class_name Cobertura
 extends RefCounted
@@ -32,10 +37,11 @@ ENC = r"\)\s*(->\s*[\w\[\], .]+)?:\s*(#.*)?$"
 
 def instrumentar(dest: str) -> list:
     inst = []
-    for f in sorted(glob.glob(os.path.join(dest, "sim", "*.gd"))):
+    patrones = [os.path.join(dest, "game", "*.gd"), os.path.join(dest, "game", "*", "*.gd")] if JUEGO else [os.path.join(dest, "sim", "*.gd")]
+    for f in sorted(g for p in patrones for g in glob.glob(p)):
         lineas = open(f, encoding="utf-8").read().split("\n")
         out, i = [], 0
-        rel = "sim/" + os.path.basename(f)
+        rel = os.path.relpath(f, dest)
         while i < len(lineas):
             out.append(lineas[i])
             m = re.match(r"^(static )?func (\w+)\(", lineas[i])
@@ -61,12 +67,19 @@ def main() -> int:
     if os.path.exists(REGISTRO):
         os.remove(REGISTRO)
     subprocess.run([GODOT, "--headless", "--import", "--path", dest], capture_output=True)
-    for t in sorted(glob.glob(os.path.join(dest, "tests", "test_*.gd"))) + [os.path.join(dest, "tests", "fuzz_acciones.gd")]:
-        extra = ["--", "30", "7000"] if t.endswith("fuzz_acciones.gd") else []
-        subprocess.run(["timeout", "280", GODOT, "--headless", "--path", dest, "-s", t] + extra, capture_output=True)
+    if JUEGO:
+        for n in UI:
+            t = os.path.join(dest, "tests", n + ".gd")
+            if os.path.exists(t):
+                extra = ["--", os.path.join(tempfile.gettempdir(), "cobertura_capturas")] if n == "captura_comparar" else []
+                subprocess.run(["timeout", "400", "xvfb-run", "-a", GODOT, "--path", dest, "--rendering-method", "gl_compatibility", "--resolution", "390x844", "-s", t] + extra, capture_output=True)
+    else:
+        for t in sorted(glob.glob(os.path.join(dest, "tests", "test_*.gd"))) + [os.path.join(dest, "tests", "fuzz_acciones.gd")]:
+            extra = ["--", "30", "7000"] if t.endswith("fuzz_acciones.gd") else []
+            subprocess.run(["timeout", "280", GODOT, "--headless", "--path", dest, "-s", t] + extra, capture_output=True)
     vistos = set(open(REGISTRO, encoding="utf-8").read().split("\n")) if os.path.exists(REGISTRO) else set()
     sin = [x for x in inst if x not in vistos]
-    print("%d funciones instrumentadas, %d ejecutadas (%.1f %%), %d sin ejecutar" % (len(inst), len(inst) - len(sin), 100.0 * (len(inst) - len(sin)) / max(1, len(inst)), len(sin)))
+    print(("game/: " if JUEGO else "sim/: ") + "%d funciones instrumentadas, %d ejecutadas (%.1f %%), %d sin ejecutar" % (len(inst), len(inst) - len(sin), 100.0 * (len(inst) - len(sin)) / max(1, len(inst)), len(sin)))
     for x in sin:
         print("  sin ejecutar:", x)
     shutil.rmtree(dest, ignore_errors=True)
