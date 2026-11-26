@@ -70,6 +70,19 @@ func _init() -> void:
 	_check(d.estado.etapa == "oposicion" and d.estado.encuestas.size() == 1 and d.estado.encuestas[0]["etapa"] == "oposicion", "al empezar la oposición el historial parte limpio con su primera encuesta")
 	var qo: Dictionary = d.estado.encuestas.back()
 	_check(qo["etapa"] == "oposicion" and qo["umbral"] == null and qo["rival"] != null, "la encuesta de oposición trae al rival y no trae umbral")
+	# la encuesta es honesta: la última de campaña queda a menos de margen + ruido de la elección de verdad (en partidas distintas y con distinto juego)
+	var ruido := float(datos["leyes"]["campana"]["ruido_eleccion"])
+	for sd in range(60, 70):
+		var b := Partida.crear(datos, sd, partido)
+		var rb := RandomNumberGenerator.new()
+		rb.seed = sd
+		for _i in range(8):
+			Bots.jugar_turno(b, "codicioso" if sd % 2 == 0 else "azar", rb)
+			b.terminar_turno()
+		var ultima: Dictionary = b.estado.encuestas.back()
+		var res := b.resolver_eleccion_presidencial()
+		_check(abs(float(res["voto_final"]) - float(ultima["intencion"])) <= float(ultima["margen"]) + ruido + 0.2, "semilla %d: la encuesta final (%.1f) anticipa la elección (%.1f)" % [sd, float(ultima["intencion"]), float(res["voto_final"])])
+		_check(absf(float(ultima["umbral"]) - float(res["umbral"])) < 0.06, "el umbral de la encuesta es el de la elección")
 	# reproducir da las mismas encuestas
 	var g: Dictionary = JSON.parse_string(JSON.stringify(m.estado.exportar_guardado(Datos.huella(datos))))
 	var re := Partida.reproducir(datos, g)
