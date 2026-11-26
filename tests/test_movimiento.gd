@@ -49,7 +49,7 @@ func _correr() -> void:
 	root.add_child(c0)
 	var b0 := Barras.boton_jugar()
 	root.add_child(b0)
-	ManoVuelo.lanzar(c0, {}, mapa, "", Tema.SUBE, func(_p: Vector2) -> void: llego[0] = true)
+	ManoVuelo.lanzar(c0, {}, mapa, "", Tema.bien(), func(_p: Vector2) -> void: llego[0] = true)
 	_check(llego[0], "sin animaciones el vuelo de la carta avisa la llegada al instante (el número flotante no se pierde)")
 
 	var siguio := [false]
@@ -138,10 +138,21 @@ func _correr() -> void:
 	Movimiento.movimientos(pas2, b1, 5, true)
 	_check(not bool(b1.get_meta("_intenso", true)), "con movimientos nuevos el realce se apaga")
 	var tel := [false]
-	TelonSemana.mostrar(c0, ["Día 36", ""], ["Día 43", "Mié 22 abr"], {"aprobacion": 40.0, "capital": 60.0}, {"aprobacion": 43.0, "capital": 58.0}, false, func() -> void: tel[0] = true)
+	TelonSemana.mostrar(c0, ["Día 36", ""], ["Día 43", "Mié 22 abr"], {"aprobacion": 40.0, "capital": 60.0}, {"aprobacion": 43.0, "capital": 58.0}, false, func() -> void: tel[0] = true,
+		[{"intencion": 40.0, "margen": 3.0}, {"etapa": "campana", "intencion": 41.5, "margen": 2.8, "umbral": 51.0, "rival": null, "regiones": [{"id": "aysen", "valor": 31.0}]}],
+		[{"id": "aysen", "nombre": "Aysén"}])
 	await _esperar(0.2)
+	var textos: Array = c0.find_children("*", "Label", true, false).map(func(l: Label) -> String: return l.text)
+	_check(textos.any(func(t: String) -> bool: return t.begins_with("ENCUESTA DE LA SEMANA")) and textos.any(func(t: String) -> bool: return "Aysén 31" in t) \
+		and textos.any(func(t: String) -> bool: return "umbral 51" in t and "+1.5" in t), "el telón muestra la encuesta: umbral, cambio semanal y región débil (%s)" % str(textos))
 	_check(not tel[0] and c0.get_children().any(func(n: Node) -> bool: return n is TelonSemana), "el telón baja y retiene los eventos")
-	await _esperar(2.8)
+	await _esperar(3.8)  # con encuesta el telón se queda 1 s más
+	var c9 := Control.new()
+	root.add_child(c9)
+	TelonSemana.mostrar(c9, ["Semana 8", ""], ["Semana 9", ""], {}, {}, false, func() -> void: pass,
+		[{"etapa": "campana", "turno": 9, "intencion": 50.0, "margen": 1.5, "umbral": 51.0, "rival": null, "regiones": []}], [], 8)
+	await _esperar(0.2)
+	_check(c9.find_children("*", "Label", true, false).any(func(l: Label) -> bool: return l.text.begins_with("ÚLTIMA ENCUESTA ANTES DE LA ELECCIÓN")), "al cerrar la campaña el telón rotula la última encuesta antes de votar")
 	_check(tel[0] and not c0.get_children().any(func(n: Node) -> bool: return n is TelonSemana and not n.is_queued_for_deletion()), "el telón se va solo y deja seguir los eventos")
 	var conf := Particulas.new()
 	conf.modo = "confeti"

@@ -5,7 +5,7 @@ extends RefCounted
 
 
 static func color_riesgo(p: float) -> Color:
-	return Tema.SUBE if p <= 0.25 else (Tema.ORO if p <= 0.45 else FilasUI.ROJO_TEXTO)
+	return Tema.bien() if p <= 0.25 else (Tema.ORO if p <= 0.45 else FilasUI.ROJO_TEXTO)
 
 
 static func crear(motor: MotorTurno, idx: int, region: String, al_terminar: Callable, al_cerrar: Callable = Callable()) -> Control:

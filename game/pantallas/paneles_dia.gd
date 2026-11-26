@@ -42,14 +42,14 @@ static func _camara_bloques(motor: MotorTurno, camara: bool, titulo: String, col
 	col.add_child(fila)
 	var h := Hemiciclo.new()
 	h.custom_minimum_size = Vector2(0, 150 if not camara else 170)
-	h.configurar_bloques(int(comp["total"]), [[comp["propios"], Tema.ORO], [comp["aliados"], Tema.SUBE], [comp["oposicion"], Tema.BAJA]], int(comp["propios"]) + int(comp["aliados"]), "apoyo esperado")
+	h.configurar_bloques(int(comp["total"]), [[comp["propios"], Tema.ORO], [comp["aliados"], Tema.bien()], [comp["oposicion"], Tema.mal()]], int(comp["propios"]) + int(comp["aliados"]), "apoyo esperado")
 	col.add_child(h)
 	h.animar(0.9)
 	var minimo := int(motor.legal.tipo("quorum_calificado").get("votos_minimos_camara" if camara else "votos_minimos", 0))
 	var leyenda := HBoxContainer.new()
 	leyenda.alignment = BoxContainer.ALIGNMENT_CENTER
 	leyenda.add_theme_constant_override("separation", 10)
-	for par in [[Tema.ORO, "Tu bancada %d" % int(comp["propios"])], [Tema.SUBE, "Aliados %d" % int(comp["aliados"])], [Tema.BAJA, "Oposición %d" % int(comp["oposicion"])]]:
+	for par in [[Tema.ORO, "Tu bancada %d" % int(comp["propios"])], [Tema.bien(), "Aliados %d" % int(comp["aliados"])], [Tema.mal(), "Oposición %d" % int(comp["oposicion"])]]:
 		leyenda.add_child(Icono.crear("dot", par[0], 12.0))
 		leyenda.add_child(Tema.etiqueta_corta(par[1], 11, Tema.TEXTO_SUAVE))
 	col.add_child(leyenda)
@@ -99,7 +99,7 @@ static func congreso(motor: MotorTurno, al_abrir_obra: Callable = Callable(), al
 	if not est.promesas_campana.is_empty():
 		col.add_child(Tema.etiqueta("Metas de legado (promesas de campaña)", 15, Tema.TEXTO, true))
 		for pr in est.promesas_campana:
-			col.add_child(Tema.etiqueta(("Cumplida · " if pr["cumplida"] else "Pendiente · ") + String(pr["titulo"]), 12, Tema.SUBE if pr["cumplida"] else Tema.TEXTO))
+			col.add_child(Tema.etiqueta(("Cumplida · " if pr["cumplida"] else "Pendiente · ") + String(pr["titulo"]), 12, Tema.bien() if pr["cumplida"] else Tema.TEXTO))
 	if al_cartera.is_valid():
 		var bc := Tema.boton("Cartera de proyectos reales", Tema.PANEL.lightened(0.1), Tema.TEXTO, 13, 48)
 		bc.pressed.connect(al_cartera)
@@ -119,7 +119,7 @@ static func pintar_region(_r: Dictionary, motor: MotorTurno, datos: Dictionary, 
 	var nombre := _region
 	for r in datos["regiones"]:
 		if r["id"] == _region:
-			nombre = String(r["nombre"]).replace(" de Santiago", "")
+			nombre = String(r["nombre"]).replace(" de Santiago", "").replace(" y la Antártica Chilena", "")  # cabe en la tarjeta
 	var n_obras := 0
 	for o in est.obras_en_curso:
 		if o["region"] == _region:

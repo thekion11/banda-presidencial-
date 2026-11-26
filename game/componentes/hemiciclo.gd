@@ -19,7 +19,7 @@ const CAIDA := 4.0  # cuántos «puestos» tarda un voto en posarse
 
 func configurar_votos(p_total: int, favor: int, abst: int, contra: int, mostrar_numero: bool = true) -> void:
 	total = p_total
-	bloques = [[favor, Tema.SUBE], [abst, Color("#9AA9C0")], [contra, Tema.BAJA]]
+	bloques = [[favor, Tema.bien()], [abst, Color("#9AA9C0")], [contra, Tema.mal()]]
 	numero = favor if mostrar_numero else -1
 	texto_central = "votos a favor"
 	_sucio = true
@@ -159,5 +159,5 @@ func _dibujar_votacion() -> void:
 		var w := f.get_string_size(et, HORIZONTAL_ALIGNMENT_LEFT, -1, 10).x
 		var pe := _centro + dir * (_r_ext + _radio_punto + 16.0)
 		draw_string(f, pe - Vector2(w * 0.5, -4.0), et, HORIZONTAL_ALIGNMENT_LEFT, -1, 10, Tema.ORO if cruzo else Tema.TEXTO_SUAVE)
-	draw_string(Tema.fuente_titulo(), Vector2(_centro.x - 60.0, _centro.y - 20.0), str(cuenta), HORIZONTAL_ALIGNMENT_CENTER, 120.0, 54 if _grande else 36, Tema.SUBE if cruzo else Tema.TEXTO)
+	draw_string(Tema.fuente_titulo(), Vector2(_centro.x - 60.0, _centro.y - 20.0), str(cuenta), HORIZONTAL_ALIGNMENT_CENTER, 120.0, 54 if _grande else 36, Tema.bien() if cruzo else Tema.TEXTO)
 	draw_string(Tema.fuente_texto(500), Vector2(_centro.x - 60.0, _centro.y), texto_central, HORIZONTAL_ALIGNMENT_CENTER, 120.0, 12, Tema.TEXTO_SUAVE)

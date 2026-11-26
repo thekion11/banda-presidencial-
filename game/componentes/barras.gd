@@ -125,7 +125,9 @@ static func tarjeta_region(refs: Dictionary) -> Control:
 	var fila := HBoxContainer.new()
 	refs["rg_nombre"] = Tema.etiqueta_corta("", 14, Tema.TEXTO, true)
 	refs["rg_nombre"].size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	refs["rg_valor"] = Tema.etiqueta_corta("", 14, Tema.SUBE, true)
+	refs["rg_nombre"].clip_text = true  # un nombre largo no ensancha la columna de tarjetas sobre el mapa: se recorta con «…»
+	refs["rg_nombre"].text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
+	refs["rg_valor"] = Tema.etiqueta_corta("", 14, Tema.bien(), true)
 	fila.add_child(refs["rg_nombre"])
 	fila.add_child(refs["rg_valor"])
 	v.add_child(fila)
@@ -135,7 +137,7 @@ static func tarjeta_region(refs: Dictionary) -> Control:
 	barra.show_percentage = false
 	barra.custom_minimum_size = Vector2(0, 7)
 	barra.add_theme_stylebox_override("background", Tema.caja(Color("#274A66"), 4))
-	barra.add_theme_stylebox_override("fill", Tema.caja(Tema.SUBE, 4))
+	barra.add_theme_stylebox_override("fill", Tema.caja(Tema.bien(), 4))
 	refs["rg_barra"] = barra
 	v.add_child(barra)
 	p.add_child(v)
@@ -330,5 +332,5 @@ static func pintar_chips(refs: Dictionary, est: EstadoSimulacion) -> void:
 			chip.set_meta("frac", nuevo / 100.0)
 			chip.queue_redraw()
 		if not is_equal_approx(previo, nuevo):  # el chip destella: verde si subió, coral si bajó (en «Rival», subir es malo)
-			Movimiento.destello(l.get_parent().get_parent(), Tema.SUBE if (nuevo > previo) != (ind == "rival") else Tema.BAJA)
-		l.add_theme_color_override("font_color", Tema.SUBE if (k == "aprobacion" and est.ind(ind) >= 50.0) else Tema.TEXTO)
+			Movimiento.destello(l.get_parent().get_parent(), Tema.bien() if (nuevo > previo) != (ind == "rival") else Tema.mal())
+		l.add_theme_color_override("font_color", Tema.bien() if (k == "aprobacion" and est.ind(ind) >= 50.0) else Tema.TEXTO)

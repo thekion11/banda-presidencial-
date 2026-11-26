@@ -50,4 +50,4 @@ static func tras_jugar(capa: Control, r: Dictionary, cambios: String, pos: Vecto
 	else:
 		sonar("jugar")
 		vibrar(20)
-	flotante(capa, cambios, pos, Tema.SUBE if not bool(r.get("salio_mal", false)) else Tema.BAJA)
+	flotante(capa, cambios, pos, Tema.bien() if not bool(r.get("salio_mal", false)) else Tema.mal())

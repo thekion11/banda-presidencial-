@@ -33,7 +33,7 @@ func _ready() -> void:
 			Ajustes.guardar()
 			Feedback.sonar("toque"))
 		col.add_child(cb)
-	col.add_child(Tema.etiqueta("El texto grande se aplica al abrir cada pantalla; los colores para daltonismo cambian la escala de aprobación a azul y naranja.", 11, Tema.TEXTO_SUAVE))
+	col.add_child(Tema.etiqueta("El texto grande se aplica al abrir cada pantalla; los colores para daltonismo pasan a azul y naranja la escala de aprobación y todo lo que sube o baja (votos, cambios, mapa).", 11, Tema.TEXTO_SUAVE))
 	Movimiento.escalonar(col, 0.0, 0.05)
 	var esp := Control.new()
 	esp.size_flags_vertical = Control.SIZE_EXPAND_FILL

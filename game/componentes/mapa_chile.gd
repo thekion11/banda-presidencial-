@@ -35,6 +35,9 @@ var _vivo: Control  # capa animada barata: tendencias, bastión, obras y propues
 var _previos: Dictionary = {}
 var _tendencia: Dictionary = {}  # id -> +1 / -1 desde el último cambio de aprobación regional
 var _t: float = 0.0
+var _contornos_px: Dictionary = {}  # id -> contornos ya transformados y cerrados (caché por tamaño: la capa viva los dibuja cada cuadro)
+var _centros_px: Dictionary = {}
+var _tam_px: Vector4 = Vector4(-1, -1, -1, -1)  # tamaño, centro horizontal y estiramiento: lo que mueve los contornos
 var _fuegos: Array[Dictionary] = []  # {pos, inicio, color}: obra terminada (dirección visual v4)
 
 
@@ -174,12 +177,8 @@ func _draw() -> void:
 			if _relieve != null:
 				draw_mesh(_mallas[id], _relieve, Transform2D.IDENTITY, Color(1, 1, 1, 0.7))
 			draw_set_transform_matrix(_camara)
-		for pieza in _piezas[id]:
-			var pts := PackedVector2Array()
-			for p in pieza:
-				pts.append(_transformar(p))
+		for pts in _contornos(id):
 			var borde := Tema.ORO if id == seleccion else Color(1, 0.97, 0.9, 0.5)
-			pts.append(pts[0])
 			draw_polyline(pts, borde, 2.5 if id == seleccion else 0.9, true)
 	for i in range(0, _este.size(), 2):
 		var q := _transformar(_este[i] + Vector2(0.004, 0.0))
@@ -282,8 +281,36 @@ func posicion_global(id: String) -> Vector2:
 	return get_global_transform() * (centro(id) if _banda_y.has(id) else size * 0.5)
 
 
+func _contornos(id: String) -> Array:
+	## Contornos de la región en píxeles, cerrados. Se recalculan solo si cambia el tamaño del mapa
+	## (antes se transformaban ~3.000 puntos en cada cuadro de la capa viva: ~0,8 ms en escritorio).
+	var clave := Vector4(size.x, size.y, x_centro_rel, estirar_x)
+	if clave != _tam_px:
+		_contornos_px.clear()
+		_centros_px.clear()
+		_tam_px = clave
+	if not _contornos_px.has(id):
+		var lista: Array = []
+		for pieza in _piezas.get(id, []):
+			var pts := PackedVector2Array()
+			for p in pieza:
+				pts.append(_transformar(p))
+			if not pts.is_empty():
+				pts.append(pts[0])
+			lista.append(pts)
+		_contornos_px[id] = lista
+	return _contornos_px[id]
+
+
 func centro(id: String) -> Vector2:
-	## Centroide aproximado (en píxeles del control) de la pieza más grande de la región.
+	## Centroide aproximado (en píxeles del control) de la pieza más grande de la región (en caché por tamaño).
+	_contornos(id)  # valida la caché con la clave actual
+	if not _centros_px.has(id):
+		_centros_px[id] = _centro_calculado(id)
+	return _centros_px[id]
+
+
+func _centro_calculado(id: String) -> Vector2:
 	var mejor: PackedVector2Array = PackedVector2Array()
 	for pieza in _piezas.get(id, []):
 		if pieza.size() > mejor.size():
@@ -334,14 +361,10 @@ func _dibujar_vivo() -> void:
 	v.draw_set_transform_matrix(_camara)
 	var pulso := 0.5 + 0.5 * sin(_t * 3.2)
 	for id in _tendencia.keys():
-		var col: Color = Tema.SUBE if int(_tendencia[id]) > 0 else Tema.BAJA
-		for pieza in _piezas.get(id, []):
-			if pieza.size() < 8:
+		var col: Color = Tema.bien() if int(_tendencia[id]) > 0 else Tema.mal()
+		for pts in _contornos(id):
+			if pts.size() < 9:
 				continue
-			var pts := PackedVector2Array()
-			for p in pieza:
-				pts.append(_transformar(p))
-			pts.append(pts[0])
 			v.draw_polyline(pts, Color(col, 0.25 + 0.55 * pulso), 2.0 + 1.5 * pulso, true)
 	if bastion != "" and _banda_y.has(bastion):
 		var cb := centro(bastion) + Vector2(0.0, 12.0)

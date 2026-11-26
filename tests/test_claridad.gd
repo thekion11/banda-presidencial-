@@ -42,6 +42,16 @@ func _correr() -> void:
 	_check(OverlaysDia.descripcion_limpia("Se publica la Ley N° 21.810", "Se publica la Ley N° 21.810: modifica la Carta Fundamental") == "Modifica la Carta Fundamental",
 		"P11: la descripción del evento no debe repetir el título")
 	_check(OverlaysDia.descripcion_limpia("Paro portuario", "Los trabajadores paralizan") == "Los trabajadores paralizan", "P11: una descripción sin el título queda igual")
+	# Daltonismo: «bien / mal» dejan el par verde-coral por azul-naranja, con contraste ≥ 4,5:1 sobre el océano.
+	var previo := Ajustes.daltonico
+	Ajustes.daltonico = true
+	_check(Tema.bien() != Tema.SUBE and Tema.mal() != Tema.BAJA and absf(Tema.bien().h - Tema.mal().h) > 0.25, "daltonismo: subir y bajar usan azul y naranja")
+	for c: Color in [Tema.bien(), Tema.mal()]:  # contraste WCAG: luminancia relativa con el color linealizado
+		var l1: float = c.srgb_to_linear().get_luminance()
+		var l2: float = Tema.OCEANO.srgb_to_linear().get_luminance()
+		_check((l1 + 0.05) / (l2 + 0.05) >= 4.5, "daltonismo: contraste suficiente sobre el océano (%s)" % c)
+	Ajustes.daltonico = previo
+	_check(Tema.bien() == Tema.SUBE and Tema.mal() == Tema.BAJA, "sin daltonismo se mantiene la paleta congelada")
 	var main: Node = load("res://game/main.tscn").instantiate()
 	root.add_child(main)
 	await process_frame
@@ -78,6 +88,13 @@ func _correr() -> void:
 		_check(hueco.intersects(dia._mano.get_global_rect()), "P9: el primer paso enfoca la mano")
 		tuts[0]._cerrar()
 	await _esperar(1.0)  # la mano termina de repartirse
+	# Región de nombre largo: la columna de tarjetas sobre el mapa no se sale de la pantalla (hallazgo de «Búsqueda infinita de fallas»).
+	for rid in ["magallanes", "aysen", "metropolitana"]:
+		dia._on_region(rid)
+		await process_frame
+		await process_frame
+		_check(dia._r["rg_nombre"].get_global_rect().end.x <= 390.5 and dia._r["ev_titulo"].get_global_rect().end.x <= 390.5,
+			"región %s: las tarjetas del mapa caben en 390 px (%s)" % [rid, dia._r["rg_nombre"].get_global_rect().end.x])
 	# P10: mantener el dedo sobre la carta elegida abre la ficha y al soltar no se juega.
 	var est: EstadoSimulacion = main.motor.estado
 	var elegida: CartaUI = null

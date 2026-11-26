@@ -12,7 +12,7 @@ static func _aviso(sat: float, cfg: Dictionary) -> Array:
 	if sat < float(cfg["umbral_malestar"]):
 		return ["Malestar: quita %d movimiento interno por turno." % int(cfg["penal_internos_malestar"]), FilasUI.ROJO_TEXTO]
 	if sat >= float(cfg["umbral_satisfechos"]):
-		return ["Satisfecho: aporta movimientos internos si todos tus aliados lo están.", Tema.SUBE]
+		return ["Satisfecho: aporta movimientos internos si todos tus aliados lo están.", Tema.bien()]
 	return ["Conforme por ahora.", Tema.TEXTO_SUAVE]
 
 

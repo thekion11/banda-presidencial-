@@ -74,6 +74,31 @@ func _init() -> void:
 	var sin_estado := d.duplicate(true)
 	sin_estado["estado"] = {"semilla": 1}
 	_check(not Instantanea.vale_para(sin_estado, huella, "abc"), "con el estado recortado no vale")
+	var sin_clave := d.duplicate(true)
+	sin_clave.erase("estado")
+	var estado_int := d.duplicate(true)
+	estado_int["estado"] = 5
+	var sin_seed := d.duplicate(true)
+	sin_seed.erase("rng_seed")
+	var estado_vacio := d.duplicate(true)
+	estado_vacio["estado"] = {}
+	var indic_vacios := d.duplicate(true)
+	indic_vacios["estado"]["indicadores"] = {}
+	# versión anterior del juego: a la caché le falta un campo que el estado ganó después (p. ej. «encuestas»), o trae uno de otro tipo
+	var sin_campo := d.duplicate(true)
+	sin_campo["estado"].erase("encuestas")
+	var campo_tipo := d.duplicate(true)
+	campo_tipo["estado"]["etapa"] = []
+	var campo_extra := d.duplicate(true)
+	campo_extra["estado"]["campo_de_otra_version"] = 1
+	var seed_texto := d.duplicate(true)
+	seed_texto["rng_state"] = "x"
+	var huella_arreglo := d.duplicate(true)
+	huella_arreglo["huella_datos"] = []
+	var sha_nulo := d.duplicate(true)
+	sha_nulo["sha_guardado"] = null
+	for caso in [sin_clave, estado_int, sin_seed, estado_vacio, indic_vacios, sin_campo, campo_tipo, campo_extra, seed_texto, huella_arreglo, sha_nulo]:
+		_check(not Instantanea.vale_para(caso, huella, "abc"), "una instantánea fabricada o recortada no vale")
 	var m3 := Partida.crear(datos, 12, GeneradorPartido.construir_partido("I", "III", "metropolitana", resp, datos["ideologia"]))
 	var r3 := RandomNumberGenerator.new()
 	r3.seed = 12
@@ -81,7 +106,7 @@ func _init() -> void:
 		Bots.jugar_turno(m3, "completo", r3)
 		m3.terminar_turno()
 	var inc2 := Instantanea.leer(Instantanea.tomar(m3, huella, "abc"))
-	inc2.erase("votaciones")
+	inc2["estado"] = {}  # el caso más grave: partida en blanco en silencio
 	var g3: Dictionary = JSON.parse_string(JSON.stringify(m3.estado.exportar_guardado(huella)))
 	var rec := Partida.cargar(datos, g3, inc2, huella, "abc")
 	_check(rec.estado.calcular_huella() == m3.estado.calcular_huella(), "una instantánea incompleta cae al historial y da el mismo estado")
@@ -94,6 +119,7 @@ func _probar(datos: Dictionary, huella: String, m: MotorTurno, nombre: String) -
 	var g: Dictionary = JSON.parse_string(JSON.stringify(m.estado.exportar_guardado(huella)))
 	var repro := Partida.reproducir(datos, g)
 	var snap := Instantanea.leer(Instantanea.tomar(m, huella, "sha"))
+	_check(Instantanea.vale_para(snap, huella, "sha"), nombre + ": una instantánea legítima pasa la validación (si no, nunca se usaría)")
 	var rest := Partida.cargar(datos, g, snap, huella, "sha")
 	_iguales(rest, repro, nombre + " (restaurada contra reproducida)")
 	for pr in rest.estado.get_property_list():  # los arreglos tipados siguen tipados tras restaurar

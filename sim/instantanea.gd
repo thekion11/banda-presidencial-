@@ -5,7 +5,22 @@ extends RefCounted
 ## más en un teléfono). Se valida contra el guardado (SHA-256 de su archivo) y contra la versión de los datos; ante cualquier diferencia se ignora y se
 ## reproduce el historial. `test_instantanea` comprueba que restaurar y reproducir dan el mismo estado y siguen igual de ahí en adelante.
 
-const VERSION := 1
+const VERSION := 1  # subir si cambia el SIGNIFICADO de algún campo del estado (si solo se añaden o quitan campos, el esquema lo detecta solo)
+
+
+static func esquema() -> Dictionary:
+	## Nombre y tipo de cada variable de EstadoSimulacion tal como la arma el juego ahora: una instantánea de una versión con otros campos no se usa.
+	var e := EstadoSimulacion.new()
+	var res := {}
+	for pr in e.get_property_list():
+		if int(pr["usage"]) & PROPERTY_USAGE_SCRIPT_VARIABLE:
+			res[String(pr["name"])] = _clase(e.get(pr["name"]))
+	return res
+
+
+static func _clase(v: Variant) -> int:
+	var t := typeof(v)
+	return TYPE_FLOAT if t == TYPE_INT else t  # enteros y decimales se aceptan indistintamente
 
 
 static func tomar(motor: MotorTurno, huella_datos: String, sha_guardado: String) -> PackedByteArray:
@@ -46,15 +61,22 @@ static func es_completa(d: Dictionary) -> bool:
 			return false
 	if not (d["estado"] is Dictionary) or not (d["ultimos_eventos"] is Array) or not (d["votaciones"] is Array):
 		return false
+	if not (d["rng_seed"] is int) or not (d["rng_state"] is int):
+		return false
 	var e: Dictionary = d["estado"]
-	for k in ["semilla", "etapa", "turno_actual", "indicadores", "mano", "mazo", "entradas"]:
-		if not e.has(k):
+	var actual := esquema()
+	if e.size() != actual.size():
+		return false
+	for k in actual.keys():  # mismos campos y del mismo tipo que los del estado de esta versión del juego
+		if not e.has(k) or _clase(e[k]) != int(actual[k]):
 			return false
-	return true
+	return (e["indicadores"] is Dictionary) and not (e["indicadores"] as Dictionary).is_empty() and (e["mano"] is Array) and (e["mazo"] is Array) and (e["entradas"] is Array) and e["etapa"] is String
 
 
 static func vale_para(d: Dictionary, huella_datos: String, sha_guardado: String) -> bool:
-	return not d.is_empty() and es_completa(d) and String(d.get("huella_datos", "")) == huella_datos and String(d.get("sha_guardado", "")) == sha_guardado and sha_guardado != ""
+	if d.is_empty() or not (d.get("huella_datos") is String) or not (d.get("sha_guardado") is String):
+		return false  # tipos inesperados: ni se comparan
+	return es_completa(d) and d["huella_datos"] == huella_datos and d["sha_guardado"] == sha_guardado and sha_guardado != ""
 
 
 static func restaurar(datos: Dictionary, semilla: int, d: Dictionary) -> MotorTurno:
