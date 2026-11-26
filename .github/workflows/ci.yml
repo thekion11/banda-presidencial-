@@ -34,7 +34,7 @@ jobs:
         run: |
           godot --headless --import --path . 2>&1 | tee import.log || true
           if grep -q "SCRIPT ERROR" import.log; then echo "El import tiene errores de script"; exit 1; fi
-      - name: Todas las pruebas (tests/test_*.gd: oro, balance, instantánea, rendimiento y humo de UI)
+      - name: "Todas las pruebas (tests/test_*.gd: oro, balance, instantánea, rendimiento y humo de UI)"
         run: |
           # se recorren todas, no una lista a mano: una prueba nueva entra sola al CI (hallazgo de «Búsqueda infinita de fallas»: 10 de 41 no se ejecutaban)
           for f in tests/test_*.gd; do
