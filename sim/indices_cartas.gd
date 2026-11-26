@@ -19,15 +19,18 @@ var disp: Dictionary = {}  # clave de disponibilidad -> valor normalizado -> car
 
 
 static func clave(v: Variant) -> String:
+	## Normaliza un valor de disponibilidad (los enteros float como 3.0 se vuelven «3») para usarlo como clave de índice.
 	return str(int(v)) if (v is float or v is int) and float(v) == floorf(float(v)) else str(v)
 
 
 static func tipo_real(c: Dictionary) -> bool:
+	## true si la carta corresponde a un proyecto, ley o reforma real (por el tipo en su meta).
 	var meta: Variant = c.get("meta", null)
 	return meta != null and TIPOS_REALES.has(meta.get("tipo", ""))
 
 
 static func construir(cartas: Array) -> IndicesCartas:
+	## Construye los índices de solo lectura del catálogo de cartas (por id, reales, diseñadas y por condición de disponibilidad).
 	var x := IndicesCartas.new()
 	x.n = cartas.size()
 	for c in cartas:

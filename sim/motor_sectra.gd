@@ -40,6 +40,7 @@ static func etapa_de(estado_txt: String) -> int:
 
 
 func cargar(datos: Dictionary) -> void:
+	## Carga los planes de SECTRA (proyectos de transporte) de data/.
 	_crudo = datos
 	_armado = false
 
@@ -71,10 +72,12 @@ func _armar() -> void:
 
 
 func existe(pid: String) -> bool:
+	## true si el proyecto SECTRA existe.
 	return _por_id.has(pid)
 
 
 func proyecto(pid: String) -> Dictionary:
+	## Datos de un proyecto SECTRA ({} si no existe).
 	return _por_id.get(pid, {})
 
 
@@ -84,10 +87,12 @@ func estado_de(pid: String) -> Dictionary:
 
 
 func musd(p: Dictionary) -> float:
+	## Inversión del proyecto en millones de dólares (ilustrativo).
 	return float(p["inversion_uf"]) * float(m.catalogo_leyes["sectra"]["uf_en_usd"]) / 1.0e6
 
 
 func en_curso() -> int:
+	## Cantidad de proyectos SECTRA en trámite.
 	var n := 0
 	for k in m.estado.sectra.keys():
 		if int(m.estado.sectra[k]["hasta"]) > 0:
@@ -96,6 +101,7 @@ func en_curso() -> int:
 
 
 func impulsar(pid: String) -> Dictionary:
+	## Gasta movimientos para impulsar un proyecto SECTRA; devuelve {ok, razon}.
 	var _m := m  # una sola resolución de la referencia débil por llamada (cada acceso a `m` cuesta ~0,5 us)
 	if _m.estado.etapa != "gobierno" or not existe(pid):
 		return {"ok": false, "razon": "proyecto_no_disponible"}

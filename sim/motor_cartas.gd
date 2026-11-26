@@ -20,6 +20,7 @@ func _con_titular(carta: Dictionary, ministro_id: String) -> String:
 
 
 func costo_carta(carta: Dictionary, ministro_id: String = "") -> int:
+	## Costo en movimientos de una carta, con el descuento del ministro y los bonos del gabinete y los asesores.
 	var _m := m  # una sola resolución de la referencia débil por llamada (cada acceso a `m` cuesta ~0,5 us)
 	ministro_id = _con_titular(carta, ministro_id)
 	var costo := int(carta["costo_pa"])
@@ -40,6 +41,7 @@ func descartar_mano() -> void:
 
 
 func es_real(carta: Dictionary) -> bool:
+	## true si la carta es de un proyecto real (usa el índice; cae a su tipo si no está en el catálogo).
 	var id: String = carta["id"]
 	var x: Dictionary = m.indices.es_real
 	if not x.has(id):
@@ -48,6 +50,7 @@ func es_real(carta: Dictionary) -> bool:
 
 
 func no_reales() -> Array[Dictionary]:
+	## Cartas diseñadas (no basadas en un proyecto real), del índice compartido.
 	return m.indices.no_reales
 
 
@@ -110,10 +113,12 @@ func reales_para_mazo() -> Array[String]:
 
 
 func es_unica(carta: Dictionary) -> bool:
+	## true si la carta solo puede ejecutarse una vez en el gobierno.
 	return bool(carta.get("unica", false)) or carta["requisitos"]["ley"] != null or carta.has("obra") or es_real(carta) or carta.get("abre_propuesta_comite", null) != null
 
 
 func vista_carta(idx: int, ministro_id: String = "") -> Dictionary:
+	## Datos de una carta de la mano para la interfaz: costo, corrector de realismo y si alcanzan los movimientos.
 	var _m := m  # una sola resolución de la referencia débil por llamada (cada acceso a `m` cuesta ~0,5 us)
 	var carta: Dictionary = _m.estado.mano[idx]
 	var corr := {"aplica": false, "ratio": 1.0, "mensaje": ""}
@@ -267,6 +272,7 @@ func _ejecutar_carta(carta: Dictionary, escala: float, region_id: String) -> voi
 
 
 func aprobar_propuesta(prop_id: String, variante_id: String, region_id: String = "", custom: Dictionary = {}, nombres: Dictionary = {}) -> Dictionary:
+	## Aprueba una propuesta del Comité con una variante (A/B/C) o una personalizada y arranca su obra; registra la entrada.
 	var _m := m  # una sola resolución de la referencia débil por llamada (cada acceso a `m` cuesta ~0,5 us)
 	if _m.estado.etapa != "gobierno" or not _m.estado.propuestas_abiertas.has(prop_id):
 		return {"ok": false, "razon": "propuesta_no_disponible"}
@@ -356,6 +362,7 @@ func _nombres_limpios(nombres: Dictionary) -> Dictionary:
 
 
 func resolver_proyectos() -> Array[Dictionary]:
+	## Vota los proyectos de ley cuyo plazo venció esta semana (Senado, Cámara y Tribunal Constitucional) y aplica sus efectos.
 	var _m := m  # una sola resolución de la referencia débil por llamada (cada acceso a `m` cuesta ~0,5 us)
 	var limite := _m.estado.dia_actual + _m.estado.dias_por_turno
 	var pendientes: Array[Dictionary] = []

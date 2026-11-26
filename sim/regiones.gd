@@ -9,6 +9,7 @@ var _w := PackedFloat64Array()
 
 
 func cargar(p_regiones: Array) -> void:
+	## Carga las regiones y calcula los pesos por población.
 	catalogo.clear()
 	pesos.clear()
 	var total: float = 0.0
@@ -24,10 +25,12 @@ func cargar(p_regiones: Array) -> void:
 
 
 func existe(id: String) -> bool:
+	## true si el id corresponde a una región.
 	return pesos.has(id)
 
 
 func inicializar(estado: EstadoSimulacion, aprobacion: float, bastion: String, bono_bastion: float, variacion: float = 0.0) -> void:
+	## Fija la aprobación regional inicial (bastión y variación determinista por semilla) y recalcula la nacional.
 	estado.aprobacion_regional.clear()
 	for r in catalogo:
 		# Variación territorial determinista (semilla + id de región); ilustrativa, no representa encuestas reales.
@@ -40,6 +43,7 @@ func inicializar(estado: EstadoSimulacion, aprobacion: float, bastion: String, b
 
 
 func promedio(estado: EstadoSimulacion) -> float:
+	## Aprobación nacional: promedio regional ponderado por población.
 	var s: float = 0.0
 	var reg: Dictionary = estado.aprobacion_regional
 	for i in range(_ids.size()):
@@ -48,6 +52,7 @@ func promedio(estado: EstadoSimulacion) -> float:
 
 
 func recalcular(estado: EstadoSimulacion) -> void:
+	## Pone la aprobación nacional igual al promedio regional.
 	if not pesos.is_empty():
 		estado.indicadores["aprobacion"] = clampf(promedio(estado), 0.0, 100.0)
 
@@ -69,6 +74,7 @@ func aplicar_delta(estado: EstadoSimulacion, delta: float, region: String, derra
 
 
 func revertir(estado: EstadoSimulacion, ancla: float, tasa: float, persistencia: float = 0.0) -> void:
+	## Acerca cada región hacia un ancla (conservando su carácter) y recalcula la nacional.
 	var reg: Dictionary = estado.aprobacion_regional
 	var base: Dictionary = estado.aprobacion_base
 	var media_base := 0.0
@@ -83,6 +89,7 @@ func revertir(estado: EstadoSimulacion, ancla: float, tasa: float, persistencia:
 
 
 func revertir_a_base(estado: EstadoSimulacion, tasa: float) -> void:
+	## Acerca cada región a su aprobación base según la tasa dada.
 	for id in pesos.keys():
 		var a := float(estado.aprobacion_regional[id])
 		var b := float(estado.aprobacion_base.get(id, a))

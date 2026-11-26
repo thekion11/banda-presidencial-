@@ -17,3 +17,6 @@ Generado leyendo las referencias a `class_name` entre los 26 archivos de `sim/` 
 - Archivos JSON de más de 1 MB: `data/cartas_reales.json` (2,3 MB, **cargado por el juego**, 62 ms de los ~118 ms de `Datos.cargar_todo`) y `data/bcn/proyectos_ley.json` (1,6 MB, solo investigación: el juego no lo carga). Todo lo demás es menor de 1 MB (`geo/urbano_real.json` 0,98 MB lo carga solo la pantalla del mapa).
 - Tiempos medidos: cartas_reales 62 ms, grafo_urbano 25 ms, cartas 14 ms, sectra_planes 5 ms, resto menor de 4 ms. La carga del guardado no los paga de nuevo: usa la instantánea (≈ 12 ms) y `Datos.huella_rapida`.
 - **Propuesta (no aplicada, sin urgencia):** partir `cartas_reales.json` por categoría de ministerio en archivos de ≈ 500 KB que `Datos.cargar_todo` concatene en el mismo orden. Las huellas no cambian porque el orden del catálogo es el mismo; la ganancia es de revisión en git (diffs legibles) y no de velocidad, ya que el total leído es igual. Si se hace, hay que actualizar `EXTRAS` y `tools/generar_cartas.py`, y correr `test_determinismo` para confirmar las huellas.
+
+## Índice de API
+Todas las funciones públicas de `sim/` (210) llevan documentación y se listan, con su firma, en `docs/API_SIM.md` (generado por `tools/generar_api.py`; el CI falla si una función pública queda sin documentar).

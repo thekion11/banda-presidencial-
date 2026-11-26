@@ -14,6 +14,7 @@ static func armar(datos: Dictionary, semilla: int) -> MotorTurno:
 
 
 static func crear(datos: Dictionary, semilla: int, partido: Dictionary) -> MotorTurno:
+	## Crea una partida lista para jugar: motor armado, partido aplicado y primer turno iniciado.
 	var motor := armar(datos, semilla)
 	motor.aplicar_partido_inicial(partido)
 	motor.iniciar_turno()

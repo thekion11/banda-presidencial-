@@ -14,6 +14,7 @@ func _init(p_motor: MotorTurno) -> void:
 
 
 func cargar(lista: Array) -> void:
+	## Carga el catálogo de asesores.
 	asesores.clear()
 	for a in lista:
 		asesores[String(a["id"])] = a
@@ -24,6 +25,7 @@ func _cfg() -> Dictionary:
 
 
 func contratar(id: String) -> Dictionary:
+	## Contrata un asesor (hay un máximo de asesores); devuelve {ok, razon}.
 	var est := m.estado
 	if est.etapa != "campana" and est.etapa != "gobierno":
 		return {"ok": false, "razon": "partida_terminada"}
@@ -40,6 +42,7 @@ func contratar(id: String) -> Dictionary:
 
 
 func despedir(id: String) -> Dictionary:
+	## Despide a un asesor; devuelve {ok, razon}.
 	var _m := m  # una sola resolución de la referencia débil por llamada (cada acceso a `m` cuesta ~0,5 us)
 	if not _m.estado.asesores.has(id):
 		return {"ok": false, "razon": "no_contratado"}
@@ -62,10 +65,12 @@ func _factor(id: String, ef: Dictionary, positivo: bool) -> float:
 
 
 func movimientos_extra() -> int:
+	## Movimientos adicionales por turno que dan los asesores contratados.
 	return m.estado.asesores.size() * int(_cfg()["movimientos_extra"])
 
 
 func mult_categoria(categoria: String) -> float:
+	## Multiplicador de efecto para una categoría de cartas según los asesores (bueno o malo).
 	var mult := 1.0
 	for id in m.estado.asesores:
 		for clave in ["efecto_positivo", "efecto_negativo"]:

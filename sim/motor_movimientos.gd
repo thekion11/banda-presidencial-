@@ -15,6 +15,7 @@ func _init(p_motor: MotorTurno) -> void:
 
 
 func cargar(lista: Array) -> void:
+	## Carga el catálogo de metas y movimientos internos.
 	metas.clear()
 	for meta in lista:
 		metas[String(meta["id"])] = meta
@@ -87,6 +88,7 @@ func _motivo_meta(meta: Dictionary) -> String:
 
 
 func buscar_meta(meta_id: String) -> Dictionary:
+	## Movimiento interno: cumple una meta (aplica sus efectos y desbloquea cartas); devuelve {ok, razon}.
 	var _m := m  # una sola resolución de la referencia débil por llamada (cada acceso a `m` cuesta ~0,5 us)
 	if not metas.has(meta_id):
 		return {"ok": false, "razon": "meta_inexistente"}
@@ -109,6 +111,7 @@ func buscar_meta(meta_id: String) -> Dictionary:
 
 
 func ajustar_sector(sector: String, direccion: int) -> Dictionary:
+	## Movimiento interno: sube o baja el énfasis de un sector (dirección ±1); devuelve {ok, razon}.
 	var _m := m  # una sola resolución de la referencia débil por llamada (cada acceso a `m` cuesta ~0,5 us)
 	var cfg: Dictionary = _m.catalogo_leyes["movimientos_internos"]["ajustar_sector"]
 	if direccion != 1 and direccion != -1:
@@ -132,6 +135,7 @@ func ajustar_sector(sector: String, direccion: int) -> Dictionary:
 
 
 func reducir_errores() -> Dictionary:
+	## Movimiento interno: baja el riesgo de ejecución; devuelve {ok, razon}.
 	var _m := m  # una sola resolución de la referencia débil por llamada (cada acceso a `m` cuesta ~0,5 us)
 	var cfg: Dictionary = _m.catalogo_leyes["movimientos_internos"]["reducir_errores"]
 	var cobro := _cobrar(int(cfg["costo"]))
@@ -147,6 +151,7 @@ func reducir_errores() -> Dictionary:
 
 
 func acelerar_proyecto(idx: int) -> Dictionary:
+	## Movimiento interno: adelanta la obra en curso indicada; devuelve {ok, razon}.
 	var _m := m  # una sola resolución de la referencia débil por llamada (cada acceso a `m` cuesta ~0,5 us)
 	var cfg: Dictionary = _m.catalogo_leyes["movimientos_internos"]["acelerar_proyecto"]
 	if idx < 0 or idx >= _m.estado.obras_en_curso.size():

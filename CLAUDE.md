@@ -64,6 +64,7 @@ python3 tools/check_constantes.py      # ningún número de balance nuevo en sim
 python3 tools/validate_tipos.py        # estructura y tipos de data/leyes.json
 python3 tools/test_validate.py         # pruebas negativas de los validadores
 python3 tools/check_entradas.py        # cada tipo de entrada del guardado está en ValidarGuardado
+python3 tools/generar_api.py --verificar  # toda función pública de sim/ está documentada (regenera docs/API_SIM.md)
 tools/run_all_tests.sh                 # TODO lo del CI en un solo comando (validadores, tests/test_*.gd y fuzz)
 godot --headless --import --path .
 godot --headless --path . -s tests/test_prueba_oro_4_semanas.gd

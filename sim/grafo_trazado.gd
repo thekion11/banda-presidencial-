@@ -31,6 +31,7 @@ var params: Dictionary:
 
 
 func cargar(d: Dictionary) -> void:
+	## Carga el grafo urbano (nodos y aristas) y prepara posiciones y adyacencias.
 	_crudo = d
 	_con_pos = false
 	_con_ady = false
@@ -69,10 +70,12 @@ func _armar_ady() -> void:
 
 
 func listo() -> bool:
+	## true si el grafo tiene nodos cargados.
 	return not (_crudo.get("nodos", []) as Array).is_empty()
 
 
 func nodo_cercano(p: Vector2) -> String:
+	## Id del nodo del grafo más cercano a un punto del mapa.
 	var mejor := ""
 	var mejor_d := 1.0e9
 	for id in orden:
@@ -195,6 +198,7 @@ func evaluar(estaciones: Array) -> Dictionary:
 
 
 func estaciones_base(variante: Dictionary) -> Array:
+	## Estaciones de una variante del Comité: las propias o las derivadas de su trazado.
 	if variante.has("estaciones"):
 		return variante["estaciones"]
 	return estaciones_de(variante.get("trazado", []))
@@ -211,6 +215,7 @@ func estaciones_de(trazado: Array) -> Array[String]:
 
 
 func estaciones_validas(estaciones: Array) -> bool:
+	## true si las estaciones existen en el grafo, son consecutivas distintas y su número está en el rango permitido.
 	var mn := int(params.get("min_estaciones", 3))
 	var mx := int(params.get("max_estaciones", 7))
 	if estaciones.size() < mn or estaciones.size() > mx:
