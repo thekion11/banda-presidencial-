@@ -42,3 +42,23 @@ Por persona, en una planilla (una fila):
 - [ ] Anotar en `docs/DECISIONES.md` las decisiones tomadas y su evidencia (cuántas personas, qué se observó), el mismo día.
 - [ ] Repetir la medición de bots con los cambios (`tests/montecarlo.gd`, `tests/informe_bots.gd`) para confirmar el efecto.
 - [ ] Si se cambia el balance, regenerar las pruebas de oro y dejarlo en el commit.
+
+## 6. PROPUESTA (sin implementar): métricas locales con consentimiento para la prueba cerrada
+**Estado: propuesta. Es una mecánica nueva (CLAUDE.md §2, alcance congelado) y la decide el usuario; no se escribió código.** Ya existe un registro local (`game/componentes/registro_prueba.gd`, «Informe de prueba» del menú) con una línea JSON por acción (hora, turno, aprobación, movimientos, fps, memoria), recortado a 1.500 líneas, que el jugador copia a mano. Lo que sigue sería lo mínimo que le falta para contestar las preguntas de §4 y de `docs/DURACION_SESION.md`.
+
+**Qué medir (todo derivable sin datos personales):**
+1. Duración real de cada sesión (abrir app → pasar a segundo plano o cerrar) y semanas jugadas en ella.
+2. Segundos por semana: del inicio del turno a «Terminar semana» (mediana y p90), separados por campaña y gobierno.
+3. Tiempo hasta la primera carta jugada y toques antes de ver el mapa (la regla de ≤ 3 de PR-01).
+4. Abandono: semana y etapa de la última sesión de cada partida, y si terminó el mandato.
+5. Por decisión de evento: segundos hasta elegir y opción elegida (para detectar decisiones sin sentido o que se abandonan).
+6. Uso de las mecánicas: delegaciones, movimientos internos, asesores, coalición y gabinete cambiado (qué se ignora).
+7. Fallos: rechazos del motor por razón (`razon`) y errores de script; fps mínimo y medio por pantalla.
+
+**Dónde:** las acciones del motor ya quedan en `estado.registro_acciones`; los tiempos y las sesiones se anotan en `game/main.gd` y `pantalla_dia.gd` (área de «Diseño visual»), extendiendo `RegistroPrueba.anotar`. Nada en `sim/` (el núcleo sigue determinista y sin reloj).
+
+**Cómo exportar:** sin red y sin permisos: el botón «Copiar informe» existente, más un «Compartir» con el selector del sistema de Android (no pide permisos). Nada se envía solo.
+
+**Consentimiento y privacidad:** pantalla de un toque al primer arranque de la versión de prueba («Guardar métricas de esta prueba en tu teléfono: Sí / No»), desactivable en Ajustes y borrable; sin identificadores (ni ID de publicidad ni de instalación), sin texto libre y sin ubicación. Mientras la app siga sin recopilar ni transmitir nada, la política de privacidad y la declaración de seguridad de datos de Play siguen siendo «ningún dato recopilado» (ver `docs/RIESGOS_PLAY_STORE.md`); si algún día se enviaran, habría que cambiarlas.
+
+**Costo estimado:** medio día para el registro y la pantalla de consentimiento; una prueba de formato (`test_registro_prueba`) para que el informe nunca incluya claves fuera de la lista.
