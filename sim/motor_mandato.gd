@@ -167,6 +167,7 @@ func _abrir_periodo(etapa: String, dias_cerrados: int) -> void:
 	e.turno_actual = 1
 	e.dia_actual = 1
 	e.resultado_final = {}
+	e.encuestas.clear()  # cada periodo parte con su propio historial de encuestas
 	e.ronda_electoral = 1
 	e.promesas_campana.clear()
 	e.decisiones.clear()

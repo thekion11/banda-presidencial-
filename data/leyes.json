@@ -483,6 +483,13 @@
     },
     "nota": "Movimientos internos de la coalición (DISENO_V2 §6); solo en gobierno. Cifras ilustrativas."
   },
+  "encuestas": {
+    "margen_inicial": 4.0,
+    "margen_final": 1.5,
+    "historial_max": 12,
+    "regiones_mostradas": 3,
+    "nota": "Encuestas semanales en campaña y oposición (PR-10, análisis de profundidad H7). intencion = lo que votaría hoy (aprobación, menos la penalización por no comprometerte, más el efecto del rival) con un error de muestreo determinista (sin usar el azar de la partida) que baja de margen_inicial a margen_final a medida que se acerca la elección. Cifras ilustrativas; no son encuestas reales."
+  },
   "bono_movimientos": {
     "tramos": [
       {
