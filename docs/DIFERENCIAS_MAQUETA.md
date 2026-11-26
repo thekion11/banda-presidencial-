@@ -184,4 +184,11 @@ Ninguna acción pasa de 3 toques; lo que se acumula es la secuencia de eventos. 
 - a) no pedir confirmación al terminar la semana cuando los movimientos que quedan no pagan ninguna carta (toca la decisión PR-02);
 - b) mostrar la cámara revisora en la misma página de la votación cuando el resultado de la primera ya está decidido, lo que ahorraría unos 0,7 toques por semana.
 
+### Cabecera y barra del día más cerca de la maqueta (26-nov-2026)
+La diferencia numérica (`docs/comparacion/DIFERENCIA_MAQUETA.md`) mostraba que la cabecera del día ocupaba 111 px frente a unos 82 en la maqueta, lo que corría todo hacia abajo y achicaba el mapa. Cambios:
+- el margen superior fijo de 30 px pasa a seguir la zona segura del teléfono (`Tema.margen_superior()`: la muesca o cámara más 4 px, mínimo 12);
+- los chips de indicadores se compactan (relleno de 3 y 6 px) y la barra inferior también (2 y 4 px). Los botones siguen ≥ 44 px.
+
+Píxeles distintos del día frente a la maqueta: de 43,1 % a 39,2 %. El mapa gana unos 30 px de alto.
+
 Reglas: todo el movimiento respeta Ajustes › «Animaciones y movimiento» y se apaga en modo headless, así que las pruebas miden siempre el estado final. El azar de las partículas es solo visual y no toca la semilla de la partida. Prueba propia: `tests/test_movimiento.gd`.

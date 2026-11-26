@@ -241,6 +241,18 @@ static func perilla(radio: float, relleno: Color, borde: Color) -> ImageTexture:
 	return _cache_perilla[clave]
 
 
+static func margen_superior(minimo: float = 12.0) -> float:
+	## Aire arriba de la pantalla: lo que pida la zona segura del teléfono (cámara, muesca) más 4 px, o `minimo` si no hay
+	## nada que esquivar (modo inmersivo sin muesca, escritorio, pruebas). Antes era un margen fijo de 30 px.
+	var arbol := Engine.get_main_loop() as SceneTree
+	var seguro := DisplayServer.get_display_safe_area()
+	var ventana := DisplayServer.window_get_size()
+	if arbol == null or seguro.size.y <= 0 or ventana.y <= 0:
+		return minimo
+	var por_px := arbol.root.get_visible_rect().size.y / float(ventana.y)  # píxeles del teléfono -> unidades lógicas
+	return maxf(minimo, float(seguro.position.y) * por_px + 4.0)
+
+
 static func pantalla_baja() -> bool:
 	## Teléfono bajo: con ancho lógico 390 (keep_width), un 360×640 queda en 390×693. Las pantallas compactan alturas
 	## fijas (mano, Corrector, hemiciclo, brújula) para que todo quepa y el botón principal quede en pantalla.
