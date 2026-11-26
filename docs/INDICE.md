@@ -5,9 +5,10 @@
 2. **`RESUMEN_EXPERIMENTO.md`**: qué hizo cada sesión, qué arregló y qué descubrió.
 3. **`PRUEBA_CERRADA.md`** y **`GUIA_PRUEBA.md`**: cómo probar el juego con personas y qué registrar (incluye la propuesta de métricas locales).
 4. **`DURACION_SESION.md`**: cuántas sesiones de 20 minutos cuesta un mandato.
-5. **`CHANGELOG.md`**: todo lo hecho hoy, por área.
-6. **`DECISIONES_PENDIENTES.md`**: la tabla completa (D1 a D16, U4 a U10) con costos de cada opción.
-7. **`FIRMA_APK_PRUEBA_CERRADA.md`**, **`RIESGOS_PLAY_STORE.md`**, **`LICENCIAS.md`**: lo necesario para publicar.
+5. **`ESTADO_ACTUAL.md`**: foto generada del proyecto (código, pruebas, datos, cobertura, rendimiento, PR abiertos).
+6. **`CHANGELOG.md`**: todo lo hecho hoy, por área.
+7. **`DECISIONES_PENDIENTES.md`**: la tabla completa (D1 a D16, U4 a U10) con costos de cada opción.
+8. **`GUIA_PROBADOR.md`** (para quien prueba) y **`FIRMA_APK_PRUEBA_CERRADA.md`**, **`RIESGOS_PLAY_STORE.md`**, **`LICENCIAS.md`**: lo necesario para publicar.
 
 ## Reglas y diseño (referencia)
 | Documento | Qué es |

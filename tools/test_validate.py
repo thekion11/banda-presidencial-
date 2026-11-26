@@ -56,6 +56,28 @@ def rotos():
     @f("probabilidad de opción fuera de rango", "probabilidad fuera de (0,1)")
     def _(d): con_decision(d)["opciones"][0]["riesgo"] = {"prob": 0, "efectos": []}
 
+
+    @f("costo de carta negativo", "valor negativo")
+    def _(d): d["cartas"][0]["costo_pa"] = -1
+
+    @f("probabilidad de ministro fuera de rango", "riesgo_escandalo")
+    def _(d): d["ministros"][0]["riesgo_escandalo"] = 1.7
+
+    @f("ventana de disponibilidad invertida", "ventana con inicio mayor que fin")
+    def _(d): d["cartas"][0]["disponibilidad"] = {"anio_desde": 4, "anio_hasta": 2}
+
+    @f("efecto con delta absurdo", "delta absurdo")
+    def _(d): d["cartas"][0]["efectos"] = [{"ind": "fiscal", "delta": 5000}]
+
+    @f("valor no finito", "no finito")
+    def _(d): d["cartas"][0]["efectos"] = [{"ind": "fiscal", "delta": float("inf")}]
+
+    @f("población regional no positiva", "población no positiva")
+    def _(d): d["regiones"][0]["poblacion_miles"] = 0
+
+    @f("evento programado fuera del mandato", "fuera del mandato")
+    def _(d): next(e for e in d["eventos"] if e.get("dia_objetivo") is not None).update({"dia_objetivo": 99999})
+
     @f("diferido sin semanas", "diferido.semanas")
     def _(d): con_decision(d)["opciones"][0]["diferido"] = {"semanas": 0, "efectos": []}
 
