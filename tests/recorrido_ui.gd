@@ -50,6 +50,11 @@ static func recorrer(arbol: SceneTree, visitar: Callable, alto: int = 844) -> vo
 		(cont[0] as Button).pressed.emit()
 		await paso.call("panel nación › continente")
 	dia._abrir_panel("mapa")
+	dia._abrir_urbano()  # mapa urbano de Gran Santiago (vista a pantalla completa)
+	await paso.call("mapa urbano")
+	for h in dia._capa.get_children():
+		if h is ColorRect:
+			h.queue_free()
 	var nombres: Dictionary = main.motor.catalogo_leyes["congreso"]["nombres"]
 	dia._capa.add_child(OverlaysDia.evento({"titulo": "Debate", "hora": "22:00", "descripcion": "x", "escena": {"nombre": "Debate presidencial final", "ronda": 1, "rondas": 3},
 		"opciones": [{"texto": "Una"}, {"texto": "Otra"}]}, func() -> void: pass, nombres, 1, func(_i: int) -> void: pass))

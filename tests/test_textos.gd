@@ -59,7 +59,7 @@ func _auditar(raiz: Node, donde: String) -> void:
 		var corto := t.replace("\n", " ").left(40)
 		_check(_tam(n) >= MINIMO, "%s: «%s» mide %d pt (mín. %d)" % [donde, corto, _tam(n), MINIMO])
 		var r := (n as Control).get_global_rect()  # nada se sale de la pantalla: ancho 390 y el alto del teléfono emulado
-		_check(r.position.x >= -0.5 and r.end.x <= Tema.ANCHO + 0.5, "%s: «%s» se sale de la pantalla (%s)" % [donde, corto, r])
+		_check(_en_scroll(n) or (r.position.x >= -0.5 and r.end.x <= Tema.ANCHO + 0.5), "%s: «%s» se sale de la pantalla (%s)" % [donde, corto, r])
 		_check(_en_scroll(n) or r.end.y <= _alto + 0.5, "%s: «%s» queda bajo el borde inferior (%s, alto %d)" % [donde, corto, r, _alto])
 		for ch in t:
 			if ch.unicode_at(0) >= 0x1F300:

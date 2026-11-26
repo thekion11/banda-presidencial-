@@ -76,9 +76,14 @@ static func crear(motor: MotorTurno, urbano: Dictionary, al_volver: Callable, al
 	UrbanoBase.propias = motor.estado.lineas_jugador
 	UrbanoBase.fecha_iso = Barras.fecha_iso(motor.catalogo_leyes, motor.estado.etapa, motor.estado.turno_actual, motor.estado.dia_actual, motor.estado.ciclo, motor.estado.dias_carrera)
 	var leyenda := LeyendaMetro.new()
+	leyenda.compacta = true  # una fila deslizable y las notas bajo el mapa: el mapa gana alto, como en la maqueta
+	var notas := VBoxContainer.new()
+	notas.add_theme_constant_override("separation", 0)
+	leyenda.notas_aparte = notas
 	leyenda.cambiado.connect(mapa.queue_redraw)
 	col.add_child(leyenda)
 	col.add_child(mapa)
+	col.add_child(notas)
 	var panel := PanelContainer.new()
 	var sb := Tema.caja(Color.WHITE, 22, Tema.BORDE_CLARO, 1)
 	sb.content_margin_bottom = 20
@@ -101,6 +106,7 @@ static func crear(motor: MotorTurno, urbano: Dictionary, al_volver: Callable, al
 				botones[i].add_theme_color_override(e, Tema.TEXTO if sel else Tema.TINTA)
 		mapa.mostrar_metro = int(estado["filtro"]) == 0
 		leyenda.visible = mapa.mostrar_metro
+		notas.visible = mapa.mostrar_metro
 		vista.visible = mapa.mostrar_metro
 		if not mapa.mostrar_metro and mapa.modo_esquema:  # el esquema es solo del Metro: al cambiar de filtro se vuelve al mapa y a las obras
 			mapa.modo_esquema = false
