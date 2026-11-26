@@ -1,5 +1,14 @@
 # Registro de decisiones y consultas aceptadas
 
+**Índice por tema** (cada letra es una sección de este archivo; lo que espera tu decisión está en `docs/DECISIONES_PENDIENTES.md`):
+- **Reglas de trabajo y alcance:** A, E · **Propuestas y consultas:** B, C, F, G, H
+- **Mapa, Metro y urbano:** D · **Carrera política y oposición:** I, N, W, Z (encuestas)
+- **Eventos, decisiones y escenas:** K, L, Q, U · **Mazo, gabinete, coalición y movimientos:** M, R, T, AD (cartas de Estado)
+- **Afiliación y arranque:** S · **Accesibilidad y sensación de juego:** O, V
+- **Balance y bots:** P, AA (dificultad) · **Rendimiento y carga:** X, Y, AE
+- **Calidad: pruebas, datos y validadores:** AB, AC, AE
+
+
 Este archivo reúne **todo lo que fue aceptado**: ideas y órdenes del usuario, y propuestas, dudas y consultas de Claude que el usuario aprobó. Lo mantiene Claude; cada decisión nueva se anota aquí el mismo día. El detalle de cada propuesta vive en `docs/PROPUESTAS.md`; lo que falta en `docs/PENDIENTES_USUARIO.md`.
 
 Origen: **U** = idea u orden del usuario · **C** = propuesta o duda de Claude aceptada por el usuario.
