@@ -351,7 +351,8 @@ func _process(delta: float) -> void:
 	if _vivo == null or not Movimiento.activo() or not is_visible_in_tree():
 		return
 	_t += delta
-	_vivo.queue_redraw()
+	if Movimiento.toca_redibujar(self, delta):
+		_vivo.queue_redraw()
 
 
 func _dibujar_vivo() -> void:

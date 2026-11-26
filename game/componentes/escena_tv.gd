@@ -31,7 +31,8 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	_t += delta
-	queue_redraw()
+	if Movimiento.toca_redibujar(self, delta):
+		queue_redraw()
 
 
 func _draw() -> void:
