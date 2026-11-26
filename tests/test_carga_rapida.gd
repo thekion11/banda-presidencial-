@@ -59,6 +59,32 @@ func _correr() -> void:
 	main.continuar_guardado()
 	await process_frame
 	_check(main.motor != null and main.motor.estado.calcular_huella() == huella2, "una instantánea dañada se ignora")
+	# ciclo de vida de Android: pausa a mitad de semana, cierre abrupto y archivo a medio escribir
+	main.motor = main.motor if main.motor != null else m
+	Bots.jugar_turno(main.motor, "completo", rng)  # cartas jugadas, semana sin cerrar
+	main.guardar()
+	main._notification(Node.NOTIFICATION_APPLICATION_PAUSED)  # la app pasa a segundo plano: guardado + instantánea al día
+	var huella_pausa: String = main.motor.estado.calcular_huella()
+	_check(FileAccess.get_sha256("user://guardado.json") != "", "la pausa deja el guardado")
+	main.motor = null  # el sistema mata la app en segundo plano
+	main.continuar_guardado()
+	await process_frame
+	_check(main.motor != null and main.motor.estado.calcular_huella() == huella_pausa, "pausa a mitad de semana y reanudación: mismo estado")
+	Bots.jugar_turno(main.motor, "completo", rng)  # sigue jugando y la app se cierra de golpe (sin pausa): solo está el guardado de la última acción
+	main.guardar()
+	var huella_abrupta: String = main.motor.estado.calcular_huella()
+	main.motor = null
+	main.continuar_guardado()
+	await process_frame
+	_check(main.motor != null and main.motor.estado.calcular_huella() == huella_abrupta, "cierre abrupto tras acciones: se recupera hasta la última acción guardada")
+	var tmp := FileAccess.open("user://guardado.json.tmp", FileAccess.WRITE)  # escritura interrumpida: queda un .tmp a medias y el guardado anterior intacto
+	tmp.store_string("{\"semilla\": 1, \"entradas\": [")
+	tmp.close()
+	main.motor = null
+	main.continuar_guardado()
+	await process_frame
+	_check(main.motor != null and main.motor.estado.calcular_huella() == huella_abrupta, "un guardado a medio escribir (.tmp) no daña el guardado anterior")
+	DirAccess.remove_absolute(ProjectSettings.globalize_path("user://guardado.json.tmp"))
 	for n in ["guardado.json", "guardado.cache"]:
 		DirAccess.remove_absolute(ProjectSettings.globalize_path("user://" + n))
 		if respaldos.has(n):
