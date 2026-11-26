@@ -65,9 +65,22 @@ func _auditar(raiz: Node, donde: String) -> void:
 			if ch.unicode_at(0) >= 0x1F300:
 				_check(false, "%s: «%s» tiene un emoji" % [donde, corto])
 				break
+		var fuente: Font = n.get_theme_font("normal_font") if n is RichTextLabel else n.get_theme_font("font")
+		for ch in t:  # cada carácter existe en la fuente embebida que lo dibuja (si no, en Android sale de otra fuente o como cuadro)
+			var cp := ch.unicode_at(0)
+			if cp > 127 and ch != "\u00a0" and not _tiene_glifo(fuente, cp):
+				_check(false, "%s: «%s» usa «%s» (U+%04X), que su fuente no tiene" % [donde, corto, ch, cp])
+				break
 		var m := _sin_tilde().search(t)  # palabra completa: «Constitucional» no es «Constitucion»
 		if m != null:
 			_check(false, "%s: «%s» parece sin tilde («%s»)" % [donde, corto, m.get_string(1)])
+
+
+static func _tiene_glifo(f: Font, cp: int) -> bool:
+	var base: Font = f
+	while base is FontVariation:
+		base = (base as FontVariation).base_font
+	return not (base is FontFile) or (base as FontFile).has_char(cp)
 
 
 var _re_tilde: RegEx
