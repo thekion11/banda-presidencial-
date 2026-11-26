@@ -8,9 +8,10 @@ const COLORES_CATEGORIA := {  # mezclas de la paleta congelada (tests/test_palet
 	"vivienda": Color("#3D7EA6"), "comite": Color("#2476B6"), "energia": Color("#D9A441"), "hacienda": Color("#4F8F6B"),
 	"salud": Color("#B5544F"), "educacion": Color("#5873A4"), "seguridad": Color("#556B7F"), "transportes": Color("#3F8E91"),
 	"economia": Color("#A67C3D"), "social": Color("#945360"), "medioambiente": Color("#5E9A4C"), "politica": Color("#6E678A"),
-	"descentralizacion": Color("#4C7FA0"), "obras": Color("#9A7A4C"),
+	"descentralizacion": Color("#4C7FA0"), "obras": Color("#9A7A4C"), "oposicion": Color("#793131"), "estado": Color("#3C4E5E"),
 }
-const NOMBRES_CAT := {"comite": "COMITÉ", "medioambiente": "AMBIENTE", "descentralizacion": "REGIONES", "transportes": "TRANSP."}
+const NOMBRES_CAT := {"comite": "COMITÉ", "medioambiente": "AMBIENTE", "descentralizacion": "REGIONES", "transportes": "TRANSP.",
+	"energia": "ENERGÍA", "educacion": "EDUCACIÓN", "economia": "ECONOMÍA", "politica": "POLÍTICA", "oposicion": "OPOSICIÓN"}  # con tilde: no basta to_upper()
 
 var carta: Dictionary = {}
 var costo: int = 0
@@ -130,8 +131,11 @@ func _gui_input(event: InputEvent) -> void:
 
 
 func _fondo_sin_arte(arte: Rect2, base: Color) -> void:
-	## Respaldo si faltara la ilustración: un panel liso con el color de la categoría (todas las categorías tienen arte; validate_data avisa si no).
-	draw_style_box(Tema.caja(base.darkened(0.35), 9), arte)
+	## Respaldo si faltara la ilustración: panel con el color de la categoría y su nombre al centro, para que la carta nunca
+	## se vea vacía o rota (todas las categorías tienen arte: tests/test_claridad.gd lo comprueba).
+	draw_style_box(Tema.caja_degradada(base.darkened(0.15), base.darkened(0.5), 9), arte)
+	var nom: String = NOMBRES_CAT.get(String(carta.get("categoria", "")), String(carta.get("categoria", "")).to_upper())
+	draw_string(Tema.fuente_titulo(), Vector2(arte.position.x, arte.get_center().y + 5.0), nom, HORIZONTAL_ALIGNMENT_CENTER, arte.size.x, 13, Color(Tema.CREMA, 0.75))
 
 
 func _gema(c: Vector2, r: float) -> void:
