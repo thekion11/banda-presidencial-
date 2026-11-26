@@ -2,7 +2,7 @@ extends SceneTree
 ## Prueba de oro de Fase 0: misma semilla + mismas jugadas = misma huella SHA-256.
 
 
-const ORO := "4456d10c6f51cd0075ec3a26f29b4135948d3ac41c21117975ed655964489df6"  # idéntica en Godot 4.3 y 4.7.2; si el cambio es intencional, actualízala
+const ORO := "14ab0a6405c04a83502edb0359fbb194473a1de9843a8c62d9767d13c90e940d"  # idéntica en Godot 4.3 y 4.7.2; si el cambio es intencional, actualízala
 
 
 func _init() -> void:

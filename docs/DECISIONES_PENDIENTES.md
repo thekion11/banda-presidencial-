@@ -15,6 +15,8 @@ Una sola tabla con lo que **no** puede decidir ningún agente: cada fila trae la
 | D8 | **Más eventos anuales en los años 2 a 4** (38 de 54 programados caen en el año 1) | Contenido nuevo: cuenta pública, incendios, receso legislativo (≈ 12 eventos); costo medio | Hacerlo si los testers sienten vacío después del año 1 | §AC |
 | D9 | **Noche electoral y carta que sigue al dedo** (propuestas de la sesión visual) | Cambian cómo se juega; mecánicas/pantallas nuevas | Requiere tu autorización (alcance congelado) | — |
 | D10 | **Regla «solo se guarda semilla, partido e historial»** y la instantánea de carga | a) mantener la caché desechable (hoy). b) borrar `sim/instantanea.gd`: la carga de un mandato pasa de 12 ms a 130-200 ms | a), la fuente de verdad no cambia | §Y |
+| D14 | **Corrector para leyes rechazadas** (hoy solo 7 de 1.964 cartas ofrecen versión viable o por tramos; una ley rechazada pierde capital y la carta) | a) dejar. b) «reingresar una versión reducida» tras una derrota: mecánica nueva, costo medio | Esperar la prueba cerrada: solo el 5 % de las leyes se rechaza | §AF |
+| D15 | **Cohesión con desgaste** (aplicado: −1,85/semana; antes estaba saturada en 100) | Mantener, revertir a +0,2 o ajustar (−1,0 casi no cambia nada; −2,0 la deja en 47) | Mantener y revisar con la prueba cerrada | §AF |
 
 ## B. Contenido y datos
 | # | Decisión | Opciones y costo | Recomendación |
