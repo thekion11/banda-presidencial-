@@ -66,3 +66,24 @@ Tipo `ley_interpretativa`: 4/7 de los en ejercicio (29/89), con cita del art. 66
 | sin_nada_v2 | 0 % | 34,3 | 1.418 | −52 % |
 
 Lectura: los asesores dejaron de ser dominantes (de −32 % a −11 %); la delegación y los movimientos internos pesan ahora ≈ 30 % cada uno (antes −18 % y −5 %), es decir, tienden a ser dominantes y conviene revisarlos; la coalición y el bono por aprobación siguen sin efecto medible con este bot (el bot no asigna cuotas y casi nunca llega a 60 % de aprobación). Pendiente de decisión de diseño: o se les da una función real (cuotas visibles, bono más bajo) o se retiran.
+
+
+## Actualización del 26-nov-2026 (main b1c8677)
+Medición con bots sobre el juego actual (director de eventos v2, coalición y bono con función real, encuestas, mano con cartas reales sorteadas sin reposición). 80 partidas por combinación, semillas 1000-1079; «gana» = gana la elección, «crisis» = cae en crisis de gobierno.
+
+| política | dificultad | gana | crisis | completa el mandato | aprobación final |
+|---|---|---|---|---|---|
+| azar | fácil | 100 % | 25 % | 75 % | 23,4 |
+| azar | normal | 38 % | 15 % | 23 % | 21,1 |
+| azar | difícil | 3 % | 0 % | 3 % | 28,1 |
+| humano | fácil | 100 % | 4 % | 96 % | 31,2 |
+| humano | normal | 89 % | 4 % | 85 % | 31,6 |
+| humano | difícil | 23 % | 0 % | 23 % | 34,6 |
+| codicioso | fácil | 100 % | 8 % | 93 % | 28,0 |
+| codicioso | normal | 96 % | 6 % | 90 % | 27,3 |
+| codicioso | difícil | 48 % | 4 % | 44 % | 26,5 |
+| completo | fácil | 100 % | 0 % | 100 % | 54,4 |
+| completo | normal | 96 % | 0 % | 96 % | 54,1 |
+| completo | difícil | 48 % | 0 % | 48 % | 53,6 |
+
+Lectura: de normal a difícil hay un escalón (≈ 5,7 puntos de golpe: −3,5 de aprobación inicial y +2,2 de umbral). Los remedios probados (umbral de normal +0,7; ruido de elección ±4) no mueven a quien juega bien; la decisión sobre la tasa de victoria deseada en normal queda para después de las pruebas con personas (`docs/DECISIONES.md` §AA). Ablación (n=16-24): sin delegación −30 %, sin internos −22 a −32 %, sin mano continua −25 a −32 % (y 43 % de crisis), sin asesores −12 %, sin coalición −7 %, sin bono −5 %. Reproducir: `tests/montecarlo.gd`, `tests/ablacion.gd`, `tests/informe_bots.gd`.

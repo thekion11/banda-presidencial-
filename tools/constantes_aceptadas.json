@@ -1,0 +1,92 @@
+{
+ "motivo": {
+  "redondeos": "0.1, 0.01, 0.0001, 100000000.0, 1000000.0, 10001, 10000: precisión de presentación, huellas estables y ruido determinista de encuestas (no es balance)",
+  "algoritmos": "2166136261/16777619 (FNV-1a), 365.0 y 86400 (días y segundos), 32/127 (caracteres de control), 40 (pruebas por carta real que se necesitan), 64 (largo de un SHA-256), 26/30 (largo máximo de nombres de estación y línea)",
+  "valores_por_defecto": "estado_simulacion.gd: indicadores, semilla, duración y movimientos que existen antes de cargar el partido y data/leyes.json (se reemplazan al configurar); grafo_trazado.gd: valores por defecto de parámetros que el JSON siempre trae",
+  "constantes_de_forma": "50.0: punto neutro de una escala 0-100 (satisfacción de un aliado, indicadores, aprobación del rival); 5.0 en motor_obras.gd: las 5 fases de una obra; 155 y 50 en motor_legal.gd: tamaño de las cámaras si el dato falta (data/leyes.json siempre lo trae); 1.0e6 y 1000.0: unidades (millones, miles)"
+ },
+ "aceptadas": {
+  "datos.gd": [
+   "64"
+  ],
+  "director_eventos.gd": [
+   "52",
+   "86400"
+  ],
+  "encuestas.gd": [
+   "0.1",
+   "10001"
+  ],
+  "estado_simulacion.gd": [
+   "1000000.0",
+   "1460",
+   "16",
+   "20.0",
+   "20260415",
+   "45.0",
+   "55000.0",
+   "65.0",
+   "67.0",
+   "85.0",
+   "90.0"
+  ],
+  "grafo_trazado.gd": [
+   "0.001",
+   "0.1",
+   "0.15",
+   "1.0e9",
+   "10.0",
+   "120",
+   "200"
+  ],
+  "huella.gd": [
+   "100000000.0",
+   "16777619",
+   "2166136261"
+  ],
+  "motor_cartas.gd": [
+   "0.0001",
+   "127",
+   "15",
+   "26",
+   "30",
+   "32",
+   "365.0",
+   "40"
+  ],
+  "motor_coalicion.gd": [
+   "0.01",
+   "50.0"
+  ],
+  "motor_eventos.gd": [
+   "50.0"
+  ],
+  "motor_legal.gd": [
+   "0.000001",
+   "1000.0",
+   "155",
+   "50"
+  ],
+  "motor_mandato.gd": [
+   "0.01",
+   "50.0"
+  ],
+  "motor_movimientos.gd": [
+   "0.0001",
+   "0.01"
+  ],
+  "motor_obras.gd": [
+   "5.0"
+  ],
+  "motor_sectra.gd": [
+   "1.0e6"
+  ],
+  "motor_turno.gd": [
+   "0.01",
+   "50.0"
+  ],
+  "regiones.gd": [
+   "10001"
+  ]
+ }
+}

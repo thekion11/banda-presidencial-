@@ -71,7 +71,8 @@ func _calcular_titular(categoria: String) -> String:
 		var mi: Dictionary = _m.catalogo_ministros[id]
 		if String(mi["categoria_afin"]) != String(_m.catalogo_leyes["gabinete"]["categorias_alias"].get(categoria, categoria)) and String(mi["categoria_afin"]) != categoria:
 			continue
-		var pts := float(mi["bono_ejecucion"]) + 0.1 * float(mi["reduccion_costo_pa"]) - 0.1 * float(mi["riesgo_escandalo"])
+		var w: Dictionary = _m.catalogo_leyes["gabinete"]["titular"]
+		var pts := float(mi["bono_ejecucion"]) + float(w["peso_reduccion_costo"]) * float(mi["reduccion_costo_pa"]) - float(w["peso_riesgo_escandalo"]) * float(mi["riesgo_escandalo"])
 		if pts > mejor_p or (is_equal_approx(pts, mejor_p) and id < mejor):
 			mejor_p = pts
 			mejor = id

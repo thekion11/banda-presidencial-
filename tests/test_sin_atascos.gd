@@ -29,27 +29,38 @@ func _init() -> void:
 	for p in datos["ideologia"]["preguntas"]:
 		resp.append(p["opciones"][1])
 	var etapas := {}
-	for sd in range(200, 212):
-		var politica: String = ["pasivo", "azar", "codicioso", "completo"][sd % 4]
-		var m := Partida.crear(datos, sd, GeneradorPartido.construir_partido("S", "SSS", "metropolitana", resp, datos["ideologia"]))
-		var rng := RandomNumberGenerator.new()
-		rng.seed = sd
-		var tope := 1500
-		while tope > 0 and m.estado.ciclo <= 4 and MotorTurno.ETAPAS_JUEGO.has(m.estado.etapa):  # hasta 4 periodos de la carrera
-			tope -= 1
-			etapas[m.estado.etapa] = true
-			if m.estado.eleccion_pendiente(int(datos["leyes"]["hemiciclo"]["semanas_campana"]) ):
-				var r := m.resolver_eleccion_presidencial()
-				if bool(r["electo"]) or bool(r["balotaje"]):
-					m.iniciar_turno()
-				continue
-			_revisar(m, "semilla %d (%s)" % [sd, politica])
-			Bots.jugar_turno(m, politica, rng)
-			m.terminar_turno()
-			if not MotorTurno.ETAPAS_JUEGO.has(m.estado.etapa) and m.estado.etapa != "campana":
-				if bool(m.continuar_carrera().get("ok", false)):  # la carrera sigue: oposición o campaña nueva
-					m.iniciar_turno()
-		_check(tope > 0, "semilla %d: la partida no avanza (se agotó el tope de turnos, ciclo %d)" % [sd, m.estado.ciclo])
+	var cfg_af: Dictionary = datos["leyes"]["afiliacion"]
+	var combos := 0
+	for dif in ["facil", "normal", "dificil"]:
+		for afil in ["propio", "independiente", "existente"]:
+			for rep in range(2):
+				var sd := 200 + combos * 2 + rep
+				combos += 1
+				var politica: String = ["pasivo", "azar", "codicioso", "completo"][sd % 4]
+				var base: Dictionary = datos["coalicion"][sd % datos["coalicion"].size()] if afil == "existente" else {}
+				var rr: Array[Dictionary] = resp.slice(0, 3) if afil == "existente" else resp
+				var partido := GeneradorPartido.construir_partido_afiliado(afil, base, "S", "SSS", "metropolitana", rr, datos["ideologia"], cfg_af)
+				partido["dificultad"] = dif
+				var etiqueta := "%s/%s/%s semilla %d" % [dif, afil, politica, sd]
+				var m := Partida.crear(datos, sd, partido)
+				var rng := RandomNumberGenerator.new()
+				rng.seed = sd
+				var tope := 1500
+				while tope > 0 and m.estado.ciclo <= 3 and MotorTurno.ETAPAS_JUEGO.has(m.estado.etapa):  # hasta 3 periodos de la carrera
+					tope -= 1
+					etapas[m.estado.etapa] = true
+					if m.estado.eleccion_pendiente(int(datos["leyes"]["hemiciclo"]["semanas_campana"])):
+						var r := m.resolver_eleccion_presidencial()
+						if bool(r["electo"]) or bool(r["balotaje"]):
+							m.iniciar_turno()
+						continue
+					_revisar(m, etiqueta)
+					Bots.jugar_turno(m, politica, rng)
+					m.terminar_turno()
+					if not MotorTurno.ETAPAS_JUEGO.has(m.estado.etapa) and m.estado.etapa != "campana":
+						if bool(m.continuar_carrera().get("ok", false)):  # la carrera sigue: oposición o campaña nueva
+							m.iniciar_turno()
+				_check(tope > 0, "%s: la partida no avanza (se agotó el tope de turnos, ciclo %d)" % [etiqueta, m.estado.ciclo])
 	_check(etapas.has("campana") and etapas.has("gobierno") and etapas.has("oposicion"), "se recorrieron campaña, gobierno y oposición (%s)" % str(etapas.keys()))
 	print("test_sin_atascos: %d turnos revisados" % _turnos)
 	print("test_sin_atascos: ", "OK" if _fallos == 0 else "FALLO")
