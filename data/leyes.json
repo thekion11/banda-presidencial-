@@ -418,6 +418,7 @@
         "eficaz": {"nombre": "Máxima eficacia", "cobertura": 0.5, "ejecucion": 8.0, "ahorro": 1.5, "escandalo": 1.0, "afinidad": 0.3}
       }
     },
+    "titular": {"peso_reduccion_costo": 0.1, "peso_riesgo_escandalo": 0.1, "nota": "Quién lleva las cartas de un área: bono_ejecucion + peso_reduccion_costo x reduccion_costo_pa - peso_riesgo_escandalo x riesgo_escandalo (desempata el id)."},
     "tamano": 25,
     "anios_mandato": 4,
     "categorias_siempre": [
