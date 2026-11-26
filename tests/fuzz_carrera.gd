@@ -110,6 +110,8 @@ func _init() -> void:
 		var m := Partida.crear(_datos, semilla, GeneradorPartido.construir_partido("P", "P", "metropolitana", resp, _datos["ideologia"]))
 		var ctx := "semilla %d" % semilla
 		var pasos := 0
+		var ciclo_prev: int = m.estado.ciclo
+		var dias_prev: int = m.estado.dias_carrera
 		while pasos < 700 and m.estado.ciclo < 4:
 			pasos += 1
 			etapas_vistas[m.estado.etapa] = true
@@ -118,6 +120,9 @@ func _init() -> void:
 				_snapshot(m, "%s paso %d (%s)" % [ctx, pasos, m.estado.etapa])
 				_dañar(m, rng, ctx)
 			_check(["campana", "gobierno", "oposicion", "fin_mandato", "crisis", "derrota_electoral"].has(m.estado.etapa), "%s: etapa inesperada «%s»" % [ctx, m.estado.etapa])
+			_check(m.estado.ciclo >= ciclo_prev and m.estado.dias_carrera >= dias_prev, "%s: ciclo o dias_carrera retrocedieron (ciclo %d -> %d, días %d -> %d)" % [ctx, ciclo_prev, m.estado.ciclo, dias_prev, m.estado.dias_carrera])
+			ciclo_prev = m.estado.ciclo
+			dias_prev = m.estado.dias_carrera
 			for k in m.estado.indicadores:
 				_check(is_finite(float(m.estado.indicadores[k])), "%s: indicador %s no finito" % [ctx, k])
 		ciclos_max = maxi(ciclos_max, m.estado.ciclo)

@@ -2,9 +2,13 @@ extends SceneTree
 ## Fuzz de UI: juega cartas, toca regiones, delega, abre paneles y termina semanas muy seguidos (a veces sin esperar ningún cuadro)
 ## con las animaciones encendidas (Movimiento.forzado = 1). Cubre carreras como «dos cartas seguidas dejan la onda del mapa sin pos».
 ## Las fallas de script salen como «SCRIPT ERROR» en la salida: ejecutarlo con `| grep -E "FUZZ UI|SCRIPT ERROR"`.
-## Uso: godot --headless --path . -s tests/fuzz_ui.gd -- [partidas] [semilla_inicial]
+## Uso: godot --headless --path . -s tests/fuzz_ui.gd -- [partidas] [semilla_inicial] [modo]
+## modo: normal (por defecto) | reducir (Ajustes.reducir) | grande (Ajustes.texto_grande) | todo (reducir + texto grande + daltónico).
+## Además avisa («AVISO UI») de los textos visibles que se salen del ancho de la pantalla (390 px). Son avisos, no fallos. OJO: en headless la ventana mide 64x64 y el diseño se descuadra
+## (falsos avisos); para medir desbordes usa xvfb: xvfb-run -a godot --path . --rendering-method gl_compatibility --resolution 390x844 -s tests/fuzz_ui.gd -- 6 400 todo
 
 var _fallos: int = 0
+var _avisos: int = 0
 
 
 func _check(cond: bool, msg: String) -> void:
@@ -21,13 +25,20 @@ func _correr() -> void:
 	var args := OS.get_cmdline_user_args()
 	var n := int(args[0]) if args.size() > 0 else 6
 	var s0 := int(args[1]) if args.size() > 1 else 400
+	var modo := String(args[2]) if args.size() > 2 else "normal"
+	Ajustes.reducir = modo == "reducir" or modo == "todo"
+	Ajustes.texto_grande = modo == "grande" or modo == "todo"
+	Ajustes.daltonico = modo == "todo"
 	Tutorial.ruta = "user://preferencias_fuzz.json"
 	Movimiento.forzado = 1
 	for i in range(n):
 		await _una(s0 + i)
 	DirAccess.remove_absolute(ProjectSettings.globalize_path(Tutorial.ruta))
 	Movimiento.forzado = -1
-	print("FUZZ UI %s (%d partidas, %d fallos)" % ["OK" if _fallos == 0 else "CON FALLOS", n, _fallos])
+	Ajustes.reducir = false
+	Ajustes.texto_grande = false
+	Ajustes.daltonico = false
+	print("FUZZ UI %s (modo %s, %d partidas, %d avisos de desborde, %d fallos)" % ["OK" if _fallos == 0 else "CON FALLOS", modo, n, _avisos, _fallos])
 	quit(0 if _fallos == 0 else 1)
 
 
@@ -107,5 +118,34 @@ func _una(semilla: int) -> void:
 			await process_frame
 	for _k in range(5):
 		await process_frame  # deja correr las animaciones pendientes: una onda sin «pos» falla en el _draw
+	await create_timer(1.2).timeout  # que terminen las animaciones de entrada antes de medir
+	_desbordes(dia, semilla)
 	main.queue_free()
 	await process_frame
+
+
+func _visible_recortado(c: Control) -> Rect2:
+	## Rectángulo del control ya recortado por los contenedores que cortan su contenido (ScrollContainer o clip_contents).
+	var r := c.get_global_rect()
+	var p := c.get_parent()
+	while p is Control:
+		var pc := p as Control
+		if pc is ScrollContainer or pc.clip_contents:
+			r = r.intersection(pc.get_global_rect())
+		p = p.get_parent()
+	return r
+
+
+func _desbordes(dia: Node, semilla: int) -> void:
+	if not is_instance_valid(dia):
+		return
+	var ancho := float(root.get_visible_rect().size.x)
+	for l in dia.find_children("*", "Label", true, false):
+		var c := l as Label
+		if c.text == "" or not c.is_visible_in_tree():
+			continue
+		var r := _visible_recortado(c)
+		if r.size.x > 1.0 and (r.end.x > ancho + 1.0 or r.position.x < -1.0):
+			_avisos += 1
+			if _avisos <= 6:
+				print("AVISO UI: semilla %d, texto «%s» fuera del ancho (%s)" % [semilla, c.text.left(40), str(r)])
