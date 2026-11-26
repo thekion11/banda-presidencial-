@@ -30,8 +30,10 @@
 | `FORMATO_GUARDADO.md` | Formato del guardado, versiones y qué se rompe al cambiar datos |
 | `DATOS.md` | Fuentes, licencias y datos por verificar |
 | `COBERTURA_GAME.md` | Funciones de `game/` que ninguna prueba ejercita |
+| `REVISION_CODIGO.md`, `REVISION_PR8.md` | Revisión de código de `sim/` y revisión cruzada de las pruebas del PR #8 |
 | `HIGIENE_REPO.md` | Archivos huérfanos, documentos antiguos y ramas |
 | `ANDROID.md` | Cómo compilar para Android |
+| `RENDERIZADORES.md` | Vulkan («mobile») frente a OpenGL («gl_compatibility»): qué se pudo medir y qué se recomienda |
 | `MEDICION_TELEFONO.md` | Pasos con `adb` para medir fps y RAM en un teléfono real y comprobar el determinismo |
 
 ## Balance y calidad

@@ -171,6 +171,22 @@ def rangos_leyes() -> int:
     return fallos
 
 
+def version_divergente() -> int:
+    """El chequeo de versión debe detectar que las tres copias divergen."""
+    from check_version import problemas  # noqa: E402
+    ok = {"project": "1.0", "preset": "1.0", "datos": "1.0", "codigo": 2}
+    fallos = 0
+    if problemas(ok):
+        print("FALLO: una versión coherente se rechazó")
+        fallos += 1
+    for nombre, cambio in (("preset distinto", {"preset": "0.1.0"}), ("version.json distinto", {"datos": "0.9"}), ("código 0", {"codigo": 0}), ("sin versión", {"project": None})):
+        if not problemas({**ok, **cambio}):
+            print(f"FALLO: «{nombre}» no se detectó")
+            fallos += 1
+    print(f"test_validate (versión): 4 divergencias probadas, {fallos} fallos")
+    return fallos
+
+
 def main() -> int:
     base = cargar_datos()
     validar_referencias(copy.deepcopy(base))  # con los datos reales no debe fallar
@@ -190,6 +206,7 @@ def main() -> int:
     print(f"test_validate: {len(rotos())} datos rotos probados, {fallos} fallos")
     fallos += fuzz_tipos()
     fallos += rangos_leyes()
+    fallos += version_divergente()
     return 1 if fallos else 0
 
 

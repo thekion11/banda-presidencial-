@@ -389,3 +389,12 @@ Lección de proceso: `test_sectra` armaba el guardado a mano sin `version` y dej
 
 ## BE. Estado generado del proyecto (26-nov-2026, cola 11)
 `tools/estado_proyecto.py` genera `docs/ESTADO_ACTUAL.md` (líneas de `sim/` y `game/`, pruebas, validadores, cartas, eventos, tamaño de datos, decisiones pendientes, cobertura de funciones y p99 leídos de sus secciones registradas, y PR abiertos con `gh`). Corre en el CI como paso no bloqueante (`continue-on-error`) y sube el archivo como artefacto de 14 días; el archivo del repositorio se regenera a mano con el mismo comando antes de entregar.
+
+## BF. Cola 13: APK real del CI, versión única y respaldo (26-nov-2026)
+- **APK del CI (Godot 4.7.2):** `compileSdk 36`, `minSdk 24`, `targetSdk 36`, sin permisos, vertical, Vulkan **no** requerido, 40 MB (24 MB de bibliotecas arm64). Corrige el primer análisis (hecho sobre un APK local viejo): no hay que cambiar el preset para el `targetSdk`. `tools/auditar_apk.py` ahora imprime la alineación de páginas de cada `.so` (16 KB) en el CI.
+- **Renderizador:** `docs/RENDERIZADORES.md`. «mobile» no se puede medir en el entorno (sin Vulkan); todo lo probado es `gl_compatibility`; recomendación: pasar a `gl_compatibility` antes de la prueba cerrada (decisión del usuario).
+- **Versión única:** `config/version` de `project.godot` es la fuente; `export_presets.cfg` y `data/version.json` (escrito por `tools/generar_version.py`) deben coincidir (`tools/check_version.py`, en el CI y `run_all_tests.sh`, con 4 casos de divergencia en `test_validate`). Número para la prueba cerrada: **`0.9.0-prueba1`, código Android 1**; cada APK nuevo que se reparta sube el código (2, 3…) y el sufijo (`prueba2`…).
+- **Respaldo del guardado:** `tests/test_respaldo_guardado.gd` (principal dañado + respaldo válido se recupera; ambos dañados dan aviso y partida nueva; un respaldo dañado no reemplaza a un guardado bueno; guardar() deja el anterior como respaldo y ningún `.tmp`; un respaldo de otra versión de los datos no se usa).
+
+## BG. Revisión cruzada del PR #8 (26-nov-2026, cola 13)
+`docs/REVISION_PR8.md`: los 12 fuzz del CI pasan en ≈ 90 s en total; ninguna depende de tiempo, red, orden ni azar global; `user://` se aísla por prueba en `run_all_tests.sh` pero **no en los pasos del `ci.yml`** (recomendado igualar). No hay duplicados reales y no hace falta recortar: el único candidato (≈ 7 s) es `fuzz_propiedades`.

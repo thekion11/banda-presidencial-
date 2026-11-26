@@ -21,6 +21,7 @@ paso "validate_tipos" python3 tools/validate_tipos.py
 paso "check_presupuesto" python3 tools/check_presupuesto.py
 paso "validar_textos" python3 tools/validar_textos.py
 paso "check_entradas" python3 tools/check_entradas.py
+paso "check_version" python3 tools/check_version.py
 paso "api_documentada" python3 tools/generar_api.py --verificar
 paso "test_validate" python3 tools/test_validate.py
 paso "validar_metro" python3 tools/validar_metro.py --verificar

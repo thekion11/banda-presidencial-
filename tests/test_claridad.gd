@@ -124,6 +124,15 @@ func _correr() -> void:
 	DirAccess.remove_absolute(ProjectSettings.globalize_path(Tutorial.ruta))
 	# cifras con punto de miles, como en la maqueta («+1.200», «US$1.900 M»)
 	_check(Tema.miles(1200) == "1.200" and Tema.miles(999) == "999" and Tema.miles(-15400) == "-15.400" and Tema.miles(1234567) == "1.234.567", "Tema.miles pone punto de miles")
+	var cats := {}
+	for c in Datos.cargar_todo()["cartas"]:
+		cats[String(c.get("categoria", ""))] = true
+	for cat in cats.keys():  # cada sector de las cartas: color propio, ilustración y cinta con tildes que cabe en 62 px
+		_check(CartaUI.COLORES_CATEGORIA.has(cat), "la categoría «%s» tiene color propio" % cat)
+		_check(ResourceLoader.exists("res://game/arte/cartas/%s.jpg" % cat), "la categoría «%s» tiene ilustración" % cat)
+		var nom: String = CartaUI.NOMBRES_CAT.get(cat, cat.to_upper())
+		_check(not RegEx.create_from_string("(EDUCACION|POLITICA|ENERGIA|ECONOMIA|OPOSICION|COMITE)$").search(nom), "la cinta de «%s» lleva tilde (%s)" % [cat, nom])
+		_check(Tema.fuente_texto(800).get_string_size(nom, HORIZONTAL_ALIGNMENT_LEFT, -1, 10).x <= 62.0, "la cinta de «%s» cabe en la carta" % cat)
 	_check(Tema.dec(3.5) == "3,5" and Tema.dec(57.44) == "57,4" and Tema.dec(-0.25, 2) == "-0,25", "Tema.dec usa coma decimal")
 	if _fallos == 0:
 		print("CLARIDAD OK")
