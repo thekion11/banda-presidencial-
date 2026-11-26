@@ -57,6 +57,16 @@ func _correr() -> void:
 	await _cuadros(1)
 	corr = dia._lbl_corrector.get_parsed_text()
 	_check(corr.contains("delega esta carta"), "sin movimientos en gobierno se ofrece delegar (%s)" % corr)
+	# crisis: con la aprobación bajo el umbral, la cabecera cuenta las semanas que quedan antes de la caída
+	var din: Dictionary = main.datos["leyes"]["dinamica"]
+	est.indicadores["aprobacion"] = float(din["umbral_crisis_aprobacion"]) - 1.0
+	est.semanas_en_crisis = 1
+	dia._refrescar()
+	var quedan := int(din["semanas_crisis_para_caida"]) - 1
+	_check(dia._r["fecha"].text == "Crisis: caes en %d semanas" % quedan, "la cabecera muestra la cuenta regresiva de la crisis (%s)" % dia._r["fecha"].text)
+	est.indicadores["aprobacion"] = 50.0
+	dia._refrescar()
+	_check(not dia._r["fecha"].text.begins_with("Crisis"), "sin crisis la cabecera vuelve a la fecha")
 	# 0 cartas: la zona de la mano lo dice y el Corrector propone terminar la semana
 	est.mano.clear()
 	dia._refrescar()

@@ -171,6 +171,7 @@ Cada estado dice qué pasa y ofrece una acción viable, nunca un «no» seco. Pr
 - **Sin movimientos:** el Corrector lo dice. En gobierno ofrece delegar la carta (no gasta movimientos) o terminar la semana; en campaña, terminar la semana, porque se renuevan al empezar la próxima.
 - **Sin cartas:** la zona de la mano explica que al empezar la próxima semana entran cartas nuevas, y el Corrector sugiere revisar el Comité, el Congreso o el gabinete. Antes la zona quedaba en blanco.
 - **Guardado dañado:** el juego lo aparta (`guardado_descartado.json`) y vuelve al menú con el aviso «Empieza una partida nueva». Esto ya estaba en main, con la validación de la sesión del motor.
+- **Crisis:** con la aprobación bajo el umbral de `leyes.json` (12 %), el gobierno cae al completar 3 semanas seguidas (`MotorMandato.evaluar_crisis`). La interfaz no lo mostraba; ahora la fecha de la cabecera cambia, en coral, por «Crisis: caes en N semanas», y al cerrar cada semana en crisis un aviso lo explica. Propuesto por la sesión del motor; es información que ya existía, no una mecánica nueva. Captura: `e_crisis.png`.
 - **Datos faltantes** (instalación dañada): antes de cargar se comprueba que estén todos los archivos. Si falta alguno, se dice cuál y se ofrece actualizar o reinstalar el juego, en vez de un error de script.
 
 ### Conteo de toques (26-nov-2026, `tests/medir_toques.gd`)

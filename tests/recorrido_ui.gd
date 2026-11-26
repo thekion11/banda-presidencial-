@@ -45,6 +45,10 @@ static func recorrer(arbol: SceneTree, visitar: Callable, alto: int = 844) -> vo
 	for panel in ["comite", "congreso", "gabinete", "nacion"]:
 		dia._abrir_panel(panel)
 		await paso.call("panel " + panel)
+	var cont: Array = dia._zona_panel.find_children("*", "Button", true, false).filter(func(b: Button) -> bool: return b.text == "Continente")
+	if not cont.is_empty():  # Nación › Continente: mapa de Sudamérica con las relaciones (PR-06c)
+		(cont[0] as Button).pressed.emit()
+		await paso.call("panel nación › continente")
 	dia._abrir_panel("mapa")
 	var nombres: Dictionary = main.motor.catalogo_leyes["congreso"]["nombres"]
 	dia._capa.add_child(OverlaysDia.evento({"titulo": "Debate", "hora": "22:00", "descripcion": "x", "escena": {"nombre": "Debate presidencial final", "ronda": 1, "rondas": 3},

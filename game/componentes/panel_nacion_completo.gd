@@ -38,7 +38,7 @@ static func _selector(pn: PanelNacion, motor: MotorTurno) -> Control:
 		fila.add_child(b)
 	var cont := MapaContinente.new()
 	cont.size_flags_vertical = Control.SIZE_EXPAND_FILL
-	cont.custom_minimum_size = Vector2(0, 470)
+	cont.custom_minimum_size = Vector2(0, 400 if Tema.pantalla_baja() else 470)  # en teléfono bajo deja sitio a la línea del país y al evento
 	cont.visible = false
 	var vec: Dictionary = Datos.leer_json("res://data/vecinos.json")
 	for iso in vec["paises"].keys():
