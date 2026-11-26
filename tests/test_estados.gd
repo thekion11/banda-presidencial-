@@ -67,6 +67,21 @@ func _correr() -> void:
 	est.indicadores["aprobacion"] = 50.0
 	dia._refrescar()
 	_check(not dia._r["fecha"].text.begins_with("Crisis"), "sin crisis la cabecera vuelve a la fecha")
+	# corte de legado: cuánto costarán las promesas pendientes y cuántas semanas faltan
+	est.promesas_campana.clear()
+	for k in range(3):
+		est.promesas_campana.append({"titulo": "Promesa %d" % k, "cumplida": false, "carta_id": "x%d" % k})
+	est.turno_actual = 100
+	var lg: Dictionary = main.datos["leyes"]["legado"]
+	var corte := Barras.legado(est, lg)
+	var cap := Tema.dec(float(lg["penal_capital"]) * 3.0)
+	_check(int(corte.get("faltan", -1)) == int(lg["turnos_evaluacion"][0]) - 100 and String(corte.get("texto", "")).contains("−" + cap), "el corte de legado dice cuánto cuesta y cuándo (%s)" % corte)
+	var panel := PanelesDia.congreso(main.motor)
+	root.add_child(panel)
+	await _cuadros(1)
+	_check(_textos(panel).contains("Corte de legado"), "el panel de metas de legado avisa del corte")
+	panel.queue_free()
+	est.promesas_campana.clear()
 	# 0 cartas: la zona de la mano lo dice y el Corrector propone terminar la semana
 	est.mano.clear()
 	dia._refrescar()

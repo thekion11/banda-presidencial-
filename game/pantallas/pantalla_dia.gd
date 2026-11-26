@@ -180,7 +180,7 @@ func _jugar() -> void:
 	_leer_reposicion(n_reg)
 	var msg := "Carta jugada."
 	if r.get("promesa", false):
-		msg = "Promesa registrada: +%.1f de aprobación" % float(r["delta_aprobacion"])
+		msg = "Promesa registrada: +%s de aprobación" % Tema.dec(float(r["delta_aprobacion"]))
 	elif r.get("escandalo", false):
 		msg = "Escándalo ministerial: pierdes aprobación y capital."
 	elif r.get("propuesta") != null:
@@ -244,8 +244,11 @@ func _terminar_turno() -> void:
 		return
 	_cola_eventos = OverlaysDia.eventos_de_votaciones(motor)
 	var cri := Barras.crisis(est, datos["leyes"]["dinamica"])
+	var corte := Barras.legado(est, datos["leyes"]["legado"])
 	if not cri.is_empty():
 		_avisar(String(cri["largo"]))
+	elif not corte.is_empty() and int(corte["faltan"]) <= 4:  # se acerca el corte de legado: cuánto costarán las promesas pendientes
+		_avisar(String(corte["texto"]))
 	_cola_eventos.append_array(nuevos)
 	_refrescar()
 	TelonSemana.mostrar(_capa, antes, [String(_r["dia"].text), String(_r["fecha"].text)], ind_antes, est.indicadores, est.etapa == "oposicion", _siguiente_evento, est.encuestas if est.etapa in ["campana", "oposicion"] else [], datos["regiones"], sem)

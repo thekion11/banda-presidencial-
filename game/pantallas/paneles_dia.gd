@@ -99,6 +99,9 @@ static func congreso(motor: MotorTurno, al_abrir_obra: Callable = Callable(), al
 		col.add_child(bo)
 	if not est.promesas_campana.is_empty():
 		col.add_child(Tema.etiqueta("Metas de legado (promesas de campaña)", 15, Tema.TEXTO, true))
+		var corte := Barras.legado(est, motor.catalogo_leyes["legado"])  # cuánto cuestan las pendientes en el próximo corte
+		if not corte.is_empty():
+			col.add_child(Tema.etiqueta(String(corte["texto"]), 12, Tema.mal() if int(corte["faltan"]) <= 8 else Tema.TEXTO_SUAVE, false, 600))
 		for pr in est.promesas_campana:
 			col.add_child(Tema.etiqueta(("Cumplida · " if pr["cumplida"] else "Pendiente · ") + String(pr["titulo"]), 12, Tema.bien() if pr["cumplida"] else Tema.TEXTO))
 	if al_cartera.is_valid():
