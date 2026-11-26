@@ -137,6 +137,9 @@ func _mostrar_pregunta() -> void:
 			_rapido = not _rapido
 			_mostrar_pregunta())
 		_contenido.add_child(alt)
+	var ejes := GeneradorPartido.calcular_ejes(_respuestas)  # P5/P6: brújula del perfil en el espacio libre
+	var previos := GeneradorPartido.calcular_ejes(_respuestas.slice(0, maxi(0, _respuestas.size() - 1)))
+	_contenido.add_child(BrujulaPerfil.crear(datos["ideologia"]["perfiles"], previos, ejes, GeneradorPartido.perfil_para(ejes.x, ejes.y, datos["ideologia"]), _respuestas.is_empty()))
 
 
 func _boton_opcion(letra: String, texto: String) -> Button:

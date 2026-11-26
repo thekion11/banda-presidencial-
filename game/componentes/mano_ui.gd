@@ -8,26 +8,63 @@ signal arrastrada(pos: Vector2)  # gesto de jugar la carta elegida: deslizarla h
 
 const ANCHO := 104.0
 const ALTO := 170.0
+const PULSACION_LARGA_MS := 450  # mantener el dedo sobre una carta abre su ficha ampliada (P10)
 
 var _pos_prev: Dictionary = {}  # id de carta -> última posición de reposo
 var _sel_prev: int = -1
 var _inicio: Vector2 = Vector2.ZERO
 var _activo: bool = false
+var _motor: MotorTurno
+var _ministro: String = ""
+var _ficha: FichaAmpliada
+var _toque: int = 0  # contador de pulsaciones: invalida el temporizador de una pulsación ya soltada
+var _dedo: Vector2 = Vector2.ZERO  # última posición del dedo (de los propios eventos: fiable en teléfono y en pruebas)
 
 
 func _input(ev: InputEvent) -> void:
 	## Deslizar hacia arriba (≥ 70 px, más vertical que horizontal) desde la mano juega la carta elegida; tocar sigue sirviendo como respaldo.
+	if ev is InputEventMouseMotion or ev is InputEventScreenDrag:
+		_dedo = ev.position
+		return
 	if not (ev is InputEventMouseButton and ev.button_index == MOUSE_BUTTON_LEFT):
 		return
 	if ev.pressed:
 		var sobre := get_viewport().gui_get_hovered_control()  # si una capa (evento, tutorial) tapa la mano, el gesto no cuenta
 		_activo = is_visible_in_tree() and get_global_rect().has_point(ev.position) and (sobre == null or sobre == self or is_ancestor_of(sobre))
 		_inicio = ev.position
+		_dedo = ev.position
+		_toque += 1
+		if _activo:
+			var n := _toque
+			get_tree().create_timer(PULSACION_LARGA_MS / 1000.0).timeout.connect(func() -> void: _pulsacion_larga(n))
+	elif _ficha != null:  # soltar cierra la ficha; no juega ni desliza
+		_ficha.queue_free()
+		_ficha = null
+		_activo = false
+		_toque += 1
 	elif _activo:
+		_toque += 1
 		_activo = false
 		var d: Vector2 = ev.position - _inicio
 		if d.y < -70.0 and absf(d.x) < absf(d.y) * 0.8 or d.length() > 70.0 and not get_global_rect().has_point(ev.position):
 			arrastrada.emit(ev.position)
+
+
+func _pulsacion_larga(n: int) -> void:
+	## Sigue presionado sobre la misma carta sin moverse: abre su ficha ampliada.
+	if n != _toque or not _activo or _motor == null or not is_inside_tree():
+		return
+	var pos := _dedo
+	if pos.distance_to(_inicio) > 14.0:
+		return
+	var hijos := get_children()
+	hijos.reverse()  # la de encima primero (la elegida se dibuja al final)
+	for c in hijos:
+		if c is CartaUI and not c.is_queued_for_deletion() and (c as CartaUI).get_global_rect().has_point(pos):
+			_ficha = FichaAmpliada.crear((c as CartaUI).carta, (c as CartaUI).costo, _motor.catalogo_leyes)
+			get_tree().root.add_child(_ficha)
+			Feedback.vibrar(15)
+			return
 
 
 static func texto_movimientos(est: EstadoSimulacion) -> String:
@@ -47,6 +84,8 @@ static func texto_pastilla(est: EstadoSimulacion) -> String:
 
 
 func pintar(motor: MotorTurno, sel: int, ministro: String = "", nuevas: Array = []) -> void:
+	_motor = motor
+	_ministro = ministro
 	for h in get_children():
 		h.queue_free()
 	var est := motor.estado

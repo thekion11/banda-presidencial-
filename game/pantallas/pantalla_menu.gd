@@ -102,14 +102,24 @@ func _mostrar_creditos() -> void:
 		_creditos.queue_free()
 		_creditos = null
 		return
-	_creditos = PanelContainer.new()
-	_creditos.add_theme_stylebox_override("panel", Tema.caja(Tema.PANEL, 16))
+	_creditos = PanelContainer.new()  # P4: hoja inferior que deja visible el título del juego
+	var sb := Tema.caja(Tema.PANEL, 20, Color("#2A6290"), 1)
+	sb.shadow_color = Color(0, 0, 0, 0.5)
+	sb.shadow_size = 18
+	sb.content_margin_left = 18
+	sb.content_margin_right = 18
+	sb.content_margin_top = 16
+	sb.content_margin_bottom = 16
+	_creditos.add_theme_stylebox_override("panel", sb)
 	_creditos.set_anchors_preset(Control.PRESET_FULL_RECT)
-	_creditos.offset_left = 16
-	_creditos.offset_right = -16
-	_creditos.offset_top = 140
-	_creditos.offset_bottom = -140
+	_creditos.offset_left = 12
+	_creditos.offset_right = -12
+	_creditos.offset_top = 330
+	_creditos.offset_bottom = -12
 	add_child(_creditos)
+	if Movimiento.activo():
+		_creditos.position.y += 520.0
+		_creditos.create_tween().tween_property(_creditos, "position:y", 330.0, 0.34).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
 	var v := VBoxContainer.new()
 	v.add_theme_constant_override("separation", 8)
 	_creditos.add_child(v)

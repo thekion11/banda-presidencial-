@@ -102,6 +102,16 @@ static func _consecuencias(col: VBoxContainer, ev: Dictionary, voto: Dictionary,
 	col.add_child(tarjeta)
 
 
+static func descripcion_limpia(titulo: String, desc: String) -> String:
+	## Quita el título repetido al inicio («Se publica la Ley N° 21.810: Modifica…» → «Modifica…»).
+	var t := titulo.strip_edges()
+	if t != "" and desc.begins_with(t):
+		var resto := desc.substr(t.length()).lstrip(" :·-–—").strip_edges()
+		if resto.length() > 0:
+			return resto.left(1).to_upper() + resto.substr(1)
+	return desc
+
+
 static func _fila_efectos(efectos: Array) -> HBoxContainer:
 	var fila := HBoxContainer.new()
 	fila.add_theme_constant_override("separation", 8)
@@ -156,10 +166,13 @@ static func evento(ev: Dictionary, al_continuar: Callable, nombres: Dictionary, 
 			cab += " · DÍA %d" % dia
 		col.add_child(_centrada(cab, 11, Tema.ORO, true))
 		col.add_child(_centrada(String(ev["titulo"]), 24, Tema.TEXTO, true))
-		if v == null:
-			col.add_child(_centrada(String(ev["descripcion"]), 13, Tema.TEXTO_SUAVE))
+		if v == null:  # P11: en un aviso el efecto va primero y la descripción no repite el título
 			var ef: Variant = ev.get("efectos", null)
-			if ef != null and not ef.is_empty():
+			var decide: bool = ev.get("opciones", null) != null
+			if ef != null and not ef.is_empty() and not decide:
+				col.add_child(_fila_efectos(ef))
+			col.add_child(_centrada(descripcion_limpia(String(ev["titulo"]), String(ev["descripcion"])), 13, Tema.TEXTO_SUAVE))
+			if ef != null and not ef.is_empty() and decide:
 				col.add_child(_fila_efectos(ef))
 		else:
 			var i: int = estado["i"]

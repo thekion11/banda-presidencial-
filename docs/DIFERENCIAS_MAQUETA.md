@@ -120,4 +120,15 @@ Limitación: los eventos del juego (`data/eventos.json`) no traen región, así 
 | Música | Sin música | Bucles sintetizados por etapa (campaña, gobierno, oposición; el menú usa gobierno) y pista de tensión mientras hay una votación en pantalla, con fundidos de 1,5 s; ajuste «Música» | `musica.gd`, `tools/audio/generar_musica.py` |
 | Ajustes | Animaciones sí/no | Nuevo «Reducir movimiento»: quita temblores, golpe de cámara, chispas, partículas y suaviza el destello rojo; deja fundidos, cifras y barras | `ajustes.gd`, `movimiento.gd › intenso` |
 
+### Claridad (video de prueba, docs/VIDEO_1.md) — 26-nov-2026
+| Hallazgo | Antes | Ahora | Archivo |
+|---|---|---|---|
+| P4 Créditos | Panel centrado que tapaba el título | Hoja inferior desde y=330 que sube al abrirse; el título queda visible | `pantalla_menu.gd` |
+| P5/P6 Test ideológico | ~40 % vacío bajo las opciones y «Perfil» sin explicar | Brújula del perfil: ejes Estado↔Mercado y movilización↔vía institucional (los de `data/ideologia.json`), zonas de los 6 perfiles, la tuya en dorado y el punto que se desliza tras cada respuesta | `brujula_perfil.gd` |
+| P9 Tutorial | Velo parejo y marco que no destacaba | Foco: todo oscuro salvo el elemento explicado; el marco dorado viaja de un paso a otro y late. La tarjeta y su botón no se mueven (regla del botón fijo) | `tutorial.gd` |
+| P10 Mano | Cartas tapadas y textos cortados | Mantener el dedo 0,45 s sobre una carta abre su ficha completa (título entero, costo, efectos con nombre, impacto y exigencia legal); soltar la cierra sin jugarla. El segundo toque sobre la elegida cuenta al soltar | `ficha_ampliada.gd`, `mano_ui.gd`, `carta_ui.gd` |
+| P11 Eventos | Título repetido al inicio de la descripción | En los avisos el efecto va primero y la descripción no repite el título («Se publica la Ley N° 21.770: Establece…» → «Establece…») | `overlays_dia.gd` |
+
+Prueba: `tests/test_claridad.gd`.
+
 Reglas: todo el movimiento respeta Ajustes › «Animaciones y movimiento» y se apaga en modo headless, así que las pruebas miden siempre el estado final. El azar de las partículas es solo visual y no toca la semilla de la partida. Prueba propia: `tests/test_movimiento.gd`.
