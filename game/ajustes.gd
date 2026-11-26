@@ -10,6 +10,14 @@ static var texto_grande: bool = false  # letra un 15 % mayor en las etiquetas co
 static var daltonico: bool = false  # escala de aprobación azul-naranja (Okabe-Ito) en lugar de verde-rojo
 static var musica: bool = true  # música ambiente por etapa (Musica)
 static var reducir: bool = false  # reducir movimiento: sin temblores, golpes de cámara, destellos ni partículas
+static var escala_prueba: float = 0.0  # solo pruebas: fuerza la escala de la letra (1,3 o 1,5, como la letra grande de Android)
+
+
+static func escala_texto() -> float:
+	## Factor de la letra en las etiquetas con ajuste de línea: «Texto grande» la sube un 15 %.
+	if escala_prueba > 0.0:
+		return escala_prueba
+	return 1.15 if texto_grande else 1.0
 
 
 static func cargar() -> void:
