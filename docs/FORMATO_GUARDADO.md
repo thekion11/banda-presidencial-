@@ -36,5 +36,5 @@ El juego guarda **solo lo que el jugador decidió**; todo lo demás se reconstru
 
 ## Corrupción a mitad de escritura (revisión del 26-nov-2026)
 - **Hoy:** `Main.guardar()` escribe `guardado.json.tmp` y lo renombra sobre `guardado.json`; un corte durante la escritura deja el archivo anterior intacto (probado en `test_guardado_danado`). La caché de carga (`guardado.cache`) es desechable: solo se usa si su SHA coincide con el archivo existente.
-- **No hay copia de respaldo** del último guardado bueno ni se comprueba el resultado del renombrado. Si `guardado.json` queda vacío o truncado, se descarta (`guardado_descartado.json`) y la partida se pierde.
-- **Propuesta** (robustez, no mecánica nueva): conservar `guardado.bak` y recuperarlo antes de descartar; detalle y prueba en `docs/REVISION_CODIGO.md`.
+- **Respaldo (resuelto el 26-nov-2026, commit f7ffd8c de «Diseño visual»):** `guardar()` copia el guardado bueno a `user://guardado.bak` antes de renombrar el `.tmp`; `continuar_guardado()` prueba el respaldo cuando el guardado no pasa la validación (huella, semilla, entradas y `ValidarGuardado`) y avisa «Recuperamos tu partida de hace un momento»; si tampoco sirve, descarta como antes (`guardado_descartado.json`). Una partida nueva borra el guardado y su respaldo. Prueba: `test_estados` (guardado truncado a 0 bytes y al 40 % con respaldo válido).
+- **Higiene de pruebas:** `user://` se comparte entre pruebas; toda prueba que escriba un guardado dañado a propósito y espere el descarte debe borrar antes `user://guardado.bak`.
