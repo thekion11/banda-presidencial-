@@ -131,4 +131,9 @@ Limitación: los eventos del juego (`data/eventos.json`) no traen región, así 
 
 Prueba: `tests/test_claridad.gd`.
 
+Correcciones encontradas al capturar todas las pantallas: dos cartas jugadas seguidas dejaban la onda del mapa sin posición (fallaba el dibujo del mapa) y la pantalla de Ajustes quedaba en tamaño 0 (sin fondo, sobre el menú). Ambas corregidas.
+
+### Lienzo de Claude Design (26-nov-2026)
+El lienzo «Presidente de Chile — Dirección visual v4» tiene dos páginas: **Dirección visual** (5 maquetas: menú, día, votación, elección y la hoja del sistema de movimiento, ampliada con todas las piezas nuevas) y **Juego actual** (24 capturas reales a 780×1688 de todas las pantallas: menú, créditos, afiliación, test con brújula, gabinete, tutorial con foco, día, ficha ampliada, carta al mapa, movimientos agotados, escándalo, Congreso, telón, votación con suspenso, aprobada y rechazada, evento claro, debate en TV y en radio, fuegos, elección, cambio de mando, fin y ajustes).
+
 Reglas: todo el movimiento respeta Ajustes › «Animaciones y movimiento» y se apaga en modo headless, así que las pruebas miden siempre el estado final. El azar de las partículas es solo visual y no toca la semilla de la partida. Prueba propia: `tests/test_movimiento.gd`.
