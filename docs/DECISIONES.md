@@ -296,3 +296,6 @@ Regla (CLAUDE.md §2): políticos reales con alias satíricos, personajes de pan
 - **Trazabilidad de mecánicas** de CLAUDE.md §2: `docs/TRAZABILIDAD_MECANICAS.md`. Se agregó `test_calendario_fechas` (las cuatro fechas reales contra las semanas del juego).
 - **Pruebas nuevas:** `test_unidades_sim`, `test_gabinete_fuzz` (400 composiciones del gabinete de 25), y la matriz por dificultad en `test_balance` (fácil ≥ 90 %, normal ≥ 80 %, difícil 30-75 % de elección ganada con el codicioso; azar difícil ≤ 15 %; pasivo difícil ≤ 5 %; «completo» ≤ 10 % de crisis).
 - **Reloj al caer por crisis:** `continuar_carrera` cuenta también la semana del turno en que cae el gobierno (hallazgo de «Búsqueda infinita de fallas»).
+
+## AO. Composición del Congreso con coalición (26-nov-2026, hallazgo de «Búsqueda infinita de fallas»)
+- `MotorLegal.composicion` sumaba los escaños de la coalición sin descontarlos del resto de la cámara, a diferencia de `votar`: en el 20 % de 3.472 observaciones propios + aliados pasaba del total (hasta 23 escaños) y el panel podía mostrar oposición 0 con votos en contra reales. Ahora los escaños de la coalición salen del resto antes de aplicar el apoyo. Solo cambia lo que muestra el panel; `votar` y las huellas no cambian. Prueba: nuevo chequeo en `test_congreso_invariantes` (propios + aliados ≤ total).

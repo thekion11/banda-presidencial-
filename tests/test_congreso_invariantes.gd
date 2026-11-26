@@ -44,6 +44,7 @@ func _init() -> void:
 					var comp: Dictionary = m.legal.composicion(m.estado, camara)
 					var total := n_dip if camara else n_sen
 					_check(int(comp["propios"]) >= 0 and int(comp["aliados"]) >= 0 and int(comp["oposicion"]) >= 0, "%s sat %.0f: bloques no negativos %s" % [etiqueta, sat, str(comp)])
+					_check(int(comp["propios"]) + int(comp["aliados"]) <= total, "%s sat %.0f: propios + aliados no pasan del total de la cámara %s" % [etiqueta, sat, str(comp)])
 					_check(int(comp["propios"]) + int(comp["aliados"]) + int(comp["oposicion"]) >= total or int(comp["oposicion"]) == 0, "%s sat %.0f: los bloques cubren la cámara %s" % [etiqueta, sat, str(comp)])
 				for t in m.legal.leyes["tipos_ley"]:
 					for _k in range(5):
