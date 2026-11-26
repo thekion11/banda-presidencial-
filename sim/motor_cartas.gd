@@ -47,10 +47,6 @@ func es_real(carta: Dictionary) -> bool:
 	return x[id]
 
 
-func reales() -> Array[Dictionary]:
-	return m.indices.reales
-
-
 func no_reales() -> Array[Dictionary]:
 	return m.indices.no_reales
 
