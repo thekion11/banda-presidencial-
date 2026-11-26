@@ -152,61 +152,6 @@
     ]
   },
   {
-    "id": "evt_baja_cobre",
-    "tipo": "aleatorio_semilla",
-    "dia_objetivo": null,
-    "hora_etiqueta": "10:00",
-    "peso_sorteo": 0.08,
-    "titulo": "Cae el precio del cobre",
-    "descripcion": "Menores ingresos fiscales proyectados.",
-    "votacion": null,
-    "efectos_base": [
-      {
-        "ind": "fiscal",
-        "delta": -3
-      }
-    ],
-    "etapa": "gobierno",
-    "fuente": "fuentes.json#ficticio_2026",
-    "familia": "economia",
-    "contexto": [
-      {
-        "ind": "fiscal",
-        "bajo": 60,
-        "mult": 1.8
-      }
-    ]
-  },
-  {
-    "id": "evt_incendios",
-    "tipo": "aleatorio_semilla",
-    "dia_objetivo": null,
-    "hora_etiqueta": "15:00",
-    "peso_sorteo": 0.06,
-    "titulo": "Incendios forestales en el sur",
-    "descripcion": "Despliegue de brigadas y críticas por la prevención.",
-    "votacion": null,
-    "efectos_base": [
-      {
-        "ind": "aprobacion",
-        "delta": -2
-      },
-      {
-        "ind": "riesgo_ejecucion",
-        "delta": 3
-      }
-    ],
-    "etapa": "gobierno",
-    "fuente": "fuentes.json#ficticio_2026",
-    "familia": "naturaleza",
-    "meses": [
-      12,
-      1,
-      2,
-      3
-    ]
-  },
-  {
     "id": "evt_protesta_estudiantil",
     "tipo": "aleatorio_semilla",
     "dia_objetivo": null,
