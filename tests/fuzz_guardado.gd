@@ -57,7 +57,7 @@ func _init() -> void:
 	for i in range(n):
 		var g: Dictionary = base.duplicate(true)
 		var desc := ""
-		match rng.randi_range(0, 5):
+		match rng.randi_range(0, 6):
 			0:  # clave de nivel superior retipada (no huella, semilla ni entradas)
 				var k: String = ["partido", "version"][rng.randi_range(0, 1)]
 				g[k] = _otro_tipo(g[k], rng)
@@ -84,6 +84,20 @@ func _init() -> void:
 				var k := String(ks[rng.randi_range(0, ks.size() - 1)])
 				g["entradas"][j][k] = _otro_tipo(g["entradas"][j][k], rng)
 				desc = "entrada %d (%s) «%s» retipada" % [j, g["entradas"][j].get("tipo", "?"), k]
+			6:  # valor del tipo correcto pero absurdo (índice enorme o negativo, ministro, región o evento inexistentes): pasa la validación de tipos
+				var j := rng.randi_range(0, g["entradas"].size() - 1)
+				var ks: Array = g["entradas"][j].keys().filter(func(x: Variant) -> bool: return String(x) != "tipo")
+				if ks.is_empty():
+					continue
+				var k := String(ks[rng.randi_range(0, ks.size() - 1)])
+				var v: Variant = g["entradas"][j][k]
+				if v is String:
+					g["entradas"][j][k] = ["no_existe", "zzz", "", "min_otro_partido", "x".repeat(500)][rng.randi_range(0, 4)]
+				elif v is int or v is float:
+					g["entradas"][j][k] = [1000000000, -1000000000, 99, -1, 2147483647, 0][rng.randi_range(0, 5)]
+				elif v is bool:
+					g["entradas"][j][k] = not v
+				desc = "entrada %d (%s) «%s» con valor absurdo %s" % [j, g["entradas"][j].get("tipo", "?"), k, str(g["entradas"][j][k]).left(14)]
 			5:  # entrada que no es diccionario, o tipo desconocido
 				var j := rng.randi_range(0, g["entradas"].size() - 1)
 				if rng.randf() < 0.5:
