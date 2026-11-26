@@ -57,6 +57,16 @@ func _correr() -> void:
 	await _cuadros(1)
 	corr = dia._lbl_corrector.get_parsed_text()
 	_check(corr.contains("delega esta carta"), "sin movimientos en gobierno se ofrece delegar (%s)" % corr)
+	# crisis: con la aprobación bajo el umbral, la cabecera cuenta las semanas que quedan antes de la caída
+	var din: Dictionary = main.datos["leyes"]["dinamica"]
+	est.indicadores["aprobacion"] = float(din["umbral_crisis_aprobacion"]) - 1.0
+	est.semanas_en_crisis = 1
+	dia._refrescar()
+	var quedan := int(din["semanas_crisis_para_caida"]) - 1
+	_check(dia._r["fecha"].text == "Crisis: caes en %d semanas" % quedan, "la cabecera muestra la cuenta regresiva de la crisis (%s)" % dia._r["fecha"].text)
+	est.indicadores["aprobacion"] = 50.0
+	dia._refrescar()
+	_check(not dia._r["fecha"].text.begins_with("Crisis"), "sin crisis la cabecera vuelve a la fecha")
 	# 0 cartas: la zona de la mano lo dice y el Corrector propone terminar la semana
 	est.mano.clear()
 	dia._refrescar()
@@ -75,6 +85,16 @@ func _correr() -> void:
 	_check(main._pantalla is PantallaMenu and menu.contains("Empieza una partida nueva"), "un guardado dañado vuelve al menú con aviso y acción")
 	_check(not FileAccess.file_exists(main.RUTA_GUARDADO), "el guardado dañado se aparta y «Continuar» no reaparece fallando")
 	DirAccess.remove_absolute(ProjectSettings.globalize_path("user://guardado_descartado.json"))
+	# «Partida rápida» con una última configuración dañada: se descarta y se juega con el partido por defecto
+	var u := FileAccess.open(main.RUTA_ULTIMA, FileAccess.WRITE)
+	u.store_string("{\"indicadores_iniciales\": \"roto\", \"nombre\": 3}")
+	u.close()
+	main._repetir_ultima()
+	await _cuadros(2)
+	_check(main.motor != null and String(main.motor.estado.partido.get("sigla", "")) == "MCA", "una última configuración dañada cae al partido por defecto")
+	_check(main._pantalla is PantallaDia, "la partida rápida arranca igual con el partido por defecto")
+	DirAccess.remove_absolute(ProjectSettings.globalize_path(main.RUTA_ULTIMA))
+	DirAccess.remove_absolute(ProjectSettings.globalize_path(main.RUTA_GUARDADO))
 	# datos faltantes: mensaje claro, qué falta y qué hacer
 	main.mostrar_error_datos(["cartas"])
 	await _cuadros(1)

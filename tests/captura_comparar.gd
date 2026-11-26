@@ -204,6 +204,13 @@ func _estados(main: Node, d: Dictionary, partido: Dictionary) -> void:
 	main.motor.estado.pa_actual = 0
 	main.mostrar_dia()
 	await _guardar("e_sin_movimientos", 0.3)
+	var din: Dictionary = d["leyes"]["dinamica"]
+	main.motor.estado.indicadores["aprobacion"] = float(din["umbral_crisis_aprobacion"]) - 2.0
+	main.motor.estado.semanas_en_crisis = 1
+	main._pantalla._refrescar()
+	await _guardar("e_crisis", 0.6)
+	main.motor.estado.indicadores["aprobacion"] = 43.0
+	main.motor.estado.semanas_en_crisis = 0
 	main.motor.estado.mano.clear()
 	main._pantalla._refrescar()
 	await _guardar("e_sin_cartas", 0.3)

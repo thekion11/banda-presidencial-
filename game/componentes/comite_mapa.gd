@@ -154,8 +154,7 @@ func _linea(puntos: Array, hasta: float) -> void:
 func _draw() -> void:
 	draw_style_box(Tema.caja(Color("#EFEADF"), 14, Tema.BORDE_CLARO, 1), Rect2(Vector2.ZERO, size))
 	var esc := (1.0 + 0.35 * (zoom - 1.0)) / zoom
-	draw_set_transform(pan, 0.0, Vector2(zoom, zoom))
-	UrbanoBase.dibujar(self, size, MARGEN, true, 0.9 * esc, 0.45, not _en_movimiento)
+	_dibujar_base(true, 0.9 * esc, 0.45, 14)  # textura en reposo, en vivo al moverse (UrbanoVista)
 	draw_set_transform(Vector2.ZERO, 0.0, Vector2.ONE)
 	UrbanoRotulos.fichas(self, size, MARGEN, zoom, pan)
 	if editando and grafo != null:

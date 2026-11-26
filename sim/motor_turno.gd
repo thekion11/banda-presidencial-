@@ -76,8 +76,9 @@ func aplicar_partido_inicial(datos_partido: Dictionary) -> void:  # Aplica el pa
 	coalicion.adoptar_partido_propio(String(datos_partido.get("partido_base", "")))  # tu partido es aliado permanente que pide poder (PR-01)
 	estado.promesas_campana.clear()
 	var ind_ini: Dictionary = estado.partido["indicadores_iniciales"]
-	for clave in ind_ini.keys():
-		estado.indicadores[clave] = float(ind_ini[clave])
+	var lim: Dictionary = catalogo_leyes["limites_indicadores"]
+	for clave in ind_ini.keys():  # un partido con valores absurdos no arranca fuera de rango
+		estado.indicadores[clave] = clampf(float(ind_ini[clave]), float(lim["min"]), float(lim["viviendas_anio_max"]) if clave == "viviendas_anio" else float(lim["max"]))
 	estado.indicadores["aprobacion"] = clampf(estado.ind("aprobacion") + float(mandato.nivel()["aprobacion_inicial"]), 0.0, 100.0)  # dificultad (PR-01)
 	var camp: Dictionary = catalogo_leyes.get("campana", {})
 	regiones.inicializar(estado, estado.ind("aprobacion"), String(datos_partido.get("region_bastion", "")),

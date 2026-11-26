@@ -29,7 +29,14 @@ func _color() -> Color:
 func _ready() -> void:
 	_caja = PanelContainer.new()
 	_caja.add_theme_stylebox_override("panel", Tema.caja(Color(_color(), 0.12), 10, _color(), 3))
-	_caja.add_child(Tema.etiqueta_corta("APROBADA" if aprobada else "RECHAZADA", 30, _color(), true))
+	var texto := Tema.etiqueta_corta("APROBADA" if aprobada else "RECHAZADA", 32, _color(), true)
+	var espaciada := FontVariation.new()  # letras separadas, como el sello de la maqueta
+	var titulo := Tema.fuente_titulo() as FontVariation
+	espaciada.base_font = titulo.base_font  # misma Space Grotesk 700: la variación no se hereda de otra FontVariation
+	espaciada.variation_opentype = titulo.variation_opentype
+	espaciada.spacing_glyph = 3
+	texto.add_theme_font_override("font", espaciada)
+	_caja.add_child(texto)
 	_caja.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	add_child(_caja)
 	_caja.rotation_degrees = GIRO

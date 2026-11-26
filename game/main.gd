@@ -111,7 +111,7 @@ func mostrar_partido(afiliacion: String = "propio", base: Dictionary = {}) -> vo
 func _repetir_ultima() -> void:
 	## Partida rápida (1 toque): la última configuración o, si no hay, un partido por defecto; sin pasar por afiliación, test ni gabinete.
 	var p: Variant = Datos.leer_json(RUTA_ULTIMA) if FileAccess.file_exists(RUTA_ULTIMA) else null
-	if p is Dictionary and p.has("indicadores_iniciales"):
+	if p is Dictionary and ValidarGuardado.partido_valido(p):  # un archivo dañado o de otra versión no llega a Partida.crear
 		_iniciar_campana(p, true)
 		return
 	if FileAccess.file_exists(RUTA_ULTIMA):
@@ -125,9 +125,12 @@ func _repetir_ultima() -> void:
 
 
 func _iniciar_campana(partido: Dictionary, directo: bool = false) -> void:
-	var f := FileAccess.open(RUTA_ULTIMA, FileAccess.WRITE)
+	var tmp := RUTA_ULTIMA + ".tmp"  # como el guardado: se escribe aparte y se renombra, un corte no deja el archivo a medias
+	var f := FileAccess.open(tmp, FileAccess.WRITE)
 	if f != null:
 		f.store_string(JSON.stringify(partido))
+		f.close()
+		DirAccess.rename_absolute(ProjectSettings.globalize_path(tmp), ProjectSettings.globalize_path(RUTA_ULTIMA))
 	var semilla := int(Time.get_unix_time_from_system()) % 2000000000
 	motor = Partida.crear(datos, semilla, partido)
 	UrbanoBase.reiniciar()  # líneas ocultas y líneas del jugador de la partida anterior no pasan a la nueva

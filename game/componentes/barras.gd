@@ -20,6 +20,17 @@ static func fecha_iso(leyes: Dictionary, etapa: String, turno: int, dia: int, ci
 	return "%04d-%02d-%02d" % [int(d["year"]), int(d["month"]), int(d["day"])]
 
 
+static func crisis(est: EstadoSimulacion, din: Dictionary) -> Dictionary:
+	## Cuenta regresiva de la caída por crisis (MotorMandato.evaluar_crisis, solo en gobierno): con la aprobación bajo el
+	## umbral, cada cierre de semana suma una a la racha y al completarla el gobierno cae. {} si no hay crisis.
+	var umbral := float(din["umbral_crisis_aprobacion"])
+	if est.etapa != "gobierno" or est.ind("aprobacion") >= umbral:
+		return {}
+	var quedan := maxi(1, int(din["semanas_crisis_para_caida"]) - est.semanas_en_crisis)
+	return {"corto": "Crisis: caes en %d semana%s" % [quedan, "" if quedan == 1 else "s"],
+		"largo": "Aprobación bajo %d %%: si no sube, el gobierno cae %s." % [roundi(umbral), "al cerrar esta semana" if quedan == 1 else "en %d semanas" % quedan]}
+
+
 static func fecha_texto(leyes: Dictionary, etapa: String, turno: int, dia: int, ciclo: int = 1, dias_carrera: int = 0) -> String:
 	var d := _fecha(leyes, etapa, turno, dia, ciclo, dias_carrera)
 	return "%s %d %s %d" % [DIAS[int(d["weekday"])], int(d["day"]), MESES[int(d["month"]) - 1], int(d["year"])]
@@ -57,7 +68,7 @@ static func cabecera(refs: Dictionary) -> Control:
 	var m := MarginContainer.new()
 	m.add_theme_constant_override("margin_left", 14)
 	m.add_theme_constant_override("margin_right", 14)
-	m.add_theme_constant_override("margin_top", 30)
+	m.add_theme_constant_override("margin_top", roundi(Tema.margen_superior()))  # zona segura del teléfono (antes 30 fijos; la maqueta casi no deja aire)
 	m.add_theme_constant_override("margin_bottom", 6)
 	m.add_child(v)
 	var fila := HBoxContainer.new()
@@ -81,7 +92,12 @@ static func cabecera(refs: Dictionary) -> Control:
 	refs["captions"] = {}
 	for par in [["aprobacion", "Aprob."], ["capital", "Capital"], ["cohesion", "Cohes."], ["fiscal", "Fiscal"]]:
 		var p := PanelContainer.new()
-		p.add_theme_stylebox_override("panel", Tema.caja_degradada(Color("#17476C"), Color("#0F3355"), 10, Color("#2A6290"), 1))
+		var caja := Tema.caja_degradada(Color("#17476C"), Color("#0F3355"), 10, Color("#2A6290"), 1)
+		caja.content_margin_top = 3  # chips compactos como en la maqueta; abajo queda lugar para la mini barra
+		caja.content_margin_bottom = 6
+		caja.content_margin_left = 9
+		caja.content_margin_right = 9
+		p.add_theme_stylebox_override("panel", caja)
 		p.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		p.set_meta("frac", 0.0)
 		p.draw.connect(func() -> void:  # mini barra del indicador dentro del chip (no cambia su alto: el mapa sigue > 1/3)
@@ -236,6 +252,8 @@ static func nav(al_pulsar: Callable, nacion: bool = false, texto_dia: String = "
 		fila.add_child(b)
 	var fondo := PanelContainer.new()
 	var sb := Tema.caja(Color("#0A1E31"), 0, Color("#1E4E72"), 0)
+	sb.content_margin_top = 2  # barra compacta como en la maqueta (antes 8 + 8 de aire); los botones siguen ≥ 44 px
+	sb.content_margin_bottom = 4
 	sb.border_width_top = 1
 	sb.border_color = Color("#1E4E72")
 	fondo.add_theme_stylebox_override("panel", sb)

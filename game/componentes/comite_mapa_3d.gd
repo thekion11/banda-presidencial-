@@ -85,13 +85,20 @@ func _material(color: Color, emision: float = 0.0, vertex: bool = false) -> Stan
 	return m
 
 
-func _multi(trans: Array[Transform3D], material: Material, colores: Array[Color] = []) -> MultiMeshInstance3D:
+func _multi(trans: Array[Transform3D], material: Material, colores: Array[Color] = [], plano: bool = false) -> MultiMeshInstance3D:
+	## `plano`: calles, río y Metro son cintas finas de las que solo se ve la cara de arriba: un plano (2 triángulos)
+	## en vez de una caja (12) quita ~4/5 de los triángulos de la escena sin cambiar lo que se ve.
 	var mm := MultiMesh.new()
 	mm.transform_format = MultiMesh.TRANSFORM_3D
 	mm.use_colors = not colores.is_empty()
-	var caja := BoxMesh.new()
-	caja.size = Vector3.ONE
-	mm.mesh = caja
+	if plano:
+		var pl := PlaneMesh.new()
+		pl.size = Vector2.ONE
+		mm.mesh = pl
+	else:
+		var caja := BoxMesh.new()
+		caja.size = Vector3.ONE
+		mm.mesh = caja
 	mm.instance_count = trans.size()
 	for k in range(trans.size()):
 		mm.set_instance_transform(k, trans[k])
@@ -169,13 +176,13 @@ func _construir(ventana: Rect2) -> void:
 			if _en_ventana(pl[i]) or _en_ventana(pl[i + 1]):
 				calles.append(_tramo(_pos(pl[i], 0.04), _pos(pl[i + 1], 0.04), ancho[cl], 0.04))
 				col_c.append(color_cl[cl])
-	_escena.add_child(_multi(calles, _material(Color.WHITE, 0.0, true), col_c))
+	_escena.add_child(_multi(calles, _material(Color.WHITE, 0.0, true), col_c, true))
 	var rio: Array[Transform3D] = []
 	for pl in d.get("rio", []):
 		for i in range(pl.size() - 1):
 			if _en_ventana(pl[i]) or _en_ventana(pl[i + 1]):
 				rio.append(_tramo(_pos(pl[i], 0.05), _pos(pl[i + 1], 0.05), 0.55, 0.06))
-	_escena.add_child(_multi(rio, _material(Color("#7FB5D6"))))
+	_escena.add_child(_multi(rio, _material(Color("#7FB5D6")), [], true))
 	var metro: Array[Transform3D] = []
 	var col_m: Array[Color] = []
 	for l in d.get("metro", []):
@@ -184,7 +191,7 @@ func _construir(ventana: Rect2) -> void:
 				if _en_ventana(via[i]) or _en_ventana(via[i + 1]):
 					metro.append(_tramo(_pos(via[i], 0.09), _pos(via[i + 1], 0.09), 0.32 * _lod, 0.05))
 					col_m.append(Color(String(l["color"])))
-	_escena.add_child(_multi(metro, _material(Color.WHITE, 0.0, true), col_m))
+	_escena.add_child(_multi(metro, _material(Color.WHITE, 0.0, true), col_m, true))
 	var blds: Array[Transform3D] = []
 	var col_b: Array[Color] = []
 	for e in UrbanoBase.edificios_en(ventana, MAX_EDIFICIOS):

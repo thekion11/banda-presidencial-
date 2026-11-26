@@ -44,6 +44,34 @@ func _iniciar_vista() -> void:
 	add_child(col)
 
 
+var _cache: UrbanoCache
+
+
+func _dibujar_base(con_metro: bool, escala_linea: float, suave: float, radio: int) -> void:
+	## Capa base de Gran Santiago. Quieta, sale de una textura pintada una vez (UrbanoCache): una llamada de dibujo y casi
+	## nada de CPU. Mientras se arrastra o se acerca, en vivo y con menos detalle. Deja puesta la transformación (pan, zoom).
+	if _en_movimiento:
+		draw_set_transform(pan, 0.0, Vector2(zoom, zoom))
+		UrbanoBase.dibujar(self, size, MARGEN, con_metro, escala_linea, suave, false)
+		return
+	if _cache == null:
+		_cache = UrbanoCache.new()
+		add_child(_cache)
+	var s := clampf(get_viewport().get_final_transform().get_scale().x, 1.0, 4.0)  # escala real de la pantalla
+	var clave := "%s|%.3f|%.3f|%.4f|%.1f,%.1f|%s|%d|%s|%.2f" % [con_metro, escala_linea, suave, zoom, pan.x, pan.y, str(UrbanoBase.ocultas.keys()), hash(UrbanoBase.propias), UrbanoBase.fecha_iso, s]
+	var tam := size
+	var p := pan
+	var z := zoom
+	_cache.pintar = func(ci: CanvasItem) -> void:
+		ci.draw_style_box(Tema.caja(Color("#EFEADF"), roundi(radio * s)), Rect2(Vector2.ZERO, tam * s))  # fondo con las esquinas redondeadas
+		ci.draw_set_transform(p * s, 0.0, Vector2(z * s, z * s))
+		UrbanoBase.dibujar(ci, tam, MARGEN, con_metro, escala_linea, suave, true)
+	_cache.preparar(size, s, clave)
+	draw_texture_rect(_cache.get_texture(), Rect2(Vector2.ZERO, size), false)
+	draw_style_box(Tema.caja(Color(0, 0, 0, 0), radio, Tema.BORDE_CLARO, 1), Rect2(Vector2.ZERO, size))
+	draw_set_transform(pan, 0.0, Vector2(zoom, zoom))
+
+
 func _limitar() -> void:
 	zoom = clampf(zoom, 1.0, ZOOM_MAX)
 	pan = Vector2(clampf(pan.x, size.x - size.x * zoom, 0.0), clampf(pan.y, size.y - size.y * zoom, 0.0))

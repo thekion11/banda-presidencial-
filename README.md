@@ -9,6 +9,8 @@ Simulador político por turnos para Android, hecho con Godot 4 y GDScript. Funda
 2. Pruebas: ver comandos en `CLAUDE.md §7`.
 
 ## Documentación
+- `docs/CONTRIBUIR.md`: guía de una página para quien herede el proyecto; `docs/RESUMEN_DECISIONES.md`: lo que espera al dueño; `docs/RESUMEN_EXPERIMENTO.md`: qué hizo cada sesión.
+- `docs/HIGIENE_REPO.md`, `docs/EQUIDAD_REGIONAL.md`, `docs/ESTADO_SISTEMAS.md`: estado del repositorio, del contenido por región y de cada sistema.
 - `CLAUDE.md`: reglas del proyecto y flujo de trabajo.
 - `docs/AUDITORIA_VIDA_REAL.md`: qué tan fiel es la estructura a Chile real y qué falta.
 - `docs/DATOS.md`: fuentes, licencias y datos por verificar.

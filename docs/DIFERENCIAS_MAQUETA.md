@@ -171,6 +171,7 @@ Cada estado dice qué pasa y ofrece una acción viable, nunca un «no» seco. Pr
 - **Sin movimientos:** el Corrector lo dice. En gobierno ofrece delegar la carta (no gasta movimientos) o terminar la semana; en campaña, terminar la semana, porque se renuevan al empezar la próxima.
 - **Sin cartas:** la zona de la mano explica que al empezar la próxima semana entran cartas nuevas, y el Corrector sugiere revisar el Comité, el Congreso o el gabinete. Antes la zona quedaba en blanco.
 - **Guardado dañado:** el juego lo aparta (`guardado_descartado.json`) y vuelve al menú con el aviso «Empieza una partida nueva». Esto ya estaba en main, con la validación de la sesión del motor.
+- **Crisis:** con la aprobación bajo el umbral de `leyes.json` (12 %), el gobierno cae al completar 3 semanas seguidas (`MotorMandato.evaluar_crisis`). La interfaz no lo mostraba; ahora la fecha de la cabecera cambia, en coral, por «Crisis: caes en N semanas», y al cerrar cada semana en crisis un aviso lo explica. Propuesto por la sesión del motor; es información que ya existía, no una mecánica nueva. Captura: `e_crisis.png`.
 - **Datos faltantes** (instalación dañada): antes de cargar se comprueba que estén todos los archivos. Si falta alguno, se dice cuál y se ofrece actualizar o reinstalar el juego, en vez de un error de script.
 
 ### Conteo de toques (26-nov-2026, `tests/medir_toques.gd`)
@@ -183,5 +184,14 @@ Medido en la interfaz real: 3 partidas de 30 semanas, campaña, elección y gobi
 Ninguna acción pasa de 3 toques; lo que se acumula es la secuencia de eventos. **Propuestas para el usuario** (sin pantallas nuevas):
 - a) no pedir confirmación al terminar la semana cuando los movimientos que quedan no pagan ninguna carta (toca la decisión PR-02);
 - b) mostrar la cámara revisora en la misma página de la votación cuando el resultado de la primera ya está decidido, lo que ahorraría unos 0,7 toques por semana.
+
+### Cabecera y barra del día más cerca de la maqueta (26-nov-2026)
+La diferencia numérica (`docs/comparacion/DIFERENCIA_MAQUETA.md`) mostraba que la cabecera del día ocupaba 111 px frente a unos 82 en la maqueta, lo que corría todo hacia abajo y achicaba el mapa. Cambios:
+- el margen superior fijo de 30 px pasa a seguir la zona segura del teléfono (`Tema.margen_superior()`: la muesca o cámara más 4 px, mínimo 12);
+- los chips de indicadores se compactan (relleno de 3 y 6 px) y la barra inferior también (2 y 4 px). Los botones siguen ≥ 44 px.
+
+Píxeles distintos del día frente a la maqueta: de 43,1 % a 39,2 %. El mapa gana unos 30 px de alto.
+
+En la votación: el contenido sube con la zona segura, el hemiciclo del Senado se compacta (radio 0,41 del ancho en vez de 0,46, alto 205 en vez de 230) y el sello «APROBADA / RECHAZADA» pasa a 32 pt con letras separadas, como en la maqueta. Píxeles distintos: de 22,5 % a 22,0 %.
 
 Reglas: todo el movimiento respeta Ajustes › «Animaciones y movimiento» y se apaga en modo headless, así que las pruebas miden siempre el estado final. El azar de las partículas es solo visual y no toca la semilla de la partida. Prueba propia: `tests/test_movimiento.gd`.
