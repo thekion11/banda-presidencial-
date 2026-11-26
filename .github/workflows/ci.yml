@@ -65,3 +65,5 @@ jobs:
           godot --headless --path . -s tests/fuzz_guardado.gd -- 300 77
           godot --headless --path . -s tests/fuzz_obras.gd -- 6 2600
           godot --headless --path . -s tests/fuzz_coalicion.gd -- 5 1700
+          godot --headless --path . -s tests/fuzz_ultima_config.gd -- 300 5
+          godot --headless --path . -s tests/fuzz_semillas_extremas.gd
