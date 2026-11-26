@@ -12,6 +12,7 @@ paso "check_constantes" python3 tools/check_constantes.py
 paso "validate_tipos" python3 tools/validate_tipos.py
 paso "check_presupuesto" python3 tools/check_presupuesto.py
 paso "validar_textos" python3 tools/validar_textos.py
+paso "check_entradas" python3 tools/check_entradas.py
 paso "test_validate" python3 tools/test_validate.py
 paso "validar_metro" python3 tools/validar_metro.py --verificar
 paso "informe_alcanzabilidad" python3 tools/informe_alcanzabilidad.py
