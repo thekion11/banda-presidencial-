@@ -194,7 +194,7 @@ static func _ficha(detalle: VBoxContainer, pid: String, v: Dictionary, prop: Dic
 	detalle.add_theme_constant_override("separation", 8)
 	detalle.add_child(Tema.etiqueta("Variante %s · %s" % [v["id"], v["nombre"]], 16, Tema.TEXTO, true))
 	var cifras := HBoxContainer.new()
-	cifras.add_child(PanelesDia._chip("Costo", "US$%s M" % str(roundi(float(v["costo_musd"]))), Tema.CREMA))
+	cifras.add_child(PanelesDia._chip("Costo", "US$%s M" % Tema.miles(roundi(float(v["costo_musd"]))), Tema.CREMA))
 	cifras.add_child(PanelesDia._chip("Plazo", "%s años" % str(v["plazo_anios"]), Tema.CREMA))
 	cifras.add_child(PanelesDia._chip("Población servida", "%d mil" % int(v["poblacion_miles"]), Tema.CREMA))
 	detalle.add_child(cifras)
@@ -210,7 +210,7 @@ static func _ficha(detalle: VBoxContainer, pid: String, v: Dictionary, prop: Dic
 	var txt := String(v["corrector_texto"])
 	var ratio := float(prop["capacidad_musd"]) / float(v["costo_musd"])
 	if custom.is_empty() and ratio < 1.0:
-		txt += " (Capacidad fiscal disponible: US$%d M; se construye el %d %% en el primer tramo.)" % [roundi(float(prop["capacidad_musd"])), roundi(ratio * 100.0)]
+		txt += " (Capacidad fiscal disponible: US$%s M; se construye el %d %% en el primer tramo.)" % [Tema.miles(roundi(float(prop["capacidad_musd"]))), roundi(ratio * 100.0)]
 	corr.add_child(Tema.etiqueta("Corrector de realismo: " + txt, 12, Tema.TINTA))
 	detalle.add_child(corr)
 	var n_est := 0
