@@ -192,6 +192,7 @@ func _correr() -> void:
 			h.queue_free()
 	await _v2(main, dia, d, partido)
 	await _v3(main, d, partido)
+	await _v4(main, d, partido)
 	quit(0)
 
 
@@ -287,4 +288,84 @@ func _v3(main: Node, d: Dictionary, partido: Dictionary) -> void:
 	await _guardar("v3_fin", 0.6)
 	main.mostrar_menu()
 	await _guardar("v3_menu", 0.6)
+	DirAccess.remove_absolute(ProjectSettings.globalize_path(Tutorial.ruta))
+
+
+func _limpiar_capa(dia: Node) -> void:
+	for h in dia._capa.get_children():
+		if h is Control and h != dia._toast:
+			h.queue_free()
+	await process_frame
+
+
+func _v4(main: Node, d: Dictionary, partido: Dictionary) -> void:
+	## Dirección visual v4 y claridad (P4, P5/P6, P9, P10, P11): estados que antes solo estaban en el lienzo de Claude Design.
+	main._pantalla._mostrar_creditos()
+	await _guardar("v4_creditos", 0.2)
+	main.mostrar_partido("propio")
+	await process_frame
+	main._pantalla._responder(d["ideologia"]["preguntas"][0]["opciones"][0])
+	await _guardar("v4_test_brujula", 0.2)
+	Tutorial.ruta = "user://preferencias_captura.json"
+	DirAccess.remove_absolute(ProjectSettings.globalize_path(Tutorial.ruta))
+	main.motor = Partida.crear(d, 20260415, partido)
+	main.mostrar_dia()
+	await _guardar("v4_tutorial_foco", 0.4)
+	var dia: Node = main._pantalla
+	dia._capa.find_children("*", "Tutorial", true, false)[0]._cerrar()
+	await create_timer(1.0).timeout
+	var c: CartaUI = null
+	for h in dia._mano.get_children():
+		if h is CartaUI and (h as CartaUI).elegida:
+			c = h
+	var ev := InputEventMouseButton.new()
+	ev.button_index = MOUSE_BUTTON_LEFT
+	ev.pressed = true
+	ev.position = c.get_global_rect().get_center() + Vector2(0, 20)
+	ev.global_position = ev.position
+	root.push_input(ev, true)
+	await _guardar("v4_ficha_ampliada", 0.0)
+	var suelta := ev.duplicate() as InputEventMouseButton
+	suelta.pressed = false
+	root.push_input(suelta, true)
+	GolpePrensa.mostrar(dia._capa, main.motor.catalogo_ministros[main.motor.catalogo_ministros.keys()[0]], [dia._r["chips"]["aprobacion"].get_parent().get_parent()])
+	await _guardar("v4_escandalo", 0.0)
+	await create_timer(1.5).timeout
+	dia._avanzar()
+	dia._avanzar()  # con movimientos sobrantes pide confirmar: la segunda pulsación termina la semana
+	await _guardar("v4_telon_semana", 0.1)
+	await create_timer(2.5).timeout
+	await _limpiar_capa(dia)
+	var nombres: Dictionary = main.motor.catalogo_leyes["congreso"]["nombres"]
+	var votos := {"aprobada": false, "senado": 21, "camara": 0, "min_senado": 26, "min_camara": 78, "total_senado": 50, "total_camara": 155, "abst_senado": 6, "abst_camara": 0, "contra_senado": 23, "contra_camara": 0}
+	dia._capa.add_child(OverlaysDia.evento({"titulo": "Reforma de pensiones", "hora": "11:00", "descripcion": "Requiere 26 votos de 50 senadores", "efectos": [{"ind": "capital", "delta": -5}],
+		"votacion": {"origen": "senado", "voto": votos, "tc": {"recurso": false, "cae": false}, "aprobada": false}}, func() -> void: pass, nombres, 43))
+	await _guardar("v4_votacion_rechazada", 2.0)
+	await _limpiar_capa(dia)
+	var real: Dictionary = {}
+	for e in main.motor.catalogo_eventos:
+		if String(e["titulo"]).begins_with("Se publica la Ley"):
+			real = e
+			break
+	if not real.is_empty():
+		dia._capa.add_child(OverlaysDia.evento({"titulo": real["titulo"], "hora": "09:00", "descripcion": real["descripcion"], "efectos": [{"ind": "capital", "delta": 1}]}, func() -> void: pass, nombres, 8))
+		await _guardar("v4_evento_claro", 0.0)
+		await _limpiar_capa(dia)
+	var ops := [{"texto": "Mostrar las cifras del programa"}, {"texto": "Contraatacar al rival"}, {"texto": "Apelar a la emoción"}]
+	dia._capa.add_child(OverlaysDia.evento({"titulo": "Debate presidencial final", "hora": "22:00", "descripcion": "Tus rivales te acusan de prometer sin financiamiento. ¿Cómo respondes?",
+		"escena": {"nombre": "Debate presidencial final", "ronda": 2, "rondas": 3}, "opciones": ops}, func() -> void: pass, nombres, 50, func(_i: int) -> void: pass))
+	await _guardar("v4_debate_tv", 0.0)
+	await _limpiar_capa(dia)
+	dia._capa.add_child(OverlaysDia.evento({"titulo": "Debate en radio", "hora": "08:00", "descripcion": "La conductora pregunta por el costo de la vida.",
+		"escena": {"nombre": "Debate en radio", "ronda": 1, "rondas": 2}, "opciones": ops.slice(0, 2)}, func() -> void: pass, nombres, 50, func(_i: int) -> void: pass))
+	await _guardar("v4_radio", 0.0)
+	await _limpiar_capa(dia)
+	CambioMando.mostrar(dia._capa, "11 mar 2026", String(partido["nombre"]), func() -> void: pass)
+	await _guardar("v4_cambio_mando", 0.8)
+	await create_timer(2.0).timeout
+	await _limpiar_capa(dia)
+	main.mostrar_menu()
+	await process_frame
+	main._pantalla.add_child(PantallaAjustes.new())
+	await _guardar("v4_ajustes", 0.0)
 	DirAccess.remove_absolute(ProjectSettings.globalize_path(Tutorial.ruta))
