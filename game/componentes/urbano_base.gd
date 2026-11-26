@@ -342,6 +342,7 @@ static func _dibujar_metro(ci: CanvasItem, c: Dictionary, esc: float) -> void:
 		for e in pl["est"]:
 			ci.draw_circle(e, 4.4 * esc, COLOR_PROPIA)
 			ci.draw_circle(e, 2.6 * esc, Color.WHITE)
+	var puntos: Array = []  # todas las estaciones en una sola llamada de dibujo (antes 2 por estación)
 	for i in range(c["estaciones"].size()):
 		var lineas: Array = c["est_lineas"][i]
 		var visibles := 0
@@ -352,11 +353,10 @@ static func _dibujar_metro(ci: CanvasItem, c: Dictionary, esc: float) -> void:
 			continue
 		var p: Vector2 = c["estaciones"][i]
 		if lineas.size() > 1:  # combinación: círculo más grande con anillo oscuro
-			ci.draw_circle(p, 5.4 * esc, Tema.TINTA)
-			ci.draw_circle(p, 3.8 * esc, Color.WHITE)
+			puntos.append_array([[p, 5.4 * esc, Tema.TINTA], [p, 3.8 * esc, Color.WHITE]])
 		else:
-			ci.draw_circle(p, 3.4 * esc, Tema.TINTA)
-			ci.draw_circle(p, 2.2 * esc, Color.WHITE)
+			puntos.append_array([[p, 3.4 * esc, Tema.TINTA], [p, 2.2 * esc, Color.WHITE]])
+	UrbanoTrazo.circulos(ci, puntos)
 
 
 static func linea_en(pos: Vector2, tam: Vector2, margen: Vector2, umbral: float = 14.0) -> String:
@@ -389,6 +389,7 @@ static func estacion_en(pos: Vector2, tam: Vector2, margen: Vector2, umbral: flo
 	var c := preparar(tam, margen)
 	var mejor := umbral
 	var res: Dictionary = {}
+	var puntos: Array = []  # todas las estaciones en una sola llamada de dibujo (antes 2 por estación)
 	for i in range(c["estaciones"].size()):
 		var lineas: Array = c["est_lineas"][i]
 		var visibles: Array = []

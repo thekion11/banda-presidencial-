@@ -42,6 +42,8 @@ static func trazo(ci: CanvasItem, pts: PackedVector2Array, color: Color, ancho: 
 
 static func discontinua(ci: CanvasItem, pts: PackedVector2Array, color: Color, ancho: float, trazo_px: float, hueco_px: float) -> void:
 	## Trazo discontinuo que no se reinicia en cada vértice (el patrón sigue de un tramo al siguiente).
+	## Todos los trazos van en un solo draw_multiline: una llamada de dibujo por línea en vez de una por trazo.
+	var segs := PackedVector2Array()
 	var pintar := true
 	var restante := trazo_px
 	for i in range(pts.size() - 1):
@@ -54,12 +56,41 @@ static func discontinua(ci: CanvasItem, pts: PackedVector2Array, color: Color, a
 		while pos < largo:
 			var paso := minf(restante, largo - pos)
 			if pintar:
-				ci.draw_line(a + dir * pos, a + dir * (pos + paso), color, ancho, true)
+				segs.append_array([a + dir * pos, a + dir * (pos + paso)])
 			pos += paso
 			restante -= paso
 			if restante <= 0.0001:
 				pintar = not pintar
 				restante = trazo_px if pintar else hueco_px
+	if not segs.is_empty():
+		ci.draw_multiline(segs, color, ancho, true)
+
+
+static func circulos(ci: CanvasItem, lista: Array) -> void:
+	## Círculos rellenos [centro, radio, color] en un solo arreglo de triángulos (una llamada de dibujo), en el orden
+	## de la lista: el que va después queda encima, igual que con draw_circle uno tras otro.
+	var pts := PackedVector2Array()
+	var cols := PackedColorArray()
+	for c in lista:
+		var centro: Vector2 = c[0]
+		var r: float = c[1]
+		var col: Color = c[2]
+		for k in range(LADOS):
+			pts.append_array([centro, centro + _UNIDAD[k] * r, centro + _UNIDAD[(k + 1) % LADOS] * r])
+			cols.append_array([col, col, col])
+	if not pts.is_empty():
+		RenderingServer.canvas_item_add_triangle_array(ci.get_canvas_item(), PackedInt32Array(range(pts.size())), pts, cols)
+
+
+const LADOS := 20
+static var _UNIDAD: PackedVector2Array = _unidad()
+
+
+static func _unidad() -> PackedVector2Array:
+	var u := PackedVector2Array()
+	for k in range(LADOS):
+		u.append(Vector2.from_angle(TAU * float(k) / float(LADOS)))
+	return u
 
 
 static func mas_cercano(p: Vector2, pts: PackedVector2Array) -> Vector2:
