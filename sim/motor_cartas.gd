@@ -68,6 +68,8 @@ func reales_para_mazo() -> Array[String]:
 	var apartadas := {}  # descarte y mano como conjunto
 	for id in _m.estado.descarte:
 		apartadas[id] = true
+	for id in _m.estado.mazo:  # lo que ya está en el mazo (p. ej. el descarte recién repuesto) no se vuelve a sortear: una carta por proyecto
+		apartadas[id] = true
 	for x in _m.estado.mano:
 		apartadas[String(x["id"])] = true
 	_m.gabinete.abrir_contexto()
