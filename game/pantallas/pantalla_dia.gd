@@ -15,7 +15,6 @@ var _nav: Control
 var _nuevas: Array = []  # ids de cartas que entraron por reposición (se animan al pintar la mano)
 var _lbl_mov: Label
 var _badge: Label
-var _ministro: String = ""
 var _region: String = ""
 var _r: Dictionary = {}  # referencias de Barras
 var _mapa: MapaChile
@@ -95,15 +94,15 @@ func _pintar_mano() -> void:
 	var est := motor.estado
 	var n := est.mano.size()
 	_sel = clampi(_sel, 0, maxi(0, n - 1))
-	_mano.pintar(motor, _sel, _ministro, _nuevas)
+	_mano.pintar(motor, _sel, "", _nuevas)  # la delegación va por PanelDelegar: aquí siempre sin ministro
 	_nuevas = []
 	if n == 0:
 		_lbl_corrector.text = "[b]Sin cartas:[/b] antes de terminar la semana puedes revisar el Comité, el Congreso o tu gabinete."
 		return
-	var v := motor.vista_carta(_sel, _ministro)
+	var v := motor.vista_carta(_sel, "")
 	var c: Dictionary = est.mano[_sel]
 	var tit := String(c["titulo"])
-	var cabeza := "[b]%s[/b] · %d mov · %s\n" % [tit if tit.length() <= 22 else tit.substr(0, 21) + "…", motor.costo_carta(c, _ministro), FichaCarta.linea(c, datos["leyes"])]
+	var cabeza := "[b]%s[/b] · %d mov · %s\n" % [tit if tit.length() <= 22 else tit.substr(0, 21) + "…", motor.costo_carta(c, ""), FichaCarta.linea(c, datos["leyes"])]
 	if est.pa_actual == 0:  # sin movimientos: qué se puede hacer todavía
 		var delega := est.etapa == "gobierno" and est.delegadas_turno < int(motor.catalogo_leyes["delegacion"]["max_por_turno"])
 		_lbl_corrector.text = cabeza + "[b]Sin movimientos:[/b] " + ("delega esta carta en un ministro (no gasta movimientos) o termina la semana." if delega else "termina la semana; se renuevan al empezar la próxima.")
@@ -169,13 +168,12 @@ func _jugar() -> void:
 	var antes := motor.estado.indicadores.duplicate()
 	var vuelo := ManoVuelo.datos(motor, _sel, _mano)  # la carta elegida (y dónde está) antes de que salga de la mano
 	_mano_tocada = false
-	var r := motor.jugar_carta(_sel, _ministro, _region)
+	var r := motor.jugar_carta(_sel, "", _region)
 	if not bool(r["ok"]):
 		Feedback.sonar("error")
 		_avisar(Razones.texto(r))
 		return
 	_leer_reposicion(n_reg)
-	_ministro = ""
 	var msg := "Carta jugada."
 	if r.get("promesa", false):
 		msg = "Promesa registrada: +%.1f de aprobación" % float(r["delta_aprobacion"])
