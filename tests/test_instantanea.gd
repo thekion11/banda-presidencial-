@@ -67,6 +67,24 @@ func _init() -> void:
 	_check(not Instantanea.vale_para(d, huella, "otro"), "no vale si el guardado cambió")
 	_check(not Instantanea.vale_para(d, "otra_huella", "abc"), "no vale si los datos cambiaron")
 	_check(not Instantanea.vale_para({}, huella, "abc"), "una instantánea vacía no vale")
+	# una instantánea con huella y SHA válidos pero sin sus partes se ignora (y Partida.cargar reproduce el historial)
+	var incompleta := d.duplicate(true)
+	incompleta.erase("rng_state")
+	_check(not Instantanea.vale_para(incompleta, huella, "abc"), "sin rng_state no vale")
+	var sin_estado := d.duplicate(true)
+	sin_estado["estado"] = {"semilla": 1}
+	_check(not Instantanea.vale_para(sin_estado, huella, "abc"), "con el estado recortado no vale")
+	var m3 := Partida.crear(datos, 12, GeneradorPartido.construir_partido("I", "III", "metropolitana", resp, datos["ideologia"]))
+	var r3 := RandomNumberGenerator.new()
+	r3.seed = 12
+	for _i in range(3):
+		Bots.jugar_turno(m3, "completo", r3)
+		m3.terminar_turno()
+	var inc2 := Instantanea.leer(Instantanea.tomar(m3, huella, "abc"))
+	inc2.erase("votaciones")
+	var g3: Dictionary = JSON.parse_string(JSON.stringify(m3.estado.exportar_guardado(huella)))
+	var rec := Partida.cargar(datos, g3, inc2, huella, "abc")
+	_check(rec.estado.calcular_huella() == m3.estado.calcular_huella(), "una instantánea incompleta cae al historial y da el mismo estado")
 	_check(Instantanea.leer(PackedByteArray([1, 2, 3])).is_empty() and Instantanea.leer(bytes.slice(0, 20)).is_empty(), "una instantánea dañada se descarta")
 	print("test_instantanea: ", "OK" if _fallos == 0 else "FALLO")
 	quit(1 if _fallos > 0 else 0)
@@ -78,6 +96,14 @@ func _probar(datos: Dictionary, huella: String, m: MotorTurno, nombre: String) -
 	var snap := Instantanea.leer(Instantanea.tomar(m, huella, "sha"))
 	var rest := Partida.cargar(datos, g, snap, huella, "sha")
 	_iguales(rest, repro, nombre + " (restaurada contra reproducida)")
+	for pr in rest.estado.get_property_list():  # los arreglos tipados siguen tipados tras restaurar
+		if int(pr["usage"]) & PROPERTY_USAGE_SCRIPT_VARIABLE:
+			var a: Variant = rest.estado.get(pr["name"])
+			var b: Variant = repro.estado.get(pr["name"])
+			if a is Array and b is Array:
+				_check((a as Array).is_typed() == (b as Array).is_typed() and (a as Array).get_typed_builtin() == (b as Array).get_typed_builtin(), "%s: el arreglo %s conserva su tipo" % [nombre, pr["name"]])
+			_check(typeof(a) == typeof(b), "%s: %s conserva su tipo de dato" % [nombre, pr["name"]])
+	_check(rest.estado.ciclo == repro.estado.ciclo and rest.estado.dias_carrera == repro.estado.dias_carrera, nombre + ": ciclo y días de carrera iguales")
 	_check(rest.estado.calcular_huella() == m.estado.calcular_huella(), nombre + ": misma huella que la partida en vivo")
 	# jugar adelante en ambas con el mismo azar del bot
 	var r1 := RandomNumberGenerator.new()
@@ -92,3 +118,4 @@ func _probar(datos: Dictionary, huella: String, m: MotorTurno, nombre: String) -
 		rest.terminar_turno()
 		repro.terminar_turno()
 	_iguales(rest, repro, nombre + " (12 turnos después)")
+	_check(rest.estado.ciclo >= repro.estado.ciclo and rest.estado.dias_carrera >= 0, nombre + ": ciclo y días de carrera no retroceden")

@@ -31,6 +31,20 @@ func _init() -> void:
 		_check(q["umbral"] != null and (q["regiones"] as Array).size() == int(cfg["regiones_mostradas"]), "trae umbral y las regiones más débiles")
 		_check(float(q["regiones"][0]["valor"]) <= float(q["regiones"][1]["valor"]), "regiones ordenadas de menor a mayor")
 	_check(is_equal_approx(float(e.encuestas.back()["margen"]), float(cfg["margen_final"])), "la última encuesta de campaña tiene el margen mínimo")
+	# FORMA FIJA (la presentación en game/ depende de ella): claves, tipos y rangos
+	for q in e.encuestas:
+		var claves: Array = q.keys()
+		claves.sort()
+		_check(claves == ["etapa", "intencion", "margen", "regiones", "rival", "semana", "turno", "umbral"], "claves de la encuesta: %s" % str(claves))
+		_check(typeof(q["semana"]) == TYPE_INT and typeof(q["turno"]) == TYPE_INT and typeof(q["etapa"]) == TYPE_STRING, "tipos: semana y turno enteros, etapa texto")
+		_check(typeof(q["intencion"]) == TYPE_FLOAT and float(q["intencion"]) >= 0.0 and float(q["intencion"]) <= 100.0, "intención: número entre 0 y 100")
+		_check(typeof(q["margen"]) == TYPE_FLOAT and float(q["margen"]) > 0.0 and float(q["margen"]) <= 4.1, "margen: número positivo hasta margen_inicial")
+		_check(q["umbral"] == null or (typeof(q["umbral"]) == TYPE_FLOAT and float(q["umbral"]) > 0.0 and float(q["umbral"]) <= 100.0), "umbral: nulo o número entre 0 y 100")
+		_check(q["rival"] == null or typeof(q["rival"]) == TYPE_FLOAT, "rival: nulo o número")
+		for r in q["regiones"]:
+			_check(typeof(r["id"]) == TYPE_STRING and typeof(r["valor"]) == TYPE_FLOAT and float(r["valor"]) >= 0.0 and float(r["valor"]) <= 100.0, "región: id texto y valor entre 0 y 100")
+		_check(abs(float(q["intencion"]) - snappedf(float(q["intencion"]), 0.1)) < 0.0001, "intención con un decimal")
+	_check(e.encuestas[0]["semana"] < e.encuestas[1]["semana"], "las semanas crecen")
 	# no consume el azar de la partida: dos partidas iguales, una leyendo encuestas y otra no, quedan con el mismo estado del generador
 	var m2 := Partida.crear(datos, 41, partido)
 	for t in range(7):

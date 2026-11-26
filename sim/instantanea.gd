@@ -36,8 +36,25 @@ static func leer(bytes: PackedByteArray) -> Dictionary:
 	return d if d is Dictionary and int(d.get("v", 0)) == VERSION else {}
 
 
+const CLAVES := ["estado", "rng_seed", "rng_state", "ultimos_eventos", "votaciones"]
+
+
+static func es_completa(d: Dictionary) -> bool:
+	## Estructura mínima para restaurar (una instantánea con huella y SHA válidos pero sin sus partes se ignora en vez de fallar).
+	for k in CLAVES:
+		if not d.has(k):
+			return false
+	if not (d["estado"] is Dictionary) or not (d["ultimos_eventos"] is Array) or not (d["votaciones"] is Array):
+		return false
+	var e: Dictionary = d["estado"]
+	for k in ["semilla", "etapa", "turno_actual", "indicadores", "mano", "mazo", "entradas"]:
+		if not e.has(k):
+			return false
+	return true
+
+
 static func vale_para(d: Dictionary, huella_datos: String, sha_guardado: String) -> bool:
-	return not d.is_empty() and String(d.get("huella_datos", "")) == huella_datos and String(d.get("sha_guardado", "")) == sha_guardado and sha_guardado != ""
+	return not d.is_empty() and es_completa(d) and String(d.get("huella_datos", "")) == huella_datos and String(d.get("sha_guardado", "")) == sha_guardado and sha_guardado != ""
 
 
 static func restaurar(datos: Dictionary, semilla: int, d: Dictionary) -> MotorTurno:
