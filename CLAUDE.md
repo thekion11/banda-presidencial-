@@ -64,6 +64,7 @@ python3 tools/check_constantes.py      # ningún número de balance nuevo en sim
 python3 tools/validate_tipos.py        # estructura y tipos de data/leyes.json
 python3 tools/test_validate.py         # pruebas negativas de los validadores
 python3 tools/check_entradas.py        # cada tipo de entrada del guardado está en ValidarGuardado
+python3 tools/check_version.py         # la versión es la misma en project.godot, export_presets.cfg y data/version.json
 python3 tools/generar_api.py --verificar  # toda función pública de sim/ está documentada (regenera docs/API_SIM.md)
 python3 tools/estado_proyecto.py        # genera docs/ESTADO_ACTUAL.md (foto del proyecto; el CI lo ejecuta sin bloquear)
 python3 tools/mutar.py godot 24 1      # mutación acotada de sim/ (lista mutantes que ninguna prueba mata; ≈ 15 min)

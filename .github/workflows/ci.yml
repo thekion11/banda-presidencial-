@@ -28,6 +28,7 @@ jobs:
           python3 tools/check_presupuesto.py
           python3 tools/validar_textos.py
           python3 tools/check_entradas.py
+          python3 tools/check_version.py
           python3 tools/generar_api.py --verificar
           python3 tools/test_validate.py
           python3 tools/validar_metro.py --verificar

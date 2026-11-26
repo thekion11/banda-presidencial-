@@ -5,6 +5,7 @@ config_version=5
 
 config/quit_on_go_back=false
 config/name="Presidente de Chile"
+config/version="0.9.0-prueba1"
 config/features=PackedStringArray("4.7", "Mobile")
 run/main_scene="res://game/main.tscn"
 config/icon="res://icon.svg"

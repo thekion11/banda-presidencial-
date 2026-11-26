@@ -44,6 +44,22 @@ def manifiesto(b: bytes) -> list:
     return res
 
 
+def alineacion_elf(datos: bytes) -> int:
+    """Menor alineación (p_align) de los segmentos PT_LOAD de un ELF de 64 bits; 0 si no es ELF64. Android 15 exige 16 KB (0x4000) para apuntar a API 35 o más."""
+    if datos[:4] != b"\x7fELF" or datos[4] != 2:
+        return 0
+    phoff = struct.unpack_from("<Q", datos, 0x20)[0]
+    phentsize, phnum = struct.unpack_from("<HH", datos, 0x36)
+    menor = 0
+    for i in range(phnum):
+        base = phoff + i * phentsize
+        tipo = struct.unpack_from("<I", datos, base)[0]
+        if tipo == 1:
+            alin = struct.unpack_from("<Q", datos, base + 0x30)[0]
+            menor = alin if menor == 0 else min(menor, alin)
+    return menor
+
+
 def main() -> int:
     if len(sys.argv) < 2:
         print(__doc__)
@@ -78,6 +94,13 @@ def main() -> int:
         avisos.append("APK de depuración (debuggable): para Play hay que exportar en modo release y firmar con el keystore propio")
     if int(man.get("versionCode", 0)) < 1:
         avisos.append("versionCode inválido")
+    for info in z.infolist():
+        if info.filename.startswith("lib/") and info.filename.endswith(".so"):
+            alin = alineacion_elf(z.read(info.filename))
+            if alin and alin < 0x4000:
+                avisos.append(f"{info.filename}: segmentos alineados a {alin // 1024} KB (Android 15 exige 16 KB para apuntar a API 35 o más)")
+            elif alin:
+                print(f"{info.filename}: alineación {alin // 1024} KB (16 KB o más: bien)")
     for a in avisos:
         print("AVISO:", a)
     return 0
