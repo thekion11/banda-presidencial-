@@ -39,6 +39,7 @@ func _guardado_danado() -> void:
 	var respaldo := ProjectSettings.globalize_path("user://guardado_respaldo_prueba.json")
 	if FileAccess.file_exists("user://guardado.json"):  # si quien prueba tiene una partida guardada, se respeta
 		DirAccess.rename_absolute(ruta, respaldo)
+	DirAccess.remove_absolute(ProjectSettings.globalize_path("user://guardado.bak"))  # sin respaldo (main.RUTA_RESPALDO): se prueba el descarte
 	var f := FileAccess.open("user://guardado.json", FileAccess.WRITE)
 	f.store_string("{esto no es un guardado")
 	f.close()

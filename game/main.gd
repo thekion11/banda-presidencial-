@@ -2,6 +2,7 @@ extends Control
 ## Enrutador de pantallas + guardado por eventos (semilla + historial de entradas).
 
 const RUTA_GUARDADO := "user://guardado.json"
+const RUTA_RESPALDO := "user://guardado.bak"  # copia del último guardado bueno: si el actual se daña, se recupera de aquí
 const RUTA_CACHE := "user://guardado.cache"  # instantánea de carga (ver sim/instantanea.gd): solo acelera continuar, el guardado sigue siendo el historial
 const RUTA_ULTIMA := "user://ultima_config.json"  # último partido fundado: «Nueva partida como la última vez»
 
@@ -125,6 +126,8 @@ func _repetir_ultima() -> void:
 
 
 func _iniciar_campana(partido: Dictionary, directo: bool = false) -> void:
+	for r in [RUTA_RESPALDO, RUTA_GUARDADO]:  # partida nueva: ni el respaldo ni el guardado de la anterior deben quedar como respaldo de esta
+		DirAccess.remove_absolute(ProjectSettings.globalize_path(r))
 	var tmp := RUTA_ULTIMA + ".tmp"  # como el guardado: se escribe aparte y se renombra, un corte no deja el archivo a medias
 	var f := FileAccess.open(tmp, FileAccess.WRITE)
 	if f != null:
@@ -151,8 +154,20 @@ func mostrar_gabinete() -> void:
 	_cambiar(g)
 
 
+func _guardado_ok(g: Variant) -> bool:
+	return g is Dictionary and g.has("semilla") and g.has("entradas") and String(g.get("huella_datos", "")) == _huella_datos and ValidarGuardado.guardado_valido(g)
+
+
 func continuar_guardado() -> void:
 	var g: Variant = Datos.leer_json(RUTA_GUARDADO)
+	var recuperado := false
+	if not _guardado_ok(g) and FileAccess.file_exists(RUTA_RESPALDO):  # guardado dañado: se prueba la copia del último bueno
+		var b: Variant = Datos.leer_json(RUTA_RESPALDO)
+		if _guardado_ok(b):
+			DirAccess.rename_absolute(ProjectSettings.globalize_path(RUTA_GUARDADO), ProjectSettings.globalize_path("user://guardado_descartado.json"))
+			DirAccess.copy_absolute(ProjectSettings.globalize_path(RUTA_RESPALDO), ProjectSettings.globalize_path(RUTA_GUARDADO))
+			g = b
+			recuperado = true
 	if not (g is Dictionary) or not g.has("semilla") or not g.has("entradas") or String(g.get("huella_datos", "")) != _huella_datos:
 		push_warning("Guardado dañado o incompatible con esta versión de los datos.")
 		# se conserva una copia (por si sirve para diagnosticar) y se quita el original: así el botón no reaparece fallando otra vez
@@ -172,6 +187,8 @@ func continuar_guardado() -> void:
 		guardar_instantanea()  # el próximo arranque ya no tendrá que simular el historial
 	UrbanoBase.reiniciar()
 	mostrar_dia()
+	if recuperado and _pantalla is PantallaDia:
+		(_pantalla as PantallaDia)._avisar("Recuperamos tu partida de hace un momento: el último guardado estaba dañado.")
 
 
 func mostrar_dia() -> void:
@@ -218,6 +235,8 @@ func guardar() -> void:
 	if f != null:
 		f.store_string(JSON.stringify(motor.estado.exportar_guardado(_huella_datos)))
 		f.close()
+		if FileAccess.file_exists(RUTA_GUARDADO):  # el guardado anterior (bueno) queda como respaldo antes de reemplazarlo
+			DirAccess.copy_absolute(ProjectSettings.globalize_path(RUTA_GUARDADO), ProjectSettings.globalize_path(RUTA_RESPALDO))
 		DirAccess.rename_absolute(ProjectSettings.globalize_path(tmp), ProjectSettings.globalize_path(RUTA_GUARDADO))
 		var ult: Array[Dictionary] = motor.estado.entradas
 		if not ult.is_empty() and ["cerrar", "eleccion", "continuar"].has(String(ult.back()["tipo"])):
