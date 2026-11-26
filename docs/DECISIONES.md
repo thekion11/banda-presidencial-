@@ -277,3 +277,6 @@ Regla (CLAUDE.md §2): políticos reales con alias satíricos, personajes de pan
 ## AJ. Pruebas negativas y unitarias directas (26-nov-2026, tarea 5 de la cola 4 y hallazgo 3 de «Búsqueda infinita de fallas»)
 - `tests/test_rechazos_legales.gd`: índice inválido, ministro inexistente o fuera del gabinete, región inexistente, sin movimientos, delegación sobre el tope, carta única ya ejecutada y partida terminada devuelven su razón y no cambian la huella ni agregan entradas al guardado.
 - `tests/test_puntaje_tc.gd`: fórmula exacta de `calcular_puntaje` con los pesos de `leyes.json`; `resolver_tc` (tipos que no van al TC, éxito 0 y 1, frecuencia de recurso por tipo) y `corregir` (ratio, modo por tramos, piso `ratio_obra_min`).
+
+## AK. Refactor de funciones largas en sim/ (26-nov-2026, tarea 8 de la cola 4)
+- Solo una función de `sim/` superaba las 60 líneas: `DirectorEventos._elegir` (65). Se partió en `_prob_decision` y `_sortear` sin cambiar el orden de uso del RNG: las huellas de oro (4 semanas, 30 días, completa) y `tests/oro/huellas.json` no cambian, y el turno sigue en ≈ 0,55 ms.
