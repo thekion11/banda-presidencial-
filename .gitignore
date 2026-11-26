@@ -12,3 +12,14 @@ __pycache__/
 
 # Ajuste local temporal (p. ej. grabar video a 2x con tests/grabar_video.gd); nunca se sube
 override.cfg
+
+# Claves y credenciales: nunca se suben (firma de Android, cuentas de servicio, variables locales)
+*.p12
+*.pfx
+*.pem
+*.key
+.env.*
+key.properties
+local.properties
+google-services.json
+*service-account*.json

@@ -174,7 +174,7 @@ func calcular_huella() -> String:
 
 func exportar_guardado(huella_datos: String = "") -> Dictionary:
 	## Guardado por eventos: semilla, partido, historial de entradas y huella de los datos con que se jugó.
-	return {"version": 2, "huella_datos": huella_datos, "semilla": semilla, "partido": partido.duplicate(true), "entradas": entradas.duplicate(true)}
+	return {"version": ValidarGuardado.VERSION, "huella_datos": huella_datos, "semilla": semilla, "partido": partido.duplicate(true), "entradas": entradas.duplicate(true)}
 
 
 func _ids_mano() -> Array:
