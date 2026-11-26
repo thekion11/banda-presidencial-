@@ -33,3 +33,21 @@ Publicación en pausa por decisión del usuario. Esta lista no es asesoría lega
 ## 6. Texto de la ficha
 - Corregido el 26-nov: ya no dice «un turno por sesión de 3 a 8 minutos» (`docs/GOOGLE_PLAY.md`). Revisar que no prometa funciones que no estén (por ejemplo «cinco corredores» frente a lo que hoy se juega) y que declare «ficción y sátira».
 - Capturas: deben mostrar la app real (reglas de metadatos de Play); las de `docs/tienda/` son de la maqueta y hay que regenerarlas desde el juego.
+
+## 7. Auditoría de `export_presets.cfg` y del APK (26-nov-2026)
+Hecha con `tools/auditar_apk.py` sobre el APK de depuración local del 24-nov (plantilla anterior a la actual del CI: **repetirla sobre el APK que genere el CI**, ahora automática y no bloqueante en `android.yml`; el resultado queda en el registro del trabajo).
+| Aspecto | Hallado | Veredicto |
+|---|---|---|
+| Orientación | `screenOrientation = 1` (vertical bloqueada) y `window/handheld/orientation=1` | Bien |
+| Permisos | Ninguno solicitado (no pide INTERNET, ubicación ni almacenamiento); `allowBackup = false` | Bien: coincide con la política de privacidad y con la declaración «no se recopilan datos» |
+| Paquete y versión | `cl.presidente.juego`, `versionCode 1`, `versionName 0.1.0` (el informe de prueba muestra otra, `0.9.0-prueba1`) | Unificar el criterio antes de publicar; subir `versionCode` en cada entrega |
+| SDK | `minSdk 21`, `targetSdk 34`, `compileSdk 34` en ese APK | **Riesgo:** Play exige apuntar a Android 15 (API 35) o más para apps nuevas; el CI ya instala las plataformas 35 y 36, pero hay que confirmar el valor del APK actual y fijarlo en el preset |
+| ABI | Solo `arm64-v8a` (cumple el requisito de 64 bits; deja fuera los teléfonos de 32 bits, pocos) | Bien |
+| Vulkan | El manifiesto declara `android.hardware.vulkan.version` como **requerido** (el motor usa el renderizador «mobile») | **Riesgo:** los teléfonos sin Vulkan 1.0 no verán la app en Play. Decisión del dueño: mantener o pasar al renderizador de compatibilidad (OpenGL ES 3), que llega a más teléfonos, pero cambia el aspecto del suavizado y hay que volver a medir fps |
+| Tamaño | APK de depuración 30 MB comprimido (≈ 20 MB de bibliotecas nativas arm64) | Bien (límite 150 MB) |
+| Íconos y pantalla de inicio | Ícono de 192 px y adaptativo (primer plano y fondo de 432 px) en `game/arte/marca/`; splash a pantalla completa con el color de la paleta | Bien; revisar el ícono en teléfonos reales |
+| Firma | `package/signed=true`; el APK de depuración usa el keystore de depuración del CI | Falta el keystore de release (ver `FIRMA_APK_PRUEBA_CERRADA.md`) |
+| Formato | `gradle_build/use_gradle_build=false`: solo se puede exportar APK | Para el AAB de Play hay que activar la compilación con Gradle |
+| 16 KB de página | No verificable con el APK local | Verificar con la plantilla de Godot 4.7.2 antes de publicar (requisito de Android 15) |
+| Depuración | El APK de depuración es `debuggable` | Normal; el de Play se exporta en modo release |
+**Lista corta para publicar:** fijar `targetSdk ≥ 35`, decidir el renderizador (Vulkan requerido o compatibilidad), activar Gradle y exportar AAB, crear el keystore o activar Play App Signing, unificar versión, verificar 16 KB y repetir esta auditoría sobre el binario final.
