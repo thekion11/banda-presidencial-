@@ -390,10 +390,10 @@ func _abrir_panel(cual: String) -> void:
 	_poner_nav(cual == "nacion", cual)
 	for h in _zona_panel.get_children():
 		h.queue_free()
+	_zona_panel.visible = cual != "mapa"
+	_mapa.get_parent().visible = cual in ["mapa", "gabinete"]  # el panel opaco tapa la vista: no se dibuja debajo (Gabinete deja ver la fila de botones)
 	if cual == "mapa":
-		_zona_panel.visible = false
 		return
-	_zona_panel.visible = true
 	_zona_panel.offset_bottom = -66.0 if cual == "gabinete" else 0.0  # con Gabinete, la fila de Jugar/avanzar queda en su sitio
 	var contenido: Control
 	match cual:

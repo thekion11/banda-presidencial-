@@ -99,6 +99,7 @@ godot --headless --path . -s tests/test_movimiento.gd
 godot --headless --path . -s tests/test_claridad.gd
 godot --headless --path . -s tests/test_tactil.gd
 godot --headless --path . -s tests/test_textos.gd
+godot --headless --path . -s tests/test_tapa.gd
 godot --headless --path . -s tests/test_razones.gd             # toda razón de rechazo del motor tiene texto
 godot --headless --path . -s tests/test_sin_atascos.gd         # siempre hay mano y carta jugable (3 dificultades x 3 afiliaciones)
 godot --headless --path . -s tests/test_cobertura.gd           # cartas por área de ministerio y año
@@ -113,5 +114,6 @@ godot --headless --path . -s tests/test_carga_rapida.gd
 godot --headless --path . -s tests/test_rendimiento.gd         # turno < 1 ms y carga < 100 ms
 godot --headless --path . -s tests/montecarlo.gd -- 200        # informe de balance
 xvfb-run -a godot --path . --rendering-method gl_compatibility --resolution 390x844 -s tests/medir_memoria.gd   # informe de RAM por pantalla
+xvfb-run -a godot --path . --rendering-method gl_compatibility --resolution 390x844 -s tests/medir_cuadros.gd   # llamadas de dibujo por escena
 xvfb-run -a godot --path . --rendering-method gl_compatibility --resolution 390x844 -s tests/captura_comparar.gd -- /tmp/capturas   # estados de la maqueta
 ```
