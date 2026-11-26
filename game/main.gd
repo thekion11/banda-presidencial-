@@ -131,6 +131,11 @@ func continuar_guardado() -> void:
 		DirAccess.rename_absolute(ProjectSettings.globalize_path(RUTA_GUARDADO), ProjectSettings.globalize_path("user://guardado_descartado.json"))
 		mostrar_menu("No se pudo continuar: el guardado estaba dañado o es de otra versión del juego. Empieza una partida nueva.")
 		return
+	if not ValidarGuardado.guardado_valido(g):  # misma huella de datos pero otra forma de las entradas: se descarta igual que un guardado dañado
+		push_warning("Guardado con estructura inválida.")
+		DirAccess.rename_absolute(ProjectSettings.globalize_path(RUTA_GUARDADO), ProjectSettings.globalize_path("user://guardado_descartado.json"))
+		mostrar_menu("No se pudo continuar: el guardado estaba dañado o es de otra versión del juego. Empieza una partida nueva.")
+		return
 	var sha := FileAccess.get_sha256(RUTA_GUARDADO)
 	var snap := Instantanea.leer(FileAccess.get_file_as_bytes(RUTA_CACHE)) if FileAccess.file_exists(RUTA_CACHE) else {}
 	var rapida := Instantanea.vale_para(snap, _huella_datos, sha)
