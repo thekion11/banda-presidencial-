@@ -31,12 +31,16 @@ jobs:
           unzip -q godot.zip
           sudo mv "Godot_v${GODOT_VERSION}_linux.x86_64" /usr/local/bin/godot
       - name: Importar proyecto
-        run: godot --headless --import --path . || true
-      - name: Pruebas de oro, balance y humo de UI
         run: |
-          for t in test_prueba_oro_4_semanas test_prueba_oro_30_dias test_prueba_oro_completa test_enmienda test_congreso test_grafo test_metro_lineas test_mapa_entrada test_lineas_guardado test_validaciones test_guardado_danado test_cartera test_sectra test_guardado test_gabinete test_delegacion test_movimientos test_equipo test_coalicion test_presupuesto test_balance test_dificultad test_afiliacion test_finales test_decisiones test_carrera test_ritmo test_identidad test_ui_humo test_movimiento test_claridad; do
+          godot --headless --import --path . 2>&1 | tee import.log || true
+          if grep -q "SCRIPT ERROR" import.log; then echo "El import tiene errores de script"; exit 1; fi
+      - name: Todas las pruebas (tests/test_*.gd: oro, balance, instantánea, rendimiento y humo de UI)
+        run: |
+          # se recorren todas, no una lista a mano: una prueba nueva entra sola al CI (hallazgo de «Búsqueda infinita de fallas»: 10 de 41 no se ejecutaban)
+          for f in tests/test_*.gd; do
+            t=$(basename "$f" .gd)
             echo "== $t"
-            godot --headless --path . -s "tests/$t.gd"
+            godot --headless --path . -s "$f"
           done
       - name: Fuzzing del núcleo (acciones aleatorias e inválidas, replay idéntico)
         run: godot --headless --path . -s tests/fuzz_acciones.gd -- 60 7000
