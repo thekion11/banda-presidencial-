@@ -116,6 +116,7 @@ func _mostrar_creditos() -> void:
 	_creditos.offset_right = -12
 	_creditos.offset_top = 330
 	_creditos.offset_bottom = -12
+	_creditos.set_meta("atras", _mostrar_creditos)  # botón Atrás de Android: cierra los créditos
 	add_child(_creditos)
 	if Movimiento.activo():
 		_creditos.position.y += 520.0

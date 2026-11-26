@@ -40,6 +40,7 @@ static func marcar_visto() -> void:
 
 
 func _ready() -> void:
+	set_meta("atras", _cerrar)  # botón Atrás de Android: salta el tutorial
 	set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	_velo = Control.new()
 	_velo.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)

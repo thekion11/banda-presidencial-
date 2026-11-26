@@ -112,7 +112,47 @@ def validar_referencias(d: dict) -> None:
         raise ValueError("coalición: los escaños de los 15 partidos ficticios superan el doble del Senado (revisa las cifras)")
     if len(ministros) != len(d["ministros"]):
         raise ValueError("ministros: ids repetidos")
+    validar_numeros(d)
     print(f"[INFO] Referencias cruzadas: {len(cartas)} cartas, {len(eventos)} eventos, {len(metas)} metas, {len(ministros)} ministros, {len(asesores)} asesores")
+
+
+def validar_numeros(d: dict) -> None:
+    """Coherencia numérica general (lo que las comprobaciones puntuales no cubren): NaN o infinitos, costos y plazos negativos, probabilidades fuera de [0,1],
+    ventanas con inicio > fin, población no positiva, efectos con delta absurdo y eventos programados fuera del mandato."""
+    prob = ("prob", "prob_recurso_tc", "prob_exito_tc", "prob_fallo_min", "prob_fallo_max", "riesgo_escandalo")
+    no_neg = ("costo_pa", "costo_mov", "semanas", "dias_totales", "dia_objetivo", "peso_sorteo")
+    ventanas = (("anio_desde", "anio_hasta"), ("desde", "hasta"))
+
+    def recorrer(o, ctx: str):
+        if isinstance(o, dict):
+            for k, v in o.items():
+                if isinstance(v, float) and (v != v or v in (float("inf"), float("-inf"))):
+                    raise ValueError(f"{ctx}/{k}: valor no finito")
+                if isinstance(v, (int, float)) and not isinstance(v, bool):
+                    if k in prob and not 0 <= v <= 1:
+                        raise ValueError(f"{ctx}/{k}: probabilidad fuera de [0,1] ({v})")
+                    if k in no_neg and v < 0:
+                        raise ValueError(f"{ctx}/{k}: valor negativo ({v})")
+                recorrer(v, f"{ctx}/{k}")
+            for a, b in ventanas:
+                if isinstance(o.get(a), (int, float)) and isinstance(o.get(b), (int, float)) and o[a] > o[b]:
+                    raise ValueError(f"{ctx}: ventana con inicio mayor que fin ({a}={o[a]} > {b}={o[b]})")
+            if "ind" in o and "delta" in o and isinstance(o["delta"], (int, float)) and o["ind"] != "viviendas_anio" and abs(o["delta"]) > 100:
+                raise ValueError(f"{ctx}: efecto con delta absurdo ({o['ind']} {o['delta']})")
+        elif isinstance(o, list):
+            for i, v in enumerate(o):
+                recorrer(v, f"{ctx}[{i}]")
+
+    for nombre in ("cartas", "eventos", "ministros", "metas", "coalicion", "propuestas", "asesores"):
+        for x in d[nombre]:
+            recorrer(x, f"{nombre} {x.get('id', '?')}")
+    for r in d["regiones"]:
+        if r["poblacion_miles"] <= 0:
+            raise ValueError(f"región {r['id']}: población no positiva")
+    duracion = d["leyes"]["hemiciclo"]["duracion_mandato_dias"]
+    for e in d["eventos"]:
+        if e.get("dia_objetivo") is not None and e["dia_objetivo"] > duracion:
+            raise ValueError(f"evento {e['id']}: dia_objetivo {e['dia_objetivo']} fuera del mandato ({duracion} días)")
 
 
 if __name__ == "__main__":

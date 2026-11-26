@@ -65,6 +65,7 @@ python3 tools/validate_tipos.py        # estructura y tipos de data/leyes.json
 python3 tools/test_validate.py         # pruebas negativas de los validadores
 python3 tools/check_entradas.py        # cada tipo de entrada del guardado está en ValidarGuardado
 python3 tools/generar_api.py --verificar  # toda función pública de sim/ está documentada (regenera docs/API_SIM.md)
+python3 tools/estado_proyecto.py        # genera docs/ESTADO_ACTUAL.md (foto del proyecto; el CI lo ejecuta sin bloquear)
 python3 tools/mutar.py godot 24 1      # mutación acotada de sim/ (lista mutantes que ninguna prueba mata; ≈ 15 min)
 python3 tools/cobertura_funciones.py godot  # funciones de sim/ que ninguna prueba ejecuta (≈ 15 min)
 tools/run_all_tests.sh                 # TODO lo del CI en un solo comando (validadores, tests/test_*.gd y fuzz)
@@ -106,6 +107,7 @@ godot --headless --path . -s tests/test_textos.gd
 godot --headless --path . -s tests/test_tapa.gd
 godot --headless --path . -s tests/test_paleta.gd
 godot --headless --path . -s tests/test_estados.gd
+godot --headless --path . -s tests/test_atras.gd
 godot --headless --path . -s tests/test_razones.gd             # toda razón de rechazo del motor tiene texto
 godot --headless --path . -s tests/test_sin_atascos.gd         # siempre hay mano y carta jugable (3 dificultades x 3 afiliaciones)
 godot --headless --path . -s tests/test_cobertura.gd           # cartas por área de ministerio y año

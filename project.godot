@@ -2,6 +2,8 @@
 config_version=5
 
 [application]
+
+config/quit_on_go_back=false
 config/name="Presidente de Chile"
 config/features=PackedStringArray("4.7", "Mobile")
 run/main_scene="res://game/main.tscn"

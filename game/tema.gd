@@ -335,6 +335,11 @@ static func estilo_tarjeta(b: Button) -> void:
 	b.add_theme_stylebox_override("pressed", caja_degradada(Color("#133C5C"), Color("#0F3150"), 16, ORO, 2))
 
 
+static func dec(x: float, decimales: int = 1) -> String:
+	## Número con coma decimal, como se escribe en Chile: 3.5 -> «3,5» (tests/test_claridad.gd).
+	return (("%." + str(decimales) + "f") % x).replace(".", ",")
+
+
 static func pct(v: float) -> String:
 	return "%d %%" % roundi(v)
 

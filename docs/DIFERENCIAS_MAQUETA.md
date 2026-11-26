@@ -198,4 +198,14 @@ En el mapa urbano, las fichas de líneas de Metro (una extensión sobre la maque
 
 El hito de obra y el mapa urbano también usan la zona segura arriba (antes 40 px fijos). Las cifras grandes llevan punto de miles, como en la maqueta: «+1.540», «US$1.900 M» (`Tema.miles`). Hito: de 19,1 % a 17,8 %; urbano: de 21,8 % a 21,3 %.
 
+### Atrás de Android, coma decimal, corte de legado y confeti (26-nov-2026)
+- **Botón Atrás** (hallazgo de «Búsqueda infinita de fallas»; comportamiento propuesto por la sesión del motor; `Main.atras`, prueba `tests/test_atras.gd`). Antes cerraba la app sin preguntar en cualquier pantalla. Ahora `quit_on_go_back = false` y Atrás:
+  - cierra lo que esté encima: mapa urbano, hito, cartera, delegación, ficha, ajustes, créditos, tutorial o telón;
+  - no salta un evento, una votación ni el resultado de la elección: avisa que hay que responder;
+  - con un panel del día abierto, vuelve al mapa;
+  - en el día pide un segundo Atrás para ir al menú, con la partida guardada, y en el menú un segundo Atrás para salir.
+- **Coma decimal** (hallazgo de «Búsqueda»): los decimales visibles llevan coma, como en Chile: «57,4 %», «± 3,6», «TIR 3,5 %», «+1,5 desde la semana pasada» (`Tema.dec`, con prueba en `test_claridad`).
+- **Corte de legado** (pedido de la sesión del motor): al cerrar las semanas 104 y 208 de gobierno, cada promesa pendiente resta capital y aprobación (`leyes.json › legado`). El panel de metas de legado dice cuánto costará y cuántas semanas faltan, en coral desde 8 semanas antes. En las 4 últimas, un aviso lo recuerda al cerrar cada semana. Prueba en `test_estados`.
+- **Confeti** de la elección ganada: cae detrás del contenido, sin tapar el título ni las cifras.
+
 Reglas: todo el movimiento respeta Ajustes › «Animaciones y movimiento» y se apaga en modo headless, así que las pruebas miden siempre el estado final. El azar de las partículas es solo visual y no toca la semilla de la partida. Prueba propia: `tests/test_movimiento.gd`.

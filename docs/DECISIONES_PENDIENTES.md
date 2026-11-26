@@ -2,6 +2,25 @@
 
 Una sola tabla con lo que **no** puede decidir ningún agente: cada fila trae la recomendación y el costo de cada opción. El detalle y la evidencia están en `docs/DECISIONES.md` (sección entre paréntesis) y en `docs/PENDIENTES_USUARIO.md` (U1 a U10). Lo que dependa de personas reales se resuelve con la prueba cerrada (`docs/PRUEBA_CERRADA.md`).
 
+## Las 5 decisiones clave (por impacto, con mi recomendación)
+| # | Decisión | Recomendación | ¿Un sí/no? |
+|---|---|---|---|
+| 1 | **Duración de la partida** (D1): hoy un mandato son unas 6 sesiones de 20 min | Mantener 208 semanas y medirlo en la prueba cerrada | No: tres opciones |
+| 2 | **Dificultad** (D2, D4, D16): la dificultad solo cambia la campaña; en Normal los bots que juegan bien ganan 94 % | Esperar datos de personas; si en Normal ganan más del 85 %, restar 1,5 de aprobación inicial | No |
+| 3 | **Métricas locales con consentimiento** en la prueba cerrada (`PRUEBA_CERRADA.md` §6) | Sí: sin ellas la prueba solo tiene lo que cuenten los testers | **Sí/no** |
+| 4 | **Congelar `data/` durante la prueba cerrada** (D17): cualquier cambio de datos borra las partidas guardadas de los testers | Sí | **Sí/no** |
+| 5 | **Licencias antes de publicar**: imágenes con IA, código, SECTRA, GeoJSON y base ODbL (`LICENCIAS.md`) | Confirmar el uso comercial del arte antes de abrir Google Play | No: confirmaciones externas |
+
+### Se resuelven con un solo sí/no
+| # | Pregunta | Recomendación |
+|---|---|---|
+| D3 | ¿Dejar el bono por aprobación recalibrado (45 a 95) en vez del original (60 a 100)? | Sí |
+| D15 | ¿Mantener la cohesión con desgaste (−1,85 por semana)? | Sí |
+| D4 | ¿Dejar el umbral de victoria en 52? | Sí (decidirlo junto con D2) |
+| U8 | ¿Poner `main` como rama por defecto en GitHub? | Sí (1 minuto en Settings) |
+| PR #8 | ¿Pasar a «Ready for review» y fusionar el PR de pruebas de «Búsqueda infinita de fallas» cuando su CI quede en verde? | Sí |
+| 3 y 4 | Métricas con consentimiento y congelar `data/` (arriba) | Sí |
+
 ## A. Diseño y balance
 | # | Decisión | Opciones y costo | Recomendación | Evidencia |
 |---|---|---|---|---|

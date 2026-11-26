@@ -195,7 +195,7 @@ static func _ficha(detalle: VBoxContainer, pid: String, v: Dictionary, prop: Dic
 	detalle.add_child(Tema.etiqueta("Variante %s · %s" % [v["id"], v["nombre"]], 16, Tema.TEXTO, true))
 	var cifras := HBoxContainer.new()
 	cifras.add_child(PanelesDia._chip("Costo", "US$%s M" % Tema.miles(roundi(float(v["costo_musd"]))), Tema.CREMA))
-	cifras.add_child(PanelesDia._chip("Plazo", "%s años" % str(v["plazo_anios"]), Tema.CREMA))
+	cifras.add_child(PanelesDia._chip("Plazo", "%s años" % str(v["plazo_anios"]).replace(".", ","), Tema.CREMA))
 	cifras.add_child(PanelesDia._chip("Población servida", "%d mil" % int(v["poblacion_miles"]), Tema.CREMA))
 	detalle.add_child(cifras)
 	var efectos := HBoxContainer.new()

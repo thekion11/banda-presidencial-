@@ -93,4 +93,5 @@ static func crear(motor: MotorTurno, idx: int, region: String, al_terminar: Call
 	v.add_child(cancelar)
 	if mejor != "":
 		elegir.call(mejor)
+	raiz.set_meta("atras", cerrar)  # botón Atrás de Android: cierra la hoja
 	return raiz
