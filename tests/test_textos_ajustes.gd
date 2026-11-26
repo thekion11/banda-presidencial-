@@ -36,6 +36,16 @@ func _tam(n: Control) -> int:
 	return n.get_theme_font_size("font_size")
 
 
+func _en_scroll(n: Node) -> bool:
+	## Dentro de un ScrollContainer (fila de chips con desplazamiento) lo que queda fuera de la pantalla es legítimo: se desliza.
+	var p := n.get_parent()
+	while p != null:
+		if p is ScrollContainer:
+			return true
+		p = p.get_parent()
+	return false
+
+
 func _auditar(raiz: Node, donde: String) -> void:
 	for n in raiz.find_children("*", "Control", true, false):
 		if not (n is Label or n is Button or n is RichTextLabel) or not (n as Control).is_visible_in_tree():
@@ -47,7 +57,7 @@ func _auditar(raiz: Node, donde: String) -> void:
 		var corto := t.replace("\n", " ").left(40)
 		_check(_tam(n) >= MINIMO, "[%s] %s: «%s» mide %d pt (mín. %d)" % [_modo, donde, corto, _tam(n), MINIMO])
 		var r := (n as Control).get_global_rect()
-		_check(r.position.x >= -0.5 and r.end.x <= Tema.ANCHO + 0.5, "[%s] %s: «%s» se sale de la pantalla (%s)" % [_modo, donde, corto, r])
+		_check(_en_scroll(n) or (r.position.x >= -0.5 and r.end.x <= Tema.ANCHO + 0.5), "[%s] %s: «%s» se sale de la pantalla (%s)" % [_modo, donde, corto, r])
 
 
 func _correr() -> void:
