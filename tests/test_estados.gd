@@ -90,7 +90,28 @@ func _correr() -> void:
 	_check(en_mano.contains("Sin cartas") and en_mano.contains("Termina la semana"), "la mano vacía muestra qué hacer (%s)" % en_mano)
 	_check(dia._lbl_corrector.get_parsed_text().contains("antes de terminar la semana"), "el Corrector sugiere qué revisar con la mano vacía")
 	_check(not dia._btn_jugar.disabled, "con la mano vacía se puede terminar la semana")
-	# guardado dañado: se descarta y el menú lo explica con la acción viable
+	# guardado dañado con respaldo bueno: se recupera la partida de hace un momento (revisión de código #1 del motor)
+	main.guardar()  # primer guardado
+	est.pa_actual = 4
+	main.guardar()  # el anterior queda como respaldo
+	for parte in [0, 40]:  # truncado a 0 bytes y a menos de la mitad
+		var bueno := FileAccess.get_file_as_string(main.RUTA_GUARDADO)
+		var t := FileAccess.open(main.RUTA_GUARDADO, FileAccess.WRITE)
+		t.store_string(bueno.left(bueno.length() * parte / 100))
+		t.close()
+		main.continuar_guardado()
+		await _cuadros(2)
+		_check(main._pantalla is PantallaDia and main.motor != null, "con el guardado truncado al %d %% se recupera el respaldo" % parte)
+		_check(main._pantalla is PantallaDia and String(main._pantalla._toast.text).begins_with("Recuperamos tu partida"), "al recuperar el respaldo se avisa")
+		if not (main._pantalla is PantallaDia):  # sin recuperación el resto de la prueba no tiene pantalla del día: termina aquí
+			quit(1)
+			return
+		main.guardar()
+	dia = main._pantalla
+	est = main.motor.estado
+	DirAccess.remove_absolute(ProjectSettings.globalize_path("user://guardado_descartado.json"))
+	# guardado dañado sin respaldo: se descarta y el menú lo explica con la acción viable
+	DirAccess.remove_absolute(ProjectSettings.globalize_path(main.RUTA_RESPALDO))
 	var f := FileAccess.open(main.RUTA_GUARDADO, FileAccess.WRITE)
 	f.store_string("{\"semilla\": 1, \"entradas\": \"roto\"}")
 	f.close()
