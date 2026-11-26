@@ -144,7 +144,7 @@ func _correr() -> void:
 	await _esperar(0.2)
 	var textos: Array = c0.find_children("*", "Label", true, false).map(func(l: Label) -> String: return l.text)
 	_check(textos.any(func(t: String) -> bool: return t.begins_with("ENCUESTA DE LA SEMANA")) and textos.any(func(t: String) -> bool: return "Aysén 31" in t) \
-		and textos.any(func(t: String) -> bool: return "umbral 51" in t and "+1.5" in t), "el telón muestra la encuesta: umbral, cambio semanal y región débil (%s)" % str(textos))
+		and textos.any(func(t: String) -> bool: return "umbral 51" in t and "+1,5" in t), "el telón muestra la encuesta: umbral, cambio semanal y región débil (%s)" % str(textos))
 	_check(not tel[0] and c0.get_children().any(func(n: Node) -> bool: return n is TelonSemana), "el telón baja y retiene los eventos")
 	await _esperar(3.8)  # con encuesta el telón se queda 1 s más
 	var c9 := Control.new()

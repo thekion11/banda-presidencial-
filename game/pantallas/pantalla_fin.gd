@@ -80,11 +80,11 @@ func _ready() -> void:
 	var detalle := ""
 	match est.etapa:
 		"derrota_electoral":
-			detalle = "Tu aprobación el día de la elección fue %.1f %%, bajo el umbral de %.0f %%. No alcanzaste la presidencia." % [float(r.get("voto_final", 0.0)), umbral]
+			detalle = "Tu aprobación el día de la elección fue %s %%, bajo el umbral de %.0f %%. No alcanzaste la presidencia." % [Tema.dec(float(r.get("voto_final", 0.0))), umbral]
 		"crisis":
 			detalle = "Tu aprobación se desplomó y el gobierno no resistió la crisis política en el turno %d." % est.turno_actual
 		_:
-			detalle = "Completaste los 4 años con %.1f %% de aprobación." % float(r.get("aprobacion", 0.0))
+			detalle = "Completaste los 4 años con %s %% de aprobación." % Tema.dec(float(r.get("aprobacion", 0.0)))
 	col.add_child(Tema.etiqueta(detalle, 13, Tema.TEXTO_SUAVE))
 	if motor.mandato.sucesion() != "":
 		var su := Tema.etiqueta("Sucesión: " + motor.mandato.sucesion(), 12, Tema.ORO)

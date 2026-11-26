@@ -135,6 +135,7 @@ static func evento(ev: Dictionary, al_continuar: Callable, nombres: Dictionary, 
 	## Evento del día. Si trae votación, se muestra cámara por cámara en el orden de tramitación (origen -> revisora).
 	var capa := Control.new()
 	capa.set_anchors_preset(Control.PRESET_FULL_RECT)
+	capa.set_meta("atras", "Responde el evento para seguir.")  # Atrás no salta un evento ni una votación
 	capa.add_child(_fondo_radial())
 	if ev.get("votacion", null) != null:  # votación del Congreso: música de tensión mientras está en pantalla
 		Musica.tension(true)

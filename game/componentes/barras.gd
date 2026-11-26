@@ -20,6 +20,23 @@ static func fecha_iso(leyes: Dictionary, etapa: String, turno: int, dia: int, ci
 	return "%04d-%02d-%02d" % [int(d["year"]), int(d["month"]), int(d["day"])]
 
 
+static func legado(est: EstadoSimulacion, lg: Dictionary) -> Dictionary:
+	## Próximo corte de legado (MotorMandato.evaluar_legado): al cerrar las semanas de gobierno de leyes.json › legado,
+	## cada promesa de campaña pendiente resta capital y aprobación. {} si no hay corte pendiente o nada pendiente.
+	var pend := est.promesas_pendientes().size()
+	if est.etapa != "gobierno" or pend == 0:
+		return {}
+	for t in lg["turnos_evaluacion"]:
+		if int(t) >= est.turno_actual and not est.legado_evaluado.has(int(t)):
+			var faltan := int(t) - est.turno_actual
+			var cap := float(lg["penal_capital"]) * float(pend)
+			var apr := float(lg["penal_aprobacion"]) * float(pend)
+			var cuando := "al cerrar esta semana" if faltan == 0 else ("en 1 semana" if faltan == 1 else "en %d semanas" % faltan)
+			return {"faltan": faltan, "texto": "Corte de legado %s (semana %d): cada promesa pendiente cuesta %s de capital y %s de aprobación. Con %d pendiente%s: −%s y −%s." % [
+				cuando, int(t), Tema.dec(float(lg["penal_capital"])), Tema.dec(float(lg["penal_aprobacion"])), pend, "" if pend == 1 else "s", Tema.dec(cap), Tema.dec(apr)]}
+	return {}
+
+
 static func crisis(est: EstadoSimulacion, din: Dictionary) -> Dictionary:
 	## Cuenta regresiva de la caída por crisis (MotorMandato.evaluar_crisis, solo en gobierno): con la aprobación bajo el
 	## umbral, cada cierre de semana suma una a la racha y al completarla el gobierno cae. {} si no hay crisis.

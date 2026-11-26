@@ -62,7 +62,7 @@ static func crear(motor: MotorTurno, regiones: Array, regional: Dictionary, res:
 	var tarjeta := FilasUI.col(4)
 	tarjeta.add_child(Tema.etiqueta("Aprobación el día de la elección", 12, Tema.TEXTO_SUAVE))
 	var cifra := Tema.etiqueta("", 22, Tema.TEXTO, true)
-	Movimiento.contar(cifra, valor, func(x: float) -> String: return "%.1f %% · umbral %.0f %%" % [x, umbral], 0.0, 1.1, 0.25)
+	Movimiento.contar(cifra, valor, func(x: float) -> String: return "%s %% · umbral %.0f %%" % [Tema.dec(x), umbral], 0.0, 1.1, 0.25)
 	tarjeta.add_child(cifra)
 	tarjeta.add_child(_barra_umbral(valor, umbral, piso))
 	var leyenda := "Marca dorada: umbral de victoria (%.0f %%)." % umbral
@@ -104,9 +104,11 @@ static func crear(motor: MotorTurno, regiones: Array, regional: Dictionary, res:
 		conf.modo = "confeti"
 		conf.cantidad = 46
 		raiz.add_child(conf)  # oro, rojo y crema al ganar
+		raiz.move_child(conf, 1)  # sobre el fondo y bajo el contenido: el confeti no tapa el título ni las cifras
 	var b := FilasUI.boton_pie(String(ver[2]))
 	b.pressed.connect(func() -> void:
 		raiz.queue_free()
 		al_continuar.call())
 	raiz.add_child(b)
+	raiz.set_meta("atras", "Toca el botón de abajo para seguir.")  # Atrás no salta el resultado de la elección
 	return raiz

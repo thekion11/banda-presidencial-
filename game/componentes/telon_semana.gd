@@ -46,6 +46,7 @@ static func mostrar(capa: Control, p_antes: Array, p_despues: Array, ind_antes: 
 
 
 func _ready() -> void:
+	set_meta("atras", _salir)  # botón Atrás de Android: el telón se cierra como al tocarlo
 	set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)  # ya está en el árbol: hay que fijar también los offsets
 	mouse_filter = Control.MOUSE_FILTER_STOP
 	gui_input.connect(func(ev: InputEvent) -> void:
@@ -160,9 +161,9 @@ func _bloque_encuesta() -> Control:
 	var fila := HBoxContainer.new()
 	fila.add_theme_constant_override("separation", 8)
 	var cifra := Tema.etiqueta_corta("", 26, Tema.TEXTO, true)
-	Movimiento.contar(cifra, intencion, func(x: float) -> String: return "%.1f %%" % x, 0.0, 0.9, 0.5)
+	Movimiento.contar(cifra, intencion, func(x: float) -> String: return "%s %%" % Tema.dec(x), 0.0, 0.9, 0.5)
 	fila.add_child(cifra)
-	var lado := Tema.etiqueta_corta("± %.1f · %s" % [margen, "intención de voto" if not oposicion else "tu aprobación"], 12, Tema.TEXTO_SUAVE)
+	var lado := Tema.etiqueta_corta("± %s · %s" % [Tema.dec(margen), "intención de voto" if not oposicion else "tu aprobación"], 12, Tema.TEXTO_SUAVE)
 	lado.size_flags_vertical = Control.SIZE_SHRINK_END
 	fila.add_child(lado)
 	v.add_child(fila)
@@ -173,10 +174,10 @@ func _bloque_encuesta() -> Control:
 	if umbral != null:
 		partes.append("umbral %.0f %%" % float(umbral))
 	if rival != null:
-		partes.append("gobierno rival %.1f %%" % float(rival))
+		partes.append("gobierno rival %s %%" % Tema.dec(float(rival)))
 	if not encuesta_previa.is_empty():
 		var d := intencion - float(encuesta_previa.get("intencion", intencion))
-		partes.append(("%+.1f" % d).replace("-", "−") + " desde la semana pasada")
+		partes.append(("%+.1f" % d).replace(".", ",").replace("-", "−") + " desde la semana pasada")
 	if not partes.is_empty():
 		v.add_child(Tema.etiqueta(" · ".join(partes), 12, Tema.TEXTO_SUAVE))
 	var debiles: Array[String] = []

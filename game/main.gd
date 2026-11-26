@@ -233,7 +233,62 @@ func guardar_instantanea() -> void:
 		f.store_buffer(Instantanea.tomar(motor, _huella_datos, FileAccess.get_sha256(RUTA_GUARDADO)))
 
 
+var _atras_ms: int = -100000  # hora del último Atrás que pidió confirmar
+var _aviso_atras: Toast
+
+
+func atras() -> void:
+	## Botón o gesto Atrás de Android (project.godot › quit_on_go_back = false: nunca sale al primer toque).
+	## Cierra lo que esté encima (vista, hoja, ficha, ajustes, créditos, tutorial, telón); un evento o una votación
+	## no se salta. Con un panel del día abierto vuelve al mapa. En el día pide un segundo Atrás para ir al menú
+	## (la partida se guarda), y en el menú un segundo Atrás para salir. El resto de las pantallas vuelve al menú.
+	var arriba: Control = null
+	for n in get_tree().root.find_children("*", "Control", true, false):
+		if n.has_meta("atras") and (n as Control).is_visible_in_tree() and not n.is_queued_for_deletion():
+			arriba = n  # el último en el árbol es el que se dibuja encima
+	if arriba != null:
+		var accion: Variant = arriba.get_meta("atras")
+		if accion is Callable:
+			(accion as Callable).call()
+		else:
+			_avisar_atras(String(accion))
+		return
+	if _pantalla is PantallaDia:
+		var dia := _pantalla as PantallaDia
+		if dia._zona_panel.visible:
+			dia._abrir_panel("mapa")
+		elif _confirmar_atras("Pulsa Atrás otra vez para ir al menú. Tu partida se guarda sola."):
+			guardar()
+			mostrar_menu()
+	elif _pantalla is PantallaMenu:
+		if _confirmar_atras("Pulsa Atrás otra vez para salir del juego."):
+			get_tree().quit()
+	elif _pantalla != null:
+		mostrar_menu()
+
+
+func _confirmar_atras(aviso: String) -> bool:
+	var ahora := Time.get_ticks_msec()
+	if ahora - _atras_ms < 2500:
+		_atras_ms = -100000
+		return true
+	_atras_ms = ahora
+	_avisar_atras(aviso)
+	return false
+
+
+func _avisar_atras(txt: String) -> void:
+	if _aviso_atras == null:
+		_aviso_atras = Toast.new()
+		add_child(_aviso_atras)
+	move_child(_aviso_atras, get_child_count() - 1)  # encima de la pantalla actual
+	_aviso_atras.mostrar(txt)
+
+
 func _notification(what: int) -> void:
+	if what == NOTIFICATION_WM_GO_BACK_REQUEST:
+		atras()
+		return
 	if (what == NOTIFICATION_APPLICATION_PAUSED or what == NOTIFICATION_WM_CLOSE_REQUEST) and motor != null:
 		guardar()  # al pasar a segundo plano (o salir) se deja también la instantánea al día
 		guardar_instantanea()

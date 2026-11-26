@@ -7,6 +7,7 @@ extends RefCounted
 
 static func cubrir(vista: Control) -> Control:
 	vista.tree_entered.connect(_ocultar.bind(vista), CONNECT_ONE_SHOT)
+	vista.set_meta("atras", vista.queue_free)  # botón Atrás de Android: cierra la vista (Main.atras)
 	return vista
 
 

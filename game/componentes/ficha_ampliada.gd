@@ -14,6 +14,7 @@ const NOMBRES := {"aprobacion": "Aprobación", "capital": "Capital político", "
 
 static func crear(p_carta: Dictionary, p_costo: int, p_leyes: Dictionary) -> FichaAmpliada:
 	var f := FichaAmpliada.new()
+	f.set_meta("atras", f.queue_free)  # botón Atrás de Android
 	f.carta = p_carta
 	f.costo = p_costo
 	f.leyes = p_leyes
