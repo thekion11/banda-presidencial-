@@ -37,7 +37,7 @@ func _ready() -> void:
 	raiz.add_theme_constant_override("separation", 0)
 	add_child(raiz)
 	raiz.add_child(Barras.cabecera(_r))
-	raiz.add_child(_construir_cuerpo())
+	raiz.add_child(CuerpoDia.construir(self))  # mapa, mano, Corrector, botones y zona de paneles (cuerpo_dia.gd)
 	_raiz = raiz
 	_nav = Barras.nav(_abrir_panel, false, "", Callable(), "Coalición" if motor.estado.etapa == "oposicion" else "Gabinete")
 	raiz.add_child(_nav)
@@ -55,105 +55,6 @@ func _ready() -> void:
 		tut.leyes = motor.catalogo_leyes
 		tut.objetivos = [_mano, _r["pa"], _btn_deleg, _nav, _btn_jugar]
 		_capa.add_child(tut)
-
-
-# ------------------------------------------------------------------ construcción
-func _construir_cuerpo() -> Control:
-	var cuerpo := Control.new()
-	cuerpo.size_flags_vertical = Control.SIZE_EXPAND_FILL
-	var vista := VBoxContainer.new()
-	vista.set_anchors_preset(Control.PRESET_FULL_RECT)
-	vista.add_theme_constant_override("separation", 0)
-	cuerpo.add_child(vista)
-	_mapa = MapaChile.new()
-	_mapa.custom_minimum_size = Vector2(0, 290)
-	_mapa.size_flags_vertical = Control.SIZE_EXPAND_FILL
-	_mapa.cargar_geo(geo)
-	_mapa.region_tocada.connect(_on_region)
-	vista.add_child(_mapa)
-	_mapa.x_centro_rel = 0.3
-	var col_tarjetas := VBoxContainer.new()
-	col_tarjetas.add_theme_constant_override("separation", 10)
-	col_tarjetas.position = Vector2(196, 10)
-	col_tarjetas.custom_minimum_size = Vector2(186, 0)
-	col_tarjetas.size = Vector2(186, 10)
-	col_tarjetas.add_child(Barras.tarjeta_evento(_r))
-	var tr := Barras.tarjeta_region(_r)
-	tr.gui_input.connect(func(ev: InputEvent) -> void:
-		if ev is InputEventMouseButton and ev.pressed:
-			if _region == "metropolitana":
-				_abrir_urbano()
-			else:
-				_abrir_panel("nacion"))
-	col_tarjetas.add_child(tr)
-	_mapa.add_child(col_tarjetas); _mapa.enlace = tr  # línea punteada región → tarjeta (maqueta)
-	var cab_mano := HBoxContainer.new()
-	var mm := MarginContainer.new()
-	mm.add_theme_constant_override("margin_left", 14)
-	mm.add_theme_constant_override("margin_right", 14)
-	mm.add_child(cab_mano)
-	cab_mano.add_child(Tema.etiqueta_corta("Tu mano", 13, Tema.TEXTO, true))
-	_lbl_mov = Tema.etiqueta_corta("", 11, Tema.TEXTO_SUAVE)
-	_lbl_mov.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	_lbl_mov.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
-	cab_mano.add_child(_lbl_mov)
-	vista.add_child(mm)
-	_mano = ManoUI.new()
-	_mano.custom_minimum_size = Vector2(0, 214)
-	_mano.clip_contents = false
-	_mano.tocada.connect(_on_carta)
-	_mano.arrastrada.connect(_gesto_mano)  # deslizar hacia el mapa juega; soltar sobre el ícono izquierdo delega (PR-02)
-	vista.add_child(_mano)
-	var corr := PanelContainer.new()
-	corr.add_theme_stylebox_override("panel", Tema.caja(Tema.CREMA, 10, Color("#E8D9A8"), 1))
-	_lbl_corrector = RichTextLabel.new()
-	_lbl_corrector.bbcode_enabled = true
-	_lbl_corrector.fit_content = false  # alto fijo (66 px del panel): el texto largo se recorta, nunca empuja el botón principal
-	_lbl_corrector.scroll_active = false
-	_lbl_corrector.custom_minimum_size = Vector2(330, 0)
-	_lbl_corrector.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	_lbl_corrector.add_theme_color_override("default_color", Tema.TINTA)
-	_lbl_corrector.add_theme_font_override("normal_font", Tema.fuente_texto(400))
-	_lbl_corrector.add_theme_font_override("bold_font", Tema.fuente_texto(800))
-	_lbl_corrector.add_theme_font_size_override("normal_font_size", 10)
-	_lbl_corrector.add_theme_font_size_override("bold_font_size", 10)
-	corr.custom_minimum_size = Vector2(0, 66)  # alto fijo: el botón principal no se mueve
-	corr.add_child(_lbl_corrector)
-	var mc := MarginContainer.new()
-	mc.add_theme_constant_override("margin_left", 12)
-	mc.add_theme_constant_override("margin_right", 12)
-	mc.add_child(corr)
-	vista.add_child(mc)
-	var acciones := HBoxContainer.new()
-	acciones.add_theme_constant_override("separation", 8)
-	_btn_deleg = Barras.boton_redondo("person")
-	_btn_deleg.pressed.connect(_delegar)
-	_badge = Tema.etiqueta_corta("", 10, Tema.ORO, true)
-	_badge.position = Vector2(36, 34)
-	_btn_deleg.add_child(_badge)
-	_btn_jugar = Barras.boton_jugar()  # botón del medio: avanzar la semana (PR-02); las cartas se juegan deslizándolas o tocándolas dos veces
-	_btn_jugar.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	_btn_jugar.clip_text = true
-	_btn_jugar.pressed.connect(_avanzar)
-	Movimiento.halo(_btn_jugar)  # el botón principal respira; su rectángulo no cambia
-	var libre := Control.new()  # la esquina inferior derecha queda vacía a propósito
-	libre.custom_minimum_size = Vector2(54, 54)
-	acciones.add_child(_btn_deleg)
-	acciones.add_child(_btn_jugar)
-	acciones.add_child(libre)
-	var ma := MarginContainer.new()
-	ma.add_theme_constant_override("margin_left", 12)
-	ma.add_theme_constant_override("margin_right", 12)
-	ma.add_theme_constant_override("margin_top", 6)
-	ma.add_theme_constant_override("margin_bottom", 6)
-	ma.add_child(acciones)
-	vista.add_child(ma)
-	_zona_panel = PanelContainer.new()
-	_zona_panel.add_theme_stylebox_override("panel", Tema.caja(Tema.OCEANO, 0))
-	_zona_panel.set_anchors_preset(Control.PRESET_FULL_RECT)
-	_zona_panel.visible = false
-	cuerpo.add_child(_zona_panel)
-	return cuerpo
 
 
 # ------------------------------------------------------------------ estado -> UI
@@ -390,10 +291,10 @@ func _abrir_panel(cual: String) -> void:
 	_poner_nav(cual == "nacion", cual)
 	for h in _zona_panel.get_children():
 		h.queue_free()
+	_zona_panel.visible = cual != "mapa"
+	_mapa.get_parent().visible = cual in ["mapa", "gabinete"]  # el panel opaco tapa la vista: no se dibuja debajo (Gabinete deja ver la fila de botones)
 	if cual == "mapa":
-		_zona_panel.visible = false
 		return
-	_zona_panel.visible = true
 	_zona_panel.offset_bottom = -66.0 if cual == "gabinete" else 0.0  # con Gabinete, la fila de Jugar/avanzar queda en su sitio
 	var contenido: Control
 	match cual:

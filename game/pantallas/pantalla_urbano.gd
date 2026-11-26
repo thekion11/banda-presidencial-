@@ -166,4 +166,4 @@ static func crear(motor: MotorTurno, urbano: Dictionary, al_volver: Callable, al
 			fila.pressed.connect(func() -> void: al_abrir_obra.call(o))
 			hoja.add_child(fila)
 	refs["f"].call()
-	return capa
+	return Tapa.cubrir(capa)

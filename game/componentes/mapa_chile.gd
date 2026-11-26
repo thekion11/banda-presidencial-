@@ -160,15 +160,21 @@ func _transformar(p: Vector2) -> Vector2:
 func _draw() -> void:
 	var fondo := PackedColorArray([Color("#0E2B45"), Color("#0E2B45"), Color("#0A1E31"), Color("#0A1E31")])
 	draw_polygon(PackedVector2Array([Vector2.ZERO, Vector2(size.x, 0), size, Vector2(0, size.y)]), fondo)
+	var reja := PackedVector2Array()  # cuadrícula y olas en una sola llamada de dibujo cada una (antes ~220 llamadas por cuadro)
 	for gx in range(0, int(size.x), 26):
-		draw_line(Vector2(gx, 0), Vector2(gx, size.y), Color(1, 1, 1, 0.035), 1.0)
+		reja.append_array([Vector2(gx, 0), Vector2(gx, size.y)])
 	for gy in range(0, int(size.y), 26):
-		draw_line(Vector2(0, gy), Vector2(size.x, gy), Color(1, 1, 1, 0.035), 1.0)
+		reja.append_array([Vector2(0, gy), Vector2(size.x, gy)])
+	draw_multiline(reja, Color(1, 1, 1, 0.035), 1.0)
+	var olas := PackedVector2Array()
 	var fila := 0
 	for gy in range(14, int(size.y), 20):
 		for gx in range(int(fila % 2) * 15, int(size.x), 30):
-			draw_arc(Vector2(gx, gy), 4.5, PI * 0.15, PI * 0.85, 6, Color(0.55, 0.78, 1.0, 0.10), 1.2)
+			for k in range(5):  # arco de 6 puntos entre 0,15π y 0,85π, como draw_arc
+				var a0 := PI * (0.15 + 0.14 * float(k))
+				olas.append_array([Vector2(gx, gy) + Vector2(cos(a0), sin(a0)) * 4.5, Vector2(gx, gy) + Vector2(cos(a0 + PI * 0.14), sin(a0 + PI * 0.14)) * 4.5])
 		fila += 1
+	draw_multiline(olas, Color(0.55, 0.78, 1.0, 0.10), 1.2)
 	draw_set_transform_matrix(_camara)
 	for id in _piezas.keys():
 		var col := Tema.color_aprobacion(float(valores.get(id, 50.0)))
@@ -189,13 +195,19 @@ func _draw() -> void:
 		for pts in _contornos(id):
 			var borde := Tema.ORO if id == seleccion else Color(1, 0.97, 0.9, 0.5)
 			draw_polyline(pts, borde, 2.5 if id == seleccion else 0.9, true)
+	var cerros := PackedVector2Array()  # Cordillera: todos los cerros en un solo arreglo de triángulos (antes 3 llamadas por cerro)
+	var tonos := PackedColorArray()
 	for i in range(0, _este.size(), 2):
 		var q := _transformar(_este[i] + Vector2(0.004, 0.0))
 		var h := 5.0 + float((i * 7) % 4)
-		draw_colored_polygon(PackedVector2Array([q + Vector2(-5, h * 0.6), q + Vector2(0, -h), q + Vector2(5, h * 0.6)]), Color("#2F6288", 0.65))
-		draw_colored_polygon(PackedVector2Array([q + Vector2(-2.2, -h * 0.35), q + Vector2(0, -h), q + Vector2(2.2, -h * 0.35)]), Color(1, 1, 1, 0.55))
 		var q2 := q + Vector2(9.0, 7.0)
-		draw_colored_polygon(PackedVector2Array([q2 + Vector2(-3.5, 3), q2 + Vector2(0, -3.5), q2 + Vector2(3.5, 3)]), Color("#2F6288", 0.35))
+		cerros.append_array([q + Vector2(-5, h * 0.6), q + Vector2(0, -h), q + Vector2(5, h * 0.6), q + Vector2(-2.2, -h * 0.35), q + Vector2(0, -h),
+			q + Vector2(2.2, -h * 0.35), q2 + Vector2(-3.5, 3), q2 + Vector2(0, -3.5), q2 + Vector2(3.5, 3)])
+		for c: Color in [Color("#2F6288", 0.65), Color(1, 1, 1, 0.55), Color("#2F6288", 0.35)]:
+			tonos.append_array([c, c, c])
+	if not cerros.is_empty():
+		var idx := PackedInt32Array(range(cerros.size()))
+		RenderingServer.canvas_item_add_triangle_array(get_canvas_item(), idx, cerros, tonos)
 	var fuente := Tema.fuente_texto(600)
 	for c in (_ciudades if ciudades_visibles else []):
 		if c["nombre"] == "Santiago":
