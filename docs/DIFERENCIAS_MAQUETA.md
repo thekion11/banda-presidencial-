@@ -157,6 +157,16 @@ Lado a lado actualizado: `docs/comparacion/v4_dia_maqueta_vs_juego.png`. Se corr
 
 ### Otros tamaños de teléfono (26-nov-2026)
 El proyecto escala con ancho lógico fijo de 390 (`keep_width`), así que cada teléfono cambia solo el alto: 360×640 queda en 390×693, 412×915 en 390×866 y 480×1000 en 390×812. `tests/test_textos.gd` y `tests/test_tactil.gd` recorren ahora las cuatro alturas (`RecorridoUI.ALTURAS`) y exigen que ningún texto ni botón se salga de la pantalla, salvo dentro de una zona desplazable. Solo fallaba 390×693, y de forma grave: el botón «Terminar semana» quedaba fuera de la pantalla, y lo mismo el botón de la votación y la franja del perfil en el test ideológico. Con `Tema.pantalla_baja()` (alto < 760) esas pantallas compactan alturas fijas: menos aire sobre la mano (214 → 198), Corrector de 66 a 50, hemiciclo de 230 a 170, opciones del test de 62 a 52 (≥ 44), brújula de 150 a 116 y márgenes menores. En 390×844 todo queda igual.
+**Proporciones extremas (27-nov-2026, `Main.aspecto_para`):** con `keep_width`, una tablet 768×1024 quedaba en 390×520 lógicos y un plegable abierto 884×1104 en 390×487, y no cabía la pantalla del día. Ahora, si la pantalla es más ancha que 16:9 (ancho/alto > 0,565), se muestra el 390×844 completo y centrado, con bandas color océano a los lados, y se vuelve a calcular al abrir o cerrar el plegable. Teléfonos medidos:
+
+| Teléfono | Alto lógico |
+|---|---|
+| 360×640 | 693 |
+| 360×800 y 412×915 | ~866 |
+| 1080×2400 | 867 |
+| Plegable cerrado 280×653 | 910 (agregado a `RecorridoUI.ALTURAS`) |
+
+El botón principal queda en la misma posición dentro de cada pantalla, y las auditorías de textos y zonas táctiles pasan en los cinco altos.
 **Decisión pendiente del usuario:** en 390×693 el mapa del día mide 185 px, el 27 % de la pantalla, bajo el tercio que pide CLAUDE.md §5. Llegar al tercio obligaría a achicar las cartas y su texto bajo los 10 pt, o a quitar el Corrector o la cabecera de la mano.
 
 ### Letra grande de Android (1,3 y 1,5) (26-nov-2026)
@@ -209,5 +219,33 @@ El hito de obra y el mapa urbano también usan la zona segura arriba (antes 40 p
 - **Confeti** de la elección ganada: cae detrás del contenido, sin tapar el título ni las cifras.
 - **Cintas de las cartas:** el nombre del sector salía de `to_upper()` y perdía la tilde: «EDUCACION», «POLITICA», «ENERGIA», «ECONOMIA», «OPOSICION». Ahora lleva tilde y todos caben en los 62 px de la cinta. Oposición y Estado no tenían color propio; ahora tienen colores de la paleta, distinguibles de los demás. Si alguna vez faltara una ilustración, la carta muestra su color y el nombre del sector en vez de quedar vacía. `test_claridad` comprueba que cada categoría de los datos tenga color, ilustración y una cinta con tilde que quepa.
 - **Respaldo del guardado** (revisión de código #1 de la sesión del motor): `guardar()` copia el guardado bueno a `guardado.bak` antes de reemplazarlo. Si al continuar el guardado está dañado (truncado, por ejemplo) y el respaldo sirve, se recupera con el aviso «Recuperamos tu partida de hace un momento»; si no hay respaldo, se descarta como antes. Una partida nueva borra el respaldo de la anterior. Prueba en `test_estados`.
+
+### Piso del desvío del día y de Nación (27-nov-2026)
+Desglose por franja de los píxeles distintos frente a la maqueta (ΔE > 20, `tools/diferencia_maqueta.py`):
+
+| Pantalla | Franja | Puntos del total |
+|---|---|---|
+| Día (39,2 %) | Mano | 16,9 |
+| | Mapa y tarjetas | 10,0 |
+| | Corrector | 5,6 |
+| | Botones | 3,2 |
+| | Barra | 1,9 |
+| | Cabecera | 1,5 |
+| Nación (29,2 %) | Mapa y lista | 21,6 |
+| | Selector Chile/Continente | 2,6 |
+| | Cabecera | 1,8 |
+| | Barra | 1,8 |
+| | Evento | 1,3 |
+
+**Por qué no baja más sin romper reglas o decisiones:**
+- **Mano:** las cartas llevan ilustraciones pintadas, no los dibujos planos de la maqueta, y la mano muestra cartas reales de la partida.
+- **Mapa:** los colores salen de la aprobación real de la partida (la maqueta usa cifras ilustrativas de 58 a 90 %) y el relieve es real.
+- **Corrector:** suma una línea con el costo y el impacto de la carta, que vino del pase de claridad.
+- **Botones:** «Terminar semana» y la esquina vacía son la decisión PR-02 del usuario.
+- **Nación:** el selector Chile/Continente es la ampliación PR-06c.
+
+Lo estructural que sí se podía alinear ya está hecho: zona segura, chips y barra compactos, línea región–tarjeta, contornos, botón «▶ Día N».
+
+**Piso estimado:** unos 30 % para el día y unos 25 % para Nación, mientras se mantengan el arte pintado y los datos reales. Bajar de ahí pediría volver al arte plano de la maqueta o usar cifras ilustrativas en el mapa, y las dos cosas son decisión del usuario.
 
 Reglas: todo el movimiento respeta Ajustes › «Animaciones y movimiento» y se apaga en modo headless, así que las pruebas miden siempre el estado final. El azar de las partículas es solo visual y no toca la semilla de la partida. Prueba propia: `tests/test_movimiento.gd`.

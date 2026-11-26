@@ -115,6 +115,6 @@ func _pintar() -> void:
 		for e in ["font_color", "font_hover_color", "font_pressed_color", "font_focus_color"]:
 			b.add_theme_color_override(e, tinta)
 		b.tooltip_text = "Línea %s: %s" % [UrbanoBase.nombre_corto(id), "oculta" if oculta else "visible"]
-		b.text = UrbanoBase.nombre_corto(id) + (" ✕" if oculta else "")
+		b.text = UrbanoBase.nombre_corto(id) + (" ×" if oculta else "")  # «×» está en Space Grotesk; «✕» no estaba en ninguna fuente embebida
 	var todas_ocultas := UrbanoBase.ocultas.size() >= _fichas.size()
 	_todas.text = "Mostrar todas" if todas_ocultas else "Ocultar todas"

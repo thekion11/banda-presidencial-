@@ -315,7 +315,7 @@ func _abrir_panel(cual: String) -> void:
 					_refrescar()
 					_abrir_panel("comite"))
 		"nacion":
-			contenido = PanelNacionCompleto.crear(motor, geo, datos["regiones"], "%s · %s" % [_r["ev_hora"].text.replace("● ", ""), _r["ev_titulo"].text],
+			contenido = PanelNacionCompleto.crear(motor, geo, datos["regiones"], "%s · %s" % [_r["ev_hora"].text.replace("• ", ""), _r["ev_titulo"].text],
 					func() -> void:
 						_abrir_panel("mapa")
 						_terminar_turno())
