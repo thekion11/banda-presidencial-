@@ -191,4 +191,6 @@ La diferencia numérica (`docs/comparacion/DIFERENCIA_MAQUETA.md`) mostraba que 
 
 Píxeles distintos del día frente a la maqueta: de 43,1 % a 39,2 %. El mapa gana unos 30 px de alto.
 
+En la votación: el contenido sube con la zona segura, el hemiciclo del Senado se compacta (radio 0,41 del ancho en vez de 0,46, alto 205 en vez de 230) y el sello «APROBADA / RECHAZADA» pasa a 32 pt con letras separadas, como en la maqueta. Píxeles distintos: de 22,5 % a 22,0 %.
+
 Reglas: todo el movimiento respeta Ajustes › «Animaciones y movimiento» y se apaga en modo headless, así que las pruebas miden siempre el estado final. El azar de las partículas es solo visual y no toca la semilla de la partida. Prueba propia: `tests/test_movimiento.gd`.

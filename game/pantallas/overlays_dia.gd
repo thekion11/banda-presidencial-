@@ -38,7 +38,7 @@ static func _pagina_votacion(col: VBoxContainer, camara: String, voto: Dictionar
 	col.add_child(_centrada("%s · %d MIEMBROS" % [String(nombres[camara]).to_upper(), total], 11, Tema.ORO, true))
 	col.add_child(_centrada("Requiere %d votos de %d %s" % [minimo, total, "diputados" if es_cam else "senadores"], 13, Tema.TEXTO_SUAVE))
 	var h := Hemiciclo.new()
-	h.custom_minimum_size = Vector2(0, 170 if Tema.pantalla_baja() else 230)
+	h.custom_minimum_size = Vector2(0, 170 if Tema.pantalla_baja() else 205)
 	h.configurar_votos(total, favor, abst, contra)
 	col.add_child(h)
 	var dur := h.animar_votacion(minimo, favor)  # los votos caen; ajustada = más lenta
@@ -145,7 +145,7 @@ static func evento(ev: Dictionary, al_continuar: Callable, nombres: Dictionary, 
 	col.set_anchors_preset(Control.PRESET_FULL_RECT)
 	col.offset_left = 16
 	col.offset_right = -16
-	col.offset_top = 46
+	col.offset_top = Tema.margen_superior() + 18.0  # zona segura del teléfono: en la maqueta el título casi toca el borde
 	col.offset_bottom = -53  # el botón principal queda en (16, 739, 358×52), igual que en las demás pantallas
 	col.add_theme_constant_override("separation", 10)
 	capa.add_child(col)
