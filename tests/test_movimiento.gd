@@ -147,6 +147,12 @@ func _correr() -> void:
 		and textos.any(func(t: String) -> bool: return "umbral 51" in t and "+1.5" in t), "el telón muestra la encuesta: umbral, cambio semanal y región débil (%s)" % str(textos))
 	_check(not tel[0] and c0.get_children().any(func(n: Node) -> bool: return n is TelonSemana), "el telón baja y retiene los eventos")
 	await _esperar(3.8)  # con encuesta el telón se queda 1 s más
+	var c9 := Control.new()
+	root.add_child(c9)
+	TelonSemana.mostrar(c9, ["Semana 8", ""], ["Semana 9", ""], {}, {}, false, func() -> void: pass,
+		[{"etapa": "campana", "turno": 9, "intencion": 50.0, "margen": 1.5, "umbral": 51.0, "rival": null, "regiones": []}], [], 8)
+	await _esperar(0.2)
+	_check(c9.find_children("*", "Label", true, false).any(func(l: Label) -> bool: return l.text.begins_with("ÚLTIMA ENCUESTA ANTES DE LA ELECCIÓN")), "al cerrar la campaña el telón rotula la última encuesta antes de votar")
 	_check(tel[0] and not c0.get_children().any(func(n: Node) -> bool: return n is TelonSemana and not n.is_queued_for_deletion()), "el telón se va solo y deja seguir los eventos")
 	var conf := Particulas.new()
 	conf.modo = "confeti"

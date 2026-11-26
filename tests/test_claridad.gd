@@ -88,6 +88,13 @@ func _correr() -> void:
 		_check(hueco.intersects(dia._mano.get_global_rect()), "P9: el primer paso enfoca la mano")
 		tuts[0]._cerrar()
 	await _esperar(1.0)  # la mano termina de repartirse
+	# Región de nombre largo: la columna de tarjetas sobre el mapa no se sale de la pantalla (hallazgo de «Búsqueda infinita de fallas»).
+	for rid in ["magallanes", "aysen", "metropolitana"]:
+		dia._on_region(rid)
+		await process_frame
+		await process_frame
+		_check(dia._r["rg_nombre"].get_global_rect().end.x <= 390.5 and dia._r["ev_titulo"].get_global_rect().end.x <= 390.5,
+			"región %s: las tarjetas del mapa caben en 390 px (%s)" % [rid, dia._r["rg_nombre"].get_global_rect().end.x])
 	# P10: mantener el dedo sobre la carta elegida abre la ficha y al soltar no se juega.
 	var est: EstadoSimulacion = main.motor.estado
 	var elegida: CartaUI = null

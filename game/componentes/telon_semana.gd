@@ -16,13 +16,14 @@ var oposicion: bool = false
 var encuesta: Dictionary = {}  # la de esta semana (estado.encuestas, forma fijada en tests/test_encuestas.gd)
 var encuesta_previa: Dictionary = {}
 var nombres_region: Dictionary = {}
+var ultima_de_campana: bool = false  # la encuesta extra al cerrar la última semana de campaña (sim/encuestas.gd)
 var al_terminar: Callable
 var _panel: Control
 var _saliendo: bool = false
 
 
 static func mostrar(capa: Control, p_antes: Array, p_despues: Array, ind_antes: Dictionary, ind_despues: Dictionary, p_oposicion: bool, fin: Callable,
-		encuestas: Array = [], regiones: Array = []) -> void:
+		encuestas: Array = [], regiones: Array = [], semanas_campana: int = 0) -> void:
 	## p_antes / p_despues: [título, subtítulo] de la cabecera antes y después de avanzar.
 	if not Movimiento.activo():
 		fin.call()
@@ -38,6 +39,7 @@ static func mostrar(capa: Control, p_antes: Array, p_despues: Array, ind_antes: 
 	if not encuestas.is_empty():  # solo hay encuestas en campaña y oposición
 		t.encuesta = encuestas.back()
 		t.encuesta_previa = encuestas[encuestas.size() - 2] if encuestas.size() > 1 else {}
+		t.ultima_de_campana = semanas_campana > 0 and String(t.encuesta.get("etapa", "")) == "campana" and int(t.encuesta.get("turno", 0)) > semanas_campana
 		for r in regiones:
 			t.nombres_region[String(r["id"])] = String(r["nombre"]).replace(" de Santiago", "").replace(" Chilena", "")
 	capa.add_child(t)
@@ -152,7 +154,7 @@ func _bloque_encuesta() -> Control:
 	sep.color = Color(Tema.ORO, 0.5)
 	sep.custom_minimum_size = Vector2(0, 2)
 	v.add_child(sep)
-	v.add_child(Tema.etiqueta("ENCUESTA DE LA SEMANA · ILUSTRATIVA", 11, Tema.ORO, true))
+	v.add_child(Tema.etiqueta(("ÚLTIMA ENCUESTA ANTES DE LA ELECCIÓN" if ultima_de_campana else "ENCUESTA DE LA SEMANA") + " · ILUSTRATIVA", 11, Tema.ORO, true))
 	var intencion := float(encuesta.get("intencion", 0.0))
 	var margen := float(encuesta.get("margen", 0.0))
 	var fila := HBoxContainer.new()

@@ -119,7 +119,7 @@ static func pintar_region(_r: Dictionary, motor: MotorTurno, datos: Dictionary, 
 	var nombre := _region
 	for r in datos["regiones"]:
 		if r["id"] == _region:
-			nombre = String(r["nombre"]).replace(" de Santiago", "")
+			nombre = String(r["nombre"]).replace(" de Santiago", "").replace(" y la Antártica Chilena", "")  # cabe en la tarjeta
 	var n_obras := 0
 	for o in est.obras_en_curso:
 		if o["region"] == _region:

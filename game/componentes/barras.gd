@@ -125,6 +125,8 @@ static func tarjeta_region(refs: Dictionary) -> Control:
 	var fila := HBoxContainer.new()
 	refs["rg_nombre"] = Tema.etiqueta_corta("", 14, Tema.TEXTO, true)
 	refs["rg_nombre"].size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	refs["rg_nombre"].clip_text = true  # un nombre largo no ensancha la columna de tarjetas sobre el mapa: se recorta con «…»
+	refs["rg_nombre"].text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
 	refs["rg_valor"] = Tema.etiqueta_corta("", 14, Tema.bien(), true)
 	fila.add_child(refs["rg_nombre"])
 	fila.add_child(refs["rg_valor"])
