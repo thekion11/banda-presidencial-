@@ -49,7 +49,7 @@ jobs:
             t=$(basename "$f" .gd)
             echo "== $t"
             # una prueba que no compila sale con código 0: se guarda la salida y se falla ante errores de script o si se cuelga (300 s)
-            timeout 300 godot --headless --path . -s "$f" 2>&1 | tee "/tmp/$t.log"
+            XDG_DATA_HOME="$(mktemp -d)" timeout 300 godot --headless --path . -s "$f" 2>&1 | tee "/tmp/$t.log"
             [ "${PIPESTATUS[0]}" -eq 0 ] || { echo "FALLO: $t"; exit 1; }
             if grep -qE "SCRIPT ERROR|Parse Error|Could not find type" "/tmp/$t.log"; then echo "FALLO: $t tiene errores de script"; exit 1; fi
           done
@@ -69,15 +69,15 @@ jobs:
         run: godot --headless --path . -s tests/fuzz_acciones.gd -- 60 7000
       - name: "Fuzzing de carrera, instantáneas, propiedades, flujo de la interfaz, Congreso, calendario, guardado, obras y coalición (acotado)"
         run: |
-          godot --headless --path . -s tests/fuzz_carrera.gd -- 4 700
-          godot --headless --path . -s tests/fuzz_instantanea.gd -- 100 31
-          godot --headless --path . -s tests/fuzz_propiedades.gd -- 1 800
-          godot --headless --path . -s tests/fuzz_flujo_ui.gd -- 9 2100
-          godot --headless --path . -s tests/fuzz_congreso.gd -- 1500 12
-          godot --headless --path . -s tests/fuzz_calendario.gd -- 12 1500
-          godot --headless --path . -s tests/fuzz_guardado.gd -- 300 77
-          godot --headless --path . -s tests/fuzz_obras.gd -- 6 2600
-          godot --headless --path . -s tests/fuzz_coalicion.gd -- 5 1700
-          godot --headless --path . -s tests/fuzz_ultima_config.gd -- 300 5
-          godot --headless --path . -s tests/fuzz_semillas_extremas.gd
-          godot --headless --path . -s tests/fuzz_mono.gd -- 500 4100
+          XDG_DATA_HOME="$(mktemp -d)" godot --headless --path . -s tests/fuzz_carrera.gd -- 4 700
+          XDG_DATA_HOME="$(mktemp -d)" godot --headless --path . -s tests/fuzz_instantanea.gd -- 100 31
+          XDG_DATA_HOME="$(mktemp -d)" godot --headless --path . -s tests/fuzz_propiedades.gd -- 1 800
+          XDG_DATA_HOME="$(mktemp -d)" godot --headless --path . -s tests/fuzz_flujo_ui.gd -- 9 2100
+          XDG_DATA_HOME="$(mktemp -d)" godot --headless --path . -s tests/fuzz_congreso.gd -- 1500 12
+          XDG_DATA_HOME="$(mktemp -d)" godot --headless --path . -s tests/fuzz_calendario.gd -- 12 1500
+          XDG_DATA_HOME="$(mktemp -d)" godot --headless --path . -s tests/fuzz_guardado.gd -- 300 77
+          XDG_DATA_HOME="$(mktemp -d)" godot --headless --path . -s tests/fuzz_obras.gd -- 6 2600
+          XDG_DATA_HOME="$(mktemp -d)" godot --headless --path . -s tests/fuzz_coalicion.gd -- 5 1700
+          XDG_DATA_HOME="$(mktemp -d)" godot --headless --path . -s tests/fuzz_ultima_config.gd -- 300 5
+          XDG_DATA_HOME="$(mktemp -d)" godot --headless --path . -s tests/fuzz_semillas_extremas.gd
+          XDG_DATA_HOME="$(mktemp -d)" godot --headless --path . -s tests/fuzz_mono.gd -- 500 4100
