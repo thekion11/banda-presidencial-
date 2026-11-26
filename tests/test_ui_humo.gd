@@ -11,7 +11,7 @@ func _check(cond: bool, msg: String) -> void:
 
 
 func _init() -> void:
-	_correr.call_deferred()
+	Movimiento.forzado = 0; _correr.call_deferred()  # sin animaciones: mide posiciones finales también con xvfb
 
 
 const SEMILLAS := [7, 11, 20260415, 31337, 99991, 123456]
