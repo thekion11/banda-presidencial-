@@ -8,6 +8,7 @@ signal arrastrada(pos: Vector2)  # gesto de jugar la carta elegida: deslizarla h
 
 const ANCHO := 104.0
 const ALTO := 170.0
+var arriba: float = 46.0  # altura de reposo de las cartas en la mano (menos en pantallas bajas)
 const PULSACION_LARGA_MS := 450  # mantener el dedo sobre una carta abre su ficha ampliada (P10)
 
 var _pos_prev: Dictionary = {}  # id de carta -> última posición de reposo
@@ -114,13 +115,13 @@ func pintar(motor: MotorTurno, sel: int, ministro: String = "", nuevas: Array = 
 		c.atenuada = i != sel or costo > est.pa_actual
 		c.size = Vector2(ANCHO, ALTO)
 		c.pivot_offset = Vector2(ANCHO * 0.5, ALTO)
-		var reposo := Vector2(x0 + paso * float(i), 46.0)
+		var reposo := Vector2(x0 + paso * float(i), arriba)
 		var rot := float(i - (n - 1) * 0.5) * 5.0
 		var esc := Vector2.ONE
 		var destino := reposo
 		if i == sel:
 			esc = Vector2(1.15, 1.15)
-			destino.y = 44.0  # sube y crece sin tapar la cabecera "Tu mano"
+			destino.y = arriba - 2.0  # sube y crece sin tapar la cabecera "Tu mano"
 			rot = 0.0
 		_pos_prev[id] = destino
 		c.tocada.connect(func(_c: CartaUI) -> void: tocada.emit(i))
