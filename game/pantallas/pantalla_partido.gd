@@ -55,7 +55,12 @@ func _ready() -> void:
 	raiz.add_child(mc)
 	_contenido = VBoxContainer.new()
 	_contenido.add_theme_constant_override("separation", 6 if baja else 10)
-	mc.add_child(_contenido)
+	_contenido.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	_contenido.size_flags_vertical = Control.SIZE_EXPAND_FILL  # llena el alto: el formulario conserva su propio desplazamiento
+	var desliza := ScrollContainer.new()  # con letra grande (1,3–1,5) las opciones se desplazan y la franja del perfil queda fija
+	desliza.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+	desliza.add_child(_contenido)
+	mc.add_child(desliza)
 	var franja := PanelContainer.new()
 	franja.add_theme_stylebox_override("panel", Tema.caja(Tema.CREMA, 0))
 	var fv := VBoxContainer.new()
@@ -65,7 +70,7 @@ func _ready() -> void:
 	fv.add_child(_franja_perfil)
 	fv.add_child(_franja_escanos)
 	var pie := Control.new()  # alto fijo: el botón principal queda en la misma posición sea cual sea la métrica del texto
-	pie.custom_minimum_size = Vector2(0, 53)
+	pie.custom_minimum_size = Vector2(0, roundf(53.0 * Ajustes.escala_texto()))  # crece con la letra grande para no cortar la segunda línea
 	pie.clip_contents = true
 	franja.set_anchors_preset(Control.PRESET_FULL_RECT)
 	pie.add_child(franja)

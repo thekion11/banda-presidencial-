@@ -266,7 +266,7 @@ static func etiqueta(texto: String, tam: int = 12, color: Color = TEXTO, titulo:
 	var l := Label.new()
 	l.text = texto
 	l.add_theme_font_override("font", fuente_titulo() if titulo else fuente_texto(peso))
-	l.add_theme_font_size_override("font_size", roundi(float(tam) * 1.15) if Ajustes.texto_grande else tam)
+	l.add_theme_font_size_override("font_size", roundi(float(tam) * Ajustes.escala_texto()))
 	l.add_theme_color_override("font_color", color)
 	l.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	l.mouse_filter = Control.MOUSE_FILTER_IGNORE

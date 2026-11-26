@@ -108,7 +108,12 @@ func _correr() -> void:
 	for alto in RecorridoUI.ALTURAS:  # 390×844 y otros teléfonos (360×640, 412×915, 480×1000)
 		_alto = alto
 		await RecorridoUI.recorrer(self, func(raiz: Node, donde: String) -> void: _auditar(raiz, "%s [alto %d]" % [donde, alto]), alto)
-	_check(_vistos > 150 * RecorridoUI.ALTURAS.size(), "la auditoría debe revisar muchos textos (revisó %d)" % _vistos)
+	_alto = 844
+	for escala in [1.3, 1.5]:  # letra grande de Android (1,3 y 1,5) en las etiquetas con ajuste de línea
+		Ajustes.escala_prueba = escala
+		await RecorridoUI.recorrer(self, func(raiz: Node, donde: String) -> void: _auditar(raiz, "%s [letra ×%.1f]" % [donde, escala]))
+	Ajustes.escala_prueba = 0.0
+	_check(_vistos > 150 * (RecorridoUI.ALTURAS.size() + 2), "la auditoría debe revisar muchos textos (revisó %d)" % _vistos)
 	if _fallos == 0:
 		print("TEXTOS OK (%d textos)" % _vistos)
 	quit(1 if _fallos > 0 else 0)

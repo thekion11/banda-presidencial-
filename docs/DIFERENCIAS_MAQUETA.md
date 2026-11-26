@@ -159,4 +159,11 @@ Lado a lado actualizado: `docs/comparacion/v4_dia_maqueta_vs_juego.png`. Se corr
 El proyecto escala con ancho lógico fijo de 390 (`keep_width`), así que cada teléfono cambia solo el alto: 360×640 queda en 390×693, 412×915 en 390×866 y 480×1000 en 390×812. `tests/test_textos.gd` y `tests/test_tactil.gd` recorren ahora las cuatro alturas (`RecorridoUI.ALTURAS`) y exigen que ningún texto ni botón se salga de la pantalla, salvo dentro de una zona desplazable. Solo fallaba 390×693, y de forma grave: el botón «Terminar semana» quedaba fuera de la pantalla, y lo mismo el botón de la votación y la franja del perfil en el test ideológico. Con `Tema.pantalla_baja()` (alto < 760) esas pantallas compactan alturas fijas: menos aire sobre la mano (214 → 198), Corrector de 66 a 50, hemiciclo de 230 a 170, opciones del test de 62 a 52 (≥ 44), brújula de 150 a 116 y márgenes menores. En 390×844 todo queda igual.
 **Decisión pendiente del usuario:** en 390×693 el mapa del día mide 185 px, el 27 % de la pantalla, bajo el tercio que pide CLAUDE.md §5. Llegar al tercio obligaría a achicar las cartas y su texto bajo los 10 pt, o a quitar el Corrector o la cabecera de la mano.
 
+### Letra grande de Android (1,3 y 1,5) (26-nov-2026)
+Godot no aplica la escala de letra del sistema Android a la interfaz. Hoy el juego ofrece «Texto grande» (+15 % en las etiquetas con ajuste de línea, vía `Ajustes.escala_texto()`). `tests/test_textos.gd` recorre además todas las pantallas con la letra a ×1,3 y ×1,5 (`Ajustes.escala_prueba`, solo para pruebas) y exige que nada se salga de la pantalla. Cambios para que quepa:
+- el título del menú (46 pt) ya no crece;
+- las opciones del test ideológico se desplazan si no caben, y la franja del perfil queda fija y crece con la letra.
+
+**Decisión pendiente del usuario:** seguir la escala de letra del sistema Android necesitaría un plugin nativo (Configuration.fontScale). También se podría ofrecer un tamaño de letra mayor que el «Texto grande» actual. Las dos cosas son ampliaciones de alcance.
+
 Reglas: todo el movimiento respeta Ajustes › «Animaciones y movimiento» y se apaga en modo headless, así que las pruebas miden siempre el estado final. El azar de las partículas es solo visual y no toca la semilla de la partida. Prueba propia: `tests/test_movimiento.gd`.
