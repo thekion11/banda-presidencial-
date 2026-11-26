@@ -137,7 +137,7 @@ func _una(semilla: int, idx: int = 0) -> void:
 	var guardado: Dictionary = main.motor.estado.exportar_guardado()
 	var rep0: MotorTurno = Partida.reproducir(main.datos, guardado)
 	_check(rep0.estado.calcular_huella() == main.motor.estado.calcular_huella(), "guardado no reproduce la partida de la UI")
-	await _recorrer_v2(main, dia)
+	await HumoV2.recorrer(self, main, dia)  # pantallas v2 (tests/humo_v2.gd)
 	await _fin_y_cartera(main, dia)
 	_check(not main.motor.estado.partido.is_empty(), "partido vacío")
 	main.queue_free()
@@ -146,119 +146,6 @@ func _una(semilla: int, idx: int = 0) -> void:
 
 func _botones(dia: Node, texto: String) -> Array:
 	return dia._zona_panel.find_children("*", "Button", true, false).filter(func(b: Button) -> bool: return b.text.begins_with(texto) and not b.disabled)
-
-
-func _recorrer_v2(main: Node, dia: Node) -> void:
-	## Pantallas v2: movimientos, reposición, delegación, gabinete editable, asesores, coalición y movimientos internos.
-	var est: EstadoSimulacion = main.motor.estado
-	_check(est.etapa == "gobierno", "debe estar en gobierno")
-	dia._refrescar()
-	_check(dia._r["pa"].text.begins_with("%d/" % est.pa_actual), "el indicador de movimientos debe mostrarse")
-	dia._sel = 0
-	dia._refrescar()
-	await process_frame
-	await process_frame
-	# maqueta: el mapa ocupa más de un tercio y el botón principal no se mueve (mapa, otra carta, panel Gabinete)
-	for _k in range(4):
-		await process_frame
-	var base: Rect2 = dia._btn_jugar.get_global_rect()
-	print("  botón principal (semilla %d): %s, cartas en mano: %d" % [main.motor.estado.semilla, base, est.mano.size()])
-	_check(dia._mapa.size.y > dia.size.y / 3.0, "el mapa debe ocupar más de un tercio de la pantalla (%d de %d)" % [dia._mapa.size.y, dia.size.y])
-	for i in range(est.mano.size()):  # cualquier carta elegida (título largo, corrector de varias líneas): el botón no se mueve
-		dia._sel = i
-		dia._refrescar()
-		for _k in range(4):
-			await process_frame
-		_check(dia._btn_jugar.get_global_rect() == base, "el botón principal debe quedar en la misma posición con la carta %d (%s vs %s)" % [i, dia._btn_jugar.get_global_rect(), base])
-		_check(dia._mapa.size.y > dia.size.y / 3.0, "el mapa debe seguir ocupando más de un tercio con la carta %d" % i)
-	dia._sel = 0
-	for pest in ["gabinete", "equipo", "coalicion", "internos"]:
-		PanelGestion.pestana = pest
-		dia._abrir_panel("gabinete")
-		for _k in range(4):
-			await process_frame
-		_check_tactil(dia, "pestaña " + pest)
-		_check(dia._btn_jugar.get_global_rect() == base, "el botón principal debe quedar en el mismo sitio con la pestaña " + pest)
-		_check(dia._zona_panel.get_global_rect().end.y <= base.position.y + 1.0, "el panel no debe tapar el botón principal (" + pest + ")")
-	dia._abrir_panel("mapa")
-	await process_frame
-	_check(est.mano.size() == 5, "la mano debe tener 5 cartas")
-	var antes: int = est.pa_actual
-	dia._jugar()
-	_check(est.pa_actual < antes or est.mano.size() == 5, "jugar debe gastar movimientos")
-	_check(est.mano.size() == 5, "tras jugar entra otra carta (mano continua)")
-	await process_frame
-	# PR-02: deslizar hacia arriba desde la mano juega la carta elegida
-	if est.pa_actual > 0:
-		var pa_antes: int = est.pa_actual
-		AyudaUI.deslizar_arriba(dia._mano)
-		await process_frame
-		_check(est.pa_actual < pa_antes, "deslizar la carta hacia arriba debe jugarla")
-	for f in AyudaUI.controles_dia(dia):
-		_check(false, f)
-	# delegación
-	dia._sel = 0
-	dia._delegar()
-	await process_frame
-	var ov: Array = dia._capa.find_children("*", "Button", true, false).filter(func(b: Button) -> bool: return b.text.begins_with("Delegar con"))
-	_check(ov.size() == 1 and "%" in ov[0].text, "la hoja de delegación debe mostrar la probabilidad de fallo")
-	ov[0].pressed.emit()
-	await process_frame
-	_check(est.delegadas_turno == 1, "debe contar una delegación")
-	# gabinete editable en la semana 1 de gobierno
-	for pest in ["gabinete", "equipo", "coalicion", "internos"]:
-		PanelGestion.pestana = pest
-		dia._abrir_panel("gabinete")
-		await process_frame
-	PanelGestion.pestana = "equipo"
-	dia._abrir_panel("gabinete")
-	await process_frame
-	_botones(dia, "Contratar")[0].pressed.emit()
-	await process_frame
-	_check(est.asesores.size() == 1, "debe contratar un asesor")
-	PanelGestion.pestana = "coalicion"
-	dia._abrir_panel("gabinete")
-	await process_frame
-	_botones(dia, "Unirse")[0].pressed.emit()
-	await process_frame
-	_check(est.coalicion.size() == 1, "debe unirse a la coalición")
-	_botones(dia, "Cuotas")[0].pressed.emit()
-	await process_frame
-	var cuota: Array = dia._zona_panel.find_children("*", "Button", true, false).filter(func(b: Button) -> bool: return b.get_child_count() > 0 and not b.disabled and b.text == "")
-	if not cuota.is_empty():
-		cuota[0].pressed.emit()
-		await process_frame
-	PanelGestion.pestana = "internos"
-	dia._abrir_panel("gabinete")
-	await process_frame
-	est.internos_actual = 3
-	var metas: Array = _botones(dia, "Buscar meta")
-	if not metas.is_empty():
-		metas[0].pressed.emit()
-		await process_frame
-	_check(est.internos_actual < 3 or metas.is_empty(), "buscar una meta debe gastar movimientos internos")
-	_botones(dia, "Reducir errores")[0].pressed.emit()
-	await process_frame
-	var mas: Array = _botones(dia, "+")
-	if not mas.is_empty():
-		mas[0].pressed.emit()
-		await process_frame
-	PanelGestion.pestana = "gabinete"
-	dia._abrir_panel("mapa")
-	est.internos_actual = 0  # sin movimientos: el rechazo se explica en lenguaje claro
-	_check(Razones.texto(main.motor.reducir_errores()).length() > 10, "los rechazos deben tener texto claro")
-	var rep: MotorTurno = Partida.reproducir(main.datos, est.exportar_guardado())
-	_check(rep.estado.calcular_huella() == est.calcular_huella(), "las acciones v2 de la UI deben reproducirse desde el guardado")
-	# reposición animada: se fuerza una mano vacía con movimientos y se repone
-	est.mano.clear()
-	est.pa_actual = 3
-	var n_reg := est.registro_acciones.size()
-	var nuevas: Array[String] = main.motor.mazo.reposicion()
-	dia._leer_reposicion(n_reg)
-	_check(not nuevas.is_empty() and dia._nuevas == nuevas, "la reposición debe quedar registrada para animarse")
-	dia._refrescar()
-	await create_timer(0.8).timeout
-	_check(dia._mano.get_child_count() == est.mano.size(), "la mano repuesta debe pintarse")
 
 
 func _check_tactil(raiz: Node, donde: String) -> void:

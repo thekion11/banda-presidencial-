@@ -29,6 +29,7 @@ static func crear(p_datos: Dictionary, p_motor: MotorTurno = null) -> PantallaCa
 	var c := PantallaCartera.new()
 	c.datos = p_datos
 	c.motor = p_motor
+	Tapa.cubrir(c)
 	return c
 
 

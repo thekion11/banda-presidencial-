@@ -197,4 +197,4 @@ static func crear(obra: Dictionary, fases: Array, al_cerrar: Callable, al_ver_ma
 	acciones.add_child(ver)
 	col.add_child(acciones)
 	actualizar.call(MotorObras.fase_de(obra))
-	return capa
+	return Tapa.cubrir(capa)
