@@ -18,6 +18,8 @@ SIN_TILDE = {"accion": "acción", "politica": "política", "economia": "economí
              "decision": "decisión", "votacion": "votación", "comision": "comisión", "inversion": "inversión", "constitucion": "constitución", "coalicion": "coalición",
              "informacion": "información", "situacion": "situación", "tambien": "también", "mas": None, "ademas": "además", "unico": "único", 
              "ultimo": "último", "ultima": "última", "dia": None, "dias": "días", "anio": "año", "años": None, "habitos": "hábitos", "energia": "energía", "tecnologia": "tecnología"}
+# apellidos de políticos reales: no pueden aparecer en textos que ve el jugador (CLAUDE.md §2: alias satíricos); «Los Lagos» y los nombres oficiales de obras no cuentan
+REALES = re.compile(r"\b(Kast|Boric|Matthei|Kaiser|Parisi|Bachelet|Piñera|Jadue|Sichel|Tohá|Mayne-Nicholls|Enríquez-Ominami|Artés|Pinochet|Aylwin)\b")
 PALABRAS = {k: v for k, v in SIN_TILDE.items() if v}
 CAMPOS = ("titulo", "descripcion", "texto", "rasgo", "alias", "nombre", "descripcion_larga")
 
@@ -46,6 +48,8 @@ def revisar(nombre: str, datos) -> list:
                 errores.append(f"{ctx}: espacios dobles o sobrantes")
             if "..." in t:
                 errores.append(f"{ctx}: usa «...» en vez de «…»")
+            if REALES.search(t):
+                errores.append(f"{ctx}: nombra a un político real ({REALES.search(t).group(0)}); usar alias satírico")
             lim = LIMITES.get(campo, 260)
             if len(t) > lim:
                 errores.append(f"{ctx}: {len(t)} caracteres (máx {lim})")
