@@ -81,7 +81,7 @@ var _r_ext: float = 0.0
 
 func _preparar() -> void:
 	_grande = total <= 60
-	var filas := 5 if _grande else 8
+	var filas := 4 if _grande else 6  # así la distancia entre asientos de una fila ≈ la distancia entre filas (anillos parejos, como la maqueta)
 	_centro = Vector2(size.x * 0.5, size.y - 14.0)
 	var r_ext := minf(size.x * 0.46, size.y - 24.0)
 	var r_int := r_ext * (0.46 if _grande else 0.50)

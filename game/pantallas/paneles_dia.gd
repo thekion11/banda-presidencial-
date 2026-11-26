@@ -129,6 +129,6 @@ static func pintar_region(_r: Dictionary, motor: MotorTurno, datos: Dictionary, 
 	_r["rg_nombre"].text = nombre
 	_r["rg_valor"].text = Tema.pct(v)
 	_r["rg_valor"].add_theme_color_override("font_color", Tema.color_aprobacion(v + 12.0))
-	_r["rg_sub"].text = "%d obra(s) en curso%s" % [n_obras, " · 1 propuesta nueva" if est.propuestas_abiertas.size() > 0 and _region == "metropolitana" else ""]
+	_r["rg_sub"].text = "%d %s en curso%s" % [n_obras, "obra" if n_obras == 1 else "obras", " · 1 propuesta nueva" if est.propuestas_abiertas.size() > 0 and _region == "metropolitana" else ""]
 	Movimiento.barra(_r["rg_barra"], v)  # la barra se desliza hasta la aprobación de la región elegida
 	_r["rg_barra"].add_theme_stylebox_override("fill", Tema.caja(Tema.color_aprobacion(v + 12.0), 4))

@@ -14,7 +14,11 @@ var _mallas: Dictionary = {}  # id -> ArrayMesh pretriangulada
 var _banda_y: Dictionary = {}  # id -> Vector2(y_min, y_max)
 var _ancho_rel: float = 0.2
 var valores: Dictionary = {}
-var seleccion: String = ""
+var seleccion: String = "":
+	set(v):
+		if v != seleccion:
+			seleccion = v
+			queue_redraw()
 var obras: Dictionary = {}  # id -> cantidad de obras en curso
 var bastion: String = ""
 var _ciudades: Array = []
@@ -38,6 +42,11 @@ var _t: float = 0.0
 var _contornos_px: Dictionary = {}  # id -> contornos ya transformados y cerrados (caché por tamaño: la capa viva los dibuja cada cuadro)
 var _centros_px: Dictionary = {}
 var _tam_px: Vector4 = Vector4(-1, -1, -1, -1)  # tamaño, centro horizontal y estiramiento: lo que mueve los contornos
+var enlace: Control:  # tarjeta de la región elegida: la maqueta la une con una línea punteada a su región
+	set(v):
+		enlace = v
+		if v != null:
+			v.item_rect_changed.connect(queue_redraw)
 var _fuegos: Array[Dictionary] = []  # {pos, inicio, color}: obra terminada (dirección visual v4)
 
 
@@ -206,6 +215,13 @@ func _draw() -> void:
 				draw_arc(o["pos"], 6.0 + 54.0 * tk, 0.0, TAU, 48, Color(o["color"], (1.0 - tk) * 0.9), 3.0 - 1.5 * tk, true)
 		draw_circle(o["pos"], 7.0 * (1.0 - t), Color(Tema.CREMA, 1.0 - t))
 	draw_set_transform_matrix(Transform2D.IDENTITY)
+	if enlace != null and enlace.is_visible_in_tree() and _banda_y.has(seleccion):
+		var desde := _camara * centro(seleccion)
+		var r := get_global_transform().affine_inverse() * enlace.get_global_rect()
+		var hasta := Vector2(r.position.x - 2.0, clampf(desde.y, r.position.y + 14.0, r.end.y - 14.0))
+		if hasta.x - desde.x > 16.0:
+			draw_dashed_line(desde + (hasta - desde).normalized() * 7.0, hasta, Color(Tema.ORO, 0.85), 1.5, 5.0)
+			draw_circle(desde, 3.0, Tema.ORO)
 	if leyenda:
 		var r := Rect2(size.x - 178.0, size.y - 34.0, 168.0, 26.0)
 		draw_style_box(Tema.caja(Color(0.04, 0.13, 0.21, 0.85), 10), r)
