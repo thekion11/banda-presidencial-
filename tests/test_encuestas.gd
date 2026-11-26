@@ -83,6 +83,27 @@ func _init() -> void:
 		var res := b.resolver_eleccion_presidencial()
 		_check(abs(float(res["voto_final"]) - float(ultima["intencion"])) <= float(ultima["margen"]) + ruido + 0.2, "semilla %d: la encuesta final (%.1f) anticipa la elección (%.1f)" % [sd, float(ultima["intencion"]), float(res["voto_final"])])
 		_check(absf(float(ultima["umbral"]) - float(res["umbral"])) < 0.06, "el umbral de la encuesta es el de la elección")
+	# una sola encuesta por semana, también con segunda vuelta (antes la semana 9 quedaba dos veces)
+	var vistas := 0
+	for sd in range(70, 140):
+		var c := Partida.crear(datos, sd, partido)
+		var rc := RandomNumberGenerator.new()
+		rc.seed = sd
+		for _i in range(8):
+			Bots.jugar_turno(c, "azar", rc)
+			c.terminar_turno()
+		var r1 := c.resolver_eleccion_presidencial()
+		if bool(r1["balotaje"]):
+			c.iniciar_turno()
+			for _i in range(int(datos["leyes"]["hemiciclo"]["semanas_balotaje"])):
+				Bots.jugar_turno(c, "azar", rc)
+				c.terminar_turno()
+			vistas += 1
+		var semanas := {}
+		for q in c.estado.encuestas:
+			_check(not semanas.has(q["semana"]), "semilla %d: una sola encuesta por semana (%d repetida)" % [sd, int(q["semana"])])
+			semanas[q["semana"]] = true
+	_check(vistas > 0, "se probó al menos una partida con segunda vuelta (%d)" % vistas)
 	# reproducir da las mismas encuestas
 	var g: Dictionary = JSON.parse_string(JSON.stringify(m.estado.exportar_guardado(Datos.huella(datos))))
 	var re := Partida.reproducir(datos, g)
