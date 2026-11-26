@@ -166,4 +166,11 @@ Godot no aplica la escala de letra del sistema Android a la interfaz. Hoy el jue
 
 **Decisión pendiente del usuario:** seguir la escala de letra del sistema Android necesitaría un plugin nativo (Configuration.fontScale). También se podría ofrecer un tamaño de letra mayor que el «Texto grande» actual. Las dos cosas son ampliaciones de alcance.
 
+### Estados vacíos y de error (26-nov-2026)
+Cada estado dice qué pasa y ofrece una acción viable, nunca un «no» seco. Prueba: `tests/test_estados.gd`. Capturas: `docs/comparacion/e_*.png`.
+- **Sin movimientos:** el Corrector lo dice. En gobierno ofrece delegar la carta (no gasta movimientos) o terminar la semana; en campaña, terminar la semana, porque se renuevan al empezar la próxima.
+- **Sin cartas:** la zona de la mano explica que al empezar la próxima semana entran cartas nuevas, y el Corrector sugiere revisar el Comité, el Congreso o el gabinete. Antes la zona quedaba en blanco.
+- **Guardado dañado:** el juego lo aparta (`guardado_descartado.json`) y vuelve al menú con el aviso «Empieza una partida nueva». Esto ya estaba en main, con la validación de la sesión del motor.
+- **Datos faltantes** (instalación dañada): antes de cargar se comprueba que estén todos los archivos. Si falta alguno, se dice cuál y se ofrece actualizar o reinstalar el juego, en vez de un error de script.
+
 Reglas: todo el movimiento respeta Ajustes › «Animaciones y movimiento» y se apaga en modo headless, así que las pruebas miden siempre el estado final. El azar de las partículas es solo visual y no toca la semilla de la partida. Prueba propia: `tests/test_movimiento.gd`.
