@@ -69,7 +69,7 @@
     "penal_aprobacion_riesgo": 1.0,
     "desgaste_aprobacion_semanal": 0.35,
     "regen_capital_semanal": 0.5,
-    "regen_cohesion_semanal": 0.2,
+    "regen_cohesion_semanal": -1.85,
     "umbral_crisis_aprobacion": 12.0,
     "semanas_crisis_para_caida": 3,
     "ancla_base": 6.0,

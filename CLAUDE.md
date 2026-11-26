@@ -60,6 +60,10 @@ Si un paso falla, entra el Corrector antes.
 ```
 python3 tools/validate_data.py
 python3 tools/check_limits.py
+python3 tools/check_constantes.py      # ningún número de balance nuevo en sim/
+python3 tools/validate_tipos.py        # estructura y tipos de data/leyes.json
+python3 tools/test_validate.py         # pruebas negativas de los validadores
+tools/run_all_tests.sh                 # TODO lo del CI en un solo comando (validadores, tests/test_*.gd y fuzz)
 godot --headless --import --path .
 godot --headless --path . -s tests/test_prueba_oro_4_semanas.gd
 godot --headless --path . -s tests/test_prueba_oro_30_dias.gd
@@ -95,6 +99,18 @@ godot --headless --path . -s tests/test_movimiento.gd
 godot --headless --path . -s tests/test_claridad.gd
 godot --headless --path . -s tests/test_tactil.gd
 godot --headless --path . -s tests/test_textos.gd
+godot --headless --path . -s tests/test_razones.gd             # toda razón de rechazo del motor tiene texto
+godot --headless --path . -s tests/test_sin_atascos.gd         # siempre hay mano y carta jugable (3 dificultades x 3 afiliaciones)
+godot --headless --path . -s tests/test_cobertura.gd           # cartas por área de ministerio y año
+godot --headless --path . -s tests/test_replay_intermedio.gd   # guardados intermedios de partidas de 208 turnos
+godot --headless --path . -s tests/test_congreso_invariantes.gd
+godot --headless --path . -s tests/test_congreso_oposicion.gd
+godot --headless --path . -s tests/test_encuestas.gd
+godot --headless --path . -s tests/test_escenas.gd
+godot --headless --path . -s tests/test_accesibilidad.gd
+godot --headless --path . -s tests/test_instantanea.gd         # caché de carga válida, vieja o dañada
+godot --headless --path . -s tests/test_carga_rapida.gd
+godot --headless --path . -s tests/test_rendimiento.gd         # turno < 1 ms y carga < 100 ms
 godot --headless --path . -s tests/montecarlo.gd -- 200        # informe de balance
 xvfb-run -a godot --path . --rendering-method gl_compatibility --resolution 390x844 -s tests/captura_comparar.gd -- /tmp/capturas   # estados de la maqueta
 ```

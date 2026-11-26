@@ -68,10 +68,10 @@ func _pulsacion_larga(n: int) -> void:
 
 
 static func texto_movimientos(est: EstadoSimulacion) -> String:
-	## "base 5 · aprob. +1 · asesor +1": origen de los movimientos del turno (el bono de asesores rige desde el siguiente amanecer).
+	## "5 mov base · aprob. +1 · asesor +1": origen de los movimientos del turno (el bono de asesores rige desde el siguiente amanecer).
 	var ap := int(est.bono_mov.get("aprobacion", 0))
 	var ase := int(est.bono_mov.get("asesores", 0))
-	var s := "base %d" % est.pa_maximo
+	var s := "%d mov base" % est.pa_maximo
 	if ap > 0:
 		s += " · aprob. +%d" % ap
 	if ase > 0:

@@ -25,6 +25,8 @@ jobs:
           python3 tools/check_limits.py
           python3 tools/check_constantes.py
           python3 tools/validate_tipos.py
+          python3 tools/check_presupuesto.py
+          python3 tools/validar_textos.py
           python3 tools/test_validate.py
           python3 tools/validar_metro.py --verificar
           python3 tools/informe_alcanzabilidad.py

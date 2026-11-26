@@ -49,3 +49,5 @@ func _dibujar() -> void:
 		_lista.draw_rect(Rect2(x_lista - 12.0, y - 9.0, 10.0, 18.0), col)
 		_lista.draw_string(fuente, Vector2(x_lista + 6.0, y - 1.0), String(f["nombre"]), HORIZONTAL_ALIGNMENT_LEFT, size.x - x_lista - 8.0, 12, Tema.TEXTO)
 		_lista.draw_string(chico, Vector2(x_lista + 6.0, y + 11.0), "Aprobación %d %%" % roundi(float(f["valor"])), HORIZONTAL_ALIGNMENT_LEFT, -1, 10, Tema.TEXTO_SUAVE)
+	var nota := "Límites: datos abiertos (ilustrativo)"  # como la maqueta: el mapa no define límites oficiales
+	_lista.draw_string(chico, Vector2(x_lista - 12.0, size.y - 1.0), nota, HORIZONTAL_ALIGNMENT_RIGHT, size.x - x_lista + 4.0, 10, Tema.TEXTO_SUAVE)
