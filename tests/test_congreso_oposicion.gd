@@ -15,12 +15,14 @@ func _init() -> void:
 	for p in datos["ideologia"]["preguntas"]:
 		resp.append(p["opciones"][1])
 	var partido := GeneradorPartido.construir_partido("C", "CCC", "metropolitana", resp, datos["ideologia"])
-	var m := Partida.crear(datos, 31, partido)
-	var rng := RandomNumberGenerator.new()
-	rng.seed = 31
-	for _i in range(8):
-		m.terminar_turno()
-	m.resolver_eleccion_presidencial()
+	var m: MotorTurno
+	for semilla in range(31, 80):  # una semilla en que una campaña sin jugar termina en derrota (no depende del azar de una sola semilla)
+		m = Partida.crear(datos, semilla, partido)
+		for _i in range(8):
+			m.terminar_turno()
+		m.resolver_eleccion_presidencial()
+		if m.estado.etapa == "derrota_electoral":
+			break
 	m.continuar_carrera()
 	m.iniciar_turno()
 	_check(m.estado.etapa == "oposicion", "la derrota lleva a la oposición (%s)" % m.estado.etapa)

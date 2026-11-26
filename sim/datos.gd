@@ -29,6 +29,7 @@ static func cargar_todo(base: String = "res://data/") -> Dictionary:
 		d["eventos"] = Array(d["eventos"]) + Array(evs)
 	d["grafo"] = leer_json(base + "geo/grafo_urbano.json")
 	d["sectra"] = leer_json(base + "sectra_planes.json")
+	d["indices_cartas"] = IndicesCartas.construir(d["cartas"])  # una vez por carga de datos, no por partida
 	return d
 
 

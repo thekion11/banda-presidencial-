@@ -13,8 +13,11 @@ func _init(p_motor: MotorTurno) -> void:
 
 
 func robar(n: int) -> void:
-	var e := m.estado
-	var intentos := e.mazo.size() + e.descarte.size() + m.catalogo_cartas.size()  # tope: si nada está disponible, no se cuelga
+	var _m := m  # una sola resolución de la referencia débil por llamada (cada acceso a `m` cuesta ~0,5 us)
+	var e := _m.estado
+	var intentos := e.mazo.size() + e.descarte.size() + _m.catalogo_cartas.size()  # tope: si nada está disponible, no se cuelga
+	var por_id: Dictionary = _m._cartas_por_id
+	var gab := _m.gabinete
 	while e.mano.size() < n and intentos > 0:
 		intentos -= 1
 		if e.mazo.is_empty() and not reponer():
@@ -22,48 +25,67 @@ func robar(n: int) -> void:
 		var id: String = e.mazo.pop_back()
 		if e.cartas_ejecutadas.has(id):
 			continue  # carta única ya ejecutada: sale del mazo
-		if not m.gabinete.disponible(m._cartas_por_id[id]):
+		var carta: Dictionary = por_id[id]
+		if not gab.disponible(carta):
 			e.descarte.append(id)  # no disponible ahora: vuelve al descarte y se reevalúa en la próxima reposición
 			continue
-		e.mano.append(m._cartas_por_id[id])
+		e.mano.append(carta)
 	_asegurar_disenadas()
 
 
 func _asegurar_disenadas() -> void:
+	var _m := m  # una sola resolución de la referencia débil por llamada (cada acceso a `m` cuesta ~0,5 us)
 	## Composición de la mano (Fase B): al menos `mano.min_disenadas` cartas diseñadas a mano (no generadas de proyectos reales).
 	## Si faltan, una carta real de la mano vuelve al fondo del mazo y entra una diseñada disponible.
-	var e := m.estado
-	var minimo := int(m.catalogo_leyes["mano"].get("min_disenadas", 0))
-	var n_dis := e.mano.filter(func(c: Dictionary) -> bool: return not m.cartas.es_real(c)).size()
+	var e := _m.estado
+	var minimo := int(_m.catalogo_leyes["mano"].get("min_disenadas", 0))
+	var n_dis := 0
+	var esr: Dictionary = _m.indices.es_real
+	for c in e.mano:
+		var id: String = c["id"]
+		if not (esr[id] if esr.has(id) else _m.cartas.es_real(c)):
+			n_dis += 1
+	if n_dis >= minimo:
+		return
+	_m.gabinete.abrir_contexto()  # puede revisar muchas cartas del mazo: el contexto de disponibilidad se calcula una vez
+	_completar_disenadas(n_dis, minimo)
+	_m.gabinete.cerrar_contexto()
+
+
+func _completar_disenadas(n_dis: int, minimo: int) -> void:
+	var _m := m  # una sola resolución de la referencia débil por llamada (cada acceso a `m` cuesta ~0,5 us)
+	var e := _m.estado
 	while n_dis < minimo:
 		var ia := -1
 		for i in range(e.mazo.size() - 1, -1, -1):
-			var c: Dictionary = m._cartas_por_id[e.mazo[i]]
-			if not m.cartas.es_real(c) and not e.cartas_ejecutadas.has(String(c["id"])) and m.gabinete.disponible(c):
+			var c: Dictionary = _m._cartas_por_id[e.mazo[i]]
+			if not _m.cartas.es_real(c) and not e.cartas_ejecutadas.has(String(c["id"])) and _m.gabinete.disponible(c):
 				ia = i
 				break
 		var ir := -1
 		for j in range(e.mano.size() - 1, -1, -1):
-			if m.cartas.es_real(e.mano[j]):
+			if _m.cartas.es_real(e.mano[j]):
 				ir = j
 				break
 		if ia < 0 or ir < 0:
 			return
 		var real: Dictionary = e.mano[ir]
-		e.mano[ir] = m._cartas_por_id[e.mazo[ia]]
+		e.mano[ir] = _m._cartas_por_id[e.mazo[ia]]
 		e.mazo.remove_at(ia)
 		e.mazo.insert(0, String(real["id"]))
 		n_dis += 1
 
 
 func reponer() -> bool:
-	var e := m.estado
+	var _m := m  # una sola resolución de la referencia débil por llamada (cada acceso a `m` cuesta ~0,5 us)
+	var e := _m.estado
 	var presentes := {}
 	for c in e.mano:
 		presentes[String(c["id"])] = true
 	var restos: Array[String] = []
+	_m.gabinete.abrir_contexto()
 	for id in e.descarte:
-		if m.gabinete.disponible(m._cartas_por_id[id]):
+		if _m.gabinete.disponible(_m._cartas_por_id[id]):
 			e.mazo.append(id)
 		else:
 			restos.append(id)
@@ -72,13 +94,14 @@ func reponer() -> bool:
 		presentes[id] = true
 	for id in e.descarte:
 		presentes[id] = true
-	for c in m.catalogo_cartas:  # cartas nuevas que nunca entraron al mazo (filtradas antes, p. ej. por gabinete)
+	for c in _m.cartas.no_reales():  # cartas nuevas que nunca entraron al mazo (filtradas antes, p. ej. por gabinete)
 		var id := String(c["id"])
-		if not presentes.has(id) and not m.cartas.es_real(c) and not e.cartas_ejecutadas.has(id) and m.gabinete.disponible(c):
+		if not presentes.has(id) and not e.cartas_ejecutadas.has(id) and _m.gabinete.disponible(c):
 			e.mazo.append(id)
-	e.mazo.append_array(m.cartas.reales_para_mazo())
+	_m.gabinete.cerrar_contexto()
+	e.mazo.append_array(_m.cartas.reales_para_mazo())
 	for i in range(e.mazo.size() - 1, 0, -1):  # Fisher-Yates con la semilla de la partida
-		var j := m.rng.randi_range(0, i)
+		var j := _m.rng.randi_range(0, i)
 		var tmp: String = e.mazo[i]
 		e.mazo[i] = e.mazo[j]
 		e.mazo[j] = tmp
@@ -86,25 +109,27 @@ func reponer() -> bool:
 
 
 func refiltrar_mano() -> void:
+	var _m := m  # una sola resolución de la referencia débil por llamada (cada acceso a `m` cuesta ~0,5 us)
 	## Tras cambiar el gabinete: las cartas que dejaron de estar disponibles vuelven al descarte y entran otras.
-	var e := m.estado
+	var e := _m.estado
 	var quedan: Array[Dictionary] = []
 	for c in e.mano:
-		if m.gabinete.disponible(c):
+		if _m.gabinete.disponible(c):
 			quedan.append(c)
 		else:
 			e.descarte.append(String(c["id"]))
 	e.mano = quedan
-	robar(int(m.catalogo_leyes["mano"]["tamano"]))
+	robar(int(_m.catalogo_leyes["mano"]["tamano"]))
 
 
 func incorporar(ids: Array) -> Array[String]:
+	var _m := m  # una sola resolución de la referencia débil por llamada (cada acceso a `m` cuesta ~0,5 us)
 	## Desbloqueo (meta, evento o ventana): las cartas disponibles pasan al tope del mazo para robarse pronto.
-	var e := m.estado
+	var e := _m.estado
 	var nuevas: Array[String] = []
 	for id in ids:
 		var sid := String(id)
-		if not m._cartas_por_id.has(sid) or e.cartas_ejecutadas.has(sid) or not m.gabinete.disponible(m._cartas_por_id[sid]):
+		if not _m._cartas_por_id.has(sid) or e.cartas_ejecutadas.has(sid) or not _m.gabinete.disponible(_m._cartas_por_id[sid]):
 			continue
 		if e.mano.any(func(c: Dictionary) -> bool: return c["id"] == sid):
 			continue
@@ -115,58 +140,39 @@ func incorporar(ids: Array) -> Array[String]:
 	return nuevas
 
 
-var _disp: Dictionary = {}  # clave de disponibilidad -> valor (normalizado) -> cartas, en el orden del catálogo; se arma en la primera consulta
-
-
-static func _k(v: Variant) -> String:
-	return str(int(v)) if (v is float or v is int) and float(v) == floorf(float(v)) else str(v)
-
-
 func ids_con_disponibilidad(clave: String, valor: Variant, solo_no_reales: bool = false) -> Array[String]:
-	## Cartas ligadas a una condición (evento, año...). Antes recorría las ~2.000 cartas por cada evento que ocurría.
-	if _disp.is_empty():
-		for c in m.catalogo_cartas:
-			var d: Variant = c.get("disponibilidad", null)
-			if d == null:
-				continue
-			for k in d.keys():
-				if d[k] == null:
-					continue
-				if not _disp.has(k):
-					_disp[k] = {}
-				var vk := _k(d[k])
-				if not _disp[k].has(vk):
-					_disp[k][vk] = []
-				_disp[k][vk].append(c)
-		_disp["_listo"] = {}
+	## Cartas ligadas a una condición (evento, año...): índice precalculado con los datos (antes recorría las ~2.000 cartas por cada evento).
 	var res: Array[String] = []
-	for c in _disp.get(clave, {}).get(_k(valor), []):
+	for c in m.indices.disp.get(clave, {}).get(IndicesCartas.clave(valor), []):
 		if not (solo_no_reales and m.cartas.es_real(c)):
 			res.append(String(c["id"]))
 	return res
 
 
 func reposicion() -> Array[String]:
+	var _m := m  # una sola resolución de la referencia débil por llamada (cada acceso a `m` cuesta ~0,5 us)
 	## DISENO_V2 §12: si la mano quedó vacía y quedan movimientos, entran más cartas disponibles (incluidas las que
 	## el sorteo del mazo dejó fuera). Registra la acción `reposicion` con los ids nuevos para que la UI la anime.
-	var e := m.estado
+	var e := _m.estado
 	var nuevas: Array[String] = []
-	if not e.mano.is_empty() or (e.pa_actual <= 0 and e.delegadas_turno >= int(m.catalogo_leyes["delegacion"]["max_por_turno"])):
+	if not e.mano.is_empty() or (e.pa_actual <= 0 and e.delegadas_turno >= int(_m.catalogo_leyes["delegacion"]["max_por_turno"])):
 		return nuevas
 	var cand: Array[String] = []
-	for c in m.catalogo_cartas:
-		var id := String(c["id"])
-		if not e.cartas_ejecutadas.has(id) and m.gabinete.disponible(c):
+	_m.gabinete.abrir_contexto()
+	for c in _m.catalogo_cartas:
+		var id: String = c["id"]
+		if not e.cartas_ejecutadas.has(id) and _m.gabinete.disponible(c):
 			cand.append(id)
+	_m.gabinete.cerrar_contexto()
 	for i in range(cand.size() - 1, 0, -1):
-		var j := m.rng.randi_range(0, i)
+		var j := _m.rng.randi_range(0, i)
 		var tmp := cand[i]
 		cand[i] = cand[j]
 		cand[j] = tmp
-	for id in cand.slice(0, int(m.catalogo_leyes["mano"]["reposicion_cartas"])):
+	for id in cand.slice(0, int(_m.catalogo_leyes["mano"]["reposicion_cartas"])):
 		e.mazo.erase(id)
 		e.descarte.erase(id)
-		e.mano.append(m._cartas_por_id[id])
+		e.mano.append(_m._cartas_por_id[id])
 		nuevas.append(id)
 	if not nuevas.is_empty():
 		e.registrar_accion("reposicion", {"ids": nuevas})

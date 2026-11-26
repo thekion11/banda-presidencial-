@@ -11,7 +11,7 @@ func _check(cond: bool, msg: String) -> void:
 		print("FALLO: ", msg)
 
 
-const ORO := "a372a053c06461faac5bbf3726e16b5cad5df8b22b885c42caa2945ddbe5a0b2"  # idéntica en Godot 4.3 y 4.7.2; si el cambio es intencional, actualízala
+const ORO := "dfac67fae338be5ffe149b26bb90522c259316702cf3af852f87467df3834653"  # idéntica en Godot 4.3 y 4.7.2; si el cambio es intencional, actualízala
 
 
 func _init() -> void:

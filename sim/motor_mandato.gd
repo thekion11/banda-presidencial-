@@ -12,46 +12,50 @@ func _init(p_motor: MotorTurno) -> void:
 	_ref = weakref(p_motor)
 
 func evaluar_legado() -> void:
-	var lg: Dictionary = m.catalogo_leyes["legado"]
+	var _m := m  # una sola resolución de la referencia débil por llamada (cada acceso a `m` cuesta ~0,5 us)
+	var lg: Dictionary = _m.catalogo_leyes["legado"]
 	var toca := false
 	for t in lg["turnos_evaluacion"]:
-		toca = toca or int(t) == m.estado.turno_actual
-	if not toca or m.estado.legado_evaluado.has(m.estado.turno_actual):
+		toca = toca or int(t) == _m.estado.turno_actual
+	if not toca or _m.estado.legado_evaluado.has(_m.estado.turno_actual):
 		return
-	m.estado.legado_evaluado.append(m.estado.turno_actual)
-	var pend := m.estado.promesas_pendientes().size()
+	_m.estado.legado_evaluado.append(_m.estado.turno_actual)
+	var pend := _m.estado.promesas_pendientes().size()
 	if pend > 0:
-		m.fx.sumar_ind("capital", -float(lg["penal_capital"]) * pend)
-		m.fx.delta_aprobacion(-float(lg["penal_aprobacion"]) * pend, "")
-	m.estado.registrar_accion("legado_evaluado", {"pendientes": pend})
+		_m.fx.sumar_ind("capital", -float(lg["penal_capital"]) * pend)
+		_m.fx.delta_aprobacion(-float(lg["penal_aprobacion"]) * pend, "")
+	_m.estado.registrar_accion("legado_evaluado", {"pendientes": pend})
 
 
 func evaluar_crisis() -> void:
-	var d: Dictionary = m.catalogo_leyes["dinamica"]
-	if m.estado.ind("aprobacion") < float(d["umbral_crisis_aprobacion"]):
-		m.estado.semanas_en_crisis += 1
+	var _m := m  # una sola resolución de la referencia débil por llamada (cada acceso a `m` cuesta ~0,5 us)
+	var d: Dictionary = _m.catalogo_leyes["dinamica"]
+	if _m.estado.ind("aprobacion") < float(d["umbral_crisis_aprobacion"]):
+		_m.estado.semanas_en_crisis += 1
 	else:
-		m.estado.semanas_en_crisis = 0
-	if m.estado.semanas_en_crisis >= int(d["semanas_crisis_para_caida"]):
+		_m.estado.semanas_en_crisis = 0
+	if _m.estado.semanas_en_crisis >= int(d["semanas_crisis_para_caida"]):
 		finalizar("crisis")
 
 
 func calcular_puntaje() -> int:
-	var p: Dictionary = m.catalogo_leyes["puntaje"]
-	var total := m.estado.promesas_campana.size()
-	var cumplidas := total - m.estado.promesas_pendientes().size()
+	var _m := m  # una sola resolución de la referencia débil por llamada (cada acceso a `m` cuesta ~0,5 us)
+	var p: Dictionary = _m.catalogo_leyes["puntaje"]
+	var total := _m.estado.promesas_campana.size()
+	var cumplidas := total - _m.estado.promesas_pendientes().size()
 	var legado := float(cumplidas) / float(total) if total > 0 else 0.0  # sin promesas no hay legado (U3: intrascendente)
-	return roundi(m.estado.ind("aprobacion") * float(p["peso_aprobacion"]) + legado * float(p["peso_legado"])
-			+ float(m.estado.obras_terminadas.size()) * float(p["peso_obras"])
-			+ m.estado.ind("fiscal") * float(p["peso_fiscal"]) + m.estado.ind("capital") * float(p["peso_capital"]))
+	return roundi(_m.estado.ind("aprobacion") * float(p["peso_aprobacion"]) + legado * float(p["peso_legado"])
+			+ float(_m.estado.obras_terminadas.size()) * float(p["peso_obras"])
+			+ _m.estado.ind("fiscal") * float(p["peso_fiscal"]) + _m.estado.ind("capital") * float(p["peso_capital"]))
 
 
 func finalizar(motivo: String) -> void:
-	m.estado.etapa = motivo
-	m.estado.resultado_final = {"motivo": motivo, "puntaje": calcular_puntaje(), "turnos": m.estado.turno_actual,
-			"aprobacion": snappedf(m.estado.ind("aprobacion"), 0.01), "obras": m.estado.obras_terminadas.size(),
-			"promesas_pendientes": m.estado.promesas_pendientes().size()}
-	m.estado.registrar_accion("fin", m.estado.resultado_final)
+	var _m := m  # una sola resolución de la referencia débil por llamada (cada acceso a `m` cuesta ~0,5 us)
+	_m.estado.etapa = motivo
+	_m.estado.resultado_final = {"motivo": motivo, "puntaje": calcular_puntaje(), "turnos": _m.estado.turno_actual,
+			"aprobacion": snappedf(_m.estado.ind("aprobacion"), 0.01), "obras": _m.estado.obras_terminadas.size(),
+			"promesas_pendientes": _m.estado.promesas_pendientes().size()}
+	_m.estado.registrar_accion("fin", _m.estado.resultado_final)
 
 
 
@@ -83,11 +87,12 @@ func hitos(maximo: int = 8) -> Array[Dictionary]:
 
 
 func sucesion() -> String:
+	var _m := m  # una sola resolución de la referencia débil por llamada (cada acceso a `m` cuesta ~0,5 us)
 	## Texto de la sucesión presidencial (solo mandato completo): depende de la aprobación final; umbrales en data/leyes.json «sucesion».
-	if m.estado.etapa != "fin_mandato":
+	if _m.estado.etapa != "fin_mandato":
 		return ""
-	var c: Dictionary = m.catalogo_leyes["sucesion"]
-	var ap := m.estado.ind("aprobacion")
+	var c: Dictionary = _m.catalogo_leyes["sucesion"]
+	var ap := _m.estado.ind("aprobacion")
 	return String(c["textos"]["gana" if ap >= float(c["umbral_gana"]) else ("renida" if ap >= float(c["umbral_renida"]) else "pierde")])
 
 
@@ -135,12 +140,13 @@ func continuar_carrera() -> Dictionary:
 
 
 func amanecer_oposicion() -> void:
+	var _m := m  # una sola resolución de la referencia débil por llamada (cada acceso a `m` cuesta ~0,5 us)
 	## Cada semana de oposición: el gobierno rival se mueve (camino aleatorio hacia su media) y tu aprobación converge a un ancla que sube si el rival lo hace mal.
-	var o: Dictionary = m.catalogo_leyes["oposicion"]
-	var rival := m.estado.ind("rival")
-	m.fx.sumar_ind("rival", (float(o["rival_media"]) - rival) * float(o["rival_reversion"]) + m.rng.randf_range(-float(o["rival_ruido"]), float(o["rival_ruido"])))
-	var ancla := float(o["ancla_base"]) + float(o["peso_rival"]) * (50.0 - m.estado.ind("rival"))
-	m.fx.sumar_ind("aprobacion", (ancla - m.estado.ind("aprobacion")) * float(o["reversion_aprobacion"]))
+	var o: Dictionary = _m.catalogo_leyes["oposicion"]
+	var rival := _m.estado.ind("rival")
+	_m.fx.sumar_ind("rival", (float(o["rival_media"]) - rival) * float(o["rival_reversion"]) + _m.rng.randf_range(-float(o["rival_ruido"]), float(o["rival_ruido"])))
+	var ancla := float(o["ancla_base"]) + float(o["peso_rival"]) * (50.0 - _m.estado.ind("rival"))
+	_m.fx.sumar_ind("aprobacion", (ancla - _m.estado.ind("aprobacion")) * float(o["reversion_aprobacion"]))
 
 
 func cerrar_oposicion() -> void:
@@ -153,7 +159,8 @@ func e_dias_oposicion() -> int:
 
 
 func _abrir_periodo(etapa: String, dias_cerrados: int) -> void:
-	var e := m.estado
+	var _m := m  # una sola resolución de la referencia débil por llamada (cada acceso a `m` cuesta ~0,5 us)
+	var e := _m.estado
 	e.dias_carrera += dias_cerrados
 	e.ciclo += 1
 	e.etapa = etapa
@@ -168,13 +175,13 @@ func _abrir_periodo(etapa: String, dias_cerrados: int) -> void:
 	e.pa_actual = e.pa_maximo
 	if etapa == "campana":  # nueva campaña: la aprobación vuelve a la base del partido, con parte de lo ganado antes
 		var base := float(e.partido["indicadores_iniciales"]["aprobacion"]) + float(nivel()["aprobacion_inicial"])
-		e.indicadores["aprobacion"] = clampf(base + float(m.catalogo_leyes["oposicion"]["herencia_campana"]) * (e.ind("aprobacion") - base), 0.0, 100.0)
+		e.indicadores["aprobacion"] = clampf(base + float(_m.catalogo_leyes["oposicion"]["herencia_campana"]) * (e.ind("aprobacion") - base), 0.0, 100.0)
 		for k in ["capital", "cohesion", "fiscal", "riesgo_ejecucion"]:  # el resto de los indicadores también vuelve a su punto de partida
 			e.indicadores[k] = float(e.partido["indicadores_iniciales"][k])
-		var camp: Dictionary = m.catalogo_leyes["campana"]
-		m.regiones.inicializar(e, e.ind("aprobacion"), String(e.partido.get("region_bastion", "")), float(camp.get("bono_bastion", 0.0)), float(camp.get("variacion_regional_inicial", 0.0)))
+		var camp: Dictionary = _m.catalogo_leyes["campana"]
+		_m.regiones.inicializar(e, e.ind("aprobacion"), String(e.partido.get("region_bastion", "")), float(camp.get("bono_bastion", 0.0)), float(camp.get("variacion_regional_inicial", 0.0)))
 	if etapa == "oposicion":
-		e.indicadores["rival"] = float(m.catalogo_leyes["oposicion"]["rival_inicial"])  # el nuevo gobierno parte con luna de miel
+		e.indicadores["rival"] = float(_m.catalogo_leyes["oposicion"]["rival_inicial"])  # el nuevo gobierno parte con luna de miel
 	e.registrar_accion("periodo_nuevo", {"etapa": etapa, "ciclo": e.ciclo})
 
 
@@ -185,31 +192,32 @@ func nivel() -> Dictionary:
 
 
 func resolver_eleccion() -> Dictionary:
+	var _m := m  # una sola resolución de la referencia débil por llamada (cada acceso a `m` cuesta ~0,5 us)
 	## 1ª vuelta: gana quien supera el umbral; si no, pasa a la 2ª vuelta (semanas_balotaje más de campaña) con el piso configurado.
-	var h: Dictionary = m.catalogo_leyes["hemiciclo"]
+	var h: Dictionary = _m.catalogo_leyes["hemiciclo"]
 	var umbral := float(h["umbral_victoria_presidencial"]) + float(nivel()["umbral_delta"])
-	if not m.estado.eleccion_pendiente(int(h["semanas_campana"])):  # solo se vota cuando la campaña terminó (nada se registra ni cambia)
-		return {"ok": false, "electo": false, "balotaje": false, "ronda": m.estado.ronda_electoral, "voto_final": 0.0, "umbral": umbral}
-	var ruido := float(m.catalogo_leyes["campana"]["ruido_eleccion"])
-	var camp: Dictionary = m.catalogo_leyes["campana"]
-	var sin_prom := float(camp["penal_sin_promesas"]) if m.estado.promesas_campana.size() < int(camp["min_promesas"]) else 0.0  # U3: sin compromisos pierdes votos
-	var opo: Dictionary = m.catalogo_leyes["oposicion"]
-	var efecto_rival := float(opo["peso_rival_voto"]) * (float(opo["rival_neutro"]) - m.estado.ind("rival")) if m.estado.ciclo > 1 else 0.0  # un rival débil te ayuda
-	var voto_final := clampf(m.estado.ind("aprobacion") + m.rng.randf_range(-ruido, ruido) - sin_prom + efecto_rival, 0.0, 100.0)
-	var ronda := m.estado.ronda_electoral
+	if not _m.estado.eleccion_pendiente(int(h["semanas_campana"])):  # solo se vota cuando la campaña terminó (nada se registra ni cambia)
+		return {"ok": false, "electo": false, "balotaje": false, "ronda": _m.estado.ronda_electoral, "voto_final": 0.0, "umbral": umbral}
+	var ruido := float(_m.catalogo_leyes["campana"]["ruido_eleccion"])
+	var camp: Dictionary = _m.catalogo_leyes["campana"]
+	var sin_prom := float(camp["penal_sin_promesas"]) if _m.estado.promesas_campana.size() < int(camp["min_promesas"]) else 0.0  # U3: sin compromisos pierdes votos
+	var opo: Dictionary = _m.catalogo_leyes["oposicion"]
+	var efecto_rival := float(opo["peso_rival_voto"]) * (float(opo["rival_neutro"]) - _m.estado.ind("rival")) if _m.estado.ciclo > 1 else 0.0  # un rival débil te ayuda
+	var voto_final := clampf(_m.estado.ind("aprobacion") + _m.rng.randf_range(-ruido, ruido) - sin_prom + efecto_rival, 0.0, 100.0)
+	var ronda := _m.estado.ronda_electoral
 	var electo := voto_final >= umbral
 	var balotaje := ronda == 1 and not electo and voto_final >= float(h["umbral_pasa_balotaje"])
-	m.estado.registrar_accion("eleccion_presidencial", {"voto_final": voto_final, "umbral": umbral, "electo": electo,
-			"ronda": ronda, "balotaje": balotaje, "promesas_registradas": m.estado.promesas_campana.size()})
-	m.estado.registrar_entrada("eleccion", {})
+	_m.estado.registrar_accion("eleccion_presidencial", {"voto_final": voto_final, "umbral": umbral, "electo": electo,
+			"ronda": ronda, "balotaje": balotaje, "promesas_registradas": _m.estado.promesas_campana.size()})
+	_m.estado.registrar_entrada("eleccion", {})
 	if balotaje:
-		m.estado.ronda_electoral = 2
+		_m.estado.ronda_electoral = 2
 	elif electo:
-		m.estado.etapa = "gobierno"
-		m.estado.turno_actual = 1
-		m.estado.dia_actual = 1
-		m.estado.pa_actual = m.estado.pa_maximo
+		_m.estado.etapa = "gobierno"
+		_m.estado.turno_actual = 1
+		_m.estado.dia_actual = 1
+		_m.estado.pa_actual = _m.estado.pa_maximo
 	else:
-		m.estado.etapa = "derrota_electoral"
-		m.estado.resultado_final = {"motivo": "derrota_electoral", "voto_final": voto_final, "puntaje": 0}
+		_m.estado.etapa = "derrota_electoral"
+		_m.estado.resultado_final = {"motivo": "derrota_electoral", "voto_final": voto_final, "puntaje": 0}
 	return {"ok": true, "electo": electo, "balotaje": balotaje, "ronda": ronda, "voto_final": voto_final, "umbral": umbral}
