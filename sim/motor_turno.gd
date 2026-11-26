@@ -27,6 +27,7 @@ var eventos := MotorEventos.new(self)
 var ultimos_eventos: Array[Dictionary] = []
 var votaciones_semana: Array[Dictionary] = []  # votaciones de leyes resueltas al cerrar el turno (para la UI)
 var _cartas_por_id: Dictionary = {}
+var indices: IndicesCartas  # índices del catálogo de cartas (compartidos y de solo lectura)
 
 
 func inicializar(p_estado: EstadoSimulacion, p_cartas: Array, p_eventos: Array, p_leyes: Dictionary,
@@ -43,9 +44,9 @@ func inicializar(p_estado: EstadoSimulacion, p_cartas: Array, p_eventos: Array, 
 	catalogo_propuestas.clear()
 	for pr in p_extra.get("propuestas", []):
 		catalogo_propuestas[pr["id"]] = pr
-	_cartas_por_id.clear()
-	for c in catalogo_cartas:
-		_cartas_por_id[c["id"]] = c
+	var ix: Variant = p_extra.get("indices_cartas", null)  # precalculados al cargar los datos; si no coinciden con las cartas, se arman aquí
+	indices = ix if (ix is IndicesCartas and (ix as IndicesCartas).n == p_cartas.size()) else IndicesCartas.construir(p_cartas)
+	_cartas_por_id = indices.por_id.duplicate()  # copia: algunas pruebas agregan cartas sueltas
 	regiones.cargar(p_extra.get("regiones", []))
 	legal.configurar(catalogo_leyes, rng)
 	obras.configurar(catalogo_leyes, rng, regiones)

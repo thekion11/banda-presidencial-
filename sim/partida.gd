@@ -3,15 +3,28 @@ extends RefCounted
 ## Fachada: crea una partida lista para jugar y la reproduce desde un guardado por eventos.
 
 
-static func crear(datos: Dictionary, semilla: int, partido: Dictionary) -> MotorTurno:
+static func armar(datos: Dictionary, semilla: int) -> MotorTurno:
+	## Motor con los catálogos cargados y el estado vacío (sin partido ni primer turno).
 	var estado := EstadoSimulacion.new()
 	estado.configurar(semilla, int(datos["leyes"]["hemiciclo"]["dias_por_turno"]), datos["leyes"])
 	var motor := MotorTurno.new()
 	motor.inicializar(estado, datos["cartas"], datos["eventos"], datos["leyes"], datos["ministros"],
-			{"regiones": datos["regiones"], "propuestas": datos["propuestas"], "grafo": datos.get("grafo", {}), "sectra": datos.get("sectra", {}), "metas": datos.get("metas", []), "asesores": datos.get("asesores", []), "coalicion": datos.get("coalicion", [])})
+			{"regiones": datos["regiones"], "propuestas": datos["propuestas"], "grafo": datos.get("grafo", {}), "sectra": datos.get("sectra", {}), "metas": datos.get("metas", []), "asesores": datos.get("asesores", []), "coalicion": datos.get("coalicion", []), "indices_cartas": datos.get("indices_cartas", null)})
+	return motor
+
+
+static func crear(datos: Dictionary, semilla: int, partido: Dictionary) -> MotorTurno:
+	var motor := armar(datos, semilla)
 	motor.aplicar_partido_inicial(partido)
 	motor.iniciar_turno()
 	return motor
+
+
+static func cargar(datos: Dictionary, guardado: Dictionary, instantanea: Dictionary = {}, huella_datos: String = "", sha_guardado: String = "") -> MotorTurno:
+	## Continúa un guardado: con una instantánea válida (ver Instantanea) restaura el estado directamente; si no, reproduce el historial.
+	if Instantanea.vale_para(instantanea, huella_datos, sha_guardado):
+		return Instantanea.restaurar(datos, int(guardado["semilla"]), instantanea)
+	return reproducir(datos, guardado)
 
 
 static func reproducir(datos: Dictionary, guardado: Dictionary) -> MotorTurno:

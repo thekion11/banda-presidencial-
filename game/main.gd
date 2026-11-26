@@ -2,6 +2,7 @@ extends Control
 ## Enrutador de pantallas + guardado por eventos (semilla + historial de entradas).
 
 const RUTA_GUARDADO := "user://guardado.json"
+const RUTA_CACHE := "user://guardado.cache"  # instantánea de carga (ver sim/instantanea.gd): solo acelera continuar, el guardado sigue siendo el historial
 const RUTA_ULTIMA := "user://ultima_config.json"  # último partido fundado: «Nueva partida como la última vez»
 
 var datos: Dictionary = {}
@@ -16,7 +17,7 @@ var _huella_datos: String = ""
 func _ready() -> void:
 	Ajustes.cargar()
 	datos = Datos.cargar_todo()
-	_huella_datos = Datos.huella(datos)  # una sola vez: calcularla en cada guardado costaría ~1 s en un teléfono modesto
+	_huella_datos = Datos.huella_rapida(datos)  # una sola vez por arranque, y en disco por versión de datos: calcularla cada vez costaría ~1-2 s en un teléfono modesto
 	geo = Datos.leer_json("res://data/geo/regiones_mapa.json")
 	var g := Gradient.new()
 	g.colors = PackedColorArray([Color("#154F7A"), Color("#0B2236"), Color("#07182A")])
@@ -130,7 +131,12 @@ func continuar_guardado() -> void:
 		DirAccess.rename_absolute(ProjectSettings.globalize_path(RUTA_GUARDADO), ProjectSettings.globalize_path("user://guardado_descartado.json"))
 		mostrar_menu("No se pudo continuar: el guardado estaba dañado o es de otra versión del juego. Empieza una partida nueva.")
 		return
-	motor = Partida.reproducir(datos, g)
+	var sha := FileAccess.get_sha256(RUTA_GUARDADO)
+	var snap := Instantanea.leer(FileAccess.get_file_as_bytes(RUTA_CACHE)) if FileAccess.file_exists(RUTA_CACHE) else {}
+	var rapida := Instantanea.vale_para(snap, _huella_datos, sha)
+	motor = Partida.cargar(datos, g, snap, _huella_datos, sha)
+	if not rapida:
+		guardar_instantanea()  # el próximo arranque ya no tendrá que simular el historial
 	UrbanoBase.reiniciar()
 	mostrar_dia()
 
@@ -180,4 +186,21 @@ func guardar() -> void:
 		f.store_string(JSON.stringify(motor.estado.exportar_guardado(_huella_datos)))
 		f.close()
 		DirAccess.rename_absolute(ProjectSettings.globalize_path(tmp), ProjectSettings.globalize_path(RUTA_GUARDADO))
+		var ult: Array[Dictionary] = motor.estado.entradas
+		if not ult.is_empty() and ["cerrar", "eleccion", "continuar"].has(String(ult.back()["tipo"])):
+			guardar_instantanea()  # al cerrar la semana (~10 ms): continuar después no simula el historial
 	RegistroPrueba.anotar("accion", motor, _huella_datos)
+
+
+func guardar_instantanea() -> void:
+	if motor == null or not FileAccess.file_exists(RUTA_GUARDADO):
+		return
+	var f := FileAccess.open(RUTA_CACHE, FileAccess.WRITE)
+	if f != null:
+		f.store_buffer(Instantanea.tomar(motor, _huella_datos, FileAccess.get_sha256(RUTA_GUARDADO)))
+
+
+func _notification(what: int) -> void:
+	if (what == NOTIFICATION_APPLICATION_PAUSED or what == NOTIFICATION_WM_CLOSE_REQUEST) and motor != null:
+		guardar()  # al pasar a segundo plano (o salir) se deja también la instantánea al día
+		guardar_instantanea()

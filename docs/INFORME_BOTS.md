@@ -4,9 +4,9 @@ Generado por `tests/informe_bots.gd` (n = 30 partidas por política, semillas 90
 
 | política | gana 1.ª elección | cae en crisis (de los electos) | completa mandato | aprobación final | puntaje mediano | decisiones por partida | gana la 2.ª elección (tras oposición) |
 |---|---|---|---|---|---|---|---|
-| pasivo | 0 % | 0 % | 0 % | 0.0 | 0 | 9 | 0 % |
-| azar | 33 % | 40 % | 20 % | 19.6 | 2243 | 17 | 70 % |
-| humano | 73 % | 5 % | 70 % | 25.9 | 1465 | 30 | 77 % |
-| codicioso | 93 % | 4 % | 90 % | 25.4 | 1828 | 35 | 97 % |
-| completo | 93 % | 0 % | 93 % | 53.0 | 3042 | 36 | 97 % |
-| experto | 93 % | 0 % | 93 % | 56.1 | 3152 | 35 | 97 % |
+| pasivo | 0 % | 0 % | 0 % | 0.0 | 0 | 13 | 0 % |
+| azar | 47 % | 50 % | 23 % | 17.1 | 2179 | 24 | 77 % |
+| humano | 97 % | 3 % | 93 % | 28.0 | 1405 | 41 | 93 % |
+| codicioso | 97 % | 7 % | 90 % | 25.9 | 1764 | 40 | 100 % |
+| completo | 97 % | 0 % | 97 % | 53.3 | 3076 | 40 | 100 % |
+| experto | 97 % | 0 % | 97 % | 51.5 | 3007 | 41 | 100 % |

@@ -8,8 +8,19 @@ var _ref: WeakRef  # referencia débil: evita el ciclo RefCounted motor <-> mód
 var m: MotorTurno:
 	get:
 		return _ref.get_ref() as MotorTurno
-var proyectos: Dictionary = {}  # region_id -> Array[Dictionary]
-var _por_id: Dictionary = {}
+## La cartera (~300 KB) solo se necesita al abrir el panel de SECTRA o al impulsar un proyecto: `cargar` guarda la referencia y se arma en el primer uso.
+var _crudo: Dictionary = {}
+var _armado: bool = true
+var _proyectos: Dictionary = {}
+var _por_id_d: Dictionary = {}
+var proyectos: Dictionary:  # region_id -> Array[Dictionary]
+	get:
+		_armar()
+		return _proyectos
+var _por_id: Dictionary:
+	get:
+		_armar()
+		return _por_id_d
 
 
 func _init(p_motor: MotorTurno) -> void:
@@ -29,8 +40,17 @@ static func etapa_de(estado_txt: String) -> int:
 
 
 func cargar(datos: Dictionary) -> void:
-	proyectos.clear()
-	_por_id.clear()
+	_crudo = datos
+	_armado = false
+
+
+func _armar() -> void:
+	if _armado:
+		return
+	_armado = true
+	var datos := _crudo
+	_proyectos.clear()
+	_por_id_d.clear()
 	for c in datos.get("ciudades", []):
 		var rid := String(c.get("region_id", ""))
 		if rid == "" or c.get("proyectos", []).is_empty():
@@ -45,9 +65,9 @@ func cargar(datos: Dictionary) -> void:
 						"tir": float(p["tir_pct"]) if p["tir_pct"] != null else 0.0, "tiene_tir": p["tir_pct"] != null,
 						"mandante": String(p["mandante"]), "estado": String(p["estado"]), "etapa_ini": et, "descripcion": String(p["descripcion"])}
 				lista.append(d)
-				_por_id[d["id"]] = d
+				_por_id_d[d["id"]] = d
 			i += 1
-		proyectos[rid] = lista
+		_proyectos[rid] = lista
 
 
 func existe(pid: String) -> bool:
@@ -76,49 +96,52 @@ func en_curso() -> int:
 
 
 func impulsar(pid: String) -> Dictionary:
-	if m.estado.etapa != "gobierno" or not existe(pid):
+	var _m := m  # una sola resolución de la referencia débil por llamada (cada acceso a `m` cuesta ~0,5 us)
+	if _m.estado.etapa != "gobierno" or not existe(pid):
 		return {"ok": false, "razon": "proyecto_no_disponible"}
 	var st := estado_de(pid)
-	var cfg: Dictionary = m.catalogo_leyes["sectra"]
+	var cfg: Dictionary = _m.catalogo_leyes["sectra"]
 	if int(st["etapa"]) >= 3 or int(st["hasta"]) > 0:
 		return {"ok": false, "razon": "en_tramite_o_terminado"}
 	if en_curso() >= int(cfg["max_simultaneos"]):
 		return {"ok": false, "razon": "limite_simultaneo"}
 	var costo := int(cfg["costo_pa_impulso"])
-	if costo > m.estado.pa_actual:
+	if costo > _m.estado.pa_actual:
 		return {"ok": false, "razon": "pa_insuficiente", "costo": costo}
-	m.estado.sectra[pid] = st
-	m.estado.registrar_entrada("sectra", {"pid": pid})
-	m.estado.pa_actual -= costo
+	_m.estado.sectra[pid] = st
+	_m.estado.registrar_entrada("sectra", {"pid": pid})
+	_m.estado.pa_actual -= costo
 	var semanas := int(cfg["semanas_por_etapa"][int(st["etapa"])])
-	st["hasta"] = m.estado.dia_actual + semanas * m.estado.dias_por_turno
-	m.estado.registrar_accion("sectra_impulso", {"pid": pid, "etapa": st["etapa"], "semanas": semanas})
+	st["hasta"] = _m.estado.dia_actual + semanas * _m.estado.dias_por_turno
+	_m.estado.registrar_accion("sectra_impulso", {"pid": pid, "etapa": st["etapa"], "semanas": semanas})
 	return {"ok": true, "semanas": semanas, "costo": costo}
 
 
 func avanzar() -> void:
+	var _m := m  # una sola resolución de la referencia débil por llamada (cada acceso a `m` cuesta ~0,5 us)
 	## Cierre de turno: los proyectos cuyo trámite vence esta semana pasan a la etapa siguiente.
-	var limite := m.estado.dia_actual + m.estado.dias_por_turno
-	var claves: Array = m.estado.sectra.keys()
+	var limite := _m.estado.dia_actual + _m.estado.dias_por_turno
+	var claves: Array = _m.estado.sectra.keys()
 	claves.sort()
 	for pid in claves:
-		var st: Dictionary = m.estado.sectra[pid]
+		var st: Dictionary = _m.estado.sectra[pid]
 		if int(st["hasta"]) > 0 and int(st["hasta"]) < limite:
 			st["hasta"] = 0
 			st["etapa"] = int(st["etapa"]) + 1
-			m.estado.registrar_accion("sectra_etapa", {"pid": pid, "etapa": st["etapa"]})
+			_m.estado.registrar_accion("sectra_etapa", {"pid": pid, "etapa": st["etapa"]})
 			if int(st["etapa"]) >= 3:
 				_iniciar_ejecucion(String(pid))
 
 
 func _iniciar_ejecucion(pid: String) -> void:
+	var _m := m  # una sola resolución de la referencia débil por llamada (cada acceso a `m` cuesta ~0,5 us)
 	var p: Dictionary = _por_id[pid]
-	var cfg: Dictionary = m.catalogo_leyes["sectra"]
+	var cfg: Dictionary = _m.catalogo_leyes["sectra"]
 	var mm := musd(p)
-	m.fx.sumar_ind("fiscal", -minf(float(cfg["tope_fiscal"]), mm * float(cfg["fiscal_por_musd"])))
+	_m.fx.sumar_ind("fiscal", -minf(float(cfg["tope_fiscal"]), mm * float(cfg["fiscal_por_musd"])))
 	var tir := float(p["tir"])
 	if bool(p["tiene_tir"]) and tir < 0.0:
-		m.fx.sumar_ind("riesgo_ejecucion", float(cfg["riesgo_tir_negativa"]))
+		_m.fx.sumar_ind("riesgo_ejecucion", float(cfg["riesgo_tir_negativa"]))
 	var apr := clampf(float(cfg["aprobacion_base"]) + tir * float(cfg["aprobacion_por_tir"]), float(cfg["piso_aprobacion_obra"]), float(cfg["aprobacion_max"]))
 	var dias := int(clampf(float(cfg["dias_base_obra"]) + mm * float(cfg["dias_por_musd"]), float(cfg["dias_base_obra"]), float(cfg["dias_max_obra"])))
-	m.obras.iniciar(m.estado, String(p["nombre"]), dias, String(p["region"]), "", [{"ind": "aprobacion", "delta": apr}], {"sectra": pid})
+	_m.obras.iniciar(_m.estado, String(p["nombre"]), dias, String(p["region"]), "", [{"ind": "aprobacion", "delta": apr}], {"sectra": pid})

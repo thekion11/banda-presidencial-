@@ -3,35 +3,73 @@ extends RefCounted
 ## Comité de Planificación, niveles 2 y 3: estaciones sobre un grafo de calles precalculado (Dijkstra) y sliders.
 ## Determinista y sin nodos de Godot. Los datos vienen de data/geo/grafo_urbano.json.
 
-var pos: Dictionary = {}  # id -> Vector2
-var ady: Dictionary = {}  # id -> Array[Dictionary] {a, peso, longitud, costo_mult, expropiaciones, rio}
-var orden: Array[String] = []  # orden estable de nodos (desempates deterministas)
-var params: Dictionary = {}
+## El grafo (~570 KB) solo se necesita al planificar un trazado: `cargar` guarda la referencia. Los nodos (posiciones) se arman al consultarlos y las
+## aristas (lo más pesado, ~20 ms) solo al calcular un camino (construirlas al crear la partida o al reproducir un guardado costaba ~25 ms cada vez).
+var _crudo: Dictionary = {}
+var _con_pos: bool = true
+var _con_ady: bool = true
+var _pos: Dictionary = {}
+var _ady: Dictionary = {}
+var _orden: Array[String] = []
+var _params: Dictionary = {}
+var pos: Dictionary:  # id -> Vector2
+	get:
+		_armar_pos()
+		return _pos
+var ady: Dictionary:  # id -> Array[Dictionary] {a, peso, longitud, costo_mult, expropiaciones, rio}
+	get:
+		_armar_ady()
+		return _ady
+var orden: Array[String]:  # orden estable de nodos (desempates deterministas)
+	get:
+		_armar_pos()
+		return _orden
+var params: Dictionary:
+	get:
+		_armar_pos()
+		return _params
 
 
 func cargar(d: Dictionary) -> void:
-	pos.clear()
-	ady.clear()
-	orden.clear()
-	params = d.get("parametros", {})
-	for n in d.get("nodos", []):
+	_crudo = d
+	_con_pos = false
+	_con_ady = false
+
+
+func _armar_pos() -> void:
+	if _con_pos:
+		return
+	_con_pos = true
+	_pos.clear()
+	_orden.clear()
+	_params = _crudo.get("parametros", {})
+	for n in _crudo.get("nodos", []):
 		var id := String(n["id"])
-		pos[id] = Vector2(float(n["x"]), float(n["y"]))
-		ady[id] = []
-		orden.append(id)
-	var pe := float(params.get("peso_expropiacion", 0.15))
-	for a in d.get("aristas", []):
+		_pos[id] = Vector2(float(n["x"]), float(n["y"]))
+		_orden.append(id)
+
+
+func _armar_ady() -> void:
+	if _con_ady:
+		return
+	_armar_pos()
+	_con_ady = true
+	_ady.clear()
+	for id in _orden:
+		_ady[id] = []
+	var pe := float(_params.get("peso_expropiacion", 0.15))
+	for a in _crudo.get("aristas", []):
 		var peso := float(a["longitud"]) * float(a["costo_mult"]) + pe * float(a["expropiaciones"])
 		var poly: Array = a.get("poly", [])
 		var inversa: Array = poly.duplicate()
 		inversa.reverse()
 		for par in [[a["a"], a["b"], poly], [a["b"], a["a"], inversa]]:
-			ady[String(par[0])].append({"a": String(par[1]), "peso": peso, "longitud": float(a["longitud"]),
+			_ady[String(par[0])].append({"a": String(par[1]), "peso": peso, "longitud": float(a["longitud"]),
 					"costo_mult": float(a["costo_mult"]), "expropiaciones": int(a["expropiaciones"]), "rio": bool(a["rio"]), "poly": par[2]})
 
 
 func listo() -> bool:
-	return not pos.is_empty()
+	return not (_crudo.get("nodos", []) as Array).is_empty()
 
 
 func nodo_cercano(p: Vector2) -> String:
