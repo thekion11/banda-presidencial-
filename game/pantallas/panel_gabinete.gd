@@ -20,6 +20,7 @@ static func _agregar_relleno(raiz: VBoxContainer, motor: MotorTurno, elegidos: A
 	var modos: Dictionary = motor.catalogo_leyes["gabinete"]["relleno"]["modos"]
 	for modo in modos.keys():
 		var b := Tema.boton(String(modos[modo]["nombre"]), Tema.PANEL, Tema.TEXTO, 12, 44)
+		b.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART  # en el panel del día es más angosto: dos líneas antes que cortar el texto
 		b.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		b.clip_text = true
 		b.custom_minimum_size.x = 0.0

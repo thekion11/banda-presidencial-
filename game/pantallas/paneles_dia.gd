@@ -23,7 +23,8 @@ static func _chip(titulo: String, valor: String, color: Color, tinta: Color = Te
 	var v := VBoxContainer.new()
 	v.add_theme_constant_override("separation", 0)
 	v.add_child(Tema.etiqueta(titulo, 10, tinta))
-	v.add_child(Tema.etiqueta(valor, 13, tinta, true))
+	var val := Tema.etiqueta_corta(valor, 13 if valor.length() <= 10 else 11, tinta, true)  # una línea: «Prefactibilidad» no se parte ni se corta
+	v.add_child(val)
 	var p := PanelContainer.new()
 	p.add_theme_stylebox_override("panel", Tema.caja(color, 10))
 	p.size_flags_horizontal = Control.SIZE_EXPAND_FILL
