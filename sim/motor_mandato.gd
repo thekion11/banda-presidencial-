@@ -134,7 +134,8 @@ func continuar_carrera() -> Dictionary:
 	e.registrar_entrada("continuar", {})
 	e.carrera.append({"ciclo": e.ciclo, "resultado": previa, "puntaje": int(e.resultado_final.get("puntaje", 0)),
 			"aprobacion": snappedf(e.ind("aprobacion"), 0.01), "turnos": e.turno_actual})
-	var dias := 0 if previa == "derrota_electoral" else (e.turno_actual - 1) * e.dias_por_turno
+	var turnos_jugados := e.turno_actual if previa == "crisis" else e.turno_actual - 1  # al caer por crisis el turno no avanzó: esa semana también se jugó
+	var dias := 0 if previa == "derrota_electoral" else turnos_jugados * e.dias_por_turno
 	_abrir_periodo("campana" if previa == "fin_mandato" and e.cartas_ejecutadas.has("reforma_reeleccion") else "oposicion", dias)
 	return {"ok": true, "etapa": e.etapa}
 

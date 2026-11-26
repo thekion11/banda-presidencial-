@@ -10,11 +10,11 @@ func _check(cond: bool, msg: String) -> void:
 		print("FALLO DE BALANCE: ", msg)
 
 
-func _tasas(datos: Dictionary, politica: String, n: int) -> Dictionary:
+func _tasas(datos: Dictionary, politica: String, n: int, dificultad: String = "") -> Dictionary:
 	var electos := 0
 	var crisis := 0
 	for i in range(n):
-		var e := Bots.partida_completa(datos, 5000 + i, politica).estado
+		var e := Bots.partida_completa(datos, 5000 + i, politica, dificultad).estado
 		if e.etapa != "derrota_electoral":
 			electos += 1
 		if e.etapa == "crisis":
@@ -36,6 +36,22 @@ func _init() -> void:
 	_check(cod["electos"] > 0.70, "la campaña bien jugada debe ser ganable")
 	_check(cod_pasivo["crisis"] > 0.50, "gobernar sin hacer nada debe terminar en crisis")
 	_check(cod["crisis"] < 0.20, "gobernar activamente no debe colapsar")
+	# matriz por dificultad (n=40: error típico ≈ 8 puntos, por eso las bandas son anchas): un cambio de datos que rompa la escalera falla aquí
+	var f := _tasas(datos, "codicioso", 40, "facil")
+	var nor := _tasas(datos, "codicioso", 40, "normal")
+	var dif := _tasas(datos, "codicioso", 40, "dificil")
+	var comp := _tasas(datos, "completo", 40, "normal")
+	var azar_dif := _tasas(datos, "azar", 40, "dificil")
+	var pasivo_dif := _tasas(datos, "pasivo", 40, "dificil")
+	print("codicioso fácil=%s normal=%s difícil=%s · completo normal=%s · azar difícil=%s · pasivo difícil=%s" % [f, nor, dif, comp, azar_dif, pasivo_dif])
+	_check(f["electos"] >= 0.90, "fácil: jugar bien casi siempre gana la elección (%.2f)" % f["electos"])
+	_check(nor["electos"] >= 0.80, "normal: jugar bien gana la elección (%.2f)" % nor["electos"])
+	_check(dif["electos"] >= 0.30 and dif["electos"] <= 0.75, "difícil: jugar bien gana a veces, no siempre (%.2f)" % dif["electos"])
+	_check(nor["electos"] >= dif["electos"] + 0.15, "la escalera de dificultad existe: normal supera a difícil por más de 15 puntos")
+	_check(azar_dif["electos"] <= 0.15, "difícil: el azar casi nunca gana (%.2f)" % azar_dif["electos"])
+	_check(pasivo_dif["electos"] <= 0.05, "difícil: no jugar no gana (%.2f)" % pasivo_dif["electos"])
+	_check(comp["crisis"] <= 0.10, "usar todas las mecánicas casi nunca termina en crisis (%.2f)" % comp["crisis"])
+	_check(comp["electos"] >= 0.80, "usar todas las mecánicas gana la elección en normal (%.2f)" % comp["electos"])
 	if _fallos == 0:
 		print("BALANCE OK")
 	quit(0 if _fallos == 0 else 1)
