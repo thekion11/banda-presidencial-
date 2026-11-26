@@ -420,6 +420,8 @@ def main() -> int:
     validar_partidos()
     from validate_bcn import validar_bcn
     validar_bcn(ids_fuentes, {r["id"] for r in datos["regiones"]})
+    from validate_referencias import cargar_datos, validar_referencias  # referencias cruzadas y rangos (pruebas negativas en tools/test_validate.py)
+    validar_referencias(cargar_datos())
     print("OK: Todos los JSON de Fase 0 superaron la validación")
     return 0
 
