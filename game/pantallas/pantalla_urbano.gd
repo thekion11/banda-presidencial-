@@ -3,7 +3,7 @@ extends RefCounted
 ## Mapa urbano de Gran Santiago (tema claro): filtros por tipo, líneas, propuesta punteada y hoja inferior "Obras en curso".
 
 const FILTROS := [["Metro", ["transportes", "comite"], Color("#1F7A5C"), Color("#DDEFE6"), "train"], ["Vivienda", ["vivienda"], Color("#B7791F"), Color("#F7E7C4"), "home"],
-		["Cárceles", ["seguridad", "justicia"], Color("#3B5BA9"), Color("#DEE5F5"), "grid"], ["Energía", ["energia"], Color("#C9A100"), Color("#FBF0B8"), "bolt"]]
+		["Cárceles", ["seguridad", "justicia"], Color("#216EA9"), Color("#DEE5F5"), "grid"], ["Energía", ["energia"], Color("#C9A100"), Color("#FBF0B8"), "bolt"]]
 
 
 static func _categoria_de(motor: MotorTurno, obra: Dictionary) -> String:

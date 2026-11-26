@@ -241,6 +241,13 @@ static func perilla(radio: float, relleno: Color, borde: Color) -> ImageTexture:
 	return _cache_perilla[clave]
 
 
+static func pantalla_baja() -> bool:
+	## Teléfono bajo: con ancho lógico 390 (keep_width), un 360×640 queda en 390×693. Las pantallas compactan alturas
+	## fijas (mano, Corrector, hemiciclo, brújula) para que todo quepa y el botón principal quede en pantalla.
+	var arbol := Engine.get_main_loop() as SceneTree
+	return arbol != null and arbol.root.get_visible_rect().size.y < 760.0
+
+
 static func caja(color: Color, radio: int = 14, borde: Color = Color(0, 0, 0, 0), grosor: int = 0) -> StyleBoxFlat:
 	var s := StyleBoxFlat.new()
 	s.bg_color = color

@@ -33,7 +33,8 @@ func _ready() -> void:
 	var margen := MarginContainer.new()
 	margen.add_theme_constant_override("margin_left", 20)
 	margen.add_theme_constant_override("margin_right", 20)
-	margen.add_theme_constant_override("margin_top", 44)
+	var baja := Tema.pantalla_baja()  # teléfono bajo: menos aire para que la franja del perfil y el botón queden en pantalla
+	margen.add_theme_constant_override("margin_top", 32 if baja else 44)
 	margen.add_child(cab)
 	raiz.add_child(margen)
 	_titulo = Tema.etiqueta("", 18, Tema.TEXTO, true)
@@ -50,10 +51,10 @@ func _ready() -> void:
 	mc.size_flags_vertical = Control.SIZE_EXPAND_FILL
 	mc.add_theme_constant_override("margin_left", 16)
 	mc.add_theme_constant_override("margin_right", 16)
-	mc.add_theme_constant_override("margin_top", 16)
+	mc.add_theme_constant_override("margin_top", 8 if baja else 16)
 	raiz.add_child(mc)
 	_contenido = VBoxContainer.new()
-	_contenido.add_theme_constant_override("separation", 10)
+	_contenido.add_theme_constant_override("separation", 6 if baja else 10)
 	mc.add_child(_contenido)
 	var franja := PanelContainer.new()
 	franja.add_theme_stylebox_override("panel", Tema.caja(Tema.CREMA, 0))
@@ -144,7 +145,7 @@ func _mostrar_pregunta() -> void:
 
 func _boton_opcion(letra: String, texto: String) -> Button:
 	var b := Button.new()
-	b.custom_minimum_size = Vector2(0, 62)
+	b.custom_minimum_size = Vector2(0, 52 if Tema.pantalla_baja() else 62)
 	b.add_theme_stylebox_override("normal", Tema.caja_degradada(Color("#1B4F78"), Color("#0F2F4A"), 18, Color("#3A6E98"), 2))
 	b.add_theme_stylebox_override("hover", Tema.caja_degradada(Color("#246190"), Color("#143A5C"), 18, Color("#F2C14E"), 2))
 	b.add_theme_stylebox_override("pressed", Tema.caja_degradada(Color("#0F2F4A"), Color("#1B4F78"), 18, Color("#F2C14E"), 2))

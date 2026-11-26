@@ -4,10 +4,10 @@ extends Control
 
 signal tocada(carta: CartaUI)
 
-const COLORES_CATEGORIA := {
-	"vivienda": Color("#3D7EA6"), "comite": Color("#5B6FB5"), "energia": Color("#D9A441"), "hacienda": Color("#4F8F6B"),
-	"salud": Color("#B5544F"), "educacion": Color("#7E6BB0"), "seguridad": Color("#556B7F"), "transportes": Color("#3F8E91"),
-	"economia": Color("#A67C3D"), "social": Color("#B0607E"), "medioambiente": Color("#5E9A4C"), "politica": Color("#7A5D9A"),
+const COLORES_CATEGORIA := {  # mezclas de la paleta congelada (tests/test_paleta.gd), distinguibles entre sí (ΔE ≥ 12)
+	"vivienda": Color("#3D7EA6"), "comite": Color("#2476B6"), "energia": Color("#D9A441"), "hacienda": Color("#4F8F6B"),
+	"salud": Color("#B5544F"), "educacion": Color("#5873A4"), "seguridad": Color("#556B7F"), "transportes": Color("#3F8E91"),
+	"economia": Color("#A67C3D"), "social": Color("#945360"), "medioambiente": Color("#5E9A4C"), "politica": Color("#6E678A"),
 	"descentralizacion": Color("#4C7FA0"), "obras": Color("#9A7A4C"),
 }
 const NOMBRES_CAT := {"comite": "COMITÉ", "medioambiente": "AMBIENTE", "descentralizacion": "REGIONES", "transportes": "TRANSP."}
