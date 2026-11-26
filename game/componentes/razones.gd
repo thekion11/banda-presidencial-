@@ -4,7 +4,7 @@ extends RefCounted
 
 const TEXTOS := {
 	"solo_en_gobierno": "Los movimientos internos solo existen en gobierno.",
-	"movimientos_insuficientes": "No te quedan movimientos internos este turno.",
+	"movimientos_insuficientes": "No te quedan movimientos internos este turno; se renuevan al empezar la próxima semana.",
 	"sin_efecto": "Ese movimiento no cambiaría nada ahora.",
 	"sector_sin_ministro": "Necesitas un ministro de ese sector en tu gabinete.",
 	"requiere_meta_previa": "Antes debes cumplir la meta anterior de la cadena.",
@@ -13,10 +13,10 @@ const TEXTOS := {
 	"gabinete_cerrado": "El gabinete solo se cambia en campaña o en la primera semana de gobierno.",
 	"tamano_invalido": "Elige exactamente el número de ministros que pide el gabinete.",
 	"ministro_invalido": "Ministro inválido o repetido.",
-	"limite_delegaciones": "Ya delegaste el máximo de cartas este turno.",
+	"limite_delegaciones": "Ya delegaste el máximo de cartas este turno; se renueva cada semana.",
 	"ministro_fuera_del_gabinete": "Ese ministro no está en tu gabinete.",
 	"ministro_no_disponible": "Delegar solo se puede en gobierno.",
-	"pa_insuficiente": "No te alcanzan los movimientos.",
+	"pa_insuficiente": "No te alcanzan los movimientos: termina la semana, delega la carta o elige una más barata.",
 	"ya_ejecutada": "Esa meta ya está en marcha.",
 	"region_invalida": "Región inválida.",
 	"ya_contratado": "Ese asesor ya trabaja contigo.",
@@ -33,6 +33,20 @@ const TEXTOS := {
 	"no_asignado": "Esa cuota no estaba asignada.",
 	"partida_terminada": "La partida ya terminó.",
 	"indice_invalido": "Selección inválida.",
+	"limite_simultaneo": "Ya tienes el máximo de proyectos en trámite: espera a que termine uno o impulsa otro más adelante.",
+	"en_tramite_o_terminado": "Ese proyecto ya está en trámite o terminado: elige otro de la cartera.",
+	"proyecto_no_disponible": "Ese proyecto ya no está disponible: revisa la cartera.",
+	"propuesta_no_disponible": "Esa propuesta ya fue decidida o no está abierta: elige otra en el Comité.",
+	"periodo_en_curso": "El periodo sigue en curso: termina la semana para avanzar.",
+	"variante_invalida": "Elige una de las variantes A, B o C del Comité.",
+	"trazado_invalido": "Ese trazado no sirve: une entre 3 y 7 estaciones distintas, sin repetir una seguida.",
+	"ya_decidido": "Ya respondiste a este evento.",
+	"evento_sin_decision": "Este evento no pide una decisión: sigue adelante.",
+	"partido_inexistente": "Ese partido no existe: elige otro de la lista.",
+	"direccion_invalida": "Esa opción no es válida; vuelve a intentarlo.",
+	"opcion_invalida": "Esa opción no es válida; vuelve a intentarlo.",
+	"tipo_desconocido": "Esa opción no es válida; vuelve a intentarlo.",
+	"tipo_invalido": "Esa opción no es válida; vuelve a intentarlo.",
 }
 
 
