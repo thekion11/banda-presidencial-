@@ -194,4 +194,6 @@ Píxeles distintos del día frente a la maqueta: de 43,1 % a 39,2 %. El mapa gan
 
 En la votación: el contenido sube con la zona segura, el hemiciclo del Senado se compacta (radio 0,41 del ancho en vez de 0,46, alto 205 en vez de 230) y el sello «APROBADA / RECHAZADA» pasa a 32 pt con letras separadas, como en la maqueta. Píxeles distintos: de 22,5 % a 22,0 %.
 
+En el mapa urbano, las fichas de líneas de Metro (una extensión sobre la maqueta) ocupaban dos filas sobre el mapa, y la hoja de obras se salía por abajo: su tercera fila quedaba cortada. Ahora las fichas van en una sola fila que se desliza de lado (`LeyendaMetro.compacta`) y las notas de líneas futuras y propias, bajo el mapa (`notas_aparte`). Todo cabe y los píxeles distintos bajan de 23,0 % a 21,8 %. El mapa urbano entra también a `RecorridoUI`, así que lo cubren las auditorías de textos y zonas táctiles.
+
 Reglas: todo el movimiento respeta Ajustes › «Animaciones y movimiento» y se apaga en modo headless, así que las pruebas miden siempre el estado final. El azar de las partículas es solo visual y no toca la semilla de la partida. Prueba propia: `tests/test_movimiento.gd`.

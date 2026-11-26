@@ -9,6 +9,8 @@ var _fichas: Dictionary = {}  # id -> Button
 var _todas: Button
 var _nota: Label
 var oscuro: bool = false  # true sobre fondo oscuro (Comité)
+var compacta: bool = false  # una sola fila que se desliza de lado (mapa urbano: deja más alto al mapa, como la maqueta)
+var notas_aparte: Container = null  # si se da, las notas de líneas futuras y propias van ahí (p. ej. bajo el mapa)
 
 
 func _init() -> void:
@@ -26,9 +28,12 @@ func _ready() -> void:
 	_todas.pressed.connect(_alternar_todas)
 	cab.add_child(_todas)
 	add_child(cab)
-	var fila := HFlowContainer.new()  # si hay más de 7 líneas (las del jugador), las fichas pasan a una segunda fila
+	var fila: Container = HFlowContainer.new()  # si hay más de 7 líneas (las del jugador), las fichas pasan a una segunda fila
 	fila.add_theme_constant_override("h_separation", 2)
 	fila.add_theme_constant_override("v_separation", 4)
+	if compacta:
+		fila = HBoxContainer.new()
+		fila.add_theme_constant_override("separation", 2)
 	for l in UrbanoBase.ids_lineas():
 		var b := Button.new()
 		b.custom_minimum_size = Vector2(44, 44)
@@ -60,16 +65,25 @@ func _ready() -> void:
 			cambiado.emit())
 		_fichas[id] = b
 		fila.add_child(b)
-	add_child(fila)
+	if compacta:
+		var desliza := ScrollContainer.new()
+		desliza.vertical_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+		desliza.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_SHOW_NEVER
+		desliza.custom_minimum_size = Vector2(0, 44)
+		desliza.add_child(fila)
+		add_child(desliza)
+	else:
+		add_child(fila)
+	var destino: Container = notas_aparte if notas_aparte != null else self
 	var futuras: Array[String] = []
 	for l in UrbanoBase.datos().get("metro", []):
 		if bool(l.get("futuro", false)):
 			futuras.append("%s %s (%s)" % [l["id"], "abierta" if UrbanoBase.abierta(l) else String(l["estado"]), String(l["apertura"])])
 	if not futuras.is_empty():
-		add_child(Tema.etiqueta(" · ".join(futuras), 10, Tema.TEXTO_SUAVE if oscuro else Tema.GRIS_CLARO, false, 600))
+		destino.add_child(Tema.etiqueta(" · ".join(futuras), 10, Tema.TEXTO_SUAVE if oscuro else Tema.GRIS_CLARO, false, 600))
 	for ln in UrbanoBase.propias:  # estado de cada línea creada por el jugador
 		var txt := "%s · %s · %s" % [ln["id"], String(ln["nombre"]), "operativa" if ln["estado"] == "operativa" else "en construcción"]
-		add_child(Tema.etiqueta(txt, 10, Tema.TEXTO_SUAVE if oscuro else Tema.GRIS_CLARO, false, 600))
+		destino.add_child(Tema.etiqueta(txt, 10, Tema.TEXTO_SUAVE if oscuro else Tema.GRIS_CLARO, false, 600))
 	_pintar()
 
 
