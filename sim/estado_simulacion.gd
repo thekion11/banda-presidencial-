@@ -64,6 +64,7 @@ var dias_carrera: int = 0  # días jugados en periodos cerrados desde el inicio 
 
 
 func configurar(p_semilla: int, p_dias_turno: int = 7, p_leyes: Dictionary = {}) -> void:
+	## Deja el estado en blanco para una partida nueva con su semilla, días por turno y leyes.
 	semilla = p_semilla
 	dias_por_turno = p_dias_turno
 	turno_actual = 1
@@ -133,6 +134,7 @@ static func normalizar(v: Variant) -> Variant:
 
 
 func registrar_accion(tipo: String, detalle: Dictionary) -> void:
+	## Agrega al registro de acciones (para la interfaz y los resúmenes) una acción ya ocurrida; no entra al guardado.
 	registro_acciones.append({
 		"turno": turno_actual,
 		"dia": dia_actual,
@@ -143,16 +145,19 @@ func registrar_accion(tipo: String, detalle: Dictionary) -> void:
 
 
 func registrar_entrada(tipo: String, datos: Dictionary) -> void:
+	## Agrega al historial del guardado una decisión del jugador (tipo + datos); es lo único que se reproduce al cargar.
 	var e: Dictionary = datos.duplicate(true)
 	e["tipo"] = tipo
 	entradas.append(e)
 
 
 func ind(nombre: String) -> float:
+	## Valor actual de un indicador (aprobación, capital, cohesión, fiscal…); 0 si no existe.
 	return float(indicadores.get(nombre, 0.0))
 
 
 func promesas_pendientes() -> Array[Dictionary]:
+	## Promesas de campaña que aún no se cumplen (la meta de legado del gobierno).
 	var res: Array[Dictionary] = []
 	for p in promesas_campana:
 		if not bool(p.get("cumplida", false)):
@@ -161,14 +166,17 @@ func promesas_pendientes() -> Array[Dictionary]:
 
 
 func eleccion_pendiente(semanas_campana: int) -> bool:
+	## true si terminó la campaña (o la segunda vuelta) y toca votar la elección presidencial.
 	return etapa == "campana" and turno_actual > semanas_campana + (semanas_balotaje if ronda_electoral == 2 else 0)
 
 
 func exportar_resumen() -> Dictionary:
+	## Resumen legible del estado para la interfaz y los informes (ver ResumenEstado).
 	return ResumenEstado.de(self)  # el detalle vive en sim/resumen_estado.gd (este archivo está al límite de líneas)
 
 
 func calcular_huella() -> String:
+	## Huella SHA del estado completo: dos partidas iguales dan la misma huella (pruebas de oro y replay).
 	return Huella.sha(exportar_resumen())
 
 

@@ -30,10 +30,12 @@ func slot_de(id: String) -> String:
 
 
 func tiene_ministerio(slot: String) -> bool:
+	## true si el gabinete tiene un ministro en ese cargo (ministerio).
 	return m.estado.gabinete.any(func(id: String) -> bool: return slot_de(id) == slot)
 
 
 func de_ministerio(slot: String) -> String:
+	## Id del ministro que ocupa un cargo ('' si está vacío).
 	for id in m.estado.gabinete:
 		if slot_de(id) == slot:
 			return id
@@ -161,6 +163,7 @@ var _cats: Dictionary = {}
 
 
 func categorias_activas() -> Dictionary:
+	## Categorías de cartas habilitadas por el gabinete actual (con caché por firma del gabinete).
 	var _m := m  # una sola resolución de la referencia débil por llamada (cada acceso a `m` cuesta ~0,5 us)
 	var firma := _m.estado.gabinete.hash()
 	if firma != _cats_firma:
@@ -174,6 +177,7 @@ func categorias_activas() -> Dictionary:
 
 
 func categoria_activa(cat: String) -> bool:
+	## true si la categoría de cartas está habilitada por el gabinete.
 	return categorias_activas().has(String(_cfg()["categorias_alias"].get(cat, cat)))
 
 
@@ -229,6 +233,7 @@ func abrir_contexto() -> void:
 
 
 func cerrar_contexto() -> void:
+	## Libera el contexto de consulta abierto con abrir_contexto().
 	_ctx_nivel = maxi(0, _ctx_nivel - 1)
 	if _ctx_nivel == 0:
 		_ctx = {}
@@ -341,6 +346,7 @@ func revisar_renuncia(actor_id: String) -> Dictionary:
 
 # ---------------------------------------------------------------- Delegación
 func validar_delegacion(ministro_id: String) -> Dictionary:
+	## Comprueba que se puede delegar en ese ministro (en gobierno, en el gabinete y bajo el tope por turno); devuelve {ok, razon}.
 	var _m := m  # una sola resolución de la referencia débil por llamada (cada acceso a `m` cuesta ~0,5 us)
 	if _m.estado.etapa != "gobierno":
 		return {"ok": false, "razon": "ministro_no_disponible"}
@@ -352,6 +358,7 @@ func validar_delegacion(ministro_id: String) -> Dictionary:
 
 
 func prob_fallo(carta: Dictionary, ministro_id: String) -> float:
+	## Probabilidad de que el ministro falle al ejecutar la carta delegada.
 	var _m := m  # una sola resolución de la referencia débil por llamada (cada acceso a `m` cuesta ~0,5 us)
 	var d: Dictionary = _m.catalogo_leyes["delegacion"]
 	var mi: Dictionary = _m.catalogo_ministros[ministro_id]

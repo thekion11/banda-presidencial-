@@ -4,6 +4,7 @@ extends RefCounted
 
 
 static func de(e: EstadoSimulacion) -> Dictionary:
+	## Diccionario resumen de un estado para informes y la interfaz.
 	return {
 		"semilla": e.semilla,
 		"etapa": e.etapa,

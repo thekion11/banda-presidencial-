@@ -6,6 +6,7 @@ extends RefCounted
 
 
 static func registrar(m: MotorTurno) -> void:
+	## Anota la encuesta de la semana (intención de voto, margen, umbral, rival, regiones débiles) sin usar el azar de la partida.
 	var e := m.estado
 	var cfg: Dictionary = m.catalogo_leyes["encuestas"]
 	var h: Dictionary = m.catalogo_leyes["hemiciclo"]

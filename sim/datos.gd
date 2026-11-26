@@ -6,6 +6,7 @@ const ARCHIVOS: Array[String] = ["cartas", "eventos", "leyes", "ministros", "ide
 
 
 static func leer_json(ruta: String) -> Variant:
+	## Lee un archivo JSON y devuelve su contenido (Variant); null si no existe o no se puede leer.
 	var texto := FileAccess.get_file_as_string(ruta)
 	if texto == "":
 		push_error("No se pudo leer %s" % ruta)
@@ -14,6 +15,7 @@ static func leer_json(ruta: String) -> Variant:
 
 
 static func cargar_todo(base: String = "res://data/") -> Dictionary:
+	## Carga todos los catálogos de data/ (cartas, eventos, leyes, ministros, regiones…) y arma los índices compartidos de solo lectura.
 	var d := {}
 	for n in ARCHIVOS:
 		d[n] = leer_json("%s%s.json" % [base, n])

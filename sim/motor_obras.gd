@@ -10,18 +10,21 @@ var regiones: Regiones
 
 
 func configurar(p_leyes: Dictionary, p_rng: RandomNumberGenerator, p_regiones: Regiones) -> void:
+	## Enlaza leyes, azar y regiones para las obras.
 	leyes = p_leyes
 	rng = p_rng
 	regiones = p_regiones
 
 
 static func fase_de(obra: Dictionary) -> int:
+	## Fase de la obra (1 a 5) según sus días avanzados sobre los totales.
 	var total := maxf(1.0, float(obra["dias_totales"]))
 	return clampi(int(5.0 * float(obra["dias_avanzados"]) / total) + 1, 1, 5)
 
 
 func iniciar(estado: EstadoSimulacion, nombre: String, dias_totales: int, region: String,
 		carta_id: String, efectos_final: Array, extra: Dictionary = {}) -> Dictionary:
+	## Abre una obra en curso con sus días y efectos finales; devuelve la obra creada.
 	var obra := {
 		"id": "obra_%d_%d" % [estado.turno_actual, estado.obras_en_curso.size() + estado.obras_terminadas.size()],
 		"nombre": nombre,
@@ -40,6 +43,7 @@ func iniciar(estado: EstadoSimulacion, nombre: String, dias_totales: int, region
 
 
 func avanzar(estado: EstadoSimulacion, dias: int, aplicar_efecto: Callable, marcar_cumplida: Callable) -> Array[Dictionary]:
+	## Avanza todas las obras los días dados; devuelve las terminadas y aplica sus efectos.
 	var terminadas: Array[Dictionary] = []
 	var p_retraso := clampf(estado.ind("riesgo_ejecucion") * float(leyes["obras"]["prob_retraso_por_riesgo"]), 0.0, float(leyes["obras"]["tope_prob_retraso"]))
 	var restantes: Array[Dictionary] = []

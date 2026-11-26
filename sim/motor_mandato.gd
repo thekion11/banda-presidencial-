@@ -12,6 +12,7 @@ func _init(p_motor: MotorTurno) -> void:
 	_ref = weakref(p_motor)
 
 func evaluar_legado() -> void:
+	## En los turnos de evaluación del legado, penaliza capital y aprobación por cada promesa de campaña pendiente.
 	var _m := m  # una sola resolución de la referencia débil por llamada (cada acceso a `m` cuesta ~0,5 us)
 	var lg: Dictionary = _m.catalogo_leyes["legado"]
 	var toca := false
@@ -28,6 +29,7 @@ func evaluar_legado() -> void:
 
 
 func evaluar_crisis() -> void:
+	## Cuenta las semanas con aprobación bajo el umbral y termina el gobierno por crisis al completar la racha.
 	var _m := m  # una sola resolución de la referencia débil por llamada (cada acceso a `m` cuesta ~0,5 us)
 	var d: Dictionary = _m.catalogo_leyes["dinamica"]
 	if _m.estado.ind("aprobacion") < float(d["umbral_crisis_aprobacion"]):
@@ -39,6 +41,7 @@ func evaluar_crisis() -> void:
 
 
 func calcular_puntaje() -> int:
+	## Puntaje del mandato: aprobación, legado, obras, fiscal y capital con los pesos de leyes.json.
 	var _m := m  # una sola resolución de la referencia débil por llamada (cada acceso a `m` cuesta ~0,5 us)
 	var p: Dictionary = _m.catalogo_leyes["puntaje"]
 	var total := _m.estado.promesas_campana.size()
@@ -50,6 +53,7 @@ func calcular_puntaje() -> int:
 
 
 func finalizar(motivo: String) -> void:
+	## Cierra el periodo con un motivo (fin de mandato o crisis), fija el resultado y el puntaje.
 	var _m := m  # una sola resolución de la referencia débil por llamada (cada acceso a `m` cuesta ~0,5 us)
 	_m.estado.etapa = motivo
 	_m.estado.resultado_final = {"motivo": motivo, "puntaje": calcular_puntaje(), "turnos": _m.estado.turno_actual,
@@ -156,6 +160,7 @@ func cerrar_oposicion() -> void:
 
 
 func e_dias_oposicion() -> int:
+	## Días jugados en el periodo actual (turnos jugados por días por turno).
 	return (m.estado.turno_actual - 1) * m.estado.dias_por_turno
 
 

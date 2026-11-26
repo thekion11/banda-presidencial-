@@ -4,6 +4,7 @@ extends RefCounted
 
 
 static func calcular_ejes(respuestas: Array) -> Vector2:
+	## Ejes ideológicos (económico, institucional) a partir de las respuestas del test.
 	var eco: float = 0.0
 	var inst: float = 0.0
 	for resp in respuestas:
@@ -22,6 +23,7 @@ static func perfil_para(eco: float, inst: float, catalogo: Dictionary) -> String
 
 
 static func arquetipo_para(eco: float, catalogo: Dictionary) -> String:
+	## Arquetipo de partido (texto del catálogo de ideología) para un eje económico dado.
 	var nombre := "Coalición Reformista"
 	for arq in catalogo.get("arquetipos", []):
 		if eco >= float(arq["eco_min"]) and eco <= float(arq["eco_max"]):
@@ -82,6 +84,7 @@ static func construir_partido(
 		respuestas: Array[Dictionary],
 		catalogo_ideologia: Dictionary
 ) -> Dictionary:
+	## Arma el diccionario del partido del jugador (ejes, perfil, escaños, indicadores iniciales) desde su nombre, región y respuestas.
 	var ejes := calcular_ejes(respuestas)
 	var eco: float = ejes.x
 	var inst: float = ejes.y
