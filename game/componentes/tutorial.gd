@@ -116,9 +116,15 @@ func _cerrar() -> void:
 	queue_free()
 
 
+var _hueco_previo: Rect2 = Rect2()
+
+
 func _process(_delta: float) -> void:
-	if _velo != null:
-		_velo.queue_redraw()
+	if _velo != null and _marco != null:  # el velo solo cambia cuando el foco se mueve
+		var r := Rect2(_marco.global_position, _marco.size) if _marco.visible else Rect2()
+		if r != _hueco_previo:
+			_hueco_previo = r
+			_velo.queue_redraw()
 	if _marco != null and Movimiento.activo():  # el marco dorado late
 		_marco.modulate.a = 0.7 + 0.3 * sin(float(Time.get_ticks_msec()) / 180.0)
 

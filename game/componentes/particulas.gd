@@ -59,7 +59,8 @@ func _process(delta: float) -> void:
 	if _p.is_empty():
 		queue_free()
 		return
-	queue_redraw()
+	if modo == "confeti" or Movimiento.toca_redibujar(self, delta):  # el confeti cae rápido: cada cuadro; las motas, a 30 Hz
+		queue_redraw()
 
 
 func _draw() -> void:

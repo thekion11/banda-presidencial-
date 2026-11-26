@@ -27,6 +27,17 @@ static func intenso() -> bool:
 	return activo() and not Ajustes.reducir
 
 
+static func toca_redibujar(nodo: Object, delta: float, hz: float = 30.0) -> bool:
+	## Limita el redibujado de las capas animadas (pulsos, focos, motas) a `hz` cuadros por segundo: en teléfonos
+	## de 60 o 120 Hz no hace falta repintar todo cada cuadro. Guarda el acumulado en el propio nodo.
+	var acum := float(nodo.get_meta("_acum_redibujo", 0.0)) + delta
+	if acum < 1.0 / hz:
+		nodo.set_meta("_acum_redibujo", acum)
+		return false
+	nodo.set_meta("_acum_redibujo", 0.0)
+	return true
+
+
 static func entrar_pantalla(p: Control) -> void:
 	## La pantalla nueva se funde y sube unos píxeles (salida cúbica). Sin animaciones, aparece de inmediato.
 	if not activo():
