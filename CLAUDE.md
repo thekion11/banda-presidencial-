@@ -118,5 +118,6 @@ godot --headless --path . -s tests/test_rendimiento.gd         # turno < 1 ms y 
 godot --headless --path . -s tests/montecarlo.gd -- 200        # informe de balance
 xvfb-run -a godot --path . --rendering-method gl_compatibility --resolution 390x844 -s tests/medir_memoria.gd   # informe de RAM por pantalla
 xvfb-run -a godot --path . --rendering-method gl_compatibility --resolution 390x844 -s tests/medir_cuadros.gd   # llamadas de dibujo por escena
+godot --headless --path . -s tests/medir_toques.gd -- 3 30        # informe de toques por acción y por semana
 xvfb-run -a godot --path . --rendering-method gl_compatibility --resolution 390x844 -s tests/captura_comparar.gd -- /tmp/capturas   # estados de la maqueta
 ```

@@ -173,4 +173,15 @@ Cada estado dice qué pasa y ofrece una acción viable, nunca un «no» seco. Pr
 - **Guardado dañado:** el juego lo aparta (`guardado_descartado.json`) y vuelve al menú con el aviso «Empieza una partida nueva». Esto ya estaba en main, con la validación de la sesión del motor.
 - **Datos faltantes** (instalación dañada): antes de cargar se comprueba que estén todos los archivos. Si falta alguno, se dice cuál y se ofrece actualizar o reinstalar el juego, en vez de un error de script.
 
+### Conteo de toques (26-nov-2026, `tests/medir_toques.gd`)
+Medido en la interfaz real: 3 partidas de 30 semanas, campaña, elección y gobierno.
+- **Jugar una carta:** 2 toques (elegirla y tocarla otra vez) o un solo gesto (deslizarla hacia arriba).
+- **Delegar:** 2 toques (soltar la carta sobre el ícono y confirmar) o 3 (elegir, ícono y confirmar).
+- **Terminar la semana:** 1 toque. Pide un segundo solo si quedan movimientos: pasó 3 veces en 90 semanas, y en las 3 lo que quedaba no alcanzaba para ninguna carta.
+- **Eventos y votaciones después de cada semana:** 2,8 toques de media, mediana 2 y máximo 10. El 22 % de las semanas pide 5 o más. Por clase de pantalla, el 52 % son votaciones (2 páginas cuando el proyecto pasa a la otra cámara), el 30 % avisos y el 19 % decisiones. El telón se cierra solo y no cuenta.
+
+Ninguna acción pasa de 3 toques; lo que se acumula es la secuencia de eventos. **Propuestas para el usuario** (sin pantallas nuevas):
+- a) no pedir confirmación al terminar la semana cuando los movimientos que quedan no pagan ninguna carta (toca la decisión PR-02);
+- b) mostrar la cámara revisora en la misma página de la votación cuando el resultado de la primera ya está decidido, lo que ahorraría unos 0,7 toques por semana.
+
 Reglas: todo el movimiento respeta Ajustes › «Animaciones y movimiento» y se apaga en modo headless, así que las pruebas miden siempre el estado final. El azar de las partículas es solo visual y no toca la semilla de la partida. Prueba propia: `tests/test_movimiento.gd`.
