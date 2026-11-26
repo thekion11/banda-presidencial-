@@ -212,3 +212,26 @@ Instrucción del usuario: «dejaría la dirección del juego abierta, haría tod
 - **Congreso:** `test_congreso_invariantes` (9 combinaciones de dificultad × afiliación, coalición de 3 aliados con satisfacción 0, 50 y 100, 675 votaciones): los bloques no son negativos, los mínimos de cada ley caben en su cámara, a favor + abstención + en contra suman la cámara y una ley se aprueba exactamente al alcanzar el mínimo en las dos.
 - **Cartas muertas** (`tests/analisis_cartas_muertas.gd`; 16 partidas del bot «humano» en difícil): se juega el 80 % de las apariciones de cartas curadas, 65 % de las diseñadas y 34 % de las reales. Por área, la de **Estado** casi no se juega (7 %): las nacionalizaciones y expropiaciones cuestan 6–7 de fiscal por +1 a +3 de aprobación, así que un bot que maximiza valor las descarta siempre; son opciones ideológicas de alto riesgo y se pueden dejar así, o ligarse a la ideología del partido (decisión de diseño, no se hizo). Las obras (hospital, riego, regeneración) se juegan menos porque su aprobación llega tarde. Sin cartas inalcanzables por error.
 - **Calendario de eventos:** de 54 eventos programados de gobierno, 38 caen en el año 1 (los hitos reales del calendario 2026) y solo 5–6 por año en los años 2 a 4, con un hueco máximo de 27 semanas entre programados; esos huecos los llena el director (silencio máximo medido 9–11 semanas). Si se quisiera más pulso de calendario en los años 2 a 4, faltan eventos anuales recurrentes (cuenta pública, temporada de incendios, receso legislativo): contenido nuevo, pendiente de autorización.
+
+## AD. Cartas del área «Estado»: análisis y opciones (26-nov-2026; propuesta sin aplicar, decide el usuario)
+- **Qué pasa:** las 9 cartas de Estado (3 empresas públicas, 3 privatizaciones, 3 expropiaciones) se juegan el 7 % de las veces que aparecen (bot «humano», difícil), contra 34-94 % de las demás áreas. Con el valor por movimiento que usan los bots (aprobación 1, capital 0,5, cohesión 0,4, fiscal 0,6, riesgo −0,5), la mediana del resto de las cartas es **+0,70** (p25 +0,25) y las de Estado van de **−2,80 a 0,00**: ninguna es positiva.
+
+| carta | costo | valor/mov | por qué |
+|---|---|---|---|
+| expropiar activos | 3 | −2,80 | −7 fiscal, −4 capital, −3 cohesión, +4 riesgo por +1 aprobación |
+| expropiar ferrocarril | 3 | −2,40 | pierde aprobación (−2) además de fiscal y capital |
+| expropiar suelo para vivienda | 3 | −1,57 | +4.000 viviendas casi no compensan −4 fiscal y −3 capital |
+| empresa pública del litio | 3 | −1,40 | −6 fiscal y −3 capital por +2 aprobación |
+| empresa de conectividad | 3 | −0,90 | −5 fiscal |
+| empresa de farmacias | 2 | −0,70 | la mejor de las que gastan: +3 aprobación |
+| privatizar sanitarias | 3 | −0,50 | +7 fiscal, pero −3 aprobación y −3 cohesión |
+| privatizar energía | 3 | −0,23 | +6 fiscal, −2 aprobación |
+| vender terrenos fiscales | 2 | 0,00 | +4 fiscal, costos menores |
+
+- **Lectura:** son cartas de «apuesta ideológica» pensadas para pagar un costo político hoy (capital, cohesión, fiscal) a cambio de algo a futuro, pero **no tienen ningún beneficio a futuro** en los datos: el motor ya soporta efectos diferidos (`diferido`) y riesgo (`riesgo`), y las cartas curadas los usan; estas no. Un jugador humano que busca una identidad (nacionalizar el litio, privatizar sanitarias) las verá siempre peores que la alternativa sin costo.
+- **Opciones (todas son cambios de datos, sin mecánicas nuevas):**
+  1. **Dejarlas** como opciones de alto costo para quien quiera jugar ideológicamente (el área existe «porque Chile discute esto», no para ganar puntos). Riesgo: cartas que casi nadie juega.
+  2. **Dar beneficios diferidos** con el campo `diferido` que ya existe: empresas públicas y expropiaciones devuelven fiscal y aprobación a las 26-52 semanas (p. ej. litio: +4 fiscal y +2 aprobación a las 40 semanas; farmacias: +2 aprobación a las 12 semanas; conectividad: +3 cohesión a las 26), y las privatizaciones devuelven aprobación si salen bien (`riesgo` 25-30 % de perder más). Con eso el valor por movimiento de las mejores pasaría de −0,7 a ≈ +0,3 sin volverlas obvias.
+  3. **Bajar sus costos** de fiscal a la mitad: las vuelve atractivas de inmediato, pero rompe la señal de que son decisiones de alto costo.
+  4. **Ligarlas a la ideología** del partido (bonus o castigo según el eje económico): es la solución natural, pero es una **mecánica nueva** y necesita tu autorización (alcance congelado).
+- **Recomendación:** opción 2 para las 6 de menor costo (empresas públicas y privatizaciones) y dejar las 3 expropiaciones como están (son las de mayor riesgo político). Se mide con `tests/analisis_cartas_muertas.gd` y los bots antes y después.
