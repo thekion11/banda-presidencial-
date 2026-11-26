@@ -99,9 +99,14 @@ func _correr() -> void:
 	# el aviso real de Android: llega a Main y el juego no se cierra
 	main.mostrar_dia()
 	await _cuadros(2)
+	main._aviso_atras.free()  # el aviso se crea dentro del camino real de la notificación (antes fallaba add_child)
+	main._aviso_atras = null
+	main._atras_ms = -100000
+	var entradas: int = main.motor.estado.entradas.size()
 	root.propagate_notification(Node.NOTIFICATION_WM_GO_BACK_REQUEST)
 	await _cuadros(2)
-	_check(main._pantalla is PantallaDia and main._aviso_atras.visible, "la notificación de Atrás de Android llega a Main y no cierra el juego")
+	_check(main._pantalla is PantallaDia and main._aviso_atras != null and main._aviso_atras.is_inside_tree() and main._aviso_atras.visible, "la notificación de Atrás de Android llega a Main, muestra el aviso y no cierra el juego")
+	_check(main.motor.estado.entradas.size() == entradas, "Atrás no registra entradas en el historial de la partida")
 	DirAccess.remove_absolute(ProjectSettings.globalize_path(Tutorial.ruta))
 	DirAccess.remove_absolute(ProjectSettings.globalize_path(main.RUTA_GUARDADO))
 	if _fallos == 0:

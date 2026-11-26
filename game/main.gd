@@ -287,7 +287,7 @@ func _avisar_atras(txt: String) -> void:
 
 func _notification(what: int) -> void:
 	if what == NOTIFICATION_WM_GO_BACK_REQUEST:
-		atras()
+		atras.call_deferred()  # fuera de la propagación de la notificación: durante ella Main no admite hijos nuevos (el aviso)
 		return
 	if (what == NOTIFICATION_APPLICATION_PAUSED or what == NOTIFICATION_WM_CLOSE_REQUEST) and motor != null:
 		guardar()  # al pasar a segundo plano (o salir) se deja también la instantánea al día

@@ -32,6 +32,7 @@
 | `COBERTURA_GAME.md` | Funciones de `game/` que ninguna prueba ejercita |
 | `HIGIENE_REPO.md` | Archivos huérfanos, documentos antiguos y ramas |
 | `ANDROID.md` | Cómo compilar para Android |
+| `MEDICION_TELEFONO.md` | Pasos con `adb` para medir fps y RAM en un teléfono real y comprobar el determinismo |
 
 ## Balance y calidad
 | Documento | Qué es |
