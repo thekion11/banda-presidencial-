@@ -77,7 +77,7 @@ func _draw() -> void:
 		UrbanoEsquema.dibujar(self, size, MARGEN, zoom, pan, UrbanoBase.propias, not _en_movimiento)
 		if not _estacion.is_empty():
 			_dibujar_burbuja()
-		draw_string(Tema.fuente_texto(400), Vector2(10, size.y - 8), "Esquema: posiciones relativas, no a escala", HORIZONTAL_ALIGNMENT_LEFT, size.x - 20, 9, Tema.GRIS_CLARO)
+		draw_string(Tema.fuente_texto(400), Vector2(10, size.y - 8), "Esquema: posiciones relativas, no a escala", HORIZONTAL_ALIGNMENT_LEFT, size.x - 20, 10, Tema.GRIS_CLARO)  # mínimo 10 pt
 		return
 	var esc := (1.0 + 0.35 * (zoom - 1.0)) / zoom  # el grosor crece menos que el mapa: las líneas no se vuelven brochazos
 	draw_set_transform(pan, 0.0, Vector2(zoom, zoom))
@@ -113,7 +113,7 @@ func _draw() -> void:
 		draw_style_box(Tema.caja(Color("#FBF7EC"), 8, Tema.BORDE_CLARO, 1), leyenda)
 		draw_dashed_line(leyenda.position + Vector2(8, 12), leyenda.position + Vector2(28, 12), Tema.TINTA, 4.0, 6.0)
 		draw_string(Tema.fuente_texto(500), leyenda.position + Vector2(33, 16), "Propuesta", HORIZONTAL_ALIGNMENT_LEFT, -1, 10, Tema.TINTA)
-	draw_string(Tema.fuente_texto(400), Vector2(size.x - 232, size.y - 14), "© colaboradores de OpenStreetMap (ODbL)", HORIZONTAL_ALIGNMENT_RIGHT, 222, 9, Tema.GRIS_CLARO)
+	draw_string(Tema.fuente_texto(400), Vector2(size.x - 262, size.y - 14), "© colaboradores de OpenStreetMap (ODbL)", HORIZONTAL_ALIGNMENT_RIGHT, 252, 10, Tema.GRIS_CLARO)  # mínimo 10 pt
 
 
 func _dibujar_burbuja() -> void:

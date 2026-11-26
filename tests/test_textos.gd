@@ -1,0 +1,98 @@
+extends SceneTree
+## Textos (CLAUDE.md §5): todo texto visible mide al menos 10 pt y no lleva emojis; los rótulos de la interfaz
+## llevan sus tildes. Recorre las pantallas y paneles (RecorridoUI). Los textos dibujados a mano se revisan
+## leyendo el código (draw_string con tamaño < 10).
+
+const MINIMO := 10
+## Palabras de interfaz que se escriben con tilde: si aparecen sin ella en un texto visible, es un error.
+const SIN_TILDE := ["Comite", "Camara", "votacion", "aprobacion", "Aprobacion", "region", "Region", "Mas", "dia", "Dia", "Gestion", "Cohesion", "Afiliacion", "Eleccion", "eleccion", "Musica", "Vibracion", "Republica", "Constitucion", "Politica", "politica", "economia", "Economia", "energia", "Energia", "Credito", "Mision", "decision", "Decision"]
+
+var _fallos := 0
+var _vistos := 0
+
+
+func _check(c: bool, msg: String) -> void:
+	if not c:
+		print("FALLO: ", msg)
+		_fallos += 1
+
+
+func _init() -> void:
+	_correr.call_deferred()
+
+
+func _texto(n: Control) -> String:
+	if n is Label:
+		return (n as Label).text
+	if n is Button:
+		return (n as Button).text
+	if n is RichTextLabel:
+		return (n as RichTextLabel).get_parsed_text()
+	return ""
+
+
+func _tam(n: Control) -> int:
+	if n is RichTextLabel:
+		return n.get_theme_font_size("normal_font_size")
+	return n.get_theme_font_size("font_size")
+
+
+func _auditar(raiz: Node, donde: String) -> void:
+	for n in raiz.find_children("*", "Control", true, false):
+		if not (n is Label or n is Button or n is RichTextLabel) or not (n as Control).is_visible_in_tree():
+			continue
+		var t := _texto(n)
+		if t.strip_edges() == "":
+			continue
+		_vistos += 1
+		var corto := t.replace("\n", " ").left(40)
+		_check(_tam(n) >= MINIMO, "%s: «%s» mide %d pt (mín. %d)" % [donde, corto, _tam(n), MINIMO])
+		for ch in t:
+			if ch.unicode_at(0) >= 0x1F300:
+				_check(false, "%s: «%s» tiene un emoji" % [donde, corto])
+				break
+		var m := _sin_tilde().search(t)  # palabra completa: «Constitucional» no es «Constitucion»
+		if m != null:
+			_check(false, "%s: «%s» parece sin tilde («%s»)" % [donde, corto, m.get_string(1)])
+
+
+var _re_tilde: RegEx
+
+
+func _sin_tilde() -> RegEx:
+	if _re_tilde == null:
+		_re_tilde = RegEx.create_from_string("(?<![\\p{L}])(" + "|".join(SIN_TILDE) + ")(?![\\p{L}])")
+	return _re_tilde
+
+
+func _dibujados() -> void:
+	## draw_string(..., tamaño, color): ningún texto dibujado a mano bajo 10 pt.
+	var re := RegEx.create_from_string("draw_string\\(.*,\\s*([0-9]+),\\s*(Tema\\.|Color|col|c\\b)")
+	for ruta in _archivos("res://game"):
+		var f := FileAccess.open(ruta, FileAccess.READ)
+		var linea := 0
+		while not f.eof_reached():
+			var l := f.get_line()
+			linea += 1
+			var m := re.search(l)
+			if m != null and int(m.get_string(1)) < MINIMO:
+				_check(false, "%s:%d dibuja texto a %s pt" % [ruta, linea, m.get_string(1)])
+
+
+func _archivos(dir: String) -> Array[String]:
+	var res: Array[String] = []
+	for sub in DirAccess.get_directories_at(dir):
+		res.append_array(_archivos(dir + "/" + sub))
+	for a in DirAccess.get_files_at(dir):
+		if a.ends_with(".gd"):
+			res.append(dir + "/" + a)
+	return res
+
+
+func _correr() -> void:
+	_dibujados()
+	await RecorridoUI.recorrer(self, _auditar)
+	_check(_vistos > 150, "la auditoría debe revisar muchos textos (revisó %d)" % _vistos)
+	if _fallos == 0:
+		print("TEXTOS OK (%d textos)" % _vistos)
+	quit(1 if _fallos > 0 else 0)

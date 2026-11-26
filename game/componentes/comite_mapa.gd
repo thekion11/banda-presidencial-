@@ -174,4 +174,4 @@ func _draw() -> void:
 				var c2 := _px(Vector2(q[0], q[1]))
 				draw_circle(c2, 8.0, Tema.ROJO)
 				draw_circle(c2, 5.5, Tema.CREMA)
-	draw_string(Tema.fuente_texto(400), Vector2(10, size.y - 8), "© colaboradores de OpenStreetMap (ODbL) · trazado ilustrativo", HORIZONTAL_ALIGNMENT_LEFT, size.x - 20, 9, Tema.GRIS_CLARO)
+	draw_string(Tema.fuente_texto(400), Vector2(10, size.y - 8), "© colaboradores de OpenStreetMap (ODbL) · trazado ilustrativo", HORIZONTAL_ALIGNMENT_LEFT, size.x - 20, 10, Tema.GRIS_CLARO)  # mínimo 10 pt
