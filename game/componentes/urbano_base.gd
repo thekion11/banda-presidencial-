@@ -261,7 +261,7 @@ static func dibujar(ci: CanvasItem, tam: Vector2, margen: Vector2 = Vector2(8, 8
 		if (limpio and cl > 2) or (not detalle and cl > 1):
 			continue  # en modo limpio solo avenidas; mientras se arrastra o se hace zoom, solo las vías mayores (fluidez en el teléfono)
 		if c["calles"][cl].size() > 1:
-			ci.draw_multiline(c["calles"][cl], COLORES_CALLE[cl].lerp(fondo, suave * (0.62 if limpio else 0.6)), ANCHOS_CALLE[cl] * escala_linea * (0.8 if limpio else 1.0), true)
+			ci.draw_multiline(c["calles"][cl], COLORES_CALLE[cl].lerp(fondo, suave * (0.62 if limpio else 0.6)), ANCHOS_CALLE[cl] * escala_linea * (0.8 if limpio else 1.0), cl <= 1)  # suavizado solo en avenidas: las ~18.600 calles menores con suavizado costaban ~150 MB de RAM (tests/medir_memoria.gd)
 	if con_metro:
 		_dibujar_metro(ci, c, escala_linea)
 

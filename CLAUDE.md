@@ -96,5 +96,6 @@ godot --headless --path . -s tests/test_claridad.gd
 godot --headless --path . -s tests/test_tactil.gd
 godot --headless --path . -s tests/test_textos.gd
 godot --headless --path . -s tests/montecarlo.gd -- 200        # informe de balance
+xvfb-run -a godot --path . --rendering-method gl_compatibility --resolution 390x844 -s tests/medir_memoria.gd   # informe de RAM por pantalla
 xvfb-run -a godot --path . --rendering-method gl_compatibility --resolution 390x844 -s tests/captura_comparar.gd -- /tmp/capturas   # estados de la maqueta
 ```
