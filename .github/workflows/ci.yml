@@ -45,7 +45,10 @@ jobs:
           for f in tests/test_*.gd; do
             t=$(basename "$f" .gd)
             echo "== $t"
-            godot --headless --path . -s "$f"
+            # una prueba que no compila sale con código 0: se guarda la salida y se falla ante errores de script o si se cuelga (300 s)
+            timeout 300 godot --headless --path . -s "$f" 2>&1 | tee "/tmp/$t.log"
+            [ "${PIPESTATUS[0]}" -eq 0 ] || { echo "FALLO: $t"; exit 1; }
+            if grep -qE "SCRIPT ERROR|Parse Error|Could not find type" "/tmp/$t.log"; then echo "FALLO: $t tiene errores de script"; exit 1; fi
           done
       - name: Fuzzing del núcleo (acciones aleatorias e inválidas, replay idéntico)
         run: godot --headless --path . -s tests/fuzz_acciones.gd -- 60 7000

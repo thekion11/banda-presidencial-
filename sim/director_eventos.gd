@@ -122,58 +122,70 @@ func _elegir(grupo: Dictionary) -> Dictionary:
 	if silencio < int(cfg["silencio_max"]) and _m.rng.randf() >= p:
 		return {}  # la mayoría de las semanas no pasa nada: se sale antes de preparar nada (pasada la espera máxima, el evento es seguro)
 	_preparar_cooldowns(cfg, ahora)
-	var dec_anio := _decisiones_ultimo_anio(ahora)
-	var p_dec := float(cfg["prob_decision"])
-	if dec_anio < int(cfg["decisiones_min_anio"]):
-		p_dec = 1.0 if _m.estado.etapa == "gobierno" else p_dec  # bajo el mínimo anual, se piden decisiones
-	elif dec_anio >= int(cfg["decisiones_max_anio"]):
-		p_dec = 0.0
-	var quiere_decision := _m.rng.randf() < p_dec
-	var mes := 0  # se calcula solo si algún candidato depende de la estación
+	var quiere_decision := _m.rng.randf() < _prob_decision(cfg, ahora)
 	var dec := ["alea_dec", "reg_dec", true]
 	var sin := ["alea_sin", "reg_sin", false]
 	var orden := [dec, sin] if quiere_decision else [sin, dec]  # si no hay del tipo pedido, se prueba el otro
-	var oc: Dictionary = _m.estado.eventos_ocurridos
-	var cd_evento := int(cfg["cooldown_evento"])
-	var cd_familia := int(cfg["cooldown_familia"])
 	for par in orden:
-		var pool: Array = grupo[par[0]]
 		if par[2] and _cd_decision:
 			continue  # una decisión reciente: ninguna decisión esta semana
-		var rg: Dictionary = grupo[par[1]]
-		var ids: PackedStringArray = rg["ids"]
-		var fams: PackedStringArray = rg["fams"]
-		var base: PackedFloat64Array = rg["pesos"]
-		var flags: PackedInt32Array = rg["flags"]
-		var cand: PackedInt32Array = []
-		var pesos: PackedFloat64Array = []
-		var total := 0.0
-		for i in range(ids.size()):
-			var id := ids[i]
-			if oc.has(id) and ahora - int(oc[id]) < cd_evento:
-				continue
-			if _ult_fam.has(fams[i]) and ahora - int(_ult_fam[fams[i]]) < cd_familia:
-				continue
-			var f := flags[i]
-			if f & 1 and not m.eventos._cumple_requisitos(pool[i]):
-				continue
-			var w := base[i]
-			if f & 2:
-				if mes == 0 and (pool[i] as Dictionary).has("meses"):
-					mes = mes_actual()
-				w = _peso_efectivo(pool[i], cfg, mes)
-			cand.append(i)
-			pesos.append(w)
-			total += w
-		if cand.is_empty() or total <= 0.0:
-			continue
-		var r := _m.rng.randf() * total
-		for j in range(cand.size()):
-			r -= pesos[j]
-			if r <= 0.0:
-				return pool[cand[j]]
-		return pool[cand[cand.size() - 1]]
+		var evt := _sortear(grupo, par, cfg, ahora)
+		if not evt.is_empty():
+			return evt
 	return {}
+
+
+func _prob_decision(cfg: Dictionary, ahora: int) -> float:
+	## Probabilidad de que el evento de la semana sea una decisión: sube a 1 bajo el mínimo anual (en gobierno) y cae a 0 sobre el máximo.
+	var dec_anio := _decisiones_ultimo_anio(ahora)
+	var p_dec := float(cfg["prob_decision"])
+	if dec_anio < int(cfg["decisiones_min_anio"]):
+		return 1.0 if m.estado.etapa == "gobierno" else p_dec
+	if dec_anio >= int(cfg["decisiones_max_anio"]):
+		return 0.0
+	return p_dec
+
+
+func _sortear(grupo: Dictionary, par: Array, cfg: Dictionary, ahora: int) -> Dictionary:
+	## Sortea un evento del grupo `par` entre los candidatos fuera de cooldown y con requisitos cumplidos, ponderados por su peso efectivo.
+	var oc: Dictionary = m.estado.eventos_ocurridos
+	var cd_evento := int(cfg["cooldown_evento"])
+	var cd_familia := int(cfg["cooldown_familia"])
+	var pool: Array = grupo[par[0]]
+	var rg: Dictionary = grupo[par[1]]
+	var ids: PackedStringArray = rg["ids"]
+	var fams: PackedStringArray = rg["fams"]
+	var base: PackedFloat64Array = rg["pesos"]
+	var flags: PackedInt32Array = rg["flags"]
+	var cand: PackedInt32Array = []
+	var pesos: PackedFloat64Array = []
+	var total := 0.0
+	var mes := 0  # se calcula solo si algún candidato depende de la estación
+	for i in range(ids.size()):
+		var id := ids[i]
+		if oc.has(id) and ahora - int(oc[id]) < cd_evento:
+			continue
+		if _ult_fam.has(fams[i]) and ahora - int(_ult_fam[fams[i]]) < cd_familia:
+			continue
+		var f := flags[i]
+		if f & 1 and not m.eventos._cumple_requisitos(pool[i]):
+			continue
+		var w := base[i]
+		if f & 2:
+			if mes == 0 and (pool[i] as Dictionary).has("meses"):
+				mes = mes_actual()
+			w = _peso_efectivo(pool[i], cfg, mes)
+		cand.append(i)
+		pesos.append(w)
+		total += w
+	if cand.is_empty() or total <= 0.0:
+		return {}
+	var r := m.rng.randf() * total
+	for j in range(cand.size()):
+		r -= pesos[j]
+		if r <= 0.0:
+			return pool[cand[j]]
+	return pool[cand[cand.size() - 1]]
 
 
 func registrar(evt: Dictionary, ahora: int) -> void:

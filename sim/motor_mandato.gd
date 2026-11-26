@@ -214,6 +214,8 @@ func resolver_eleccion() -> Dictionary:
 	if balotaje:
 		_m.estado.ronda_electoral = 2
 	elif electo:
+		if _m.estado.ciclo > 1:  # reloj único: las semanas de campaña ya jugadas cuentan antes de que parta el gobierno
+			_m.estado.dias_carrera += e_dias_oposicion()
 		_m.estado.etapa = "gobierno"
 		_m.estado.turno_actual = 1
 		_m.estado.dia_actual = 1
