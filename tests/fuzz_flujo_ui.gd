@@ -17,6 +17,8 @@ var _llegaron_gobierno: int = 0
 var _eleccion_vista: int = 0
 var _datos: Dictionary
 var _huella: String
+var _revisar_basura: bool = true  # se apaga en las partidas cuyo nombre de partido (escrito por el jugador) trae marcadores como %s, llaves o corchetes
+var _basuras: int = 0
 
 
 func _check(cond: bool, msg: String) -> void:
@@ -74,6 +76,10 @@ func _nombre_raro(rng: RandomNumberGenerator) -> String:
 
 
 func _inv(main: Node, ctx: String, donde: String) -> void:
+	if _revisar_basura and is_instance_valid(main._pantalla):
+		for b in AyudaTextos.basura(main._pantalla):
+			_basuras += 1
+			_check(false, "%s (%s): texto con valores sin formatear: %s" % [ctx, donde, b])
 	_check(main._pantalla != null and is_instance_valid(main._pantalla), "%s (%s): main._pantalla nula o liberada" % [ctx, donde])
 	if main._pantalla == null or not is_instance_valid(main._pantalla):
 		return
@@ -158,6 +164,7 @@ func _una(semilla: int, idx: int) -> void:
 		await process_frame
 	# 3) fundación con entradas raras
 	pp._nombre.text = _nombre_raro(rng)
+	_revisar_basura = not (pp._nombre.text.contains("%") or pp._nombre.text.contains("{") or pp._nombre.text.contains("[") or pp._nombre.text.to_lower().contains("null"))
 	pp._sigla.text = _nombre_raro(rng).left(rng.randi_range(0, 6))
 	for ob in [pp._region, pp._dificultad, pp._habilidad]:
 		ob.select(rng.randi_range(0, ob.item_count - 1))

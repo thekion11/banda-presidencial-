@@ -139,6 +139,8 @@ func _visible_recortado(c: Control) -> Rect2:
 func _desbordes(dia: Node, semilla: int) -> void:
 	if not is_instance_valid(dia):
 		return
+	for b in AyudaTextos.basura(dia):
+		_check(false, "semilla %d: texto con valores sin formatear: %s" % [semilla, b])
 	var ancho := float(root.get_visible_rect().size.x)
 	for l in dia.find_children("*", "Label", true, false):
 		var c := l as Label
