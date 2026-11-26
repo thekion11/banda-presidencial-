@@ -100,6 +100,8 @@ func _ready() -> void:
 		filas.add_child(_fila("Rival" if k == "rival" else String(par[1]), float(antes.get(k, 0.0)), float(despues.get(k, 0.0)), k == "rival"))
 	if not encuesta.is_empty():
 		col.add_child(_bloque_encuesta())
+	elif float(despues.get("cohesion", 0.0)) < float(antes.get("cohesion", 0.0)) - 0.5:  # el desgaste semanal (leyes.json › dinamica) no se explicaba
+		col.add_child(Tema.etiqueta("La cohesión se desgasta cada semana y pesa en los votos del Congreso: la sostienen un gabinete afín a tu partido y aliados conformes.", 11, Tema.TEXTO_SUAVE))
 	col.add_child(Tema.etiqueta("Toca para continuar", 11, Tema.TEXTO_SUAVE))
 	_panel.position.y = -Tema.ALTO
 	var tw := create_tween()

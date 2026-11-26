@@ -147,6 +147,14 @@ func _correr() -> void:
 		and textos.any(func(t: String) -> bool: return "umbral 51" in t and "+1,5" in t), "el telón muestra la encuesta: umbral, cambio semanal y región débil (%s)" % str(textos))
 	_check(not tel[0] and c0.get_children().any(func(n: Node) -> bool: return n is TelonSemana), "el telón baja y retiene los eventos")
 	await _esperar(3.8)  # con encuesta el telón se queda 1 s más
+	var cg := Control.new()  # en gobierno (sin encuesta), si la cohesión bajó, el telón explica por qué y qué la sostiene
+	cg.size = Vector2(390, 844)
+	root.add_child(cg)
+	TelonSemana.mostrar(cg, ["Día 36", ""], ["Día 43", ""], {"aprobacion": 40.0, "cohesion": 80.0}, {"aprobacion": 40.0, "cohesion": 78.15}, false, func() -> void: pass)
+	await _esperar(0.2)
+	var textos_g: Array = cg.find_children("*", "Label", true, false).map(func(l: Label) -> String: return l.text)
+	_check(textos_g.any(func(t: String) -> bool: return t.begins_with("La cohesión se desgasta")), "el telón explica el desgaste de la cohesión")
+	cg.queue_free()
 	var c9 := Control.new()
 	root.add_child(c9)
 	TelonSemana.mostrar(c9, ["Semana 8", ""], ["Semana 9", ""], {}, {}, false, func() -> void: pass,
