@@ -52,6 +52,9 @@ jobs:
           python3 tools/generar_version.py
           godot --headless --import --path . || true
           godot --headless --path . --export-debug "Android" build/presidente-debug.apk
+      - name: Auditar el manifiesto del APK (informativo)
+        continue-on-error: true
+        run: python3 tools/auditar_apk.py build/presidente-debug.apk
       - name: Comprobar el tamaño del APK (límite 150 MB)
         run: |
           ls -l build/presidente-debug.apk
