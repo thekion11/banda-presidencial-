@@ -5,7 +5,7 @@ extends RefCounted
 ## `alto` emula otros tamaños de pantalla (ALTURAS); al terminar se libera la partida para poder repetir el recorrido.
 
 
-const ALTURAS := [844, 693, 866, 812]  # alto lógico con ancho 390 (keep_width): 390×844, 360×640, 412×915 y 480×1000
+const ALTURAS := [844, 693, 866, 812, 910]  # alto lógico con ancho 390 (keep_width): 390×844, 360×640, 412×915, 480×1000 y plegable cerrado 280×653 (tablet y plegable abierto: 390×844 con bandas, Main.aspecto_para)
 
 
 static func recorrer(arbol: SceneTree, visitar: Callable, alto: int = 844) -> void:

@@ -157,6 +157,16 @@ Lado a lado actualizado: `docs/comparacion/v4_dia_maqueta_vs_juego.png`. Se corr
 
 ### Otros tamaños de teléfono (26-nov-2026)
 El proyecto escala con ancho lógico fijo de 390 (`keep_width`), así que cada teléfono cambia solo el alto: 360×640 queda en 390×693, 412×915 en 390×866 y 480×1000 en 390×812. `tests/test_textos.gd` y `tests/test_tactil.gd` recorren ahora las cuatro alturas (`RecorridoUI.ALTURAS`) y exigen que ningún texto ni botón se salga de la pantalla, salvo dentro de una zona desplazable. Solo fallaba 390×693, y de forma grave: el botón «Terminar semana» quedaba fuera de la pantalla, y lo mismo el botón de la votación y la franja del perfil en el test ideológico. Con `Tema.pantalla_baja()` (alto < 760) esas pantallas compactan alturas fijas: menos aire sobre la mano (214 → 198), Corrector de 66 a 50, hemiciclo de 230 a 170, opciones del test de 62 a 52 (≥ 44), brújula de 150 a 116 y márgenes menores. En 390×844 todo queda igual.
+**Proporciones extremas (27-nov-2026, `Main.aspecto_para`):** con `keep_width`, una tablet 768×1024 quedaba en 390×520 lógicos y un plegable abierto 884×1104 en 390×487, y no cabía la pantalla del día. Ahora, si la pantalla es más ancha que 16:9 (ancho/alto > 0,565), se muestra el 390×844 completo y centrado, con bandas color océano a los lados, y se vuelve a calcular al abrir o cerrar el plegable. Teléfonos medidos:
+
+| Teléfono | Alto lógico |
+|---|---|
+| 360×640 | 693 |
+| 360×800 y 412×915 | ~866 |
+| 1080×2400 | 867 |
+| Plegable cerrado 280×653 | 910 (agregado a `RecorridoUI.ALTURAS`) |
+
+El botón principal queda en la misma posición dentro de cada pantalla, y las auditorías de textos y zonas táctiles pasan en los cinco altos.
 **Decisión pendiente del usuario:** en 390×693 el mapa del día mide 185 px, el 27 % de la pantalla, bajo el tercio que pide CLAUDE.md §5. Llegar al tercio obligaría a achicar las cartas y su texto bajo los 10 pt, o a quitar el Corrector o la cabecera de la mano.
 
 ### Letra grande de Android (1,3 y 1,5) (26-nov-2026)

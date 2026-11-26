@@ -133,6 +133,9 @@ func _correr() -> void:
 		var nom: String = CartaUI.NOMBRES_CAT.get(cat, cat.to_upper())
 		_check(not RegEx.create_from_string("(EDUCACION|POLITICA|ENERGIA|ECONOMIA|OPOSICION|COMITE)$").search(nom), "la cinta de «%s» lleva tilde (%s)" % [cat, nom])
 		_check(Tema.fuente_texto(800).get_string_size(nom, HORIZONTAL_ALIGNMENT_LEFT, -1, 10).x <= 62.0, "la cinta de «%s» cabe en la carta" % cat)
+	var M = load("res://game/main.gd")  # proporciones: teléfonos con ancho 390; tablet y plegable abierto, 390×844 con bandas
+	_check(M.aspecto_para(Vector2i(360, 640)) == Window.CONTENT_SCALE_ASPECT_KEEP_WIDTH and M.aspecto_para(Vector2i(280, 653)) == Window.CONTENT_SCALE_ASPECT_KEEP_WIDTH, "los teléfonos usan ancho lógico 390")
+	_check(M.aspecto_para(Vector2i(768, 1024)) == Window.CONTENT_SCALE_ASPECT_KEEP and M.aspecto_para(Vector2i(884, 1104)) == Window.CONTENT_SCALE_ASPECT_KEEP, "tablet y plegable abierto muestran el 390×844 completo")
 	_check(Tema.dec(3.5) == "3,5" and Tema.dec(57.44) == "57,4" and Tema.dec(-0.25, 2) == "-0,25", "Tema.dec usa coma decimal")
 	if _fallos == 0:
 		print("CLARIDAD OK")

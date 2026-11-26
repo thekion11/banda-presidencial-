@@ -15,7 +15,23 @@ var _pantalla: Control
 var _huella_datos: String = ""
 
 
+static func aspecto_para(ventana: Vector2i) -> Window.ContentScaleAspect:
+	## Teléfonos (hasta 16:9): ancho lógico 390 y el alto que dé el teléfono (keep_width; 360×640 -> 390×693, ya probado).
+	## Más anchos (tablet 4:3, plegable abierto): con keep_width quedarían menos de 693 de alto y no cabe la pantalla del día,
+	## así que se muestra el 390×844 completo, centrado, con bandas de color océano a los lados (keep).
+	if ventana.x <= 0 or ventana.y <= 0:
+		return Window.CONTENT_SCALE_ASPECT_KEEP_WIDTH
+	return Window.CONTENT_SCALE_ASPECT_KEEP if float(ventana.x) / float(ventana.y) > 0.565 else Window.CONTENT_SCALE_ASPECT_KEEP_WIDTH
+
+
+func _ajustar_aspecto() -> void:
+	get_tree().root.content_scale_aspect = aspecto_para(get_tree().root.size)
+
+
 func _ready() -> void:
+	RenderingServer.set_default_clear_color(Tema.OCEANO)  # bandas laterales en tablet o plegable abierto
+	_ajustar_aspecto()
+	get_tree().root.size_changed.connect(_ajustar_aspecto)  # el plegable cambia de tamaño al abrirse
 	Ajustes.cargar()
 	var faltan := Datos.ARCHIVOS.filter(func(n: String) -> bool: return not FileAccess.file_exists("res://data/%s.json" % n))
 	if not faltan.is_empty():  # instalación dañada: un mensaje claro en vez de un error de script
