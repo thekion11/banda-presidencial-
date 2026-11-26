@@ -77,6 +77,7 @@ static func es_completa(d: Dictionary) -> bool:
 
 
 static func vale_para(d: Dictionary, huella_datos: String, sha_guardado: String) -> bool:
+	## true si la instantánea es completa y coincide con la huella de datos y el SHA del guardado actuales.
 	if d.is_empty() or not (d.get("huella_datos") is String) or not (d.get("sha_guardado") is String):
 		return false  # tipos inesperados: ni se comparan
 	return es_completa(d) and d["huella_datos"] == huella_datos and d["sha_guardado"] == sha_guardado and sha_guardado != ""

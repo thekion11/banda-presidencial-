@@ -3,6 +3,7 @@ extends RefCounted
 ## Validación estructural previa a reproducir un guardado por eventos (GDScript no captura errores en ejecución): semilla, partido y entradas con las claves y tipos
 ## que usa Partida.reproducir. La tabla ENTRADAS documenta además el formato del guardado. Un guardado que no pasa se descarta antes de tocar el motor.
 
+const VERSION := 2  # versión del formato del guardado: subirla al cambiar claves del archivo o de las entradas (tests/test_formato_guardado.gd lo exige)
 const INDICADORES := ["aprobacion", "capital", "cohesion", "fiscal", "riesgo_ejecucion", "viviendas_anio"]
 const S := TYPE_STRING
 const I := TYPE_INT
@@ -28,6 +29,7 @@ static func _numero(v: Variant) -> bool:
 
 
 static func partido_valido(p: Variant) -> bool:
+	## true si el partido guardado tiene los indicadores y los tipos que usa el motor.
 	if not (p is Dictionary) or not (p.get("indicadores_iniciales") is Dictionary):
 		return false
 	for k in INDICADORES:
@@ -43,6 +45,7 @@ static func partido_valido(p: Variant) -> bool:
 
 
 static func entrada_valida(e: Variant) -> bool:
+	## true si la entrada tiene un tipo conocido y las claves obligatorias de ese tipo con su tipo.
 	if not (e is Dictionary) or not (e.get("tipo") is String) or not ENTRADAS.has(e["tipo"]):
 		return false
 	var req: Dictionary = ENTRADAS[e["tipo"]]
@@ -59,7 +62,8 @@ static func entrada_valida(e: Variant) -> bool:
 
 
 static func guardado_valido(g: Variant) -> bool:
-	if not (g is Dictionary) or not _es(g.get("semilla"), I) or not partido_valido(g.get("partido")) or not (g.get("entradas") is Array):
+	## true si el guardado completo (versión, semilla, partido y entradas) tiene la forma esperada; se usa antes de reproducir.
+	if not (g is Dictionary) or not _es(g.get("version"), I) or int(g["version"]) > VERSION or not _es(g.get("semilla"), I) or not partido_valido(g.get("partido")) or not (g.get("entradas") is Array):
 		return false
 	for e in g["entradas"]:
 		if not entrada_valida(e):

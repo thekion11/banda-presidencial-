@@ -78,6 +78,7 @@ func semana_abs() -> int:
 
 
 func procesar_semana() -> Array[Dictionary]:
+	## Paso 2 del turno: cumple lo pendiente, aplica los eventos programados de la semana y sortea el aleatorio con el director.
 	var _m := m  # una sola resolución de la referencia débil por llamada (cada acceso a `m` cuesta ~0,5 us)
 	var dia_inicio := _m.estado.dia_actual
 	var dia_fin := _m.estado.dia_actual + _m.estado.dias_por_turno - 1
@@ -144,6 +145,7 @@ var _rel_mapa: Dictionary = {}  # actor -> relación, válido mientras no cambie
 
 
 func relacion_actor(id: String) -> float:
+	## Relación (0-100) con un actor político según tus decisiones anteriores (memoizada).
 	var firma := m.estado.decisiones.hash()
 	if firma != _rel_firma:
 		_rel_firma = firma
@@ -157,10 +159,12 @@ var director: DirectorEventos  # elige el evento aleatorio de la semana (sim/dir
 
 
 func reconstruir() -> void:
+	## Reconstruye la memoria del director de eventos a partir de lo ocurrido (tras restaurar un estado).
 	director.reconstruir()
 
 
 func aplicar_evento(evt: Dictionary) -> Dictionary:
+	## Aplica un evento (efectos, votación y TC si los tiene), lo registra y desbloquea cartas ligadas; devuelve lo que muestra la interfaz.
 	var _m := m  # una sola resolución de la referencia débil por llamada (cada acceso a `m` cuesta ~0,5 us)
 	var res := {"id": evt["id"], "titulo": evt["titulo"], "descripcion": evt["descripcion"], "hora": evt["hora_etiqueta"], "votacion": null, "efectos": evt["efectos_base"]}
 	if evt.has("opciones") and (evt["opciones"] as Array).any(func(o: Dictionary) -> bool: return o.has("congreso")):

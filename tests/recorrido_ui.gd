@@ -2,9 +2,14 @@ class_name RecorridoUI
 extends RefCounted
 ## Recorrido de pantallas y paneles para auditorías de interfaz (zonas táctiles, tamaños de letra).
 ## Llama a `visitar(main, nombre_del_paso)` en cada estado, ya con el diseño asentado. Sin animaciones.
+## `alto` emula otros tamaños de pantalla (ALTURAS); al terminar se libera la partida para poder repetir el recorrido.
 
 
-static func recorrer(arbol: SceneTree, visitar: Callable) -> void:
+const ALTURAS := [844, 693, 866, 812]  # alto lógico con ancho 390 (keep_width): 390×844, 360×640, 412×915 y 480×1000
+
+
+static func recorrer(arbol: SceneTree, visitar: Callable, alto: int = 844) -> void:
+	arbol.root.content_scale_size = Vector2i(390, alto)  # otros teléfonos: mismo ancho lógico, otro alto
 	Movimiento.forzado = 0
 	Tutorial.ruta = "user://preferencias_recorrido.json"
 	Tutorial.marcar_visto()
@@ -64,3 +69,6 @@ static func recorrer(arbol: SceneTree, visitar: Callable) -> void:
 	await paso.call("fin de partida")
 	DirAccess.remove_absolute(ProjectSettings.globalize_path(Tutorial.ruta))
 	DirAccess.remove_absolute(ProjectSettings.globalize_path(main.RUTA_GUARDADO))
+	main.queue_free()
+	await arbol.process_frame
+	arbol.root.content_scale_size = Vector2i(390, 844)

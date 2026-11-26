@@ -9,6 +9,17 @@ const SIN_TILDE := ["Comite", "Camara", "votacion", "aprobacion", "Aprobacion", 
 
 var _fallos := 0
 var _vistos := 0
+var _alto := 844
+
+
+static func _en_scroll(n: Node) -> bool:
+	## Dentro de una zona desplazable el contenido puede quedar fuera de la vista: se alcanza deslizando.
+	var p := n.get_parent()
+	while p != null:
+		if p is ScrollContainer:
+			return true
+		p = p.get_parent()
+	return false
 
 
 func _check(c: bool, msg: String) -> void:
@@ -47,8 +58,9 @@ func _auditar(raiz: Node, donde: String) -> void:
 		_vistos += 1
 		var corto := t.replace("\n", " ").left(40)
 		_check(_tam(n) >= MINIMO, "%s: «%s» mide %d pt (mín. %d)" % [donde, corto, _tam(n), MINIMO])
-		var r := (n as Control).get_global_rect()  # nada se sale del ancho de la pantalla (390 px)
+		var r := (n as Control).get_global_rect()  # nada se sale de la pantalla: ancho 390 y el alto del teléfono emulado
 		_check(r.position.x >= -0.5 and r.end.x <= Tema.ANCHO + 0.5, "%s: «%s» se sale de la pantalla (%s)" % [donde, corto, r])
+		_check(_en_scroll(n) or r.end.y <= _alto + 0.5, "%s: «%s» queda bajo el borde inferior (%s, alto %d)" % [donde, corto, r, _alto])
 		for ch in t:
 			if ch.unicode_at(0) >= 0x1F300:
 				_check(false, "%s: «%s» tiene un emoji" % [donde, corto])
@@ -93,8 +105,15 @@ func _archivos(dir: String) -> Array[String]:
 
 func _correr() -> void:
 	_dibujados()
-	await RecorridoUI.recorrer(self, _auditar)
-	_check(_vistos > 150, "la auditoría debe revisar muchos textos (revisó %d)" % _vistos)
+	for alto in RecorridoUI.ALTURAS:  # 390×844 y otros teléfonos (360×640, 412×915, 480×1000)
+		_alto = alto
+		await RecorridoUI.recorrer(self, func(raiz: Node, donde: String) -> void: _auditar(raiz, "%s [alto %d]" % [donde, alto]), alto)
+	_alto = 844
+	for escala in [1.3, 1.5]:  # letra grande de Android (1,3 y 1,5) en las etiquetas con ajuste de línea
+		Ajustes.escala_prueba = escala
+		await RecorridoUI.recorrer(self, func(raiz: Node, donde: String) -> void: _auditar(raiz, "%s [letra ×%.1f]" % [donde, escala]))
+	Ajustes.escala_prueba = 0.0
+	_check(_vistos > 150 * (RecorridoUI.ALTURAS.size() + 2), "la auditoría debe revisar muchos textos (revisó %d)" % _vistos)
 	if _fallos == 0:
 		print("TEXTOS OK (%d textos)" % _vistos)
 	quit(1 if _fallos > 0 else 0)

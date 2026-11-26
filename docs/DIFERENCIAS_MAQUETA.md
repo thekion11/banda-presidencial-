@@ -152,4 +152,36 @@ Lado a lado actualizado: `docs/comparacion/v4_dia_maqueta_vs_juego.png`. Se corr
 - **Hemiciclo:** con 5 filas (Senado) y 8 (Cámara), los asientos quedaban más separados a lo largo de cada fila que entre filas y se leían como rayos. Ahora son 4 y 6 filas, con anillos parejos como en la maqueta. Lado a lado: `docs/comparacion/v4_votacion_maqueta_vs_juego.png` y `v4_nacion_maqueta_vs_juego.png`.
 - Siguen apartándose a propósito: cifras reales de la partida, «Terminar semana» en lugar de «Jugar» (PR-02), «Camino de la ley» por la votación bicameral y la cifra central, que se vuelve verde al cruzar el mínimo.
 
+### Paleta congelada con prueba (26-nov-2026)
+`tests/test_paleta.gd` lee todos los colores escritos en `game/` y exige que cada uno sea un color de la paleta (CLAUDE.md §5, más las tintas Okabe-Ito del modo daltónico) o una mezcla de dos de ellos o con negro o blanco, con una diferencia perceptual de hasta ΔE 8. Detectó cinco colores fuera de la paleta: cuatro cintas de categoría (Comité, Educación, Social y Política, violetas y magentas) y el filtro «Cárceles» del mapa urbano. Ahora son mezclas de la paleta (#2476B6, #5873A4, #945360, #6E678A y #216EA9), siguen distinguibles entre sí (ΔE ≥ 12) y la cinta oscurecida mantiene contraste ≥ 4,5 con su texto crema.
+
+### Otros tamaños de teléfono (26-nov-2026)
+El proyecto escala con ancho lógico fijo de 390 (`keep_width`), así que cada teléfono cambia solo el alto: 360×640 queda en 390×693, 412×915 en 390×866 y 480×1000 en 390×812. `tests/test_textos.gd` y `tests/test_tactil.gd` recorren ahora las cuatro alturas (`RecorridoUI.ALTURAS`) y exigen que ningún texto ni botón se salga de la pantalla, salvo dentro de una zona desplazable. Solo fallaba 390×693, y de forma grave: el botón «Terminar semana» quedaba fuera de la pantalla, y lo mismo el botón de la votación y la franja del perfil en el test ideológico. Con `Tema.pantalla_baja()` (alto < 760) esas pantallas compactan alturas fijas: menos aire sobre la mano (214 → 198), Corrector de 66 a 50, hemiciclo de 230 a 170, opciones del test de 62 a 52 (≥ 44), brújula de 150 a 116 y márgenes menores. En 390×844 todo queda igual.
+**Decisión pendiente del usuario:** en 390×693 el mapa del día mide 185 px, el 27 % de la pantalla, bajo el tercio que pide CLAUDE.md §5. Llegar al tercio obligaría a achicar las cartas y su texto bajo los 10 pt, o a quitar el Corrector o la cabecera de la mano.
+
+### Letra grande de Android (1,3 y 1,5) (26-nov-2026)
+Godot no aplica la escala de letra del sistema Android a la interfaz. Hoy el juego ofrece «Texto grande» (+15 % en las etiquetas con ajuste de línea, vía `Ajustes.escala_texto()`). `tests/test_textos.gd` recorre además todas las pantallas con la letra a ×1,3 y ×1,5 (`Ajustes.escala_prueba`, solo para pruebas) y exige que nada se salga de la pantalla. Cambios para que quepa:
+- el título del menú (46 pt) ya no crece;
+- las opciones del test ideológico se desplazan si no caben, y la franja del perfil queda fija y crece con la letra.
+
+**Decisión pendiente del usuario:** seguir la escala de letra del sistema Android necesitaría un plugin nativo (Configuration.fontScale). También se podría ofrecer un tamaño de letra mayor que el «Texto grande» actual. Las dos cosas son ampliaciones de alcance.
+
+### Estados vacíos y de error (26-nov-2026)
+Cada estado dice qué pasa y ofrece una acción viable, nunca un «no» seco. Prueba: `tests/test_estados.gd`. Capturas: `docs/comparacion/e_*.png`.
+- **Sin movimientos:** el Corrector lo dice. En gobierno ofrece delegar la carta (no gasta movimientos) o terminar la semana; en campaña, terminar la semana, porque se renuevan al empezar la próxima.
+- **Sin cartas:** la zona de la mano explica que al empezar la próxima semana entran cartas nuevas, y el Corrector sugiere revisar el Comité, el Congreso o el gabinete. Antes la zona quedaba en blanco.
+- **Guardado dañado:** el juego lo aparta (`guardado_descartado.json`) y vuelve al menú con el aviso «Empieza una partida nueva». Esto ya estaba en main, con la validación de la sesión del motor.
+- **Datos faltantes** (instalación dañada): antes de cargar se comprueba que estén todos los archivos. Si falta alguno, se dice cuál y se ofrece actualizar o reinstalar el juego, en vez de un error de script.
+
+### Conteo de toques (26-nov-2026, `tests/medir_toques.gd`)
+Medido en la interfaz real: 3 partidas de 30 semanas, campaña, elección y gobierno.
+- **Jugar una carta:** 2 toques (elegirla y tocarla otra vez) o un solo gesto (deslizarla hacia arriba).
+- **Delegar:** 2 toques (soltar la carta sobre el ícono y confirmar) o 3 (elegir, ícono y confirmar).
+- **Terminar la semana:** 1 toque. Pide un segundo solo si quedan movimientos: pasó 3 veces en 90 semanas, y en las 3 lo que quedaba no alcanzaba para ninguna carta.
+- **Eventos y votaciones después de cada semana:** 2,8 toques de media, mediana 2 y máximo 10. El 22 % de las semanas pide 5 o más. Por clase de pantalla, el 52 % son votaciones (2 páginas cuando el proyecto pasa a la otra cámara), el 30 % avisos y el 19 % decisiones. El telón se cierra solo y no cuenta.
+
+Ninguna acción pasa de 3 toques; lo que se acumula es la secuencia de eventos. **Propuestas para el usuario** (sin pantallas nuevas):
+- a) no pedir confirmación al terminar la semana cuando los movimientos que quedan no pagan ninguna carta (toca la decisión PR-02);
+- b) mostrar la cámara revisora en la misma página de la votación cuando el resultado de la primera ya está decidido, lo que ahorraría unos 0,7 toques por semana.
+
 Reglas: todo el movimiento respeta Ajustes › «Animaciones y movimiento» y se apaga en modo headless, así que las pruebas miden siempre el estado final. El azar de las partículas es solo visual y no toca la semilla de la partida. Prueba propia: `tests/test_movimiento.gd`.

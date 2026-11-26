@@ -20,7 +20,7 @@ static func crear(p_perfiles: Array, p_desde: Vector2, p_hasta: Vector2, p_nombr
 	b.hasta = p_hasta
 	b.nombre = p_nombre
 	b.vacio = p_vacio
-	b.custom_minimum_size = Vector2(0, 150)
+	b.custom_minimum_size = Vector2(0, 116 if Tema.pantalla_baja() else 150)
 	b.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	return b
 

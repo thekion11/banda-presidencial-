@@ -16,6 +16,10 @@ var _huella_datos: String = ""
 
 func _ready() -> void:
 	Ajustes.cargar()
+	var faltan := Datos.ARCHIVOS.filter(func(n: String) -> bool: return not FileAccess.file_exists("res://data/%s.json" % n))
+	if not faltan.is_empty():  # instalación dañada: un mensaje claro en vez de un error de script
+		mostrar_error_datos(faltan)
+		return
 	datos = Datos.cargar_todo()
 	_huella_datos = Datos.huella_rapida(datos)  # una sola vez por arranque, y en disco por versión de datos: calcularla cada vez costaría ~1-2 s en un teléfono modesto
 	geo = Datos.leer_json("res://data/geo/regiones_mapa.json")
@@ -52,6 +56,27 @@ func _cambiar(p: Control) -> void:
 	p.set_anchors_preset(Control.PRESET_FULL_RECT)
 	add_child(p)
 	Movimiento.entrar_pantalla(p)  # se funde y sube; el tween muere con la pantalla
+
+
+func mostrar_error_datos(faltan: Array) -> void:
+	## Sin datos del juego no hay partida posible: se dice qué falta y la acción viable (reinstalar).
+	var fondo := ColorRect.new()
+	fondo.color = Tema.OCEANO
+	fondo.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	add_child(fondo)
+	var col := VBoxContainer.new()
+	col.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	col.offset_left = 24.0
+	col.offset_right = -24.0
+	col.alignment = BoxContainer.ALIGNMENT_CENTER
+	col.add_theme_constant_override("separation", 14)
+	fondo.add_child(col)
+	col.add_child(Tema.etiqueta("No se pudieron cargar los datos del juego", 20, Tema.TEXTO, true))
+	col.add_child(Tema.etiqueta("Faltan archivos de la instalación (%s). Actualiza o reinstala Presidente de Chile desde Google Play." % ", ".join(faltan.map(func(n: String) -> String: return n + ".json")), 13, Tema.TEXTO_SUAVE))
+	var b := Barras.boton_jugar()
+	b.text = "Cerrar el juego"
+	b.pressed.connect(func() -> void: get_tree().quit())
+	col.add_child(b)
 
 
 func mostrar_menu(aviso: String = "") -> void:

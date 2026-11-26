@@ -6,6 +6,7 @@ extends RefCounted
 
 
 static func construir(d: PantallaDia) -> Control:
+	var corto := Tema.pantalla_baja()  # teléfono bajo (360×640 → 390×693 lógicos): todo cabe y el botón principal queda en pantalla
 	var cuerpo := Control.new()
 	cuerpo.size_flags_vertical = Control.SIZE_EXPAND_FILL
 	var vista := VBoxContainer.new()
@@ -13,7 +14,7 @@ static func construir(d: PantallaDia) -> Control:
 	vista.add_theme_constant_override("separation", 0)
 	cuerpo.add_child(vista)
 	d._mapa = MapaChile.new()
-	d._mapa.custom_minimum_size = Vector2(0, 290)
+	d._mapa.custom_minimum_size = Vector2(0, 150 if corto else 290)
 	d._mapa.size_flags_vertical = Control.SIZE_EXPAND_FILL
 	d._mapa.cargar_geo(d.geo)
 	d._mapa.region_tocada.connect(d._on_region)
@@ -46,7 +47,8 @@ static func construir(d: PantallaDia) -> Control:
 	cab_mano.add_child(d._lbl_mov)
 	vista.add_child(mm)
 	d._mano = ManoUI.new()
-	d._mano.custom_minimum_size = Vector2(0, 214)
+	d._mano.custom_minimum_size = Vector2(0, 198 if corto else 214)
+	d._mano.arriba = 30.0 if corto else 46.0  # en pantalla baja, menos aire sobre las cartas
 	d._mano.clip_contents = false
 	d._mano.tocada.connect(d._on_carta)
 	d._mano.arrastrada.connect(d._gesto_mano)  # deslizar hacia el mapa juega; soltar sobre el ícono izquierdo delega (PR-02)
@@ -64,7 +66,7 @@ static func construir(d: PantallaDia) -> Control:
 	d._lbl_corrector.add_theme_font_override("bold_font", Tema.fuente_texto(800))
 	d._lbl_corrector.add_theme_font_size_override("normal_font_size", 10)
 	d._lbl_corrector.add_theme_font_size_override("bold_font_size", 10)
-	corr.custom_minimum_size = Vector2(0, 66)  # alto fijo: el botón principal no se mueve
+	corr.custom_minimum_size = Vector2(0, 50 if corto else 66)  # alto fijo: el botón principal no se mueve
 	corr.add_child(d._lbl_corrector)
 	var mc := MarginContainer.new()
 	mc.add_theme_constant_override("margin_left", 12)
@@ -91,8 +93,8 @@ static func construir(d: PantallaDia) -> Control:
 	var ma := MarginContainer.new()
 	ma.add_theme_constant_override("margin_left", 12)
 	ma.add_theme_constant_override("margin_right", 12)
-	ma.add_theme_constant_override("margin_top", 6)
-	ma.add_theme_constant_override("margin_bottom", 6)
+	ma.add_theme_constant_override("margin_top", 2 if corto else 6)
+	ma.add_theme_constant_override("margin_bottom", 2 if corto else 6)
 	ma.add_child(acciones)
 	vista.add_child(ma)
 	d._zona_panel = PanelContainer.new()

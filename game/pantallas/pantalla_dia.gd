@@ -98,13 +98,16 @@ func _pintar_mano() -> void:
 	_mano.pintar(motor, _sel, _ministro, _nuevas)
 	_nuevas = []
 	if n == 0:
-		_lbl_corrector.text = "[b]Sin cartas[/b] en la mano. Termina el turno para robar más."
+		_lbl_corrector.text = "[b]Sin cartas:[/b] antes de terminar la semana puedes revisar el Comité, el Congreso o tu gabinete."
 		return
 	var v := motor.vista_carta(_sel, _ministro)
 	var c: Dictionary = est.mano[_sel]
 	var tit := String(c["titulo"])
 	var cabeza := "[b]%s[/b] · %d mov · %s\n" % [tit if tit.length() <= 22 else tit.substr(0, 21) + "…", motor.costo_carta(c, _ministro), FichaCarta.linea(c, datos["leyes"])]
-	if est.etapa == "campana":
+	if est.pa_actual == 0:  # sin movimientos: qué se puede hacer todavía
+		var delega := est.etapa == "gobierno" and est.delegadas_turno < int(motor.catalogo_leyes["delegacion"]["max_por_turno"])
+		_lbl_corrector.text = cabeza + "[b]Sin movimientos:[/b] " + ("delega esta carta en un ministro (no gasta movimientos) o termina la semana." if delega else "termina la semana; se renuevan al empezar la próxima.")
+	elif est.etapa == "campana":
 		_lbl_corrector.text = cabeza + "[b]Campaña:[/b] cada carta es una promesa: sube la aprobación de la región elegida y queda como meta de legado."
 	elif v["corrector"]["aplica"]:
 		_lbl_corrector.text = cabeza + "[b]Corrector:[/b] " + FichaCarta.caber(String(v["corrector"]["mensaje"]))

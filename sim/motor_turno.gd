@@ -31,7 +31,7 @@ var indices: IndicesCartas  # índices del catálogo de cartas (compartidos y de
 
 
 func inicializar(p_estado: EstadoSimulacion, p_cartas: Array, p_eventos: Array, p_leyes: Dictionary,
-		p_ministros: Array, p_extra: Dictionary = {}) -> void:
+		p_ministros: Array, p_extra: Dictionary = {}) -> void:  # Conecta estado y catálogos y crea los módulos del motor.
 	estado = p_estado
 	rng = RandomNumberGenerator.new()
 	rng.seed = estado.semilla
@@ -66,11 +66,11 @@ func _h(clave: String) -> Variant:
 	return catalogo_leyes["hemiciclo"][clave]
 
 
-func turnos_mandato() -> int:
+func turnos_mandato() -> int:  # Turnos del mandato (duración en días entre días por turno).
 	return int(_h("duracion_mandato_dias")) / estado.dias_por_turno
 
 
-func aplicar_partido_inicial(datos_partido: Dictionary) -> void:
+func aplicar_partido_inicial(datos_partido: Dictionary) -> void:  # Aplica el partido elegido: indicadores, regiones y coalición propia; deja la partida en campaña.
 	estado.partido = EstadoSimulacion.normalizar(datos_partido)
 	estado.etapa = "campana"
 	coalicion.adoptar_partido_propio(String(datos_partido.get("partido_base", "")))  # tu partido es aliado permanente que pide poder (PR-01)
@@ -85,7 +85,7 @@ func aplicar_partido_inicial(datos_partido: Dictionary) -> void:
 
 
 # ---------------------------------------------------------------- Flujo de alto nivel (UI, bots, replay)
-func iniciar_turno() -> Array[Dictionary]:
+func iniciar_turno() -> Array[Dictionary]:  # Pasos 1 y 2 del turno: amanecer y eventos; devuelve los eventos de la semana.
 	ejecutar_amanecer()
 	var evs := procesar_eventos_semana()
 	mazo.refiltrar_mano()  # las cartas cuya ventana (año, evento, dinero) terminó vuelven al descarte y entran otras
@@ -104,7 +104,7 @@ func terminar_turno() -> Array[Dictionary]:
 
 
 # ---------------------------------------------------------------- Paso 1
-func ejecutar_amanecer() -> void:
+func ejecutar_amanecer() -> void:  # Paso 1: regenera movimientos y aplica la dinámica semanal de los indicadores (ancla de aprobación, desgaste, regeneraciones).
 	estado.pa_actual = estado.pa_maximo
 	movimientos.amanecer()
 	if estado.etapa == "campana":
@@ -135,7 +135,7 @@ func ejecutar_amanecer() -> void:
 	movimientos.fijar_movimientos()
 
 
-func cerrar_turno() -> void:
+func cerrar_turno() -> void:  # Pasos 7 y 8: votaciones, obras, crisis y avance del calendario; registra la entrada «cerrar».
 	if not ETAPAS_JUEGO.has(estado.etapa):
 		return
 	if estado.eleccion_pendiente(int(_h("semanas_campana"))):
@@ -164,52 +164,52 @@ func cerrar_turno() -> void:
 		Encuestas.registrar(self)  # la última encuesta antes de votar refleja la campaña ya terminada
 
 
-func resolver_eleccion_presidencial() -> Dictionary: return mandato.resolver_eleccion()
+func resolver_eleccion_presidencial() -> Dictionary: return mandato.resolver_eleccion()  # Vota la elección presidencial (puede dar segunda vuelta).
 
 
-func continuar_carrera() -> Dictionary: return mandato.continuar_carrera()
+func continuar_carrera() -> Dictionary: return mandato.continuar_carrera()  # Tras un fin de periodo abre la oposición o la campaña de reelección.
 
 
 # ---------------------------------------------------------------- Fachada (la UI y los tests usan estos nombres)
-func procesar_eventos_semana() -> Array[Dictionary]: return eventos.procesar_semana()
+func procesar_eventos_semana() -> Array[Dictionary]: return eventos.procesar_semana()  # Atajo de MotorEventos.procesar_semana.
 
-func costo_carta(carta: Dictionary, ministro_id: String = "") -> int: return cartas.costo_carta(carta, ministro_id)
+func costo_carta(carta: Dictionary, ministro_id: String = "") -> int: return cartas.costo_carta(carta, ministro_id)  # Atajo de MotorCartas.costo_carta.
 
-func es_unica(carta: Dictionary) -> bool: return cartas.es_unica(carta)
+func es_unica(carta: Dictionary) -> bool: return cartas.es_unica(carta)  # Atajo de MotorCartas.es_unica.
 
-func vista_carta(idx: int, ministro_id: String = "") -> Dictionary: return cartas.vista_carta(idx, ministro_id)
+func vista_carta(idx: int, ministro_id: String = "") -> Dictionary: return cartas.vista_carta(idx, ministro_id)  # Atajo de MotorCartas.vista_carta.
 
-func jugar_carta(idx: int, ministro_id: String = "", region_id: String = "") -> Dictionary: return cartas.jugar_carta(idx, ministro_id, region_id)
+func jugar_carta(idx: int, ministro_id: String = "", region_id: String = "") -> Dictionary: return cartas.jugar_carta(idx, ministro_id, region_id)  # Juega una carta de la mano (con movimientos).
 
-func aprobar_propuesta(prop_id: String, variante_id: String, region_id: String = "", custom: Dictionary = {}, nombres: Dictionary = {}) -> Dictionary: return cartas.aprobar_propuesta(prop_id, variante_id, region_id, custom, nombres)
+func aprobar_propuesta(prop_id: String, variante_id: String, region_id: String = "", custom: Dictionary = {}, nombres: Dictionary = {}) -> Dictionary: return cartas.aprobar_propuesta(prop_id, variante_id, region_id, custom, nombres)  # Atajo de MotorCartas.aprobar_propuesta.
 
-func impulsar_proyecto(pid: String) -> Dictionary: return sectra.impulsar(pid)
+func impulsar_proyecto(pid: String) -> Dictionary: return sectra.impulsar(pid)  # Atajo de MotorSectra.impulsar.
 
-func calcular_puntaje() -> int: return mandato.calcular_puntaje()
+func calcular_puntaje() -> int: return mandato.calcular_puntaje()  # Atajo de MotorMandato.calcular_puntaje.
 
 
-func robar_mano(n: int = 5) -> void: mazo.robar(n)
+func robar_mano(n: int = 5) -> void: mazo.robar(n)  # Atajo de MotorMazo.robar.
 
-func carta_disponible(carta: Dictionary) -> bool: return gabinete.disponible(carta)
+func carta_disponible(carta: Dictionary) -> bool: return gabinete.disponible(carta)  # true si el gabinete y las condiciones permiten que la carta circule.
 
-func elegir_gabinete(ids: Array) -> Dictionary: return gabinete.elegir(ids)
+func elegir_gabinete(ids: Array) -> Dictionary: return gabinete.elegir(ids)  # Nombra el gabinete (solo en campaña o en la primera semana de gobierno).
 
-func delegar_carta(idx: int, ministro_id: String, region_id: String = "") -> Dictionary: return cartas.jugar_carta(idx, ministro_id, region_id, true)
+func delegar_carta(idx: int, ministro_id: String, region_id: String = "") -> Dictionary: return cartas.jugar_carta(idx, ministro_id, region_id, true)  # Juega una carta delegándola en un ministro (sin gastar movimientos, con riesgo de fallo).
 
-func prob_fallo_delegacion(idx: int, ministro_id: String) -> float: return gabinete.prob_fallo(estado.mano[idx], ministro_id)
+func prob_fallo_delegacion(idx: int, ministro_id: String) -> float: return gabinete.prob_fallo(estado.mano[idx], ministro_id)  # Probabilidad de fallo de delegar la carta de la mano en ese ministro.
 
-func buscar_meta(meta_id: String) -> Dictionary: return movimientos.buscar_meta(meta_id)
+func buscar_meta(meta_id: String) -> Dictionary: return movimientos.buscar_meta(meta_id)  # Atajo de MotorMovimientos.buscar_meta.
 
-func ajustar_sector(sector: String, direccion: int) -> Dictionary: return movimientos.ajustar_sector(sector, direccion)
+func ajustar_sector(sector: String, direccion: int) -> Dictionary: return movimientos.ajustar_sector(sector, direccion)  # Atajo de MotorMovimientos.ajustar_sector.
 
-func reducir_errores() -> Dictionary: return movimientos.reducir_errores()
+func reducir_errores() -> Dictionary: return movimientos.reducir_errores()  # Atajo de MotorMovimientos.reducir_errores.
 
-func acelerar_proyecto(idx: int) -> Dictionary: return movimientos.acelerar_proyecto(idx)
+func acelerar_proyecto(idx: int) -> Dictionary: return movimientos.acelerar_proyecto(idx)  # Atajo de MotorMovimientos.acelerar_proyecto.
 
-func contratar_asesor(id: String) -> Dictionary: return equipo.contratar(id)
+func contratar_asesor(id: String) -> Dictionary: return equipo.contratar(id)  # Atajo de MotorEquipo.contratar.
 
-func despedir_asesor(id: String) -> Dictionary: return equipo.despedir(id)
-func unirse_coalicion(id: String) -> Dictionary: return coalicion.unirse(id)
-func salir_coalicion(id: String) -> Dictionary: return coalicion.salir(id)
-func asignar_cuota(id: String, tipo: String, valor: String) -> Dictionary: return coalicion.asignar_cuota(id, tipo, valor)
-func quitar_cuota(id: String, tipo: String, valor: String) -> Dictionary: return coalicion.asignar_cuota(id, tipo, valor, true)
+func despedir_asesor(id: String) -> Dictionary: return equipo.despedir(id)  # Atajo de MotorEquipo.despedir.
+func unirse_coalicion(id: String) -> Dictionary: return coalicion.unirse(id)  # Atajo de MotorCoalicion.unirse.
+func salir_coalicion(id: String) -> Dictionary: return coalicion.salir(id)  # Atajo de MotorCoalicion.salir.
+func asignar_cuota(id: String, tipo: String, valor: String) -> Dictionary: return coalicion.asignar_cuota(id, tipo, valor)  # Entrega a un aliado un ministerio o asesor que pide.
+func quitar_cuota(id: String, tipo: String, valor: String) -> Dictionary: return coalicion.asignar_cuota(id, tipo, valor, true)  # Retira esa cuota a un aliado.

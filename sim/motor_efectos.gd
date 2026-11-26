@@ -14,6 +14,7 @@ var _derrame: float = 0.0
 
 
 func configurar(p_estado: EstadoSimulacion, p_leyes: Dictionary, p_regiones: Regiones) -> void:
+	## Enlaza el estado, las leyes y las regiones y fija los límites y parámetros de los efectos.
 	estado = p_estado
 	leyes = p_leyes
 	regiones = p_regiones
@@ -28,6 +29,7 @@ func configurar(p_estado: EstadoSimulacion, p_leyes: Dictionary, p_regiones: Reg
 
 
 func aplicar_efecto(ef: Dictionary, escala: float, region: String) -> void:
+	## Aplica un efecto de carta o evento ({ind, delta}) escalado a un indicador o a la aprobación regional.
 	var delta := float(ef["delta"]) * escala
 	if ef["ind"] == "aprobacion":
 		delta_aprobacion(delta, region, true)
@@ -36,6 +38,7 @@ func aplicar_efecto(ef: Dictionary, escala: float, region: String) -> void:
 
 
 func delta_aprobacion(delta: float, region: String, decreciente: bool = false) -> void:
+	## Cambia la aprobación (nacional o de una región) con rendimientos decrecientes al subir cuando es alta.
 	if decreciente and delta > 0.0:
 		delta *= maxf(_piso, 1.0 - estado.ind("aprobacion") / _rend)
 	if regiones.pesos.is_empty():
@@ -45,11 +48,13 @@ func delta_aprobacion(delta: float, region: String, decreciente: bool = false) -
 
 
 func sumar_ind(nombre: String, delta: float) -> void:
+	## Suma al indicador respetando sus mínimos y máximos.
 	var ind: Dictionary = estado.indicadores
 	ind[nombre] = clampf(float(ind.get(nombre, 0.0)) + delta, _min, _max_viv if nombre == "viviendas_anio" else _max)
 
 
 func marcar_cumplida(carta_id: String) -> void:
+	## Marca como cumplida la primera promesa de campaña pendiente de esa carta.
 	for p in estado.promesas_campana:
 		if p["carta_id"] == carta_id and not bool(p["cumplida"]):
 			p["cumplida"] = true

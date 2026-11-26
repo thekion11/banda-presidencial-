@@ -1,3 +1,27 @@
+# Estado de cada propuesta (auditado el 26-nov-2026 contra `docs/DECISIONES.md`)
+| Propuesta | Estado | Falta |
+|---|---|---|
+| PR-01 dificultad y afiliación | Hecha | — |
+| PR-02 (y 02b) jugar deslizando, botón del medio, delegar | Hecha | sonido y vibración (sesión visual) |
+| PR-04 / PR-05 gabinete de 25 y «Rellenar» | Hecha | que «máxima eficacia» cueste capital |
+| PR-05b ministros reales con sobrenombre | Criterio vigente | recreación de candidatos reales: no implementada |
+| PR-06 / PR-06b / PR-06c mapa, vecinos, continente | Hecha en 2 etapas | cartas de política exterior, pines internacionales, 2,5D |
+| PR-07 eventos con opciones y sorpresa | Hecha (4 externos) | cadenas, cuenta regresiva, ventanas de oportunidad |
+| PR-08 ministros con peticiones | Hecha | retratos (arte, U7), eventos propios más variados |
+| PR-09 estadísticas de cartas | Parcial | efectos por sector, a futuro, texto de sabor |
+| PR-10 campaña con escenas | Hecha (rondas) | audiencia por debate (D7) |
+| PR-11 cierre del mandato | Hecha | bono de legado entre partidas (U9) |
+| PR-12 reelección por reforma | Hecha (ilustrativa) | art. 25 sin contrastar (D11); ¿segundo mandato en la misma partida? |
+| PR-13 oposición | Hecha, con Congreso en oposición | cartas propias más variadas |
+| PR-14 movimientos internos | Sin cambios; los gestiona el panel Gabinete | vincular a personas con PR-24 |
+| PR-15 apariencia | Parcial (color del emblema) | retratos modulares (arte) |
+| PR-16 habilidades | Hecha (4) | — |
+| PR-17 balas de plata | Hecha (5 cartas) | reglas finas, mazo aparte |
+| PR-18 a PR-23 presupuesto, elecciones, comisiones, Contraloría, autónomas, medios | Hecha como eventos con decisión (19) | pantallas propias, mini-juego de presupuesto |
+| PR-24 marco de actores | Primera versión | consecuencias |
+
+Mecánicas nuevas aún sin autorización (alcance congelado): noche electoral y carta que sigue al dedo (D9).
+
 # Propuestas del usuario y opinión de Claude
 
 **Registro consolidado de lo aceptado: `docs/DECISIONES.md`.** Registro de ideas habladas. Regla acordada el 24-nov-2026: **por ahora solo se conversa; nada se implementa hasta que el usuario diga «hazlo»**. Estados: hablada · aceptada · rechazada · por hacer · hecha.
@@ -47,7 +71,7 @@
 - La guía de prueba sigue en 10-15 minutos a propósito (primeros testers: recorrido corto).
 - Con sesiones de 20 minutos, el tutorial y las pantallas previas de PR-01 se justifican mejor; en cambio, los textos largos de eventos (P11 del video) siguen siendo un problema porque se repiten decenas de veces.
 
-## PR-02 — Jugar cartas arrastrándolas al mapa; el botón del medio pasa a «avanzar» (24-nov-2026) · estado: hablada
+## PR-02 — Jugar cartas arrastrándolas al mapa; el botón del medio pasa a «avanzar» (24-nov-2026) · estado: HECHA (25-nov-2026; botón «Terminar semana», deslizar y delegar; ver DECISIONES.md)
 
 **Idea del usuario (resumen fiel):** eliminar el botón de avanzar de abajo a la derecha; el botón de abajo al medio pasa a ser el de **avanzar**; la esquina inferior derecha queda **vacía**. Usar una carta = **agarrarla, deslizarla hacia el mapa y soltarla**, con una **animación y un sonido** y una **animación en el mapa**.
 
@@ -67,7 +91,7 @@
 
 **Pendiente de decidir (no urgente):** (a) ¿conservar un respaldo de toque? (b) ¿delegar soltando sobre el ícono izquierdo? (c) ¿confirmar al avanzar si sobran movimientos? (d) ¿vibración y ajuste de sonido?
 
-### PR-02b — ¿A quién se delega? (pregunta del usuario, 24-nov-2026) · estado: hablada
+### PR-02b — ¿A quién se delega? (pregunta del usuario, 24-nov-2026) · estado: HECHA (delegación en un ministro del gabinete; ver DECISIONES.md)
 
 **Pregunta:** si delegar es soltar la carta en la esquina izquierda, ¿cómo se indica a qué ministro o consejero se le delega?
 
@@ -88,7 +112,7 @@
 ### PR-02c — RETIRADA (24-nov-2026)
 El usuario aclaró que esos dos mensajes («Lo Jugadas accidentales.» y «Propongo arrastrar.») se enviaron por error. La interpretación y la opinión que Claude había registrado aquí se retiran y **no cuentan como decisión**. Sigue vigente solo lo anotado en PR-02 sobre jugadas accidentales (umbral, zona de cancelar, retroalimentación y respaldo de toque), pendiente de que el usuario lo acepte o lo cambie.
 
-## PR-04 — ¿Y los 25 ministros? Cómo elige el jugador un gabinete completo (24-nov-2026) · estado: hablada
+## PR-04 — ¿Y los 25 ministros? Cómo elige el jugador un gabinete completo (24-nov-2026) · estado: HECHA (25-nov-2026: 25 ministerios; ver DECISIONES.md)
 
 **Observación del usuario:** en Chile hay 25 ministros; si la delegación (PR-02b) y las cartas dependen del gabinete, ¿cómo escoge el jugador esos 25?
 
@@ -107,7 +131,7 @@ El usuario aclaró que esos dos mensajes («Lo Jugadas accidentales.» y «Propo
 
 **Decisiones pendientes:** (1) ¿A, B o C? (2) ¿cómo se conserva el peso de «mis ministros habilitan cartas»? (3) ¿cuántos ministerios son «núcleo»? (4) ¿cambiar un ministro cuesta capital político?
 
-## PR-05 — Gabinete completo con «rellenar» y ministros recreados desde personas reales (24-nov-2026) · estado: hablada
+## PR-05 — Gabinete completo con «rellenar» y ministros recreados desde personas reales (24-nov-2026) · estado: HECHA (botón «Rellenar»; ver DECISIONES.md)
 
 **Idea del usuario (resumen fiel):** poder **escoger los 25** o usar un **botón que rellene los que falten** (si relleno 24, rellena el último «en base al equilibrio o a lo más beneficioso»; si escojo uno, se rellenan los otros 24), **sin reemplazar nunca lo ya escogido**. Los candidatos serían **ministros reales que sigan vivos** (sean quienes sean), **recreados dejando su apellido pero no su nombre**, con su **ideología, experiencia, partido y estudios** reales.
 

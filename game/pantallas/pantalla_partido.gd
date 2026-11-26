@@ -33,7 +33,8 @@ func _ready() -> void:
 	var margen := MarginContainer.new()
 	margen.add_theme_constant_override("margin_left", 20)
 	margen.add_theme_constant_override("margin_right", 20)
-	margen.add_theme_constant_override("margin_top", 44)
+	var baja := Tema.pantalla_baja()  # teléfono bajo: menos aire para que la franja del perfil y el botón queden en pantalla
+	margen.add_theme_constant_override("margin_top", 32 if baja else 44)
 	margen.add_child(cab)
 	raiz.add_child(margen)
 	_titulo = Tema.etiqueta("", 18, Tema.TEXTO, true)
@@ -50,11 +51,16 @@ func _ready() -> void:
 	mc.size_flags_vertical = Control.SIZE_EXPAND_FILL
 	mc.add_theme_constant_override("margin_left", 16)
 	mc.add_theme_constant_override("margin_right", 16)
-	mc.add_theme_constant_override("margin_top", 16)
+	mc.add_theme_constant_override("margin_top", 8 if baja else 16)
 	raiz.add_child(mc)
 	_contenido = VBoxContainer.new()
-	_contenido.add_theme_constant_override("separation", 10)
-	mc.add_child(_contenido)
+	_contenido.add_theme_constant_override("separation", 6 if baja else 10)
+	_contenido.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	_contenido.size_flags_vertical = Control.SIZE_EXPAND_FILL  # llena el alto: el formulario conserva su propio desplazamiento
+	var desliza := ScrollContainer.new()  # con letra grande (1,3–1,5) las opciones se desplazan y la franja del perfil queda fija
+	desliza.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+	desliza.add_child(_contenido)
+	mc.add_child(desliza)
 	var franja := PanelContainer.new()
 	franja.add_theme_stylebox_override("panel", Tema.caja(Tema.CREMA, 0))
 	var fv := VBoxContainer.new()
@@ -64,7 +70,7 @@ func _ready() -> void:
 	fv.add_child(_franja_perfil)
 	fv.add_child(_franja_escanos)
 	var pie := Control.new()  # alto fijo: el botón principal queda en la misma posición sea cual sea la métrica del texto
-	pie.custom_minimum_size = Vector2(0, 53)
+	pie.custom_minimum_size = Vector2(0, roundf(53.0 * Ajustes.escala_texto()))  # crece con la letra grande para no cortar la segunda línea
 	pie.clip_contents = true
 	franja.set_anchors_preset(Control.PRESET_FULL_RECT)
 	pie.add_child(franja)
@@ -144,7 +150,7 @@ func _mostrar_pregunta() -> void:
 
 func _boton_opcion(letra: String, texto: String) -> Button:
 	var b := Button.new()
-	b.custom_minimum_size = Vector2(0, 62)
+	b.custom_minimum_size = Vector2(0, 52 if Tema.pantalla_baja() else 62)
 	b.add_theme_stylebox_override("normal", Tema.caja_degradada(Color("#1B4F78"), Color("#0F2F4A"), 18, Color("#3A6E98"), 2))
 	b.add_theme_stylebox_override("hover", Tema.caja_degradada(Color("#246190"), Color("#143A5C"), 18, Color("#F2C14E"), 2))
 	b.add_theme_stylebox_override("pressed", Tema.caja_degradada(Color("#0F2F4A"), Color("#1B4F78"), 18, Color("#F2C14E"), 2))

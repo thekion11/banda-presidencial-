@@ -6,6 +6,7 @@ extends RefCounted
 
 
 static func texto(v: Variant) -> String:
+	## Representación textual estable (claves ordenadas) de cualquier valor, para hashear sin depender del orden de los diccionarios.
 	if v is Dictionary:
 		var claves: Array = v.keys()
 		claves.sort()
@@ -31,6 +32,7 @@ static func texto(v: Variant) -> String:
 
 
 static func sha(v: Variant) -> String:
+	## SHA-256 del texto estable de un valor.
 	return texto(v).sha256_text()
 
 

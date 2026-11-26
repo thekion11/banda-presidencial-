@@ -15,6 +15,7 @@ func _init(p_motor: MotorTurno) -> void:
 
 
 func cargar(lista: Array) -> void:
+	## Carga el catálogo de los partidos de la coalición.
 	partidos.clear()
 	for p in lista:
 		partidos[String(p["id"])] = p
@@ -48,6 +49,7 @@ func _n_aliados() -> int:
 
 
 func unirse(id: String) -> Dictionary:
+	## Invita a un partido a la coalición del gobierno; devuelve {ok, razon}.
 	var est := m.estado
 	if est.etapa != "campana" and est.etapa != "gobierno" and est.etapa != "oposicion":
 		return {"ok": false, "razon": "partida_terminada"}
@@ -65,6 +67,7 @@ func unirse(id: String) -> Dictionary:
 
 
 func salir(id: String, ruptura: bool = false) -> Dictionary:
+	## Saca a un partido de la coalición (con ruptura si se va enojado); devuelve {ok, razon}.
 	var _m := m  # una sola resolución de la referencia débil por llamada (cada acceso a `m` cuesta ~0,5 us)
 	var est := _m.estado
 	if not est.coalicion.has(id):
@@ -127,6 +130,7 @@ func cumplimiento(id: String) -> float:
 
 
 func objetivo(id: String) -> float:
+	## Satisfacción hacia la que tiende un aliado según se cumplan sus peticiones y su afinidad ideológica.
 	return 100.0 * cumplimiento(id) * (1.0 - float(_cfg()["peso_ideologia"]) * (1.0 - afinidad(id)))
 
 

@@ -241,6 +241,13 @@ static func perilla(radio: float, relleno: Color, borde: Color) -> ImageTexture:
 	return _cache_perilla[clave]
 
 
+static func pantalla_baja() -> bool:
+	## Teléfono bajo: con ancho lógico 390 (keep_width), un 360×640 queda en 390×693. Las pantallas compactan alturas
+	## fijas (mano, Corrector, hemiciclo, brújula) para que todo quepa y el botón principal quede en pantalla.
+	var arbol := Engine.get_main_loop() as SceneTree
+	return arbol != null and arbol.root.get_visible_rect().size.y < 760.0
+
+
 static func caja(color: Color, radio: int = 14, borde: Color = Color(0, 0, 0, 0), grosor: int = 0) -> StyleBoxFlat:
 	var s := StyleBoxFlat.new()
 	s.bg_color = color
@@ -259,7 +266,7 @@ static func etiqueta(texto: String, tam: int = 12, color: Color = TEXTO, titulo:
 	var l := Label.new()
 	l.text = texto
 	l.add_theme_font_override("font", fuente_titulo() if titulo else fuente_texto(peso))
-	l.add_theme_font_size_override("font_size", roundi(float(tam) * 1.15) if Ajustes.texto_grande else tam)
+	l.add_theme_font_size_override("font_size", roundi(float(tam) * Ajustes.escala_texto()))
 	l.add_theme_color_override("font_color", color)
 	l.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	l.mouse_filter = Control.MOUSE_FILTER_IGNORE

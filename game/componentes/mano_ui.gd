@@ -8,6 +8,7 @@ signal arrastrada(pos: Vector2)  # gesto de jugar la carta elegida: deslizarla h
 
 const ANCHO := 104.0
 const ALTO := 170.0
+var arriba: float = 46.0  # altura de reposo de las cartas en la mano (menos en pantallas bajas)
 const PULSACION_LARGA_MS := 450  # mantener el dedo sobre una carta abre su ficha ampliada (P10)
 
 var _pos_prev: Dictionary = {}  # id de carta -> última posición de reposo
@@ -90,8 +91,15 @@ func pintar(motor: MotorTurno, sel: int, ministro: String = "", nuevas: Array = 
 		h.queue_free()
 	var est := motor.estado
 	var n := est.mano.size()
-	if n == 0:
+	if n == 0:  # estado vacío: la zona de la mano dice qué pasa y qué hacer, en vez de quedar en blanco
 		_pos_prev.clear()
+		var vacio := Tema.etiqueta("Sin cartas en la mano\nTermina la semana: al empezar la próxima entran cartas nuevas.", 13, Tema.TEXTO_SUAVE)
+		vacio.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		vacio.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+		vacio.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+		vacio.offset_left = 24.0
+		vacio.offset_right = -24.0
+		add_child(vacio)
 		return
 	var paso := 0.0 if n < 2 else minf(ANCHO * 0.8, (Tema.ANCHO - 20.0 - ANCHO) / float(n - 1))
 	var x0 := (Tema.ANCHO - (ANCHO + paso * float(n - 1))) * 0.5
@@ -114,13 +122,13 @@ func pintar(motor: MotorTurno, sel: int, ministro: String = "", nuevas: Array = 
 		c.atenuada = i != sel or costo > est.pa_actual
 		c.size = Vector2(ANCHO, ALTO)
 		c.pivot_offset = Vector2(ANCHO * 0.5, ALTO)
-		var reposo := Vector2(x0 + paso * float(i), 46.0)
+		var reposo := Vector2(x0 + paso * float(i), arriba)
 		var rot := float(i - (n - 1) * 0.5) * 5.0
 		var esc := Vector2.ONE
 		var destino := reposo
 		if i == sel:
 			esc = Vector2(1.15, 1.15)
-			destino.y = 44.0  # sube y crece sin tapar la cabecera "Tu mano"
+			destino.y = arriba - 2.0  # sube y crece sin tapar la cabecera "Tu mano"
 			rot = 0.0
 		_pos_prev[id] = destino
 		c.tocada.connect(func(_c: CartaUI) -> void: tocada.emit(i))

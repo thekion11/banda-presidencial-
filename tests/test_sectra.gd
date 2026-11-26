@@ -32,9 +32,13 @@ func _init() -> void:
 	_check(motor.sectra.en_curso() == 3, "máximo simultáneo = 3")
 	_check(not bool(motor.impulsar_proyecto(String(lista[otros]["id"]))["ok"]), "el cuarto trámite simultáneo se rechaza")
 	motor.terminar_turno()
-	var guard := {"semilla": motor.estado.semilla, "partido": motor.estado.partido, "entradas": motor.estado.entradas.duplicate(true)}
+	var guard: Dictionary = motor.estado.exportar_guardado()  # el guardado completo (con su versión), como lo escribe el juego
 	var h1 := motor.estado.calcular_huella()
 	var rep := Partida.reproducir(datos, guard)
+	_check(rep != null, "el guardado propio se reproduce")
+	if rep == null:
+		quit(1)
+		return
 	_check(rep.estado.calcular_huella() == h1, "replay idéntico con proyectos SECTRA")
 	var obras0 := motor.estado.obras_en_curso.size()
 	for _i in range(40):

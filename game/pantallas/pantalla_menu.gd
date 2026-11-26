@@ -32,7 +32,7 @@ func _ready() -> void:
 	sup.size_flags_vertical = Control.SIZE_SHRINK_CENTER
 	marca.add_child(sup)
 	col.add_child(marca)
-	col.add_child(Tema.etiqueta("Presidente\nde Chile", 46, Tema.TEXTO, true))
+	col.add_child(Tema.etiqueta_corta("Presidente\nde Chile", 46, Tema.TEXTO, true))  # 46 pt: no necesita crecer con «Texto grande»
 	col.add_child(_cinta())
 	col.add_child(Tema.etiqueta("Funda tu partido, gana la elección y gobierna cuatro años, una semana por turno.", 14, Tema.TEXTO_SUAVE))
 	var esp := Control.new()

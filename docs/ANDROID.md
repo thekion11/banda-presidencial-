@@ -16,3 +16,5 @@ Estado: el APK de depuración se exporta y firma (≈ 30 MB, arm64-v8a). **No se
 - API objetivo vigente de Google Play (verificar antes de publicar; el Documento Maestro menciona 36).
 - Prueba cerrada con 12+ testers durante 14 días; declarar contenido político satírico y uso de IA en ilustraciones.
 - Regiones pesadas por Play Asset Delivery si el paquete base supera 150 MB (hoy no hace falta).
+
+Guía de firma para la prueba cerrada (keystore, secretos del CI, versión, AAB): `docs/FIRMA_APK_PRUEBA_CERRADA.md`.

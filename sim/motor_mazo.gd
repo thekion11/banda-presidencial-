@@ -13,6 +13,7 @@ func _init(p_motor: MotorTurno) -> void:
 
 
 func robar(n: int) -> void:
+	## Roba cartas disponibles hasta completar la mano, rearmando el mazo desde el descarte si hace falta.
 	var _m := m  # una sola resolución de la referencia débil por llamada (cada acceso a `m` cuesta ~0,5 us)
 	var e := _m.estado
 	var intentos := e.mazo.size() + e.descarte.size() + _m.catalogo_cartas.size()  # tope: si nada está disponible, no se cuelga
@@ -77,6 +78,7 @@ func _completar_disenadas(n_dis: int, minimo: int) -> void:
 
 
 func reponer() -> bool:
+	## Devuelve al mazo las cartas del descarte que vuelven a estar disponibles; true si pudo reponer.
 	var _m := m  # una sola resolución de la referencia débil por llamada (cada acceso a `m` cuesta ~0,5 us)
 	var e := _m.estado
 	var presentes := {}

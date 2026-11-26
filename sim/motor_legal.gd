@@ -7,6 +7,7 @@ var rng: RandomNumberGenerator
 
 
 func configurar(p_leyes: Dictionary, p_rng: RandomNumberGenerator) -> void:
+	## Enlaza las leyes y el generador de azar de la partida.
 	leyes = p_leyes
 	rng = p_rng
 	var h: Dictionary = leyes.get("hemiciclo", {})
@@ -31,6 +32,7 @@ func umbral(t: Dictionary, total: int) -> int:
 
 
 func tipo(id: String) -> Dictionary:
+	## Definición de un tipo de ley (quórum, trámite, TC); {} si no existe.
 	for t in leyes.get("tipos_ley", []):
 		if t["id"] == id:
 			return t
@@ -42,6 +44,7 @@ func _votos_camara(propios: int, total: int, apoyo: float) -> int:
 
 
 func votar(estado: EstadoSimulacion, tipo_id: String, votos_firmes_senado: int = -1) -> Dictionary:
+	## Simula la votación de un tipo de ley en el Senado y la Cámara; devuelve votos, quórums y si fue aprobada (usa el azar).
 	var t := tipo(tipo_id)
 	if t.is_empty():
 		return {"aprobada": false, "razon": "tipo_desconocido"}
@@ -88,7 +91,8 @@ func composicion(estado: EstadoSimulacion, camara: bool) -> Dictionary:
 	if camara:
 		propios = roundi(float(propios) * float(total) / float(h["total_senadores"]))
 	var apoyo := clampf(float(c["apoyo_base"]) + float(c["peso_capital"]) * estado.ind("capital") + float(c["peso_cohesion"]) * estado.ind("cohesion"), 0.0, 1.0)
-	var aliados := roundi(float(total - propios) * apoyo) + int(estado.apoyo_coalicion["camara" if camara else "senado"])
+	var coalicion := int(estado.apoyo_coalicion["camara" if camara else "senado"])
+	var aliados := roundi(float(maxi(0, total - propios - coalicion)) * apoyo) + coalicion  # como votar(): los escaños de la coalición salen del resto antes de aplicar el apoyo
 	return {"total": total, "propios": propios, "aliados": aliados, "oposicion": maxi(0, total - propios - aliados)}
 
 
@@ -105,6 +109,7 @@ func resolver_tc(tipo_id: String, prob_exito_override: float = -1.0) -> Dictiona
 
 
 static func fmt_cifra(n: float, unidad: String) -> String:
+	## Formatea una cifra para los mensajes del corrector («12 mil km»).
 	var txt: String
 	if absf(n) >= 10000.0:
 		txt = "%d mil" % roundi(n / 1000.0)

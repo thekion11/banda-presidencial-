@@ -97,6 +97,7 @@ func _decisiones_ultimo_anio(ahora: int) -> int:
 
 
 func elegir_evento(grupo: Dictionary) -> Dictionary:
+	## Elige el evento aleatorio de la semana (o {} si no ocurre ninguno) respetando descansos, estaciones y el ritmo de decisiones del año.
 	if grupo.is_empty():
 		return {}
 	return _elegir(grupo)

@@ -63,6 +63,10 @@ python3 tools/check_limits.py
 python3 tools/check_constantes.py      # ningún número de balance nuevo en sim/
 python3 tools/validate_tipos.py        # estructura y tipos de data/leyes.json
 python3 tools/test_validate.py         # pruebas negativas de los validadores
+python3 tools/check_entradas.py        # cada tipo de entrada del guardado está en ValidarGuardado
+python3 tools/generar_api.py --verificar  # toda función pública de sim/ está documentada (regenera docs/API_SIM.md)
+python3 tools/mutar.py godot 24 1      # mutación acotada de sim/ (lista mutantes que ninguna prueba mata; ≈ 15 min)
+python3 tools/cobertura_funciones.py godot  # funciones de sim/ que ninguna prueba ejecuta (≈ 15 min)
 tools/run_all_tests.sh                 # TODO lo del CI en un solo comando (validadores, tests/test_*.gd y fuzz)
 godot --headless --import --path .
 godot --headless --path . -s tests/test_prueba_oro_4_semanas.gd
@@ -100,6 +104,8 @@ godot --headless --path . -s tests/test_claridad.gd
 godot --headless --path . -s tests/test_tactil.gd
 godot --headless --path . -s tests/test_textos.gd
 godot --headless --path . -s tests/test_tapa.gd
+godot --headless --path . -s tests/test_paleta.gd
+godot --headless --path . -s tests/test_estados.gd
 godot --headless --path . -s tests/test_razones.gd             # toda razón de rechazo del motor tiene texto
 godot --headless --path . -s tests/test_sin_atascos.gd         # siempre hay mano y carta jugable (3 dificultades x 3 afiliaciones)
 godot --headless --path . -s tests/test_cobertura.gd           # cartas por área de ministerio y año
@@ -115,5 +121,8 @@ godot --headless --path . -s tests/test_rendimiento.gd         # turno < 1 ms y 
 godot --headless --path . -s tests/montecarlo.gd -- 200        # informe de balance
 xvfb-run -a godot --path . --rendering-method gl_compatibility --resolution 390x844 -s tests/medir_memoria.gd   # informe de RAM por pantalla
 xvfb-run -a godot --path . --rendering-method gl_compatibility --resolution 390x844 -s tests/medir_cuadros.gd   # llamadas de dibujo por escena
+xvfb-run -a godot --path . --rendering-method gl_compatibility --resolution 390x844 -s tests/medir_transiciones.gd   # costo por cuadro de cada animación
+godot --headless --path . -s tests/medir_toques.gd -- 3 30        # informe de toques por acción y por semana
+python3 tools/diferencia_maqueta.py /tmp/capturas                 # diferencia numérica con la maqueta (tras captura_comparar)
 xvfb-run -a godot --path . --rendering-method gl_compatibility --resolution 390x844 -s tests/captura_comparar.gd -- /tmp/capturas   # estados de la maqueta
 ```

@@ -296,3 +296,39 @@ Regla (CLAUDE.md §2): políticos reales con alias satíricos, personajes de pan
 - **Trazabilidad de mecánicas** de CLAUDE.md §2: `docs/TRAZABILIDAD_MECANICAS.md`. Se agregó `test_calendario_fechas` (las cuatro fechas reales contra las semanas del juego).
 - **Pruebas nuevas:** `test_unidades_sim`, `test_gabinete_fuzz` (400 composiciones del gabinete de 25), y la matriz por dificultad en `test_balance` (fácil ≥ 90 %, normal ≥ 80 %, difícil 30-75 % de elección ganada con el codicioso; azar difícil ≤ 15 %; pasivo difícil ≤ 5 %; «completo» ≤ 10 % de crisis).
 - **Reloj al caer por crisis:** `continuar_carrera` cuenta también la semana del turno en que cae el gobierno (hallazgo de «Búsqueda infinita de fallas»).
+
+## AO. Composición del Congreso con coalición (26-nov-2026, hallazgo de «Búsqueda infinita de fallas»)
+- `MotorLegal.composicion` sumaba los escaños de la coalición sin descontarlos del resto de la cámara, a diferencia de `votar`: en el 20 % de 3.472 observaciones propios + aliados pasaba del total (hasta 23 escaños) y el panel podía mostrar oposición 0 con votos en contra reales. Ahora los escaños de la coalición salen del resto antes de aplicar el apoyo. Solo cambia lo que muestra el panel; `votar` y las huellas no cambian. Prueba: nuevo chequeo en `test_congreso_invariantes` (propios + aliados ≤ total).
+
+## AP. Lint, duración de sesión y coherencia de documentos (26-nov-2026, cola 6 de la coordinadora)
+- **Lint:** `godot --headless --check-only` sobre los 70 scripts de `sim/` y `game/` sin errores (tras `--import`); en `sim/` no hay variables locales sin usar ni variables sin tipo (156 bucles, 0 `var x =` sin tipo). Los avisos de GDScript adicionales no se emiten en modo headless con este binario, así que no se pudo activar un conjunto más estricto.
+- **Duración:** `docs/DURACION_SESION.md`: un mandato de 203 semanas cuesta ≈ 6 sesiones de 20 minutos (4 a 10 según el ritmo; ≈ 34 semanas por sesión). Es estimación con supuestos de toque, no medición. Sigue abierta la decisión de duración de la partida.
+- **Coherencia (solo texto, corregido):** la ficha de Google Play decía «un turno por sesión, de 3 a 8 minutos» (ahora «unos 20 minutos»); `DISENO_V2.md` aún tenía PR-04 «en discusión» (resuelto el 25-nov: 25 ministerios); `ESTADO_FASES.md` citaba el 75 % de victoria del codicioso y 0 % de crisis como cifras vigentes (ahora aclara que eran de entonces). Contradicciones que requieren decisión del usuario: ninguna nueva; las cifras de conteo (cartas, eventos) en `REVISION.md`, `INFORME_BALANCE.md` y `ANALISIS_PROFUNDIDAD.md` son fotos fechadas de cada análisis y se dejan como están. Hoy: 1.964 cartas (99 diseñadas, 1.685 reales, 180 curadas) y 180 eventos (142 + 38 reales).
+
+## AQ. Finales límite, métricas y riesgos de Play (26-nov-2026, cola 6)
+- **`tests/test_finales_limite.gd`:** un voto exactamente en el umbral de elección gana (`>=`), una milésima menos pasa a segunda vuelta, bajo el piso de balotaje se pierde con puntaje 0; una aprobación justo en el umbral de crisis no suma semanas de crisis y una milésima menos sí; caer por crisis en la última semana es «crisis» (sin sucesión) y no «fin de mandato»; el fin de mandato exacto da puntaje no negativo, epílogo y sucesión. Todos pasan: no hubo fallos del motor, solo hubo que fijar la aprobación en cada región (el promedio regional manda).
+- **Partición de `cartas_reales.json`:** no se hace. No baja el tiempo de carga (se lee lo mismo) y solo ayudaría a revisar diffs; queda propuesta en `docs/ARQUITECTURA_SIM.md`.
+- **Métricas locales con consentimiento:** propuesta sin implementar en `docs/PRUEBA_CERRADA.md` §6 (mecánica nueva: la decide el usuario).
+- **Riesgos de Play Store:** `docs/RIESGOS_PLAY_STORE.md` (datos, contenido político, clasificación por edad, licencias, requisitos técnicos).
+
+## AR. Cola 7: secretos, contenido, formato del guardado (26-nov-2026)
+- **Escaneo de secretos:** sin coincidencias de claves, tokens, llaves privadas ni URLs con credenciales en el árbol ni en el historial desde el 23-nov; ningún keystore, `.env` ni cuenta de servicio versionado; `export_presets.cfg` no contiene claves. La contraseña `android` del keystore de depuración del CI es la pública estándar. `.gitignore` ampliado (`*.p12`, `*.pfx`, `*.pem`, `*.key`, `.env.*`, `key.properties`, `local.properties`, `google-services.json`, cuentas de servicio). Guía de firma en `docs/FIRMA_APK_PRUEBA_CERRADA.md`: el CI genera el APK de depuración pero no lo arranca; faltan keystore propio, secretos del CI, versión y AAB (todo del usuario).
+- **CHANGELOG:** `docs/CHANGELOG.md` se genera con `tools/generar_changelog.py` (84 commits de hoy por área).
+- **Contenido de `data/`:** sin cifras sin rótulo en lo diseñado (todo lleva fuente o `es_ilustrativa`); 5 cartas reales traen la cifra del proyecto en su nombre oficial (viviendas), con fuente; los títulos repetidos son eventos anuales (presupuesto, Fiestas Patrias) o rondas de debate, a propósito; **dos eventos reales del 9-oct-2026 comparten título «Se publica la Ley N° 21.841»** (boletines 18237-33 y 18157-33, descripciones distintas): se dejan porque la fuente así los publica. Los 15 partidos son ficticios y ninguno coincide con un partido real; ministros y asesores usan alias genéricos. `tools/validar_textos.py` rechaza ahora insultos y etiquetas de bando (corrupto, fascista, comunista, zurdo…); no había ninguno.
+- **Formato del guardado:** `docs/FORMATO_GUARDADO.md`, `ValidarGuardado.VERSION` (el archivo con versión mayor se rechaza) y `tests/test_formato_guardado.gd` (falla si el formato cambia sin subir la versión).
+
+## AS. Documentación de la API de sim/ (26-nov-2026, cola 7)
+- 127 de las 210 funciones públicas de `sim/` no tenían documentación; ahora todas la tienen (`##` en el cuerpo o comentario al final de la firma en los atajos de una línea y en `motor_turno.gd`, que está al límite de 220 líneas). `tools/generar_api.py` genera `docs/API_SIM.md` y con `--verificar` falla si una función pública queda sin documentar (en el CI y en `run_all_tests.sh`). Solo comentarios: las huellas no cambian.
+
+## AT. Consistencia de nombres y comentarios (26-nov-2026, cola 7)
+- Revisión de `sim/`, `tests/`, `tools/` y `game/`: no hay comentarios en inglés, ni identificadores de función en inglés, ni faltas de tilde en comentarios (las únicas coincidencias son claves de datos sin tilde a propósito, como `aprobacion` o `politica`, que son identificadores). Convención vigente: identificadores en español sin tildes (`snake_case`), comentarios y textos en español con tildes. No hubo nada que corregir.
+- Mutantes de «Búsqueda infinita de fallas» (M01 y siguientes): todavía no llegó ninguno; cuando lleguen, cada uno se mata con una prueba y se anota aquí.
+
+## AU. Mutantes vivos y su prueba (26-nov-2026, «Búsqueda infinita de fallas»)
+`tests/test_mutantes.gd` mata los cuatro mutantes que sobrevivían a la suite (se comprobó aplicando cada mutación a mano: la prueba falla, y con el código real pasa):
+| Mutante | Prueba |
+|---|---|
+| M01 `sen >= min_sen` → `>` en `MotorLegal.votar` | Con el Senado exactamente en el mínimo la ley se aprueba y un voto menos no |
+| M02 sin `clampf` en la intención de voto de `Encuestas.registrar` | Aprobación 0,5 / 1 / 99 / 99,5 en los 8 turnos: la intención queda en 0..100 |
+| M03 sin `maxi(0, …)` en la penalización por malestar de la coalición (equivalente con los datos actuales) | Con `penal_internos_malestar` = 10 los movimientos internos no bajan de 0 |
+| M04 tope del apoyo 1.0 → 2.0 en `votar` (equivalente con los datos actuales) | Con `apoyo_base` 0,6 y capital y cohesión 100, el ruido aún baja los votos del Senado bajo el total; y `composicion` no suma más que la cámara (el mismo tope en `composicion`) |
