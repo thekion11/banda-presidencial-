@@ -158,71 +158,16 @@ func _transformar(p: Vector2) -> Vector2:
 
 
 func _draw() -> void:
-	var fondo := PackedColorArray([Color("#0E2B45"), Color("#0E2B45"), Color("#0A1E31"), Color("#0A1E31")])
-	draw_polygon(PackedVector2Array([Vector2.ZERO, Vector2(size.x, 0), size, Vector2(0, size.y)]), fondo)
-	var reja := PackedVector2Array()  # cuadrícula y olas en una sola llamada de dibujo cada una (antes ~220 llamadas por cuadro)
-	for gx in range(0, int(size.x), 26):
-		reja.append_array([Vector2(gx, 0), Vector2(gx, size.y)])
-	for gy in range(0, int(size.y), 26):
-		reja.append_array([Vector2(0, gy), Vector2(size.x, gy)])
-	draw_multiline(reja, Color(1, 1, 1, 0.035), 1.0)
-	var olas := PackedVector2Array()
-	var fila := 0
-	for gy in range(14, int(size.y), 20):
-		for gx in range(int(fila % 2) * 15, int(size.x), 30):
-			for k in range(5):  # arco de 6 puntos entre 0,15π y 0,85π, como draw_arc
-				var a0 := PI * (0.15 + 0.14 * float(k))
-				olas.append_array([Vector2(gx, gy) + Vector2(cos(a0), sin(a0)) * 4.5, Vector2(gx, gy) + Vector2(cos(a0 + PI * 0.14), sin(a0 + PI * 0.14)) * 4.5])
-		fila += 1
-	draw_multiline(olas, Color(0.55, 0.78, 1.0, 0.10), 1.2)
-	draw_set_transform_matrix(_camara)
-	for id in _piezas.keys():
-		var col := Tema.color_aprobacion(float(valores.get(id, 50.0)))
-		if id == seleccion:
-			col = col.lightened(0.18)
-		if id == _destello_id and _destello > 0.0:
-			col = col.lerp(Tema.CREMA, 0.55 * _destello)
-		if _mallas.has(id):
-			var h := size.y - 16.0
-			draw_set_transform_matrix(_camara * Transform2D(0.0, Vector2(h * estirar_x, h), 0.0, _transformar(Vector2.ZERO) + Vector2(5.0, 6.0)))
-			draw_mesh(_mallas[id], null, Transform2D.IDENTITY, Color(0, 0, 0, 0.38))
-			var origen := _transformar(Vector2.ZERO)
-			draw_set_transform_matrix(_camara * Transform2D(0.0, Vector2(h * estirar_x, h), 0.0, origen))
-			draw_mesh(_mallas[id], null, Transform2D.IDENTITY, col)
-			if _relieve != null:
-				draw_mesh(_mallas[id], _relieve, Transform2D.IDENTITY, Color(1, 1, 1, 0.7))
-			draw_set_transform_matrix(_camara)
-	var bordes := PackedVector2Array()  # contornos (116 piezas): uno solo draw_multiline tras los rellenos; la región elegida va encima
-	for id in _piezas.keys():
-		if id != seleccion:
-			for pts in _contornos(id):
-				bordes.append_array(_segmentos(pts))
-	draw_multiline(bordes, Color(1, 0.97, 0.9, 0.5), 0.9, false)  # sin suavizado: con suavizado la CPU de render se triplicaba (tests/medir_transiciones.gd)
-	for pts in (_contornos(seleccion) if _piezas.has(seleccion) else []):
-		draw_polyline(pts, Tema.ORO, 2.5, true)
-	var cerros := PackedVector2Array()  # Cordillera: todos los cerros en un solo arreglo de triángulos (antes 3 llamadas por cerro)
-	var tonos := PackedColorArray()
-	for i in range(0, _este.size(), 2):
-		var q := _transformar(_este[i] + Vector2(0.004, 0.0))
-		var h := 5.0 + float((i * 7) % 4)
-		var q2 := q + Vector2(9.0, 7.0)
-		cerros.append_array([q + Vector2(-5, h * 0.6), q + Vector2(0, -h), q + Vector2(5, h * 0.6), q + Vector2(-2.2, -h * 0.35), q + Vector2(0, -h),
-			q + Vector2(2.2, -h * 0.35), q2 + Vector2(-3.5, 3), q2 + Vector2(0, -3.5), q2 + Vector2(3.5, 3)])
-		for c: Color in [Color("#2F6288", 0.65), Color(1, 1, 1, 0.55), Color("#2F6288", 0.35)]:
-			tonos.append_array([c, c, c])
-	if not cerros.is_empty():
-		var idx := PackedInt32Array(range(cerros.size()))
-		RenderingServer.canvas_item_add_triangle_array(get_canvas_item(), idx, cerros, tonos)
-	var fuente := Tema.fuente_texto(600)
-	for c in (_ciudades if ciudades_visibles else []):
-		if c["nombre"] == "Santiago":
-			continue
-		var pc := _transformar(Vector2(float(c["x"]), float(c["y"])))
-		draw_circle(pc, 3.6, Tema.CREMA)
-		draw_circle(pc, 2.0, Tema.OCEANO)
-		var nombre := String(c["nombre"])
-		var ancho_txt := fuente.get_string_size(nombre, HORIZONTAL_ALIGNMENT_LEFT, -1, 10).x
-		draw_string(fuente, Vector2(pc.x - 8.0 - ancho_txt, pc.y + 3.5), nombre, HORIZONTAL_ALIGNMENT_LEFT, -1, 10, Tema.TEXTO)
+	## Quieto, la capa base (océano, regiones, contornos, Cordillera y ciudades) sale de una textura pintada una vez
+	## (UrbanoCache): ~7,7 ms de CPU de render menos por cuadro (tests/medir_transiciones.gd). Mientras reacciona a una
+	## carta (golpe de cámara, destello, ondas) se dibuja en vivo.
+	var animando := _camara != Transform2D.IDENTITY or _onda.has("pos") or _destello > 0.0
+	if animando:
+		_pintar_base(self, Transform2D.IDENTITY, _camara)
+	else:
+		_base_en_cache()
+		draw_texture_rect(_textura_base.get_texture(), Rect2(Vector2.ZERO, size), false)
+		draw_set_transform_matrix(_camara)
 	if _onda.has("pos"):  # ondas del impacto de la carta en la región
 		var o := _onda
 		var t: float = o["t"]
@@ -247,6 +192,88 @@ func _draw() -> void:
 			draw_rect(Rect2(r.position.x + 74.0 + float(k) * 1.4, r.position.y + 9.0, 1.6, 8.0), Tema.color_aprobacion(30.0 + float(k) / 59.0 * 30.0))
 	if _vivo != null:
 		_vivo.queue_redraw()  # obras y propuestas se dibujan en la capa viva (siguen al golpe de cámara)
+
+
+func _pintar_base(ci: CanvasItem, base: Transform2D, cam: Transform2D) -> void:
+	ci.draw_set_transform_matrix(base)
+	var fondo := PackedColorArray([Color("#0E2B45"), Color("#0E2B45"), Color("#0A1E31"), Color("#0A1E31")])
+	ci.draw_polygon(PackedVector2Array([Vector2.ZERO, Vector2(size.x, 0), size, Vector2(0, size.y)]), fondo)
+	var reja := PackedVector2Array()  # cuadrícula y olas en una sola llamada de dibujo cada una (antes ~220 llamadas por cuadro)
+	for gx in range(0, int(size.x), 26):
+		reja.append_array([Vector2(gx, 0), Vector2(gx, size.y)])
+	for gy in range(0, int(size.y), 26):
+		reja.append_array([Vector2(0, gy), Vector2(size.x, gy)])
+	ci.draw_multiline(reja, Color(1, 1, 1, 0.035), 1.0)
+	var olas := PackedVector2Array()
+	var fila := 0
+	for gy in range(14, int(size.y), 20):
+		for gx in range(int(fila % 2) * 15, int(size.x), 30):
+			for k in range(5):  # arco de 6 puntos entre 0,15π y 0,85π, como draw_arc
+				var a0 := PI * (0.15 + 0.14 * float(k))
+				olas.append_array([Vector2(gx, gy) + Vector2(cos(a0), sin(a0)) * 4.5, Vector2(gx, gy) + Vector2(cos(a0 + PI * 0.14), sin(a0 + PI * 0.14)) * 4.5])
+		fila += 1
+	ci.draw_multiline(olas, Color(0.55, 0.78, 1.0, 0.10), 1.2)
+	ci.draw_set_transform_matrix(base * cam)
+	for id in _piezas.keys():
+		var col := Tema.color_aprobacion(float(valores.get(id, 50.0)))
+		if id == seleccion:
+			col = col.lightened(0.18)
+		if id == _destello_id and _destello > 0.0:
+			col = col.lerp(Tema.CREMA, 0.55 * _destello)
+		if _mallas.has(id):
+			var h := size.y - 16.0
+			ci.draw_set_transform_matrix(base * cam * Transform2D(0.0, Vector2(h * estirar_x, h), 0.0, _transformar(Vector2.ZERO) + Vector2(5.0, 6.0)))
+			ci.draw_mesh(_mallas[id], null, Transform2D.IDENTITY, Color(0, 0, 0, 0.38))
+			var origen := _transformar(Vector2.ZERO)
+			ci.draw_set_transform_matrix(base * cam * Transform2D(0.0, Vector2(h * estirar_x, h), 0.0, origen))
+			ci.draw_mesh(_mallas[id], null, Transform2D.IDENTITY, col)
+			if _relieve != null:
+				ci.draw_mesh(_mallas[id], _relieve, Transform2D.IDENTITY, Color(1, 1, 1, 0.7))
+			ci.draw_set_transform_matrix(base * cam)
+	var bordes := PackedVector2Array()  # contornos (116 piezas): uno solo draw_multiline tras los rellenos; la región elegida va encima
+	for id in _piezas.keys():
+		if id != seleccion:
+			for pts in _contornos(id):
+				bordes.append_array(_segmentos(pts))
+	ci.draw_multiline(bordes, Color(1, 0.97, 0.9, 0.5), 0.9, false)  # sin suavizado: con suavizado la CPU de render se triplicaba (tests/medir_transiciones.gd)
+	for pts in (_contornos(seleccion) if _piezas.has(seleccion) else []):
+		ci.draw_polyline(pts, Tema.ORO, 2.5, true)
+	var cerros := PackedVector2Array()  # Cordillera: todos los cerros en un solo arreglo de triángulos (antes 3 llamadas por cerro)
+	var tonos := PackedColorArray()
+	for i in range(0, _este.size(), 2):
+		var q := _transformar(_este[i] + Vector2(0.004, 0.0))
+		var h := 5.0 + float((i * 7) % 4)
+		var q2 := q + Vector2(9.0, 7.0)
+		cerros.append_array([q + Vector2(-5, h * 0.6), q + Vector2(0, -h), q + Vector2(5, h * 0.6), q + Vector2(-2.2, -h * 0.35), q + Vector2(0, -h),
+			q + Vector2(2.2, -h * 0.35), q2 + Vector2(-3.5, 3), q2 + Vector2(0, -3.5), q2 + Vector2(3.5, 3)])
+		for c: Color in [Color("#2F6288", 0.65), Color(1, 1, 1, 0.55), Color("#2F6288", 0.35)]:
+			tonos.append_array([c, c, c])
+	if not cerros.is_empty():
+		var idx := PackedInt32Array(range(cerros.size()))
+		RenderingServer.canvas_item_add_triangle_array(ci.get_canvas_item(), idx, cerros, tonos)
+	var fuente := Tema.fuente_texto(600)
+	for c in (_ciudades if ciudades_visibles else []):
+		if c["nombre"] == "Santiago":
+			continue
+		var pc := _transformar(Vector2(float(c["x"]), float(c["y"])))
+		ci.draw_circle(pc, 3.6, Tema.CREMA)
+		ci.draw_circle(pc, 2.0, Tema.OCEANO)
+		var nombre := String(c["nombre"])
+		var ancho_txt := fuente.get_string_size(nombre, HORIZONTAL_ALIGNMENT_LEFT, -1, 10).x
+		ci.draw_string(fuente, Vector2(pc.x - 8.0 - ancho_txt, pc.y + 3.5), nombre, HORIZONTAL_ALIGNMENT_LEFT, -1, 10, Tema.TEXTO)
+
+
+var _textura_base: UrbanoCache
+
+
+func _base_en_cache() -> void:
+	if _textura_base == null:
+		_textura_base = UrbanoCache.new()
+		add_child(_textura_base)
+	var s := clampf(get_viewport().get_final_transform().get_scale().x, 1.0, 4.0)  # escala real de la pantalla: nítido en el teléfono
+	var clave := "%d|%s|%.3f|%.3f|%s|%s|%.2f" % [hash(valores), seleccion, estirar_x, x_centro_rel, ciudades_visibles, _relieve != null, s]
+	_textura_base.pintar = func(ci: CanvasItem) -> void: _pintar_base(ci, Transform2D(0.0, Vector2(s, s), 0.0, Vector2.ZERO), Transform2D.IDENTITY)
+	_textura_base.preparar(size, s, clave)
 
 
 func reaccionar(id: String, color: Color) -> void:
@@ -282,31 +309,6 @@ func lanzar_fuegos(id: String, demora: float = 0.0) -> void:
 	for k in range(3):
 		_fuegos.append({"id": id, "dx": -18.0 + 18.0 * float(k), "inicio": _t + demora + 0.28 * float(k), "color": [Tema.ORO, Tema.CREMA, Tema.ROJO][k]})
 	get_tree().create_timer(demora).timeout.connect(func() -> void: Feedback.sonar("exito"))
-
-
-func _dibujar_fuegos(v: Control) -> void:
-	var vivos: Array[Dictionary] = []
-	for f in _fuegos:
-		var l := _t - float(f["inicio"])
-		if l > 1.6:
-			continue
-		vivos.append(f)
-		if l < 0.0:
-			continue
-		var base := centro(String(f["id"])) + Vector2(float(f["dx"]), 0.0)
-		var col: Color = f["color"]
-		if l < 0.4:  # sube el cohete
-			var p := base + Vector2(0.0, -36.0 * (l / 0.4))
-			v.draw_circle(p, 2.5, col)
-			v.draw_line(p, p + Vector2(0.0, 10.0), Color(col, 0.5), 1.5)
-			continue
-		var k := (l - 0.4) / 1.2  # estalla en 16 chispas con caída
-		var c := base + Vector2(0.0, -36.0)  # sube poco: el mapa es angosto y la explosión debe quedar sobre la región
-		for i in range(16):
-			var a := TAU * float(i) / 16.0
-			var p2 := c + Vector2(cos(a), sin(a)) * 26.0 * sqrt(k) + Vector2(0.0, 16.0 * k * k)
-			v.draw_circle(p2, 2.2 * (1.0 - k) + 0.6, Color(col, 1.0 - k))
-	_fuegos = vivos
 
 
 func posicion_global(id: String) -> Vector2:
@@ -431,5 +433,5 @@ func _dibujar_vivo() -> void:
 			v.draw_circle(c2, 9.5 * e, Tema.ROJO)
 			v.draw_colored_polygon(PackedVector2Array([c2 + Vector2(-5, 1), c2 + Vector2(0, -5), c2 + Vector2(5, 1)]), Tema.TEXTO)
 			v.draw_rect(Rect2(c2 + Vector2(-3.5, 1), Vector2(7, 5)), Tema.TEXTO)
-	_dibujar_fuegos(v)
+	_fuegos = FuegosMapa.dibujar(v, _fuegos, _t, centro)  # obras terminadas (fuegos_mapa.gd)
 	v.draw_set_transform_matrix(Transform2D.IDENTITY)
