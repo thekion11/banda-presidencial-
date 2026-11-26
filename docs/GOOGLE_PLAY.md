@@ -38,7 +38,7 @@ Funda tu partido, gana la elección y gobierna Chile cuatro años, una semana po
 • Cada obra avanza en 5 fases: licitación, faena, estructura, terminación e inauguración.
 
 **Pensado para partidas cortas**
-• Un turno por sesión, de 3 a 8 minutos. Tu partida se guarda sola y se puede reproducir exactamente.
+• Sesiones de unos 20 minutos: unas treinta semanas de gobierno por sesión. Tu partida se guarda sola y puedes continuar cuando quieras.
 
 Obra de ficción y sátira política. Los personajes son ficticios y las cifras están rotuladas como ilustrativas. No está afiliada a ningún partido, candidato ni institución.
 
