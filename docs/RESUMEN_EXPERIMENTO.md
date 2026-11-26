@@ -45,6 +45,8 @@ Ordenó cinco colas de trabajo (ver los mensajes en las sesiones) con foco en co
 **Diseño visual:** dirección v4 en producción, cuenta regresiva de crisis en la cabecera («caes en N semanas»), pantallas bajas (360×640) y letra ×1,3 y ×1,5 auditadas, mapa del continente en las auditorías.
 **Búsqueda infinita de fallas:** fuzz de guardado (1.000 mutaciones estructurales y 600 con valores absurdos), calendario, congreso, coalición, grafo, flujo completo de UI con pausas, última configuración y barrido de los 270 parámetros de `leyes.json`; 38 mutantes manuales de los que sobrevivían 8 (4 + 4, todos con prueba nueva). Su PR #8 sigue en borrador esperando CI y revisión del dueño.
 
+**Cola 11 y 12 (noche del 26-nov):** contenido muerto (ningún evento ni carta es inalcanzable), guía no técnica del probador, coherencia numérica de `data/`, estado generado del proyecto (`ESTADO_ACTUAL.md`), auditoría del manifiesto del APK (`tools/auditar_apk.py`: vertical, sin permisos, pero `targetSdk` 34 y Vulkan requerido), guía `adb` para medir fps y RAM en un teléfono (`MEDICION_TELEFONO.md`), revisión de código independiente (`REVISION_CODIGO.md`: sin errores lógicos nuevos; propuesta de respaldo del guardado), ficha de Play actualizada. «Diseño visual» implementa el botón Atrás de Android y el aviso del corte de legado de la semana 104.
+
 ## Pendiente del usuario (no decidido por ninguna sesión)
 Ver `docs/DECISIONES_PENDIENTES.md` (D1 a D16, U4 a U10) y `docs/PENDIENTES_USUARIO.md`. Lo más importante:
 1. **Duración de la partida** (semanas silenciosas, turno = mes o capítulos de 20 minutos).

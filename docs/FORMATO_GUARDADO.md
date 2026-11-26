@@ -33,3 +33,8 @@ El juego guarda **solo lo que el jugador decidió**; todo lo demás se reconstru
 - `tests/test_formato_guardado.gd`: **falla si cambian las claves del archivo o las de las entradas sin subir `VERSION`** (firma en `tests/oro/formato_guardado.json`; regenerar con `-- --regenerar` solo tras subir la versión).
 - `tools/check_entradas.py`: todo tipo que el motor registra está en la tabla.
 - `tests/test_guardado_estructura.gd`, `test_guardado_danado`, `test_instantanea`, `test_carga_rapida`, `test_replay_intermedio`, `test_determinismo` (4 carreras completas con huella fija).
+
+## Corrupción a mitad de escritura (revisión del 26-nov-2026)
+- **Hoy:** `Main.guardar()` escribe `guardado.json.tmp` y lo renombra sobre `guardado.json`; un corte durante la escritura deja el archivo anterior intacto (probado en `test_guardado_danado`). La caché de carga (`guardado.cache`) es desechable: solo se usa si su SHA coincide con el archivo existente.
+- **No hay copia de respaldo** del último guardado bueno ni se comprueba el resultado del renombrado. Si `guardado.json` queda vacío o truncado, se descarta (`guardado_descartado.json`) y la partida se pierde.
+- **Propuesta** (robustez, no mecánica nueva): conservar `guardado.bak` y recuperarlo antes de descartar; detalle y prueba en `docs/REVISION_CODIGO.md`.
