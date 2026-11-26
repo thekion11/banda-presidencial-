@@ -210,4 +210,32 @@ El hito de obra y el mapa urbano también usan la zona segura arriba (antes 40 p
 - **Cintas de las cartas:** el nombre del sector salía de `to_upper()` y perdía la tilde: «EDUCACION», «POLITICA», «ENERGIA», «ECONOMIA», «OPOSICION». Ahora lleva tilde y todos caben en los 62 px de la cinta. Oposición y Estado no tenían color propio; ahora tienen colores de la paleta, distinguibles de los demás. Si alguna vez faltara una ilustración, la carta muestra su color y el nombre del sector en vez de quedar vacía. `test_claridad` comprueba que cada categoría de los datos tenga color, ilustración y una cinta con tilde que quepa.
 - **Respaldo del guardado** (revisión de código #1 de la sesión del motor): `guardar()` copia el guardado bueno a `guardado.bak` antes de reemplazarlo. Si al continuar el guardado está dañado (truncado, por ejemplo) y el respaldo sirve, se recupera con el aviso «Recuperamos tu partida de hace un momento»; si no hay respaldo, se descarta como antes. Una partida nueva borra el respaldo de la anterior. Prueba en `test_estados`.
 
+### Piso del desvío del día y de Nación (27-nov-2026)
+Desglose por franja de los píxeles distintos frente a la maqueta (ΔE > 20, `tools/diferencia_maqueta.py`):
+
+| Pantalla | Franja | Puntos del total |
+|---|---|---|
+| Día (39,2 %) | Mano | 16,9 |
+| | Mapa y tarjetas | 10,0 |
+| | Corrector | 5,6 |
+| | Botones | 3,2 |
+| | Barra | 1,9 |
+| | Cabecera | 1,5 |
+| Nación (29,2 %) | Mapa y lista | 21,6 |
+| | Selector Chile/Continente | 2,6 |
+| | Cabecera | 1,8 |
+| | Barra | 1,8 |
+| | Evento | 1,3 |
+
+**Por qué no baja más sin romper reglas o decisiones:**
+- **Mano:** las cartas llevan ilustraciones pintadas, no los dibujos planos de la maqueta, y la mano muestra cartas reales de la partida.
+- **Mapa:** los colores salen de la aprobación real de la partida (la maqueta usa cifras ilustrativas de 58 a 90 %) y el relieve es real.
+- **Corrector:** suma una línea con el costo y el impacto de la carta, que vino del pase de claridad.
+- **Botones:** «Terminar semana» y la esquina vacía son la decisión PR-02 del usuario.
+- **Nación:** el selector Chile/Continente es la ampliación PR-06c.
+
+Lo estructural que sí se podía alinear ya está hecho: zona segura, chips y barra compactos, línea región–tarjeta, contornos, botón «▶ Día N».
+
+**Piso estimado:** unos 30 % para el día y unos 25 % para Nación, mientras se mantengan el arte pintado y los datos reales. Bajar de ahí pediría volver al arte plano de la maqueta o usar cifras ilustrativas en el mapa, y las dos cosas son decisión del usuario.
+
 Reglas: todo el movimiento respeta Ajustes › «Animaciones y movimiento» y se apaga en modo headless, así que las pruebas miden siempre el estado final. El azar de las partículas es solo visual y no toca la semilla de la partida. Prueba propia: `tests/test_movimiento.gd`.
