@@ -45,6 +45,7 @@ static func construir(d: PantallaDia) -> Control:
 	d._lbl_mov.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	d._lbl_mov.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
 	cab_mano.add_child(d._lbl_mov)
+	mm.visible = not corto  # teléfono bajo: sin la fila «Tu mano» (los movimientos siguen en la pastilla) y el mapa supera el tercio (§5)
 	vista.add_child(mm)
 	d._mano = ManoUI.new()
 	d._mano.custom_minimum_size = Vector2(0, 198 if corto else 214)

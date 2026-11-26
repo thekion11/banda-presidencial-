@@ -167,7 +167,7 @@ El proyecto escala con ancho lógico fijo de 390 (`keep_width`), así que cada t
 | Plegable cerrado 280×653 | 910 (agregado a `RecorridoUI.ALTURAS`) |
 
 El botón principal queda en la misma posición dentro de cada pantalla, y las auditorías de textos y zonas táctiles pasan en los cinco altos.
-**Decisión pendiente del usuario:** en 390×693 el mapa del día mide 185 px, el 27 % de la pantalla, bajo el tercio que pide CLAUDE.md §5. Llegar al tercio obligaría a achicar las cartas y su texto bajo los 10 pt, o a quitar el Corrector o la cabecera de la mano.
+**Resuelto (27-nov-2026):** en 390×693 el mapa del día llegó a medir el 27 % de la pantalla. Al compactar la cabecera y la barra pasó al 32 %, y en pantalla baja se quita la fila «Tu mano · 5 mov base» (los movimientos siguen en la pastilla de la cabecera). Ahora el mapa supera el tercio en todos los altos probados, comprobado en `tests/test_reglas_ui.gd`.
 
 ### Letra grande de Android (1,3 y 1,5) (26-nov-2026)
 Godot no aplica la escala de letra del sistema Android a la interfaz. Hoy el juego ofrece «Texto grande» (+15 % en las etiquetas con ajuste de línea, vía `Ajustes.escala_texto()`). `tests/test_textos.gd` recorre además todas las pantallas con la letra a ×1,3 y ×1,5 (`Ajustes.escala_prueba`, solo para pruebas) y exige que nada se salga de la pantalla. Cambios para que quepa:
