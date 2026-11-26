@@ -88,7 +88,8 @@ func composicion(estado: EstadoSimulacion, camara: bool) -> Dictionary:
 	if camara:
 		propios = roundi(float(propios) * float(total) / float(h["total_senadores"]))
 	var apoyo := clampf(float(c["apoyo_base"]) + float(c["peso_capital"]) * estado.ind("capital") + float(c["peso_cohesion"]) * estado.ind("cohesion"), 0.0, 1.0)
-	var aliados := roundi(float(total - propios) * apoyo) + int(estado.apoyo_coalicion["camara" if camara else "senado"])
+	var coalicion := int(estado.apoyo_coalicion["camara" if camara else "senado"])
+	var aliados := roundi(float(maxi(0, total - propios - coalicion)) * apoyo) + coalicion  # como votar(): los escaños de la coalición salen del resto antes de aplicar el apoyo
 	return {"total": total, "propios": propios, "aliados": aliados, "oposicion": maxi(0, total - propios - aliados)}
 
 
