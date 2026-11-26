@@ -193,7 +193,24 @@ func _correr() -> void:
 	await _v2(main, dia, d, partido)
 	await _v3(main, d, partido)
 	await _v4(main, d, partido)
+	await _estados(main, d, partido)
 	quit(0)
+
+
+func _estados(main: Node, d: Dictionary, partido: Dictionary) -> void:
+	## Estados vacíos y de error (tests/test_estados.gd): sin movimientos, sin cartas, guardado dañado y datos faltantes.
+	main.motor = Partida.crear(d, 20260415, partido)
+	main.motor.estado.etapa = "gobierno"
+	main.motor.estado.pa_actual = 0
+	main.mostrar_dia()
+	await _guardar("e_sin_movimientos", 0.3)
+	main.motor.estado.mano.clear()
+	main._pantalla._refrescar()
+	await _guardar("e_sin_cartas", 0.3)
+	main.mostrar_menu("No se pudo continuar: el guardado estaba dañado o es de otra versión del juego. Empieza una partida nueva.")
+	await _guardar("e_guardado_danado", 0.3)
+	main.mostrar_error_datos(["cartas", "eventos"])
+	await _guardar("e_sin_datos", 0.3)
 
 
 func _v2(main: Node, dia: Node, d: Dictionary, partido: Dictionary) -> void:

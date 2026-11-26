@@ -91,8 +91,15 @@ func pintar(motor: MotorTurno, sel: int, ministro: String = "", nuevas: Array = 
 		h.queue_free()
 	var est := motor.estado
 	var n := est.mano.size()
-	if n == 0:
+	if n == 0:  # estado vacío: la zona de la mano dice qué pasa y qué hacer, en vez de quedar en blanco
 		_pos_prev.clear()
+		var vacio := Tema.etiqueta("Sin cartas en la mano\nTermina la semana: al empezar la próxima entran cartas nuevas.", 13, Tema.TEXTO_SUAVE)
+		vacio.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		vacio.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+		vacio.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+		vacio.offset_left = 24.0
+		vacio.offset_right = -24.0
+		add_child(vacio)
 		return
 	var paso := 0.0 if n < 2 else minf(ANCHO * 0.8, (Tema.ANCHO - 20.0 - ANCHO) / float(n - 1))
 	var x0 := (Tema.ANCHO - (ANCHO + paso * float(n - 1))) * 0.5
