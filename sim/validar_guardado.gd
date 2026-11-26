@@ -33,11 +33,14 @@ static func partido_valido(p: Variant) -> bool:
 	if not (p is Dictionary) or not (p.get("indicadores_iniciales") is Dictionary):
 		return false
 	for k in INDICADORES:
-		if not _numero(p["indicadores_iniciales"].get(k)):
+		var v: Variant = p["indicadores_iniciales"].get(k)
+		if not _numero(v) or not is_finite(float(v)) or float(v) < 0.0 or (k != "viviendas_anio" and float(v) > 100.0):
+			return false  # un número válido pero absurdo (fiscal = 1.000.000) tampoco entra al estado
+	for k in ["eje_eco", "eje_inst"]:
+		if p.has(k) and (not _numero(p[k]) or absf(float(p[k])) > 1.0):
 			return false
-	for k in ["eje_eco", "eje_inst", "escanos_propios"]:
-		if p.has(k) and not _numero(p[k]):
-			return false
+	if p.has("escanos_propios") and (not _numero(p["escanos_propios"]) or float(p["escanos_propios"]) < 0.0):
+		return false
 	for k in ["region_bastion", "partido_base", "dificultad"]:
 		if p.has(k) and not (p[k] is String):
 			return false
