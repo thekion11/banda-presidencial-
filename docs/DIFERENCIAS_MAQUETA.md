@@ -196,4 +196,6 @@ En la votación: el contenido sube con la zona segura, el hemiciclo del Senado s
 
 En el mapa urbano, las fichas de líneas de Metro (una extensión sobre la maqueta) ocupaban dos filas sobre el mapa, y la hoja de obras se salía por abajo: su tercera fila quedaba cortada. Ahora las fichas van en una sola fila que se desliza de lado (`LeyendaMetro.compacta`) y las notas de líneas futuras y propias, bajo el mapa (`notas_aparte`). Todo cabe y los píxeles distintos bajan de 23,0 % a 21,8 %. El mapa urbano entra también a `RecorridoUI`, así que lo cubren las auditorías de textos y zonas táctiles.
 
+El hito de obra y el mapa urbano también usan la zona segura arriba (antes 40 px fijos). Las cifras grandes llevan punto de miles, como en la maqueta: «+1.540», «US$1.900 M» (`Tema.miles`). Hito: de 19,1 % a 17,8 %; urbano: de 21,8 % a 21,3 %.
+
 Reglas: todo el movimiento respeta Ajustes › «Animaciones y movimiento» y se apaga en modo headless, así que las pruebas miden siempre el estado final. El azar de las partículas es solo visual y no toca la semilla de la partida. Prueba propia: `tests/test_movimiento.gd`.

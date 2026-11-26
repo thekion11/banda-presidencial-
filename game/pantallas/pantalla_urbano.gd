@@ -28,7 +28,7 @@ static func crear(motor: MotorTurno, urbano: Dictionary, al_volver: Callable, al
 	col.set_anchors_preset(Control.PRESET_FULL_RECT)
 	col.offset_left = 16
 	col.offset_right = -16
-	col.offset_top = 40
+	col.offset_top = Tema.margen_superior() + 8.0  # zona segura del teléfono (antes 40 fijos)
 	col.offset_bottom = 0
 	col.add_theme_constant_override("separation", 10)
 	capa.add_child(col)

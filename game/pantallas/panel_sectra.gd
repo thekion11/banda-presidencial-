@@ -61,7 +61,7 @@ static func _tarjeta(motor: MotorTurno, p: Dictionary, al_impulsar: Callable) ->
 	var etapa := int(st["etapa"])
 	var fila := HBoxContainer.new()
 	var mm := motor.sectra.musd(p)
-	fila.add_child(PanelesDia._chip("Inversión", ("US$%d M" % roundi(mm)) if mm > 0.0 else "s/d", Tema.CREMA))
+	fila.add_child(PanelesDia._chip("Inversión", ("US$%s M" % Tema.miles(roundi(mm))) if mm > 0.0 else "s/d", Tema.CREMA))
 	fila.add_child(PanelesDia._chip("TIR", ("%.1f %%" % float(p["tir"])) if bool(p["tiene_tir"]) else "s/d", Tema.CREMA))
 	fila.add_child(PanelesDia._chip("Etapa", ETAPAS[mini(etapa, 3)], Tema.CREMA))
 	v.add_child(fila)

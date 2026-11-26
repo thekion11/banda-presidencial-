@@ -122,6 +122,8 @@ func _correr() -> void:
 		await process_frame
 		_check(est.registro_acciones.size() > acciones, "P10: un toque breve sobre la carta elegida la juega")
 	DirAccess.remove_absolute(ProjectSettings.globalize_path(Tutorial.ruta))
+	# cifras con punto de miles, como en la maqueta («+1.200», «US$1.900 M»)
+	_check(Tema.miles(1200) == "1.200" and Tema.miles(999) == "999" and Tema.miles(-15400) == "-15.400" and Tema.miles(1234567) == "1.234.567", "Tema.miles pone punto de miles")
 	if _fallos == 0:
 		print("CLARIDAD OK")
 	quit(1 if _fallos > 0 else 0)
