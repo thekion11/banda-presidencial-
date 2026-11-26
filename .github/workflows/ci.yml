@@ -52,5 +52,17 @@ jobs:
             [ "${PIPESTATUS[0]}" -eq 0 ] || { echo "FALLO: $t"; exit 1; }
             if grep -qE "SCRIPT ERROR|Parse Error|Could not find type" "/tmp/$t.log"; then echo "FALLO: $t tiene errores de script"; exit 1; fi
           done
+      - name: "Estado del proyecto (no bloqueante)"
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python3 tools/estado_proyecto.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: estado-actual
+          retention-days: 14
+          if-no-files-found: ignore
+          path: docs/ESTADO_ACTUAL.md
       - name: Fuzzing del núcleo (acciones aleatorias e inválidas, replay idéntico)
         run: godot --headless --path . -s tests/fuzz_acciones.gd -- 60 7000
