@@ -87,6 +87,13 @@ func _inv(main: Node, ctx: String, donde: String) -> void:
 			_check(r.size.y >= 44.0 and r.position.x >= -0.5 and r.end.x <= 390.5 and r.position.y > 600.0 and r.end.y <= 844.5, "%s (%s): botón principal fuera de sitio (%s)" % [ctx, donde, str(r)])
 
 
+func _pulsar_avanzar(dia: Node) -> void:
+	## Pulsa el botón principal de la pantalla del día; si pidió confirmar (movimientos que sobran o pocas promesas), lo pulsa de nuevo.
+	dia._btn_jugar.pressed.emit()
+	if dia._confirmar_fin:
+		dia._btn_jugar.pressed.emit()
+
+
 func _huella_motor(m: MotorTurno) -> String:
 	return m.estado.calcular_huella()
 
@@ -233,18 +240,21 @@ func _una(semilla: int, idx: int) -> void:
 		dia._cola_eventos.clear()
 		if est.eleccion_pendiente(sem_camp):
 			_eleccion_vista += 1
-			dia._resolver_eleccion()
+			_pulsar_avanzar(dia)  # el botón real del medio: pide confirmar con pocas promesas y lleva a las urnas
 			for _k in range(3):
 				await process_frame
+			var abierta := false
 			for texto in ["Asumir el gobierno", "Ir a la segunda", "Ver resultado final"]:
 				var b := _boton(dia._capa, texto)
 				if b != null:
+					abierta = true
 					b.pressed.emit()
 					break
+			_check(abierta, "%s: con la elección pendiente, el botón de avanzar no abrió la pantalla de resultado" % ctx)
 			for _k in range(3):
 				await process_frame
 		else:
-			dia._terminar_turno()
+			_pulsar_avanzar(dia)
 			for _k in range(rng.randi_range(0, 3)):
 				await process_frame
 		for ov in (dia._capa.get_children() if is_instance_valid(dia) else []):  # cierra solo los telones y avisos nuevos de este turno (no las piezas fijas de la pantalla)
