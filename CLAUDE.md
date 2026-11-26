@@ -122,5 +122,6 @@ godot --headless --path . -s tests/montecarlo.gd -- 200        # informe de bala
 xvfb-run -a godot --path . --rendering-method gl_compatibility --resolution 390x844 -s tests/medir_memoria.gd   # informe de RAM por pantalla
 xvfb-run -a godot --path . --rendering-method gl_compatibility --resolution 390x844 -s tests/medir_cuadros.gd   # llamadas de dibujo por escena
 godot --headless --path . -s tests/medir_toques.gd -- 3 30        # informe de toques por acción y por semana
+python3 tools/diferencia_maqueta.py /tmp/capturas                 # diferencia numérica con la maqueta (tras captura_comparar)
 xvfb-run -a godot --path . --rendering-method gl_compatibility --resolution 390x844 -s tests/captura_comparar.gd -- /tmp/capturas   # estados de la maqueta
 ```
