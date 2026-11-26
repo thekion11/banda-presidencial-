@@ -339,7 +339,7 @@ func _terminar_turno() -> void:
 	_cola_eventos = OverlaysDia.eventos_de_votaciones(motor)
 	_cola_eventos.append_array(nuevos)
 	_refrescar()
-	TelonSemana.mostrar(_capa, antes, [String(_r["dia"].text), String(_r["fecha"].text)], ind_antes, est.indicadores, est.etapa == "oposicion", _siguiente_evento)
+	TelonSemana.mostrar(_capa, antes, [String(_r["dia"].text), String(_r["fecha"].text)], ind_antes, est.indicadores, est.etapa == "oposicion", _siguiente_evento, est.encuestas if est.etapa in ["campana", "oposicion"] else [], datos["regiones"])
 
 
 func _resolver_eleccion() -> void:
