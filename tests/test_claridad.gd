@@ -136,6 +136,21 @@ func _correr() -> void:
 	var M = load("res://game/main.gd")  # proporciones: teléfonos con ancho 390; tablet y plegable abierto, 390×844 con bandas
 	_check(M.aspecto_para(Vector2i(360, 640)) == Window.CONTENT_SCALE_ASPECT_KEEP_WIDTH and M.aspecto_para(Vector2i(280, 653)) == Window.CONTENT_SCALE_ASPECT_KEEP_WIDTH, "los teléfonos usan ancho lógico 390")
 	_check(M.aspecto_para(Vector2i(768, 1024)) == Window.CONTENT_SCALE_ASPECT_KEEP and M.aspecto_para(Vector2i(884, 1104)) == Window.CONTENT_SCALE_ASPECT_KEEP, "tablet y plegable abierto muestran el 390×844 completo")
+	# primera ejecución (docs/PRIMERA_EJECUCION.md): el aviso de la promesa dice dónde quedó
+	var resp_p: Array[Dictionary] = []
+	for p in d["ideologia"]["preguntas"]:
+		resp_p.append(p["opciones"][1])
+	main.motor = Partida.crear(d, 31, GeneradorPartido.construir_partido("C", "C", "metropolitana", resp_p, d["ideologia"]))
+	main.mostrar_dia()
+	await process_frame
+	var dia_p: PantallaDia = main._pantalla
+	for reg in ["", "atacama"]:
+		main.motor.estado.pa_actual = 9
+		dia_p._sel = 0
+		dia_p._region = reg
+		dia_p._jugar()
+		var aviso: String = dia_p._toast.text
+		_check(aviso.begins_with("Promesa nacional") and aviso.contains("Toca el mapa") if reg == "" else aviso.begins_with("Promesa en Atacama"), "el aviso de la promesa dice dónde quedó (%s)" % aviso)
 	_check(Tema.dec(3.5) == "3,5" and Tema.dec(57.44) == "57,4" and Tema.dec(-0.25, 2) == "-0,25", "Tema.dec usa coma decimal")
 	if _fallos == 0:
 		print("CLARIDAD OK")
