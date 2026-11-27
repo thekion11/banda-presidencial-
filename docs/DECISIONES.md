@@ -417,3 +417,9 @@ Lección de proceso: `test_sectra` armaba el guardado a mano sin `version` y dej
 - **D17:** `data/` se congela durante la prueba cerrada, después de entrar las cartas del plan (ya están); CLAUDE.md §2 lo anota.
 - **Renderizador:** `project.godot` pasa de «mobile» a `gl_compatibility` (`renderer/rendering_method` y `.mobile`); CLAUDE.md §5 lo anota.
 - **Sin cambios de balance** fuera de lo anterior (ni D5 opción 2 ni otros).
+
+
+## BK. Petición del usuario del 27-nov-2026: mapa más grande con zoom y gabinete más atractivo
+- **Texto literal (vía la coordinadora):** «El mapa del país debe agrandarse un poco para ver todas las regiones, además de poder hacerle zoom, la elección del personal del gabinete no es tan entretenida además de qué es solo un formulario, es poco atractivo».
+- **Reparto:** la sesión visual lo implementa en `game/` (solo presentación e interacción, sin mecánicas nuevas, con `data/` congelado). El núcleo expone solo salidas: `MotorGabinete.ficha_candidato(id)`, `efecto_semanal_de(ids)` y `efecto_de_nombrar(id)` (qué cambiaría por semana al nombrar a un candidato), con `tests/test_gabinete_ficha.gd`; no cambian el estado, la huella ni los oros.
+- **Campos nuevos en `data/` (retratos, frases, biografías):** no se agregan; quedan como propuesta D22 para el usuario.

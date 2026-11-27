@@ -91,3 +91,9 @@ Cuando entra una llamada o el sistema roba el gesto, Android cancela el toque y 
 ## Segundo plano y batería (cola 8)
 
 Al pasar a segundo plano (`NOTIFICATION_APPLICATION_PAUSED`), `Main` guarda, pone el árbol en pausa (`get_tree().paused`) y detiene la música en su lugar (`Musica.pausar`). Al volver (`RESUMED`) todo sigue desde donde estaba. Así no corren el mapa vivo, los tweens, las partículas, el debate ni la órbita 3D, aunque el sistema siga dándole cuadros a la app (en Android suele detener el bucle, pero no está garantizado en todos los equipos). Los temporizadores de una sola vez (`create_timer`: ocultar un aviso, la pulsación larga) no se pausan, pero son cortos y la pulsación larga ya se anula al perder el foco. Prueba: `tests/test_segundo_plano.gd`.
+
+## Pruebas de interfaz con ventana real (27-nov)
+
+`RecorridoUI.alturas()` devuelve la lista de altos simulados en headless, y con una ventana real (xvfb o un teléfono) solo el alto de esa ventana. Así `test_textos`, `test_tactil`, `test_claridad`, `test_reglas_ui` y `test_zonas_seguras` sirven en los dos modos y no chocan con la ventana real (antes fallaban a 390×844 porque simulaban 693). Verificado: las cinco pasan en headless y bajo xvfb a 390×844 y 360×640.
+
+**Renderizador:** desde el 27-nov el proyecto usa `gl_compatibility` (decisión del usuario). Las referencias visuales, las capturas comparadas con la maqueta, `medir_cuadros` y `medir_memoria` ya se hacían con ese renderizador: la regresión visual da 0 pantallas fuera de tolerancia. `ComiteMapa3D.FACTOR_LUZ_MOBILE` solo se aplica si alguna vez se vuelve a «mobile».

@@ -29,7 +29,7 @@ def capturar(destino: str) -> None:
     for t in TAMANOS:
         carpeta = os.path.join(destino, t)
         shutil.rmtree(carpeta, ignore_errors=True)
-        cmd = ["xvfb-run", "-a", "-s", "-screen 0 1400x1400x24", GODOT, "--path", RAIZ, "--rendering-method", "gl_compatibility",
+        cmd = ["xvfb-run", "-a", "-s", "-screen 0 1400x1400x24", GODOT, "--path", RAIZ, "--rendering-method", "gl_compatibility",  # el del proyecto desde el 27-nov
                "--resolution", t, "-s", "tests/golden_capturar.gd", "--", carpeta, t]
         r = subprocess.run(cmd, capture_output=True, text=True, timeout=900)
         linea = [l for l in r.stdout.splitlines() if l.startswith("golden:")]

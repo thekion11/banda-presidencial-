@@ -31,7 +31,7 @@ func _draw() -> void:
 	_barco(Vector2(size.x * 0.06 + 6.0, 8.0 + h * 0.37))
 	_barco(Vector2(size.x * 0.05 + 12.0, 8.0 + h * 0.62))
 	if mapa.seleccion != "" and mapa.valores.has(mapa.seleccion):
-		var c := mapa.centro(mapa.seleccion)
+		var c := mapa.a_pantalla(mapa.centro(mapa.seleccion))  # con el zoom del jugador
 		var f := fmod(_t * 0.9, 1.0)
 		draw_arc(c, 8.0 + f * 18.0, 0.0, TAU, 28, Color(Tema.ORO, 1.0 - f), 2.0)
 		draw_arc(c, 6.0, 0.0, TAU, 20, Tema.ORO, 2.0)

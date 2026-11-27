@@ -318,6 +318,46 @@ func amanecer() -> void:
 	_m.fx.sumar_ind("cohesion", float(cfg["peso_afinidad"]) * (_ident_afin / float(_m.estado.gabinete.size()) - 0.5), "afinidad del gabinete con tu ideología")
 
 
+func efecto_semanal_de(ids: Array) -> Dictionary:
+	## Solo salida (no cambia el estado): efecto semanal que daría este gabinete por estilos y afinidad, {indicador: delta}; lo mismo que aplica `amanecer`.
+	var cfg: Dictionary = _cfg()["identidad"]
+	var res := {}
+	var afin := 0.0
+	for id in ids:
+		var est: Dictionary = cfg["estilos"].get(String(m.catalogo_ministros[id].get("estilo", "")), {})
+		for ind in est.keys():
+			res[ind] = float(res.get(ind, 0.0)) + float(est[ind])
+		afin += afinidad(String(id))
+	if not ids.is_empty():
+		res["cohesion"] = float(res.get("cohesion", 0.0)) + float(cfg["peso_afinidad"]) * (afin / float(ids.size()) - 0.5)
+	return res
+
+
+func ficha_candidato(id: String) -> Dictionary:
+	## Solo salida: lo que el motor sabe de un candidato para mostrarlo (alias, cartera, estilo, afinidad 0 a 1 con tu partido, ahorro y bono, riesgo de escándalo).
+	var mi: Dictionary = m.catalogo_ministros[id]
+	return {"id": id, "alias": mi["alias"], "cartera": mi["cartera"], "ministerio": mi["ministerio"], "estilo": mi.get("estilo", ""), "rasgo": mi.get("rasgo", ""),
+			"categoria_afin": mi["categoria_afin"], "afinidad": afinidad(id), "reduccion_costo_pa": int(mi["reduccion_costo_pa"]),
+			"bono_ejecucion": float(mi["bono_ejecucion"]), "riesgo_escandalo": float(mi["riesgo_escandalo"])}
+
+
+func efecto_de_nombrar(id: String) -> Dictionary:
+	## Solo salida: cómo cambiaría el efecto semanal del gabinete si nombraras a `id` (reemplaza al que ocupe su ministerio, o se suma si está vacío): {indicador: diferencia por semana}.
+	var nuevo: Array = []
+	for x in m.estado.gabinete:
+		if slot_de(String(x)) != slot_de(id):
+			nuevo.append(x)
+	nuevo.append(id)
+	var antes := efecto_semanal_de(m.estado.gabinete)
+	var despues := efecto_semanal_de(nuevo)
+	var dif := {}
+	for k in despues.keys() + antes.keys():
+		var d := float(despues.get(k, 0.0)) - float(antes.get(k, 0.0))
+		if not is_zero_approx(d):
+			dif[k] = d
+	return dif
+
+
 func revisar_renuncia(actor_id: String) -> Dictionary:
 	var _m := m  # una sola resolución de la referencia débil por llamada (cada acceso a `m` cuesta ~0,5 us)
 	## Si tu relación con el ministro de ese ministerio cae bajo el umbral, renuncia y asume el mejor candidato restante (la relación parte de cero).

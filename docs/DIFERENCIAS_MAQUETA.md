@@ -249,3 +249,13 @@ Lo estructural que sí se podía alinear ya está hecho: zona segura, chips y ba
 **Piso estimado:** unos 30 % para el día y unos 25 % para Nación, mientras se mantengan el arte pintado y los datos reales. Bajar de ahí pediría volver al arte plano de la maqueta o usar cifras ilustrativas en el mapa, y las dos cosas son decisión del usuario.
 
 Reglas: todo el movimiento respeta Ajustes › «Animaciones y movimiento» y se apaga en modo headless, así que las pruebas miden siempre el estado final. El azar de las partículas es solo visual y no toca la semilla de la partida. Prueba propia: `tests/test_movimiento.gd`.
+
+
+## Mapa del país más grande y con zoom (pedido del usuario, 27-nov-2026)
+
+Cita literal del usuario (27-nov-2026, ~03:00 UTC, transmitida por la coordinadora): «El mapa del país debe agrandarse un poco para ver todas las regiones, además de poder hacerle zoom, la elección del personal del gabinete no es tan entretenida además de qué es solo un formulario, es poco atractivo».
+
+- **Más grande:** en la pantalla del día el país se dibuja ~17 % más ancho (`estirar_x` de 2,3 a 2,7, centro en 0,29). Ocupa el mar libre a la izquierda de las tarjetas sin taparlas. La diferencia numérica con la maqueta casi no cambia (día 39,3 → 39,4 %).
+- **Zoom** (`game/componentes/mapa_zoom.gd`, en el día y en Nación): doble toque para acercar ×2,5 sobre el punto o volver; pellizco (`InputEventMagnifyGesture`, también en Android) y rueda del ratón acercan sobre el dedo, hasta ×4; con el mapa acercado, arrastrar desplaza sin dejar ver fuera del mapa; el botón «Ver todo» (≥ 44 px) vuelve a la vista completa. Al acercar (≥ ×1,6) cada región lleva su nombre, sin que se encimen; tocar un nombre elige la región (área ≥ 44 px). La región elegida se elige al soltar, porque el arrastre desplaza. Con «Reducir movimiento» o sin animaciones el zoom no se anima.
+- **Rendimiento:** la capa base sigue en caché y se repinta solo al cambiar el zoom o el encuadre; mientras dura el gesto se dibuja en vivo, como durante la reacción a una carta. `medir_cuadros`: el día en reposo sigue en 201 llamadas.
+- **Pruebas:** `tests/test_mapa_zoom.gd` (doble toque, «Ver todo», pellizco, rueda, tope, arrastre con límites, toque y nombre que eligen, carta que vuela al punto visible, doble toque real por `Input.parse_input_event`), más `test_gestos`, `test_toque_real` y `test_reglas_ui` (mapa > 1/3).

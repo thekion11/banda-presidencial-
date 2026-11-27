@@ -17,9 +17,12 @@ static func construir(d: PantallaDia) -> Control:
 	d._mapa.custom_minimum_size = Vector2(0, 150 if corto else 290)
 	d._mapa.size_flags_vertical = Control.SIZE_EXPAND_FILL
 	d._mapa.cargar_geo(d.geo)
+	for r in d.datos["regiones"]:  # al acercar el mapa se rotulan las regiones
+		d._mapa.nombres[String(r["id"])] = String(r["nombre"])
 	d._mapa.region_tocada.connect(d._on_region)
 	vista.add_child(d._mapa)
-	d._mapa.x_centro_rel = 0.3
+	d._mapa.x_centro_rel = 0.29
+	d._mapa.estirar_x = 2.7  # más ancho que antes (2,3): las regiones se ven y se tocan mejor (pedido del usuario, 27-nov)
 	var col_tarjetas := VBoxContainer.new()
 	col_tarjetas.add_theme_constant_override("separation", 10)
 	col_tarjetas.position = Vector2(196, 10)

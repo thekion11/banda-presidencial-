@@ -7,6 +7,7 @@ GODOT="${1:?uso: vigilante_main.sh <godot> [directorio]}"
 DIR="${2:-/tmp/vig}"
 REPO="$(cd "$(dirname "$0")/.." && pwd)"
 t0=$(date +%s)
+echo "INICIO $(date -u +%H:%M:%S) UTC"
 git -C "$REPO" fetch -q origin
 git -C "$REPO" worktree remove --force "$DIR" 2>/dev/null
 git -C "$REPO" worktree add -q --detach "$DIR" origin/main
@@ -25,4 +26,6 @@ for res in 360x640; do  # 390x844 no: esas pruebas simulan alto 693 y chocan con
     fi
   done
 done
-echo "VIGILANTE $hash $(( $(date +%s) - t0 )) s, fallos: $fallos"
+echo "VIGILANTE $hash inicio-fin $(date -u -d @$t0 +%H:%M)-$(date -u +%H:%M) UTC, $(( $(date +%s) - t0 )) s, fallos: $fallos"
+echo "$fallos" > "$DIR.exit"
+exit $(( fallos > 0 ? 1 : 0 ))

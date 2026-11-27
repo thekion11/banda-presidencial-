@@ -50,6 +50,10 @@ var enlace: Control:  # tarjeta de la región elegida: la maqueta la une con una
 var _segs_tendencia: Dictionary = {}  # signo -> segmentos de las regiones que suben o bajan (caché de la capa viva)
 var _segs_clave := Vector4(-2, -2, -2, -2)
 var _segs_de: Dictionary = {}  # la tendencia con que se armó la caché (se reasigna al cambiar)
+var _zoom := MapaZoom.new()  # acercar y desplazar (pedido del usuario del 27-nov); se compone con la cámara
+var _ver_todo: Button
+var nombres: Dictionary = {}  # id -> nombre de la región: se rotulan al acercar
+var _rotulos: Array = []  # [[id, área de toque]] de los nombres dibujados
 var _fuegos: Array[Dictionary] = []  # {pos, inicio, color}: obra terminada (dirección visual v4)
 
 
@@ -100,6 +104,16 @@ func actualizar(p_valores: Dictionary, p_obras: Dictionary = {}, p_propuestas: D
 	queue_redraw()
 
 
+func _cam() -> Transform2D:
+	## Vista del jugador (zoom y desplazamiento) sobre la cámara de las reacciones (golpe al recibir una carta).
+	return _zoom.vista() * _camara
+
+
+func a_pantalla(p: Vector2) -> Vector2:
+	## Punto del mapa (centro(), contornos) a coordenadas del control, con el zoom y la cámara aplicados.
+	return _cam() * p
+
+
 func _transformar(p: Vector2) -> Vector2:
 	var h := size.y - 16.0
 	var ancho := _ancho_rel * h * estirar_x
@@ -110,13 +124,13 @@ func _draw() -> void:
 	## Quieto, la capa base (océano, regiones, contornos, Cordillera y ciudades) sale de una textura pintada una vez
 	## (UrbanoCache): ~7,7 ms de CPU de render menos por cuadro (tests/medir_transiciones.gd). Mientras reacciona a una
 	## carta (golpe de cámara, destello, ondas) se dibuja en vivo.
-	var animando := _camara != Transform2D.IDENTITY or _onda.has("pos") or _destello > 0.0
+	var animando := _camara != Transform2D.IDENTITY or _onda.has("pos") or _destello > 0.0 or _zoom.moviendo
 	if animando:
-		_pintar_base(self, Transform2D.IDENTITY, _camara)
+		_pintar_base(self, Transform2D.IDENTITY, _cam())
 	else:
 		_base_en_cache()
 		draw_texture_rect(_textura_base.get_texture(), Rect2(Vector2.ZERO, size), false)
-		draw_set_transform_matrix(_camara)
+		draw_set_transform_matrix(_cam())
 	if _onda.has("pos"):  # ondas del impacto de la carta en la región
 		var o := _onda
 		var t: float = o["t"]
@@ -127,7 +141,7 @@ func _draw() -> void:
 		draw_circle(o["pos"], 7.0 * (1.0 - t), Color(Tema.CREMA, 1.0 - t))
 	draw_set_transform_matrix(Transform2D.IDENTITY)
 	if enlace != null and enlace.is_visible_in_tree() and _banda_y.has(seleccion):
-		var desde := _camara * centro(seleccion)
+		var desde := _cam() * centro(seleccion)
 		var r := get_global_transform().affine_inverse() * enlace.get_global_rect()
 		var hasta := Vector2(r.position.x - 2.0, clampf(desde.y, r.position.y + 14.0, r.end.y - 14.0))
 		if hasta.x - desde.x > 16.0:
@@ -139,6 +153,11 @@ func _draw() -> void:
 		draw_string(Tema.fuente_texto(500), r.position + Vector2(8, 17), "Aprobación", HORIZONTAL_ALIGNMENT_LEFT, -1, 10, Tema.TEXTO_SUAVE)
 		for k in range(60):
 			draw_rect(Rect2(r.position.x + 74.0 + float(k) * 1.4, r.position.y + 9.0, 1.6, 8.0), Tema.color_aprobacion(30.0 + float(k) / 59.0 * 30.0))
+	var ids: Array = _banda_y.keys()
+	if ids.has(seleccion):  # el nombre de la región elegida va primero: nunca lo tapa otro
+		ids.erase(seleccion)
+		ids.push_front(seleccion)
+	_rotulos = MapaZoom.rotular(self, nombres, ids, _zoom.zoom, func(id: String) -> Vector2: return _cam() * centro(id))  # nombres al acercar
 	if _vivo != null:
 		_vivo.queue_redraw()  # obras y propuestas se dibujan en la capa viva (siguen al golpe de cámara)
 
@@ -201,10 +220,11 @@ func _pintar_base(ci: CanvasItem, base: Transform2D, cam: Transform2D) -> void:
 		var idx := PackedInt32Array(range(cerros.size()))
 		RenderingServer.canvas_item_add_triangle_array(ci.get_canvas_item(), idx, cerros, tonos)
 	var fuente := Tema.fuente_texto(600)
+	ci.draw_set_transform_matrix(base)  # ciudades: posición con zoom, pero letra y punto a tamaño fijo (nítidos a cualquier zoom)
 	for c in (_ciudades if ciudades_visibles else []):
 		if c["nombre"] == "Santiago":
 			continue
-		var pc := _transformar(Vector2(float(c["x"]), float(c["y"])))
+		var pc := cam * _transformar(Vector2(float(c["x"]), float(c["y"])))
 		ci.draw_circle(pc, 3.6, Tema.CREMA)
 		ci.draw_circle(pc, 2.0, Tema.OCEANO)
 		var nombre := String(c["nombre"])
@@ -220,8 +240,9 @@ func _base_en_cache() -> void:
 		_textura_base = UrbanoCache.new()
 		add_child(_textura_base)
 	var s := clampf(get_viewport().get_final_transform().get_scale().x, 1.0, 4.0)  # escala real de la pantalla: nítido en el teléfono
-	var clave := "%d|%s|%.3f|%.3f|%s|%s|%.2f" % [hash(valores), seleccion, estirar_x, x_centro_rel, ciudades_visibles, _relieve != null, s]
-	_textura_base.pintar = func(ci: CanvasItem) -> void: _pintar_base(ci, Transform2D(0.0, Vector2(s, s), 0.0, Vector2.ZERO), Transform2D.IDENTITY)
+	var clave := "%d|%s|%.3f|%.3f|%s|%s|%.2f|%.3f|%s" % [hash(valores), seleccion, estirar_x, x_centro_rel, ciudades_visibles, _relieve != null, s, _zoom.zoom, _zoom.pan.round()]
+	var vista := _zoom.vista()  # la caché se repinta solo cuando cambian el zoom o el encuadre
+	_textura_base.pintar = func(ci: CanvasItem) -> void: _pintar_base(ci, Transform2D(0.0, Vector2(s, s), 0.0, Vector2.ZERO), vista)
 	_textura_base.preparar(size, s, clave)
 
 
@@ -262,7 +283,7 @@ func lanzar_fuegos(id: String, demora: float = 0.0) -> void:
 
 func posicion_global(id: String) -> Vector2:
 	## Punto de la región en coordenadas de pantalla (destino de la carta que vuela).
-	return get_global_transform() * (centro(id) if _banda_y.has(id) else size * 0.5)
+	return get_global_transform() * (_cam() * centro(id) if _banda_y.has(id) else size * 0.5)
 
 
 func _contornos(id: String) -> Array:
@@ -320,11 +341,32 @@ func _centro_calculado(id: String) -> Vector2:
 
 
 func _gui_input(event: InputEvent) -> void:
-	var pos := Vector2.ZERO
-	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:  # el toque llega también como clic
-		pos = event.position
-	else:
-		return
+	## Pellizco, rueda, doble toque y arrastre van a MapaZoom; un toque simple (soltar sin arrastrar) elige la región.
+	var r := _zoom.gestionar(event, size, self, _al_cambiar_vista)
+	if r.get("consumido", false):
+		accept_event()
+	if r.has("toque"):
+		for rt in _rotulos:  # tocar el nombre de una región la elige (área ≥ 44 px)
+			if (rt[1] as Rect2).has_point(r["toque"]):
+				seleccion = String(rt[0])
+				queue_redraw()
+				region_tocada.emit(seleccion)
+				return
+		_elegir_en(_cam().affine_inverse() * Vector2(r["toque"]))
+
+
+func _al_cambiar_vista() -> void:
+	if _ver_todo == null:
+		_ver_todo = Tema.boton_secundario("Ver todo", Tema.CREMA, 44)
+		_ver_todo.custom_minimum_size = Vector2(96, 44)
+		_ver_todo.pressed.connect(func() -> void: _zoom.ir_a(1.0, size * 0.5, size, self, _al_cambiar_vista))
+		add_child(_ver_todo)
+	_ver_todo.position = Vector2(8.0, size.y - 52.0)
+	_ver_todo.visible = _zoom.acercado()
+	queue_redraw()
+
+
+func _elegir_en(pos: Vector2) -> void:
 	var yn := (pos.y - 8.0) / maxf(1.0, size.y - 16.0)
 	var mejor := ""
 	var mejor_d := 9.0
@@ -353,7 +395,7 @@ func _dibujar_vivo() -> void:
 	## Mapa vivo (dirección visual v4): regiones con tendencia laten en verde o coral, el bastión tiene un pulso
 	## dorado, las obras se mecen y las propuestas laten. Todo sigue al golpe de cámara.
 	var v := _vivo
-	v.draw_set_transform_matrix(_camara)
+	v.draw_set_transform_matrix(_cam())
 	var pulso := 0.5 + 0.5 * sin(_t * 3.2)
 	var clave := Vector4(size.x, size.y, x_centro_rel, estirar_x)
 	if clave != _segs_clave or not is_same(_segs_de, _tendencia):  # los segmentos solo cambian con el tamaño o la tendencia, no cada cuadro

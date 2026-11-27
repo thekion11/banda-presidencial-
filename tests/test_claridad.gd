@@ -200,7 +200,8 @@ func _correr() -> void:
 	var lbls: Array = dv._capa.find_children("*", "Label", true, false).filter(func(l: Label) -> bool: return l.text.ends_with("· faltaron 4"))
 	_check(lbls.size() == 1, "una votación rechazada dice cuántos votos faltaron")
 	var bts: Array = dv._capa.find_children("*", "Button", true, false).filter(func(b: Button) -> bool: return b.is_visible_in_tree() and b.size.x > 300.0)  # el botón principal (el tutorial también está abierto)
-	_check(not bts.is_empty() and bts.all(func(b: Button) -> bool: return b.get_global_rect().end.y <= 693.0 - 48.0 + 0.5), "con la barra de gestos el botón de la votación rechazada queda entero (%s)" % str(bts.map(func(b: Button) -> Rect2: return b.get_global_rect())))
+	var alto_v := root.get_visible_rect().size.y  # 693 en headless; con ventana real, el de la ventana
+	_check(not bts.is_empty() and bts.all(func(b: Button) -> bool: return b.get_global_rect().end.y <= alto_v - 48.0 + 0.5), "con la barra de gestos el botón de la votación rechazada queda entero (%s)" % str(bts.map(func(b: Button) -> Rect2: return b.get_global_rect())))
 	Tema.inset_prueba = Vector2(-1, -1)
 	root.content_scale_size = Vector2i(390, 844)
 	var con_futuro := {"diferido": {"semanas": 8, "efectos": [{"ind": "cohesion", "delta": 2}, {"ind": "aprobacion", "delta": 1}]}, "riesgo": {"prob": 0.3, "efectos": [{"ind": "aprobacion", "delta": -1}]}}
