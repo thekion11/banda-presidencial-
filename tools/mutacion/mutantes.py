@@ -160,3 +160,8 @@ MUTANTES += [
  ("A09", "sim/motor_agenda.gd", "return maxi(1, roundi(float(u[\"dias\"]) * float(_cfg()[\"dias_mixta_frac\"])))", "return maxi(1, roundi(float(u[\"dias\"]) * float(_cfg()[\"dias_mixta_frac\"]) * 2.0))", "la comisión mixta dura el doble"),
  ("A10", "sim/motor_agenda.gd", "	_m.estado.delegadas_turno += 1 if delegar else 0", "	_m.estado.delegadas_turno += 0", "presentar delegado no cuenta como delegación del turno"),
 ]
+
+MUTANTES += [
+ ("A11", "sim/motor_agenda.gd", "		p[\"dia_etapa_fin\"] = mini(int(p[\"dia_etapa_fin\"]), _m.estado.dia_actual + int(urgencia(\"inmediata\")[\"dias\"]))", "		p[\"dia_etapa_fin\"] = maxi(int(p[\"dia_etapa_fin\"]), _m.estado.dia_actual + int(urgencia(\"inmediata\")[\"dias\"]))", "la discusión inmediata puede alargar el plazo en vez de acortarlo"),
+ ("A12", "sim/motor_agenda.gd", "		if not ETAPAS_VOTO.has(p[\"etapa\"]) and p[\"etapa\"] != \"comision_mixta\":", "		if false:", "se puede subir la urgencia en etapas donde no corresponde (TC, promulgación)"),
+]

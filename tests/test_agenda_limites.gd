@@ -86,6 +86,46 @@ func _init() -> void:
 	m2.estado.agenda[0]["dia_etapa_fin"] = limite - 1
 	m2.agenda.avanzar()
 	_check(m2.estado.agenda.is_empty() or String(m2.estado.agenda[0]["etapa"]) != "primer_tramite", "una etapa con plazo menor que el cierre de la semana SÍ se resuelve")
+	# poner_en_discusion_inmediata (A11, A12): acorta el plazo (nunca lo alarga), no cobra, respeta la etapa y no se repite
+	var m4: MotorTurno = null
+	for sd in range(2400, 2430):
+		m4 = _motor(datos, sd)
+		if m4 != null and _carta_ley(m4) != "":
+			break
+	m4.estado.pa_actual = 10
+	var id4 := _carta_ley(m4)
+	_check(bool(m4.agenda.presentar(id4, "simple").get("ok", false)), "se presenta para la discusión inmediata")
+	var p4: Dictionary = m4.estado.agenda[0]
+	var pa4 := m4.estado.pa_actual
+	var cap4 := m4.estado.ind("capital")
+	var largo := int(p4["dia_etapa_fin"])
+	var tope_inm := m4.estado.dia_actual + int(m4.agenda.urgencia("inmediata")["dias"])
+	var di := m4.agenda.poner_en_discusion_inmediata(id4)
+	_check(bool(di["ok"]) and String(p4["urgencia"]) == "inmediata" and int(p4["dia_etapa_fin"]) == mini(largo, tope_inm), "la discusión inmediata acorta el plazo a min(actual, hoy + días de la urgencia): %s" % str(di))
+	_check(m4.estado.pa_actual == pa4 and is_equal_approx(m4.estado.ind("capital"), cap4), "la discusión inmediata no cobra movimientos ni capital (lo cobra quien llama)")
+	_check(String(m4.agenda.poner_en_discusion_inmediata(id4)["razon"]) == "ya_inmediata", "no se puede subir dos veces")
+	var m5: MotorTurno = null
+	for sd in range(2500, 2530):
+		m5 = _motor(datos, sd)
+		if m5 != null and _carta_ley(m5) != "":
+			break
+	m5.estado.pa_actual = 10
+	var id5 := _carta_ley(m5)
+	m5.agenda.presentar(id5, "simple")
+	var p5: Dictionary = m5.estado.agenda[0]
+	p5["dia_etapa_fin"] = m5.estado.dia_actual + 2  # plazo ya más corto que el de la urgencia inmediata: no se alarga
+	m5.agenda.poner_en_discusion_inmediata(id5)
+	_check(int(p5["dia_etapa_fin"]) == m5.estado.dia_actual + 2, "un plazo ya más corto no se alarga (%d)" % int(p5["dia_etapa_fin"]))
+	var m6: MotorTurno = null
+	for sd in range(2600, 2630):
+		m6 = _motor(datos, sd)
+		if m6 != null and _carta_ley(m6) != "":
+			break
+	m6.estado.pa_actual = 10
+	var id6 := _carta_ley(m6)
+	m6.agenda.presentar(id6, "simple")
+	m6.estado.agenda[0]["etapa"] = "tc"
+	_check(String(m6.agenda.poner_en_discusion_inmediata(id6).get("razon", "")) == "etapa_sin_urgencia" and String(m6.estado.agenda[0]["urgencia"]) == "simple", "en el TC no se puede subir la urgencia")
 	# A09: la comisión mixta dura dias_mixta_frac del plazo de la urgencia
 	var u := m2.agenda.urgencia("simple")
 	var pm := {"urgencia": "simple", "tipo_ley": "ley_simple", "etapa": "", "dia_etapa_fin": 0, "dia_ingreso": 0}
