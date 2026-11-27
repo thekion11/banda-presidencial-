@@ -165,3 +165,25 @@ MUTANTES += [
  ("A11", "sim/motor_agenda.gd", "		p[\"dia_etapa_fin\"] = mini(int(p[\"dia_etapa_fin\"]), _m.estado.dia_actual + int(urgencia(\"inmediata\")[\"dias\"]))", "		p[\"dia_etapa_fin\"] = maxi(int(p[\"dia_etapa_fin\"]), _m.estado.dia_actual + int(urgencia(\"inmediata\")[\"dias\"]))", "la discusión inmediata puede alargar el plazo en vez de acortarlo"),
  ("A12", "sim/motor_agenda.gd", "		if not ETAPAS_VOTO.has(p[\"etapa\"]) and p[\"etapa\"] != \"comision_mixta\":", "		if false:", "se puede subir la urgencia en etapas donde no corresponde (TC, promulgación)"),
 ]
+
+# Balas de plata (sim/motor_balas.gd) y presupuesto extra (sim/motor_presupuesto.gd): matan tests/fuzz_balas_presupuesto.gd (B04, B07, B08, P01, P03, P05, P07) y tests/test_balas_bordes.gd (el resto).
+MUTANTES += [
+ ('BAB01', 'sim/motor_balas.gd', '\t\t\treturn m.gabinete.anio_gobierno() >= int(cond["valor"])', '\t\t\treturn m.gabinete.anio_gobierno() > int(cond["valor"])', 'condición anio_min exige superar el año'),
+ ('BAB02', 'sim/motor_balas.gd', 'e.turno_actual - int(e.eventos_ocurridos[String(id)]) <= int(_cfg()["semanas_reciente"])', 'e.turno_actual - int(e.eventos_ocurridos[String(id)]) < int(_cfg()["semanas_reciente"])', 'evento_reciente: borde de la ventana'),
+ ('BAB03', 'sim/motor_balas.gd', 'if int(c["oposicion"]) * 2 > int(c["total"]):', 'if int(c["oposicion"]) * 2 >= int(c["total"]):', 'oposición mayoritaria con empate'),
+ ('BAB04', 'sim/motor_balas.gd', '\treturn maxi(0, usos_habilitados() - _usadas_del_ciclo().size())', '\treturn maxi(0, usos_habilitados() - _usadas_del_ciclo().size() + 1)', 'un uso de bala de más'),
+ ('BAB05', 'sim/motor_balas.gd', '\treturn int(c["usos_max"]) if m.gabinete.anio_gobierno() >= int(c["anio_uso_extra"]) else int(c["usos_iniciales"])', '\treturn int(c["usos_max"]) if m.gabinete.anio_gobierno() > int(c["anio_uso_extra"]) else int(c["usos_iniciales"])', 'el cupo extra se habilita un año tarde'),
+ ('BAB06', 'sim/motor_balas.gd', 'maxi(0, ultimo + int(_cfg()["enfriamiento_semanas"]) - m.estado.turno_actual)', 'maxi(0, ultimo + int(_cfg()["enfriamiento_semanas"]) - m.estado.turno_actual - 1)', 'el enfriamiento entre balas dura una semana menos'),
+ ('BAB07', 'sim/motor_balas.gd', '\tif _usadas_del_ciclo().has(String(def["id"])):', '\tif false:', 'una bala se puede usar dos veces en el mismo mandato'),
+ ('BAB08', 'sim/motor_balas.gd', '\t\tif vedados.has(String(p["tipo_ley"])):\n\t\t\tcontinue', '\t\tif false:\n\t\t\tcontinue', 'el DFL actúa sobre materias vedadas'),
+ ('BAB09', 'sim/motor_balas.gd', 'float(r["centro"]) - m.estado.ind(String(r["ind"])))', 'm.estado.ind(String(r["ind"])) - float(r["centro"]))', 'el riesgo de la bala baja cuando el indicador es malo'),
+ ('BAB10', 'sim/motor_balas.gd', '\tusadas[id] = [e.ciclo, e.turno_actual]\n\te.balas["usadas"] = usadas', '\te.balas["usadas"] = usadas', 'el uso de la bala no queda registrado'),
+ ('BAB11', 'sim/motor_balas.gd', '\tif capital < costo:', '\tif capital <= costo:', 'con capital justo se obliga a la versión reducida'),
+ ('BAP01', 'sim/motor_presupuesto.gd', '\tif gastado_anio() + fiscal > float(c["tope_anual_fiscal"]):', '\tif gastado_anio() + fiscal > float(c["tope_anual_fiscal"]) * 2.0:', 'el tope anual de extras se duplica'),
+ ('BAP02', 'sim/motor_presupuesto.gd', '\tif e.ind("fiscal") - fiscal < float(c["piso_fiscal"]):', '\tif e.ind("fiscal") - fiscal < float(c["piso_fiscal"]) - 100.0:', 'el piso fiscal del extra se ignora'),
+ ('BAP03', 'sim/motor_presupuesto.gd', '\tif _activos().size() >= int(c["max_simultaneos"]):', '\tif _activos().size() > int(c["max_simultaneos"]):', 'un presupuesto simultáneo de más'),
+ ('BAP04', 'sim/motor_presupuesto.gd', '\treturn clampf(f, float(a["fraccion_min"]), float(a["fraccion_max"]))', '\treturn f', 'la fracción alineada no se acota'),
+ ('BAP05', 'sim/motor_presupuesto.gd', '\tm.fx.sumar_ind("fiscal", -float(n["fiscal"]), "presupuesto extra a un ministerio")', '\tm.fx.sumar_ind("fiscal", float(n["fiscal"]), "presupuesto extra a un ministerio")', 'el presupuesto extra crea fiscal de la nada'),
+ ('BAP06', 'sim/motor_presupuesto.gd', '\tlibre[slot] = m.estado.turno_actual + int(_cfg()["enfriamiento_semanas"])', '\tlibre[slot] = m.estado.turno_actual', 'no hay enfriamiento tras terminar un extra'),
+ ('BAP07', 'sim/motor_presupuesto.gd', '\tif _activos().has(slot):\n\t\treturn {"ok": false, "razon": "ya_activo"', '\tif false:\n\t\treturn {"ok": false, "razon": "ya_activo"', 'se puede asignar dos veces al mismo ministerio'),
+]
