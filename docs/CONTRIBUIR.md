@@ -29,6 +29,7 @@ python3 tools/regresion_visual.py --generar     # regenera tests/golden
 - Necesita `xvfb-run` y Pillow. En el CI es un paso **no bloqueante**: la tabla y las imágenes de diferencias (referencia | nueva | píxeles distintos en rojo) quedan en el artefacto `regresion-visual`.
 - Tolerancia: un píxel cuenta como distinto si algún canal difiere en más de 24, tras llevar la captura nueva a la paleta de la referencia. Una pantalla falla si más del 1,5 % de sus píxeles cambia. Un margen así absorbe el antialias de otra versión de Mesa, no un cambio de diseño.
 - **Regenera las referencias solo cuando el cambio visual es a propósito.** Primero mira las diferencias, después corre `--generar` y explica en el commit qué cambió y por qué (por ejemplo: «hemiciclo: la marca del mínimo ya no tapa el texto»). Si una pantalla cambia sin que la hayas tocado, es una regresión: no la regeneres.
+- Agregar o quitar cartas de `data/` cambia el mazo y por lo tanto **la mano del día** en la captura: es esperado. Mira que la diferencia sea solo la mano y regenera.
 - Las capturas tienen que ser deterministas: `tests/golden_capturar.gd` borra el guardado antes de empezar (el menú cambia si hay partida), esconde los avisos que se van solos y corre sin animaciones. Si agregas algo que se mueve aunque «Animaciones» esté apagado, la comparación lo marcará. Eso pasó con la mano, que volaba igual: ahora `tests/test_reglas_ui.gd` lo prueba.
 
 ## Convenciones
