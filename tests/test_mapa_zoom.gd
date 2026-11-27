@@ -120,6 +120,13 @@ func _correr() -> void:
 	for k in range(20):
 		m._gui_input(g)
 	_check(is_equal_approx(z.zoom, MapaZoom.MAX), "el zoom tiene tope (%.1f)" % z.zoom)
+	# el control se achica con zoom (pantalla dividida, teclado): la vista vuelve a sus límites sin esperar un gesto
+	var tam0 := m.size
+	m.size = Vector2(tam0.x, tam0.y * 0.6)
+	await _cuadros(1)
+	_check(z.pan.y >= m.size.y * (1.0 - z.zoom) - 0.5 and z.pan.x >= m.size.x * (1.0 - z.zoom) - 0.5, "al achicarse con zoom, la vista no deja ver fuera del mapa (%s)" % z.pan)
+	m.size = tam0
+	await _cuadros(1)
 	m._ver_todo.pressed.emit()
 	await _cuadros(1)
 	# por el camino real: doble toque con InputEventScreenTouch

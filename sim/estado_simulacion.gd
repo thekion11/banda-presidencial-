@@ -60,6 +60,7 @@ var resultado_final: Dictionary = {}
 var ciclo: int = 1  # periodo de la carrera política (1 = primera campaña; sube cada vez que continúas tras un gobierno o una derrota)
 var carrera: Array[Dictionary] = []  # periodos ya cerrados: {ciclo, resultado, puntaje, aprobacion, turnos}
 var pendientes: Array[Dictionary] = []  # consecuencias programadas por decisiones: {tipo: efecto|evento, semana, origen, ...}
+var ultima_eleccion: Dictionary = {}  # detalle de la última votación presidencial (por región); solo salida, se recalcula al reproducir
 var dias_carrera: int = 0  # días jugados en periodos cerrados desde el inicio del mandato (reloj del calendario desde el ciclo 2)
 
 

@@ -209,9 +209,19 @@ func resolver_eleccion() -> Dictionary:
 	var sin_prom := float(camp["penal_sin_promesas"]) if _m.estado.promesas_campana.size() < int(camp["min_promesas"]) else 0.0  # U3: sin compromisos pierdes votos
 	var opo: Dictionary = _m.catalogo_leyes["oposicion"]
 	var efecto_rival := float(opo["peso_rival_voto"]) * (float(opo["rival_neutro"]) - _m.estado.ind("rival")) if _m.estado.ciclo > 1 else 0.0  # un rival débil te ayuda
-	var voto_final := clampf(_m.estado.ind("aprobacion") + _m.rng.randf_range(-ruido, ruido) - sin_prom + efecto_rival, 0.0, 100.0)
+	var lim: Dictionary = _m.catalogo_leyes["limites_indicadores"]
+	var desplaza := _m.rng.randf_range(-ruido, ruido) - sin_prom + efecto_rival  # choque nacional (una sola tirada) − penalización + rival: igual en todas las regiones
+	var voto_final := clampf(_m.estado.ind("aprobacion") + desplaza, float(lim["min"]), float(lim["max"]))
+	var detalle := {}
+	if not _m.regiones.pesos.is_empty():  # desglose por región (peso = población); el voto nacional decide igual que antes: aprobación nacional + desplazamiento (= Σ peso · voto salvo topes por región)
+		var ajuste_nacional := _m.estado.ind("aprobacion") - _m.regiones.promedio(_m.estado)  # lo que la aprobación nacional se aparte del promedio regional (en juego normal es 0) se reparte por igual
+		detalle = VotoRegional.calcular(_m.regiones, _m.estado.aprobacion_regional, desplaza + ajuste_nacional, float(lim["min"]), float(lim["max"]), umbral)
 	var ronda := _m.estado.ronda_electoral
 	var electo := voto_final >= umbral
+	detalle["voto_final"] = voto_final
+	detalle["umbral"] = umbral
+	detalle["ronda"] = ronda
+	_m.estado.ultima_eleccion = detalle  # solo salida para la pantalla de la elección
 	var balotaje := ronda == 1 and not electo and voto_final >= float(h["umbral_pasa_balotaje"])
 	_m.estado.registrar_accion("eleccion_presidencial", {"voto_final": voto_final, "umbral": umbral, "electo": electo,
 			"ronda": ronda, "balotaje": balotaje, "promesas_registradas": _m.estado.promesas_campana.size()})
@@ -227,7 +237,7 @@ func resolver_eleccion() -> Dictionary:
 	else:
 		_m.estado.etapa = "derrota_electoral"
 		_m.estado.resultado_final = {"motivo": "derrota_electoral", "voto_final": voto_final, "puntaje": 0}
-	return {"ok": true, "electo": electo, "balotaje": balotaje, "ronda": ronda, "voto_final": voto_final, "umbral": umbral}
+	return {"ok": true, "electo": electo, "balotaje": balotaje, "ronda": ronda, "voto_final": voto_final, "umbral": umbral, "regiones": detalle.get("regiones", []), "regiones_ganadas": int(detalle.get("regiones_ganadas", 0)), "total_habitantes_miles": float(detalle.get("total_habitantes_miles", 0.0)), "votos_estimados_miles": float(detalle.get("votos_estimados_miles", 0.0))}
 
 
 func _dec(v) -> String:

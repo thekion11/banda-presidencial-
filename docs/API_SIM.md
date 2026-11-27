@@ -296,3 +296,7 @@
 - `static partido_valido(p: Variant) -> bool` — true si el partido guardado tiene los indicadores y los tipos que usa el motor.
 - `static entrada_valida(e: Variant) -> bool` — true si la entrada tiene un tipo conocido y las claves obligatorias de ese tipo con su tipo.
 - `static guardado_valido(g: Variant) -> bool` — true si el guardado completo (versión, semilla, partido y entradas) tiene la forma esperada; se usa antes de reproducir.
+
+## `VotoRegional` (`sim/voto_regional.gd`)
+
+- `static calcular(regiones: Regiones, aprobacion_regional: Dictionary, desplazamiento: float, tope_min: float, tope_max: float, umbral: float) -> Dictionary` — `desplazamiento` = choque nacional − penalización + efecto rival (el mismo para todas las regiones). Devuelve el voto nacional ponderado y el detalle por región.

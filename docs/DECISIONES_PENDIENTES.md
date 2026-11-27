@@ -84,3 +84,7 @@ Cuando decidas algo, dímelo con el número (p. ej. «D2 b») y se aplica, se mi
 - Contexto: el usuario dijo que elegir el gabinete es «solo un formulario, es poco atractivo» (DECISIONES §BK). Visual lo mejora con lo que ya existe (alias, estilo, rasgo, afinidad, riesgo de escándalo, efecto semanal al nombrar).
 - Propuesta que **requiere `data/`** (hoy congelado): por candidato, una frase característica, una mini biografía satírica y un retrato (arte con IA o ilustración). Son 75 candidatos (25 ministerios × 3). Costo: texto 75 × 2 líneas (barato, con revisión de tono y sin personas reales: son alias satíricos), arte 75 retratos (medio; licencias del arte con IA pendientes, `LICENCIAS.md`). Cambia la huella y los oros, y debe entrar antes de repartir la prueba cerrada.
 - Recomendación: textos sí (bajo costo, alto efecto), retratos solo si se resuelven las licencias; decidir antes de la prueba cerrada.
+
+## D23 y D24. Elección con población: ruido regional y Congreso por geografía (27-nov-2026)
+- **D23:** componente aleatorio por región en la elección presidencial (`ruido_regional` en `data/leyes.json`). Hoy no existe y `data/` está congelado; añadirlo cambia el balance y los oros. Recomendación: no, hasta ver datos de personas (el voto por región ya se muestra sin él).
+- **D24:** Cámara y Senado por geografía (155 diputados por distritos de población, 50 senadores por región; `docs/ELECCION_POBLACION.md`). Es una mecánica nueva. Recomendación: esperar a la prueba cerrada.

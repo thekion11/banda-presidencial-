@@ -70,7 +70,7 @@ static func pastilla_pa(refs: Dictionary) -> Control:
 	p.add_theme_stylebox_override("panel", Tema.caja_degradada(Color("#FFD76A"), Color("#E3A92A"), 16, Color("#FFE9A8"), 1))
 	var h := HBoxContainer.new()
 	h.add_theme_constant_override("separation", 4)
-	h.add_child(Icono.crear("bolt", Tema.TINTA, 16.0))
+	h.add_child(Icono.crear("bolt", Tema.TINTA, 18.0))  # el símbolo de los movimientos (sin la palabra, que se cortaba)
 	var l := Tema.etiqueta_corta("", 15, Tema.TINTA, true)
 	h.add_child(l)
 	p.add_child(h)
