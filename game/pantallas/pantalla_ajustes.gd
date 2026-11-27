@@ -16,13 +16,21 @@ func _ready() -> void:
 	mc.set_anchors_preset(Control.PRESET_FULL_RECT)
 	for lado in ["left", "right"]:
 		mc.add_theme_constant_override("margin_" + lado, 20)
-	mc.add_theme_constant_override("margin_top", 56)
+	mc.add_theme_constant_override("margin_top", roundi(maxf(56.0, Tema.margen_superior() + 8.0)))  # muesca o cámara
 	mc.add_theme_constant_override("margin_bottom", 28)
 	add_child(mc)
 	var col := VBoxContainer.new()
 	col.add_theme_constant_override("separation", 12)
 	mc.add_child(col)
 	col.add_child(Tema.etiqueta("Ajustes", 24, Tema.TEXTO, true))
+	var sc := ScrollContainer.new()  # en un teléfono bajo con barra de gestos las 7 filas no caben: se desplazan y «Cerrar» queda fijo
+	sc.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	sc.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+	col.add_child(sc)
+	var filas := VBoxContainer.new()
+	filas.add_theme_constant_override("separation", 12)
+	filas.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	sc.add_child(filas)
 	for fila in [["Sonido", "sonido"], ["Música", "musica"], ["Vibración", "vibracion"], ["Animaciones y movimiento", "animaciones"], ["Reducir movimiento", "reducir"], ["Texto grande", "texto_grande"], ["Colores para daltonismo", "daltonico"]]:
 		var cb := CheckButton.new()
 		cb.text = fila[0]
@@ -33,12 +41,9 @@ func _ready() -> void:
 			Ajustes.poner(fila[1], on)
 			Ajustes.guardar()
 			Feedback.sonar("toque"))
-		col.add_child(cb)
-	col.add_child(Tema.etiqueta("El texto grande se aplica al abrir cada pantalla; los colores para daltonismo pasan a azul y naranja la escala de aprobación y todo lo que sube o baja (votos, cambios, mapa).", 11, Tema.TEXTO_SUAVE))
-	Movimiento.escalonar(col, 0.0, 0.05)
-	var esp := Control.new()
-	esp.size_flags_vertical = Control.SIZE_EXPAND_FILL
-	col.add_child(esp)
+		filas.add_child(cb)
+	filas.add_child(Tema.etiqueta("El texto grande se aplica al abrir cada pantalla; los colores para daltonismo pasan a azul y naranja la escala de aprobación y todo lo que sube o baja (votos, cambios, mapa).", 11, Tema.TEXTO_SUAVE))
+	Movimiento.escalonar(filas, 0.0, 0.05)
 	var b := Tema.boton("Cerrar", Tema.ROJO, Tema.TEXTO, 15, 52)
 	b.pressed.connect(func() -> void:
 		cerrada.emit()

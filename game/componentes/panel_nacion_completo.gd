@@ -6,7 +6,7 @@ extends RefCounted
 static func crear(motor: MotorTurno, geo: Dictionary, regiones: Array, texto_evento: String, al_avanzar: Callable) -> Control:
 	var pn := PanelNacion.new()
 	pn.size_flags_vertical = Control.SIZE_EXPAND_FILL
-	pn.custom_minimum_size = Vector2(0, 470)
+	pn.custom_minimum_size = Vector2(0, clampf(Tema.alto_util() - 240.0, 300.0, 470.0))  # crece con EXPAND; el mínimo cede en teléfonos bajos o con barra de gestos
 	var vn := VBoxContainer.new()
 	vn.add_theme_constant_override("separation", 8)
 	vn.add_child(_selector(pn, motor))
@@ -38,7 +38,7 @@ static func _selector(pn: PanelNacion, motor: MotorTurno) -> Control:
 		fila.add_child(b)
 	var cont := MapaContinente.new()
 	cont.size_flags_vertical = Control.SIZE_EXPAND_FILL
-	cont.custom_minimum_size = Vector2(0, 400 if Tema.pantalla_baja() else 470)  # en teléfono bajo deja sitio a la línea del país y al evento
+	cont.custom_minimum_size = Vector2(0, clampf(Tema.alto_util() - 293.0, 300.0, 470.0))  # en teléfono bajo deja sitio a la línea del país y al evento
 	cont.visible = false
 	var vec: Dictionary = Datos.leer_json("res://data/vecinos.json")
 	for iso in vec["paises"].keys():
