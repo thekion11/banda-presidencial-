@@ -32,7 +32,3 @@ func preparar(tam: Vector2, escala: float, clave: String) -> void:
 	size = px
 	_lienzo.queue_redraw()
 	render_target_update_mode = SubViewport.UPDATE_ONCE
-
-
-func invalidar() -> void:
-	_clave = ""

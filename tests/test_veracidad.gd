@@ -6,6 +6,7 @@ extends SceneTree
 
 var _fallos := 0
 var _vistas := 0  # comprobaciones hechas (que la prueba no pase en vacío)
+var _motivos_vistos := 0
 var _decimal := RegEx.create_from_string("\\d\\.\\d(?!\\d)|\\d\\.\\d\\d(?!\\d)")
 
 
@@ -83,6 +84,12 @@ func _correr() -> void:
 		await _cuadros(1)
 		_cabecera(dia, "gobierno sem. %d" % (s + 1))
 		motor.terminar_turno()
+		var mv := motor.motivos_semana()  # el telón explica los cambios con estas filas
+		var lineas := TelonSemana.lineas_motivos(mv)
+		_check(lineas.size() == mv.size() and mv.size() <= 3, "el telón muestra una línea por motivo (%d de %d)" % [lineas.size(), mv.size()])
+		for k in range(lineas.size()):
+			_check(lineas[k].ends_with(": " + String(mv[k]["causa"])) and lineas[k].contains("−" if float(mv[k]["delta"]) < 0.0 else "+") and _decimal.search(lineas[k]) == null, "motivo bien escrito: «%s»" % lineas[k])
+		_motivos_vistos += mv.size()
 		dia._refrescar()
 		await _cuadros(1)
 		_cabecera(dia, "gobierno, inicio de la sem. %d" % (s + 2))
@@ -115,7 +122,28 @@ func _correr() -> void:
 			if h is Control and h != dia._toast:
 				h.queue_free()
 		await _cuadros(1)
+	_check(_motivos_vistos > 0, "en 6 semanas de gobierno hubo algún cambio con causa para el telón")
+	# telón con encuesta y 3 motivos en el teléfono bajo: todo en pantalla
+	Movimiento.forzado = 1
+	root.content_scale_size = Vector2i(390, 693)
+	var capa := Control.new()
+	capa.size = Vector2(390, 693)
+	root.add_child(capa)
+	var tres := [{"ind": "cohesion", "delta": -1.85, "causa": "desgaste del gobierno"}, {"ind": "riesgo_ejecucion", "delta": 2.0, "causa": "obras atrasadas en regiones"}, {"ind": "capital", "delta": -1.0, "causa": "rechazo del Congreso a tu proyecto de ley"}]
+	TelonSemana.mostrar(capa, ["Semana 3", ""], ["Semana 4", "Dom 12 oct 2025"], {"aprobacion": 40.0, "capital": 50.0, "cohesion": 80.0, "fiscal": 50.0}, {"aprobacion": 41.0, "capital": 49.0, "cohesion": 78.15, "fiscal": 50.0}, false, func() -> void: pass,
+		[{"intencion": 40.0, "margen": 3.0}, {"etapa": "campana", "turno": 4, "intencion": 41.5, "margen": 2.8, "umbral": 51.0, "rival": null, "regiones": [{"id": "aysen", "valor": 31.0}]}], d["regiones"], 8, tres)
+	await create_timer(0.8).timeout
+	var tl: Array = capa.find_children("*", "Label", true, false)
+	_check(tl.any(func(l: Label) -> bool: return l.text == "Cohesión −1,9: desgaste del gobierno"), "el telón dice por qué bajó la cohesión")
+	for l: Label in tl:
+		_check(l.get_global_rect().end.y <= 693.5, "telón en 390×693: «%s» se sale por abajo (%s)" % [l.text.left(30), l.get_global_rect()])
+	capa.queue_free()
+	Movimiento.forzado = 0
+	root.content_scale_size = Vector2i(390, 844)
+	await _cuadros(1)
 	# fin del mandato: el puntaje en pantalla es el del motor y los hitos no usan punto decimal
+	for h in motor.mandato.hitos(1000):
+		_check(_decimal.search(String(h["texto"])) == null, "hito con punto decimal: «%s»" % String(h["texto"]))
 	motor.mandato.finalizar("fin_mandato")
 	main.mostrar_fin()
 	await _cuadros(3)
