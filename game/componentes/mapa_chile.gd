@@ -125,9 +125,14 @@ func _draw() -> void:
 	## Quieto, la capa base (océano, regiones, contornos, Cordillera y ciudades) sale de una textura pintada una vez
 	## (UrbanoCache): ~7,7 ms de CPU de render menos por cuadro (tests/medir_transiciones.gd). Mientras reacciona a una
 	## carta (golpe de cámara, destello, ondas) se dibuja en vivo.
-	var animando := _camara != Transform2D.IDENTITY or _onda.has("pos") or _destello > 0.0 or _zoom.moviendo
+	var animando := _camara != Transform2D.IDENTITY or _onda.has("pos") or _destello > 0.0
 	if animando:
 		_pintar_base(self, Transform2D.IDENTITY, _cam())
+	elif _zoom.moviendo and _textura_base != null:  # pellizco o arrastre: la caché anterior se mueve con el dedo y se repinta al soltar
+		draw_rect(Rect2(Vector2.ZERO, size), Color("#0E2B45"))  # océano bajo lo que el arrastre deja al descubierto
+		draw_set_transform_matrix(_zoom.vista() * _vista_cache.affine_inverse())
+		draw_texture_rect(_textura_base.get_texture(), Rect2(Vector2.ZERO, size), false)
+		draw_set_transform_matrix(_cam())
 	else:
 		_base_en_cache()
 		draw_texture_rect(_textura_base.get_texture(), Rect2(Vector2.ZERO, size), false)
@@ -235,6 +240,7 @@ func _pintar_base(ci: CanvasItem, base: Transform2D, cam: Transform2D) -> void:
 
 
 var _textura_base: UrbanoCache
+var _vista_cache := Transform2D.IDENTITY  # encuadre con que se pintó la caché (para moverla durante un gesto sin repintar)
 
 
 func _base_en_cache() -> void:
@@ -244,6 +250,7 @@ func _base_en_cache() -> void:
 	var s := clampf(get_viewport().get_final_transform().get_scale().x, 1.0, 4.0)  # escala real de la pantalla: nítido en el teléfono
 	var clave := "%d|%s|%.3f|%.3f|%s|%s|%.2f|%.3f|%s" % [hash(valores), seleccion, estirar_x, x_centro_rel, ciudades_visibles, _relieve != null, s, _zoom.zoom, _zoom.pan.round()]
 	var vista := _zoom.vista()  # la caché se repinta solo cuando cambian el zoom o el encuadre
+	_vista_cache = vista
 	_textura_base.pintar = func(ci: CanvasItem) -> void: _pintar_base(ci, Transform2D(0.0, Vector2(s, s), 0.0, Vector2.ZERO), vista)
 	_textura_base.preparar(size, s, clave)
 

@@ -111,6 +111,9 @@ func _correr() -> void:
 	m._gui_input(g)
 	var dentro := m._cam().affine_inverse() * punto
 	_check(is_equal_approx(z.zoom, 1.8) and m.a_pantalla(dentro).distance_to(punto) < 1.0, "el pellizco acerca sobre los dedos (%.2f)" % z.zoom)
+	_check(z.moviendo, "durante el pellizco el mapa mueve su caché en vez de repintarla")
+	await create_timer(0.3).timeout
+	_check(not z.moviendo, "150 ms después del último evento del pellizco la caché se repinta (gesto terminado)")
 	var rueda := InputEventMouseButton.new()
 	rueda.button_index = MOUSE_BUTTON_WHEEL_UP
 	rueda.pressed = true
