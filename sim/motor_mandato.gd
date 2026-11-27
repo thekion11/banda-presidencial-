@@ -216,7 +216,10 @@ func resolver_eleccion() -> Dictionary:
 	var detalle := {}
 	if not _m.regiones.pesos.is_empty():  # desglose por región (peso = población); el voto nacional decide igual que antes: aprobación nacional + desplazamiento (= Σ peso · voto salvo topes por región)
 		var ajuste_nacional := _m.estado.ind("aprobacion") - _m.regiones.promedio(_m.estado)  # lo que la aprobación nacional se aparte del promedio regional (en juego normal es 0) se reparte por igual
-		detalle = VotoRegional.calcular(_m.regiones, _m.estado.aprobacion_regional, desplaza + ajuste_nacional, float(lim["min"]), float(lim["max"]), umbral)
+		var r_reg := float(camp.get("ruido_eleccion_regional", 0.0))  # 0 si la fila no existe en leyes.json (data/ congelado)
+		detalle = VotoRegional.calcular(_m.regiones, _m.estado.aprobacion_regional, desplaza + ajuste_nacional, float(lim["min"]), float(lim["max"]), umbral, r_reg, _m.estado.semilla, _m.estado.ciclo, _m.estado.ronda_electoral)
+		if r_reg > 0.0:
+			voto_final = float(detalle["voto_nacional"])  # con ruido regional el voto es la suma ponderada por población; con 0 sigue el cálculo de siempre (idéntico bit a bit)
 	var ronda := _m.estado.ronda_electoral
 	var electo := voto_final >= umbral
 	detalle["voto_final"] = voto_final
@@ -239,7 +242,7 @@ func resolver_eleccion() -> Dictionary:
 	else:
 		_m.estado.etapa = "derrota_electoral"
 		_m.estado.resultado_final = {"motivo": "derrota_electoral", "voto_final": voto_final, "puntaje": 0}
-	return {"ok": true, "electo": electo, "balotaje": balotaje, "ronda": ronda, "voto_final": voto_final, "umbral": umbral, "regiones": detalle.get("regiones", []), "regiones_ganadas": int(detalle.get("regiones_ganadas", 0)), "total_habitantes_miles": float(detalle.get("total_habitantes_miles", 0.0)), "votos_estimados_miles": float(detalle.get("votos_estimados_miles", 0.0))}
+	return {"ok": true, "electo": electo, "balotaje": balotaje, "ronda": ronda, "voto_final": voto_final, "umbral": umbral, "regiones": detalle.get("regiones", []), "regiones_ganadas": int(detalle.get("regiones_ganadas", 0)), "gano_por": String(detalle.get("gano_por", "")), "total_habitantes_miles": float(detalle.get("total_habitantes_miles", 0.0)), "votos_estimados_miles": float(detalle.get("votos_estimados_miles", 0.0))}
 
 
 func _dec(v) -> String:

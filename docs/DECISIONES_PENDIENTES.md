@@ -88,3 +88,7 @@ Cuando decidas algo, dímelo con el número (p. ej. «D2 b») y se aplica, se mi
 ## D23 y D24. Elección con población: ruido regional y Congreso por geografía (27-nov-2026)
 - **D23:** componente aleatorio por región en la elección presidencial (`ruido_regional` en `data/leyes.json`). Hoy no existe y `data/` está congelado; añadirlo cambia el balance y los oros. Recomendación: no, hasta ver datos de personas (el voto por región ya se muestra sin él).
 - **D24:** Cámara y Senado por geografía (155 diputados por distritos de población, 50 senadores por región; `docs/ELECCION_POBLACION.md`). Es una mecánica nueva. Recomendación: esperar a la prueba cerrada.
+
+## D25. Proyectos de transporte de la RM y Aysén en el panel SECTRA (27-nov-2026)
+- Investigación y propuesta en `docs/PROPUESTA_SECTRA_RM_AYSEN.md` (no se tocó `data/`). Resumen: Aysén sí tiene 7 proyectos en la página de SECTRA (hueco de la descarga); la RM no publica y habría que usar EFE/MTT/MOP/Metro (Metro da 403).
+- Decisión del usuario: autorizar o no descongelar `data/sectra_planes.json`. Recomendación: cargar solo lo leído en fuente oficial con unidad explícita, antes de la prueba cerrada; si no, dejar el mensaje «sin proyectos publicados».

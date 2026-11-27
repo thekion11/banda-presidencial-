@@ -87,6 +87,9 @@
   ],
   "regiones.gd": [
    "10001"
+  ],
+  "voto_regional.gd": [
+   "10001"
   ]
  }
 }
