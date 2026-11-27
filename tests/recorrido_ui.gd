@@ -48,8 +48,12 @@ static func recorrer(arbol: SceneTree, visitar: Callable, alto: int = 844) -> vo
 		resp.append(p["opciones"][1])
 	var partido := GeneradorPartido.construir_partido("Movimiento Cívico Austral", "MCA", "metropolitana", resp, d["ideologia"])
 	main.motor = Partida.crear(d, 20260415, partido)
+	main.motor.estado.etapa = "gobierno"  # transición presidencial: el gabinete se elige recién ganada la elección
+	main.motor.estado.turno_actual = 1
 	main.mostrar_gabinete()
 	await paso.call("gabinete (configuración)")
+	main.motor.estado.etapa = "campana"
+	main.motor.estado.turno_actual = 1
 	main.mostrar_dia()
 	await paso.call("día")
 	var dia: Node = main._pantalla

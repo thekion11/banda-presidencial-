@@ -1,6 +1,7 @@
 class_name PantallaGabinete
 extends Control
-## Etapa de configuración, después de fundar el partido y antes de la campaña: el jugador elige su gabinete.
+## Transición presidencial (pedido del usuario del 27-nov-2026: «la elección del gabinete es después de las elecciones»):
+## recién ganada la elección y antes de la primera semana de gobierno, el jugador nombra a sus 25 ministros.
 
 signal listo
 
@@ -20,12 +21,12 @@ func _ready() -> void:
 	add_child(m)
 	var v := FilasUI.col(8)
 	m.add_child(v)
-	v.add_child(Tema.etiqueta("CONFIGURACIÓN · PASO 3", 10, Tema.ORO, true))
-	v.add_child(Tema.etiqueta("Forma tu gabinete", 24, Tema.TEXTO, true))
-	v.add_child(Tema.etiqueta("El ministro de cada área lleva sus cartas. Ya viene completo: puedes empezar así y cambiarlo durante la campaña.", 12, Tema.TEXTO_SUAVE))
+	v.add_child(Tema.etiqueta("TRANSICIÓN PRESIDENCIAL", 10, Tema.ORO, true))
+	v.add_child(Tema.etiqueta("Elige a tu equipo", 24, Tema.TEXTO, true))
+	v.add_child(Tema.etiqueta("Ganaste. Antes de asumir, nombra a tus ministros: el de cada área lleva sus cartas. Ya viene completo; puedes confirmarlo así.", 12, Tema.TEXTO_SUAVE))
 	_aviso = Tema.etiqueta("", 12, FilasUI.ROJO_TEXTO, true)
 	v.add_child(_aviso)
-	var sel := PanelGabinete.crear(motor, "Comenzar campaña · %d semanas" % int(motor.catalogo_leyes["hemiciclo"]["semanas_campana"]), listo.emit, func(t: String) -> void: _aviso.text = t)
+	var sel := PanelGabinete.crear(motor, "Confirmar gabinete y asumir", listo.emit, func(t: String) -> void: _aviso.text = t)
 	sel.size_flags_vertical = Control.SIZE_EXPAND_FILL
 	v.add_child(sel)
 	Movimiento.escalonar(v, 0.05, 0.05)
