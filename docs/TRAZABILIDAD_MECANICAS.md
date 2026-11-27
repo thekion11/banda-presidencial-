@@ -19,7 +19,7 @@ CLAUDE.md exige que toda mecánica nueva cite su fuente y su commit. Cada fila l
 | Oposición y reelección (PR-12, PR-13) | PR-12 y PR-13 | 6174a7a (25-nov) | `test_carrera`, `test_congreso_oposicion` | — |
 | Encuestas (semanal) | Pedido del usuario en sesión (DECISIONES §Z) | ver DECISIONES | `test_encuestas` | Su presentación en pantalla es de «Diseño visual» |
 | Comité de Planificación (variantes A/B/C, sliders, estaciones, 5 fases) | Documento maestro, Fase 1 y 3 | e40d808 | `test_sectra`, `test_grafo`, `test_cartera` | — |
-| Piso ideológico y luna de miel (13 semanas) | Pedido del usuario del 27-nov-2026 (DECISIONES §BN) | ver DECISIONES §BN | `test_piso_ideologico`, `test_luna_de_miel` | Su presentación en pantalla es de «Diseño visual» |
+| Piso ideológico y luna de miel (13 semanas) | Pedido del usuario del 27-nov-2026 (DECISIONES §BQ) | ver DECISIONES §BQ | `test_piso_ideologico`, `test_luna_de_miel` | Su presentación en pantalla es de «Diseño visual» |
 
 ## Pendiente de cerrar por esta auditoría
 1. (Hecho: `tests/test_calendario_fechas.gd`.)

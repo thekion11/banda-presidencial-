@@ -211,7 +211,7 @@ func resolver_eleccion() -> Dictionary:
 	var efecto_rival := float(opo["peso_rival_voto"]) * (float(opo["rival_neutro"]) - _m.estado.ind("rival")) if _m.estado.ciclo > 1 else 0.0  # un rival débil te ayuda
 	var lim: Dictionary = _m.catalogo_leyes["limites_indicadores"]
 	var desplaza := _m.rng.randf_range(-ruido, ruido) - sin_prom + efecto_rival  # choque nacional (una sola tirada) − penalización + rival: igual en todas las regiones
-	var pisos: Dictionary = _m.piso.pisos()  # voto duro (D-BN): ninguna región vota por debajo de su piso ideológico
+	var pisos: Dictionary = _m.piso.pisos()  # voto duro (D-BQ): ninguna región vota por debajo de su piso ideológico
 	var voto_final := clampf(maxf(_m.estado.ind("aprobacion") + desplaza, _m.piso.nacional()), float(lim["min"]), float(lim["max"]))
 	var detalle := {}
 	if not _m.regiones.pesos.is_empty():  # desglose por región (peso = población); el voto nacional decide igual que antes: aprobación nacional + desplazamiento (= Σ peso · voto salvo topes por región)

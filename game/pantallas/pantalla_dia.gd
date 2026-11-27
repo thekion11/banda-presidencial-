@@ -4,6 +4,7 @@ extends Control
 
 signal accion_hecha
 signal terminado
+signal transicion  # ganaste: falta nombrar el gabinete antes de la primera semana de gobierno
 
 var motor: MotorTurno
 var datos: Dictionary = {}
@@ -29,6 +30,7 @@ var _zona_panel: Control
 var _capa: Control
 var _toast: Toast
 var _cola_eventos: Array[Dictionary] = []
+var _panel_actual := "mapa"  # pestaña abierta: se reconstruye al terminar la semana para no mostrar datos viejos
 
 
 func _ready() -> void:
@@ -81,7 +83,7 @@ func _refrescar() -> void:
 	if not cri.is_empty():
 		_r["fecha"].text = String(cri["corto"])
 	_r["fecha"].add_theme_color_override("font_color", Tema.mal() if not cri.is_empty() else Tema.TEXTO_SUAVE)
-	var pa_txt := ManoUI.texto_pastilla(est)
+	var pa_txt := ManoUI.texto_pastilla(est, int(motor.movimientos.ahorro_movimientos()["tope_efectivo"]))
 	Movimiento.movimientos((_r["pa"] as Control).get_parent().get_parent(), _btn_jugar, est.pa_actual, _r["pa"].text != "" and _r["pa"].text != pa_txt)
 	_r["pa"].text = pa_txt
 	_lbl_mov.text = ManoUI.texto_movimientos(est)
@@ -152,16 +154,21 @@ func _gesto_mano(pos: Vector2) -> void:
 
 
 func _avanzar() -> void:
-	## Botón del medio. Pide confirmar con una segunda pulsación si sobran movimientos (PR-02c) o si vas a votar con pocas promesas (U3).
+	## Botón del medio. Lo que no gastes se guarda hasta el tope (pedido del usuario del 27-nov-2026: «Los movimientos deben
+	## poder guardar si no los use»), así que solo pide confirmar si alguno se perdería por el tope, o si vas a votar con pocas promesas (U3).
 	var est := motor.estado
 	var urnas := est.eleccion_pendiente(int(datos["leyes"]["hemiciclo"]["semanas_campana"]))
 	var minimo := int(datos["leyes"]["campana"]["min_promesas"])
-	if not _confirmar_fin and ((urnas and est.promesas_campana.size() < minimo) or (not urnas and est.pa_actual > 0)):
+	var ah := motor.movimientos.ahorro_movimientos()
+	if not _confirmar_fin and ((urnas and est.promesas_campana.size() < minimo) or (not urnas and int(ah["se_pierden"]) > 0)):
 		_confirmar_fin = true
-		_avisar("Con menos de %d promesas serás intrascendente y perderás votos. Pulsa de nuevo para votar igual." % minimo if urnas else "Te quedan %d movimientos. Pulsa de nuevo para terminar la semana." % est.pa_actual)
+		_avisar("Con menos de %d promesas serás intrascendente y perderás votos. Pulsa de nuevo para votar igual." % minimo if urnas else
+			"Llegaste al tope de %d: se guardan %d y se pierden %d. Pulsa de nuevo para terminar la semana." % [int(ah["tope_efectivo"]), int(ah["se_guardan"]), int(ah["se_pierden"])])
 		return
 	_confirmar_fin = false
 	_terminar_turno()
+	if not urnas and int(ah["se_guardan"]) > 0 and not Movimiento.activo():  # con animaciones lo dice el telón
+		_avisar("Se guardan %d %s para la próxima semana." % [int(ah["se_guardan"]), "movimiento" if int(ah["se_guardan"]) == 1 else "movimientos"])
 
 
 func _on_carta(i: int) -> void:
@@ -252,8 +259,11 @@ func _terminar_turno() -> void:
 		return
 	var antes := [String(_r["dia"].text), String(_r["fecha"].text)]
 	var ind_antes := est.indicadores.duplicate()
+	var guardados := int(motor.movimientos.ahorro_movimientos()["se_guardan"])
 	var nuevos := motor.terminar_turno()
 	accion_hecha.emit()
+	if _panel_actual != "mapa":
+		_abrir_panel(_panel_actual)  # la pestaña abierta (Congreso, Comité…) se rehace con el estado de la semana nueva
 	if est.eleccion_pendiente(sem):
 		_avisar("Termina la campaña: toca el botón de avanzar para ir a las urnas.")
 	elif not MotorTurno.ETAPAS_JUEGO.has(est.etapa):
@@ -268,7 +278,8 @@ func _terminar_turno() -> void:
 		_avisar(String(corte["texto"]))
 	_cola_eventos.append_array(nuevos)
 	_refrescar()
-	TelonSemana.mostrar(_capa, antes, [String(_r["dia"].text), String(_r["fecha"].text)], ind_antes, est.indicadores, est.etapa == "oposicion", _siguiente_evento, est.encuestas if est.etapa in ["campana", "oposicion"] else [], datos["regiones"], sem, motor.motivos_semana())
+	TelonSemana.mostrar(_capa, antes, [String(_r["dia"].text), String(_r["fecha"].text)], ind_antes, est.indicadores, est.etapa == "oposicion", _siguiente_evento, est.encuestas if est.etapa in ["campana", "oposicion"] else [], datos["regiones"], sem, motor.motivos_semana(),
+			"Guardaste %d %s: esta semana tienes %d." % [guardados, "movimiento" if guardados == 1 else "movimientos", est.pa_actual] if guardados > 0 else "")
 
 
 func _resolver_eleccion() -> void:
@@ -282,7 +293,12 @@ func _resolver_eleccion() -> void:
 			_cola_eventos = motor.ultimos_eventos.duplicate()
 			_refrescar()
 			var e := motor.estado  # cambio de mando al ganar: banda presidencial antes del primer día
-			if res["electo"]: CambioMando.mostrar(_capa, Barras.fecha_texto(datos["leyes"], e.etapa, e.turno_actual, e.dia_actual, e.ciclo, e.dias_carrera).substr(4), String(e.partido.get("nombre", "")), _siguiente_evento)
+			var seguir := func() -> void:
+				if PanelGabinete.transicion_pendiente(motor):
+					transicion.emit()
+				else:
+					_siguiente_evento()
+			if res["electo"]: CambioMando.mostrar(_capa, Barras.fecha_texto(datos["leyes"], e.etapa, e.turno_actual, e.dia_actual, e.ciclo, e.dias_carrera).substr(4), String(e.partido.get("nombre", "")), seguir)
 			else: _siguiente_evento()
 		else:
 			terminado.emit(), geo))
@@ -327,6 +343,7 @@ func _poner_nav(nacion: bool, activo: String = "mapa") -> void:
 
 
 func _abrir_panel(cual: String) -> void:
+	_panel_actual = cual
 	_poner_nav(cual == "nacion", cual)
 	for h in _zona_panel.get_children():
 		h.queue_free()
@@ -348,7 +365,11 @@ func _abrir_panel(cual: String) -> void:
 						_abrir_panel("mapa")
 						_terminar_turno())
 		"congreso":
-			contenido = PanelesDia.congreso(motor, _abrir_hito, _abrir_cartera)
+			contenido = PanelesDia.congreso(motor, _abrir_hito, _abrir_cartera, func(msg: String) -> void:
+					_avisar(msg)
+					accion_hecha.emit()
+					_refrescar()
+					_abrir_panel("congreso"), String(motor.estado.mano[_sel]["id"]) if _mano_tocada and _sel < motor.estado.mano.size() else "")
 		_:
 			contenido = PanelGestion.crear(motor, _avisar, func() -> void:
 					accion_hecha.emit()

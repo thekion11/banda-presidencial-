@@ -373,12 +373,12 @@ func efecto_de_nombrar(id: String) -> Dictionary:
 	return dif
 
 
-func revisar_renuncia(actor_id: String) -> Dictionary:
+func revisar_renuncia(actor_id: String, forzar: bool = false) -> Dictionary:
 	var _m := m  # una sola resolución de la referencia débil por llamada (cada acceso a `m` cuesta ~0,5 us)
-	## Si tu relación con el ministro de ese ministerio cae bajo el umbral, renuncia y asume el mejor candidato restante (la relación parte de cero).
+	## Si tu relación con el ministro de ese ministerio cae bajo el umbral (o `forzar`, p. ej. un incidente de presupuesto), renuncia y asume el mejor candidato restante (la relación parte de cero).
 	var cfg: Dictionary = _cfg()["identidad"]
 	var actual := de_ministerio(actor_id)
-	if actual == "" or _m.eventos.relacion_actor(actor_id) > float(cfg["renuncia_bajo"]):
+	if actual == "" or (not forzar and _m.eventos.relacion_actor(actor_id) > float(cfg["renuncia_bajo"])):
 		return {}
 	var w: Dictionary = _cfg()["relleno"]["modos"][_cfg()["relleno"]["defecto"]]
 	var mejor := ""

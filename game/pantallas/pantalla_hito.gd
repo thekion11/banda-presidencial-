@@ -78,6 +78,7 @@ static func crear(obra: Dictionary, fases: Array, al_cerrar: Callable, al_ver_ma
 	var variante := String(obra.get("variante", ""))
 	col.add_child(Tema.etiqueta("OBRA APROBADA%s" % ((" · VARIANTE " + variante) if variante != "" else ""), 10, Tema.GRIS_CLARO, false, 700))
 	col.add_child(Tema.etiqueta(String(obra["nombre"]), 24, Tema.TINTA, true))
+	var medio := FilasUI.col(10)
 	var tarjeta := PanelContainer.new()
 	tarjeta.add_theme_stylebox_override("panel", Tema.caja(Color("#D6E6EF"), 18, Tema.BORDE_CLARO, 2))
 	tarjeta.custom_minimum_size = Vector2(0, 250)
@@ -99,10 +100,10 @@ static func crear(obra: Dictionary, fases: Array, al_cerrar: Callable, al_ver_ma
 	fase_pill.offset_right = -12.0
 	fase_pill.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	pila.add_child(fase_pill)
-	col.add_child(tarjeta)
+	medio.add_child(tarjeta)
 	for ln in lineas_jugador:  # obra de una línea del jugador: muestra su recorrido
 		if ln["id"] == String(obra.get("linea", "")):
-			col.add_child(_recorrido(ln))
+			medio.add_child(_recorrido(ln))
 	var info := Tema.etiqueta("", 12, Color("#3C4A5A"))
 	var nom := Tema.etiqueta("", 16, Tema.TINTA, true)
 	var botones: Array[Button] = []
@@ -133,14 +134,14 @@ static func crear(obra: Dictionary, fases: Array, al_cerrar: Callable, al_ver_ma
 		l.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 		v.add_child(l)
 		fila.add_child(v)
-	col.add_child(fila)
+	medio.add_child(fila)
 	var barra := ProgressBar.new()
 	barra.show_percentage = false
 	barra.custom_minimum_size = Vector2(0, 7)
 	barra.value = 100.0 * float(obra["dias_avanzados"]) / float(obra["dias_totales"])
 	barra.add_theme_stylebox_override("background", Tema.caja(Color("#E0DACB"), 4))
 	barra.add_theme_stylebox_override("fill", Tema.caja(Tema.ROJO, 4))
-	col.add_child(barra)
+	medio.add_child(barra)
 	var ficha := PanelContainer.new()
 	ficha.add_theme_stylebox_override("panel", Tema.caja(Color.WHITE, 16, Tema.BORDE_CLARO, 1))
 	var tv := VBoxContainer.new()
@@ -158,10 +159,8 @@ static func crear(obra: Dictionary, fases: Array, al_cerrar: Callable, al_ver_ma
 	chips.add_child(_chip("Riesgo de retraso", "Bajo" if int(obra["retrasos"]) == 0 else "Medio", Color("#F7D9D5"), Color("#9A3026")))
 	tv.add_child(chips)
 	ficha.add_child(tv)
-	col.add_child(ficha)
-	var esp := Control.new()
-	esp.size_flags_vertical = Control.SIZE_EXPAND_FILL
-	col.add_child(esp)
+	medio.add_child(ficha)
+	col.add_child(FilasUI.scroll(medio))  # con letra grande o pantalla baja el centro se desplaza; los botones quedan siempre al pie
 	var acciones := HBoxContainer.new()
 	acciones.add_theme_constant_override("separation", 8)
 	var rep := Tema.boton("Reproducir obra", Color.WHITE, Tema.TINTA, 14, 52)

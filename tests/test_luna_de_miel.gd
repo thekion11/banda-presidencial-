@@ -1,5 +1,5 @@
 extends SceneTree
-## Luna de miel (D-BN): 13 semanas de impulso que se desvanece; efecto en aprobación, Congreso y coalición; ciclos posteriores; guardado y restauración a mitad.
+## Luna de miel (D-BQ): 13 semanas de impulso que se desvanece; efecto en aprobación, Congreso y coalición; ciclos posteriores; guardado y restauración a mitad.
 
 var _fallos := 0
 

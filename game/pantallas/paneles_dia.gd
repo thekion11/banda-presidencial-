@@ -57,7 +57,7 @@ static func _camara_bloques(motor: MotorTurno, camara: bool, titulo: String, col
 	col.add_child(Tema.etiqueta("Mayoría necesaria para leyes de quórum calificado: %d votos." % minimo, 11, Tema.TEXTO_SUAVE))
 
 
-static func congreso(motor: MotorTurno, al_abrir_obra: Callable = Callable(), al_cartera: Callable = Callable()) -> Control:
+static func congreso(motor: MotorTurno, al_abrir_obra: Callable = Callable(), al_cartera: Callable = Callable(), al_presentar: Callable = Callable(), abierto: String = "") -> Control:
 	var est := motor.estado
 	var nombres: Dictionary = motor.catalogo_leyes["congreso"]["nombres"]
 	var col := VBoxContainer.new()
@@ -87,6 +87,9 @@ static func congreso(motor: MotorTurno, al_abrir_obra: Callable = Callable(), al
 		v.add_child(barra)
 		v.add_child(Tema.etiqueta("Hoy en la %s · votación el día %d · mínimo %d senadores y %d diputados" % [donde, int(p["dia_votacion"]), int(t["votos_minimos"]), int(t.get("votos_minimos_camara", 0))], 11, Tema.TEXTO_SUAVE))
 		col.add_child(_tarjeta(v))
+	if est.etapa == "gobierno" and al_presentar.is_valid():  # agenda legislativa del gobierno (docs/DECISIONES.md §BM)
+		col.add_child(PanelAgenda.tramite(motor))
+		col.add_child(PanelAgenda.presentar(motor, al_presentar, abierto))
 	col.add_child(Tema.etiqueta("Obras en curso", 15, Tema.TEXTO, true))
 	if est.obras_en_curso.is_empty():
 		col.add_child(Tema.etiqueta("Sin obras en curso.", 12, Tema.TEXTO_SUAVE))

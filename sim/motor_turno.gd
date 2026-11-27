@@ -22,9 +22,11 @@ var gabinete := MotorGabinete.new(self)
 var mazo := MotorMazo.new(self)
 var equipo := MotorEquipo.new(self)
 var coalicion := MotorCoalicion.new(self)
-var piso := PisoIdeologico.new(self)  # piso de aprobación y de voto (D-BN)
+var piso := PisoIdeologico.new(self)  # piso de aprobación y de voto (D-BQ)
 var movimientos := MotorMovimientos.new(self)
 var agenda := MotorAgenda.new(self)
+var balas := MotorBalas.new(self)
+var presupuesto := MotorPresupuesto.new(self)
 var eventos := MotorEventos.new(self)
 var ultimos_eventos: Array[Dictionary] = []
 var votaciones_semana: Array[Dictionary] = []  # votaciones de leyes resueltas al cerrar el turno (para la UI)
@@ -142,6 +144,7 @@ func ejecutar_amanecer() -> void:  # Paso 1: regenera movimientos y aplica la di
 	fx.sumar_ind("capital", float(d["regen_capital_semanal"]), "capital político que se recupera")
 	fx.sumar_ind("cohesion", float(d["regen_cohesion_semanal"]), "desgaste semanal del gobierno")
 	gabinete.amanecer()  # estilos y afinidad de los ministros (Fase C)
+	presupuesto.amanecer()  # presupuesto extra a ministerios: aceleran sus proyectos y a veces se desvían
 	movimientos.fijar_movimientos()
 
 
@@ -178,8 +181,6 @@ func cerrar_turno() -> void:  # Pasos 7 y 8: votaciones, obras, crisis y avance 
 func motivos_semana() -> Array[Dictionary]: return fx.motivos_semana()  # Cambios de la semana con su causa (solo salida para la UI).
 
 func resolver_eleccion_presidencial() -> Dictionary: return mandato.resolver_eleccion()  # Vota la elección presidencial (puede dar segunda vuelta).
-
-
 func continuar_carrera() -> Dictionary: return mandato.continuar_carrera()  # Tras un fin de periodo abre la oposición o la campaña de reelección.
 
 

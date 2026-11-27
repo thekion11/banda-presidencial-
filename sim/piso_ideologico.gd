@@ -1,6 +1,6 @@
 class_name PisoIdeologico
 extends RefCounted
-## Piso ideológico (D-BN): el núcleo duro de tu ideología y tu coalición. La aprobación de cada región, la nacional y el voto de cada región no bajan de su piso.
+## Piso ideológico (D-BQ): el núcleo duro de tu ideología y tu coalición. La aprobación de cada región, la nacional y el voto de cada región no bajan de su piso.
 ## Solo cálculo sobre el estado (sin estado propio): el mismo estado da siempre los mismos pisos, así que replay e instantánea coinciden. Cifras en data/leyes.json › piso_ideologico.
 
 var _ref: WeakRef  # referencia débil: evita el ciclo RefCounted motor <-> módulo

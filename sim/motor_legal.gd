@@ -44,7 +44,7 @@ func _votos_camara(propios: int, total: int, apoyo: float) -> int:
 
 
 func apoyo_base(estado: EstadoSimulacion) -> float:
-	## Apoyo 0..1 de los parlamentarios que no son de tu bancada: base + capital + cohesión + el impulso de la luna de miel (D-BN, solo en las primeras semanas de gobierno).
+	## Apoyo 0..1 de los parlamentarios que no son de tu bancada: base + capital + cohesión + el impulso de la luna de miel (D-BQ, solo en las primeras semanas de gobierno).
 	var c: Dictionary = leyes["congreso"]
 	return clampf(float(c["apoyo_base"]) + float(c["peso_capital"]) * estado.ind("capital") + float(c["peso_cohesion"]) * estado.ind("cohesion")
 			+ LunaDeMiel.valor(leyes, LunaDeMiel.intensidad(estado, leyes), "bono_apoyo"), 0.0, 1.0)

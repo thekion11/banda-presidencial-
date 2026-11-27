@@ -1,5 +1,5 @@
 extends SceneTree
-## Piso ideológico (D-BN): la aprobación (regional y nacional) y el voto no bajan del piso; el piso sube con ideología afín y coalición satisfecha;
+## Piso ideológico (D-BQ): la aprobación (regional y nacional) y el voto no bajan del piso; el piso sube con ideología afín y coalición satisfecha;
 ## el piso nacional es el promedio ponderado de los regionales; todo es determinista.
 
 var _fallos := 0

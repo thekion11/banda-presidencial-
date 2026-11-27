@@ -1,6 +1,6 @@
 class_name LunaDeMiel
 extends RefCounted
-## Luna de miel (D-BN): al empezar cada gobierno hay un impulso que se desvanece en `semanas` semanas (data/leyes.json › luna_de_miel).
+## Luna de miel (D-BQ): al empezar cada gobierno hay un impulso que se desvanece en `semanas` semanas (data/leyes.json › luna_de_miel).
 ## Funciones puras sobre el estado: la semana de gobierno es `turno_actual` (vuelve a 1 al ganar cada elección), así que no hay estado nuevo ni cambia el guardado.
 
 

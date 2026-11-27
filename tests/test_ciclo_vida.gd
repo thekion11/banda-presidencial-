@@ -3,6 +3,8 @@ extends SceneTree
 ## el sistema la mata (Main se destruye sin más avisos) y se vuelve a abrir con «Continuar partida». Se retoma en la
 ## pantalla correcta y con el mismo estado del motor: nada se pierde ni queda a medias.
 
+const SEMILLA := 41  # partida fija: el bot «experto» gana la elección con ella
+
 var _fallos := 0
 var _datos: Dictionary
 
@@ -66,11 +68,13 @@ func _correr() -> void:
 		resp.append(p["opciones"][1])
 	var rng := RandomNumberGenerator.new()
 	rng.seed = 41
-	main._iniciar_campana(GeneradorPartido.construir_partido("Ciclo", "CIC", "metropolitana", resp, _datos["ideologia"]))
+	var partido := GeneradorPartido.construir_partido("Ciclo", "CIC", "metropolitana", resp, _datos["ideologia"])
+	main._iniciar_campana(partido)
 	await _cuadros(3)
-	if not (main._pantalla is PantallaDia):
-		main.mostrar_dia()
-		await _cuadros(2)
+	main.motor = Partida.crear(_datos, SEMILLA, partido)  # la partida con semilla fija (_iniciar_campana la saca del reloj: el bot a veces perdía y la prueba fallaba al azar en el CI)
+	main.guardar()
+	main.mostrar_dia()
+	await _cuadros(2)
 	# 1) campaña, con una carta recién jugada
 	var dia: PantallaDia = main._pantalla
 	dia._sel = 0
@@ -95,6 +99,14 @@ func _correr() -> void:
 		main.guardar()
 		main.mostrar_dia()
 		await _cuadros(2)
+		# transición presidencial: recién ganada la elección se elige el gabinete, y sobrevive a que la app muera
+		_check(main._pantalla is PantallaGabinete, "tras ganar viene la transición (gabinete)")
+		main = await _matar_y_volver(main, "transición del gabinete")
+		_check(main._pantalla is PantallaGabinete, "transición: al volver sigue en el gabinete")
+		_check(bool(main.motor.elegir_gabinete(main.motor.estado.gabinete.duplicate())["ok"]), "transición: confirmar el gabinete preseleccionado")
+		main.guardar()
+		main.mostrar_dia()
+		await _cuadros(2)
 		main._pantalla._delegar()
 		await _cuadros(1)
 		main = await _matar_y_volver(main, "gobierno con la hoja de delegar abierta")
@@ -108,7 +120,7 @@ func _correr() -> void:
 		main = await _matar_y_volver(main, "fin del mandato")
 		_check(main._pantalla is PantallaFin, "fin: vuelve a la pantalla de fin (%s)" % main._pantalla.get_class())
 	else:
-		_check(false, "el bot de la semilla 41 debía ganar la elección para probar el gobierno")
+		_check(false, "el bot de la semilla %d debía ganar la elección para probar el gobierno" % SEMILLA)
 	main.queue_free()
 	for r in [Tutorial.ruta, "user://guardado.json", "user://guardado.bak", "user://guardado.cache", "user://ultima_config.json"]:
 		DirAccess.remove_absolute(ProjectSettings.globalize_path(r))
