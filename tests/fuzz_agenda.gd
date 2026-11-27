@@ -81,10 +81,10 @@ func _partida(semilla: int, semanas: int) -> void:
 			var dele0 := e.delegadas_turno
 			var n_ag0 := e.agenda.size()
 			var n_ent0 := e.entradas.size()
-			var llena := e.agenda.size() + e.proyectos_ley.size() >= mx
+			var llena := e.agenda.size() >= mx  # DECISIONES §BN: el cupo cuenta solo la agenda (las leyes jugadas desde la mano no lo llenan)
 			var r := m.agenda.presentar(carta_id, urg_id, min_id, delegar, reg)
-			if llena:  # con la agenda llena (en trámite + leyes de la mano) nada nuevo entra, sea cual sea el resto de los argumentos válidos
-				_check(not bool(r.get("ok", false)), "%s semana %d: se presentó un proyecto con la agenda llena (%d/%d)" % [ctx, w, e.agenda.size() + e.proyectos_ley.size(), mx])
+			if llena:  # con la agenda llena (en trámite) nada nuevo entra, sea cual sea el resto de los argumentos válidos
+				_check(not bool(r.get("ok", false)), "%s semana %d: se presentó un proyecto con la agenda llena (%d/%d)" % [ctx, w, e.agenda.size(), mx])
 			if bool(r.get("ok", false)):
 				_presentadas += 1
 				var costo := int(r.get("costo", -1))
