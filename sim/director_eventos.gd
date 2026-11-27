@@ -21,6 +21,21 @@ var _n_visto: int = 0
 var _cd_decision: bool = false  # hubo una decisión hace menos de cooldown_decision (se fija al empezar a elegir)
 
 
+func exportar_memoria() -> Dictionary:
+	## Historial incremental tal como está (para la instantánea): reconstruirlo desde `eventos_ocurridos` no da lo mismo cuando las semanas de la campaña y del gobierno se mezclan.
+	return {"ult_fam": _ult_fam.duplicate(), "ult_dec": _ult_dec, "dec_sem": _dec_sem.duplicate(), "ultima": _ultima, "n_visto": _n_visto}
+
+
+func importar_memoria(d: Dictionary) -> void:
+	## Restaura el historial exportado con `exportar_memoria`.
+	m.eventos._indice()
+	_ult_fam = (d["ult_fam"] as Dictionary).duplicate()
+	_ult_dec = int(d["ult_dec"])
+	_dec_sem = (d["dec_sem"] as Dictionary).duplicate()
+	_ultima = int(d["ultima"])
+	_n_visto = int(d["n_visto"])
+
+
 func reconstruir() -> void:
 	## Tras restaurar una instantánea: rehace el historial incremental del director a partir de lo ocurrido (es lo mismo que fue acumulando aplicar_evento).
 	m.eventos._indice()

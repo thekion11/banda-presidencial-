@@ -12,6 +12,8 @@
 
 ## `DirectorEventos` (`sim/director_eventos.gd`)
 
+- `exportar_memoria() -> Dictionary` — Historial incremental tal como está (para la instantánea): reconstruirlo desde `eventos_ocurridos` no da lo mismo cuando las semanas de la campaña y del gobierno se mezclan.
+- `importar_memoria(d: Dictionary) -> void` — Restaura el historial exportado con `exportar_memoria`.
 - `reconstruir() -> void` — Tras restaurar una instantánea: rehace el historial incremental del director a partir de lo ocurrido (es lo mismo que fue acumulando aplicar_evento).
 - `mes_actual() -> int` — Mes del calendario (1 a 12) de la semana en curso: desde el ciclo 2 hay un solo reloj; en el ciclo 1 la campaña y el gobierno tienen su fecha base.
 - `elegir_evento(grupo: Dictionary) -> Dictionary` — Elige el evento aleatorio de la semana (o {} si no ocurre ninguno) respetando descansos, estaciones y el ritmo de decisiones del año.

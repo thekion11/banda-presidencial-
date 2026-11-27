@@ -5,7 +5,7 @@ extends RefCounted
 ## más en un teléfono). Se valida contra el guardado (SHA-256 de su archivo) y contra la versión de los datos; ante cualquier diferencia se ignora y se
 ## reproduce el historial. `test_instantanea` comprueba que restaurar y reproducir dan el mismo estado y siguen igual de ahí en adelante.
 
-const VERSION := 1  # subir si cambia el SIGNIFICADO de algún campo del estado (si solo se añaden o quitan campos, el esquema lo detecta solo)
+const VERSION := 2  # subir si cambia el SIGNIFICADO de algún campo del estado (si solo se añaden o quitan campos, el esquema lo detecta solo)
 
 
 static func esquema() -> Dictionary:
@@ -30,7 +30,8 @@ static func tomar(motor: MotorTurno, huella_datos: String, sha_guardado: String)
 		if int(pr["usage"]) & PROPERTY_USAGE_SCRIPT_VARIABLE:
 			props[pr["name"]] = motor.estado.get(pr["name"])
 	var d := {"v": VERSION, "huella_datos": huella_datos, "sha_guardado": sha_guardado, "estado": props,
-			"rng_seed": motor.rng.seed, "rng_state": motor.rng.state, "ultimos_eventos": motor.ultimos_eventos, "votaciones": motor.votaciones_semana}
+			"rng_seed": motor.rng.seed, "rng_state": motor.rng.state, "ultimos_eventos": motor.ultimos_eventos, "votaciones": motor.votaciones_semana,
+			"director": motor.eventos.director.exportar_memoria()}
 	var crudo := var_to_bytes(d)
 	var res := PackedByteArray()
 	res.resize(4)
@@ -54,7 +55,7 @@ static func leer(bytes: PackedByteArray) -> Dictionary:
 	return d if (v is int and int(v) == VERSION) else {}
 
 
-const CLAVES := ["estado", "rng_seed", "rng_state", "ultimos_eventos", "votaciones"]
+const CLAVES := ["estado", "rng_seed", "rng_state", "ultimos_eventos", "votaciones", "director"]
 
 
 static func es_completa(d: Dictionary) -> bool:
@@ -73,6 +74,8 @@ static func es_completa(d: Dictionary) -> bool:
 	for k in actual.keys():  # mismos campos y del mismo tipo que los del estado de esta versión del juego
 		if not e.has(k) or _clase(e[k]) != int(actual[k]):
 			return false
+	if not (d["director"] is Dictionary) or not (d["director"].get("ult_fam") is Dictionary) or not (d["director"].get("dec_sem") is Dictionary) or not (d["director"].get("ult_dec") is int) or not (d["director"].get("ultima") is int) or not (d["director"].get("n_visto") is int):
+		return false
 	return (e["indicadores"] is Dictionary) and not (e["indicadores"] as Dictionary).is_empty() and (e["mano"] is Array) and (e["mazo"] is Array) and (e["entradas"] is Array) and e["etapa"] is String
 
 
@@ -98,5 +101,6 @@ static func restaurar(datos: Dictionary, semilla: int, d: Dictionary) -> MotorTu
 	motor.rng.state = int(d["rng_state"])
 	motor.ultimos_eventos.assign(d["ultimos_eventos"])
 	motor.votaciones_semana.assign(d["votaciones"])
-	motor.eventos.reconstruir()
+	motor.eventos.director.importar_memoria(d["director"])  # el historial del director se guarda tal cual: inferirlo del máximo de semanas no coincide con el vivo
+	motor.eventos._indice()
 	return motor

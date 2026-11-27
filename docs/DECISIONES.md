@@ -462,3 +462,9 @@ Lección de proceso: `test_sectra` armaba el guardado a mano sin `version` y dej
 
 ## BN. Arreglo del cupo de la agenda (27-nov-2026, aprobado por la coordinadora)
 - `estado_agenda().en_tramite` y el máximo de 3 cuentan solo `estado.agenda`; una ley jugada desde la mano ya no bloquea `presentar` (sí lo sigue haciendo para esa misma carta: no se presenta algo que ya está en votación). Motivo: `docs/INFORME_PLAN_CARTAS_AGENDA.md` (cupo lleno en el 100 % de las partidas del bot en la semana 26).
+
+
+## BR. La instantánea conserva la memoria del director de eventos (27-nov-2026, hallazgo de «Búsqueda»)
+- Bug: al cargar por instantánea (ruta rápida de «Continuar»), `DirectorEventos.reconstruir()` rehacía la memoria con el MÁXIMO de las semanas de `eventos_ocurridos`, pero en vivo se guarda la ÚLTIMA registrada; la campaña (hasta la semana 8) y el gobierno (que vuelve a 1) mezclan dos escalas y los descansos por familia cambiaban: el sorteo de eventos divergía tras «Continuar».
+- Arreglo: la instantánea guarda esa memoria tal cual (`exportar_memoria` / `importar_memoria`); `Instantanea.VERSION` pasa de 1 a 2 (las cachés viejas se ignoran y se regeneran). No cambian el guardado por eventos, su formato ni los oros. Prueba: `tests/test_instantanea_director.gd`.
+- También: `ValidarGuardado` rechaza `version < 1`.
