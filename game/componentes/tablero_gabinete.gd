@@ -31,6 +31,32 @@ static func texto_efecto(ef: Dictionary, sufijo: String = "/sem") -> String:
 	return " · ".join(partes)
 
 
+static func volar(raiz: Control, origen: Rect2, puesto: Control, alias: String) -> void:
+	## Al nombrar: una ficha dorada con el alias sale de la carta del candidato y vuela a su puesto, que late al recibirla.
+	if origen.size == Vector2.ZERO or not puesto.is_inside_tree():
+		Movimiento.latido(puesto)
+		return
+	var f := Tema.etiqueta_corta(alias, 11, Tema.TINTA, true)
+	f.add_theme_stylebox_override("normal", Tema.caja(Tema.ORO, 8))
+	f.top_level = true
+	f.z_index = 6
+	f.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	f.clip_text = true
+	f.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
+	raiz.add_child(f)
+	f.size = Vector2(minf(origen.size.x, 220.0), 26.0)
+	f.global_position = origen.get_center() - f.size * 0.5
+	f.pivot_offset = f.size * 0.5
+	var destino := puesto.get_global_rect().get_center() - f.size * 0.5
+	var tw := f.create_tween().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN_OUT)
+	tw.tween_property(f, "global_position", destino, 0.42)
+	tw.parallel().tween_property(f, "scale", Vector2.ONE * 0.45, 0.42)
+	tw.tween_callback(func() -> void:
+		f.queue_free()
+		if is_instance_valid(puesto):
+			Movimiento.latido(puesto))
+
+
 class Puesto extends Button:
 	## Puesto de un ministerio en el tablero: dorado si lo elegiste, azul con filo gris si lo llenó el relleno automático, vacío si no.
 	## Acepta que le suelten la carta de uno de sus candidatos.

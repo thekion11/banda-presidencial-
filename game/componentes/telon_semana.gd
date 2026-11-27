@@ -18,6 +18,7 @@ var encuesta_previa: Dictionary = {}
 var nombres_region: Dictionary = {}
 var ultima_de_campana: bool = false  # la encuesta extra al cerrar la última semana de campaña (sim/encuestas.gd)
 var al_terminar: Callable
+var guardados := 0  # movimientos guardados: un rayo por cada uno, que aparecen uno a uno
 var ahorro: String = ""  # «Guardaste 2 movimientos: esta semana tienes 7» (pedido del usuario: los movimientos se guardan)
 var motivos: Array = []  # motor.motivos_semana(): hasta 3 cambios con su causa
 var _panel: Control
@@ -35,7 +36,7 @@ static func lineas_motivos(lista: Array) -> Array[String]:
 
 
 static func mostrar(capa: Control, p_antes: Array, p_despues: Array, ind_antes: Dictionary, ind_despues: Dictionary, p_oposicion: bool, fin: Callable,
-		encuestas: Array = [], regiones: Array = [], semanas_campana: int = 0, p_motivos: Array = [], p_ahorro: String = "") -> void:
+		encuestas: Array = [], regiones: Array = [], semanas_campana: int = 0, p_motivos: Array = [], p_ahorro: String = "", p_guardados: int = 0) -> void:
 	## p_antes / p_despues: [título, subtítulo] de la cabecera antes y después de avanzar.
 	if not Movimiento.activo():
 		fin.call()
@@ -50,6 +51,7 @@ static func mostrar(capa: Control, p_antes: Array, p_despues: Array, ind_antes: 
 	t.al_terminar = fin
 	t.motivos = p_motivos
 	t.ahorro = p_ahorro
+	t.guardados = p_guardados
 	if not encuestas.is_empty():  # solo hay encuestas en campaña y oposición
 		t.encuesta = encuestas.back()
 		t.encuesta_previa = encuestas[encuestas.size() - 2] if encuestas.size() > 1 else {}
@@ -104,6 +106,14 @@ func _ready() -> void:
 	col.add_child(Tema.etiqueta(subtitulo, 13, Tema.TEXTO_SUAVE))
 	if ahorro != "":
 		col.add_child(Tema.etiqueta(ahorro, 12, Tema.ORO, false, 600))
+		if guardados > 0:
+			var rayos := HBoxContainer.new()
+			rayos.add_theme_constant_override("separation", 2)
+			rayos.mouse_filter = Control.MOUSE_FILTER_IGNORE
+			for i in range(mini(guardados, 10)):
+				rayos.add_child(Icono.crear("bolt", Tema.ORO, 16.0, true))
+			col.add_child(rayos)
+			Movimiento.escalonar(rayos, 0.5, 0.08, 10)  # se guardan de a uno
 	var sep := ColorRect.new()
 	sep.color = Color(Tema.ORO, 0.5)
 	sep.custom_minimum_size = Vector2(0, 2)

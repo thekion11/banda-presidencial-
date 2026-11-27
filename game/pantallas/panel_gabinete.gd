@@ -110,6 +110,10 @@ static func crear(motor: MotorTurno, texto_boton: String, al_confirmar: Callable
 		if not editable:
 			return
 		var slot := motor.gabinete.slot_de(id)
+		var origen := Rect2()  # la ficha del candidato, para que vuele a su puesto
+		for c in baraja.get_children():
+			if c is TableroGabinete.Candidato and (c as TableroGabinete.Candidato).id == id and (c as Control).is_visible_in_tree():
+				origen = (c as Control).get_global_rect()
 		var antes := motor.gabinete.efecto_semanal_de(elegidos)
 		var actual: String = del_cargo.call(slot)
 		if actual != "":
@@ -128,7 +132,7 @@ static func crear(motor: MotorTurno, texto_boton: String, al_confirmar: Callable
 		if acciones.has("cerrar_ficha"):
 			acciones["cerrar_ficha"].call()  # nombrado: la ficha se cierra y se ve el tablero
 		if Movimiento.activo() and puestos.has(slot):
-			Movimiento.latido(puestos[slot])  # el puesto late al nombrar (sin movimiento: nada)
+			TableroGabinete.volar(raiz, origen, puestos[slot], String(motor.catalogo_ministros[id]["alias"]))  # la ficha vuela al puesto y este late
 	acciones["refrescar"] = func() -> void:
 		contador.text = "Gabinete: %d de %d ministros" % [elegidos.size(), tam]
 		barra.value = 100.0 * float(elegidos.size()) / float(tam)

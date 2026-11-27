@@ -26,7 +26,55 @@ func _ready() -> void:
 	v.add_child(Tema.etiqueta("Ganaste. Antes de asumir, nombra a tus ministros: el de cada área lleva sus cartas. Ya viene completo; puedes confirmarlo así.", 12, Tema.TEXTO_SUAVE))
 	_aviso = Tema.etiqueta("", 12, FilasUI.ROJO_TEXTO, true)
 	v.add_child(_aviso)
-	var sel := PanelGabinete.crear(motor, "Confirmar gabinete y asumir", listo.emit, func(t: String) -> void: _aviso.text = t)
+	var sel := PanelGabinete.crear(motor, "Confirmar gabinete y asumir", _foto_y_listo, func(t: String) -> void: _aviso.text = t)
 	sel.size_flags_vertical = Control.SIZE_EXPAND_FILL
 	v.add_child(sel)
 	Movimiento.escalonar(v, 0.05, 0.05)
+
+
+func _foto_y_listo() -> void:
+	## «Foto de gabinete» al asumir: los 25 retratos aparecen uno a uno bajo «Tu gabinete jura»; un toque o 2,6 s y sigue.
+	if not Movimiento.activo():
+		listo.emit()
+		return
+	var capa := ColorRect.new()
+	capa.color = Color(Tema.OCEANO, 0.96)
+	capa.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	capa.mouse_filter = Control.MOUSE_FILTER_STOP
+	add_child(capa)
+	var v := FilasUI.col(10)
+	v.set_anchors_and_offsets_preset(Control.PRESET_CENTER)
+	v.grow_horizontal = Control.GROW_DIRECTION_BOTH
+	v.grow_vertical = Control.GROW_DIRECTION_BOTH
+	v.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	capa.add_child(v)
+	var cab := Tema.etiqueta("TU GABINETE JURA", 11, Tema.ORO, true)
+	cab.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	v.add_child(cab)
+	var tit := Tema.etiqueta(String(motor.estado.partido.get("nombre", "Tu gobierno")), 20, Tema.TEXTO, true)
+	tit.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	tit.custom_minimum_size.x = 340.0
+	v.add_child(tit)
+	var grilla := GridContainer.new()
+	grilla.columns = 5
+	grilla.add_theme_constant_override("h_separation", 8)
+	grilla.add_theme_constant_override("v_separation", 8)
+	for id in motor.estado.gabinete:
+		var mi: Dictionary = motor.catalogo_ministros[id]
+		var r := TableroGabinete.Retrato.new(String(id), String(mi.get("estilo", "")), String(mi["alias"]), mi.get("retrato", {}))
+		r.custom_minimum_size = Vector2(56, 60)
+		grilla.add_child(r)
+	v.add_child(grilla)
+	Movimiento.escalonar(grilla, 0.2, 0.05, 25)
+	Feedback.sonar("decision")
+	var hecho := {"listo": false}
+	var seguir := func() -> void:
+		if hecho["listo"] or not is_inside_tree():
+			return
+		hecho["listo"] = true
+		listo.emit()
+	capa.gui_input.connect(func(ev: InputEvent) -> void:
+		if ev is InputEventMouseButton and not ev.pressed:
+			seguir.call())
+	get_tree().create_timer(2.6).timeout.connect(seguir)
+
