@@ -1,6 +1,7 @@
 # Índice de documentos y orden de lectura (26-nov-2026)
 
 ## Para el dueño del proyecto: léelo en este orden
+0. **`ENTREGA_27NOV.md`**: una página con lo hecho, tus decisiones en orden de impacto, qué probar en el teléfono y los riesgos.
 1. **`RESUMEN_DECISIONES.md`**: las decisiones que esperan tu respuesta, con la recomendación de cada una (una página).
 2. **`RESUMEN_EXPERIMENTO.md`**: qué hizo cada sesión, qué arregló y qué descubrió.
 3. **`PRUEBA_CERRADA.md`** y **`GUIA_PRUEBA.md`**: cómo probar el juego con personas y qué registrar (incluye la propuesta de métricas locales).
