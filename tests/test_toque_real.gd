@@ -129,11 +129,15 @@ func _correr() -> void:
 	dia._region = ""
 	await _tocar(dia._mapa.get_global_rect().get_center())
 	_check(dia._region != "", "un toque en el mapa elige una región")
-	# 6) «Terminar semana» con movimientos sin usar pide confirmar: un toque no avanza la semana
+	# 6) «Terminar semana» con movimientos sin usar: se guardan y un toque avanza la semana (pide confirmar solo si el tope haría perder alguno)
 	var t0 := est.turno_actual
 	if est.pa_actual > 0:
+		var ah: Dictionary = dia.motor.movimientos.ahorro_movimientos()
 		await _tocar(dia._btn_jugar.get_global_rect().get_center())
-		_check(est.turno_actual == t0 and dia._btn_jugar.text.contains("?") or dia._confirmar_fin, "con movimientos sin usar, un toque en «Terminar semana» pide confirmar (%s)" % dia._btn_jugar.text)
+		if int(ah["se_pierden"]) > 0:
+			_check(est.turno_actual == t0 and dia._confirmar_fin, "si el tope haría perder movimientos, un toque pide confirmar")
+		else:
+			_check(est.turno_actual == t0 + 1 and not dia._confirmar_fin, "con movimientos que se guardan, un toque en «Terminar semana» avanza sin confirmar (turno %d)" % est.turno_actual)
 	DirAccess.remove_absolute(ProjectSettings.globalize_path(Tutorial.ruta))
 	DirAccess.remove_absolute(ProjectSettings.globalize_path(main.RUTA_GUARDADO))
 	if _fallos == 0:
