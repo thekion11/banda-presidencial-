@@ -4,6 +4,7 @@ extends Control
 
 signal accion_hecha
 signal terminado
+signal transicion  # ganaste: falta nombrar el gabinete antes de la primera semana de gobierno
 
 var motor: MotorTurno
 var datos: Dictionary = {}
@@ -287,7 +288,12 @@ func _resolver_eleccion() -> void:
 			_cola_eventos = motor.ultimos_eventos.duplicate()
 			_refrescar()
 			var e := motor.estado  # cambio de mando al ganar: banda presidencial antes del primer día
-			if res["electo"]: CambioMando.mostrar(_capa, Barras.fecha_texto(datos["leyes"], e.etapa, e.turno_actual, e.dia_actual, e.ciclo, e.dias_carrera).substr(4), String(e.partido.get("nombre", "")), _siguiente_evento)
+			var seguir := func() -> void:
+				if PanelGabinete.transicion_pendiente(motor):
+					transicion.emit()
+				else:
+					_siguiente_evento()
+			if res["electo"]: CambioMando.mostrar(_capa, Barras.fecha_texto(datos["leyes"], e.etapa, e.turno_actual, e.dia_actual, e.ciclo, e.dias_carrera).substr(4), String(e.partido.get("nombre", "")), seguir)
 			else: _siguiente_evento()
 		else:
 			terminado.emit(), geo))

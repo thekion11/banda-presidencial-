@@ -6,8 +6,26 @@ extends RefCounted
 
 
 static func puede_editar(motor: MotorTurno) -> bool:
+	## Solo en la primera semana de gobierno: en campaña gobierna el equipo automático (el gabinete se elige tras ganar).
 	var e := motor.estado
-	return e.etapa == "campana" or (e.etapa == "gobierno" and e.turno_actual == 1)
+	return e.etapa == "gobierno" and e.turno_actual == 1
+
+
+static func transicion_pendiente(motor: MotorTurno) -> bool:
+	## Recién ganada la elección y sin gabinete nombrado desde la votación (docs/GABINETE_TRAS_ELECCION.md). Usa la salida
+	## del núcleo si existe; si no, la misma regla sobre el historial de entradas.
+	if motor.gabinete.has_method("pendiente_confirmar"):
+		return bool(motor.gabinete.call("pendiente_confirmar"))
+	var e := motor.estado
+	if e.etapa != "gobierno" or e.turno_actual != 1:
+		return false
+	for i in range(e.entradas.size() - 1, -1, -1):
+		var tipo := String(e.entradas[i]["tipo"])
+		if tipo == "gabinete":
+			return false
+		if tipo == "eleccion":
+			return true
+	return false
 
 
 static func _agregar_relleno(raiz: VBoxContainer, motor: MotorTurno, elegidos: Array, refrescar: Callable, auto: Dictionary = {}) -> void:
@@ -226,7 +244,7 @@ static func crear(motor: MotorTurno, texto_boton: String, al_confirmar: Callable
 	if editable:
 		_agregar_relleno(contenido, motor, elegidos, acciones["refrescar"], auto)
 	else:
-		contenido.add_child(Tema.etiqueta("El gabinete quedó cerrado: solo se cambia en campaña o en la primera semana de gobierno.", 11, Tema.ORO))
+		contenido.add_child(Tema.etiqueta("En campaña trabaja el equipo automático. Eliges tu gabinete al ganar la elección y puedes cambiarlo en tu primera semana de gobierno." if motor.estado.etapa == "campana" else "El gabinete quedó cerrado: solo se cambia en la primera semana de gobierno.", 11, Tema.ORO))
 	if con_bloqueadas:
 		var bloq := BloqueoCarta.bloqueadas(motor)
 		contenido.add_child(Tema.etiqueta("Cartas bloqueadas con tu gabinete actual", 14, Tema.TEXTO, true))
