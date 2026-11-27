@@ -42,7 +42,7 @@ Origen: **U** = idea u orden del usuario · **C** = propuesta o duda de Claude a
 | PR-14 | U + C | Movimientos internos más visibles. | Sin cambios (ya muestran aviso por acción); vincular a personas queda con PR-24 | — |
 | PR-15 | U + C | Apariencia del personaje. | Parcial: color del emblema. Falta: retratos modulares (arte, U7) | `0706883` |
 | PR-16 | U + C | Habilidades del personaje. | Hecho (4 habilidades) | `0706883` |
-| PR-17 | U + C | «Balas de plata»: recursos extraordinarios de un solo uso. | Hecho: reserva aparte de la mano (7 tipos, §BN) | §BN |
+| PR-17 | U + C | «Balas de plata»: recursos extraordinarios de un solo uso. | Hecho: reserva aparte de la mano (7 tipos, §BO) | §BO |
 | PR-18 a PR-23 | U + C | Presupuesto anual, elecciones, comisiones, Contraloría, instituciones autónomas y medios. | Hecho como eventos con decisión (19). Falta: pantallas propias y mini-juego de presupuesto | `0706883` |
 | PR-24 | C | Marco de actores único. | Primera versión: relación derivada de las decisiones. Falta: consecuencias | `d910fa8` |
 
@@ -456,7 +456,7 @@ Lección de proceso: `test_sectra` armaba el guardado a mano sin `version` y dej
 - **Cuidado de reputación.** Ningún alias alude a causas judiciales ni a polémicas personales. En la ficha del candidato el rótulo «Escándalo» pasa a «Polémica» (mismo número del motor, `riesgo_escandalo`). `tools/validar_textos.py` sigue sin encontrar nombres reales.
 - **Costo.** Cambia la huella de datos: los guardados anteriores se descartan, como en cualquier cambio de `data/`. Lo autorizó el usuario con esa opción. La simulación no cambia, porque `alias` y `retrato` no entran a ningún cálculo.
 
-## BN. Balas de plata utilizables: reserva aparte de la mano (27-nov-2026, pedido del usuario tras jugar en su teléfono)
+## BO. Balas de plata utilizables: reserva aparte de la mano (27-nov-2026, pedido del usuario tras jugar en su teléfono)
 - **Texto literal:** «falta poder usar las balas de plata, poder darle presupuesto extra a los ministros para qué hagan sus proyectos con prioridad en nuestras propuestas pero tienen autonomía». Autorizado por el usuario; la segunda mitad (presupuesto extra a ministros con autonomía) es el encargo B de la misma sesión y se anota en su propia sección.
 - **Por qué no se podían usar:** las 5 balas eran cartas de `cartas.json` barajadas con ~1.960 cartas, con mano de 5 y filtros de gabinete: casi nunca llegaban a la mano y la interfaz no tenía dónde ofrecerlas.
 - **Qué se hizo (`sim/motor_balas.gd`, `motor.balas`):** reserva aparte (7 tipos: urgencia, veto, DFL, plebiscito, excepción, insistencia ante la Contraloría y nombramiento de autoridad autónoma), usable a voluntad, sin movimientos y sin depender de la mano. Cada tipo se usa una vez por mandato; hay 4 usos por mandato (3 al empezar y el resto desde el año 3), con enfriamiento entre usos. Cuestan capital político, tienen condiciones por tipo (proyecto en trámite; el DFL excluye las materias vedadas y exige el año 2; el veto exige oposición mayoritaria; la insistencia exige un evento reciente de la Contraloría y la firma de todos los ministros; la excepción exige una catástrofe reciente o riesgo de ejecución alto; el plebiscito y el nombramiento exigen el año 2) y un riesgo propio (el plebiscito se puede perder). El corrector nunca dice «no» seco: toda negativa trae mensaje y alternativa; si falta capital ofrece una versión reducida.
@@ -465,7 +465,7 @@ Lección de proceso: `test_sectra` armaba el guardado a mano sin `version` y dej
 - **Pruebas:** `tests/test_balas_plata.gd`, validación en `tools/validate_referencias.py` con casos rotos en `tools/test_validate.py`, medición de dominancia en `tests/informe_balas.gd`.
 
 
-## BO. Presupuesto extra a ministros con autonomía (27-nov-2026, pedido del usuario, segunda mitad de la cita de §BN)
+## BP. Presupuesto extra a ministros con autonomía (27-nov-2026, pedido del usuario, segunda mitad de la cita de §BO)
 - **Texto literal:** «poder darle presupuesto extra a los ministros para qué hagan sus proyectos con prioridad en nuestras propuestas pero tienen autonomía» (misma cita de §BN; autorizado por el usuario).
 - **Qué se hizo (`sim/motor_presupuesto.gd`, `motor.presupuesto`):** el jugador asigna a un ministerio un refuerzo pequeño, medio o grande (cuesta fiscal y algo de capital) por una temporada de 13 semanas. Durante ella el ministerio acelera las obras y las leyes en trámite de su sector y baja el riesgo de ejecución. Tope anual de extras ligado a la regla fiscal (PR-18 en su versión mínima: sin mini-juego de reparto), piso fiscal bajo el cual no se puede gastar, máximo 3 ministerios con extra a la vez, enfriamiento por ministerio. El jugador marca hasta 3 prioridades por ministerio (obras, leyes o promesas de su sector); sin marcar, van las primeras.
 - **Autonomía:** la fracción del extra que va a TUS prioridades = 0,45 × lealtad (relación con el ministro, la de las decisiones de sus peticiones) + 0,30 × afinidad ideológica + 0,25 × competencia (bono de ejecución), acotada entre 0,25 y 0,95. El resto va a su agenda propia (acelera sus otros proyectos del sector, menos) y cada semana hay un incidente con probabilidad `prob_base × (1 − fracción)`: pide más, discrepa, filtra, desvía dinero o, si la fracción es baja, renuncia (entra otro ministro; `MotorGabinete.revisar_renuncia(forzar)`).
