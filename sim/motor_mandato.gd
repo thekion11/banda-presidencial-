@@ -23,7 +23,7 @@ func evaluar_legado() -> void:
 	_m.estado.legado_evaluado.append(_m.estado.turno_actual)
 	var pend := _m.estado.promesas_pendientes().size()
 	if pend > 0:
-		_m.fx.sumar_ind("capital", -float(lg["penal_capital"]) * pend)
+		_m.fx.sumar_ind("capital", -float(lg["penal_capital"]) * pend, "metas de legado sin cumplir")
 		_m.fx.delta_aprobacion(-float(lg["penal_aprobacion"]) * pend, "")
 	_m.estado.registrar_accion("legado_evaluado", {"pendientes": pend})
 

@@ -79,7 +79,7 @@ func salir(id: String, ruptura: bool = false) -> Dictionary:
 	est.coalicion.erase(id)
 	_recalcular_apoyo()
 	if est.etapa == "gobierno":  # romper un pacto cuesta cohesión y capital político
-		_m.fx.sumar_ind("cohesion", -float(_cfg()["penal_ruptura_cohesion"]))
+		_m.fx.sumar_ind("cohesion", -float(_cfg()["penal_ruptura_cohesion"]), "un aliado rompió la coalición")
 		_m.fx.sumar_ind("capital", -float(_cfg()["penal_ruptura_capital"]))
 	est.registrar_accion("coalicion_ruptura" if ruptura else "coalicion_salida", {"id": id})
 	return {"ok": true}
@@ -176,7 +176,7 @@ func amanecer() -> void:
 		cohesion += (float(c["satisfaccion"]) - 50.0) / 50.0 * float(cfg["cohesion_por_aliado"])
 		todos_satisfechos = todos_satisfechos and float(c["satisfaccion"]) >= float(cfg["umbral_satisfechos"])
 	if cohesion != 0.0:
-		m.fx.sumar_ind("cohesion", cohesion)
+		m.fx.sumar_ind("cohesion", cohesion, "ánimo de los partidos de tu coalición")
 	for id in est.coalicion.keys():  # un aliado muy insatisfecho rompe el pacto
 		if float(est.coalicion[id]["satisfaccion"]) < float(cfg["umbral_ruptura"]):
 			salir(id, true)

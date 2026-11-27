@@ -68,6 +68,7 @@
     "riesgo_umbral": 60.0,
     "penal_aprobacion_riesgo": 1.0,
     "desgaste_aprobacion_semanal": 0.35,
+    "motivo_delta_minimo": 0.05,
     "regen_capital_semanal": 0.5,
     "regen_cohesion_semanal": -1.85,
     "umbral_crisis_aprobacion": 12.0,

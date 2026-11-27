@@ -381,9 +381,9 @@ func resolver_proyectos() -> Array[Dictionary]:
 			tc = _m.legal.resolver_tc(String(p["tipo_ley"]))
 			ok = not bool(tc["cae"])
 			if not ok:
-				_m.fx.sumar_ind("capital", -float(_m.catalogo_leyes["tc"]["capital_perdido_si_cae"]))
+				_m.fx.sumar_ind("capital", -float(_m.catalogo_leyes["tc"]["capital_perdido_si_cae"]), "el Tribunal Constitucional derribó una ley")
 		else:
-			_m.fx.sumar_ind("capital", -float(_m.catalogo_leyes["congreso"]["penal_capital_rechazo"]))
+			_m.fx.sumar_ind("capital", -float(_m.catalogo_leyes["congreso"]["penal_capital_rechazo"]), "el Congreso rechazó un proyecto")
 		if ok:
 			_ejecutar_carta(carta, float(p["escala"]), String(p["region"]))
 		_m.estado.registrar_accion("votacion", {"carta": carta["id"], "aprobada": ok, "senado": voto["senado"], "camara": voto["camara"], "tc": tc["recurso"]})
