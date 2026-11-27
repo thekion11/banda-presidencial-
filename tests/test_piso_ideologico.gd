@@ -32,7 +32,7 @@ func _suma_ponderada(m: MotorTurno, pisos: Dictionary) -> float:
 func _init() -> void:
 	var datos := Datos.cargar_todo()
 	var cfg: Dictionary = datos["leyes"]["piso_ideologico"]
-	_check(float(cfg["tope_nacional"]) < float(datos["leyes"]["dinamica"]["umbral_crisis_aprobacion"]), "el piso nacional queda bajo el umbral de crisis (la caída sigue siendo posible)")
+	_check(float(cfg["tope_nacional"]) == 20.0, "tope del piso nacional = 20 % (decisión del usuario del 27-nov-2026)")
 
 	# 1. Forma: pisos acotados, nacional = promedio ponderado por población
 	var m := _motor(datos, 11)
@@ -42,6 +42,18 @@ func _init() -> void:
 		_check(float(pisos[id]) >= 0.0 and float(pisos[id]) <= float(cfg["tope_region"]) + 0.0001, "piso de %s dentro de 0..tope_region (%.2f)" % [id, pisos[id]])
 	_check(is_equal_approx(m.piso.nacional(), _suma_ponderada(m, pisos)), "piso nacional = promedio ponderado por población de los regionales")
 	_check(m.piso.nacional() <= float(cfg["tope_nacional"]) + 0.0001 and m.piso.nacional() > 0.0, "piso nacional entre 0 y su tope (%.2f)" % m.piso.nacional())
+	# crisis medida sobre el piso: umbral = max(umbral base, piso + margen)
+	var base_cr := float(datos["leyes"]["dinamica"]["umbral_crisis_aprobacion"])
+	_check(is_equal_approx(m.piso.umbral_crisis(base_cr), maxf(base_cr, m.piso.nacional() + float(cfg["crisis_margen_sobre_piso"]))), "umbral de crisis = max(base, piso + margen)")
+	var cr := _motor(datos, 11)
+	cr.estado.etapa = "gobierno"
+	cr.estado.turno_actual = 40
+	cr.fx.delta_aprobacion(-100.0, "")  # la aprobación queda en el piso
+	var sem := 0
+	while cr.estado.etapa == "gobierno" and sem < 10:
+		cr.mandato.evaluar_crisis()
+		sem += 1
+	_check(cr.estado.etapa == "crisis" and sem == int(datos["leyes"]["dinamica"]["semanas_crisis_para_caida"]), "sostenerse en el piso semanas_crisis_para_caida semanas hace caer al gobierno (%d semanas)" % sem)
 	var res := m.piso.resumen()
 	_check(res["por_region"].size() == 16 and is_equal_approx(float(res["nacional"]), m.piso.nacional()) and is_equal_approx(float(res["voto_duro"]), m.piso.nacional()), "resumen para la interfaz: nacional, voto_duro y 16 regiones")
 	_check(float(m.regiones.piso_nacional) >= 0.0 and m.regiones.proveedor_pisos.is_valid(), "Regiones conoce su proveedor de pisos")

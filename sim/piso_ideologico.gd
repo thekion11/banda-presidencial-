@@ -93,6 +93,11 @@ func nacional() -> float:
 	return s
 
 
+func umbral_crisis(base: float) -> float:
+	## Umbral de aprobación bajo el cual cuenta una semana de crisis: el de siempre, o `crisis_margen_sobre_piso` puntos sobre el piso nacional si eso es más (con un piso alto la aprobación no baja del piso, así que la crisis se mide sobre lo que hay encima).
+	return maxf(base, nacional() + float(m.catalogo_leyes["piso_ideologico"]["crisis_margen_sobre_piso"]))
+
+
 func resumen() -> Dictionary:
 	## Solo lectura para la interfaz: {nacional, voto_duro (= nacional), por_region: [{id, piso, afinidad}], frenado} (frenado = puntos de aprobación nacional que el piso evitó perder esta semana).
 	var pi := pisos()
