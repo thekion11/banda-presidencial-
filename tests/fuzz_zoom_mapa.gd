@@ -9,7 +9,7 @@ extends SceneTree
 var _fallos := 0
 var _ops := 0
 var _resize_fuera := 0
-const RESIZE_ESTRICTO := false
+const RESIZE_ESTRICTO := true
 var _zoom_max := 1.0
 var _acercadas := 0
 
@@ -183,7 +183,7 @@ func _correr() -> void:
 			_acercadas += 1 if mapa._zoom.acercado() else 0
 	Input.emulate_mouse_from_touch = true
 	DirAccess.remove_absolute(ProjectSettings.globalize_path(Tutorial.ruta))
-	print("FUZZ ZOOM MAPA %s (%d operaciones, %d con zoom activo, zoom máximo %.2f, %d veces el desplazamiento quedó fuera tras encoger (hallazgo abierto), %d fallos)" % ["OK" if _fallos == 0 else "CON FALLOS", _ops, _acercadas, _zoom_max, _resize_fuera, _fallos])
+	print("FUZZ ZOOM MAPA %s (%d operaciones, %d con zoom activo, zoom máximo %.2f, %d veces el desplazamiento quedó fuera tras encoger, %d fallos)" % ["OK" if _fallos == 0 else "CON FALLOS", _ops, _acercadas, _zoom_max, _resize_fuera, _fallos])
 	quit(1 if _fallos > 0 else 0)
 
 
@@ -200,7 +200,7 @@ func _tocar_boton(b: Control) -> void:
 
 func _vista_tras_resize(mapa: MapaChile, ctx: String) -> void:
 	## Tras encoger el control con zoom activo la vista debe seguir dentro de los límites del NUEVO tamaño (sin esperar a otro gesto).
-	## Hallazgo abierto (MapaChile no vuelve a limitar el desplazamiento al cambiar de tamaño): RESIZE_ESTRICTO = false hasta que se corrija.
+	## Corregido en main (MapaChile limita la vista con NOTIFICATION_RESIZED): RESIZE_ESTRICTO = true.
 	var z: MapaZoom = mapa._zoom
 	var tam: Vector2 = mapa.size
 	var fuera := z.pan.x < tam.x * (1.0 - z.zoom) - 0.5 or z.pan.y < tam.y * (1.0 - z.zoom) - 0.5
