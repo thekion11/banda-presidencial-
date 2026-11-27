@@ -254,6 +254,7 @@ func _eleccion(main: Node, dia: Node, regional: Dictionary) -> void:
 		_check(not txt.contains("votos"), "el resultado no debe hablar de votos: mide aprobación")
 		_check(txt.contains("Aprobación") and txt.contains("umbral") and txt.contains(str(c["texto"])), "falta aprobación/umbral/veredicto (%s)" % c["texto"])
 		_check(txt.contains("Aprobación por región"), "falta el desglose por región")
+		_check(txt.contains("Sacaste") or txt.contains("Te faltaron"), "la elección dice el porqué en una frase (meta, diferencia)")
 		if c["balotaje"]:
 			_check(txt.contains("semanas más de campaña"), "falta el aviso de segunda vuelta")
 		var b := _boton(pant, String(c["boton"]))
