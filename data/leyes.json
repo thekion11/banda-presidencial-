@@ -979,12 +979,12 @@
       "fraccion_max": 0.95
     },
     "efecto_semanal": {
-      "dias_obra": 3.0,
-      "dias_ley": 3.0,
-      "riesgo_ejecucion": 0.5
+      "dias_obra": 4.0,
+      "dias_ley": 4.0,
+      "riesgo_ejecucion": 0.6
     },
     "desvio": {
-      "prob_base": 0.3,
+      "prob_base": 0.15,
       "eventos": [
         {
           "id": "pide_mas",
