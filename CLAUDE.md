@@ -116,6 +116,7 @@ godot --headless --path . -s tests/test_fichas_largas.gd        # ficha de cada 
 godot --headless --path . -s tests/test_veracidad.gd           # la pantalla dice lo mismo que el motor (movimientos, semana, chips, riesgo, puntaje) y sin punto decimal
 godot --headless --path . -s tests/test_animaciones_completas.gd  # cambios rápidos de pantalla y pausa: ninguna animación queda a medias
 godot --headless --path . -s tests/test_gestos.gd              # toques y arrastres en mapas y obra 3D, escándalo, carta sin arte, música, aprobar propuesta
+godot --headless --path . -s tests/test_toque_real.gd          # toques por Input.parse_input_event (como Android): un toque elige, no juega
 godot --headless --path . -s tests/test_razones.gd             # toda razón de rechazo del motor tiene texto
 godot --headless --path . -s tests/test_sin_atascos.gd         # siempre hay mano y carta jugable (3 dificultades x 3 afiliaciones)
 godot --headless --path . -s tests/test_cobertura.gd           # cartas por área de ministerio y año

@@ -321,9 +321,7 @@ func _centro_calculado(id: String) -> Vector2:
 
 func _gui_input(event: InputEvent) -> void:
 	var pos := Vector2.ZERO
-	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
-		pos = event.position
-	elif event is InputEventScreenTouch and event.pressed:
+	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:  # el toque llega también como clic
 		pos = event.position
 	else:
 		return
