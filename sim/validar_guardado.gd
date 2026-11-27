@@ -66,7 +66,7 @@ static func entrada_valida(e: Variant) -> bool:
 
 static func guardado_valido(g: Variant) -> bool:
 	## true si el guardado completo (versión, semilla, partido y entradas) tiene la forma esperada; se usa antes de reproducir.
-	if not (g is Dictionary) or not _es(g.get("version"), I) or int(g["version"]) > VERSION or not _es(g.get("semilla"), I) or not partido_valido(g.get("partido")) or not (g.get("entradas") is Array):
+	if not (g is Dictionary) or not _es(g.get("version"), I) or int(g["version"]) > VERSION or int(g["version"]) < 1 or not _es(g.get("semilla"), I) or not partido_valido(g.get("partido")) or not (g.get("entradas") is Array):
 		return false
 	for e in g["entradas"]:
 		if not entrada_valida(e):

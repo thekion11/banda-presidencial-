@@ -15,6 +15,10 @@ func _init() -> void:
 	var g: Dictionary = JSON.parse_string(JSON.stringify(motor.estado.exportar_guardado()))  # como llega desde el disco
 	_check(g["entradas"].size() > 100, "guardado largo (%d entradas)" % g["entradas"].size())
 	_check(ValidarGuardado.guardado_valido(g), "un guardado real pasa la validación")
+	for v in [0, -1, ValidarGuardado.VERSION + 1]:  # versión fuera de rango (hallazgo de «Búsqueda»): 0 y negativas también se rechazan
+		var dv: Dictionary = g.duplicate(true)
+		dv["version"] = v
+		_check(not ValidarGuardado.guardado_valido(dv), "versión %d se rechaza" % v)
 	_check(Partida.reproducir(datos, g) != null, "un guardado real se reproduce")
 	var rng := RandomNumberGenerator.new()
 	rng.seed = 11
