@@ -167,7 +167,7 @@ func _avanzar() -> void:
 		return
 	_confirmar_fin = false
 	_terminar_turno()
-	if not urnas and int(ah["se_guardan"]) > 0:
+	if not urnas and int(ah["se_guardan"]) > 0 and not Movimiento.activo():  # con animaciones lo dice el telón
 		_avisar("Se guardan %d %s para la próxima semana." % [int(ah["se_guardan"]), "movimiento" if int(ah["se_guardan"]) == 1 else "movimientos"])
 
 
@@ -259,6 +259,7 @@ func _terminar_turno() -> void:
 		return
 	var antes := [String(_r["dia"].text), String(_r["fecha"].text)]
 	var ind_antes := est.indicadores.duplicate()
+	var guardados := int(motor.movimientos.ahorro_movimientos()["se_guardan"])
 	var nuevos := motor.terminar_turno()
 	accion_hecha.emit()
 	if _panel_actual != "mapa":
@@ -277,7 +278,8 @@ func _terminar_turno() -> void:
 		_avisar(String(corte["texto"]))
 	_cola_eventos.append_array(nuevos)
 	_refrescar()
-	TelonSemana.mostrar(_capa, antes, [String(_r["dia"].text), String(_r["fecha"].text)], ind_antes, est.indicadores, est.etapa == "oposicion", _siguiente_evento, est.encuestas if est.etapa in ["campana", "oposicion"] else [], datos["regiones"], sem, motor.motivos_semana())
+	TelonSemana.mostrar(_capa, antes, [String(_r["dia"].text), String(_r["fecha"].text)], ind_antes, est.indicadores, est.etapa == "oposicion", _siguiente_evento, est.encuestas if est.etapa in ["campana", "oposicion"] else [], datos["regiones"], sem, motor.motivos_semana(),
+			"Guardaste %d %s: esta semana tienes %d." % [guardados, "movimiento" if guardados == 1 else "movimientos", est.pa_actual] if guardados > 0 else "")
 
 
 func _resolver_eleccion() -> void:

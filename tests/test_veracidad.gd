@@ -137,8 +137,16 @@ func _correr() -> void:
 				if ahora.size() == antes + 1:
 					_check(_hay(dia._zona_panel, String(ahora.back()["etapa_nombre"])) and _hay(dia._zona_panel, "aprobación %d %%" % roundi(float(ahora.back()["prob_aprobacion"]) * 100.0)), "agenda: el proyecto en trámite muestra su etapa y su probabilidad del motor")
 		_sin_punto_decimal(dia, "agenda legislativa")
+	var guarda := int(motor.movimientos.ahorro_movimientos()["se_guardan"])
+	Movimiento.forzado = 1
 	dia._terminar_turno()  # con Congreso abierto, la pestaña se rehace con la semana nueva (hallazgo del fuzz de fallas)
 	await _cuadros(2)
+	Movimiento.forzado = 0
+	var linea_ahorro: Array = dia._capa.find_children("*", "Label", true, false).filter(func(l: Label) -> bool: return l.text.begins_with("Guardaste"))
+	if guarda > 0:
+		_check(not linea_ahorro.is_empty() and linea_ahorro[0].text.begins_with("Guardaste %d " % guarda) and linea_ahorro[0].text.ends_with("tienes %d." % motor.estado.pa_actual), "telón: «Guardaste N … tienes M» dice lo del motor")
+	else:
+		_check(linea_ahorro.is_empty(), "telón: sin movimientos guardados no hay línea de ahorro")
 	var ea2 := motor.agenda.estado_agenda()
 	_check(dia._panel_actual == "congreso" and _hay(dia._zona_panel, "Agenda del gobierno · %d de %d en trámite" % [int(ea2["en_tramite"]), int(ea2["maximo"])]), "agenda: tras terminar la semana el contador sigue igual al motor")
 	for h in dia._capa.get_children():
