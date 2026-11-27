@@ -123,7 +123,7 @@ static func _tarjeta(motor: MotorTurno, p: Dictionary, al_impulsar: Callable) ->
 		btn.text = "En trámite hasta el día %d" % int(st["hasta"])
 		btn.disabled = true
 	else:
-		btn.text = "Impulsar a %s · %d mov" % [ETAPAS[etapa + 1].to_lower(), costo]
+		btn.text = "Impulsar a %s · cuesta %d" % [ETAPAS[etapa + 1].to_lower(), costo]
 		btn.disabled = motor.estado.etapa != "gobierno" or costo > motor.estado.pa_actual or motor.sectra.en_curso() >= int(motor.catalogo_leyes["sectra"]["max_simultaneos"])
 		btn.pressed.connect(func() -> void: al_impulsar.call(String(p["id"])))
 	v.add_child(btn)

@@ -85,7 +85,7 @@ static func texto_movimientos(est: EstadoSimulacion) -> String:
 	## "5 mov base · aprob. +1 · asesor +1": origen de los movimientos del turno (el bono de asesores rige desde el siguiente amanecer).
 	var ap := int(est.bono_mov.get("aprobacion", 0))
 	var ase := int(est.bono_mov.get("asesores", 0))
-	var s := "%d mov base" % est.pa_maximo
+	var s := "%d por semana" % est.pa_maximo
 	if ap > 0:
 		s += " · aprob. +%d" % ap
 	if ase > 0:
@@ -93,8 +93,13 @@ static func texto_movimientos(est: EstadoSimulacion) -> String:
 	return s
 
 
-static func texto_pastilla(est: EstadoSimulacion) -> String:
-	return "%d/%d mov" % [est.pa_actual, est.pa_maximo + int(est.bono_mov.get("aprobacion", 0)) + int(est.bono_mov.get("asesores", 0))]
+const AYUDA_MOVIMIENTOS := "Movimientos disponibles (el rayo): cada carta cuesta de 1 a 3."
+
+
+static func texto_pastilla(est: EstadoSimulacion, tope: int = 0) -> String:
+	## Solo los movimientos disponibles, junto al rayo (pedido del usuario del 27-nov: se acumulan, así que «x/5» confunde,
+	## y la palabra «movimientos» se cortaba). Con tope de ahorro, al llegar se avisa discreto: «10 · tope».
+	return ("%d · tope" % est.pa_actual) if tope > 0 and est.pa_actual >= tope else str(est.pa_actual)
 
 
 func pintar(motor: MotorTurno, sel: int, ministro: String = "", nuevas: Array = []) -> void:
