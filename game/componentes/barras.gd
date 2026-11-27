@@ -65,6 +65,30 @@ static func insignia() -> Control:
 	return c
 
 
+static func boton_baul(refs: Dictionary) -> Button:
+	## Ícono propio del baúl con el número de balas que quedan (pedido del usuario: «falta poder usar las balas de plata»).
+	var b := Button.new()
+	b.custom_minimum_size = Vector2(Tema.TACTIL, Tema.TACTIL)
+	b.tooltip_text = "Balas de plata"
+	for e in ["normal", "hover", "pressed", "focus"]:
+		b.add_theme_stylebox_override(e, Tema.caja(Tema.PANEL, 22, Tema.ORO, 1))
+	var ic := Icono.crear("baul", Tema.ORO, 24.0)
+	ic.position = Vector2(10, 10)
+	b.add_child(ic)
+	var n := Tema.etiqueta_corta("", 10, Tema.TINTA, true)
+	n.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	n.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	n.add_theme_stylebox_override("normal", Tema.caja(Tema.ORO, 8))
+	n.position = Vector2(28, -2)
+	n.custom_minimum_size = Vector2(18, 16)
+	n.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	b.add_child(n)
+	b.visible = false
+	refs["baul"] = b
+	refs["baul_n"] = n
+	return b
+
+
 static func pastilla_pa(refs: Dictionary) -> Control:
 	var p := PanelContainer.new()
 	p.add_theme_stylebox_override("panel", Tema.caja_degradada(Color("#FFD76A"), Color("#E3A92A"), 16, Color("#FFE9A8"), 1))
@@ -110,6 +134,7 @@ static func cabecera(refs: Dictionary) -> Control:
 	linea.add_child(refs["ev_cab"])
 	col.add_child(linea)
 	fila.add_child(col)
+	fila.add_child(boton_baul(refs))  # baúl de balas de plata (solo en gobierno; la pantalla del día lo muestra)
 	fila.add_child(pastilla_pa(refs))
 	v.add_child(fila)
 	var chips := HBoxContainer.new()

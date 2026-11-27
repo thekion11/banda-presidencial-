@@ -2,7 +2,7 @@ class_name Icono
 extends Control
 ## Íconos de línea vectoriales (sin emojis). Se dibujan en un cuadrado de `size`.
 
-const TIPOS := ["star", "bolt", "play", "person", "people", "map", "bars", "building", "up", "down", "train", "home", "grid", "dot", "card"]
+const TIPOS := ["star", "bolt", "play", "person", "people", "map", "bars", "building", "up", "down", "train", "home", "grid", "dot", "card", "baul"]
 const TAMANOS := [12.0, 16.0, 18.0, 20.0, 24.0]  # punto de leyenda, junto a texto, en cápsula, navegación, botón redondo
 const TRAZO_POR_LADO := 2.0 / 24.0  # trazo de los íconos de línea: 2 px a 24 px, como la maqueta (antes 1,5 con piso 1,3)
 
@@ -86,6 +86,11 @@ func _draw() -> void:
 			draw_line(P.call(4, 12), P.call(20, 12), color, w, true)
 		"dot":
 			draw_circle(P.call(12, 12), 6.0 * u, color)
+		"baul":  # baúl de las balas de plata: tapa curva, cuerpo y cerradura
+			draw_arc(P.call(12, 11), 8.0 * u, PI, TAU, 18, color, w, true)
+			draw_rect(Rect2(P.call(4, 11), Vector2(16, 9) * u), color, false, w, true)
+			draw_line(P.call(4, 11), P.call(20, 11), color, w, true)
+			draw_rect(Rect2(P.call(10.5, 9.5), Vector2(3, 4) * u), color, true)
 		"card":
 			draw_rect(Rect2(P.call(6, 3), Vector2(12, 18) * u), color, false, w, true)
 			draw_line(P.call(9, 8), P.call(15, 8), color, w, true)
