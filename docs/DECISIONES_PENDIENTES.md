@@ -72,3 +72,9 @@ Cuando decidas algo, dímelo con el número (p. ej. «D2 b») y se aplica, se mi
 - Falta: que el usuario lo confirme en esta sesión (o pegue su texto) para anotarlo como ampliación autorizada en CLAUDE.md §2. Mientras tanto son reversibles con un commit.
 - Recomendación: confirmar; revisar los valores de riesgo y diferido tras jugar con ellas (entran antes de congelar `data/`, D17).
 
+
+## D21. Dificultad de las 3 reformas constitucionales del plan (27-nov-2026)
+- Hallazgo de «Búsqueda» (Monte Carlo sobre las 16 cartas `plan_*`; `tests/test_plan_cartas.gd` fija el contrato): se aprueban en 73–95 % de las partidas de gobierno, y las tres reformas 4/7 (`plan_afp_estatal`, `plan_coeva`, `plan_fondo_regla`) pasan en 86–95 %, alto para una reforma constitucional. Ninguna carta es dominante (cuestan capital −0,3 a −7,7; ganancias modestas). A vigilar: `plan_exportar_agua` (+2,0 aprobación y +3,4 fiscal a 52 semanas pese al riesgo de 55 %), no concluyente.
+- Causa probable (no medida por mí): la composición del Congreso (apoyo base más coalición) hace que 4/7 se alcance seguido con coalición completa; es una propiedad del modelo del Congreso, no de las cartas.
+- Opciones: a) dejarlas (hoy; `data/` congelado). b) descongelar solo esas 3 filas y exigir más (p. ej. capital mínimo o coalición mínima en `requisitos`): cambia huella y oros y debe ir antes de repartir la prueba cerrada. c) subir la dificultad del 4/7 en el Congreso para todas las reformas: cambio de balance general, mayor alcance.
+- Recomendación: a) por ahora, y decidir con los datos de personas de la prueba cerrada; si se quiere endurecer, b) es lo mínimo y se hace antes de entregar la prueba. Es del usuario: toca `data/` congelado.
