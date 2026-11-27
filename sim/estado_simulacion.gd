@@ -110,6 +110,8 @@ func configurar(p_semilla: int, p_dias_turno: int = 7, p_leyes: Dictionary = {})
 	propuestas_aprobadas.clear()
 	registro_acciones.clear()
 	entradas.clear()
+	if has_meta("json_entradas"):
+		remove_meta("json_entradas")
 	semanas_en_crisis = 0
 	legado_evaluado.clear()
 	resultado_final = {}
@@ -183,6 +185,17 @@ func calcular_huella() -> String:
 func exportar_guardado(huella_datos: String = "") -> Dictionary:
 	## Guardado por eventos: semilla, partido, historial de entradas y huella de los datos con que se jugó.
 	return {"version": ValidarGuardado.VERSION, "huella_datos": huella_datos, "semilla": semilla, "partido": partido.duplicate(true), "entradas": entradas.duplicate(true)}
+
+
+func exportar_json(huella_datos: String = "") -> String:
+	## Igual que JSON.stringify(exportar_guardado()), pero cada entrada se serializa una sola vez (el juego guarda en cada acción: reescribir ~2.000 entradas costaba ~6 ms).
+	var partes: PackedStringArray = get_meta("json_entradas", PackedStringArray())
+	if partes.size() > entradas.size():
+		partes = PackedStringArray()  # el historial se reinició (periodo nuevo): se rehace
+	for i in range(partes.size(), entradas.size()):
+		partes.append(JSON.stringify(entradas[i]))
+	set_meta("json_entradas", partes)  # en un meta y no en una variable: la instantánea solo guarda variables del script
+	return "{\"version\":%d,\"huella_datos\":%s,\"semilla\":%d,\"partido\":%s,\"entradas\":[%s]}" % [ValidarGuardado.VERSION, JSON.stringify(huella_datos), semilla, JSON.stringify(partido), ",".join(partes)]
 
 
 func _ids_mano() -> Array:
