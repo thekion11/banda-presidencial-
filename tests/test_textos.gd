@@ -134,6 +134,9 @@ func _correr() -> void:
 	for escala in [1.3, 1.5]:  # letra grande de Android (1,3 y 1,5) en las etiquetas con ajuste de línea
 		Ajustes.escala_prueba = escala
 		await RecorridoUI.recorrer(self, func(raiz: Node, donde: String) -> void: _auditar(raiz, "%s [letra ×%.1f]" % [donde, escala]))
+	_alto = 693  # y en el teléfono bajo (360×640) con la letra más grande: antes solo se probaba en 844 (docs/QA_VISUAL.md)
+	Ajustes.escala_prueba = 1.5
+	await RecorridoUI.recorrer(self, func(raiz: Node, donde: String) -> void: _auditar(raiz, "%s [alto 693, letra ×1.5]" % donde), 693)
 	Ajustes.escala_prueba = 0.0
 	_check(_vistos > 150 * (RecorridoUI.ALTURAS.size() + 2), "la auditoría debe revisar muchos textos (revisó %d)" % _vistos)
 	if _fallos == 0:

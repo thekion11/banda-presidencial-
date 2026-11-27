@@ -21,7 +21,7 @@ func _ready() -> void:
 	col.set_anchors_preset(Control.PRESET_FULL_RECT)
 	col.offset_left = 24
 	col.offset_right = -24
-	col.offset_top = 84
+	col.offset_top = 60.0 if Tema.pantalla_baja() else 84.0  # teléfono bajo con letra grande: el pie legal no cabía
 	col.offset_bottom = -40
 	col.add_theme_constant_override("separation", 12)
 	add_child(col)
