@@ -66,28 +66,32 @@ jobs:
           if-no-files-found: ignore
           path: docs/ESTADO_ACTUAL.md
       - name: Fuzzing del núcleo (acciones aleatorias e inválidas, replay idéntico)
-        run: godot --headless --path . -s tests/fuzz_acciones.gd -- 60 7000
+        run: |
+          godot --headless --path . -s tests/fuzz_acciones.gd -- 60 7000 2>&1 | tee /tmp/fz.log
+          [ "${PIPESTATUS[0]}" -eq 0 ] && ! grep -q "SCRIPT ERROR" /tmp/fz.log
       - name: "Fuzzing de carrera, instantáneas, propiedades, flujo de la interfaz, Congreso, calendario, guardado, obras y coalición (acotado)"
         run: |
-          XDG_DATA_HOME="$(mktemp -d)" godot --headless --path . -s tests/fuzz_carrera.gd -- 4 700
-          XDG_DATA_HOME="$(mktemp -d)" godot --headless --path . -s tests/fuzz_instantanea.gd -- 100 31
-          XDG_DATA_HOME="$(mktemp -d)" godot --headless --path . -s tests/fuzz_propiedades.gd -- 1 800
-          XDG_DATA_HOME="$(mktemp -d)" godot --headless --path . -s tests/fuzz_flujo_ui.gd -- 9 2100
-          XDG_DATA_HOME="$(mktemp -d)" godot --headless --path . -s tests/fuzz_congreso.gd -- 1500 12
-          XDG_DATA_HOME="$(mktemp -d)" godot --headless --path . -s tests/fuzz_calendario.gd -- 12 1500
-          XDG_DATA_HOME="$(mktemp -d)" godot --headless --path . -s tests/fuzz_guardado.gd -- 300 77
-          XDG_DATA_HOME="$(mktemp -d)" godot --headless --path . -s tests/fuzz_obras.gd -- 6 2600
-          XDG_DATA_HOME="$(mktemp -d)" godot --headless --path . -s tests/fuzz_coalicion.gd -- 5 1700
-          XDG_DATA_HOME="$(mktemp -d)" godot --headless --path . -s tests/fuzz_ultima_config.gd -- 300 5
-          XDG_DATA_HOME="$(mktemp -d)" godot --headless --path . -s tests/fuzz_semillas_extremas.gd
-          XDG_DATA_HOME="$(mktemp -d)" godot --headless --path . -s tests/fuzz_mono.gd -- 500 4100
-          XDG_DATA_HOME="$(mktemp -d)" godot --headless --path . -s tests/fuzz_toque_real.gd -- 60 9100
-          XDG_DATA_HOME="$(mktemp -d)" godot --headless --path . -s tests/fuzz_plan_cartas.gd -- 10 6100 60
-          XDG_DATA_HOME="$(mktemp -d)" godot --headless --path . -s tests/fuzz_zoom_mapa.gd -- 100 9500
-          XDG_DATA_HOME="$(mktemp -d)" godot --headless --path . -s tests/fuzz_voto_regional.gd -- 300 16 8800
-          XDG_DATA_HOME="$(mktemp -d)" godot --headless --path . -s tests/fuzz_ahorro.gd -- 8 7700 60
-          XDG_DATA_HOME="$(mktemp -d)" godot --headless --path . -s tests/fuzz_tablero_gabinete.gd -- 2 30 3300
-          XDG_DATA_HOME="$(mktemp -d)" godot --headless --path . -s tests/fuzz_agenda.gd -- 9 5500 60
+          # cada fuzz corre con su user:// propio y falla ante cualquier rc != 0 o «SCRIPT ERROR» (un error de script no cambia el código de salida de godot)
+          fz() { XDG_DATA_HOME="$(mktemp -d)" godot --headless --path . -s "$@" 2>&1 | tee /tmp/fz.log; [ "${PIPESTATUS[0]}" -eq 0 ] && ! grep -q "SCRIPT ERROR" /tmp/fz.log; }
+          fz tests/fuzz_carrera.gd -- 4 700
+          fz tests/fuzz_instantanea.gd -- 100 31
+          fz tests/fuzz_propiedades.gd -- 1 800
+          fz tests/fuzz_flujo_ui.gd -- 9 2100
+          fz tests/fuzz_congreso.gd -- 1500 12
+          fz tests/fuzz_calendario.gd -- 12 1500
+          fz tests/fuzz_guardado.gd -- 300 77
+          fz tests/fuzz_obras.gd -- 6 2600
+          fz tests/fuzz_coalicion.gd -- 5 1700
+          fz tests/fuzz_ultima_config.gd -- 300 5
+          fz tests/fuzz_semillas_extremas.gd
+          fz tests/fuzz_mono.gd -- 500 4100
+          fz tests/fuzz_toque_real.gd -- 60 9100
+          fz tests/fuzz_plan_cartas.gd -- 10 6100 60
+          fz tests/fuzz_zoom_mapa.gd -- 100 9500
+          fz tests/fuzz_voto_regional.gd -- 300 16 8800
+          fz tests/fuzz_ahorro.gd -- 8 7700 60
+          fz tests/fuzz_tablero_gabinete.gd -- 2 30 3300
+          fz tests/fuzz_agenda.gd -- 9 5500 60
       - name: "Regresión visual con ventana real (no bloqueante; guía en docs/CONTRIBUIR.md)"
         continue-on-error: true
         run: |
