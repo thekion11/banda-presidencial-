@@ -38,7 +38,7 @@ Texto literal: «El mapa del país debe agrandarse un poco para ver todas las re
 - **Decisiones nuevas tuyas:** D21 (reformas 4/7 muy fáciles), D22 (gabinete atractivo: textos y retratos), D23 (ruido regional: confirmar), D24 (Congreso por geografía), D25 (proyectos de transporte de la RM y Aysén en SECTRA), D26 (ritmo).
 - **Pendiente de tu confirmación para llegar a `main`:** el entorno bloqueó mis pushes a `main` hoy; mi trabajo está en la rama `ccr-ec102a3c-giitie`. Dime si autorizas empujarlo.
 
-## Decisión abierta que se reabre: D1 (duración del mandato)
+## D1 (duración del mandato): reabierta por el ritmo real y decidida el 27-nov: se mantienen las 208 semanas (ver D26)
 Con el dato real del teléfono (≈ 132 s por semana; la sesión de Leyes recalculó ≈ 22 sesiones de 20 minutos por mandato; mi cuenta con 2,2 min es ≈ 23), mantener 208 turnos por mandato (D1 a) ya no es una recomendación segura: **D1 se reabre contigo**. Opciones en D26 (`DECISIONES_PENDIENTES.md`): mejoras de interfaz sin cambiar balance (≈ 25–30 %) o cambiar la escala del turno (2 semanas o 1 mes, que acerca un mandato a 4 h o 2 h pero rebalancea todo).
 
 ## Qué probar en un teléfono (`MEDICION_TELEFONO.md`)

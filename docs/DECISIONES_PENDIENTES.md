@@ -7,7 +7,7 @@ Una sola tabla con lo que **no** puede decidir ningún agente: cada fila trae la
 ## Las 5 decisiones clave (por impacto, con mi recomendación)
 | # | Decisión | Recomendación | ¿Un sí/no? |
 |---|---|---|---|
-| 1 | **Duración de la partida** (D1): hoy un mandato son unas 6 sesiones de 20 min | Mantener 208 semanas y medirlo en la prueba cerrada | No: tres opciones |
+| 1 | ~~**Duración de la partida** (D1)~~ **DECIDIDA el 27-nov-2026: mantener las 208 semanas** (el usuario, vía la coordinadora). Hoy un mandato son ≈ 22 sesiones de 20 min con el móvil real | Mantener 208 semanas y medirlo en la prueba cerrada | No: tres opciones |
 | 2 | **Dificultad** (D2, D4, D16): la dificultad solo cambia la campaña; en Normal los bots que juegan bien ganan 94 % | Esperar datos de personas; si en Normal ganan más del 85 %, restar 1,5 de aprobación inicial | No |
 | 3 | **Métricas locales con consentimiento** en la prueba cerrada (`PRUEBA_CERRADA.md` §6) | Sí: sin ellas la prueba solo tiene lo que cuenten los testers | **Sí/no** |
 | 4 | **Congelar `data/` durante la prueba cerrada** (D17): cualquier cambio de datos borra las partidas guardadas de los testers | Sí | **Sí/no** |
@@ -93,12 +93,12 @@ Cuando decidas algo, dímelo con el número (p. ej. «D2 b») y se aplica, se mi
 - Investigación y propuesta en `docs/PROPUESTA_SECTRA_RM_AYSEN.md` (no se tocó `data/`). Resumen: Aysén sí tiene 7 proyectos en la página de SECTRA (hueco de la descarga); la RM no publica y habría que usar EFE/MTT/MOP/Metro (Metro da 403).
 - Decisión del usuario: autorizar o no descongelar `data/sectra_planes.json`. Recomendación: cargar solo lo leído en fuente oficial con unidad explícita, antes de la prueba cerrada; si no, dejar el mensaje «sin proyectos publicados».
 
-## D26a. Ritmo de la partida: ≈ 4 veces más lento que lo estimado (27-nov-2026; mismo tema que D26 de más abajo, escrito por el núcleo)
+## D26a. Ritmo de la partida: ≈ 4 veces más lento que lo estimado (27-nov-2026; dato real del teléfono; el usuario decidió mantener las 208 semanas, ver D26 de más abajo)
 - Dato real del teléfono del usuario: 9 semanas en 20 minutos; un mandato de 208 semanas serían ≈ 7,6 h ≈ 23 sesiones (`DURACION_SESION.md`, `PRUEBA_CERRADA_INFORMES.md`). Una sola partida, la primera.
 - Opciones sin mecánica nueva (ahorro estimado): a) avisos informativos que se cierran solos (≈ 11 %); b) saltar solas las semanas sin decisiones ni cartas (≈ 15 %); c) ambas (≈ 25–30 %). Con mecánica o escala nueva: d) auto-jugar las cartas obvias (necesita tu autorización), e) 1 turno = 2 semanas o 1 mes (D1 b; cambia `dias_por_turno` y rebalancea eventos, oros y cartas: costo alto, mejor opción para acercar un mandato a 4 h o 2 h).
 - Recomendación: a) y b) ahora (solo interfaz, sin tocar balance), y decidir e) con 2 o 3 partidas más de testers antes de repartir la prueba.
 
-## D26. Ritmo de la partida: ¿se pueden acortar las semanas sin contenido? (27-nov-2026; NO implementado, decide el usuario)
+## D26. Ritmo de la partida (27-nov-2026) — **D1 DECIDIDA: se mantienen las 208 semanas; «A» (avisos y saltar semanas vacías) queda como mejora barata por evaluar, sin tocar oros ni implementar todavía**
 - **Medición** (`tests/analisis_ritmo_d26.gd`, 12 mandatos del bot «humano», normal, semillas 8000-8011, 2.496 semanas; tiempos «típicos» de `docs/DURACION_SESION.md`, que son supuestos y no mediciones con personas): por semana 1,29 cartas con movimientos, 1,04 delegadas, 0,45 eventos informativos, 0,11 decisiones, 0,49 votaciones y 0,71 movimientos internos. El **44 % de las semanas no trae evento ni votación** y el **29 %** tampoco tiene una sola carta jugada por el bot (el bot «humano» salta el 20 % de las semanas por diseño: con una persona esa cifra sería menor). El **43 % de las cartas jugadas son «simples»** (efecto directo, sin riesgo, diferido, ley, obra ni propuesta).
 - **Minutos por mandato de 208 semanas** (con la misma tabla de tiempos; hoy ≈ 102 min con este bot, ≈ 5 sesiones de 20 min):
 
@@ -123,3 +123,14 @@ Cuando decidas algo, dímelo con el número (p. ej. «D2 b») y se aplica, se mi
 ## D27. Quórum de las cartas `plan_refinacion_cobre`, `plan_litio_baterias` y `plan_hidrogeno_enap` (27-nov-2026) — **sin verificar contra BCN**
 - Hallazgo (de memoria; `bcn.cl` bloquea el acceso): crean o amplían actividad empresarial del Estado, que según el Art. 19 N° 21 inc. 2 CPR requiere ley de **quórum calificado**; hoy son `ley_simple`. `plan_empresa_ia` y `plan_construccion_prefab` ya son quórum calificado. Detalle en `docs/INFORME_PLAN_CARTAS_AGENDA.md`.
 - Opciones: a) dejarlas (hoy; `data/` congelado); b) pasar las 3 a `quorum_calificado` (tres filas de `data/cartas_curadas.json`: cambia la huella y los oros, baja su tasa de aprobación; mismo momento que D21). **Recomendación:** b) junto con D21 antes de repartir la prueba, tras verificar el artículo contra el texto oficial. No se cambió nada.
+
+### D1 y D26 · decisión del usuario (27-nov-2026, vía la coordinadora)
+- **D1 = mantener las 208 semanas.** Con eso, las alternativas «turno de 2 semanas» y «dos legislaturas» de `PROPUESTA_D1_D26.md` quedan descartadas por ahora; la única que sigue viva es **A** (avisos automáticos y saltar semanas vacías), que no cambia oros ni huellas.
+- **Alcance exacto y riesgo de A (sin implementar, para que el usuario autorice):**
+  1. *Avisos informativos que se cierran solos* (≈ 11 % del tiempo por mandato según la estimación anterior; solo `game/`): los eventos sin decisión se cierran a los ≈ 2,5 s y quedan en un «Resumen de la semana»; las decisiones siguen siendo manuales. Riesgos: perder texto (mitigar con el resumen), letra grande (`test_fichas_largas`), «Animaciones» apagadas, y el temporizador debe detenerse en segundo plano (`test_segundo_plano`) y en las pruebas headless.
+  2. *Saltar semanas tranquilas:* un ajuste **desactivado por defecto** («Saltar semanas tranquilas», en Ajustes; no un botón nuevo, porque CLAUDE.md §5 fija el botón principal) que, estando activo, cierra solo la semana mientras no haya evento, decisión, votación que se resuelva esa semana, hito de obra, corte del legado (semanas 104 y 208) ni riesgo de **perder ahorro** (si los movimientos guardados + el ingreso superarían el tope de 10 se detiene). Cada semana saltada registra la misma entrada «cerrar» del guardado: **replay idéntico, oros sin cambio**. Necesita a lo sumo una función de solo lectura en `sim/` (`semana_tranquila()`); el resto es interfaz.
+  3. *Riesgos:* que el jugador no juegue cartas útiles (por eso es opcional y se detiene al ahorro lleno); nuevas pruebas en `test_veracidad`, `test_estados`, `test_ciclo_vida` y `test_animaciones_completas`; el aviso de «pérdida de semanas» en Google Play y la guía del probador. Ahorro estimado con el tiempo real: 5 % (si el tiempo es proporcional) a 29 % (si es «por semana») de 7,6 h.
+  4. *Toca alcance congelado:* sí (comportamiento nuevo de interfaz); requiere autorización explícita del usuario y cita en `CLAUDE.md` §2.
+
+### Piso nacional de aprobación (decisión del usuario, 27-nov-2026, vía la coordinadora)
+- **Piso nacional = 20 %** «si funciona, pudiendo romperse»; **si rompe el balance, se vuelve a 5 %.** El piso y la luna de miel viven en la rama `piso-luna` (calibración inicial: piso 5, ancla +3), **no están en `main`**: al fusionar hay que re-medir `test_balance` con 20 % y dejar el 5 % como valor de reserva en `data/`.
