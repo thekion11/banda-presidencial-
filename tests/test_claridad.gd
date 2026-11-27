@@ -196,6 +196,8 @@ func _correr() -> void:
 	var con_futuro := {"diferido": {"semanas": 8, "efectos": [{"ind": "cohesion", "delta": 2}, {"ind": "aprobacion", "delta": 1}]}, "riesgo": {"prob": 0.3, "efectos": [{"ind": "aprobacion", "delta": -1}]}}
 	var extra := FichaAmpliada._lineas_extra(con_futuro)
 	_check(extra == ["En 8 semanas: Cohesión +2 · Aprobación +1", "Puede salir mal (30 %): Aprobación −1"], "la ficha dice cuándo llega el efecto a futuro y cuánto arriesga (%s)" % str(extra))
+	_check(M.base_para(Vector2i(360, 640)) == Vector2i(390, 693) and M.base_para(Vector2i(1080, 2340)) == Vector2i(390, 845) and M.base_para(Vector2i(768, 1024)) == Vector2i(390, 844),
+		"un 16:9 tiene 390×693 lógicos (antes quedaba 390×844 achicado con bandas) y la tablet 390×844")
 	_check(Tema.dec(3.5) == "3,5" and Tema.dec(57.44) == "57,4" and Tema.dec(-0.25, 2) == "-0,25", "Tema.dec usa coma decimal")
 	if _fallos == 0:
 		print("CLARIDAD OK")

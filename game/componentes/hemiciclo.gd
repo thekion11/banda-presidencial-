@@ -39,6 +39,7 @@ func animar_votacion(p_minimo: int, favor: int) -> float:
 	## Votos que caen uno a uno de izquierda a derecha; si la votación es ajustada (±3 del mínimo), el tramo final
 	## va lento para dar suspenso. Devuelve cuánto dura (el sello cae después). Sin animaciones, todo al instante.
 	minimo = p_minimo
+	_sucio = true  # la marca del mínimo cambia el radio (_preparar)
 	_cruzado = false
 	if not Movimiento.activo():
 		progreso = 1.0
@@ -73,6 +74,7 @@ var _radio_punto: float = 4.0
 var _centro: Vector2 = Vector2.ZERO
 var _grande: bool = false
 var _sucio: bool = true
+var _escala: float = 1.0
 var _tam_prep: Vector2 = Vector2.ZERO
 var _angulos: Array[float] = []
 var _r_int: float = 0.0
@@ -84,6 +86,8 @@ func _preparar() -> void:
 	var filas := 4 if _grande else 6  # así la distancia entre asientos de una fila ≈ la distancia entre filas (anillos parejos, como la maqueta)
 	_centro = Vector2(size.x * 0.5, size.y - 14.0)
 	var r_ext := minf(size.x * (0.41 if _grande else 0.46), size.y - 24.0)  # Senado más compacto, como en la maqueta
+	if minimo >= 0:  # la marca «mín. N» va por fuera del arco: deja su sitio dentro del rectángulo (antes tapaba «Requiere…» en 390×693)
+		r_ext = minf(r_ext, size.y - 48.0)
 	var r_int := r_ext * (0.46 if _grande else 0.50)
 	var radios: Array[float] = []
 	var suma := 0.0
@@ -107,13 +111,18 @@ func _preparar() -> void:
 	for q in puntos:
 		_puntos.append(Vector2(q.x, q.y))
 		_angulos.append(q.z)
-	_radio_punto = 8.0 if _grande else clampf((r_ext - r_int) / float(filas) * 0.40, 2.2, 3.8)
+	_escala = clampf(r_ext / 146.0, 0.6, 1.0)  # hemiciclo achicado (teléfono bajo): cifra y asientos en proporción, sin chocar
+	_radio_punto = 8.0 * _escala if _grande else clampf((r_ext - r_int) / float(filas) * 0.40, 2.2, 3.8)
 	_colores.clear()
 	for b in bloques:
 		for _k in range(int(b[0])):
 			_colores.append(b[1])
 	_sucio = false
 	_tam_prep = size
+
+
+func _tam_cifra() -> int:
+	return roundi((54.0 if _grande else 36.0) * _escala)
 
 
 func _draw() -> void:
@@ -126,7 +135,7 @@ func _draw() -> void:
 	for i in range(mini(visibles, _puntos.size())):
 		draw_circle(_puntos[i], _radio_punto, _colores[i] if i < _colores.size() else Color("#9AA9C0"))
 	if numero >= 0:
-		draw_string(Tema.fuente_titulo(), Vector2(_centro.x - 60.0, _centro.y - 20.0), str(roundi(float(numero) * progreso)), HORIZONTAL_ALIGNMENT_CENTER, 120.0, 54 if _grande else 36, Tema.TEXTO)
+		draw_string(Tema.fuente_titulo(), Vector2(_centro.x - 60.0, _centro.y - 20.0), str(roundi(float(numero) * progreso)), HORIZONTAL_ALIGNMENT_CENTER, 120.0, _tam_cifra(), Tema.TEXTO)
 		draw_string(Tema.fuente_texto(500), Vector2(_centro.x - 60.0, _centro.y), texto_central, HORIZONTAL_ALIGNMENT_CENTER, 120.0, 12, Tema.TEXTO_SUAVE)
 
 
@@ -159,5 +168,5 @@ func _dibujar_votacion() -> void:
 		var w := f.get_string_size(et, HORIZONTAL_ALIGNMENT_LEFT, -1, 10).x
 		var pe := _centro + dir * (_r_ext + _radio_punto + 16.0)
 		draw_string(f, pe - Vector2(w * 0.5, -4.0), et, HORIZONTAL_ALIGNMENT_LEFT, -1, 10, Tema.ORO if cruzo else Tema.TEXTO_SUAVE)
-	draw_string(Tema.fuente_titulo(), Vector2(_centro.x - 60.0, _centro.y - 20.0), str(cuenta), HORIZONTAL_ALIGNMENT_CENTER, 120.0, 54 if _grande else 36, Tema.bien() if cruzo else Tema.TEXTO)
+	draw_string(Tema.fuente_titulo(), Vector2(_centro.x - 60.0, _centro.y - 20.0), str(cuenta), HORIZONTAL_ALIGNMENT_CENTER, 120.0, _tam_cifra(), Tema.bien() if cruzo else Tema.TEXTO)
 	draw_string(Tema.fuente_texto(500), Vector2(_centro.x - 60.0, _centro.y), texto_central, HORIZONTAL_ALIGNMENT_CENTER, 120.0, 12, Tema.TEXTO_SUAVE)
