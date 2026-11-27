@@ -55,3 +55,9 @@ Con el dato real del teléfono (≈ 132 s por semana; la sesión de Leyes recalc
 - Aprendizaje grave de interfaz (corregido en main ee78972): en un teléfono 16:9 (360×640) el juego se veía al 82 % con bandas laterales y letra bajo 10 pt, y las pruebas headless no lo veían porque simulaban el alto. Ahora la base es 390 × alto de pantalla (`Main.base_para`, con prueba en `test_claridad`). Moraleja: las pruebas headless simulaban lo que no veían; hay que mirar en ventana real y en un teléfono.
 - Hallazgos graves de dispositivo real de la sesión visual (todos corregidos en `game/`): un toque elegía y jugaba la carta en Android (contradecía CLAUDE.md §4; ahora `test_toque_real`), el 16:9 se achicaba, en 360×640 con letra ×1,5 se salían el pie del menú y el botón de votación, el Comité 3D salía casi blanco con «Mobile» (lavapipe) y había animaciones con «Animaciones» apagado. Esto refuerza `gl_compatibility` (decidido el 27-nov). Tema común: las pruebas headless simulaban lo que no veían.
 - Con `data/` modificado a mano y sin pasar por `validate_data.py`, algunos valores extremos pueden colgar el motor.
+
+## Cierre (PARAR, 27-nov-2026)
+- **Ruido regional de la elección = 6** (tu autorización directa), D23 cerrada; oros regenerados solo en la prueba de oro completa y `huellas.json` (con el ruido en 0 pasaba igual). Memoria del director de eventos en la instantánea (`Instantanea.VERSION` 2) y `ValidarGuardado` con `version < 1`: hechos. D1: se mantienen las 208 semanas.
+- Mis secciones de `DECISIONES.md`: BS (elección con población), BT (gabinete tras la elección), BU (instantánea), BV (ruido regional).
+- Queda para ti: D21 (reformas 4/7 muy fáciles), D22 (textos y retratos del gabinete), D24 (Congreso por geografía), D25 (proyectos de transporte de la RM y Aysén), fichas sin verificar (`VERIFICACION_PROYECTOS.md`), Art. 25 y 66, keystore y licencias, métricas con consentimiento.
+

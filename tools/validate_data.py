@@ -119,8 +119,7 @@ def validar_leyes(leyes: dict, ids_fuentes: set) -> set:
         raise ValueError("gabinete: anios_mandato debe ser ≥ 1")
     if leyes["encuestas"]["historial_max"] < 1 or leyes["encuestas"]["regiones_mostradas"] < 0:
         raise ValueError("encuestas: historial_max debe ser ≥ 1 y regiones_mostradas ≥ 0")
-    if not 0 <= leyes["campana"]["ruido_eleccion_regional"] <= 25:
-        raise ValueError("campana: ruido_eleccion_regional debe estar entre 0 y 25 puntos")
+    if not 0 <= leyes["campana"]["ruido_eleccion_regional"] <= 25: raise ValueError("campana: ruido_eleccion_regional debe estar entre 0 y 25 puntos")
     if leyes["mano"]["reales_en_mazo"] < 1:
         raise ValueError("mano: reales_en_mazo debe ser ≥ 1 (sin cartas reales el mazo se queda sin jugadas)")
     if leyes["encuestas"]["margen_final"] <= 0 or leyes["encuestas"]["margen_inicial"] < leyes["encuestas"]["margen_final"]:

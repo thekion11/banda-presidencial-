@@ -20,6 +20,7 @@ func _partido(datos: Dictionary) -> Dictionary:
 func _fin_campana(datos: Dictionary, semilla: int) -> MotorTurno:
 	var m := Partida.crear(datos, semilla, _partido(datos))
 	m.catalogo_leyes["campana"]["ruido_eleccion"] = 0.0  # sin ruido: el resultado es exactamente la aprobación
+	m.catalogo_leyes["campana"]["ruido_eleccion_regional"] = 0.0  # y sin ruido regional (27-nov-2026): el umbral exacto sigue siendo exacto
 	for _s in range(int(datos["leyes"]["hemiciclo"]["semanas_campana"])):
 		m.terminar_turno()
 	return m
