@@ -46,9 +46,22 @@ func _input(ev: InputEvent) -> void:
 	elif _activo:
 		_toque += 1
 		_activo = false
+		if ev.canceled:  # el sistema canceló el toque (llamada entrante, notificación): el gesto no cuenta
+			return
 		var d: Vector2 = ev.position - _inicio
 		if d.y < -70.0 and absf(d.x) < absf(d.y) * 0.8 or d.length() > 70.0 and not get_global_rect().has_point(ev.position):
 			arrastrada.emit(ev.position)
+
+
+func _notification(what: int) -> void:
+	## La app pierde el foco o pasa a segundo plano con el dedo puesto: se anula el gesto (no se abre la ficha más tarde)
+	## y se cierra la ficha si estaba abierta.
+	if what == NOTIFICATION_APPLICATION_FOCUS_OUT or what == NOTIFICATION_APPLICATION_PAUSED:
+		_toque += 1
+		_activo = false
+		if _ficha != null:
+			_ficha.queue_free()
+			_ficha = null
 
 
 func _pulsacion_larga(n: int) -> void:

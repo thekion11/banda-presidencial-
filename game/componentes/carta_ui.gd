@@ -126,7 +126,7 @@ func _gui_input(event: InputEvent) -> void:
 		_t0 = Time.get_ticks_msec()
 		_p0 = event.position
 	elif elegida and _t0 >= 0:
-		if Time.get_ticks_msec() - _t0 < ManoUI.PULSACION_LARGA_MS and event.position.distance_to(_p0) < 14.0:
+		if not event.canceled and Time.get_ticks_msec() - _t0 < ManoUI.PULSACION_LARGA_MS and event.position.distance_to(_p0) < 14.0:  # un toque cancelado por el sistema no juega
 			tocada.emit(self)  # toque breve sobre la elegida: la juega
 		_t0 = -1
 

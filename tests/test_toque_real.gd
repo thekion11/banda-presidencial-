@@ -21,10 +21,11 @@ func _cuadros(n: int) -> void:
 		await process_frame
 
 
-func _toque(pos: Vector2, pulsado: bool) -> void:
+func _toque(pos: Vector2, pulsado: bool, cancelado: bool = false) -> void:
 	var e := InputEventScreenTouch.new()
 	e.index = 0
 	e.pressed = pulsado
+	e.canceled = cancelado
 	e.position = root.get_final_transform() * pos
 	Input.parse_input_event(e)
 
@@ -105,6 +106,25 @@ func _correr() -> void:
 	await _cuadros(3)
 	_check(root.find_children("*", "FichaAmpliada", true, false).filter(func(f: Node) -> bool: return not f.is_queued_for_deletion()).is_empty(), "soltar cierra la ficha")
 	_check(est.entradas.size() == n2, "mantener y soltar no juega la carta")
+	# 4b) una llamada entrante cancela el toque en pleno deslizamiento: la carta no se juega
+	var n3 := est.entradas.size()
+	var pc := _punto(_carta(dia, true))
+	_toque(pc, true)
+	await _cuadros(1)
+	for k in range(1, 6):
+		_arrastre(pc + Vector2(0, -24.0 * (k - 1)), pc + Vector2(0, -24.0 * k))
+		await _cuadros(1)
+	_toque(pc + Vector2(0, -120.0), false, true)
+	await _cuadros(4)
+	_check(est.entradas.size() == n3, "un deslizamiento cancelado por el sistema no juega la carta (entradas +%d)" % (est.entradas.size() - n3))
+	# 4c) la app pierde el foco con el dedo puesto: la ficha no se abre después ni queda pegada
+	_toque(pc, true)
+	await _cuadros(1)
+	main.propagate_notification(Node.NOTIFICATION_APPLICATION_FOCUS_OUT)
+	await create_timer(ManoUI.PULSACION_LARGA_MS / 1000.0 + 0.2).timeout
+	_check(root.find_children("*", "FichaAmpliada", true, false).filter(func(f: Node) -> bool: return not f.is_queued_for_deletion()).is_empty(), "al perder el foco con el dedo puesto no se abre la ficha")
+	_toque(pc, false, true)
+	await _cuadros(2)
 	# 5) tocar el mapa elige una región
 	dia._region = ""
 	await _tocar(dia._mapa.get_global_rect().get_center())

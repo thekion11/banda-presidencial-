@@ -126,7 +126,7 @@ func _gui_input(event: InputEvent) -> void:
 			else:
 				if _pulsado and _capturado:
 					_vista_suelta(event.position)
-				elif _pulsado and not _movido:
+				elif _pulsado and not _movido and not event.canceled:  # un toque cancelado por el sistema no oculta líneas ni abre burbujas
 					_toque(event.position)
 				_pulsado = false
 				_capturado = false
