@@ -59,3 +59,16 @@ Se leyeron las dos páginas primarias del Ministerio de Salud (`minsal.cl`, 27-n
 - **Plan de Inversiones Oncológicas 2026-2030** (8 fichas: Antofagasta, Independencia, Iquique, Los Ángeles, Punta Arenas, Rancagua, San Felipe y Santiago): la nota del 31-ago-2026 lista las comunas de habilitación (Iquique, Antofagasta, Viña del Mar, San Felipe, Santiago, Independencia, Rancagua, Talca, Los Ángeles y Valdivia) y de modernización de equipamiento (Valparaíso y Punta Arenas) dentro de los 25 proyectos del Plan Nacional de Cáncer. Sin monto por comuna.
 Quedan **229 de 639 proyectos** sin verificar (curados del centro 49, RM 40, norte 27, energía y transporte 24, concesiones viales 23, sur 18, educación y vivienda 13, planes de gobierno 11, otros 24; 4 del Minsal). Los de Dipres: las fichas con presupuestos simbólicos siguen «sin verificar» por decisión anterior (`data/verificacion/dipres_siap.json`).
 **Hallazgo:** regenerar `data/cartas_reales.json` con `tools/generar_cartas.py` hoy cambia la `disponibilidad` (el evento al que se liga) de **102 cartas** respecto de lo publicado, porque la lista de eventos cambió después (se retiraron duplicados). El archivo vigente es válido (todas las referencias existen), así que **no se regeneró**: hacerlo cambia el azar de las partidas (oros) y es decisión del dueño junto con el próximo cambio de datos.
+
+## Segunda tanda (27-nov-2026): fichas revisadas y NO marcadas
+Se leyeron las fuentes de 15 fichas de `metro_santiago.json` y `planes_y_gobierno_2026.json`. Ninguna se marcó `verificado: true` porque la fuente primaria no confirma todo lo que dice la ficha (lo que no se confirma es lo que viene de prensa):
+| Ficha | Lo que confirma la fuente | Lo que no confirma |
+|---|---|---|
+| Línea 7 de Metro (`metro.cl`) | 26 km, 19 estaciones, entrada en operación 2028 | Obras iniciadas en febrero de 2022 (la página solo habla de reuniones de 2022) y «~40 % de avance» (prensa) |
+| Línea 8 (`metro.cl`) | 19 km, 14 estaciones, 1,9 millones de beneficiarios | Apertura 2033 (prensa) |
+| Línea 9 (`metro.cl`) | 27 km, 2 millones de beneficiarios | Aperturas 2030, 2031 y 2033 y la RCA 2026 (prensa) |
+| Línea A al aeropuerto (`metro.cl`) | 6,5 km, 2 estaciones, trenes ligeros subterráneos con conducción autónoma | 21 coches y «etapa de ingeniería (jun-2026)» |
+| PNIP 2025-2055 y PNIP O'Higgins | Más de 22 mil proyectos y más de $366 billones; 1.290 proyectos para O'Higgins | Son notas de prensa (Radio U. de Chile, Colegio de Ingenieros/CPI), no del MOP: la fuente primaria sería el MOP |
+| Nueva Alameda Providencia y plan carcelario 2030 | — | El sitio respondió 403 desde el entorno; fuente de prensa |
+Resto (Parque Mapocho Río, Puerto Montt, Paseo Bandera, Kimal-Lo Aguirre, liceos emblemáticos, buses eléctricos): fuentes de prensa o municipales; no se intentó marcarlas.
+**Cuánto se pudo verificar con la red disponible:** hoy se confirmaron 5 hechos del calendario/derecho electoral y 10 fichas del Minsal; la Constitución y las leyes del BCN no son accesibles (401). Quedan para el usuario: Art. 25, incisos del Art. 66 y los 229 proyectos (la mayoría, de prensa).
