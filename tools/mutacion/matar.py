@@ -20,11 +20,6 @@ def matar(mid, args):
     fallos=[l for l in out.splitlines() if l.startswith("FALLO") or "SCRIPT ERROR" in l]
     print(mid,"con",args[1].split('/')[-1],"-> rc=",rc,"MUERTO" if (rc!=0 or fallos) else "SOBREVIVE",fallos[:1])
     shutil.rmtree(d,ignore_errors=True)
-if __name__=="__main__":
-    for mid in sys.argv[2:]:
-        matar(mid, ["-s", sys.argv[1]] + (["--"] + sys.argv[1].split(":")[1:] if ":" in sys.argv[1] else []))
-
-
 if __name__ == "__main__":
     # uso: python3 tools/mutacion/matar.py "test_x -- args" G29 G30 ...   (comprueba que UNA prueba concreta mata cada mutante)
     partes = sys.argv[1].split()
