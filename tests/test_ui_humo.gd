@@ -67,6 +67,7 @@ func _una(semilla: int, idx: int = 0) -> void:
 		r_fundar = (ir_b[0] as Button).get_global_rect()
 	pp._fundar()
 	await process_frame
+	_check(main._pantalla is PantallaDia and main.motor.estado.etapa == "campana", "tras fundar el partido se va directo a la campaña (el gabinete se elige al ganar)")
 	var partido: Dictionary = main.motor.estado.partido.duplicate(true)
 	if idx == 0:  # «Nueva partida como la última vez»
 		main.mostrar_menu()
@@ -77,16 +78,20 @@ func _una(semilla: int, idx: int = 0) -> void:
 		await process_frame
 		_check(main.motor != null and String(main.motor.estado.partido["nombre"]) == String(partido["nombre"]) and main._pantalla is PantallaDia, "la partida rápida repite el partido y va directo al mapa (1 toque)")
 	partido["indicadores_iniciales"]["aprobacion"] = 90.0  # la prueba recorre el gobierno: que la campaña no la pierda al azar
-	main.motor = Partida.crear(main.datos, semilla, partido)  # semilla fija: la prueba no depende del reloj
-	main.mostrar_gabinete()
+	var campana := Partida.crear(main.datos, semilla, partido)  # semilla fija: la prueba no depende del reloj
+	# transición presidencial: recién ganada la elección (turno 1 de gobierno, sin gabinete desde la votación) el día cede al gabinete
+	main.motor = Partida.crear(main.datos, semilla, partido)
+	main.motor.estado.etapa = "gobierno"
+	main.motor.estado.turno_actual = 1
+	main.motor.estado.registrar_entrada("eleccion", {})
+	main.mostrar_dia()
 	await process_frame
-	_check(main._pantalla is PantallaGabinete, "tras fundar el partido debe venir la elección de gabinete")
+	_check(main._pantalla is PantallaGabinete, "tras ganar la elección viene la transición: elegir el gabinete")
 	var sel_g: Array = main._pantalla.find_children("*", "Button", true, false)
-	var conf: Button = sel_g.filter(func(b: Button) -> bool: return b.text.begins_with("Comenzar campaña"))[0]
+	var conf: Button = sel_g.filter(func(b: Button) -> bool: return b.text == "Confirmar gabinete y asumir")[0]
 	for _k in range(4):
 		await process_frame
-	print("  botón fundación: %s · botón gabinete: %s" % [r_fundar, conf.get_global_rect()])
-	_check(conf.get_global_rect() == r_fundar, "el botón principal del gabinete debe estar donde el de la fundación (%s vs %s)" % [conf.get_global_rect(), r_fundar])
+	_check(conf.get_global_rect().position.y == r_fundar.position.y, "el botón principal del gabinete queda a la altura del de la fundación (%s vs %s)" % [conf.get_global_rect(), r_fundar])
 	_check(not conf.disabled, "el gabinete por defecto (los 25 ministerios) debe poder confirmarse")
 	var rel: Array = main._pantalla.find_children("*", "Button", true, false).filter(func(b: Button) -> bool: return b.text in ["Equilibrado", "Máxima eficacia"])
 	_check(rel.size() == 2, "PR-05: dos botones de relleno (equilibrado y máxima eficacia)")
@@ -115,6 +120,10 @@ func _una(semilla: int, idx: int = 0) -> void:
 	_check(not contador.is_empty() and contador[0].text == "Gabinete: %d de %d ministros" % [tam, tam], "nombrar reemplaza al del puesto: siguen %d de %d" % [tam, tam])
 	_check(not conf.disabled, "con %d ministros se puede confirmar" % tam)
 	conf.pressed.emit()
+	await process_frame
+	_check(main._pantalla is PantallaDia and not PanelGabinete.transicion_pendiente(main.motor), "confirmar el gabinete cierra la transición y abre el primer día de gobierno")
+	main.motor = campana  # el resto recorre la campaña completa
+	main.mostrar_dia()
 	await process_frame
 	var dia: Node = main._pantalla
 	_check(dia is PantallaDia, "no se llegó a la pantalla de día")

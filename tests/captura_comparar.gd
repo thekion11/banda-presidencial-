@@ -259,10 +259,14 @@ func _v2(main: Node, dia: Node, d: Dictionary, partido: Dictionary) -> void:
 	dia._leer_reposicion(n_reg)
 	dia._refrescar()
 	await _guardar("v2_reposicion", 0.12)
-	# etapa de configuración: elección de gabinete antes de la campaña
+	# transición presidencial: elección de gabinete tras ganar
 	main.motor = Partida.crear(d, 20260415, partido)
+	main.motor.estado.etapa = "gobierno"  # transición presidencial: el gabinete se elige recién ganada la elección
+	main.motor.estado.turno_actual = 1
 	main.mostrar_gabinete()
 	await _guardar("v2_gabinete_config", 0.5)
+	main.motor.estado.etapa = "campana"
+	main.motor.estado.turno_actual = 1
 
 
 func _v3(main: Node, d: Dictionary, partido: Dictionary) -> void:
