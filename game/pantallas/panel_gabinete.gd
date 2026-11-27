@@ -6,8 +6,26 @@ extends RefCounted
 
 
 static func puede_editar(motor: MotorTurno) -> bool:
+	## Solo en la primera semana de gobierno: en campaña gobierna el equipo automático (el gabinete se elige tras ganar).
 	var e := motor.estado
-	return e.etapa == "campana" or (e.etapa == "gobierno" and e.turno_actual == 1)
+	return e.etapa == "gobierno" and e.turno_actual == 1
+
+
+static func transicion_pendiente(motor: MotorTurno) -> bool:
+	## Recién ganada la elección y sin gabinete nombrado desde la votación (docs/GABINETE_TRAS_ELECCION.md). Usa la salida
+	## del núcleo si existe; si no, la misma regla sobre el historial de entradas.
+	if motor.gabinete.has_method("pendiente_confirmar"):
+		return bool(motor.gabinete.call("pendiente_confirmar"))
+	var e := motor.estado
+	if e.etapa != "gobierno" or e.turno_actual != 1:
+		return false
+	for i in range(e.entradas.size() - 1, -1, -1):
+		var tipo := String(e.entradas[i]["tipo"])
+		if tipo == "gabinete":
+			return false
+		if tipo == "eleccion":
+			return true
+	return false
 
 
 static func _agregar_relleno(raiz: VBoxContainer, motor: MotorTurno, elegidos: Array, refrescar: Callable, auto: Dictionary = {}) -> void:
@@ -65,7 +83,8 @@ static func crear(motor: MotorTurno, texto_boton: String, al_confirmar: Callable
 	var contador := Tema.etiqueta("", 15, Tema.ORO, true)
 	var barra := FilasUI.chip_barra(0.0, Tema.ORO)
 	var resumen := Tema.etiqueta("", 11, Tema.TEXTO_SUAVE)
-	var reaccion := Tema.etiqueta("", 12, Tema.TEXTO, false, 600)
+	var reaccion := Tema.etiqueta("", 12, Tema.TEXTO, false, 600)  # lo que pasó al nombrar (queda a la vista bajo el resumen)
+	var previa := Tema.etiqueta("", 11, Tema.TEXTO_SUAVE)  # pie de la ficha: rasgo y efecto si lo nombras
 	var boton := Tema.boton(texto_boton, Tema.ROJO, Tema.TEXTO, 15, 52)
 	var por_cargo := {}  # ministerio -> candidatos (en el orden del catálogo)
 	for id in motor.catalogo_ministros.keys():
@@ -105,13 +124,16 @@ static func crear(motor: MotorTurno, texto_boton: String, al_confirmar: Callable
 		reaccion.text = "Nombraste a %s. %s" % [motor.catalogo_ministros[id]["alias"], ef if ef != "" else "El efecto semanal no cambia."]
 		estado["previsto"] = ""
 		Feedback.sonar("decision")
+		acciones["refrescar"].call()
+		if acciones.has("cerrar_ficha"):
+			acciones["cerrar_ficha"].call()  # nombrado: la ficha se cierra y se ve el tablero
 		if Movimiento.activo() and puestos.has(slot):
 			Movimiento.latido(puestos[slot])  # el puesto late al nombrar (sin movimiento: nada)
-		acciones["refrescar"].call()
 	acciones["refrescar"] = func() -> void:
 		contador.text = "Gabinete: %d de %d ministros" % [elegidos.size(), tam]
 		barra.value = 100.0 * float(elegidos.size()) / float(tam)
 		reaccion.visible = reaccion.text != ""
+		previa.visible = previa.text != ""
 		var ef := TableroGabinete.texto_efecto(motor.gabinete.efecto_semanal_de(elegidos))
 		resumen.text = "Efecto semanal del equipo: %s" % (ef if ef != "" else "neutro")
 		boton.disabled = elegidos.size() != tam
@@ -140,7 +162,7 @@ static func crear(motor: MotorTurno, texto_boton: String, al_confirmar: Callable
 				for k in a1.keys() + a0.keys():
 					dif[k] = float(a1.get(k, 0.0)) - float(a0.get(k, 0.0))
 				var ef2 := TableroGabinete.texto_efecto(dif)
-				reaccion.text = "«%s». Si lo nombras: %s. Tócalo otra vez o arrástralo a su puesto." % [motor.catalogo_ministros[id]["rasgo"], ef2 if ef2 != "" else "el efecto semanal no cambia"]
+				previa.text = "«%s». Si lo nombras: %s. Tócalo otra vez para nombrarlo." % [motor.catalogo_ministros[id]["rasgo"], ef2 if ef2 != "" else "el efecto semanal no cambia"]
 				acciones["refrescar"].call())
 			baraja.add_child(c)
 	for slot in por_cargo.keys():
@@ -149,10 +171,10 @@ static func crear(motor: MotorTurno, texto_boton: String, al_confirmar: Callable
 		p.pressed.connect(func() -> void:
 			estado["slot"] = String(slot)
 			estado["previsto"] = ""
-			reaccion.text = ""
+			previa.text = ""
 			acciones["refrescar"].call()
-			if acciones.has("ver_ficha"):
-				acciones["ver_ficha"].call())
+			if acciones.has("abrir_ficha"):
+				acciones["abrir_ficha"].call())
 		grilla.add_child(p)
 		puestos[slot] = p
 	for slot in por_cargo.keys():  # abre en el primer puesto vacío (o el primero)
@@ -170,31 +192,59 @@ static func crear(motor: MotorTurno, texto_boton: String, al_confirmar: Callable
 	raiz.add_child(contador)
 	raiz.add_child(barra)
 	raiz.add_child(resumen)
-	var marco := FilasUI.col(6)  # ficha de contratación: título y cartera, 3 candidatos y el efecto al pie
-	var cab := HBoxContainer.new()
-	var t_elige := Tema.etiqueta_corta("Elige a tu ministro", 14, Tema.TEXTO, true)
-	t_elige.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	cab.add_child(t_elige)
-	var sub := FilasUI.col(0)
-	sub.add_child(cab)
-	sub.add_child(titulo_baraja)  # la cartera bajo el título, como en la ficha de contratación del ejemplo
-	marco.add_child(sub)
-	marco.add_child(baraja)
 	reaccion.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-	marco.add_child(reaccion)
+	raiz.add_child(reaccion)
+	var marco := FilasUI.col(6)  # ficha de contratación (ejemplo del usuario): título y cartera, 3 candidatos y el efecto al pie
+	var cab := HBoxContainer.new()
+	var sub := FilasUI.col(0)
+	sub.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	sub.add_child(Tema.etiqueta_corta("Elige a tu ministro", 14, Tema.TEXTO, true))
+	sub.add_child(titulo_baraja)  # la cartera bajo el título
+	cab.add_child(sub)
+	var cerrar := Tema.boton("×", Color(0, 0, 0, 0), Tema.TEXTO, 22, Tema.TACTIL)
+	cerrar.custom_minimum_size = Vector2(Tema.TACTIL, Tema.TACTIL)
+	cab.add_child(cerrar)
+	marco.add_child(cab)
+	marco.add_child(baraja)
+	previa.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	marco.add_child(previa)
 	var ficha := FilasUI.tarjeta(marco, Color("#0F2D46"), Tema.ORO)
-	var baja := Tema.pantalla_baja()  # en pantallas bajas (360×640) la ficha se desplaza con la grilla para que esta no quede tapada
-	if not baja:
-		raiz.add_child(ficha)  # la ficha del puesto elegido queda fija arriba: los candidatos siempre a la vista
+	var velo := Control.new()  # la ficha se despliega encima del tablero al tocar un puesto (pedido del usuario del 27-nov-2026)
+	velo.top_level = true
+	velo.visible = false
+	velo.z_index = 5
+	var sombra := ColorRect.new()
+	sombra.color = Color(0, 0, 0, 0.62)
+	sombra.set_anchors_preset(Control.PRESET_FULL_RECT)
+	velo.add_child(sombra)
+	var centro := CenterContainer.new()
+	centro.set_anchors_preset(Control.PRESET_FULL_RECT)
+	centro.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	centro.add_child(ficha)
+	velo.add_child(centro)
+	acciones["cerrar_ficha"] = func() -> void:
+		velo.visible = false
+		estado["previsto"] = ""
+		previa.text = ""
+	acciones["abrir_ficha"] = func() -> void:
+		var vp := raiz.get_viewport_rect().size
+		velo.position = Vector2.ZERO
+		velo.size = vp
+		ficha.custom_minimum_size.x = minf(vp.x - 24.0, 380.0)
+		velo.visible = true
+		if Movimiento.activo():
+			Movimiento.aparecer(ficha)
+	cerrar.pressed.connect(acciones["cerrar_ficha"])
+	sombra.gui_input.connect(func(ev: InputEvent) -> void:
+		if ev is InputEventMouseButton and not ev.pressed and ev.button_index == MOUSE_BUTTON_LEFT:
+			acciones["cerrar_ficha"].call())  # tocar fuera de la ficha la cierra
 	var contenido := FilasUI.col(8)
-	if baja:
-		contenido.add_child(ficha)
 	contenido.add_child(grilla)
-	contenido.add_child(Tema.etiqueta("Dorado: lo elegiste tú · azul: relleno automático. Toca un puesto para ver sus 3 candidatos.", 11, Tema.TEXTO_SUAVE))
+	contenido.add_child(Tema.etiqueta("Dorado: lo elegiste tú · azul: relleno automático. Toca un puesto para abrir su ficha con 3 candidatos.", 11, Tema.TEXTO_SUAVE))
 	if editable:
 		_agregar_relleno(contenido, motor, elegidos, acciones["refrescar"], auto)
 	else:
-		contenido.add_child(Tema.etiqueta("El gabinete quedó cerrado: solo se cambia en campaña o en la primera semana de gobierno.", 11, Tema.ORO))
+		contenido.add_child(Tema.etiqueta("En campaña trabaja el equipo automático. Eliges tu gabinete al ganar la elección y puedes cambiarlo en tu primera semana de gobierno." if motor.estado.etapa == "campana" else "El gabinete quedó cerrado: solo se cambia en la primera semana de gobierno.", 11, Tema.ORO))
 	if con_bloqueadas:
 		var bloq := BloqueoCarta.bloqueadas(motor)
 		contenido.add_child(Tema.etiqueta("Cartas bloqueadas con tu gabinete actual", 14, Tema.TEXTO, true))
@@ -205,8 +255,7 @@ static func crear(motor: MotorTurno, texto_boton: String, al_confirmar: Callable
 			contenido.add_child(FilasUI.tarjeta(v, Tema.OCEANO.lightened(0.06)))
 	var sc := FilasUI.scroll(contenido)
 	raiz.add_child(sc)
-	if baja:
-		acciones["ver_ficha"] = func() -> void: sc.ensure_control_visible.call_deferred(ficha)
 	raiz.add_child(boton)
+	raiz.add_child(velo)  # al final: encima de todo, también del botón principal
 	acciones["refrescar"].call()
 	return raiz

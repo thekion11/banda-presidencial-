@@ -81,6 +81,10 @@ func _correr() -> void:
 	_check(motor.estado.etapa == "gobierno", "algún bot llega al gobierno")
 	main.mostrar_dia()
 	await _cuadros(2)
+	_check(main._pantalla is PantallaGabinete, "recién ganada la elección viene la transición del gabinete")
+	motor.elegir_gabinete(motor.estado.gabinete.duplicate())  # confirmar el preseleccionado cierra la transición
+	main.mostrar_dia()
+	await _cuadros(2)
 	var dia: PantallaDia = main._pantalla
 	for s in range(6):
 		Bots.jugar_turno(motor, "experto", rng)

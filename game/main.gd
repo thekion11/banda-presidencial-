@@ -166,7 +166,9 @@ func _repetir_ultima() -> void:
 	_iniciar_campana(base, true)
 
 
-func _iniciar_campana(partido: Dictionary, directo: bool = false) -> void:
+func _iniciar_campana(partido: Dictionary, _directo: bool = false) -> void:
+	## El gabinete ya no se elige antes de la campaña (pedido del usuario del 27-nov-2026: «la elección del gabinete es
+	## después de las elecciones»): la campaña usa el automático de 25 y se elige en la transición, tras ganar.
 	for r in [RUTA_RESPALDO, RUTA_GUARDADO]:  # partida nueva: ni el respaldo ni el guardado de la anterior deben quedar como respaldo de esta
 		DirAccess.remove_absolute(ProjectSettings.globalize_path(r))
 	var tmp := RUTA_ULTIMA + ".tmp"  # como el guardado: se escribe aparte y se renombra, un corte no deja el archivo a medias
@@ -178,15 +180,12 @@ func _iniciar_campana(partido: Dictionary, directo: bool = false) -> void:
 	var semilla := int(Time.get_unix_time_from_system()) % 2000000000
 	motor = Partida.crear(datos, semilla, partido)
 	UrbanoBase.reiniciar()  # líneas ocultas y líneas del jugador de la partida anterior no pasan a la nueva
-	if directo:  # el gabinete real (25) ya viene relleno; se puede cambiar después desde la pestaña Gabinete
-		guardar()
-		mostrar_dia()
-		return
-	mostrar_gabinete()
+	guardar()
+	mostrar_dia()
 
 
 func mostrar_gabinete() -> void:
-	## Etapa de configuración: elección del gabinete antes de la campaña.
+	## Transición presidencial: tras ganar la elección, el jugador nombra su gabinete antes de su primera semana de gobierno.
 	var g := PantallaGabinete.new()
 	g.motor = motor
 	g.listo.connect(func() -> void:
@@ -238,6 +237,9 @@ func mostrar_dia() -> void:
 	if not MotorTurno.ETAPAS_JUEGO.has(motor.estado.etapa) and not motor.estado.eleccion_pendiente(int(datos["leyes"]["hemiciclo"]["semanas_campana"])):
 		mostrar_fin()
 		return
+	if PanelGabinete.transicion_pendiente(motor):  # recién ganada la elección (también al continuar un guardado): primero el gabinete
+		mostrar_gabinete()
+		return
 	Musica.etapa(motor.estado.etapa)
 	var d := PantallaDia.new()
 	d.motor = motor
@@ -245,6 +247,9 @@ func mostrar_dia() -> void:
 	d.geo = geo
 	d.accion_hecha.connect(guardar)
 	d.terminado.connect(mostrar_fin)
+	d.transicion.connect(func() -> void:
+		guardar()
+		mostrar_gabinete())
 	_cambiar(d)
 
 
