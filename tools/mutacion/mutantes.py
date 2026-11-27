@@ -122,3 +122,12 @@ MUTANTES += [
  ("G38", "game/componentes/mapa_zoom.gd", "	zoom = clampf(zoom * factor, 1.0, MAX)", "	zoom = clampf(zoom * factor, 1.0, MAX * 3.0)", "el pellizco puede pasar del zoom máximo"),
  ("G39", "game/componentes/mapa_zoom.gd", "var era: bool = _pulsado and not _movido and not ev.canceled", "var era: bool = _pulsado and not ev.canceled", "un arrastre del mapa se toma como toque y elige región"),
 ]
+
+MUTANTES += [
+ ("V01", "sim/voto_regional.gd", "		var gana := voto >= umbral", "		var gana := voto > umbral", "una región gana con el umbral exacto solo si lo supera"),
+ ("V02", "sim/voto_regional.gd", "		nacional += peso * voto", "		nacional += voto * 0.0625", "el voto nacional pondera todas las regiones por igual (no por población)"),
+ ("V03", "sim/voto_regional.gd", "		votos += hab * voto / tope_max", "		votos += hab * voto", "el total de votos estimados no se escala por el tope"),
+ ("V04", "sim/voto_regional.gd", "+ desplazamiento, tope_min, tope_max)\n		var gana", "+ desplazamiento, tope_min, tope_max * 2.0)\n		var gana", "el voto regional puede pasar de 100"),
+ ("V05", "sim/voto_regional.gd", "		ganadas += 1 if gana else 0", "		ganadas += 1", "se cuentan todas las regiones como ganadas"),
+ ("V06", "sim/voto_regional.gd", '"voto_nacional": clampf(nacional, tope_min, tope_max)', '"voto_nacional": nacional + 1.0', "el voto nacional se desvía de la suma ponderada"),
+]

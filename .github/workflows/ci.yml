@@ -84,6 +84,7 @@ jobs:
           XDG_DATA_HOME="$(mktemp -d)" godot --headless --path . -s tests/fuzz_toque_real.gd -- 60 9100
           XDG_DATA_HOME="$(mktemp -d)" godot --headless --path . -s tests/fuzz_plan_cartas.gd -- 10 6100 60
           XDG_DATA_HOME="$(mktemp -d)" godot --headless --path . -s tests/fuzz_zoom_mapa.gd -- 100 9500
+          XDG_DATA_HOME="$(mktemp -d)" godot --headless --path . -s tests/fuzz_voto_regional.gd -- 300 16 8800
       - name: "Regresión visual con ventana real (no bloqueante; guía en docs/CONTRIBUIR.md)"
         continue-on-error: true
         run: |
