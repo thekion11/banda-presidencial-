@@ -45,8 +45,9 @@ var _tam_px: Vector4 = Vector4(-1, -1, -1, -1)  # tamaño, centro horizontal y e
 var enlace: Control:  # tarjeta de la región elegida: la maqueta la une con una línea punteada a su región
 	set(v):
 		enlace = v
-		if v != null:
+		if v != null and not v.item_rect_changed.is_connected(queue_redraw):  # el riel lo reasigna en cada actualización
 			v.item_rect_changed.connect(queue_redraw)
+		queue_redraw()
 var _segs_tendencia: Dictionary = {}  # signo -> segmentos de las regiones que suben o bajan (caché de la capa viva)
 var _segs_clave := Vector4(-2, -2, -2, -2)
 var _segs_de: Dictionary = {}  # la tendencia con que se armó la caché (se reasigna al cambiar)
