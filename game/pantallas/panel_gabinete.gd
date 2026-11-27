@@ -82,9 +82,9 @@ static func crear(motor: MotorTurno, texto_boton: String, al_confirmar: Callable
 	grilla.columns = 5
 	grilla.add_theme_constant_override("h_separation", 6)
 	grilla.add_theme_constant_override("v_separation", 6)
-	var titulo_baraja := Tema.etiqueta("", 14, Tema.TEXTO, true)
-	var baraja := HBoxContainer.new()
-	baraja.add_theme_constant_override("separation", 6)
+	var titulo_baraja := Tema.etiqueta("", 11, Tema.ORO, false, 600)
+	var baraja := VBoxContainer.new()  # filas de candidatos, como una ficha de contratación (ejemplo del usuario, 27-nov-2026)
+	baraja.add_theme_constant_override("separation", 5)
 	var puestos := {}
 	var acciones := {}  # el diccionario se captura por referencia: las lambdas se llaman entre sí a través de él
 	acciones["nombrar"] = func(id: String) -> void:
@@ -111,6 +111,7 @@ static func crear(motor: MotorTurno, texto_boton: String, al_confirmar: Callable
 	acciones["refrescar"] = func() -> void:
 		contador.text = "Gabinete: %d de %d ministros" % [elegidos.size(), tam]
 		barra.value = 100.0 * float(elegidos.size()) / float(tam)
+		reaccion.visible = reaccion.text != ""
 		var ef := TableroGabinete.texto_efecto(motor.gabinete.efecto_semanal_de(elegidos))
 		resumen.text = "Efecto semanal del equipo: %s" % (ef if ef != "" else "neutro")
 		boton.disabled = elegidos.size() != tam
@@ -121,7 +122,7 @@ static func crear(motor: MotorTurno, texto_boton: String, al_confirmar: Callable
 		for h in baraja.get_children():
 			h.queue_free()
 		var s_slot := String(estado["slot"])
-		titulo_baraja.text = String(motor.catalogo_ministros[por_cargo[s_slot][0]]["cartera"]) if por_cargo.has(s_slot) else ""
+		titulo_baraja.text = String(motor.catalogo_ministros[por_cargo[s_slot][0]]["cartera"]).replace("Ministerio de ", "").replace("Ministerio del ", "") if por_cargo.has(s_slot) else ""
 		for id in por_cargo.get(s_slot, []):
 			var c := TableroGabinete.Candidato.new(motor.gabinete.ficha_candidato(id), elegidos.has(id), estado["previsto"] == id)
 			c.pressed.connect(func() -> void:
@@ -139,7 +140,7 @@ static func crear(motor: MotorTurno, texto_boton: String, al_confirmar: Callable
 				for k in a1.keys() + a0.keys():
 					dif[k] = float(a1.get(k, 0.0)) - float(a0.get(k, 0.0))
 				var ef2 := TableroGabinete.texto_efecto(dif)
-				reaccion.text = "Si nombras a %s: %s. Tócala otra vez o arrástrala a su puesto." % [motor.catalogo_ministros[id]["alias"], ef2 if ef2 != "" else "el efecto semanal no cambia"]
+				reaccion.text = "«%s». Si lo nombras: %s. Tócalo otra vez o arrástralo a su puesto." % [motor.catalogo_ministros[id]["rasgo"], ef2 if ef2 != "" else "el efecto semanal no cambia"]
 				acciones["refrescar"].call())
 			baraja.add_child(c)
 	for slot in por_cargo.keys():
@@ -149,7 +150,9 @@ static func crear(motor: MotorTurno, texto_boton: String, al_confirmar: Callable
 			estado["slot"] = String(slot)
 			estado["previsto"] = ""
 			reaccion.text = ""
-			acciones["refrescar"].call())
+			acciones["refrescar"].call()
+			if acciones.has("ver_ficha"):
+				acciones["ver_ficha"].call())
 		grilla.add_child(p)
 		puestos[slot] = p
 	for slot in por_cargo.keys():  # abre en el primer puesto vacío (o el primero)
@@ -167,10 +170,25 @@ static func crear(motor: MotorTurno, texto_boton: String, al_confirmar: Callable
 	raiz.add_child(contador)
 	raiz.add_child(barra)
 	raiz.add_child(resumen)
-	raiz.add_child(titulo_baraja)  # la baraja del puesto elegido queda fija arriba: los candidatos siempre a la vista
-	raiz.add_child(baraja)
-	raiz.add_child(reaccion)
+	var marco := FilasUI.col(6)  # ficha de contratación: título y cartera, 3 candidatos y el efecto al pie
+	var cab := HBoxContainer.new()
+	var t_elige := Tema.etiqueta_corta("Elige a tu ministro", 14, Tema.TEXTO, true)
+	t_elige.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	cab.add_child(t_elige)
+	var sub := FilasUI.col(0)
+	sub.add_child(cab)
+	sub.add_child(titulo_baraja)  # la cartera bajo el título, como en la ficha de contratación del ejemplo
+	marco.add_child(sub)
+	marco.add_child(baraja)
+	reaccion.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	marco.add_child(reaccion)
+	var ficha := FilasUI.tarjeta(marco, Color("#0F2D46"), Tema.ORO)
+	var baja := Tema.pantalla_baja()  # en pantallas bajas (360×640) la ficha se desplaza con la grilla para que esta no quede tapada
+	if not baja:
+		raiz.add_child(ficha)  # la ficha del puesto elegido queda fija arriba: los candidatos siempre a la vista
 	var contenido := FilasUI.col(8)
+	if baja:
+		contenido.add_child(ficha)
 	contenido.add_child(grilla)
 	contenido.add_child(Tema.etiqueta("Dorado: lo elegiste tú · azul: relleno automático. Toca un puesto para ver sus 3 candidatos.", 11, Tema.TEXTO_SUAVE))
 	if editable:
@@ -185,7 +203,10 @@ static func crear(motor: MotorTurno, texto_boton: String, al_confirmar: Callable
 			v.add_child(Tema.etiqueta(String(e["carta"]["titulo"]), 12, Tema.TEXTO, false, 600))
 			v.add_child(Tema.etiqueta("Bloqueada: " + String(e["motivo"]), 11, FilasUI.ROJO_TEXTO))
 			contenido.add_child(FilasUI.tarjeta(v, Tema.OCEANO.lightened(0.06)))
-	raiz.add_child(FilasUI.scroll(contenido))
+	var sc := FilasUI.scroll(contenido)
+	raiz.add_child(sc)
+	if baja:
+		acciones["ver_ficha"] = func() -> void: sc.ensure_control_visible.call_deferred(ficha)
 	raiz.add_child(boton)
 	acciones["refrescar"].call()
 	return raiz

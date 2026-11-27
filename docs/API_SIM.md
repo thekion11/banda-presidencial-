@@ -88,6 +88,7 @@
 - `agenda_catalogo(categoria: String = "") -> Array[Dictionary]` — Catálogo de proyectos que el gobierno puede presentar ahora (gabinete, ventana, etapa y quórum), aunque no estén en la mano.
 - `en_tramite() -> Array[Dictionary]` — Proyectos de la agenda en trámite: {carta_id, titulo, tipo_ley, urgencia, etapa, etapa_nombre, camara, semanas_restantes, prob_aprobacion, delegada}. Solo lectura.
 - `presentar(carta_id: String, urgencia_id: String = "simple", ministro_id: String = "", delegar: bool = false, region_id: String = "") -> Dictionary` — Mensaje del Ejecutivo: presenta una ley del catálogo (aunque no esté en la mano) con una urgencia. Cuesta los movimientos de la carta
+- `poner_en_discusion_inmediata(carta_id: String) -> Dictionary` — Sube un proyecto en trámite a discusión inmediata sin cobrar capital ni movimientos (lo cobra quien lo llama, p. ej. una bala): acorta el plazo de la etapa
 - `avanzar() -> Array[Dictionary]` — Cierre de semana: resuelve las etapas cuyo plazo venció (puede ser más de una por semana con urgencia alta) y devuelve los resultados finales.
 
 ## `MotorCartas` (`sim/motor_cartas.gd`)
@@ -220,6 +221,7 @@
 - `amanecer() -> void` — Paso 1 del turno: renueva delegaciones y movimientos internos, y abre las cartas cuya ventana de año comienza.
 - `bono_aprobacion() -> int` — DISENO_V2 §11: movimientos extra por cada umbral de aprobación superado (tramos en leyes.json › bono_movimientos).
 - `fijar_movimientos() -> void` — Fin del amanecer: movimientos del turno = ahorro anterior + (base + bono por aprobación (solo gobierno) + asesores), con tope mano.tope_ahorro; y efectos de asesores.
+- `ahorro_movimientos() -> Dictionary` — Salida para la UI (solo lectura): {disponibles, ingreso, tope, tope_efectivo, se_guardan, se_pierden}. `ingreso` = base + bono + asesores de esta semana;
 - `metas_disponibles() -> Array[Dictionary]` — Metas que el jugador puede intentar ahora (sector con ministro, requisito previo cumplido, sin cumplir).
 - `buscar_meta(meta_id: String) -> Dictionary` — Movimiento interno: cumple una meta (aplica sus efectos y desbloquea cartas); devuelve {ok, razon}.
 - `ajustar_sector(sector: String, direccion: int) -> Dictionary` — Movimiento interno: sube o baja el énfasis de un sector (dirección ±1); devuelve {ok, razon}.
