@@ -72,7 +72,7 @@ func hitos(maximo: int = 8) -> Array[Dictionary]:
 		var texto := ""
 		match String(a["tipo"]):
 			"eleccion_presidencial":
-				texto = "Ganaste la elección con %.1f %% de apoyo." % float(d["voto_final"]) if bool(d["electo"]) else ("Pasaste a segunda vuelta con %.1f %%." % float(d["voto_final"]) if bool(d["balotaje"]) else "Perdiste la elección con %.1f %% de apoyo." % float(d["voto_final"]))
+				texto = "Ganaste la elección con %s %% de apoyo." % _dec(d["voto_final"]) if bool(d["electo"]) else ("Pasaste a segunda vuelta con %s %%." % _dec(d["voto_final"]) if bool(d["balotaje"]) else "Perdiste la elección con %s %% de apoyo." % _dec(d["voto_final"]))
 			"votacion":
 				if bool(d["aprobada"]) and not primera_ley:
 					primera_ley = true
@@ -230,3 +230,8 @@ func resolver_eleccion() -> Dictionary:
 		_m.estado.etapa = "derrota_electoral"
 		_m.estado.resultado_final = {"motivo": "derrota_electoral", "voto_final": voto_final, "puntaje": 0}
 	return {"ok": true, "electo": electo, "balotaje": balotaje, "ronda": ronda, "voto_final": voto_final, "umbral": umbral}
+
+
+func _dec(v) -> String:
+	## Un decimal con coma (formato chileno) para los textos que ve el jugador.
+	return ("%.1f" % float(v)).replace(".", ",")
