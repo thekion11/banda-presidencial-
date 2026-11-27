@@ -106,3 +106,7 @@ Al pasar a segundo plano (`NOTIFICATION_APPLICATION_PAUSED`), `Main` guarda, pon
   - **Nodos:** 189 estables con el mapa a la vista. Suben a 529 cuando un evento deja abierta la pestaña Comité con su vista 3D, y desde ahí no crecen más.
   - **Memoria estática:** de 106 a 134 MB en la campaña y el gobierno con el mapa; 181 MB con el Comité 3D abierto, estable después.
   - **Sin fugas:** abrir y cerrar cada pestaña suma entre 2,5 y 5 MB y se libera al volver al mapa. Calcular el catálogo de la agenda (436 leyes presentables) toma 30 ms y la pestaña Congreso se arma en unos 50 ms.
+- **Audio: silencio, auriculares y foco (cola 9).**
+  - **Foco:** si la app pierde el foco sin pasar a segundo plano (una llamada que se superpone, la cortina de notificaciones, el asistente), la música baja 14 dB en su propio bus «Musica» y vuelve al recuperarlo; los efectos no se tocan. En segundo plano ya se pausaba entera. Prueba en `tests/test_segundo_plano.gd`; en ventana real se comprobó que el bus pasa a −14 dB y vuelve a 0.
+  - **Modo silencio:** en Android solo silencia el timbre y las notificaciones, no el volumen multimedia. El juego sigue esa convención y respeta Ajustes › Música y Sonido.
+  - **Auriculares desconectados:** Godot no recibe el aviso de Android («ruido inminente») sin un complemento nativo. Queda anotado: hoy la música sigue por el altavoz, como en la mayoría de los juegos sin complemento.
