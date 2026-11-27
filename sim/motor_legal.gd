@@ -43,16 +43,9 @@ func _votos_camara(propios: int, total: int, apoyo: float) -> int:
 	return propios + roundi(float(total - propios) * apoyo)
 
 
-func votar(estado: EstadoSimulacion, tipo_id: String, votos_firmes_senado: int = -1) -> Dictionary:
-	## Simula la votación de un tipo de ley en el Senado y la Cámara; devuelve votos, quórums y si fue aprobada (usa el azar).
-	var t := tipo(tipo_id)
-	if t.is_empty():
-		return {"aprobada": false, "razon": "tipo_desconocido"}
+func _bases(estado: EstadoSimulacion) -> Dictionary:
+	## Votos esperados de cada cámara según el apoyo de hoy (capital, cohesión, escaños propios y coalición), sin ruido.
 	var h: Dictionary = leyes["hemiciclo"]
-	var min_sen := int(t["votos_minimos"])
-	var min_cam := int(t.get("votos_minimos_camara", min_sen))
-	if not bool(t.get("requiere_votacion", true)):
-		return {"aprobada": true, "senado": 0, "camara": 0, "min_senado": 0, "min_camara": 0, "sin_votacion": true}
 	var c: Dictionary = leyes["congreso"]
 	var apoyo := clampf(
 		float(c["apoyo_base"]) + float(c["peso_capital"]) * estado.ind("capital") + float(c["peso_cohesion"]) * estado.ind("cohesion"),
@@ -62,13 +55,51 @@ func votar(estado: EstadoSimulacion, tipo_id: String, votos_firmes_senado: int =
 	var propios_sen := int(estado.partido.get("escanos_propios", leyes["congreso"]["escanos_propios_defecto"]))
 	var propios_dip := roundi(float(propios_sen) * float(n_dip) / float(n_sen)) + int(estado.apoyo_coalicion["camara"])
 	propios_sen += int(estado.apoyo_coalicion["senado"])  # partidos aliados satisfechos (MotorCoalicion)
-	var ruido := int(c["ruido_votos"])
+	return {"n_sen": n_sen, "n_dip": n_dip, "ruido": int(c["ruido_votos"]), "sen": _votos_camara(propios_sen, n_sen, apoyo), "dip": _votos_camara(propios_dip, n_dip, apoyo)}
+
+
+func prob_aprobacion(estado: EstadoSimulacion, tipo_id: String, recargo: float = 0.0) -> Dictionary:
+	## Probabilidad (0 a 1) de que cada cámara alcance el quórum del tipo de ley con el apoyo de hoy, sin usar el azar: {senado, camara}. Solo lectura.
+	var t := tipo(tipo_id)
+	if t.is_empty():
+		return {"senado": 0.0, "camara": 0.0}
+	if not bool(t.get("requiere_votacion", true)):
+		return {"senado": 1.0, "camara": 1.0}
+	var b := _bases(estado)
+	return {"senado": _p_quorum(int(b["sen"]) - roundi(float(b["n_sen"]) * recargo), int(b["ruido"]), int(t["votos_minimos"]), int(b["n_sen"])),
+			"camara": _p_quorum(int(b["dip"]) - roundi(float(b["n_dip"]) * recargo), int(b["ruido"]) * 3, int(t["votos_minimos_camara"]), int(b["n_dip"]))}
+
+
+func _p_quorum(base: int, ruido: int, minimo: int, total: int) -> float:
+	var ok := 0
+	for d in range(-ruido, ruido + 1):
+		if clampi(base + d, 0, total) >= minimo:
+			ok += 1
+	return float(ok) / float(2 * ruido + 1)
+
+
+func votar(estado: EstadoSimulacion, tipo_id: String, votos_firmes_senado: int = -1, recargo: float = 0.0) -> Dictionary:
+	## Simula la votación de un tipo de ley en el Senado y la Cámara; devuelve votos, quórums y si fue aprobada (usa el azar).
+	## `recargo` (0 a 1): fracción de cada cámara que se pierde por tramitar con urgencia (agenda legislativa).
+	var t := tipo(tipo_id)
+	if t.is_empty():
+		return {"aprobada": false, "razon": "tipo_desconocido"}
+	var h: Dictionary = leyes["hemiciclo"]
+	var min_sen := int(t["votos_minimos"])
+	var min_cam := int(t.get("votos_minimos_camara", min_sen))
+	if not bool(t.get("requiere_votacion", true)):
+		return {"aprobada": true, "senado": 0, "camara": 0, "min_senado": 0, "min_camara": 0, "sin_votacion": true}
+	var c: Dictionary = leyes["congreso"]
+	var b := _bases(estado)
+	var n_sen := int(b["n_sen"])
+	var n_dip := int(b["n_dip"])
+	var ruido := int(b["ruido"])
 	var sen: int
 	if votos_firmes_senado >= 0:
 		sen = votos_firmes_senado
 	else:
-		sen = clampi(_votos_camara(propios_sen, n_sen, apoyo) + rng.randi_range(-ruido, ruido), 0, n_sen)
-	var dip := clampi(_votos_camara(propios_dip, n_dip, apoyo) + rng.randi_range(-ruido * 3, ruido * 3), 0, n_dip)
+		sen = clampi(int(b["sen"]) + rng.randi_range(-ruido, ruido) - roundi(float(n_sen) * recargo), 0, n_sen)
+	var dip := clampi(int(b["dip"]) + rng.randi_range(-ruido * 3, ruido * 3) - roundi(float(n_dip) * recargo), 0, n_dip)
 	var fr := float(c["fraccion_abstencion"])  # presentación: parte de los no-favorables se abstiene
 	var abst_sen := roundi(fr * float(n_sen - sen))
 	var abst_dip := roundi(fr * float(n_dip - dip))
