@@ -53,6 +53,7 @@ func _nuevo(datos: Dictionary, etapa: String) -> Node:
 	else:
 		main.datos = datos
 		main.motor = AyudaV2.gobierno(datos, 31)
+		main.motor.elegir_gabinete(main.motor.estado.gabinete.duplicate())  # transición presidencial: con el gabinete confirmado se muestra el día
 		main.mostrar_dia()
 	await process_frame
 	await process_frame

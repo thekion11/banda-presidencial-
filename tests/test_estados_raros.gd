@@ -91,6 +91,7 @@ func _correr() -> void:
 			else:
 				main.datos = datos
 				main.motor = AyudaV2.gobierno(datos, 21)
+				main.motor.elegir_gabinete(main.motor.estado.gabinete.duplicate())  # transición presidencial: con el gabinete confirmado se muestra el día
 				main.mostrar_dia()
 			await process_frame
 			await _probar(main, "%s / %s" % [etapa, caso[0]], caso[1])
@@ -110,6 +111,7 @@ func _correr() -> void:
 	await process_frame
 	main3.datos = datos
 	main3.motor = AyudaV2.gobierno(datos, 22)
+	main3.motor.elegir_gabinete(main3.motor.estado.gabinete.duplicate())  # transición presidencial
 	main3.mostrar_dia()
 	await process_frame
 	var ult := int(datos["leyes"]["hemiciclo"]["turnos_mandato"]) if datos["leyes"]["hemiciclo"].has("turnos_mandato") else 208
