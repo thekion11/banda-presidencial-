@@ -137,6 +137,15 @@ func _correr() -> void:
 				if ahora.size() == antes + 1:
 					_check(_hay(dia._zona_panel, String(ahora.back()["etapa_nombre"])) and _hay(dia._zona_panel, "aprobación %d %%" % roundi(float(ahora.back()["prob_aprobacion"]) * 100.0)), "agenda: el proyecto en trámite muestra su etapa y su probabilidad del motor")
 		_sin_punto_decimal(dia, "agenda legislativa")
+	dia._terminar_turno()  # con Congreso abierto, la pestaña se rehace con la semana nueva (hallazgo del fuzz de fallas)
+	await _cuadros(2)
+	var ea2 := motor.agenda.estado_agenda()
+	_check(dia._panel_actual == "congreso" and _hay(dia._zona_panel, "Agenda del gobierno · %d de %d en trámite" % [int(ea2["en_tramite"]), int(ea2["maximo"])]), "agenda: tras terminar la semana el contador sigue igual al motor")
+	for h in dia._capa.get_children():
+		if h is Control and h != dia._toast:
+			h.queue_free()
+	dia._cola_eventos.clear()
+	await _cuadros(1)
 	dia._abrir_panel("mapa")
 	await _cuadros(1)
 	# delegar: cada fila dice la probabilidad real de fallo de ese ministro con la carta elegida
