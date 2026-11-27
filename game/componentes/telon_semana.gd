@@ -18,12 +18,23 @@ var encuesta_previa: Dictionary = {}
 var nombres_region: Dictionary = {}
 var ultima_de_campana: bool = false  # la encuesta extra al cerrar la última semana de campaña (sim/encuestas.gd)
 var al_terminar: Callable
+var motivos: Array = []  # motor.motivos_semana(): hasta 3 cambios con su causa
 var _panel: Control
 var _saliendo: bool = false
 
 
+static func lineas_motivos(lista: Array) -> Array[String]:
+	## «Cohesión −1,9: desgaste del gobierno» por cada fila de motor.motivos_semana() (ya viene ordenada y con 3 como máximo).
+	var nombres := {"cohesion": "Cohesión", "riesgo_ejecucion": "Riesgo de ejecución", "capital": "Capital", "fiscal": "Fiscal", "aprobacion": "Aprobación"}
+	var res: Array[String] = []
+	for m in lista:
+		var d := float(m["delta"])
+		res.append("%s %s%s: %s" % [String(nombres.get(m["ind"], m["ind"])), "+" if d >= 0.0 else "−", Tema.dec(absf(d)), String(m["causa"])])
+	return res
+
+
 static func mostrar(capa: Control, p_antes: Array, p_despues: Array, ind_antes: Dictionary, ind_despues: Dictionary, p_oposicion: bool, fin: Callable,
-		encuestas: Array = [], regiones: Array = [], semanas_campana: int = 0) -> void:
+		encuestas: Array = [], regiones: Array = [], semanas_campana: int = 0, p_motivos: Array = []) -> void:
 	## p_antes / p_despues: [título, subtítulo] de la cabecera antes y después de avanzar.
 	if not Movimiento.activo():
 		fin.call()
@@ -36,6 +47,7 @@ static func mostrar(capa: Control, p_antes: Array, p_despues: Array, ind_antes: 
 	t.despues = ind_despues
 	t.oposicion = p_oposicion
 	t.al_terminar = fin
+	t.motivos = p_motivos
 	if not encuestas.is_empty():  # solo hay encuestas en campaña y oposición
 		t.encuesta = encuestas.back()
 		t.encuesta_previa = encuestas[encuestas.size() - 2] if encuestas.size() > 1 else {}
@@ -80,7 +92,7 @@ func _ready() -> void:
 	col.set_anchors_preset(Control.PRESET_FULL_RECT)
 	col.offset_left = 28
 	col.offset_right = -28
-	col.offset_top = 210
+	col.offset_top = maxf(Tema.margen_superior() + 40.0, 210.0 - maxf(0.0, 760.0 - Tema.alto_util()))  # en teléfono bajo sube: caben encuesta y motivos
 	col.add_theme_constant_override("separation", 12)
 	col.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	_panel.add_child(col)
@@ -98,9 +110,17 @@ func _ready() -> void:
 	for par in IND:
 		var k: String = "rival" if oposicion and par[0] == "fiscal" else String(par[0])
 		filas.add_child(_fila("Rival" if k == "rival" else String(par[1]), float(antes.get(k, 0.0)), float(despues.get(k, 0.0)), k == "rival"))
+	var porque := lineas_motivos(motivos)
+	if not porque.is_empty():  # la causa de cada cambio, en una línea («Cohesión −1,9: desgaste del gobierno»)
+		var pv := VBoxContainer.new()
+		pv.add_theme_constant_override("separation", 2)
+		pv.add_child(Tema.etiqueta_corta("POR QUÉ CAMBIÓ", 10, Tema.ORO, true))
+		for l in porque:
+			pv.add_child(Tema.etiqueta(l, 11, Tema.TEXTO_SUAVE, false, 600))
+		col.add_child(pv)
 	if not encuesta.is_empty():
 		col.add_child(_bloque_encuesta())
-	elif float(despues.get("cohesion", 0.0)) < float(antes.get("cohesion", 0.0)) - 0.5:  # el desgaste semanal (leyes.json › dinamica) no se explicaba
+	elif porque.is_empty() and float(despues.get("cohesion", 0.0)) < float(antes.get("cohesion", 0.0)) - 0.5:  # el desgaste semanal (leyes.json › dinamica) no se explicaba
 		col.add_child(Tema.etiqueta("La cohesión se desgasta cada semana y pesa en los votos del Congreso: la sostienen un gabinete afín a tu partido y aliados conformes.", 11, Tema.TEXTO_SUAVE))
 	col.add_child(Tema.etiqueta("Toca para continuar", 11, Tema.TEXTO_SUAVE))
 	_panel.position.y = -Tema.ALTO

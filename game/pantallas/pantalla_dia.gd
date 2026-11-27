@@ -255,7 +255,7 @@ func _terminar_turno() -> void:
 		_avisar(String(corte["texto"]))
 	_cola_eventos.append_array(nuevos)
 	_refrescar()
-	TelonSemana.mostrar(_capa, antes, [String(_r["dia"].text), String(_r["fecha"].text)], ind_antes, est.indicadores, est.etapa == "oposicion", _siguiente_evento, est.encuestas if est.etapa in ["campana", "oposicion"] else [], datos["regiones"], sem)
+	TelonSemana.mostrar(_capa, antes, [String(_r["dia"].text), String(_r["fecha"].text)], ind_antes, est.indicadores, est.etapa == "oposicion", _siguiente_evento, est.encuestas if est.etapa in ["campana", "oposicion"] else [], datos["regiones"], sem, motor.motivos_semana())
 
 
 func _resolver_eleccion() -> void:
