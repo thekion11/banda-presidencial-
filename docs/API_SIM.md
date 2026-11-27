@@ -33,6 +33,7 @@
 - `exportar_resumen() -> Dictionary` — Resumen legible del estado para la interfaz y los informes (ver ResumenEstado).
 - `calcular_huella() -> String` — Huella SHA del estado completo: dos partidas iguales dan la misma huella (pruebas de oro y replay).
 - `exportar_guardado(huella_datos: String = "") -> Dictionary` — Guardado por eventos: semilla, partido, historial de entradas y huella de los datos con que se jugó.
+- `exportar_json(huella_datos: String = "") -> String` — Igual que JSON.stringify(exportar_guardado()), pero cada entrada se serializa una sola vez (el juego guarda en cada acción: reescribir ~2.000 entradas costaba ~6 ms).
 
 ## `GeneradorPartido` (`sim/generador_partido.gd`)
 

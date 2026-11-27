@@ -249,7 +249,7 @@ func guardar() -> void:
 	var tmp := RUTA_GUARDADO + ".tmp"  # se escribe aparte y se renombra: un corte a mitad de la escritura no deja el guardado truncado
 	var f := FileAccess.open(tmp, FileAccess.WRITE)
 	if f != null:
-		f.store_string(JSON.stringify(motor.estado.exportar_guardado(_huella_datos)))
+		f.store_string(motor.estado.exportar_json(_huella_datos))
 		f.close()
 		if FileAccess.file_exists(RUTA_GUARDADO):  # el guardado anterior (bueno) queda como respaldo antes de reemplazarlo
 			DirAccess.copy_absolute(ProjectSettings.globalize_path(RUTA_GUARDADO), ProjectSettings.globalize_path(RUTA_RESPALDO))
