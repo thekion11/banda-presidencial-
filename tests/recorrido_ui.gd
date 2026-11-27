@@ -80,7 +80,7 @@ static func recorrer(arbol: SceneTree, visitar: Callable, alto: int = 844) -> vo
 	for h in dia._capa.get_children():
 		if h is Control and h != dia._toast:
 			h.queue_free()
-	var el: Control = PantallaEleccion.crear(main.motor, d["regiones"], main.motor.estado.aprobacion_regional.duplicate(), {"electo": true, "balotaje": false, "ronda": 1, "voto_final": 57.4, "umbral": 51.0}, func() -> void: pass)
+	var el: Control = PantallaEleccion.crear(main.motor, d["regiones"], main.motor.estado.aprobacion_regional.duplicate(), PantallaEleccion.con_poblacion(main.motor, {"electo": true, "balotaje": false, "ronda": 1, "voto_final": 57.4, "umbral": 51.0}), func() -> void: pass, dia.geo)
 	dia._capa.add_child(el)
 	await paso.call("elección")
 	el.queue_free()

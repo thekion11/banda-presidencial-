@@ -225,6 +225,10 @@ func _eleccion(main: Node, dia: Node, regional: Dictionary) -> void:
 	var motor: MotorTurno = main.motor
 	var reales: Array = dia._capa.find_children("*", "Control", false, false).filter(func(c: Node) -> bool: return _boton(c, "Asumir el gobierno") != null or _boton(c, "Ir a la segunda") != null or _boton(c, "Ver resultado") != null)
 	_check(reales.size() == 1, "la elección debe mostrar su pantalla de resultado")
+	if reales.size() == 1:  # la elección real pesa cada región por su población (pedido del usuario del 27-nov-2026)
+		var tr := _textos(reales[0])
+		_check(tr.contains("de la más poblada") and tr.contains("pesa ") and tr.contains("Votos estimados"), "la elección muestra el voto por región ordenado por población, con su peso")
+		_check(not reales[0].find_children("*", "MapaChile", true, false).is_empty(), "la elección muestra el mapa de quién gana cada región")
 	var casos := [
 		{"electo": true, "balotaje": false, "ronda": 1, "voto_final": 62.0, "umbral": 51.0, "boton": "Asumir el gobierno", "texto": "Presidente electo"},
 		{"electo": false, "balotaje": true, "ronda": 1, "voto_final": 44.0, "umbral": 51.0, "boton": "Ir a la segunda vuelta", "texto": "segunda vuelta"},
