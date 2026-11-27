@@ -35,9 +35,9 @@ func _sin_punto_decimal(raiz: Node, donde: String) -> void:
 
 func _cabecera(dia: PantallaDia, donde: String) -> void:
 	var est := dia.motor.estado
-	_check(dia._r["pa"].text == "%d/%d mov" % [est.pa_actual, est.pa_maximo + int(est.bono_mov.get("aprobacion", 0)) + int(est.bono_mov.get("asesores", 0))], "%s: la pastilla dice «%s» y quedan %d movimientos" % [donde, dia._r["pa"].text, est.pa_actual])
+	_check(dia._r["pa"].text == ManoUI.texto_pastilla(est) and dia._r["pa"].text.begins_with(str(est.pa_actual)), "%s: la pastilla dice «%s» y quedan %d movimientos" % [donde, dia._r["pa"].text, est.pa_actual])
 	var b := String(dia._btn_jugar.text)
-	_check(b == "Ir a las urnas" or (b == "Terminar semana · %d mov" % est.pa_actual if est.pa_actual > 0 else b == "Siguiente semana"), "%s: el botón dice «%s» con %d movimientos" % [donde, b, est.pa_actual])
+	_check(b == "Ir a las urnas" or (b == "Terminar semana" if est.pa_actual > 0 else b == "Siguiente semana"), "%s: el botón dice «%s» con %d movimientos" % [donde, b, est.pa_actual])
 	var sem := int(dia.datos["leyes"]["hemiciclo"]["semanas_campana"])
 	var esperado := ("Campaña · Sem. %d/%d" % [mini(est.turno_actual, sem), sem]) if est.etapa == "campana" else ("Día %d" % est.dia_actual)
 	_check(est.etapa == "oposicion" or dia._r["dia"].text == esperado, "%s: la cabecera dice «%s» y el motor está en «%s»" % [donde, dia._r["dia"].text, esperado])

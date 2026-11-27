@@ -35,7 +35,7 @@ static func crear(motor: MotorTurno, avisar: Callable, cambio: Callable) -> Cont
 		v.add_child(Tema.etiqueta("A favor: " + texto_efecto(a["efecto_positivo"]), 11, Tema.bien(), false, 600))
 		v.add_child(Tema.etiqueta("En contra: " + texto_efecto(a["efecto_negativo"], atenuacion), 11, FilasUI.ROJO_TEXTO, false, 600))
 		v.add_child(Tema.etiqueta("Afinidad con tu partido: %d %% (atenúa lo negativo)" % roundi(afin * 100.0), 11, Tema.TEXTO_SUAVE))
-		var b := Tema.boton("Despedir" if contratado else "Contratar · +%d mov." % int(cfg["movimientos_extra"]), Tema.PANEL.lightened(0.12) if contratado else Tema.ROJO, Tema.TEXTO, 13, 44)
+		var b := Tema.boton("Despedir" if contratado else "Contratar · +%d por semana" % int(cfg["movimientos_extra"]), Tema.PANEL.lightened(0.12) if contratado else Tema.ROJO, Tema.TEXTO, 13, 44)
 		b.pressed.connect(func() -> void:
 			var r := motor.despedir_asesor(id) if contratado else motor.contratar_asesor(id)
 			avisar.call(("Asesor despedido." if contratado else "Asesor contratado: +1 movimiento desde el próximo turno.") if bool(r["ok"]) else Razones.texto(r))

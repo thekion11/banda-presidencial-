@@ -10,7 +10,7 @@ static func recorrer(t: Variant, main: Node, dia: Node) -> void:  # Variant: lla
 	var est: EstadoSimulacion = main.motor.estado
 	t._check(est.etapa == "gobierno", "debe estar en gobierno")
 	dia._refrescar()
-	t._check(dia._r["pa"].text.begins_with("%d/" % est.pa_actual), "el indicador de movimientos debe mostrarse")
+	t._check(dia._r["pa"].text.begins_with(str(est.pa_actual)) and not dia._r["pa"].text.contains("/"), "el indicador muestra los movimientos disponibles (sin «x/5»)")
 	dia._sel = 0
 	dia._refrescar()
 	await t.process_frame
