@@ -60,6 +60,7 @@ static func crear(motor: MotorTurno, regiones: Array, regional: Dictionary, res:
 	m.add_child(v)
 	v.add_child(Tema.etiqueta("ELECCIÓN PRESIDENCIAL · %s" % ("PRIMERA VUELTA" if ronda == 1 else "SEGUNDA VUELTA"), 10, Tema.ORO, true))
 	v.add_child(Tema.etiqueta(String(ver[0]), 26, ver[1], true))
+	v.add_child(Tema.etiqueta(porque(res, piso), 13, Tema.TEXTO, false, 600))  # el porqué en una lectura de 10 segundos
 	var tarjeta := FilasUI.col(4)
 	var por_region: Array = res.get("regiones", [])
 	tarjeta.add_child(Tema.etiqueta("Voto nacional el día de la elección" if not por_region.is_empty() else "Aprobación el día de la elección", 12, Tema.TEXTO_SUAVE))
@@ -75,27 +76,29 @@ static func crear(motor: MotorTurno, regiones: Array, regional: Dictionary, res:
 		tarjeta.add_child(Tema.etiqueta("Se mide tu aprobación al cierre, con un margen de ±%.0f puntos propio de la jornada." % ruido, 11, Tema.TEXTO_SUAVE))
 	else:
 		tarjeta.add_child(Tema.etiqueta(texto_poblacion(res, ruido), 11, Tema.TEXTO_SUAVE))
-	v.add_child(FilasUI.tarjeta(tarjeta))
+	var cuerpo := FilasUI.col(8)  # todo lo que sigue al veredicto se desplaza: con letra ×1,5 en 360×640 no cabe entero
+	cuerpo.add_child(FilasUI.tarjeta(tarjeta))
 	if res["balotaje"]:
 		var av := Tema.etiqueta("Aviso: no llegaste al umbral, pero superaste el piso. Tienes %d semanas más de campaña para subir tu aprobación; en la segunda vuelta necesitas %.0f %%." % [int(h["semanas_balotaje"]), umbral], 12, Tema.TINTA, false, 600)
-		v.add_child(FilasUI.tarjeta(av, Tema.ORO))
+		cuerpo.add_child(FilasUI.tarjeta(av, Tema.ORO))
 	elif not res["electo"]:
-		v.add_child(Tema.etiqueta("La aprobación quedó bajo %.0f %%%s." % [piso if ronda == 1 else umbral, " (piso de segunda vuelta)" if ronda == 1 else ""], 12, FilasUI.ROJO_TEXTO, false, 600))
+		cuerpo.add_child(Tema.etiqueta("La aprobación quedó bajo %.0f %%%s." % [piso if ronda == 1 else umbral, " (piso de segunda vuelta)" if ronda == 1 else ""], 12, FilasUI.ROJO_TEXTO, false, 600))
 	var lista := FilasUI.col(5)
 	if por_region.is_empty():
-		v.add_child(FilasUI.titulo("Aprobación por región"))
+		cuerpo.add_child(FilasUI.titulo("Aprobación por región"))
 		_lista_aprobacion(lista, regiones, regional)
-		v.add_child(FilasUI.scroll(lista))
+		cuerpo.add_child(lista)
 	else:
-		v.add_child(FilasUI.titulo("Voto por región, de la más poblada a la menos"))
+		cuerpo.add_child(FilasUI.titulo("Voto por región, de la más poblada a la menos"))
 		_lista_poblacion(lista, regiones, por_region, umbral)
 		var fila := HBoxContainer.new()
 		fila.add_theme_constant_override("separation", 10)
-		fila.size_flags_vertical = Control.SIZE_EXPAND_FILL
+		fila.custom_minimum_size.y = maxf(300.0, Tema.alto_util() - 480.0)  # mapa y lista con alto propio: con letra grande el resto se desplaza
 		if not geo.is_empty():
 			fila.add_child(_mapa_ganador(geo, regiones, por_region))
 		fila.add_child(FilasUI.scroll(lista))
-		v.add_child(fila)
+		cuerpo.add_child(fila)
+	v.add_child(FilasUI.scroll(cuerpo))
 	Movimiento.escalonar(v, 0.05, 0.05)
 	Movimiento.escalonar(lista, 0.45, 0.035, 18)
 	if res["electo"]:
@@ -114,15 +117,9 @@ static func crear(motor: MotorTurno, regiones: Array, regional: Dictionary, res:
 
 
 static func texto_poblacion(res: Dictionary, ruido: float) -> String:
-	## «Cada región pesa según sus habitantes: ganas en 9 de 16 regiones, donde vive el 62 % del país. Votos estimados: 6,1 millones…»
-	var filas: Array = res.get("regiones", [])
-	var total := maxf(1.0, float(res.get("total_habitantes_miles", 0.0)))
-	var hab := 0.0
-	for r in filas:
-		if bool(r["gana_gobierno"]):
-			hab += float(r["habitantes_miles"])
-	return "Cada región pesa según sus habitantes: ganas en %d de %d regiones, donde vive el %d %% del país. Votos estimados: %s millones (cifras ilustrativas; margen de ±%.0f puntos propio de la jornada)." % [
-		int(res.get("regiones_ganadas", 0)), filas.size(), roundi(hab / total * 100.0), Tema.dec(float(res.get("votos_estimados_miles", 0.0)) / 1000.0), ruido]
+	## «El voto nacional pesa cada región según sus habitantes. Votos estimados: 6,1 millones…» (las regiones ganadas van en porque()).
+	return "El voto nacional pesa cada región según sus habitantes. Votos estimados: %s millones (cifras ilustrativas; margen de ±%.0f puntos propio de la jornada)." % [
+		Tema.dec(float(res.get("votos_estimados_miles", 0.0)) / 1000.0), ruido]
 
 
 static func _nombre(regiones: Array, id: String) -> String:
@@ -207,3 +204,27 @@ static func con_poblacion(motor: MotorTurno, res: Dictionary) -> Dictionary:
 	var r := res.duplicate()
 	r.merge(VotoRegional.calcular(motor.regiones, motor.estado.aprobacion_regional, desplaza, float(lim["min"]), float(lim["max"]), float(res["umbral"])))
 	return r
+
+
+static func porque(res: Dictionary, piso: float) -> String:
+	## Una frase: cuánto sacaste frente a la meta, por cuánto, y en cuántas regiones y qué parte del país ganaste.
+	var voto := float(res["voto_final"])
+	var umbral := float(res["umbral"])
+	var filas: Array = res.get("regiones", [])
+	var regiones := ""
+	if not filas.is_empty():
+		var hab := 0.0
+		for r in filas:
+			hab += float(r["habitantes_miles"]) if bool(r["gana_gobierno"]) else 0.0
+		regiones = " Ganas en %d de %d regiones, donde vive el %d %% del país." % [int(res.get("regiones_ganadas", 0)), filas.size(), roundi(hab / maxf(1.0, float(res.get("total_habitantes_miles", 1.0))) * 100.0)]
+	if res["electo"]:
+		return "Sacaste %s frente a un umbral de %s: %s de ventaja.%s" % [Tema.pct(voto), Tema.pct(umbral), _puntos(voto - umbral), regiones]
+	if res["balotaje"]:
+		return "Te faltaron %s para el umbral de %s, pero pasaste el piso de %s: hay segunda vuelta.%s" % [_puntos(umbral - voto), Tema.pct(umbral), Tema.pct(piso), regiones]
+	var meta := piso if int(res["ronda"]) == 1 else umbral
+	return "Sacaste %s y necesitabas %s: te faltaron %s.%s" % [Tema.pct(voto), Tema.pct(meta), _puntos(meta - voto), regiones]
+
+
+static func _puntos(x: float) -> String:
+	var n := maxi(1, roundi(absf(x)))
+	return "%d %s" % [n, "punto" if n == 1 else "puntos"]

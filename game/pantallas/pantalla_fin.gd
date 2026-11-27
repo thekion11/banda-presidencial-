@@ -81,8 +81,14 @@ func _ready() -> void:
 	match est.etapa:
 		"derrota_electoral":
 			detalle = "Tu aprobación el día de la elección fue %s %%, bajo el umbral de %.0f %%. No alcanzaste la presidencia." % [Tema.dec(float(r.get("voto_final", 0.0))), umbral]
+			var ue: Dictionary = est.ultima_eleccion  # por qué, por población y por regiones (cada región pesa según sus habitantes)
+			if not (ue.get("regiones", []) as Array).is_empty():
+				var hab := 0.0
+				for f in ue["regiones"]:
+					hab += float(f["habitantes_miles"]) if bool(f["gana_gobierno"]) else 0.0
+				detalle += " Ganaste en %d de %d regiones, donde vive el %d %% del país." % [int(ue.get("regiones_ganadas", 0)), (ue["regiones"] as Array).size(), roundi(hab / maxf(1.0, float(ue.get("total_habitantes_miles", 1.0))) * 100.0)]
 		"crisis":
-			detalle = "Tu aprobación se desplomó y el gobierno no resistió la crisis política en el turno %d." % est.turno_actual
+			detalle = "Tu aprobación cayó a %s y el gobierno no resistió la crisis política en la semana %d." % [Tema.pct(est.ind("aprobacion")), est.turno_actual]
 		_:
 			detalle = "Completaste los 4 años con %s %% de aprobación." % Tema.dec(float(r.get("aprobacion", 0.0)))
 	col.add_child(Tema.etiqueta(detalle, 13, Tema.TEXTO_SUAVE))
