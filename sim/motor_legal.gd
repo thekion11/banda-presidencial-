@@ -43,13 +43,18 @@ func _votos_camara(propios: int, total: int, apoyo: float) -> int:
 	return propios + roundi(float(total - propios) * apoyo)
 
 
+func apoyo_base(estado: EstadoSimulacion) -> float:
+	## Apoyo 0..1 de los parlamentarios que no son de tu bancada: base + capital + cohesión + el impulso de la luna de miel (D-BN, solo en las primeras semanas de gobierno).
+	var c: Dictionary = leyes["congreso"]
+	return clampf(float(c["apoyo_base"]) + float(c["peso_capital"]) * estado.ind("capital") + float(c["peso_cohesion"]) * estado.ind("cohesion")
+			+ LunaDeMiel.valor(leyes, LunaDeMiel.intensidad(estado, leyes), "bono_apoyo"), 0.0, 1.0)
+
+
 func _bases(estado: EstadoSimulacion) -> Dictionary:
 	## Votos esperados de cada cámara según el apoyo de hoy (capital, cohesión, escaños propios y coalición), sin ruido.
 	var h: Dictionary = leyes["hemiciclo"]
 	var c: Dictionary = leyes["congreso"]
-	var apoyo := clampf(
-		float(c["apoyo_base"]) + float(c["peso_capital"]) * estado.ind("capital") + float(c["peso_cohesion"]) * estado.ind("cohesion"),
-		0.0, 1.0)
+	var apoyo := apoyo_base(estado)
 	var n_sen := int(h["total_senadores"])
 	var n_dip := int(h.get("total_diputados", 155))
 	var propios_sen := int(estado.partido.get("escanos_propios", leyes["congreso"]["escanos_propios_defecto"]))
@@ -121,7 +126,7 @@ func composicion(estado: EstadoSimulacion, camara: bool) -> Dictionary:
 	var propios := int(estado.partido.get("escanos_propios", leyes["congreso"]["escanos_propios_defecto"]))
 	if camara:
 		propios = roundi(float(propios) * float(total) / float(h["total_senadores"]))
-	var apoyo := clampf(float(c["apoyo_base"]) + float(c["peso_capital"]) * estado.ind("capital") + float(c["peso_cohesion"]) * estado.ind("cohesion"), 0.0, 1.0)
+	var apoyo := apoyo_base(estado)
 	var coalicion := int(estado.apoyo_coalicion["camara" if camara else "senado"])
 	var aliados := roundi(float(maxi(0, total - propios - coalicion)) * apoyo) + coalicion  # como votar(): los escaños de la coalición salen del resto antes de aplicar el apoyo
 	return {"total": total, "propios": propios, "aliados": aliados, "oposicion": maxi(0, total - propios - aliados)}

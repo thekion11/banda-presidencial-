@@ -58,7 +58,7 @@ func _regiones(m: MotorTurno, datos: Dictionary) -> void:
 	r.aplicar_delta(est, 1000.0, "", 0.0)
 	_check(_cerca(est.ind("aprobacion"), 100.0), "tope 100 por región y en el promedio")
 	r.aplicar_delta(est, -1000.0, "", 0.0)
-	_check(_cerca(est.ind("aprobacion"), 0.0), "piso 0")
+	_check(_cerca(est.ind("aprobacion"), m.piso.nacional()), "la aprobación cae solo hasta el piso ideológico (0 sin partido)")
 	# revertir tira hacia el ancla; revertir_a_base hacia la base
 	r.inicializar(est, 80.0, "", 0.0, 0.0)
 	r.revertir(est, 40.0, 0.5)

@@ -85,7 +85,13 @@
    "0.01",
    "50.0"
   ],
+  "piso_ideologico.gd": [
+   "10001"
+  ],
   "regiones.gd": [
+   "10001"
+  ],
+  "voto_regional.gd": [
    "10001"
   ]
  }

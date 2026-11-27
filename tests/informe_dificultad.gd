@@ -1,6 +1,6 @@
 extends SceneTree
 ## Monte Carlo grande por política y dificultad: imprime una línea por celda con conteos (para intervalos de confianza en docs/INFORME_BALANCE.md).
-## Uso: godot --headless --path . -s tests/informe_dificultad.gd -- 200
+## Uso: godot --headless --path . -s tests/informe_dificultad.gd -- 200 [ruido_regional]
 
 func _init() -> void:
 	var n := 200
@@ -8,6 +8,8 @@ func _init() -> void:
 	if args.size() > 0:
 		n = int(args[0])
 	var datos := Datos.cargar_todo()
+	if args.size() > 1:  # segundo argumento: ruido regional de la elección (se prueba en una copia de los datos; data/ no se toca)
+		datos["leyes"]["campana"]["ruido_eleccion_regional"] = float(args[1])
 	for pol in ["pasivo", "azar", "humano", "codicioso", "completo"]:
 		for dif in ["facil", "normal", "dificil"]:
 			var electos := 0

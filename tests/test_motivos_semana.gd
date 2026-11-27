@@ -11,7 +11,7 @@ func _init() -> void:
 		fallos += 1; print("FALLO tamaño ", mot.size())
 	var previo := 1e9
 	for f in mot:
-		if not (["cohesion", "riesgo_ejecucion", "capital", "fiscal"].has(f["ind"])) or String(f["causa"]).length() > 60 or String(f["causa"]) == "":
+		if not (["cohesion", "riesgo_ejecucion", "capital", "fiscal", "aprobacion"].has(f["ind"])) or String(f["causa"]).length() > 60 or String(f["causa"]) == "":
 			fallos += 1; print("FALLO fila ", f)
 		if absf(f["delta"]) > previo:
 			fallos += 1; print("FALLO orden")

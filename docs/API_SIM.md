@@ -79,6 +79,16 @@
 - `static vale_para(d: Dictionary, huella_datos: String, sha_guardado: String) -> bool` — true si la instantánea es completa y coincide con la huella de datos y el SHA del guardado actuales.
 - `static restaurar(datos: Dictionary, semilla: int, d: Dictionary) -> MotorTurno` — Mismo motor que daría reproducir el historial, sin simularlo.
 
+## `LunaDeMiel` (`sim/luna_de_miel.gd`)
+
+- `static semana(estado: EstadoSimulacion) -> int` — Semana de gobierno (1 = primera); 0 si no se está gobernando.
+- `static intensidad(estado: EstadoSimulacion, leyes: Dictionary) -> float` — 1,0 en la primera semana, decae hasta 1/semanas en la última y vale 0 después; escalada por la dificultad.
+- `static valor(leyes: Dictionary, intens: float, clave: String) -> float` — Efecto de la clave (bono_ancla, bono_apoyo…) a la intensidad dada.
+- `static ajustes(leyes: Dictionary, intens: float) -> Dictionary` — Ajustes del amanecer a esa intensidad: {ancla: puntos a sumar al ancla de aprobación, desgaste: factor del desgaste semanal}.
+- `static efecto_aprobacion(leyes: Dictionary, intens: float, actual: float, ancla: float, reversion: float, desgaste: float) -> float` — Cuántos puntos de aprobación nacional suma la luna de miel en este amanecer (aproximación para explicarlo en los motivos de la semana; no se aplica).
+- `static vista(estado: EstadoSimulacion, leyes: Dictionary) -> Dictionary` — Solo lectura para la interfaz: {activa, semana, semanas_restantes, intensidad, termina_ahora}. termina_ahora = es la primera semana sin luna de miel («Se acabó la luna de miel»).
+- `static amanecer(estado: EstadoSimulacion, leyes: Dictionary) -> void` — Deja constancia en el registro de acciones del inicio y del fin de la luna de miel (solo gobierno).
+
 ## `MotorAgenda` (`sim/motor_agenda.gd`)
 
 - `urgencia(id: String) -> Dictionary` — Definición de una urgencia (simple, suma, inmediata); {} si no existe.
@@ -126,6 +136,7 @@
 - `delta_aprobacion(delta: float, region: String, decreciente: bool = false) -> void` — Cambia la aprobación (nacional o de una región) con rendimientos decrecientes al subir cuando es alta.
 - `sumar_ind(nombre: String, delta: float, causa: String = "") -> void` — Suma al indicador respetando sus mínimos y máximos; con `causa` (frase corta para el jugador) anota el cambio real en los motivos de la semana.
 - `reiniciar_motivos() -> void` — Vacía los motivos de la semana (se llama al cerrar el turno; el amanecer siguiente sigue sumando).
+- `anotar(nombre: String, causa: String, delta: float) -> void` — Anota en los motivos de la semana un cambio ya explicado (solo salida para la UI; no toca indicadores).
 - `motivos_semana() -> Array[Dictionary]` — Hasta 3 cambios de la semana con causa conocida, de mayor a menor |delta|: {ind, delta, causa}. Solo salida: no entra al guardado ni a la huella.
 - `marcar_cumplida(carta_id: String) -> void` — Marca como cumplida la primera promesa de campaña pendiente de esa carta.
 
@@ -170,6 +181,7 @@
 - `categoria_circula(cat: String) -> bool` — ¿Circulan las cartas de esta categoría (sin condiciones propias)? Igual que las primeras reglas de `bloqueo`.
 - `disponible(carta: Dictionary) -> bool` — Misma regla que `bloqueo` (que además explica el motivo), sin crear diccionarios. Dentro de abrir/cerrar_contexto usa valores ya calculados.
 - `amanecer() -> void` — Efectos semanales del gabinete: el estilo de cada ministro y la afinidad ideológica media con tu partido (leyes.json › gabinete.identidad).
+- `pendiente_confirmar() -> bool` — Solo salida: true en la transición, o sea recién ganada la elección (turno 1 de gobierno) y sin nombrar gabinete desde la votación. La pantalla del gabinete
 - `efecto_semanal_de(ids: Array) -> Dictionary` — Solo salida (no cambia el estado): efecto semanal que daría este gabinete por estilos y afinidad, {indicador: delta}; lo mismo que aplica `amanecer`.
 - `ficha_candidato(id: String) -> Dictionary` — Solo salida: lo que el motor sabe de un candidato para mostrarlo (alias, cartera, estilo, afinidad 0 a 1 con tu partido, ahorro y bono, riesgo de escándalo).
 - `efecto_de_nombrar(id: String) -> Dictionary` — Solo salida: cómo cambiaría el efecto semanal del gabinete si nombraras a `id` (reemplaza al que ocupe su ministerio, o se suma si está vacío): {indicador: diferencia por semana}.
@@ -183,6 +195,7 @@
 - `configurar(p_leyes: Dictionary, p_rng: RandomNumberGenerator) -> void` — Enlaza las leyes y el generador de azar de la partida.
 - `umbral(t: Dictionary, total: int) -> int` — Votos mínimos en una cámara de `total` miembros: base "en_ejercicio" (todos) o "presentes" (asistencia supuesta);
 - `tipo(id: String) -> Dictionary` — Definición de un tipo de ley (quórum, trámite, TC); {} si no existe.
+- `apoyo_base(estado: EstadoSimulacion) -> float` — Apoyo 0..1 de los parlamentarios que no son de tu bancada: base + capital + cohesión + el impulso de la luna de miel (D-BN, solo en las primeras semanas de gobierno).
 - `prob_aprobacion(estado: EstadoSimulacion, tipo_id: String, recargo: float = 0.0) -> Dictionary` — Probabilidad (0 a 1) de que cada cámara alcance el quórum del tipo de ley con el apoyo de hoy, sin usar el azar: {senado, camara}. Solo lectura.
 - `votar(estado: EstadoSimulacion, tipo_id: String, votos_firmes_senado: int = -1, recargo: float = 0.0) -> Dictionary` — Simula la votación de un tipo de ley en el Senado y la Cámara; devuelve votos, quórums y si fue aprobada (usa el azar).
 - `composicion(estado: EstadoSimulacion, camara: bool) -> Dictionary` — Bloques esperados de una cámara: bancada propia, aliados que suelen apoyar y oposición.
@@ -290,10 +303,20 @@
 - `static cargar(datos: Dictionary, guardado: Dictionary, instantanea: Dictionary = {}, huella_datos: String = "", sha_guardado: String = "") -> MotorTurno` — Continúa un guardado: con una instantánea válida (ver Instantanea) restaura el estado directamente; si no, reproduce el historial.
 - `static reproducir(datos: Dictionary, guardado: Dictionary) -> MotorTurno` — Reconstruye la partida exacta desde semilla + partido + entradas del jugador.
 
+## `PisoIdeologico` (`sim/piso_ideologico.gd`)
+
+- `inclinacion(id: String) -> float` — Inclinación ilustrativa de la región en el eje económico (-1 izquierda … 1 derecha), determinista por semilla. No representa datos reales.
+- `afinidad(id: String) -> float` — 0..1: qué tan cerca está la inclinación de la región del eje económico del partido (1 = misma posición).
+- `pisos() -> Dictionary` — Piso de aprobación y de voto por región (id -> puntos 0..100); sin partido o sin regiones, todos 0. El diccionario es de solo lectura (se reutiliza mientras no cambien sus entradas).
+- `nacional() -> float` — Piso nacional: promedio de los pisos regionales ponderado por población.
+- `resumen() -> Dictionary` — Solo lectura para la interfaz: {nacional, voto_duro (= nacional), por_region: [{id, piso, afinidad}], frenado} (frenado = puntos de aprobación nacional que el piso evitó perder esta semana).
+
 ## `Regiones` (`sim/regiones.gd`)
 
 - `cargar(p_regiones: Array) -> void` — Carga las regiones y calcula los pesos por población.
 - `existe(id: String) -> bool` — true si el id corresponde a una región.
+- `refrescar_pisos() -> void` — Recalcula los pisos regionales y el nacional desde el estado actual (se llama antes de cada operación que los usa: así dependen solo del estado).
+- `piso_de(id: String) -> float` — Piso vigente de una región (el último calculado); 0 si no existe.
 - `inicializar(estado: EstadoSimulacion, aprobacion: float, bastion: String, bono_bastion: float, variacion: float = 0.0) -> void` — Fija la aprobación regional inicial (bastión y variación determinista por semilla) y recalcula la nacional.
 - `promedio(estado: EstadoSimulacion) -> float` — Aprobación nacional: promedio regional ponderado por población.
 - `recalcular(estado: EstadoSimulacion) -> void` — Pone la aprobación nacional igual al promedio regional.
@@ -313,4 +336,5 @@
 
 ## `VotoRegional` (`sim/voto_regional.gd`)
 
-- `static calcular(regiones: Regiones, aprobacion_regional: Dictionary, desplazamiento: float, tope_min: float, tope_max: float, umbral: float) -> Dictionary` — `desplazamiento` = choque nacional − penalización + efecto rival (el mismo para todas las regiones). Devuelve el voto nacional ponderado y el detalle por región.
+- `static ruido(semilla: int, ciclo: int, ronda: int, id: String, r: float) -> float` — eps_i de una región: uniforme en [−r, r] y fijo para esa semilla, ciclo, vuelta y región.
+- `static calcular(regiones: Regiones, aprobacion_regional: Dictionary, desplazamiento: float, tope_min: float, tope_max: float, umbral: float, ruido_regional: float = 0.0, semilla: int = 0, ciclo: int = 1, ronda: int = 1, pisos: Dictionary = {}) -> Dictionary` — `desplazamiento` = choque nacional − penalización + efecto rival (el mismo para todas las regiones). Devuelve el voto nacional ponderado y el detalle por región.

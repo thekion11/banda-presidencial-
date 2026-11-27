@@ -22,6 +22,7 @@ var gabinete := MotorGabinete.new(self)
 var mazo := MotorMazo.new(self)
 var equipo := MotorEquipo.new(self)
 var coalicion := MotorCoalicion.new(self)
+var piso := PisoIdeologico.new(self)  # piso de aprobación y de voto (D-BN)
 var movimientos := MotorMovimientos.new(self)
 var agenda := MotorAgenda.new(self)
 var eventos := MotorEventos.new(self)
@@ -49,6 +50,7 @@ func inicializar(p_estado: EstadoSimulacion, p_cartas: Array, p_eventos: Array, 
 	indices = ix if (ix is IndicesCartas and (ix as IndicesCartas).n == p_cartas.size()) else IndicesCartas.construir(p_cartas)
 	_cartas_por_id = indices.por_id.duplicate()  # copia: algunas pruebas agregan cartas sueltas
 	regiones.cargar(p_extra.get("regiones", []))
+	regiones.proveedor_pisos = piso.pisos
 	legal.configurar(catalogo_leyes, rng)
 	obras.configurar(catalogo_leyes, rng, regiones)
 	fx.configurar(estado, catalogo_leyes, regiones)
@@ -120,11 +122,18 @@ func ejecutar_amanecer() -> void:  # Paso 1: regenera movimientos y aplica la di
 			+ float(d["ancla_peso_cohesion"]) * (estado.ind("cohesion") - 50.0) \
 			+ float(d["ancla_peso_capital"]) * (estado.ind("capital") - 50.0)
 	ancla -= maxf(0.0, float(d["fiscal_critico"]) - estado.ind("fiscal")) * float(d["penal_fiscal_critico"])
+	var desg := float(d["desgaste_aprobacion_semanal"]) * float(mandato.nivel()["desgaste"])
+	var li := LunaDeMiel.intensidad(estado, catalogo_leyes)  # luna de miel: el impulso del inicio del gobierno se desvanece (leyes.json › luna_de_miel)
+	fx.anotar("aprobacion", String(catalogo_leyes["luna_de_miel"]["texto_motivo"]), LunaDeMiel.efecto_aprobacion(catalogo_leyes, li, estado.ind("aprobacion"), ancla, float(d["reversion_semanal"]), desg))
+	var lm := LunaDeMiel.ajustes(catalogo_leyes, li)
+	var rev := float(d["reversion_semanal"])
+	ancla += float(lm["ancla"])
+	LunaDeMiel.amanecer(estado, catalogo_leyes)
 	if regiones.pesos.is_empty():
-		fx.sumar_ind("aprobacion", (ancla - estado.ind("aprobacion")) * float(d["reversion_semanal"]))
+		fx.sumar_ind("aprobacion", (ancla - estado.ind("aprobacion")) * rev)
 	else:
-		regiones.revertir(estado, ancla, float(d["reversion_semanal"]), float(d.get("sesgo_regional_persistente", 0.0)))
-	fx.delta_aprobacion(-float(d["desgaste_aprobacion_semanal"]) * float(mandato.nivel()["desgaste"]), "")
+		regiones.revertir(estado, ancla, rev, float(d.get("sesgo_regional_persistente", 0.0)))
+	fx.delta_aprobacion(-desg * float(lm["desgaste"]), "")
 	fx.sumar_ind("fiscal", float(d["regen_fiscal_semanal"]), "recuperación fiscal de la semana")
 	var extra := maxi(0, estado.obras_en_curso.size() - int(d["max_obras_concurrentes"]))
 	fx.sumar_ind("riesgo_ejecucion", float(extra) * float(d["riesgo_por_obra_extra"]) - float(d["riesgo_regen_semanal"]), "obras en curso y equipos que corrigen errores")
@@ -176,42 +185,24 @@ func continuar_carrera() -> Dictionary: return mandato.continuar_carrera()  # Tr
 
 # ---------------------------------------------------------------- Fachada (la UI y los tests usan estos nombres)
 func procesar_eventos_semana() -> Array[Dictionary]: return eventos.procesar_semana()  # Atajo de MotorEventos.procesar_semana.
-
 func costo_carta(carta: Dictionary, ministro_id: String = "") -> int: return cartas.costo_carta(carta, ministro_id)  # Atajo de MotorCartas.costo_carta.
-
 func es_unica(carta: Dictionary) -> bool: return cartas.es_unica(carta)  # Atajo de MotorCartas.es_unica.
-
 func vista_carta(idx: int, ministro_id: String = "") -> Dictionary: return cartas.vista_carta(idx, ministro_id)  # Atajo de MotorCartas.vista_carta.
-
 func jugar_carta(idx: int, ministro_id: String = "", region_id: String = "") -> Dictionary: return cartas.jugar_carta(idx, ministro_id, region_id)  # Juega una carta de la mano (con movimientos).
-
 func aprobar_propuesta(prop_id: String, variante_id: String, region_id: String = "", custom: Dictionary = {}, nombres: Dictionary = {}) -> Dictionary: return cartas.aprobar_propuesta(prop_id, variante_id, region_id, custom, nombres)  # Atajo de MotorCartas.aprobar_propuesta.
-
 func impulsar_proyecto(pid: String) -> Dictionary: return sectra.impulsar(pid)  # Atajo de MotorSectra.impulsar.
-
 func calcular_puntaje() -> int: return mandato.calcular_puntaje()  # Atajo de MotorMandato.calcular_puntaje.
 
-
 func robar_mano(n: int = 5) -> void: mazo.robar(n)  # Atajo de MotorMazo.robar.
-
 func carta_disponible(carta: Dictionary) -> bool: return gabinete.disponible(carta)  # true si el gabinete y las condiciones permiten que la carta circule.
-
 func elegir_gabinete(ids: Array) -> Dictionary: return gabinete.elegir(ids)  # Nombra el gabinete (solo en campaña o en la primera semana de gobierno).
-
 func delegar_carta(idx: int, ministro_id: String, region_id: String = "") -> Dictionary: return cartas.jugar_carta(idx, ministro_id, region_id, true)  # Juega una carta delegándola en un ministro (sin gastar movimientos, con riesgo de fallo).
-
 func prob_fallo_delegacion(idx: int, ministro_id: String) -> float: return gabinete.prob_fallo(estado.mano[idx], ministro_id)  # Probabilidad de fallo de delegar la carta de la mano en ese ministro.
-
 func buscar_meta(meta_id: String) -> Dictionary: return movimientos.buscar_meta(meta_id)  # Atajo de MotorMovimientos.buscar_meta.
-
 func ajustar_sector(sector: String, direccion: int) -> Dictionary: return movimientos.ajustar_sector(sector, direccion)  # Atajo de MotorMovimientos.ajustar_sector.
-
 func reducir_errores() -> Dictionary: return movimientos.reducir_errores()  # Atajo de MotorMovimientos.reducir_errores.
-
 func acelerar_proyecto(idx: int) -> Dictionary: return movimientos.acelerar_proyecto(idx)  # Atajo de MotorMovimientos.acelerar_proyecto.
-
 func contratar_asesor(id: String) -> Dictionary: return equipo.contratar(id)  # Atajo de MotorEquipo.contratar.
-
 func despedir_asesor(id: String) -> Dictionary: return equipo.despedir(id)  # Atajo de MotorEquipo.despedir.
 func unirse_coalicion(id: String) -> Dictionary: return coalicion.unirse(id)  # Atajo de MotorCoalicion.unirse.
 func salir_coalicion(id: String) -> Dictionary: return coalicion.salir(id)  # Atajo de MotorCoalicion.salir.
