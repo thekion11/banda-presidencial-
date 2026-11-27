@@ -35,6 +35,29 @@ func _init() -> void:
 	_correr.call_deferred()
 
 
+func _iconos() -> void:
+	## Íconos (cola 5): cada tipo usado existe y se dibuja, y cada tamaño es uno de los de la guía (Icono.TAMANOS).
+	var fuente_icono := FileAccess.get_file_as_string("res://game/componentes/icono.gd")
+	for t in Icono.TIPOS:
+		_check(fuente_icono.contains("\t\t\"%s\":" % t), "el ícono «%s» tiene dibujo" % t)
+	var usos := RegEx.create_from_string("Icono\\.crear\\(([^,]+),[^,]+,\\s*([0-9.]+)")
+	var vistos := 0
+	for dir in ["res://game/componentes", "res://game/pantallas"]:
+		for f in DirAccess.get_files_at(dir):
+			if not f.ends_with(".gd"):
+				continue
+			for m in usos.search_all(FileAccess.get_file_as_string(dir + "/" + f)):
+				vistos += 1
+				_check(Icono.TAMANOS.has(float(m.get_string(2))), "%s: ícono de %s px fuera de los tamaños de la guía %s" % [f, m.get_string(2), Icono.TAMANOS])
+				var lit := m.get_string(1).strip_edges()
+				if lit.begins_with("\""):
+					_check(Icono.TIPOS.has(lit.trim_prefix("\"").trim_suffix("\"")), "%s: el ícono %s no existe" % [f, lit])
+	_check(vistos >= 8, "se revisaron los usos de Icono.crear (%d)" % vistos)
+	for f in PantallaUrbano.FILTROS:
+		_check(Icono.TIPOS.has(String(f[4])), "el filtro «%s» del mapa urbano usa un ícono que existe" % f[0])
+	_check(Icono.TIPOS.has("person") and Icono.TIPOS.has("map") and Icono.TIPOS.has("bars") and Icono.TIPOS.has("building") and Icono.TIPOS.has("people"), "existen los íconos de la barra inferior y de delegar")
+
+
 func _correr() -> void:
 	Tutorial.ruta = "user://preferencias_claridad.json"
 	DirAccess.remove_absolute(ProjectSettings.globalize_path(Tutorial.ruta))
@@ -151,6 +174,7 @@ func _correr() -> void:
 		dia_p._jugar()
 		var aviso: String = dia_p._toast.text
 		_check(aviso.begins_with("Promesa nacional") and aviso.contains("Toca el mapa") if reg == "" else aviso.begins_with("Promesa en Atacama"), "el aviso de la promesa dice dónde quedó (%s)" % aviso)
+	_iconos()
 	_check(Tema.dec(3.5) == "3,5" and Tema.dec(57.44) == "57,4" and Tema.dec(-0.25, 2) == "-0,25", "Tema.dec usa coma decimal")
 	if _fallos == 0:
 		print("CLARIDAD OK")

@@ -7,8 +7,8 @@ comparar pantallas entre sí y ver si un cambio acerca o aleja. Imágenes: `dif_
 
 | Pantalla | Píxeles distintos | ΔE medio | Zona que más difiere | ΔE de esa zona |
 |---|---|---|---|---|
-| dia | 39.2 % | 27.7 | inferior centro (y ≈ 640–672 px) | 76 |
+| dia | 39.3 % | 27.7 | inferior centro (y ≈ 640–672 px) | 76 |
 | nacion | 29.2 % | 25.0 | superior centro (y ≈ 96–128 px) | 104 |
 | votacion | 22.0 % | 19.0 | inferior izquierda (y ≈ 736–768 px) | 68 |
-| urbano | 21.3 % | 16.7 | superior centro (y ≈ 192–224 px) | 88 |
+| urbano | 21.4 % | 16.7 | superior centro (y ≈ 192–224 px) | 88 |
 | hito | 17.8 % | 13.9 | media derecha (y ≈ 448–480 px) | 75 |
