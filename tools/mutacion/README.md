@@ -10,3 +10,5 @@ Un mutante que sobrevive indica una regla sin prueba (o un cambio equivalente, q
 Equivalentes documentados: M15, M22, M30, M34, G11 (núcleo/interfaz), G20 (hay 75 ministros en 25 cargos y el tamaño del gabinete es 25: nunca se elige uno más),
 G30, G31, G32, G33 y G35 (atender el toque además del clic emulado es inocuo ahí: la acción es idempotente, está protegida por `_saliendo`, o el overlay
 que se abre tapa el segundo evento). Los que sí importan, G29 (carta) y G34 (mano), mueren con `tests/test_toque_real.gd` y `tests/fuzz_toque_real.gd`.
+
+Zoom del mapa (G36 a G39): G36 y G39 mueren con `tests/fuzz_zoom_mapa.gd`. G37 y G38 son equivalentes: los topes de zoom están repetidos en `limitar` y en `acercar_en`, y cualquiera de los dos basta.

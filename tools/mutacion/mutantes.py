@@ -114,3 +114,11 @@ MUTANTES += [
  ("D02", "data/leyes.json", '"id": "reforma_constitucional",\n      "nombre": "Reforma Constitucional (4/7 de los miembros en ejercicio)",\n      "articulo_constitucional": "Art. 127 CPR (4/7, Ley 21.481)",\n      "requiere_votacion": true,\n      "dias_tramitacion_base": 63,\n      "puede_ir_tc": true,\n      "prob_recurso_tc": 0.4,\n      "prob_exito_tc": 0.6,\n      "fuente": "fuentes.json#cpr_chile_2026",\n      "verificado": true,\n      "base_quorum": "en_ejercicio",\n      "regla": "fraccion",\n      "fraccion": {\n        "num": 4', '"id": "reforma_constitucional",\n      "nombre": "Reforma Constitucional (4/7 de los miembros en ejercicio)",\n      "articulo_constitucional": "Art. 127 CPR (4/7, Ley 21.481)",\n      "requiere_votacion": true,\n      "dias_tramitacion_base": 63,\n      "puede_ir_tc": true,\n      "prob_recurso_tc": 0.4,\n      "prob_exito_tc": 0.6,\n      "fuente": "fuentes.json#cpr_chile_2026",\n      "verificado": true,\n      "base_quorum": "en_ejercicio",\n      "regla": "fraccion",\n      "fraccion": {\n        "num": 3', "la reforma constitucional exige 3/7 en vez de 4/7"),
  ("D03", "data/cartas_curadas.json", '"id": "plan_coeva",\n    "categoria": "medioambiente",\n    "costo_pa": 3', '"id": "plan_coeva",\n    "categoria": "medioambiente",\n    "costo_pa": 1', "la reforma COEVA cuesta 1 movimiento en vez de 3"),
 ]
+
+
+MUTANTES += [
+ ("G36", "game/componentes/mapa_zoom.gd", "	pan.x = clampf(pan.x, tam.x * (1.0 - zoom), 0.0)", "	pan.x = pan.x", "el desplazamiento horizontal del mapa con zoom no se limita"),
+ ("G37", "game/componentes/mapa_zoom.gd", "	zoom = clampf(zoom, 1.0, MAX)\n	pan.x", "	zoom = clampf(zoom, 0.5, MAX)\n	pan.x", "el zoom del mapa puede bajar de 1 (se ve fuera del mapa)"),
+ ("G38", "game/componentes/mapa_zoom.gd", "	zoom = clampf(zoom * factor, 1.0, MAX)", "	zoom = clampf(zoom * factor, 1.0, MAX * 3.0)", "el pellizco puede pasar del zoom máximo"),
+ ("G39", "game/componentes/mapa_zoom.gd", "var era: bool = _pulsado and not _movido and not ev.canceled", "var era: bool = _pulsado and not ev.canceled", "un arrastre del mapa se toma como toque y elige región"),
+]
