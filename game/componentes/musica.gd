@@ -30,6 +30,13 @@ static func iniciar(raiz: Node) -> void:
 			_b = p
 
 
+static func pausar(on: bool) -> void:
+	## App en segundo plano: la música se detiene en su lugar y sigue desde ahí al volver.
+	for p in [_a, _b]:
+		if p != null and is_instance_valid(p):
+			p.stream_paused = on
+
+
 static func _activa() -> bool:
 	return _a != null and is_instance_valid(_a) and Ajustes.musica and Ajustes.sonido
 
