@@ -51,4 +51,7 @@ const TEXTOS := {
 
 
 static func texto(r: Dictionary) -> String:
-	return String(TEXTOS.get(String(r.get("razon", "")), "No se pudo realizar la acción."))
+	var t := String(TEXTOS.get(String(r.get("razon", "")), "No se pudo realizar la acción."))
+	if String(r.get("razon", "")) == "pa_insuficiente" and r.has("costo"):  # con la cifra: cuánto pide la carta
+		t = "Esta carta cuesta %d %s. %s" % [int(r["costo"]), "movimiento" if int(r["costo"]) == 1 else "movimientos", t]
+	return t

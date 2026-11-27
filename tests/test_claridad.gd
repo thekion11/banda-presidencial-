@@ -175,6 +175,27 @@ func _correr() -> void:
 		var aviso: String = dia_p._toast.text
 		_check(aviso.begins_with("Promesa nacional") and aviso.contains("Toca el mapa") if reg == "" else aviso.begins_with("Promesa en Atacama"), "el aviso de la promesa dice dónde quedó (%s)" % aviso)
 	_iconos()
+	_check(Razones.texto({"razon": "pa_insuficiente", "costo": 3}).begins_with("Esta carta cuesta 3 movimientos. No te alcanzan"), "el rechazo por movimientos dice cuánto cuesta la carta")
+	# votación rechazada en la primera cámara (la página más cargada) en el teléfono bajo con muesca y barra de 48 px
+	Tema.inset_prueba = Vector2(48, 48)
+	root.content_scale_size = Vector2i(390, 693)
+	main.mostrar_dia()
+	await process_frame
+	var dv: PantallaDia = main._pantalla
+	var votos := {"aprobada": false, "senado": 22, "camara": 0, "min_senado": 26, "min_camara": 78, "total_senado": 50, "total_camara": 155, "abst_senado": 6, "abst_camara": 0, "contra_senado": 22, "contra_camara": 0}
+	dv._capa.add_child(OverlaysDia.evento({"titulo": "Ley de prueba con un nombre bastante largo", "hora": "16:00", "descripcion": "x", "efectos": [{"ind": "capital", "delta": -4}],
+		"votacion": {"origen": "senado", "voto": votos, "tc": {"recurso": false, "cae": false}, "aprobada": false}}, func() -> void: pass, main.motor.catalogo_leyes["congreso"]["nombres"], 36))
+	for i in range(3):
+		await process_frame
+	var lbls: Array = dv._capa.find_children("*", "Label", true, false).filter(func(l: Label) -> bool: return l.text.ends_with("· faltaron 4"))
+	_check(lbls.size() == 1, "una votación rechazada dice cuántos votos faltaron")
+	var bts: Array = dv._capa.find_children("*", "Button", true, false).filter(func(b: Button) -> bool: return b.is_visible_in_tree() and b.size.x > 300.0)  # el botón principal (el tutorial también está abierto)
+	_check(not bts.is_empty() and bts.all(func(b: Button) -> bool: return b.get_global_rect().end.y <= 693.0 - 48.0 + 0.5), "con la barra de gestos el botón de la votación rechazada queda entero (%s)" % str(bts.map(func(b: Button) -> Rect2: return b.get_global_rect())))
+	Tema.inset_prueba = Vector2(-1, -1)
+	root.content_scale_size = Vector2i(390, 844)
+	var con_futuro := {"diferido": {"semanas": 8, "efectos": [{"ind": "cohesion", "delta": 2}, {"ind": "aprobacion", "delta": 1}]}, "riesgo": {"prob": 0.3, "efectos": [{"ind": "aprobacion", "delta": -1}]}}
+	var extra := FichaAmpliada._lineas_extra(con_futuro)
+	_check(extra == ["En 8 semanas: Cohesión +2 · Aprobación +1", "Puede salir mal (30 %): Aprobación −1"], "la ficha dice cuándo llega el efecto a futuro y cuánto arriesga (%s)" % str(extra))
 	_check(Tema.dec(3.5) == "3,5" and Tema.dec(57.44) == "57,4" and Tema.dec(-0.25, 2) == "-0,25", "Tema.dec usa coma decimal")
 	if _fallos == 0:
 		print("CLARIDAD OK")

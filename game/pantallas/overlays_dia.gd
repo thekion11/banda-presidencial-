@@ -36,9 +36,13 @@ static func _pagina_votacion(col: VBoxContainer, camara: String, voto: Dictionar
 	var contra := int(voto["contra_camara"]) if es_cam else int(voto["contra_senado"])
 	var minimo := int(voto["min_camara"]) if es_cam else int(voto["min_senado"])
 	col.add_child(_centrada("%s · %d MIEMBROS" % [String(nombres[camara]).to_upper(), total], 11, Tema.ORO, true))
-	col.add_child(_centrada("Requiere %d votos de %d %s" % [minimo, total, "diputados" if es_cam else "senadores"], 13, Tema.TEXTO_SUAVE))
+	var req := _centrada("Requiere %d votos de %d %s" % [minimo, total, "diputados" if es_cam else "senadores"], 13, Tema.TEXTO_SUAVE)
+	if favor < minimo:  # el porqué del rechazo, en una cifra y en la misma línea (no suma alto)
+		req.text += " · faltaron %d" % (minimo - favor)
+		req.add_theme_color_override("font_color", Tema.mal())
+	col.add_child(req)
 	var h := Hemiciclo.new()
-	h.custom_minimum_size = Vector2(0, clampf(170.0 - (693.0 - Tema.alto_util()), 110.0, 170.0) if Tema.pantalla_baja() else 205.0)  # con muesca y barra de gestos se achica más
+	h.custom_minimum_size = Vector2(0, clampf(170.0 - (693.0 - Tema.alto_util()), 90.0, 170.0) if Tema.pantalla_baja() else 205.0)  # con muesca y barra de gestos se achica más
 	h.configurar_votos(total, favor, abst, contra)
 	col.add_child(h)
 	var dur := h.animar_votacion(minimo, favor)  # los votos caen; ajustada = más lenta
