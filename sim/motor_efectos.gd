@@ -11,6 +11,7 @@ var _max_viv: float = 100.0
 var _piso: float = 0.0
 var _rend: float = 1.0
 var _derrame: float = 0.0
+var _motivos: Dictionary = {}  # «indicador|causa» -> cambio acumulado en la semana; solo salida para la UI (fuera del guardado y de la huella)
 
 
 func configurar(p_estado: EstadoSimulacion, p_leyes: Dictionary, p_regiones: Regiones) -> void:
@@ -47,10 +48,31 @@ func delta_aprobacion(delta: float, region: String, decreciente: bool = false) -
 		regiones.aplicar_delta(estado, delta, region, _derrame)
 
 
-func sumar_ind(nombre: String, delta: float) -> void:
-	## Suma al indicador respetando sus mínimos y máximos.
+func sumar_ind(nombre: String, delta: float, causa: String = "") -> void:
+	## Suma al indicador respetando sus mínimos y máximos; con `causa` (frase corta para el jugador) anota el cambio real en los motivos de la semana.
 	var ind: Dictionary = estado.indicadores
-	ind[nombre] = clampf(float(ind.get(nombre, 0.0)) + delta, _min, _max_viv if nombre == "viviendas_anio" else _max)
+	var antes := float(ind.get(nombre, 0.0))
+	ind[nombre] = clampf(antes + delta, _min, _max_viv if nombre == "viviendas_anio" else _max)
+	if causa != "":
+		var k := nombre + "|" + causa
+		_motivos[k] = float(_motivos.get(k, 0.0)) + float(ind[nombre]) - antes
+
+
+func reiniciar_motivos() -> void:
+	## Vacía los motivos de la semana (se llama al cerrar el turno; el amanecer siguiente sigue sumando).
+	_motivos = {}
+
+
+func motivos_semana() -> Array[Dictionary]:
+	## Hasta 3 cambios de la semana con causa conocida, de mayor a menor |delta|: {ind, delta, causa}. Solo salida: no entra al guardado ni a la huella.
+	var filas: Array[Dictionary] = []
+	for k in _motivos.keys():
+		var d := float(_motivos[k])
+		if absf(d) >= float(leyes["dinamica"]["motivo_delta_minimo"]):
+			var partes: PackedStringArray = String(k).split("|")
+			filas.append({"ind": partes[0], "delta": d, "causa": partes[1]})
+	filas.sort_custom(func(a, b): return absf(a["delta"]) > absf(b["delta"]) or (absf(a["delta"]) == absf(b["delta"]) and a["ind"] + a["causa"] < b["ind"] + b["causa"]))
+	return filas.slice(0, 3)
 
 
 func marcar_cumplida(carta_id: String) -> void:

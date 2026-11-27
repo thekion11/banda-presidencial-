@@ -314,8 +314,8 @@ func amanecer() -> void:
 				_ident_suma[ind] = float(_ident_suma.get(ind, 0.0)) + float(est[ind])
 			_ident_afin += afinidad(id)
 	for ind in _ident_suma.keys():
-		_m.fx.sumar_ind(String(ind), float(_ident_suma[ind]))
-	_m.fx.sumar_ind("cohesion", float(cfg["peso_afinidad"]) * (_ident_afin / float(_m.estado.gabinete.size()) - 0.5))
+		_m.fx.sumar_ind(String(ind), float(_ident_suma[ind]), "estilo de tu gabinete")
+	_m.fx.sumar_ind("cohesion", float(cfg["peso_afinidad"]) * (_ident_afin / float(_m.estado.gabinete.size()) - 0.5), "afinidad del gabinete con tu ideología")
 
 
 func revisar_renuncia(actor_id: String) -> Dictionary:

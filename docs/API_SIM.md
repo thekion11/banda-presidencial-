@@ -112,7 +112,9 @@
 - `configurar(p_estado: EstadoSimulacion, p_leyes: Dictionary, p_regiones: Regiones) -> void` — Enlaza el estado, las leyes y las regiones y fija los límites y parámetros de los efectos.
 - `aplicar_efecto(ef: Dictionary, escala: float, region: String) -> void` — Aplica un efecto de carta o evento ({ind, delta}) escalado a un indicador o a la aprobación regional.
 - `delta_aprobacion(delta: float, region: String, decreciente: bool = false) -> void` — Cambia la aprobación (nacional o de una región) con rendimientos decrecientes al subir cuando es alta.
-- `sumar_ind(nombre: String, delta: float) -> void` — Suma al indicador respetando sus mínimos y máximos.
+- `sumar_ind(nombre: String, delta: float, causa: String = "") -> void` — Suma al indicador respetando sus mínimos y máximos; con `causa` (frase corta para el jugador) anota el cambio real en los motivos de la semana.
+- `reiniciar_motivos() -> void` — Vacía los motivos de la semana (se llama al cerrar el turno; el amanecer siguiente sigue sumando).
+- `motivos_semana() -> Array[Dictionary]` — Hasta 3 cambios de la semana con causa conocida, de mayor a menor |delta|: {ind, delta, causa}. Solo salida: no entra al guardado ni a la huella.
 - `marcar_cumplida(carta_id: String) -> void` — Marca como cumplida la primera promesa de campaña pendiente de esa carta.
 
 ## `MotorEquipo` (`sim/motor_equipo.gd`)
@@ -237,6 +239,7 @@
 - `terminar_turno() -> Array[Dictionary]` — Cierra el turno y, si la partida sigue y no toca elección, inicia el siguiente.
 - `ejecutar_amanecer() -> void` — Paso 1: regenera movimientos y aplica la dinámica semanal de los indicadores (ancla de aprobación, desgaste, regeneraciones).
 - `cerrar_turno() -> void` — Pasos 7 y 8: votaciones, obras, crisis y avance del calendario; registra la entrada «cerrar».
+- `motivos_semana() -> Array[Dictionary]` — Cambios de la semana con su causa (solo salida para la UI).
 - `resolver_eleccion_presidencial() -> Dictionary` — Vota la elección presidencial (puede dar segunda vuelta).
 - `continuar_carrera() -> Dictionary` — Tras un fin de periodo abre la oposición o la campaña de reelección.
 - `procesar_eventos_semana() -> Array[Dictionary]` — Atajo de MotorEventos.procesar_semana.

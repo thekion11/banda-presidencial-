@@ -135,6 +135,7 @@
 "/dinamica/ancla_peso_cohesion": "num",
 "/dinamica/ancla_peso_fiscal": "num",
 "/dinamica/desgaste_aprobacion_semanal": "num",
+"/dinamica/motivo_delta_minimo": "num",
 "/dinamica/fiscal_critico": "num",
 "/dinamica/max_obras_concurrentes": "num",
 "/dinamica/penal_aprobacion_riesgo": "num",

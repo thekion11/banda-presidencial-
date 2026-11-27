@@ -125,13 +125,13 @@ func ejecutar_amanecer() -> void:  # Paso 1: regenera movimientos y aplica la di
 	else:
 		regiones.revertir(estado, ancla, float(d["reversion_semanal"]), float(d.get("sesgo_regional_persistente", 0.0)))
 	fx.delta_aprobacion(-float(d["desgaste_aprobacion_semanal"]) * float(mandato.nivel()["desgaste"]), "")
-	fx.sumar_ind("fiscal", float(d["regen_fiscal_semanal"]))
+	fx.sumar_ind("fiscal", float(d["regen_fiscal_semanal"]), "recuperación fiscal de la semana")
 	var extra := maxi(0, estado.obras_en_curso.size() - int(d["max_obras_concurrentes"]))
-	fx.sumar_ind("riesgo_ejecucion", float(extra) * float(d["riesgo_por_obra_extra"]) - float(d["riesgo_regen_semanal"]))
+	fx.sumar_ind("riesgo_ejecucion", float(extra) * float(d["riesgo_por_obra_extra"]) - float(d["riesgo_regen_semanal"]), "obras en curso y equipos que corrigen errores")
 	if estado.ind("riesgo_ejecucion") > float(d["riesgo_umbral"]):
 		fx.delta_aprobacion(-float(d["penal_aprobacion_riesgo"]), "")
-	fx.sumar_ind("capital", float(d["regen_capital_semanal"]))
-	fx.sumar_ind("cohesion", float(d["regen_cohesion_semanal"]))
+	fx.sumar_ind("capital", float(d["regen_capital_semanal"]), "capital político que se recupera")
+	fx.sumar_ind("cohesion", float(d["regen_cohesion_semanal"]), "desgaste semanal del gobierno")
 	gabinete.amanecer()  # estilos y afinidad de los ministros (Fase C)
 	movimientos.fijar_movimientos()
 
@@ -142,6 +142,7 @@ func cerrar_turno() -> void:  # Pasos 7 y 8: votaciones, obras, crisis y avance 
 	if estado.eleccion_pendiente(int(_h("semanas_campana"))):
 		return  # terminada la campaña toca votar: no se pueden seguir cerrando turnos
 	var resumen := {}
+	fx.reiniciar_motivos()
 	votaciones_semana = []
 	if estado.etapa == "gobierno":
 		votaciones_semana = cartas.resolver_proyectos()
@@ -164,6 +165,8 @@ func cerrar_turno() -> void:  # Pasos 7 y 8: votaciones, obras, crisis y avance 
 	if estado.eleccion_pendiente(int(_h("semanas_campana"))):
 		Encuestas.registrar(self)  # la última encuesta antes de votar refleja la campaña ya terminada
 
+
+func motivos_semana() -> Array[Dictionary]: return fx.motivos_semana()  # Cambios de la semana con su causa (solo salida para la UI).
 
 func resolver_eleccion_presidencial() -> Dictionary: return mandato.resolver_eleccion()  # Vota la elección presidencial (puede dar segunda vuelta).
 
