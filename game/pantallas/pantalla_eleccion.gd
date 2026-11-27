@@ -94,10 +94,15 @@ static func crear(motor: MotorTurno, regiones: Array, regional: Dictionary, res:
 		var fila := HBoxContainer.new()
 		fila.add_theme_constant_override("separation", 10)
 		fila.custom_minimum_size.y = maxf(300.0, Tema.alto_util() - 480.0)  # mapa y lista con alto propio: con letra grande el resto se desplaza
+		var conteo := Tema.etiqueta("", 12, Tema.ORO, false, 700)  # «Regiones ganadas: 9 de 16 · 70 % del país», cuenta mientras se pinta el mapa
+		cuerpo.add_child(conteo)
+		var mapa: MapaChile = null
 		if not geo.is_empty():
-			fila.add_child(_mapa_ganador(geo, regiones, por_region))
+			mapa = _mapa_ganador(geo, regiones, por_region)
+			fila.add_child(mapa)
 		fila.add_child(FilasUI.scroll(lista))
 		cuerpo.add_child(fila)
+		_animar_recuento(raiz, mapa, conteo, por_region, ver)
 	v.add_child(FilasUI.scroll(cuerpo))
 	Movimiento.escalonar(v, 0.05, 0.05)
 	Movimiento.escalonar(lista, 0.45, 0.035, 18)
@@ -178,7 +183,77 @@ static func _lista_aprobacion(lista: VBoxContainer, regiones: Array, regional: D
 		lista.add_child(fila)
 
 
-static func _mapa_ganador(geo: Dictionary, regiones: Array, por_region: Array) -> Control:
+static func _texto_conteo(ganadas: int, total: int, pct: float) -> String:
+	return "Regiones ganadas: %d de %d · %d %% del país" % [ganadas, total, roundi(pct)]
+
+
+static func _animar_recuento(raiz: Control, mapa: MapaChile, conteo: Label, por_region: Array, ver: Array) -> void:
+	## Recuento: el mapa se pinta región por región, de la más poblada a la menos, mientras el contador sube; al final,
+	## un sello con el veredicto. Sin movimiento (o en pruebas sin animación), todo aparece ya contado.
+	var orden := por_region.duplicate()
+	orden.sort_custom(func(a: Dictionary, b: Dictionary) -> bool: return float(a["habitantes_miles"]) > float(b["habitantes_miles"]))
+	var total_hab := 0.0
+	for r in orden:
+		total_hab += float(r["habitantes_miles"])
+	var final := {"g": 0, "h": 0.0}
+	for r in orden:
+		if bool(r["gana_gobierno"]):
+			final["g"] = int(final["g"]) + 1
+			final["h"] = float(final["h"]) + float(r["habitantes_miles"])
+	conteo.text = _texto_conteo(int(final["g"]), orden.size(), float(final["h"]) / maxf(1.0, total_hab) * 100.0)
+	if not Movimiento.activo() or mapa == null:
+		return
+	var valores := {}
+	for r in orden:
+		valores[String(r["id"])] = 45.0  # todavía sin contar: tono neutro
+	mapa.actualizar.call_deferred(valores)
+	var paso := {"i": 0, "g": 0, "h": 0.0}
+	conteo.text = _texto_conteo(0, orden.size(), 0.0)
+	var tw := raiz.create_tween()
+	tw.tween_interval(0.6)
+	for r in orden:
+		tw.tween_callback(func() -> void:
+			var gana := bool(r["gana_gobierno"])
+			valores[String(r["id"])] = 70.0 if gana else 25.0
+			mapa.actualizar(valores.duplicate())
+			if gana:
+				paso["g"] = int(paso["g"]) + 1
+				paso["h"] = float(paso["h"]) + float(r["habitantes_miles"])
+			conteo.text = _texto_conteo(int(paso["g"]), orden.size(), float(paso["h"]) / maxf(1.0, total_hab) * 100.0)
+			Feedback.sonar("toque"))
+		tw.tween_interval(0.09)
+	var palabra := "ELECTO" if String(ver[2]) == "Asumir el gobierno" else ("SEGUNDA VUELTA" if String(ver[2]).begins_with("Ir a la segunda") else "DERROTA")
+	tw.tween_callback(func() -> void: _sello(raiz, mapa, palabra, ver[1]))
+
+
+static func _sello(raiz: Control, mapa: Control, texto: String, color: Color) -> void:
+	## Sello del veredicto sobre el mapa: cae girado, rebota y se desvanece (no tapa la lista).
+	if not is_instance_valid(mapa) or not mapa.is_inside_tree():
+		return
+	var s := Tema.etiqueta_corta(texto, 20, color, true)
+	s.add_theme_stylebox_override("normal", Tema.caja(Color(Tema.OCEANO, 0.85), 8, color, 3))
+	(s.get_theme_stylebox("normal") as StyleBoxFlat).content_margin_left = 10.0
+	(s.get_theme_stylebox("normal") as StyleBoxFlat).content_margin_right = 10.0
+	s.top_level = true
+	s.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	raiz.add_child(s)
+	s.reset_size()
+	var centro := mapa.get_global_rect().get_center()
+	s.global_position = Vector2((Tema.ANCHO - s.size.x) * 0.5, centro.y - s.size.y * 0.5)  # centrado en la pantalla, a la altura del mapa
+	s.pivot_offset = s.size * 0.5
+	s.rotation_degrees = -12.0
+	s.scale = Vector2.ONE * 2.4
+	s.modulate.a = 0.0
+	var tw := s.create_tween()
+	tw.tween_property(s, "scale", Vector2.ONE, 0.28).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	tw.parallel().tween_property(s, "modulate:a", 1.0, 0.18)
+	tw.tween_interval(1.4)
+	tw.tween_property(s, "modulate:a", 0.0, 0.5)
+	tw.tween_callback(s.queue_free)
+	Feedback.vibrar(25)
+
+
+static func _mapa_ganador(geo: Dictionary, regiones: Array, por_region: Array) -> MapaChile:
 	## Chile coloreado por quién gana cada región (verde: tú; rojo: el rival). Solo se mira: no recibe toques.
 	var mapa := MapaChile.new()
 	mapa.leyenda = false

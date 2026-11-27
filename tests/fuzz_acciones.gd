@@ -36,7 +36,7 @@ func _invariantes(m: MotorTurno, ctx: String) -> void:
 func _accion_aleatoria(m: MotorTurno, rng: RandomNumberGenerator, datos: Dictionary) -> void:
 	var e := m.estado
 	var basura := ["", "xx", "no_existe", "-1", " "]
-	match rng.randi_range(0, 14):
+	match rng.randi_range(0, 16):
 		0, 1, 2:
 			m.jugar_carta(rng.randi_range(-2, 7), "", "")
 		3:
@@ -99,6 +99,23 @@ func _accion_aleatoria(m: MotorTurno, rng: RandomNumberGenerator, datos: Diction
 			var urgs := ["simple", "suma", "inmediata", "xx"]
 			var mins2: Array = e.gabinete + basura
 			m.agenda.presentar(cid, String(urgs[rng.randi_range(0, 3)]), String(mins2[rng.randi_range(0, mins2.size() - 1)]) if rng.randf() < 0.4 else "", rng.randf() < 0.3)
+		16:  # presupuesto extra a ministerios (PR-18 mínimo): ministerios válidos y basura, niveles y prioridades inválidos
+			var panel: Dictionary = m.presupuesto.panel() if rng.randf() < 0.7 else {"ministerios": []}
+			var filas: Array = panel["ministerios"]
+			var slot2 := String(filas[rng.randi_range(0, filas.size() - 1)]["slot"]) if not filas.is_empty() else String(basura[rng.randi_range(0, 4)])
+			var niveles := ["pequeno", "medio", "grande", "xx", ""]
+			var prios: Array = []
+			if not filas.is_empty() and rng.randf() < 0.5:
+				for c in (filas[rng.randi_range(0, filas.size() - 1)]["candidatos"] as Array).slice(0, rng.randi_range(0, 4)):
+					prios.append(String(c["carta_id"]))
+			if rng.randf() < 0.75:
+				m.presupuesto.asignar(slot2, String(niveles[rng.randi_range(0, 4)]), prios)
+			else:
+				m.presupuesto.fijar_prioridades(slot2, prios)
+		15:  # balas de plata (PR-17): ids válidos y basura, objetivos fuera de rango, versión reducida al azar
+			var cat: Array = m.catalogo_leyes["balas_plata"]["catalogo"]
+			var bid := String(cat[rng.randi_range(0, cat.size() - 1)]["id"]) if rng.randf() < 0.85 else String(basura[rng.randi_range(0, 4)])
+			m.balas.usar(bid, rng.randi_range(-3, 4), rng.randf() < 0.5)
 
 
 func _init() -> void:

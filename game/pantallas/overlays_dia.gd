@@ -145,7 +145,11 @@ static func evento(ev: Dictionary, al_continuar: Callable, nombres: Dictionary, 
 		Musica.tension(true)
 		capa.tree_exiting.connect(func() -> void: Musica.tension(false))
 	if ev.has("escena"):  # debate o entrevista: focos, EN VIVO / AL AIRE y puntos de ronda detrás del texto
-		capa.add_child(EscenaTV.crear(ev["escena"]))
+		var esc: Dictionary = (ev["escena"] as Dictionary).duplicate()
+		esc["titular"] = String(ev.get("titulo", ""))
+		capa.add_child(EscenaTV.crear(esc))
+	elif String(ev.get("id", "")).contains("franja"):  # franja electoral en TV: barras de color y reloj del spot
+		capa.add_child(EscenaTV.crear({"nombre": "Franja electoral", "tipo": "franja"}))
 	var col := VBoxContainer.new()
 	col.set_anchors_preset(Control.PRESET_FULL_RECT)
 	col.offset_left = 16

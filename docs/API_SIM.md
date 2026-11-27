@@ -93,6 +93,17 @@
 - `poner_en_discusion_inmediata(carta_id: String) -> Dictionary` — Sube un proyecto en trámite a discusión inmediata sin cobrar capital ni movimientos (lo cobra quien lo llama, p. ej. una bala): acorta el plazo de la etapa
 - `avanzar() -> Array[Dictionary]` — Cierre de semana: resuelve las etapas cuyo plazo venció (puede ser más de una por semana con urgencia alta) y devuelve los resultados finales.
 
+## `MotorBalas` (`sim/motor_balas.gd`)
+
+- `definicion(id: String) -> Dictionary` — Definición de una bala del catálogo; {} si no existe.
+- `usos_habilitados() -> int` — Balas que se pueden haber usado hasta ahora: las iniciales, y todo el cupo desde el año `anio_uso_extra`.
+- `usos_restantes() -> int` — Balas que aún puedes usar ahora (habilitadas menos usadas).
+- `semanas_de_espera() -> int` — Semanas que faltan para poder usar otra bala (0 si no hay enfriamiento).
+- `objetivos(def: Dictionary) -> Array[Dictionary]` — Proyectos de ley en trámite sobre los que la bala puede actuar ({idx, carta_id, titulo, tipo_ley, dias, fuente}); vacío si la bala no necesita objetivo.
+- `riesgo_estimado(def: Dictionary) -> float` — Probabilidad (0 a 1) de que la bala salga mal ahora: base + peso x (centro - indicador), acotada.
+- `baul() -> Dictionary` — Solo lectura para la interfaz: reserva, usos, enfriamiento y, por bala, costo, riesgo, condición cumplida o no y por qué.
+- `usar(id: String, objetivo: int = -1, reducida: bool = false) -> Dictionary` — Usa una bala de la reserva. objetivo: índice en estado.proyectos_ley (-1 = el proyecto más lejano de votarse). reducida: acepta la versión con menos
+
 ## `MotorCartas` (`sim/motor_cartas.gd`)
 
 - `costo_carta(carta: Dictionary, ministro_id: String = "") -> int` — Costo en movimientos de una carta, con el descuento del ministro y los bonos del gabinete y los asesores.
@@ -176,7 +187,7 @@
 - `efecto_semanal_de(ids: Array) -> Dictionary` — Solo salida (no cambia el estado): efecto semanal que daría este gabinete por estilos y afinidad, {indicador: delta}; lo mismo que aplica `amanecer`.
 - `ficha_candidato(id: String) -> Dictionary` — Solo salida: lo que el motor sabe de un candidato para mostrarlo (alias, cartera, estilo, afinidad 0 a 1 con tu partido, ahorro y bono, riesgo de escándalo).
 - `efecto_de_nombrar(id: String) -> Dictionary` — Solo salida: cómo cambiaría el efecto semanal del gabinete si nombraras a `id` (reemplaza al que ocupe su ministerio, o se suma si está vacío): {indicador: diferencia por semana}.
-- `revisar_renuncia(actor_id: String) -> Dictionary` — Si tu relación con el ministro de ese ministerio cae bajo el umbral, renuncia y asume el mejor candidato restante (la relación parte de cero).
+- `revisar_renuncia(actor_id: String, forzar: bool = false) -> Dictionary` — Si tu relación con el ministro de ese ministerio cae bajo el umbral (o `forzar`, p. ej. un incidente de presupuesto), renuncia y asume el mejor candidato restante (la relación parte de cero).
 - `validar_delegacion(ministro_id: String) -> Dictionary` — Comprueba que se puede delegar en ese ministro (en gobierno, en el gabinete y bajo el tope por turno); devuelve {ok, razon}.
 - `prob_fallo(carta: Dictionary, ministro_id: String) -> float` — Probabilidad de que el ministro falle al ejecutar la carta delegada.
 - `resolver_delegacion(carta: Dictionary, ministro_id: String) -> Dictionary` — Sortea con la semilla si el ministro lo hace bien. Si falla: efecto reducido y posible escándalo.
@@ -237,6 +248,17 @@
 - `static fase_de(obra: Dictionary) -> int` — Fase de la obra (1 a 5) según sus días avanzados sobre los totales.
 - `iniciar(estado: EstadoSimulacion, nombre: String, dias_totales: int, region: String, carta_id: String, efectos_final: Array, extra: Dictionary = {}) -> Dictionary` — Abre una obra en curso con sus días y efectos finales; devuelve la obra creada.
 - `avanzar(estado: EstadoSimulacion, dias: int, aplicar_efecto: Callable, marcar_cumplida: Callable) -> Array[Dictionary]` — Avanza todas las obras los días dados; devuelve las terminadas y aplica sus efectos.
+
+## `MotorPresupuesto` (`sim/motor_presupuesto.gd`)
+
+- `gastado_anio() -> float` — Fiscal ya comprometido en extras este año de gobierno (se compara con el tope anual de la regla fiscal).
+- `semanas_libre(slot: String) -> int` — Semanas que faltan para poder volver a asignar extra a ese ministerio (0 si puede).
+- `fraccion_alineada(slot: String) -> float` — Fracción esperada del extra que el ministro dedica a TUS prioridades: lealtad, afinidad ideológica y competencia, acotada.
+- `niveles_posibles(slot: String) -> Array[String]` — Niveles de extra que se podrían asignar hoy a ese ministerio (de menor a mayor costo en fiscal); vacío si ninguno.
+- `panel() -> Dictionary` — Solo lectura para la pestaña Gabinete: topes globales y, por ministerio con ministro, extra asignado, fracción alineada esperada, riesgo y efecto semanal.
+- `asignar(slot: String, nivel: String, prioridades: Array = []) -> Dictionary` — Asigna presupuesto extra a un ministerio por una temporada. prioridades: ids de cartas (obras, leyes o promesas de su sector; vacío = automático).
+- `fijar_prioridades(slot: String, prioridades: Array) -> Dictionary` — Cambia las prioridades de un ministerio con extra en curso (mismo máximo).
+- `amanecer() -> void` — Cada semana de gobierno: cada ministerio con extra acelera obras y leyes de su sector (más las prioritarias, menos su agenda propia) y baja el riesgo de ejecución;
 
 ## `MotorSectra` (`sim/motor_sectra.gd`)
 

@@ -10,6 +10,8 @@ signal detalle(id: String)
 var _botones: Dictionary = {}  # id -> Button
 var _valores: Dictionary = {}  # id -> Label del porcentaje
 var _seleccion := ""
+var _previos: Dictionary = {}  # id -> aprobación mostrada: al cambiar, la cifra cuenta y aparece una flecha
+var _flechas: Dictionary = {}  # id -> Icono «up» / «down»
 
 
 func construir(regiones: Array) -> void:
@@ -36,8 +38,13 @@ func construir(regiones: Array) -> void:
 		nombre.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 		var valor := Tema.etiqueta_corta("", 12, Tema.TEXTO, true)
 		valor.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+		var flecha := Icono.crear("up", Tema.TEXTO, 12.0)
+		flecha.size_flags_vertical = Control.SIZE_SHRINK_CENTER
+		flecha.visible = false
 		fila.add_child(nombre)
+		fila.add_child(flecha)
 		fila.add_child(valor)
+		_flechas[id] = flecha
 		b.add_child(fila)
 		b.pressed.connect(func() -> void:
 			if id == _seleccion:
@@ -55,7 +62,20 @@ func pintar(aprobacion: Dictionary, seleccion: String) -> void:
 	_seleccion = seleccion
 	for id in _botones.keys():
 		var v := float(aprobacion.get(id, 0.0))
-		(_valores[id] as Label).text = Tema.pct(v)
+		var antes: float = _previos.get(id, v)
+		_previos[id] = v
+		var flecha: Icono = _flechas[id]
+		if roundi(antes) != roundi(v):  # cambió: flecha hacia donde se movió y la cifra cuenta
+			flecha.tipo = "up" if v > antes else "down"
+			flecha.color = Tema.bien() if v > antes else FilasUI.ROJO_TEXTO
+			flecha.visible = true
+			flecha.queue_redraw()
+			if Movimiento.activo():
+				Movimiento.contar(_valores[id], v, func(x: float) -> String: return Tema.pct(x), antes)
+			else:
+				(_valores[id] as Label).text = Tema.pct(v)
+		else:
+			(_valores[id] as Label).text = Tema.pct(v)
 		(_valores[id] as Label).add_theme_color_override("font_color", Tema.color_aprobacion(v + 12.0))
 		var on: bool = id == seleccion
 		var caja := Tema.caja(Color(0.07, 0.2, 0.32, 0.92) if not on else Tema.PANEL, 12, Tema.ORO if on else Color("#2B5D86"), 2 if on else 1)

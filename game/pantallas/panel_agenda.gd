@@ -6,6 +6,9 @@ extends RefCounted
 ## ministro del área y el Corrector como alternativas tocables (nunca un «no» seco).
 
 const POR_PAGINA := 8
+const ETAPAS := [["primer_tramite", "1.er trámite"], ["segundo_tramite", "2.º trámite"], ["comision_mixta", "Mixta"], ["tc", "TC"], ["promulgacion", "Ley"]]
+static var _recien := ""  # proyecto recién presentado: llega a la agenda destacado
+static var _etapa_vista := {}  # carta_id -> etapa la última vez que se mostró: si avanzó, la etapa nueva late
 
 
 static func _area(cat: String) -> String:
@@ -34,7 +37,9 @@ static func tramite(motor: MotorTurno) -> VBoxContainer:
 		col.add_child(Tema.etiqueta("Aún no presentas proyectos propios. Abajo eliges uno y su urgencia.", 12, Tema.TEXTO_SUAVE))
 	for p in lista:
 		var v := FilasUI.col(3)
-		v.add_child(Tema.etiqueta(String(p["titulo"]), 12, Tema.TEXTO, false, 600))
+		var nuevo := String(p["carta_id"]) == _recien
+		v.add_child(Tema.etiqueta(("Recién presentado · " if nuevo else "") + String(p["titulo"]), 12, Tema.ORO if nuevo else Tema.TEXTO, false, 600))
+		v.add_child(_etapas(String(p["carta_id"]), String(p["etapa"])))
 		var donde := String(p["etapa_nombre"]) + ((" · " + String(motor.catalogo_leyes["congreso"]["nombres"].get(p["camara"], p["camara"]))) if String(p["camara"]) != "" else "")
 		v.add_child(Tema.etiqueta("%s · faltan %d %s%s" % [donde, int(p["semanas_restantes"]), "semana" if int(p["semanas_restantes"]) == 1 else "semanas", " · delegado" if bool(p["delegada"]) else ""], 11, Tema.TEXTO_SUAVE))
 		var prob := float(p["prob_aprobacion"])
@@ -46,8 +51,35 @@ static func tramite(motor: MotorTurno) -> VBoxContainer:
 		fila.add_child(barra)
 		fila.add_child(Tema.etiqueta_corta("aprobación %s" % Tema.pct(prob * 100.0), 11, Tema.TEXTO, false, 600))
 		v.add_child(fila)
-		col.add_child(FilasUI.tarjeta(v))
+		var t := FilasUI.tarjeta(v, Tema.PANEL, Tema.ORO if nuevo else Color(0, 0, 0, 0))
+		col.add_child(t)
+		if nuevo and Movimiento.activo():  # el proyecto llega a la agenda: entra y late
+			Movimiento.aparecer(t, 0.1)
+			Movimiento.latido.call_deferred(t, 1.06)
+	_recien = ""
 	return col
+
+
+static func _etapas(id: String, etapa: String) -> HBoxContainer:
+	## Pasos del trámite: hechos en dorado, el actual con borde crema (late si avanzó desde la última vez), los que faltan tenues.
+	var h := HBoxContainer.new()
+	h.add_theme_constant_override("separation", 4)
+	var actual: int = ETAPAS.map(func(e: Array) -> String: return e[0]).find(etapa)
+	var avanzo: bool = _etapa_vista.has(id) and String(_etapa_vista[id]) != etapa
+	_etapa_vista[id] = etapa
+	for i in range(ETAPAS.size()):
+		var l := Tema.etiqueta_corta(String(ETAPAS[i][1]), 10, Tema.TINTA if i < actual else (Tema.TEXTO if i == actual else Tema.TEXTO_SUAVE), i == actual)
+		l.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		l.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		var fondo := Tema.ORO if i < actual else (Tema.OCEANO if i == actual else Color(Tema.OCEANO, 0.4))
+		var caja := Tema.caja(fondo, 6, Tema.CREMA if i == actual else Color(0, 0, 0, 0), 1 if i == actual else 0)
+		caja.content_margin_top = 2.0
+		caja.content_margin_bottom = 2.0
+		l.add_theme_stylebox_override("normal", caja)
+		h.add_child(l)
+		if i == actual and avanzo and Movimiento.activo():
+			Movimiento.latido.call_deferred(l, 1.2)
+	return h
 
 
 static func presentar(motor: MotorTurno, al_presentar: Callable, abierto_inicial: String = "") -> VBoxContainer:
@@ -193,6 +225,7 @@ static func _enviar(motor: MotorTurno, id: String, urgencia: String, ministro: S
 	var r := motor.agenda.presentar(id, urgencia, ministro, delegar)
 	if bool(r.get("ok", false)):
 		Feedback.sonar("decision")
+		_recien = id
 		al_presentar.call("Proyecto presentado: «%s», urgencia %s. Lo ves arriba, en la agenda del gobierno." % [motor._cartas_por_id[id]["titulo"], String(motor.agenda.urgencia(urgencia)["nombre"]).to_lower()])
 		return
 	for h in respuesta.get_children():

@@ -72,6 +72,30 @@ def rotos():
     @f("valor no finito", "no finito")
     def _(d): d["cartas"][0]["efectos"] = [{"ind": "fiscal", "delta": float("inf")}]
 
+    @f("bala de plata con evento inexistente", "evento inexistente")
+    def _(d): d["leyes"]["balas_plata"]["catalogo"][5]["requiere"][0]["ids"] = ["evt_fantasma"]
+
+    @f("bala de plata con tipo de ley vedado desconocido", "tipo de ley vedado desconocido")
+    def _(d): d["leyes"]["balas_plata"]["catalogo"][2]["tipos_vedados"] = ["ley_fantasma"]
+
+    @f("bala de plata sin alternativa", "alternativa")
+    def _(d): d["leyes"]["balas_plata"]["catalogo"][0]["requiere"][0]["alternativa"] = ""
+
+    @f("bala de plata con riesgo imposible", "probabilidades de riesgo")
+    def _(d): d["leyes"]["balas_plata"]["catalogo"][1]["riesgo"]["max"] = 1.0
+
+    @f("presupuesto con pesos de autonomía que no suman 1", "deben sumar 1")
+    def _(d): d["leyes"]["presupuesto_ministerial"]["autonomia"]["peso_lealtad"] = 0.9
+
+    @f("presupuesto con un nivel más caro que el tope anual", "nunca se podría asignar")
+    def _(d): d["leyes"]["presupuesto_ministerial"]["niveles"]["grande"]["fiscal"] = 500.0
+
+    @f("presupuesto con incidente de peso cero", "peso no positivo")
+    def _(d): d["leyes"]["presupuesto_ministerial"]["desvio"]["eventos"][0]["peso"] = 0
+
+    @f("presupuesto con incidente que usa un indicador inventado", "indicador desconocido")
+    def _(d): d["leyes"]["presupuesto_ministerial"]["desvio"]["eventos"][1]["efectos"] = [{"ind": "fama", "delta": -1}]
+
     @f("población regional no positiva", "población no positiva")
     def _(d): d["regiones"][0]["poblacion_miles"] = 0
 
@@ -146,7 +170,9 @@ def rangos_leyes() -> int:
     import json
     leyes = json.loads((Path(__file__).resolve().parents[1] / "data" / "leyes.json").read_text(encoding="utf-8"))
     fuentes = {x["id"] for x in json.loads((Path(__file__).resolve().parents[1] / "data" / "fuentes.json").read_text(encoding="utf-8"))}
-    casos = [("mano.reales_en_mazo = 0", lambda l: l["mano"].__setitem__("reales_en_mazo", 0), "reales_en_mazo"),
+    casos = [("campana.ruido_eleccion_regional = -1", lambda l: l["campana"].__setitem__("ruido_eleccion_regional", -1), "ruido_eleccion_regional"),
+             ("campana.ruido_eleccion_regional = 99", lambda l: l["campana"].__setitem__("ruido_eleccion_regional", 99), "ruido_eleccion_regional"),
+             ("mano.reales_en_mazo = 0", lambda l: l["mano"].__setitem__("reales_en_mazo", 0), "reales_en_mazo"),
              ("encuestas.margen_final = 0", lambda l: l["encuestas"].__setitem__("margen_final", 0), "margen_final"),
              ("bono tramo desde = 0", lambda l: l["bono_movimientos"]["tramos"][0].__setitem__("desde", 0), "bono_movimientos"),
              ("encuestas.historial_max = -1", lambda l: l["encuestas"].__setitem__("historial_max", -1), "historial_max"),
