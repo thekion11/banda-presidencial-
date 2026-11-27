@@ -180,7 +180,11 @@ func _jugar() -> void:
 	_leer_reposicion(n_reg)
 	var msg := "Carta jugada."
 	if r.get("promesa", false):
-		msg = "Promesa registrada: +%s de aprobación" % Tema.dec(float(r["delta_aprobacion"]))
+		var donde := "nacional"  # sin región elegida la promesa reparte por igual entre todas
+		for rg in datos["regiones"]:
+			if rg["id"] == _region:
+				donde = "en " + String(rg["nombre"])
+		msg = "Promesa %s: +%s de aprobación%s" % [donde, Tema.dec(float(r["delta_aprobacion"])), ". Toca el mapa para dirigir la próxima" if donde == "nacional" else ""]
 	elif r.get("escandalo", false):
 		msg = "Escándalo ministerial: pierdes aprobación y capital."
 	elif r.get("propuesta") != null:

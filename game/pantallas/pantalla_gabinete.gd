@@ -22,7 +22,7 @@ func _ready() -> void:
 	m.add_child(v)
 	v.add_child(Tema.etiqueta("CONFIGURACIÓN · PASO 3", 10, Tema.ORO, true))
 	v.add_child(Tema.etiqueta("Forma tu gabinete", 24, Tema.TEXTO, true))
-	v.add_child(Tema.etiqueta("Un candidato por ministerio: el ministro de cada área lleva sus cartas, y su estilo y su afinidad con tu partido cambian tus semanas. Puedes cambiarlo durante la campaña.", 12, Tema.TEXTO_SUAVE))
+	v.add_child(Tema.etiqueta("El ministro de cada área lleva sus cartas. Ya viene completo: puedes empezar así y cambiarlo durante la campaña.", 12, Tema.TEXTO_SUAVE))
 	_aviso = Tema.etiqueta("", 12, FilasUI.ROJO_TEXTO, true)
 	v.add_child(_aviso)
 	var sel := PanelGabinete.crear(motor, "Comenzar campaña · %d semanas" % int(motor.catalogo_leyes["hemiciclo"]["semanas_campana"]), listo.emit, func(t: String) -> void: _aviso.text = t)

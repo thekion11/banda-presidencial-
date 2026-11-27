@@ -7,6 +7,10 @@ extends Control
 var carta: Dictionary = {}
 var costo: int = 0
 var leyes: Dictionary = {}
+var _arte: Control
+
+const ALTO_ARTE := 150.0
+const ALTO_ARTE_MIN := 56.0  # con letra grande la ilustración cede alto antes que el texto
 
 const NOMBRES := {"aprobacion": "Aprobación", "capital": "Capital político", "cohesion": "Cohesión", "fiscal": "Fiscal",
 	"riesgo_ejecucion": "Riesgo de ejecución", "viviendas_anio": "Viviendas al año", "rival": "Rival"}
@@ -51,7 +55,8 @@ func _ready() -> void:
 	v.add_theme_constant_override("separation", 8)
 	v.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	hoja.add_child(v)
-	v.add_child(Tema.imagen(String(carta.get("arte", carta.get("categoria", "politica"))), 150.0, 12.0))
+	_arte = Tema.imagen(String(carta.get("arte", carta.get("categoria", "politica"))), ALTO_ARTE, 12.0)
+	v.add_child(_arte)
 	var cab := HBoxContainer.new()
 	cab.add_theme_constant_override("separation", 8)
 	var cat := Tema.etiqueta_corta(String(CartaUI.NOMBRES_CAT.get(carta.get("categoria", ""), String(carta.get("categoria", "")).to_upper())), 11,
@@ -84,9 +89,16 @@ func _ready() -> void:
 
 
 func _ajustar_alto(marco: Control, hoja: Control) -> void:
-	## El alto sigue al contenido (títulos de una o dos líneas, dos a cuatro efectos), con la base fija.
-	var alto := clampf(hoja.get_combined_minimum_size().y, 300.0, 600.0)
-	marco.position.y += marco.size.y - alto
+	## El alto sigue al contenido (títulos de una o dos líneas, dos a cuatro efectos), con la base fija. Si con letra
+	## grande no cabe bajo la muesca, primero se achica la ilustración y después la base baja sobre la mano.
+	var tope := Tema.margen_superior()
+	var base := marco.position.y + marco.size.y
+	var necesita := hoja.get_combined_minimum_size().y
+	if necesita > base - tope and _arte != null:
+		_arte.custom_minimum_size.y = maxf(ALTO_ARTE_MIN, ALTO_ARTE - (necesita - (base - tope)))
+		necesita = hoja.get_combined_minimum_size().y
+	var alto := maxf(necesita, 300.0)
+	marco.position.y = maxf(tope, base - alto)
 	marco.size.y = alto
 	marco.pivot_offset = Vector2(marco.size.x * 0.5, alto)
 
