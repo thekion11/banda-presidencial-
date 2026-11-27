@@ -27,6 +27,10 @@ Estado al volver: `main` y la rama de trabajo están al día; la suite completa 
 ## Cartas del Plan Estratégico (nuevo, 27-nov)
 16 cartas `plan_*` (AFP estatal, fondo soberano, industrialización, empresas estatales, COEVA, agua, transporte) hechas con el esquema actual, con riesgo y beneficio diferido (`PLAN_ESTRATEGICO_CARTAS.md`). **D20:** falta tu confirmación aquí para anotarlo en CLAUDE.md §2; mientras tanto se revierte con un commit. Entra antes de congelar `data/`.
 
+## Tu petición del 27-nov: balas de plata y presupuesto extra a ministros (PR #11)
+- «falta poder usar las balas de plata, poder darle presupuesto extra a los ministros para qué hagan sus proyectos con prioridad en nuestras propuestas pero tienen autonomía». Detalle y balance (n=150) en `DECISIONES.md` §BO (balas: reserva aparte de la mano, 7 tipos, 4 usos por mandato, costo en capital) y §BP (presupuesto con autonomía: fracción alineada por lealtad, afinidad y competencia, incidentes).
+- Salidas para la interfaz: `motor.balas.baul()` y `motor.presupuesto.panel()`; falta que Visual arme el baúl (pantalla del día) y el panel en Gabinete. Guardado versión 4; cambia la huella de datos (los guardados de testers se descartan).
+
 ## Tu petición del 27-nov: mapa con zoom y gabinete más atractivo
 Texto literal: «El mapa del país debe agrandarse un poco para ver todas las regiones, además de poder hacerle zoom, la elección del personal del gabinete no es tan entretenida además de qué es solo un formulario, es poco atractivo». Visual lo implementa en `game/`; el núcleo ya expone las fichas y el efecto de nombrar a cada candidato (`DECISIONES.md` §BK). **D22 (tuya):** frases, biografías y retratos para los 75 candidatos exigirían descongelar `data/`.
 
