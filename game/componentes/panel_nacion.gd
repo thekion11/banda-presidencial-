@@ -13,6 +13,8 @@ func configurar(geo: Dictionary, regiones: Array, aprobacion: Dictionary, obras:
 	_mapa.ciudades_visibles = false
 	_mapa.estirar_x = 1.8
 	_mapa.x_centro_rel = 0.27
+	for r in regiones:  # al acercar el mapa se rotulan las regiones
+		_mapa.nombres[String(r["id"])] = String(r["nombre"])
 	_mapa.set_anchors_preset(Control.PRESET_FULL_RECT)
 	_mapa.cargar_geo(geo)
 	_mapa.actualizar(aprobacion, obras)

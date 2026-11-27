@@ -124,6 +124,7 @@ godot --headless --path . -s tests/test_toque_real.gd          # toques por Inpu
 godot --headless --path . -s tests/test_ciclo_vida.gd          # pausa, la app muere y vuelve: misma pantalla y mismo estado en cada subestado
 godot --headless --path . -s tests/test_teclado.gd             # el teclado de Android no tapa el nombre ni la sigla del partido
 godot --headless --path . -s tests/test_segundo_plano.gd       # en segundo plano no corre nada (mapa, tweens, música) y al volver sigue
+godot --headless --path . -s tests/test_mapa_zoom.gd           # zoom del mapa: doble toque, pellizco, rueda, arrastre, «Ver todo», nombres tocables
 godot --headless --path . -s tests/test_razones.gd             # toda razón de rechazo del motor tiene texto
 godot --headless --path . -s tests/test_sin_atascos.gd         # siempre hay mano y carta jugable (3 dificultades x 3 afiliaciones)
 godot --headless --path . -s tests/test_cobertura.gd           # cartas por área de ministerio y año
