@@ -30,6 +30,14 @@ Estado al volver: `main` y la rama de trabajo están al día; la suite completa 
 ## Tu petición del 27-nov: mapa con zoom y gabinete más atractivo
 Texto literal: «El mapa del país debe agrandarse un poco para ver todas las regiones, además de poder hacerle zoom, la elección del personal del gabinete no es tan entretenida además de qué es solo un formulario, es poco atractivo». Visual lo implementa en `game/`; el núcleo ya expone las fichas y el efecto de nombrar a cada candidato (`DECISIONES.md` §BK). **D22 (tuya):** frases, biografías y retratos para los 75 candidatos exigirían descongelar `data/`.
 
+## Lo hecho después de la primera versión (27-nov, tarde)
+- **Elección con población** (`ELECCION_POBLACION.md`): voto por región con peso por habitantes, resultados por región en la pantalla de elección; no cambió el balance. **Ruido regional** (tu «Sí, ruido regional modesto»): el código está listo; falta escribir la fila `campana.ruido_eleccion_regional` (recomiendo 6) en `data/leyes.json` porque `data/` está congelado: **dime «descongela esa fila»**.
+- **Gabinete tras la elección** (`GABINETE_TRAS_ELECCION.md`): se elige al ganar, no antes; sin cambios de guardado.
+- **Salidas para la UI:** `motivos_semana`, ficha y efecto de cada candidato, voto por región.
+- **Tu primer informe real de teléfono** (`PRUEBA_CERRADA_INFORMES.md`): 34 fps y 128 MB cumplen; el ritmo es ≈ 4 veces más lento que lo estimado (un mandato ≈ 7,6 h): D26. Aprobación 36,8 en la semana 9 es típica del juego casual.
+- **Decisiones nuevas tuyas:** D21 (reformas 4/7 muy fáciles), D22 (gabinete atractivo: textos y retratos), D23 (ruido regional: confirmar), D24 (Congreso por geografía), D25 (proyectos de transporte de la RM y Aysén en SECTRA), D26 (ritmo).
+- **Pendiente de tu confirmación para llegar a `main`:** el entorno bloqueó mis pushes a `main` hoy; mi trabajo está en la rama `ccr-ec102a3c-giitie`. Dime si autorizas empujarlo.
+
 ## Qué probar en un teléfono (`MEDICION_TELEFONO.md`)
 30 fps estables en la escena urbana, RAM por pantalla (límite 800 MB), tiempo de carga de un mandato, y que la huella del guardado coincida entre dispositivos; probar también el cambio de apariencia con letra grande y la barra de gestos.
 
