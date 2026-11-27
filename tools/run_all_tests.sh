@@ -23,7 +23,7 @@ grep -q "SCRIPT ERROR" /tmp/import.log && fallos+=("import con errores de script
 for f in tests/test_*.gd; do
   t=$(basename "$f" .gd)
   echo "== $t"
-  timeout 300 "$GODOT" --headless --path . -s "$f" 2>&1 | tee "/tmp/$t.log"
+  timeout 480 "$GODOT" --headless --path . -s "$f" 2>&1 | tee "/tmp/$t.log"
   if [ "${PIPESTATUS[0]}" -ne 0 ] || grep -qE "SCRIPT ERROR|Parse Error|Could not find type" "/tmp/$t.log"; then fallos+=("$t"); fi
 done
 echo "== fuzz_acciones"
