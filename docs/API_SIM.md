@@ -158,6 +158,7 @@
 - `categoria_circula(cat: String) -> bool` — ¿Circulan las cartas de esta categoría (sin condiciones propias)? Igual que las primeras reglas de `bloqueo`.
 - `disponible(carta: Dictionary) -> bool` — Misma regla que `bloqueo` (que además explica el motivo), sin crear diccionarios. Dentro de abrir/cerrar_contexto usa valores ya calculados.
 - `amanecer() -> void` — Efectos semanales del gabinete: el estilo de cada ministro y la afinidad ideológica media con tu partido (leyes.json › gabinete.identidad).
+- `pendiente_confirmar() -> bool` — Solo salida: true en la transición, o sea recién ganada la elección (turno 1 de gobierno) y sin nombrar gabinete desde la votación. La pantalla del gabinete
 - `efecto_semanal_de(ids: Array) -> Dictionary` — Solo salida (no cambia el estado): efecto semanal que daría este gabinete por estilos y afinidad, {indicador: delta}; lo mismo que aplica `amanecer`.
 - `ficha_candidato(id: String) -> Dictionary` — Solo salida: lo que el motor sabe de un candidato para mostrarlo (alias, cartera, estilo, afinidad 0 a 1 con tu partido, ahorro y bono, riesgo de escándalo).
 - `efecto_de_nombrar(id: String) -> Dictionary` — Solo salida: cómo cambiaría el efecto semanal del gabinete si nombraras a `id` (reemplaza al que ocupe su ministerio, o se suma si está vacío): {indicador: diferencia por semana}.

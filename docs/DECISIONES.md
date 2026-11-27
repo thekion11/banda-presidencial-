@@ -427,3 +427,7 @@ Lección de proceso: `test_sectra` armaba el guardado a mano sin `version` y dej
 
 ## BL. La elección toma en cuenta la población (27-nov-2026, petición del usuario vía la coordinadora)
 - Texto: «Las elecciones deben tomar en cuenta la población». Implementado en `sim/` (`VotoRegional`, `estado.ultima_eleccion`, peso en las encuestas regionales); sin cambios de balance ni de oros (el voto nacional ya era el promedio ponderado por población). Detalle y propuestas D23/D24: `docs/ELECCION_POBLACION.md`.
+
+
+## BM. El gabinete se elige después de la elección (27-nov-2026, petición del usuario vía la coordinadora)
+- Texto: «la elección del gabinete es después de las elecciones». Se resuelve con el flujo y la salida `gabinete.pendiente_confirmar()` descritos en `docs/GABINETE_TRAS_ELECCION.md`: sin etapa nueva, sin cambio de guardado ni de oros. La pantalla es de la sesión visual.
