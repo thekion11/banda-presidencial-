@@ -218,7 +218,7 @@
       "prob_recurso_tc": 0.4,
       "prob_exito_tc": 0.6,
       "fuente": "fuentes.json#cpr_chile_2026",
-      "verificado": false,
+      "verificado": true,
       "base_quorum": "en_ejercicio",
       "regla": "fraccion",
       "fraccion": {
@@ -227,7 +227,7 @@
       },
       "cita_regla": "CPR Art. 127 (Ley 21.481): 4/7 de los diputados y senadores en ejercicio, en cada Cámara.",
       "fuente_texto": "data/bcn/normas.json#cpr.articulos_clave[127]",
-      "nota_verificacion": "Regla tomada de la cita en normas.json (texto actualizado de la CPR al 7-oct-2025, BCN); no se declara verificada contra el texto consolidado completo."
+      "nota_verificacion": "Contrastada el 27-nov-2026 con la cita literal oficial guardada en data/bcn/normas.json (Art. 127: «las cuatro séptimas partes de los diputados y senadores en ejercicio», texto actualizado al 7-oct-2025 de la BCN): coincide con 4/7 de los miembros en ejercicio. El texto consolidado completo no pudo releerse en línea (bcn.cl responde 401 desde el entorno de desarrollo); el «en cada Cámara» y el veto (Art. 128) vienen del resumen del equipo."
     }
   ],
   "escandalo": {
@@ -337,7 +337,7 @@
     "fecha_segunda_vuelta": "2025-12-14",
     "fecha_inicio_mandato": "2026-03-11",
     "fuente": "fuentes.json#servel_calendario_2025",
-    "nota": "La transición dic-2025 a mar-2026 no se juega por turnos; el mandato arranca el 11-mar-2026."
+    "nota": "La transición dic-2025 a mar-2026 no se juega por turnos; el mandato arranca el 11-mar-2026. Verificado el 27-nov-2026 en la página oficial del Servel (fuentes.json#servel_segunda_votacion_2025): primera vuelta el 16-nov-2025, segunda votación el domingo 14-dic-2025 entre las dos primeras mayorías cuando nadie supera el 50 % de los votos válidamente emitidos. La asunción del 11-mar-2026 la confirman fuentes primarias (Senado y Gob.cl, evento real_20260311_061) y la segunda votación del 14-dic-2025, la sentencia de proclamación del Tricel (real_20251214_048). SIN verificar: el inicio de campaña del 21-sep-2025 es una convención del juego (8 semanas antes de la primera vuelta), no una fecha legal."
   },
   "fases_obra": [
     {
