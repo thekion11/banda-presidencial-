@@ -75,27 +75,29 @@ static func crear(motor: MotorTurno, regiones: Array, regional: Dictionary, res:
 		tarjeta.add_child(Tema.etiqueta("Se mide tu aprobación al cierre, con un margen de ±%.0f puntos propio de la jornada." % ruido, 11, Tema.TEXTO_SUAVE))
 	else:
 		tarjeta.add_child(Tema.etiqueta(texto_poblacion(res, ruido), 11, Tema.TEXTO_SUAVE))
-	v.add_child(FilasUI.tarjeta(tarjeta))
+	var cuerpo := FilasUI.col(8)  # todo lo que sigue al veredicto se desplaza: con letra ×1,5 en 360×640 no cabe entero
+	cuerpo.add_child(FilasUI.tarjeta(tarjeta))
 	if res["balotaje"]:
 		var av := Tema.etiqueta("Aviso: no llegaste al umbral, pero superaste el piso. Tienes %d semanas más de campaña para subir tu aprobación; en la segunda vuelta necesitas %.0f %%." % [int(h["semanas_balotaje"]), umbral], 12, Tema.TINTA, false, 600)
-		v.add_child(FilasUI.tarjeta(av, Tema.ORO))
+		cuerpo.add_child(FilasUI.tarjeta(av, Tema.ORO))
 	elif not res["electo"]:
-		v.add_child(Tema.etiqueta("La aprobación quedó bajo %.0f %%%s." % [piso if ronda == 1 else umbral, " (piso de segunda vuelta)" if ronda == 1 else ""], 12, FilasUI.ROJO_TEXTO, false, 600))
+		cuerpo.add_child(Tema.etiqueta("La aprobación quedó bajo %.0f %%%s." % [piso if ronda == 1 else umbral, " (piso de segunda vuelta)" if ronda == 1 else ""], 12, FilasUI.ROJO_TEXTO, false, 600))
 	var lista := FilasUI.col(5)
 	if por_region.is_empty():
-		v.add_child(FilasUI.titulo("Aprobación por región"))
+		cuerpo.add_child(FilasUI.titulo("Aprobación por región"))
 		_lista_aprobacion(lista, regiones, regional)
-		v.add_child(FilasUI.scroll(lista))
+		cuerpo.add_child(lista)
 	else:
-		v.add_child(FilasUI.titulo("Voto por región, de la más poblada a la menos"))
+		cuerpo.add_child(FilasUI.titulo("Voto por región, de la más poblada a la menos"))
 		_lista_poblacion(lista, regiones, por_region, umbral)
 		var fila := HBoxContainer.new()
 		fila.add_theme_constant_override("separation", 10)
-		fila.size_flags_vertical = Control.SIZE_EXPAND_FILL
+		fila.custom_minimum_size.y = maxf(300.0, Tema.alto_util() - 480.0)  # mapa y lista con alto propio: con letra grande el resto se desplaza
 		if not geo.is_empty():
 			fila.add_child(_mapa_ganador(geo, regiones, por_region))
 		fila.add_child(FilasUI.scroll(lista))
-		v.add_child(fila)
+		cuerpo.add_child(fila)
+	v.add_child(FilasUI.scroll(cuerpo))
 	Movimiento.escalonar(v, 0.05, 0.05)
 	Movimiento.escalonar(lista, 0.45, 0.035, 18)
 	if res["electo"]:
