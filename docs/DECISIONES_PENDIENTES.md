@@ -63,3 +63,10 @@ Cuando decidas algo, dímelo con el número (p. ej. «D2 b») y se aplica, se mi
 - Qué hay: commit 1619c07 (25-nov-2026, DECISIONES.md §S) lo introdujo para cumplir la meta de ≤ 3 toques antes del primer turno; un botón cambia al test completo de 8 preguntas. Los deltas rápidos (×1,8) están en `data/ideologia.json › rapido`.
 - Discrepancia: CLAUDE.md §2 (PR-01) dice test completo de 8 preguntas para fundadores e independientes. En los documentos no hay una autorización explícita del usuario para el test rápido por defecto; figuraba como «pendiente» en DECISIONES.md §Q.
 - Opciones: (a) dejarlo por defecto y enmendar CLAUDE.md; (b) por defecto el de 8 preguntas, con el rápido como opción. Recomendación: (a), por la sesión de ~20 min, pero la decide el usuario.
+
+## D20. Cartas del Plan Estratégico (27-nov-2026): confirmación del usuario
+- Qué hay: 16 cartas `plan_*` (DECISIONES §BI, `docs/PLAN_ESTRATEGICO_CARTAS.md`) hechas por encargo de la coordinadora, que dice que el usuario las pidió hoy («Cartas del juego»).
+- Cita de la coordinadora (27-nov-2026, ~02:00 UTC, su conversación): el usuario pegó el «Plan Estratégico de Desarrollo, Soberanía Financiera e Industrialización de Chile (Visión Integral)» sin más texto; ante la pregunta «¿Qué quieres que hagan las sesiones?» (opciones: Cartas del juego (Recomendado) / Revisión crítica / Perfeccionar el documento / Solo guardarlo) respondió «Cartas del juego (Recomendado)» (descripción: «Convertir las 8 propuestas en cartas/proyectos jugables con costos, efectos, plazos y su validación legal, rotuladas como cifras ilustrativas. Es contenido nuevo: lo autorizas tú, y quedaría registrado en docs con fecha y fuente.»).
+- Falta: que el usuario lo confirme en esta sesión (o pegue su texto) para anotarlo como ampliación autorizada en CLAUDE.md §2. Mientras tanto son reversibles con un commit.
+- Recomendación: confirmar; revisar los valores de riesgo y diferido tras jugar con ellas (entran antes de congelar `data/`, D17).
+

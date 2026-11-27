@@ -401,3 +401,10 @@ Lección de proceso: `test_sectra` armaba el guardado a mano sin `version` y dej
 
 ## BH. Verificación constitucional y de fichas (27-nov-2026, cola 14)
 `docs/VERIFICACION_CONSTITUCIONAL.md`: `bcn.cl` y `leychile.cl` bloquean (401) el acceso desde el entorno; se verificó con Servel, Senado, Gob.cl y Minsal lo que esas fuentes permiten. Marcados: calendario (16-nov y 14-dic de 2025, regla de mayoría absoluta, asunción del 11-mar-2026), `reforma_constitucional` (`verificado: true`; cita literal de Art. 127) y 10 fichas del Minsal. Sin verificar: Art. 25, incisos de Art. 66, 229 proyectos. Nueva fuente `servel_segunda_votacion_2025`. Los cambios de `data/` cambian la huella de datos (invalidan guardados anteriores; no hay testers aún); las pruebas de oro no cambian.
+
+
+## BI. Cartas del Plan Estratégico del usuario (27-nov-2026)
+- **Origen:** encargo de la coordinadora, que informa que hoy el usuario pegó en su conversación el «Plan Estratégico de Desarrollo, Soberanía Financiera e Industrialización de Chile» (8 propuestas) y eligió «Cartas del juego». La conversación no está en esta sesión; la autorización consta solo por la coordinadora. **No** se edita CLAUDE.md §2 como «autorizada por el usuario» hasta que él lo confirme aquí (D20).
+- **Qué se hizo:** 16 cartas `plan_*` en `data/cartas_curadas.json` generadas con `tools/generar_plan.py` (esquema actual: efectos, requisitos de ley, riesgo, diferido). Sin mecánicas, campos, categorías ni pantallas nuevas. Fuente `plan_usuario_2026` (cifras ilustrativas, sin verificar). Diseño y supuestos: `docs/PLAN_ESTRATEGICO_CARTAS.md`.
+- **Efecto en pruebas:** cambia `data/`, así que cambian la huella, los tres oros (4 semanas, 30 días, completa) y `tests/oro/huellas.json`: regenerados por este motivo.
+- **Revertir:** `git revert` del commit; el generador es idempotente.

@@ -23,6 +23,9 @@ Estado al volver: `main` y la rama de trabajo están al día; la suite completa 
 12. **Firma y publicación:** keystore, licencias del arte con IA, Google Play en pausa.
 13. **PR #8:** pasar a Ready y fusionar; **`main` como rama por defecto** en GitHub.
 
+## Cartas del Plan Estratégico (nuevo, 27-nov)
+16 cartas `plan_*` (AFP estatal, fondo soberano, industrialización, empresas estatales, COEVA, agua, transporte) hechas con el esquema actual, con riesgo y beneficio diferido (`PLAN_ESTRATEGICO_CARTAS.md`). **D20:** falta tu confirmación aquí para anotarlo en CLAUDE.md §2; mientras tanto se revierte con un commit. Entra antes de congelar `data/`.
+
 ## Qué probar en un teléfono (`MEDICION_TELEFONO.md`)
 30 fps estables en la escena urbana, RAM por pantalla (límite 800 MB), tiempo de carga de un mandato, y que la huella del guardado coincida entre dispositivos; probar también el cambio de apariencia con letra grande y la barra de gestos.
 

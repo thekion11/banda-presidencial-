@@ -1215,5 +1215,14 @@
     "vigencia_dias": 730,
     "es_ilustrativa": false,
     "verificado_contra_texto": true
+  },
+  {
+    "id": "plan_usuario_2026",
+    "institucion": "Plan del usuario (propuesta propia)",
+    "titulo": "Plan Estratégico de Desarrollo, Soberanía Financiera e Industrialización de Chile (27-nov-2026)",
+    "url": "https://example.invalid/plan-del-usuario",
+    "fecha_corte": "2026-11-27",
+    "vigencia_dias": 3650,
+    "es_ilustrativa": true
   }
 ]
