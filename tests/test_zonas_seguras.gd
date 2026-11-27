@@ -64,7 +64,7 @@ func _correr() -> void:
 	_check(is_equal_approx(Tema.margen_inferior(), 40.0) and is_equal_approx(Tema.margen_superior(), 34.0), "con franjas: abajo lo que pide el sistema y arriba eso + 4")
 	Tema.inset_prueba = Vector2(-1, -1)
 	_check(Tema.margen_inferior() >= 0.0, "sin datos del sistema (escritorio) el margen inferior no es negativo")
-	for alto in ALTOS:
+	for alto in RecorridoUI.alturas(ALTOS):
 		for ins in INSETS:
 			Tema.inset_prueba = ins
 			var tag := "[%d, muesca %d, barra %d]" % [alto, ins.x, ins.y]
@@ -72,7 +72,7 @@ func _correr() -> void:
 	Tema.inset_prueba = Vector2(-1, -1)
 	_check(_claves.has("Terminar semana") or _claves.has("Siguiente semana"), "la auditoría vio «Terminar semana»")
 	_check(_claves.has("Pasa a la"), "la auditoría vio el botón de la votación")
-	_check(_vistos > 60 * ALTOS.size() * INSETS.size(), "la auditoría revisó muchos botones (%d)" % _vistos)
+	_check(_vistos > 60 * RecorridoUI.alturas(ALTOS).size() * INSETS.size(), "la auditoría revisó muchos botones (%d)" % _vistos)
 	if _fallos == 0:
 		print("ZONAS SEGURAS OK")
 	quit(1 if _fallos > 0 else 0)

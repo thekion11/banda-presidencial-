@@ -8,6 +8,17 @@ extends RefCounted
 const ALTURAS := [844, 693, 866, 812, 910]  # alto lógico con ancho 390 (keep_width): 390×844, 360×640, 412×915, 480×1000 y plegable cerrado 280×653 (tablet y plegable abierto: 390×844 con bandas, Main.aspecto_para)
 
 
+static func real() -> bool:
+	return DisplayServer.get_name() != "headless"
+
+
+static func alturas(lista: Array = ALTURAS) -> Array:
+	## Con ventana real (xvfb o un teléfono) no se simula el alto: el único es el de la ventana (Main.base_para).
+	if not real():
+		return lista
+	return [load("res://game/main.gd").base_para(DisplayServer.window_get_size()).y]
+
+
 static func recorrer(arbol: SceneTree, visitar: Callable, alto: int = 844) -> void:
 	arbol.root.content_scale_size = Vector2i(390, alto)  # otros teléfonos: mismo ancho lógico, otro alto
 	Movimiento.forzado = 0
