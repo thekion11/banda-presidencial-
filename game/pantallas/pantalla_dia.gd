@@ -66,6 +66,13 @@ func _ready() -> void:
 		tut.leyes = motor.catalogo_leyes
 		tut.objetivos = [_mano, _r["pa"], _btn_deleg, _nav, _btn_jugar]
 		_capa.add_child(tut)
+	elif Tutorial.debe_mostrar("ayuda_gobierno") and motor.estado.etapa == "gobierno" and motor.estado.turno_actual == 1 and motor.estado.ciclo == 1:
+		var ayuda := Tutorial.new()  # primer día de gobierno: delegar, agenda legislativa y ahorro (una sola vez)
+		ayuda.pasos = Tutorial.PASOS_GOBIERNO
+		ayuda.clave = "ayuda_gobierno"
+		ayuda.leyes = motor.catalogo_leyes
+		ayuda.objetivos = [_btn_deleg, _nav, _r["pa"]]
+		_capa.add_child(ayuda)
 
 
 # ------------------------------------------------------------------ estado -> UI

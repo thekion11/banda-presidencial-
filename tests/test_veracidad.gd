@@ -83,6 +83,19 @@ func _correr() -> void:
 	await _cuadros(2)
 	_check(main._pantalla is PantallaGabinete, "recién ganada la elección viene la transición del gabinete")
 	motor.elegir_gabinete(motor.estado.gabinete.duplicate())  # confirmar el preseleccionado cierra la transición
+	DirAccess.remove_absolute(ProjectSettings.globalize_path(Tutorial.ruta))
+	Tutorial.marcar_visto("tutorial_visto")  # vio el tutorial de campaña, no la ayuda de gobierno
+	main.mostrar_dia()
+	await _cuadros(4)
+	var ayudas: Array = main._pantalla._capa.get_children().filter(func(h: Node) -> bool: return h is Tutorial)
+	_check(ayudas.size() == 1 and (ayudas[0] as Tutorial).clave == "ayuda_gobierno", "el primer día de gobierno aparece la ayuda breve (agenda y ahorro)")
+	if ayudas.size() == 1:
+		var tope := int(motor.catalogo_leyes["mano"]["tope_ahorro"])
+		(ayudas[0] as Tutorial)._paso = 2
+		(ayudas[0] as Tutorial)._mostrar()
+		_check((ayudas[0] as Tutorial)._texto.text.contains("hasta %d" % tope), "la ayuda dice el tope de ahorro de leyes.json (%d)" % tope)
+		(ayudas[0] as Tutorial)._cerrar()
+	_check(not Tutorial.debe_mostrar("ayuda_gobierno"), "la ayuda de gobierno no se repite")
 	main.mostrar_dia()
 	await _cuadros(2)
 	var dia: PantallaDia = main._pantalla
