@@ -208,6 +208,28 @@ static func fondo_hero(categoria: String, fraccion: float = 0.62, oscurecer: flo
 	return raiz
 
 
+static func subir_al_enfocar(campo: Control) -> void:
+	## El teclado de Android se superpone (no achica la ventana): al enfocar un campo, sus listas desplazables lo suben
+	## al tope para que no quede debajo del teclado (cola 8: la sigla quedaba tapada en 390×693 con letra grande).
+	campo.focus_entered.connect(func() -> void: _subir(campo, 0))
+
+
+static func _subir(campo: Control, nivel: int) -> void:
+	if not is_instance_valid(campo) or not campo.is_inside_tree() or nivel > 3:
+		return
+	var p := campo.get_parent()
+	var k := 0
+	while p != null:
+		if p is ScrollContainer:
+			if k == nivel:  # de la lista más cercana hacia afuera, un cuadro cada una (el desplazamiento se aplica al reacomodar)
+				var sc := p as ScrollContainer
+				sc.scroll_vertical = maxi(0, sc.scroll_vertical + roundi(campo.get_global_rect().position.y - sc.get_global_rect().position.y - 12.0))
+				campo.get_tree().process_frame.connect(func() -> void: _subir(campo, nivel + 1), CONNECT_ONE_SHOT)
+				return
+			k += 1
+		p = p.get_parent()
+
+
 static func campo(placeholder: String, maximo: int, texto: String = "") -> LineEdit:
 	## Campo de texto para el jugador (tema oscuro, alto táctil de 44 px).
 	var le := LineEdit.new()
@@ -222,6 +244,7 @@ static func campo(placeholder: String, maximo: int, texto: String = "") -> LineE
 	le.add_theme_color_override("caret_color", ORO)
 	le.add_theme_stylebox_override("normal", caja(Color("#0F2D46"), 10, Color("#5D7A94"), 1))
 	le.add_theme_stylebox_override("focus", caja(Color("#0F2D46"), 10, ORO, 2))
+	subir_al_enfocar(le)
 	return le
 
 

@@ -235,6 +235,8 @@ func _mostrar_fundacion() -> void:
 	_sigla.max_length = 5
 	_sigla.custom_minimum_size = Vector2(0, 48)
 	form.add_child(_sigla)
+	for le in [_nombre, _sigla]:
+		Tema.subir_al_enfocar(le)  # que el teclado no los tape
 	if afiliacion == "independiente":
 		_nombre.text = "Candidatura Independiente"
 		_sigla.text = "IND"

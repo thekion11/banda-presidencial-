@@ -58,3 +58,24 @@ Las pruebas de interfaz emitían señales (`tocada`, `pressed`) o llamaban a `_g
 ## La app se cierra en medio de una decisión (cola 7)
 
 Al pasar a segundo plano o cerrarse, `Main` guarda la partida y la instantánea (`NOTIFICATION_APPLICATION_PAUSED` y `NOTIFICATION_WM_CLOSE_REQUEST`). Pero si Android mataba la app con un **evento con decisión en pantalla**, al continuar no volvía a aparecer. El motor lo deja pendiente (el evento ocurrió y no hay decisión registrada), así que el jugador nunca elegía y las consecuencias de la opción no llegaban. **Corregido:** `PantallaDia.retomar_decisiones()` vuelve a mostrar, al continuar, las decisiones de la semana que quedaron sin responder. La prueba está en `tests/test_atras.gd`. Las votaciones y avisos ya aplicados no se repiten, porque solo eran para mostrar.
+
+## Ciclo de vida de Android: pausa, la app muere y se vuelve a abrir (cola 8)
+
+`tests/test_ciclo_vida.gd` repite el ciclo en cada subestado: `NOTIFICATION_APPLICATION_PAUSED` (Android guarda ahí), destruir `Main` sin más avisos, abrir de nuevo y «Continuar partida». Compara la etapa, el turno, el día, los movimientos, los indicadores, la mano, el gabinete, las entradas y las decisiones antes y después.
+
+| Subestado al morir | Al volver | Se pierde |
+|---|---|---|
+| Campaña, con una carta recién jugada | Día de campaña, todo igual | Nada |
+| Ficha ampliada abierta | Día, sin ficha flotando | Nada (es solo lectura) |
+| Fin de campaña con la elección pendiente | Día con «Ir a las urnas» | Nada |
+| Gobierno con la hoja de delegar abierta | Día de gobierno, sin la hoja | Nada (delegar no había empezado) |
+| Evento con decisión en pantalla | El evento se vuelve a mostrar (`retomar_decisiones`) | Nada |
+| Votación o aviso a medias | Día; la votación no se repite | **Solo el momento de verla**: el resultado ya estaba aplicado y queda en las barras, el telón y el Congreso |
+| Telón de la semana | Día de la semana nueva | Nada (es solo para mostrar) |
+| Test ideológico o fundación a medias | Menú (no hay partida todavía) | Las respuestas: son 3 preguntas y no hay nada guardado que perder. Si había una partida anterior, «Continuar» la ofrece |
+| Tutorial a medias | Vuelve a aparecer en la primera semana de campaña, porque solo se marca visto al terminarlo o saltarlo | Nada |
+| Fin del mandato | Pantalla de fin | Nada |
+
+## Teclado y cambio de tamaño con campos de texto (cola 8)
+
+El teclado de Android se superpone a la ventana sin achicarla y ocupa cerca del 45 % de abajo. Con letra ×1,5 en 390×693, **la sigla del partido quedaba tapada mientras se escribía**: terminaba en y=409 y el teclado empieza en y≈381. **Corregido:** `Tema.subir_al_enfocar` sube el campo enfocado al tope de sus listas desplazables. Lo usan el nombre y la sigla del partido y todos los `Tema.campo`: la búsqueda de la cartera y los nombres de línea y estación del Comité. La orientación está bloqueada en vertical, así que no hay giro. Si la ventana cambia de alto (pantalla dividida, plegable) con el formulario abierto, lo escrito se conserva: solo el día se rearma, y solo si no hay nada encima. Prueba: `tests/test_teclado.gd`, en 693 y 844 con letra ×1 y ×1,5. Mejora posible: usar la altura real del teclado (`DisplayServer.virtual_keyboard_get_height()`) en lugar de subir siempre al tope.
