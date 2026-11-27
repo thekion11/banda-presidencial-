@@ -499,6 +499,7 @@
 "/piso_ideologico": "dic",
 "/piso_ideologico/base": "num",
 "/piso_ideologico/bono_bastion": "num",
+"/piso_ideologico/crisis_margen_sobre_piso": "num",
 "/piso_ideologico/distancia_max": "num",
 "/piso_ideologico/escanos_ref": "num",
 "/piso_ideologico/motivo_minimo": "num",

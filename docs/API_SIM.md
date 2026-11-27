@@ -309,6 +309,7 @@
 - `afinidad(id: String) -> float` — 0..1: qué tan cerca está la inclinación de la región del eje económico del partido (1 = misma posición).
 - `pisos() -> Dictionary` — Piso de aprobación y de voto por región (id -> puntos 0..100); sin partido o sin regiones, todos 0. El diccionario es de solo lectura (se reutiliza mientras no cambien sus entradas).
 - `nacional() -> float` — Piso nacional: promedio de los pisos regionales ponderado por población.
+- `umbral_crisis(base: float) -> float` — Umbral de aprobación bajo el cual cuenta una semana de crisis: el de siempre, o `crisis_margen_sobre_piso` puntos sobre el piso nacional si eso es más (con un piso alto la aprobación no baja del piso, así que la crisis se mide sobre lo que hay encima).
 - `resumen() -> Dictionary` — Solo lectura para la interfaz: {nacional, voto_duro (= nacional), por_region: [{id, piso, afinidad}], frenado} (frenado = puntos de aprobación nacional que el piso evitó perder esta semana).
 
 ## `Regiones` (`sim/regiones.gd`)

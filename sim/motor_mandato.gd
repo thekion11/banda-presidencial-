@@ -32,7 +32,7 @@ func evaluar_crisis() -> void:
 	## Cuenta las semanas con aprobación bajo el umbral y termina el gobierno por crisis al completar la racha.
 	var _m := m  # una sola resolución de la referencia débil por llamada (cada acceso a `m` cuesta ~0,5 us)
 	var d: Dictionary = _m.catalogo_leyes["dinamica"]
-	if _m.estado.ind("aprobacion") < float(d["umbral_crisis_aprobacion"]):
+	if _m.estado.ind("aprobacion") < _m.piso.umbral_crisis(float(d["umbral_crisis_aprobacion"])):  # con piso alto, la crisis se mide sobre el voto blando
 		_m.estado.semanas_en_crisis += 1
 	else:
 		_m.estado.semanas_en_crisis = 0
