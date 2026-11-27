@@ -27,10 +27,7 @@ func _correr() -> void:
 		for p in datos["ideologia"]["preguntas"]:
 			resp.append(p["opciones"][1])
 		main.motor = Partida.crear(datos, 5, GeneradorPartido.construir_partido("R", "RRR", "metropolitana", resp, datos["ideologia"]))
-		main.mostrar_gabinete()
-		await process_frame
-		var conf: Array = main._pantalla.find_children("*", "Button", true, false).filter(func(b: Button) -> bool: return b.text.begins_with("Comenzar campaña"))
-		conf[0].pressed.emit()
+		main.mostrar_dia()  # la pantalla de gabinete ahora es la transición posterior a la elección: la campaña abre directo el día
 		await process_frame
 		var dia: Node = main._pantalla
 		for t in dia._capa.find_children("*", "Tutorial", true, false):

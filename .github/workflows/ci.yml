@@ -68,11 +68,11 @@ jobs:
       - name: Fuzzing del núcleo (acciones aleatorias e inválidas, replay idéntico)
         run: |
           godot --headless --path . -s tests/fuzz_acciones.gd -- 60 7000 2>&1 | tee /tmp/fz.log
-          [ "${PIPESTATUS[0]}" -eq 0 ] && ! grep -q "SCRIPT ERROR" /tmp/fz.log
+          [ "${PIPESTATUS[0]}" -eq 0 ] && ! grep -qE "SCRIPT ERROR|Parse Error" /tmp/fz.log
       - name: "Fuzzing de carrera, instantáneas, propiedades, flujo de la interfaz, Congreso, calendario, guardado, obras y coalición (acotado)"
         run: |
           # cada fuzz corre con su user:// propio y falla ante cualquier rc != 0 o «SCRIPT ERROR» (un error de script no cambia el código de salida de godot)
-          fz() { XDG_DATA_HOME="$(mktemp -d)" godot --headless --path . -s "$@" 2>&1 | tee /tmp/fz.log; [ "${PIPESTATUS[0]}" -eq 0 ] && ! grep -q "SCRIPT ERROR" /tmp/fz.log; }
+          fz() { XDG_DATA_HOME="$(mktemp -d)" godot --headless --path . -s "$@" 2>&1 | tee /tmp/fz.log; [ "${PIPESTATUS[0]}" -eq 0 ] && ! grep -qE "SCRIPT ERROR|Parse Error" /tmp/fz.log; }
           fz tests/fuzz_carrera.gd -- 4 700
           fz tests/fuzz_instantanea.gd -- 100 31
           fz tests/fuzz_propiedades.gd -- 1 800
