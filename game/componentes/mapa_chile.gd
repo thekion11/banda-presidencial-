@@ -390,46 +390,10 @@ func _process(delta: float) -> void:
 
 
 func _dibujar_vivo() -> void:
-	## Mapa vivo (dirección visual v4): regiones con tendencia laten en verde o coral, el bastión tiene un pulso
-	## dorado, las obras se mecen y las propuestas laten. Todo sigue al golpe de cámara.
-	var v := _vivo
-	v.draw_set_transform_matrix(_cam())
-	var pulso := 0.5 + 0.5 * sin(_t * 3.2)
-	var clave := Vector4(size.x, size.y, x_centro_rel, estirar_x)
-	if clave != _segs_clave or not is_same(_segs_de, _tendencia):  # los segmentos solo cambian con el tamaño o la tendencia, no cada cuadro
-		_segs_clave = clave
-		_segs_de = _tendencia
-		for sg in [1, -1]:
-			var acum := PackedVector2Array()
-			for id in _tendencia.keys():
-				if int(_tendencia[id]) == sg:
-					for pts in _contornos(id):
-						if pts.size() >= 9:
-							acum.append_array(_segmentos(pts))
-			_segs_tendencia[sg] = acum
-	for signo in [1, -1]:  # regiones que suben y que bajan: una llamada de dibujo por color
-		var segs: PackedVector2Array = _segs_tendencia.get(signo, PackedVector2Array())
-		if not segs.is_empty():
-			v.draw_multiline(segs, Color(Tema.bien() if signo > 0 else Tema.mal(), 0.25 + 0.55 * pulso), 2.0 + 1.5 * pulso, false)
-	if bastion != "" and _banda_y.has(bastion):
-		var cb := centro(bastion) + Vector2(0.0, 12.0)
-		var k := fmod(_t, 2.2) / 2.2
-		v.draw_arc(cb, 5.0 + 16.0 * k, 0.0, TAU, 32, Color(Tema.ORO, 0.8 * (1.0 - k)), 2.0, true)
-		v.draw_circle(cb, 3.5 + 0.8 * pulso, Tema.ORO)
-		v.draw_arc(cb, 3.5 + 0.8 * pulso, 0.0, TAU, 20, Tema.OCEANO, 1.2, true)
-	for id in obras.keys():
-		if int(obras[id]) > 0 and _banda_y.has(id):
-			var c := centro(id) + Vector2(10.0, -2.0 * sin(_t * 2.4 + float(id.length())))
-			v.draw_circle(c, 11.0, Tema.OCEANO)
-			v.draw_circle(c, 9.5, Tema.ORO)
-			v.draw_string(Tema.fuente_titulo(), c + Vector2(-9.5, 4.5), str(int(obras[id])), HORIZONTAL_ALIGNMENT_CENTER, 19.0, 13, Tema.TINTA)
-	for id in propuestas.keys():
-		if bool(propuestas[id]) and _banda_y.has(id):
-			var c2 := centro(id) + Vector2(-12.0, -2.0)
-			var e := 1.0 + 0.12 * pulso
-			v.draw_circle(c2, 11.0 * e, Tema.CREMA)
-			v.draw_circle(c2, 9.5 * e, Tema.ROJO)
-			v.draw_colored_polygon(PackedVector2Array([c2 + Vector2(-5, 1), c2 + Vector2(0, -5), c2 + Vector2(5, 1)]), Tema.TEXTO)
-			v.draw_rect(Rect2(c2 + Vector2(-3.5, 1), Vector2(7, 5)), Tema.TEXTO)
-	_fuegos = FuegosMapa.dibujar(v, _fuegos, _t, centro)  # obras terminadas (fuegos_mapa.gd)
-	v.draw_set_transform_matrix(Transform2D.IDENTITY)
+	MapaVivo.dibujar(self, _vivo)
+
+
+func acercar_a(id: String) -> void:
+	## El riel elige una región: el mapa se acerca sobre ella (sin animación con «Reducir movimiento»).
+	if _banda_y.has(id):
+		_zoom.ir_a(2.0, _cam() * centro(id), size, self, _al_cambiar_vista)

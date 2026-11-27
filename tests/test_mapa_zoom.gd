@@ -138,6 +138,23 @@ func _correr() -> void:
 		await _cuadros(1)
 	_check(z.acercado(), "el doble toque real (pantalla táctil) acerca el mapa")
 	_check(main.motor.estado.entradas.size() == 0, "acercar el mapa no juega cartas ni registra acciones")
+	# riel de regiones (opción elegida por el usuario): 16 de norte a sur, % del motor, tocar elige y acerca, otra vez abre
+	m._ver_todo.pressed.emit()
+	await _cuadros(1)
+	var riel: RielRegiones = dia._riel
+	var regs: Array = main.datos["regiones"]
+	_check(riel._botones.size() == 16 and riel._botones.keys() == regs.map(func(r: Dictionary) -> String: return String(r["id"])), "el riel tiene las 16 regiones de norte a sur")
+	var iguales := true
+	for r in regs:
+		iguales = iguales and (riel._valores[String(r["id"])] as Label).text == Tema.pct(float(main.motor.estado.aprobacion_regional.get(String(r["id"]), 0.0)))
+	_check(iguales, "el riel muestra la aprobación del motor en cada región")
+	(riel.boton("aysen") as Button).pressed.emit()
+	await _cuadros(2)
+	_check(dia._region == "aysen" and m.seleccion == "aysen" and z.acercado(), "tocar Aysén en el riel la elige y acerca el mapa")
+	_check(m.enlace == riel.boton("aysen"), "la línea punteada une la región con su fila del riel")
+	(riel.boton("aysen") as Button).pressed.emit()
+	await _cuadros(2)
+	_check(dia._zona_panel.visible, "tocar otra vez la región elegida abre su detalle (Nación)")
 	DirAccess.remove_absolute(ProjectSettings.globalize_path(Tutorial.ruta))
 	if _fallos == 0:
 		print("MAPA ZOOM OK")

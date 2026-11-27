@@ -21,6 +21,8 @@ func _invariantes(m: MotorTurno, ctx: String) -> void:
 		if k != "viviendas_anio":
 			_check(v >= -0.001 and v <= 100.001, "%s: indicador %s fuera de 0..100 (%s)" % [ctx, k, v])
 	_check(e.pa_actual >= 0, "%s: PA negativos (%d)" % [ctx, e.pa_actual])
+	var ingreso_max: int = e.pa_maximo + int(e.bono_mov.get("aprobacion", 0)) + int(e.bono_mov.get("asesores", 0))
+	_check(e.pa_actual <= maxi(int(m.catalogo_leyes["mano"]["tope_ahorro"]), ingreso_max), "%s: movimientos %d sobre el tope de ahorro (BL)" % [ctx, e.pa_actual])
 	_check(e.delegadas_turno >= 0 and e.internos_actual >= 0, "%s: contadores negativos" % ctx)
 	for r in e.aprobacion_regional:
 		var v := float(e.aprobacion_regional[r])

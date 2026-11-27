@@ -56,6 +56,7 @@
   "mano": {
     "tamano": 5,
     "pa_por_turno": 5,
+    "tope_ahorro": 10,
     "descartes_por_turno": 2,
     "reales_en_mazo": 15,
     "min_disenadas": 2,
