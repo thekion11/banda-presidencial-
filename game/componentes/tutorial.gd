@@ -7,7 +7,7 @@ static var ruta: String = "user://preferencias.json"
 
 const PASOS := [
 	["Tu mano", "Cada carta es una acción de gobierno. Toca una para verla; deslízala hacia arriba para jugarla. Al jugarla entra otra."],
-	["Movimientos", "Cada carta cuesta de 1 a 3 movimientos. Tienes {pa} por turno, más un bono cuando tu aprobación es alta y +1 por cada asesor."],
+	["Movimientos", "Cada carta cuesta de 1 a 3. Tienes {pa} por semana (más bonos) y lo que no gastes se guarda, hasta {tope}."],
 	["Delegación", "Hasta {deleg} cartas por turno: suéltalas sobre el ícono izquierdo. No gastan movimientos, pero pueden fallar. Solo en gobierno."],
 	["Gabinete", "Tu gabinete de {gab} ministerios se puede rellenar solo. Ahí cambias también asesores, coalición y movimientos internos."],
 	["Tu turno", "Cuando termines tus jugadas, toca el botón del centro para cerrar la semana. Eso es todo: ¡a campaña!"],
@@ -87,7 +87,7 @@ func _mostrar() -> void:
 	var p: Array = PASOS[_paso]
 	_contador.text = "PASO %d DE %d" % [_paso + 1, PASOS.size()]
 	_titulo.text = String(p[0])
-	_texto.text = String(p[1]).format({"pa": int(leyes.get("mano", {}).get("pa_por_turno", 5)), "deleg": int(leyes.get("delegacion", {}).get("max_por_turno", 2)), "gab": int(leyes.get("gabinete", {}).get("tamano", 8))})
+	_texto.text = String(p[1]).format({"pa": int(leyes.get("mano", {}).get("pa_por_turno", 5)), "deleg": int(leyes.get("delegacion", {}).get("max_por_turno", 2)), "gab": int(leyes.get("gabinete", {}).get("tamano", 8)), "tope": int(leyes.get("mano", {}).get("tope_ahorro", 10))})
 	_siguiente.text = "Siguiente" if _paso < PASOS.size() - 1 else "Entendido"
 	if _paso < objetivos.size() and objetivos[_paso] is Control and is_instance_valid(objetivos[_paso]):
 		var r: Rect2 = (objetivos[_paso] as Control).get_global_rect().grow(6.0)

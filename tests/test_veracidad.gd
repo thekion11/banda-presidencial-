@@ -33,9 +33,13 @@ func _sin_punto_decimal(raiz: Node, donde: String) -> void:
 			_check(_decimal.search(t) == null, "%s: «%s» usa punto decimal" % [donde, t.left(60)])
 
 
+func _hay(raiz: Node, texto: String) -> bool:
+	return raiz.find_children("*", "Label", true, false).any(func(l: Label) -> bool: return l.text.contains(texto) and not l.is_queued_for_deletion())
+
+
 func _cabecera(dia: PantallaDia, donde: String) -> void:
 	var est := dia.motor.estado
-	_check(dia._r["pa"].text == ManoUI.texto_pastilla(est) and dia._r["pa"].text.begins_with(str(est.pa_actual)), "%s: la pastilla dice «%s» y quedan %d movimientos" % [donde, dia._r["pa"].text, est.pa_actual])
+	_check(dia._r["pa"].text == ManoUI.texto_pastilla(est, int(dia.motor.movimientos.ahorro_movimientos()["tope_efectivo"])) and dia._r["pa"].text.begins_with(str(est.pa_actual)), "%s: la pastilla dice «%s» y quedan %d movimientos" % [donde, dia._r["pa"].text, est.pa_actual])
 	var b := String(dia._btn_jugar.text)
 	_check(b == "Ir a las urnas" or (b == "Terminar semana" if est.pa_actual > 0 else b == "Siguiente semana"), "%s: el botón dice «%s» con %d movimientos" % [donde, b, est.pa_actual])
 	var sem := int(dia.datos["leyes"]["hemiciclo"]["semanas_campana"])
@@ -103,6 +107,32 @@ func _correr() -> void:
 		dia._abrir_panel(panel)
 		await _cuadros(2)
 		_sin_punto_decimal(dia, "panel " + panel)
+	# agenda legislativa (pestaña Congreso): el contador y la lista dicen lo del motor, y presentar desde la pantalla la agrega
+	dia._abrir_panel("congreso")
+	await _cuadros(2)
+	var ea := motor.agenda.estado_agenda()
+	_check(_hay(dia._zona_panel, "Agenda del gobierno · %d de %d en trámite" % [int(ea["en_tramite"]), int(ea["maximo"])]), "agenda: el contador coincide con el motor")
+	var cat := motor.agenda.agenda_catalogo()
+	if bool(ea["puede_presentar"]) and not cat.is_empty():
+		var titulo := String(cat[0]["titulo"])
+		var cabs: Array = dia._zona_panel.find_children("*", "Label", true, false).filter(func(l: Label) -> bool: return l.text == titulo)
+		_check(not cabs.is_empty(), "agenda: el catálogo muestra «%s»" % titulo)
+		if not cabs.is_empty():
+			var cab: Node = cabs[0]
+			while cab != null and not (cab is Button):
+				cab = cab.get_parent()
+			(cab as Button).pressed.emit()  # abre sus urgencias
+			await _cuadros(2)
+			var urg: Array = dia._zona_panel.find_children("*", "Button", true, false).filter(func(b: Button) -> bool: return b.text.begins_with(String(cat[0]["urgencias"][0]["nombre"]) + " · ") and not b.disabled)
+			var antes := motor.agenda.en_tramite().size()
+			if not urg.is_empty():
+				(urg[0] as Button).pressed.emit()
+				await _cuadros(3)
+				var ahora := motor.agenda.en_tramite()
+				_check(ahora.size() == antes + 1 or _hay(dia._zona_panel, "Elige la urgencia"), "agenda: presentar desde la pantalla lo deja en trámite (o el Corrector responde)")
+				if ahora.size() == antes + 1:
+					_check(_hay(dia._zona_panel, String(ahora.back()["etapa_nombre"])) and _hay(dia._zona_panel, "aprobación %d %%" % roundi(float(ahora.back()["prob_aprobacion"]) * 100.0)), "agenda: el proyecto en trámite muestra su etapa y su probabilidad del motor")
+		_sin_punto_decimal(dia, "agenda legislativa")
 	dia._abrir_panel("mapa")
 	await _cuadros(1)
 	# delegar: cada fila dice la probabilidad real de fallo de ese ministro con la carta elegida
