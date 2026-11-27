@@ -356,7 +356,8 @@ func _v4(main: Node, d: Dictionary, partido: Dictionary) -> void:
 	await _guardar("v4_escandalo", 0.0)
 	await create_timer(1.5).timeout
 	dia._avanzar()
-	dia._avanzar()  # con movimientos sobrantes pide confirmar: la segunda pulsación termina la semana
+	if dia._confirmar_fin:
+		dia._avanzar()  # solo si el tope haría perder movimientos pide confirmar: la segunda pulsación termina la semana
 	await _guardar("v4_telon_semana", 0.1)
 	await create_timer(2.5).timeout
 	await _limpiar_capa(dia)

@@ -93,7 +93,7 @@ static func texto_movimientos(est: EstadoSimulacion) -> String:
 	return s
 
 
-const AYUDA_MOVIMIENTOS := "Movimientos disponibles (el rayo): cada carta cuesta de 1 a 3."
+const AYUDA_MOVIMIENTOS := "Movimientos disponibles (el rayo): cada carta cuesta de 1 a 3. Lo que no gastes se guarda para la semana siguiente, hasta el tope."
 
 
 static func texto_pastilla(est: EstadoSimulacion, tope: int = 0) -> String:
