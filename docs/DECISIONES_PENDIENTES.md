@@ -88,3 +88,17 @@ Cuando decidas algo, dímelo con el número (p. ej. «D2 b») y se aplica, se mi
 ## D23 y D24. Elección con población: ruido regional y Congreso por geografía (27-nov-2026)
 - **D23:** componente aleatorio por región en la elección presidencial (`ruido_regional` en `data/leyes.json`). Hoy no existe y `data/` está congelado; añadirlo cambia el balance y los oros. Recomendación: no, hasta ver datos de personas (el voto por región ya se muestra sin él).
 - **D24:** Cámara y Senado por geografía (155 diputados por distritos de población, 50 senadores por región; `docs/ELECCION_POBLACION.md`). Es una mecánica nueva. Recomendación: esperar a la prueba cerrada.
+
+## D26. Ritmo de la partida: ¿se pueden acortar las semanas sin contenido? (27-nov-2026; NO implementado, decide el usuario)
+- **Medición** (`tests/analisis_ritmo_d26.gd`, 12 mandatos del bot «humano», normal, semillas 8000-8011, 2.496 semanas; tiempos «típicos» de `docs/DURACION_SESION.md`, que son supuestos y no mediciones con personas): por semana 1,29 cartas con movimientos, 1,04 delegadas, 0,45 eventos informativos, 0,11 decisiones, 0,49 votaciones y 0,71 movimientos internos. El **44 % de las semanas no trae evento ni votación** y el **29 %** tampoco tiene una sola carta jugada por el bot (el bot «humano» salta el 20 % de las semanas por diseño: con una persona esa cifra sería menor). El **43 % de las cartas jugadas son «simples»** (efecto directo, sin riesgo, diferido, ley, obra ni propuesta).
+- **Minutos por mandato de 208 semanas** (con la misma tabla de tiempos; hoy ≈ 102 min con este bot, ≈ 5 sesiones de 20 min):
+
+| Opción | Qué es | Minutos por mandato | Efecto en el balance | Costo |
+|---|---|---|---|---|
+| **A** Avisos automáticos + saltar semanas vacías | La semana sin evento ni votación ni cartas que quieras jugar se cierra sola con un aviso de 1,5 s | ≈ 97 (−5 %) | Ninguno (el ahorro de movimientos se acumula y no se pierde nada) | Pequeño; es interfaz + una acción «terminar semana» automática; sin mecánica nueva |
+| **B** A + auto-jugar cartas obvias | Además la app juega sola las cartas simples cuando sobran movimientos | ≈ 80 (−22 %) | Medio: quita decisiones al jugador y cambia qué cartas se juegan (hay que remedir el balance y regenerar oros); choca con «las cartas se juegan deslizándolas» | Mediano; es una mecánica nueva (alcance congelado) |
+| **C** Turno de 2 semanas | Un turno cubre 14 días | ≈ 91 (−11 %) | Alto: cambia el calendario (104 turnos), la cadencia de eventos, votaciones y urgencias de la agenda, y todos los oros | Grande; toca `leyes.json › dias_por_turno` y el director de eventos |
+| **D** Dejar igual | Mantener 208 semanas | ≈ 102 | Ninguno | Cero; medir ritmo real en la prueba cerrada (D1) |
+
+- **Lectura:** ninguna opción baja de las ≈ 4 sesiones de 20 minutos por mandato; lo que más pesa son las cartas (≈ 6,5 s de 29 s por semana) y las decisiones de evento (20 s cada una), no las semanas vacías. A es casi gratis pero ahorra poco; B es lo único que mueve la aguja y es mecánica nueva.
+- **Recomendación:** D por ahora, con A como mejora de interfaz barata si la prueba cerrada muestra abandono en semanas silenciosas; decidir B o C con datos de personas. Nota: con el ahorro de movimientos (BL), saltar semanas ya no pierde movimientos, así que A es coherente con el diseño actual.
