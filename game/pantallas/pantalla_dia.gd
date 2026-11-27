@@ -14,6 +14,7 @@ var _raiz: VBoxContainer
 var _nav: Control
 var _nuevas: Array = []  # ids de cartas que entraron por reposición (se animan al pintar la mano)
 var _lbl_mov: Label
+var _riel: RielRegiones
 var _badge: Label
 var _region: String = ""
 var _r: Dictionary = {}  # referencias de Barras
@@ -37,6 +38,15 @@ func _ready() -> void:
 	add_child(raiz)
 	raiz.add_child(Barras.cabecera(_r))
 	raiz.add_child(CuerpoDia.construir(self))  # mapa, mano, Corrector, botones y zona de paneles (cuerpo_dia.gd)
+	(_r["ev_cab"] as Control).gui_input.connect(func(ev: InputEvent) -> void:  # el evento del día, completo
+		if ev is InputEventMouseButton and ev.pressed and ev.button_index == MOUSE_BUTTON_LEFT and String(_r["ev_cab"].text) != "":
+			_avisar("%s · %s. %s" % [String(_r["ev_hora"].text).replace("• ", ""), _r["ev_titulo"].text, _r["ev_sub"].text]))
+	var pastilla := (_r["pa"] as Control).get_parent().get_parent() as Control  # tocar el rayo explica qué es
+	pastilla.mouse_filter = Control.MOUSE_FILTER_STOP
+	pastilla.tooltip_text = ManoUI.AYUDA_MOVIMIENTOS
+	pastilla.gui_input.connect(func(ev: InputEvent) -> void:
+		if ev is InputEventMouseButton and ev.pressed and ev.button_index == MOUSE_BUTTON_LEFT:
+			_avisar(ManoUI.AYUDA_MOVIMIENTOS))
 	_raiz = raiz
 	_nav = Barras.nav(_abrir_panel, false, "", Callable(), "Coalición" if motor.estado.etapa == "oposicion" else "Gabinete")
 	raiz.add_child(_nav)
@@ -71,7 +81,7 @@ func _refrescar() -> void:
 	if not cri.is_empty():
 		_r["fecha"].text = String(cri["corto"])
 	_r["fecha"].add_theme_color_override("font_color", Tema.mal() if not cri.is_empty() else Tema.TEXTO_SUAVE)
-	var pa_txt := ManoUI.texto_pastilla(est)
+	var pa_txt := ManoUI.texto_pastilla(est, int(motor.movimientos.ahorro_movimientos()["tope_efectivo"]))
 	Movimiento.movimientos((_r["pa"] as Control).get_parent().get_parent(), _btn_jugar, est.pa_actual, _r["pa"].text != "" and _r["pa"].text != pa_txt)
 	_r["pa"].text = pa_txt
 	_lbl_mov.text = ManoUI.texto_movimientos(est)
@@ -85,13 +95,16 @@ func _refrescar() -> void:
 		props[String(motor.catalogo_propuestas[pid].get("region", ""))] = true
 	_mapa.actualizar(est.aprobacion_regional, obras, props)
 	Barras.actualizar_evento(_r, motor)
+	_r["ev_cab"].text = "" if String(_r["ev_hora"].text).contains("SIN EVENTOS") else "· " + String(_r["ev_titulo"].text)  # tocarlo muestra el evento completo
 	_actualizar_region()
 	_pintar_mano()
 	_actualizar_botones()
 
 
 func _actualizar_region() -> void:
-	PanelesDia.pintar_region(_r, motor, datos, _region); _mapa.seleccion = _region  # contorno y línea siguen a la tarjeta
+	PanelesDia.pintar_region(_r, motor, datos, _region); _mapa.seleccion = _region  # contorno y línea siguen a la región elegida
+	_riel.pintar(motor.estado.aprobacion_regional, _region)
+	_mapa.enlace = _riel.boton(_region)  # línea punteada región → su fila del riel
 
 
 func _pintar_mano() -> void:
@@ -106,7 +119,7 @@ func _pintar_mano() -> void:
 	var v := motor.vista_carta(_sel, "")
 	var c: Dictionary = est.mano[_sel]
 	var tit := String(c["titulo"])
-	var cabeza := "[b]%s[/b] · %d mov · %s\n" % [tit if tit.length() <= 22 else tit.substr(0, 21) + "…", motor.costo_carta(c, ""), FichaCarta.linea(c, datos["leyes"])]
+	var cabeza := "[b]%s[/b] · cuesta %d · %s\n" % [tit if tit.length() <= 22 else tit.substr(0, 21) + "…", motor.costo_carta(c, ""), FichaCarta.linea(c, datos["leyes"])]
 	if est.pa_actual == 0:  # sin movimientos: qué se puede hacer todavía
 		var delega := est.etapa == "gobierno" and est.delegadas_turno < int(motor.catalogo_leyes["delegacion"]["max_por_turno"])
 		_lbl_corrector.text = cabeza + "[b]Sin movimientos:[/b] " + ("delega esta carta en un ministro (no gasta movimientos) o termina la semana." if delega else "termina la semana; se renuevan al empezar la próxima.")
@@ -122,7 +135,7 @@ func _actualizar_botones() -> void:
 	var est := motor.estado
 	var n := est.mano.size()
 	var elec := est.eleccion_pendiente(int(datos["leyes"]["hemiciclo"]["semanas_campana"]))
-	_btn_jugar.text = "Ir a las urnas" if elec else ("Terminar semana · %d mov" % est.pa_actual if est.pa_actual > 0 else "Siguiente semana")
+	_btn_jugar.text = "Ir a las urnas" if elec else ("Terminar semana" if est.pa_actual > 0 else "Siguiente semana")  # los disponibles se ven en la pastilla
 	_btn_jugar.disabled = false
 	var max_deleg := int(motor.catalogo_leyes["delegacion"]["max_por_turno"])
 	_btn_deleg.disabled = est.etapa != "gobierno" or n == 0 or est.delegadas_turno >= max_deleg
@@ -139,16 +152,21 @@ func _gesto_mano(pos: Vector2) -> void:
 
 
 func _avanzar() -> void:
-	## Botón del medio. Pide confirmar con una segunda pulsación si sobran movimientos (PR-02c) o si vas a votar con pocas promesas (U3).
+	## Botón del medio. Lo que no gastes se guarda hasta el tope (pedido del usuario del 27-nov-2026: «Los movimientos deben
+	## poder guardar si no los use»), así que solo pide confirmar si alguno se perdería por el tope, o si vas a votar con pocas promesas (U3).
 	var est := motor.estado
 	var urnas := est.eleccion_pendiente(int(datos["leyes"]["hemiciclo"]["semanas_campana"]))
 	var minimo := int(datos["leyes"]["campana"]["min_promesas"])
-	if not _confirmar_fin and ((urnas and est.promesas_campana.size() < minimo) or (not urnas and est.pa_actual > 0)):
+	var ah := motor.movimientos.ahorro_movimientos()
+	if not _confirmar_fin and ((urnas and est.promesas_campana.size() < minimo) or (not urnas and int(ah["se_pierden"]) > 0)):
 		_confirmar_fin = true
-		_avisar("Con menos de %d promesas serás intrascendente y perderás votos. Pulsa de nuevo para votar igual." % minimo if urnas else "Te quedan %d movimientos. Pulsa de nuevo para terminar la semana." % est.pa_actual)
+		_avisar("Con menos de %d promesas serás intrascendente y perderás votos. Pulsa de nuevo para votar igual." % minimo if urnas else
+			"Llegaste al tope de %d: se guardan %d y se pierden %d. Pulsa de nuevo para terminar la semana." % [int(ah["tope_efectivo"]), int(ah["se_guardan"]), int(ah["se_pierden"])])
 		return
 	_confirmar_fin = false
 	_terminar_turno()
+	if not urnas and int(ah["se_guardan"]) > 0:
+		_avisar("Se guardan %d %s para la próxima semana." % [int(ah["se_guardan"]), "movimiento" if int(ah["se_guardan"]) == 1 else "movimientos"])
 
 
 func _on_carta(i: int) -> void:
@@ -272,7 +290,7 @@ func _resolver_eleccion() -> void:
 			if res["electo"]: CambioMando.mostrar(_capa, Barras.fecha_texto(datos["leyes"], e.etapa, e.turno_actual, e.dia_actual, e.ciclo, e.dias_carrera).substr(4), String(e.partido.get("nombre", "")), _siguiente_evento)
 			else: _siguiente_evento()
 		else:
-			terminado.emit()))
+			terminado.emit(), geo))
 
 
 func _siguiente_evento() -> void:
@@ -335,7 +353,11 @@ func _abrir_panel(cual: String) -> void:
 						_abrir_panel("mapa")
 						_terminar_turno())
 		"congreso":
-			contenido = PanelesDia.congreso(motor, _abrir_hito, _abrir_cartera)
+			contenido = PanelesDia.congreso(motor, _abrir_hito, _abrir_cartera, func(msg: String) -> void:
+					_avisar(msg)
+					accion_hecha.emit()
+					_refrescar()
+					_abrir_panel("congreso"))
 		_:
 			contenido = PanelGestion.crear(motor, _avisar, func() -> void:
 					accion_hecha.emit()

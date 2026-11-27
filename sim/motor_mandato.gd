@@ -179,8 +179,7 @@ func _abrir_periodo(etapa: String, dias_cerrados: int) -> void:
 	e.decisiones.clear()
 	e.semanas_en_crisis = 0
 	e.legado_evaluado.clear()
-	e.pa_actual = e.pa_maximo
-	if etapa == "campana":  # nueva campaña: la aprobación vuelve a la base del partido, con parte de lo ganado antes
+	if etapa == "campana":  # el ahorro de movimientos se conserva al cambiar de periodo (BL)  # nueva campaña: la aprobación vuelve a la base del partido, con parte de lo ganado antes
 		var base := float(e.partido["indicadores_iniciales"]["aprobacion"]) + float(nivel()["aprobacion_inicial"])
 		e.indicadores["aprobacion"] = clampf(base + float(_m.catalogo_leyes["oposicion"]["herencia_campana"]) * (e.ind("aprobacion") - base), 0.0, 100.0)
 		for k in ["capital", "cohesion", "fiscal", "riesgo_ejecucion"]:  # el resto de los indicadores también vuelve a su punto de partida
@@ -238,7 +237,6 @@ func resolver_eleccion() -> Dictionary:
 		_m.estado.etapa = "gobierno"
 		_m.estado.turno_actual = 1
 		_m.estado.dia_actual = 1
-		_m.estado.pa_actual = _m.estado.pa_maximo
 	else:
 		_m.estado.etapa = "derrota_electoral"
 		_m.estado.resultado_final = {"motivo": "derrota_electoral", "voto_final": voto_final, "puntaje": 0}

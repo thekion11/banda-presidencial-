@@ -56,6 +56,7 @@
   "mano": {
     "tamano": 5,
     "pa_por_turno": 5,
+    "tope_ahorro": 10,
     "descartes_por_turno": 2,
     "reales_en_mazo": 15,
     "min_disenadas": 2,
@@ -502,6 +503,22 @@
       }
     ],
     "nota": "DISENO_V2 §11 (recalibrado 25-nov: con la aprobación real de una partida, 60 casi nunca se alcanzaba). +1 movimiento por cada umbral de aprobación superado (45, 55, 65, 75, 85, 95). Cifras ilustrativas."
+  },
+  "agenda": {
+    "max_simultaneos": 3,
+    "cooldown_rechazo_semanas": 8,
+    "prob_comision_mixta": 0.3,
+    "dias_mixta_frac": 0.5,
+    "dias_tc": 14,
+    "dias_promulgacion": 7,
+    "prob_minima": 0.05,
+    "prob_aviso": 0.5,
+    "urgencias": [
+      {"id": "simple", "nombre": "Simple", "dias": 30, "costo_capital": 0.0, "recargo_votos": 0.0},
+      {"id": "suma", "nombre": "Suma", "dias": 15, "costo_capital": 3.0, "recargo_votos": 0.02},
+      {"id": "inmediata", "nombre": "Discusión inmediata", "dias": 6, "costo_capital": 6.0, "recargo_votos": 0.05}
+    ],
+    "nota": "BM (27-nov-2026): agenda legislativa. Los plazos de urgencia (30, 15 y 6 días) valen por cámara y son los de la Constitución (Art. 74 y LOC del Congreso); el resto (capital, recargo de votos, comisión mixta, plazos del TC y de promulgación, límites) son cifras ilustrativas de balance."
   },
   "asesores": {
     "max": 3,

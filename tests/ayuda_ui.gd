@@ -27,12 +27,15 @@ static func controles_dia(dia: Control) -> Array[String]:
 		dia._on_carta(0)
 		if est.pa_actual >= pa0:
 			fallos.append("el segundo toque sobre la carta elegida debe jugarla")
-	if est.pa_actual > 0:
+	if est.pa_actual > 0:  # lo no gastado se guarda: solo pide confirmar si el tope haría perder alguno
 		var turno0: int = est.turno_actual
+		var ah: Dictionary = dia.motor.movimientos.ahorro_movimientos()
 		dia._confirmar_fin = false
 		dia._avanzar()
-		if est.turno_actual != turno0 or not dia._confirmar_fin:
-			fallos.append("con movimientos sin usar, avanzar pide confirmación")
+		if int(ah["se_pierden"]) > 0 and (est.turno_actual != turno0 or not dia._confirmar_fin):
+			fallos.append("si se pierden movimientos por el tope, avanzar pide confirmación")
+		if int(ah["se_pierden"]) == 0 and (est.turno_actual == turno0 or dia._confirmar_fin):
+			fallos.append("si todo se guarda, avanzar termina la semana sin pedir confirmación")
 		dia._confirmar_fin = false
 	return fallos
 

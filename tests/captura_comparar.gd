@@ -290,7 +290,7 @@ func _v3(main: Node, d: Dictionary, partido: Dictionary) -> void:
 		["v3_eleccion_derrota", {"electo": false, "balotaje": false, "ronda": 2, "voto_final": 40.1, "umbral": 51.0}],
 	]
 	for c in casos:
-		var pant: Control = PantallaEleccion.crear(m, d["regiones"], regional, c[1], func() -> void: pass)
+		var pant: Control = PantallaEleccion.crear(m, d["regiones"], regional, PantallaEleccion.con_poblacion(m, c[1]), func() -> void: pass, dia.geo)
 		dia._capa.add_child(pant)
 		await _guardar(c[0], 0.3)
 		pant.queue_free()
@@ -356,7 +356,8 @@ func _v4(main: Node, d: Dictionary, partido: Dictionary) -> void:
 	await _guardar("v4_escandalo", 0.0)
 	await create_timer(1.5).timeout
 	dia._avanzar()
-	dia._avanzar()  # con movimientos sobrantes pide confirmar: la segunda pulsación termina la semana
+	if dia._confirmar_fin:
+		dia._avanzar()  # solo si el tope haría perder movimientos pide confirmar: la segunda pulsación termina la semana
 	await _guardar("v4_telon_semana", 0.1)
 	await create_timer(2.5).timeout
 	await _limpiar_capa(dia)

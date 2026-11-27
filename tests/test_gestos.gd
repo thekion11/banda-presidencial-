@@ -197,6 +197,25 @@ func _correr() -> void:
 		iso.reproducir()
 		await create_timer(0.6).timeout
 		_check(iso.fase >= 1.0, "reproducir la obra avanza sus fases (%.2f)" % iso.fase)
+	# gabinete como tablero (opción A del usuario): arrastrar una carta a su puesto la nombra; a otro puesto, no
+	m.estado.etapa = "campana"
+	var tablero := PanelGabinete.crear(m, "Confirmar", func() -> void: pass)
+	root.add_child(tablero)
+	await _cuadros(2)
+	var puestos: Array = tablero.find_children("*", "Button", true, false).filter(func(b: Button) -> bool: return b is TableroGabinete.Puesto)
+	var cartas: Array = tablero.find_children("*", "Button", true, false).filter(func(b: Button) -> bool: return b is TableroGabinete.Candidato and not b.is_queued_for_deletion())
+	_check(puestos.size() == 25 and cartas.size() == 3, "el tablero muestra 25 puestos y 3 candidatos del puesto abierto")
+	if not cartas.is_empty():
+		var carta: TableroGabinete.Candidato = cartas.filter(func(c: TableroGabinete.Candidato) -> bool: return not m.estado.gabinete.has(c.id)).front()
+		var datos_arrastre: Variant = carta._get_drag_data(Vector2.ZERO)
+		var suyo: TableroGabinete.Puesto = puestos.filter(func(p: TableroGabinete.Puesto) -> bool: return p.slot == carta.slot)[0]
+		var ajeno: TableroGabinete.Puesto = puestos.filter(func(p: TableroGabinete.Puesto) -> bool: return p.slot != carta.slot)[0]
+		_check(suyo._can_drop_data(Vector2.ZERO, datos_arrastre) and not ajeno._can_drop_data(Vector2.ZERO, datos_arrastre), "la carta solo se suelta en el puesto de su ministerio")
+		suyo._drop_data(Vector2.ZERO, datos_arrastre)
+		await _cuadros(1)
+		_check(suyo._estado.text == "elegido", "soltar la carta en su puesto la nombra (%s)" % suyo._estado.text)
+		_check(tablero.find_children("*", "Label", true, false).any(func(l: Label) -> bool: return l.text.begins_with("Nombraste a")), "al nombrar se ve la reacción con el efecto")
+	tablero.queue_free()
 	DirAccess.remove_absolute(ProjectSettings.globalize_path(Tutorial.ruta))
 	DirAccess.remove_absolute(ProjectSettings.globalize_path(main.RUTA_GUARDADO))
 	if _fallos == 0:

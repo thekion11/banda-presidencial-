@@ -23,21 +23,30 @@ static func construir(d: PantallaDia) -> Control:
 	vista.add_child(d._mapa)
 	d._mapa.x_centro_rel = 0.29
 	d._mapa.estirar_x = 2.7  # más ancho que antes (2,3): las regiones se ven y se tocan mejor (pedido del usuario, 27-nov)
-	var col_tarjetas := VBoxContainer.new()
-	col_tarjetas.add_theme_constant_override("separation", 10)
-	col_tarjetas.position = Vector2(196, 10)
-	col_tarjetas.custom_minimum_size = Vector2(186, 0)
-	col_tarjetas.size = Vector2(186, 10)
+	var col_tarjetas := VBoxContainer.new()  # las tarjetas de evento y región siguen armadas (textos para Nación y el telón), ocultas
+	col_tarjetas.visible = false
 	col_tarjetas.add_child(Barras.tarjeta_evento(d._r))
-	var tr := Barras.tarjeta_region(d._r)
-	tr.gui_input.connect(func(ev: InputEvent) -> void:
-		if ev is InputEventMouseButton and ev.pressed:
-			if d._region == "metropolitana":
-				d._abrir_urbano()
-			else:
-				d._abrir_panel("nacion"))
-	col_tarjetas.add_child(tr)
-	d._mapa.add_child(col_tarjetas); d._mapa.enlace = tr  # línea punteada región → tarjeta (maqueta)
+	col_tarjetas.add_child(Barras.tarjeta_region(d._r))
+	d._mapa.add_child(col_tarjetas)
+	d._mapa.leyenda = false  # el riel ya dice el porcentaje y el color de cada región
+	d._riel = RielRegiones.new()  # riel de las 16 regiones (pedido del usuario del 27-nov, «Mapa A + riel»)
+	d._riel.construir(d.datos["regiones"])
+	d._riel.anchor_left = 1.0
+	d._riel.anchor_right = 1.0
+	d._riel.anchor_bottom = 1.0
+	d._riel.offset_left = -186.0
+	d._riel.offset_right = -8.0
+	d._riel.offset_top = 8.0
+	d._riel.offset_bottom = -8.0
+	d._riel.elegida.connect(func(id: String) -> void:
+		d._on_region(id)
+		d._mapa.acercar_a(id))
+	d._riel.detalle.connect(func(id: String) -> void:
+		if id == "metropolitana":
+			d._abrir_urbano()
+		else:
+			d._abrir_panel("nacion"))
+	d._mapa.add_child(d._riel)
 	var cab_mano := HBoxContainer.new()
 	var mm := MarginContainer.new()
 	mm.add_theme_constant_override("margin_left", 14)

@@ -2,7 +2,7 @@ extends SceneTree
 ## Corrector de realismo (CLAUDE.md §4.6): ningún rechazo del motor llega al jugador como un «no» seco. Toda `razon` que devuelve sim/ tiene texto propio en
 ## game/componentes/razones.gd, y los que el jugador puede provocar dicen qué hacer después.
 
-const SIN_PISTA := ["sin_efecto", "asesor_inexistente", "meta_inexistente", "region_invalida", "indice_invalido", "direccion_invalida", "opcion_invalida", "evento_sin_decision", "tipo_desconocido", "tipo_invalido", "partido_inexistente", "ministro_invalido", "partida_terminada", "ya_decidido", "ya_asignado", "ya_aliado", "ya_contratado", "no_aliado", "no_asignado", "no_contratado", "fuera_del_gabinete", "ministro_fuera_del_gabinete", "asesor_no_contratado", "ya_ejecutada", "meta_cumplida", "partido_propio"]  # estados o datos inválidos: informan, no hay otra salida
+const SIN_PISTA := ["sin_efecto", "asesor_inexistente", "meta_inexistente", "region_invalida", "indice_invalido", "direccion_invalida", "opcion_invalida", "evento_sin_decision", "tipo_desconocido", "tipo_invalido", "partido_inexistente", "ministro_invalido", "partida_terminada", "ya_decidido", "ya_asignado", "ya_aliado", "ya_contratado", "no_aliado", "no_asignado", "no_contratado", "fuera_del_gabinete", "ministro_fuera_del_gabinete", "asesor_no_contratado", "ya_ejecutada", "meta_cumplida", "partido_propio", "carta_inexistente", "no_es_ley", "ya_inmediata", "etapa_sin_urgencia", "proyecto_no_en_tramite"]  # estados o datos inválidos: informan, no hay otra salida
 const PISTAS := ["une ", "termina", "espera", "elige", "usa", "vuelve", "revisa", "despide", "deja", "delega", "se renuevan", "se renueva", "antes", "primero", "necesitas", "solo ", "máximo", "intenta", "más adelante", "próxima"]
 
 var _fallos := 0

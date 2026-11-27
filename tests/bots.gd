@@ -59,6 +59,18 @@ static func _opcion(ev: Dictionary, politica: String, rng: RandomNumberGenerator
 	return mejor
 
 
+static func _legislar(motor: MotorTurno) -> void:
+	var mejor := ""
+	var mejor_v := 0.0
+	for e in motor.agenda.agenda_catalogo():
+		var v := _valor(motor._cartas_por_id[e["carta_id"]], motor.estado)
+		if v > mejor_v and int(e["costo_mov"]) <= motor.estado.pa_actual:
+			mejor_v = v
+			mejor = String(e["carta_id"])
+	if mejor != "":
+		motor.agenda.presentar(mejor, "suma")
+
+
 static func _delegar(motor: MotorTurno) -> void:
 	## Delega las mejores cartas en el ministro afín del gabinete (sin gastar movimientos; puede salir mal).
 	var est := motor.estado
@@ -156,6 +168,15 @@ static func jugar_turno(motor: MotorTurno, politica: String, rng: RandomNumberGe
 			return
 		politica = "codicioso"
 		max_jugadas = 3
+	elif politica == "ahorrador":  # BL: en gobierno juega solo las semanas pares (guarda los movimientos) y gasta todo de golpe
+		if est.etapa == "gobierno" and est.turno_actual % 2 == 1:
+			return
+		politica = "codicioso"
+		max_jugadas = 24
+	elif politica == "legislador":  # BM: además de jugar sus cartas, presenta la mejor ley del catálogo con urgencia suma cada semana
+		politica = "codicioso"
+		if est.etapa == "gobierno":
+			_legislar(motor)
 	elif politica == "completo" or politica == "experto":
 		if politica == "experto" and est.etapa == "campana" and est.turno_actual == 1 and est.ciclo == 1:
 			motor.elegir_gabinete(Array(motor.gabinete.rellenar([], "eficaz").map(func(n: Dictionary) -> String: return String(n["id"]))))  # gabinete de máxima eficacia
