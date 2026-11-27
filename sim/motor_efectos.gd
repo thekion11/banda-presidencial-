@@ -53,6 +53,11 @@ func sumar_ind(nombre: String, delta: float, causa: String = "") -> void:
 	var ind: Dictionary = estado.indicadores
 	var antes := float(ind.get(nombre, 0.0))
 	ind[nombre] = clampf(antes + delta, _min, _max_viv if nombre == "viviendas_anio" else _max)
+	if nombre == "aprobacion" and regiones.proveedor_pisos.is_valid():  # el piso ideológico también frena la aprobación nacional
+		regiones.refrescar_pisos()
+		if float(ind[nombre]) < regiones.piso_nacional:
+			regiones.piso_frenado += regiones.piso_nacional - float(ind[nombre]) if delta < 0.0 else 0.0
+			ind[nombre] = regiones.piso_nacional
 	if causa != "":
 		var k := nombre + "|" + causa
 		_motivos[k] = float(_motivos.get(k, 0.0)) + float(ind[nombre]) - antes
@@ -61,6 +66,13 @@ func sumar_ind(nombre: String, delta: float, causa: String = "") -> void:
 func reiniciar_motivos() -> void:
 	## Vacía los motivos de la semana (se llama al cerrar el turno; el amanecer siguiente sigue sumando).
 	_motivos = {}
+	regiones.piso_frenado = 0.0
+
+
+func anotar(nombre: String, causa: String, delta: float) -> void:
+	## Anota en los motivos de la semana un cambio ya explicado (solo salida para la UI; no toca indicadores).
+	var k := nombre + "|" + causa
+	_motivos[k] = float(_motivos.get(k, 0.0)) + delta
 
 
 func motivos_semana() -> Array[Dictionary]:
@@ -71,6 +83,9 @@ func motivos_semana() -> Array[Dictionary]:
 		if absf(d) >= float(leyes["dinamica"]["motivo_delta_minimo"]):
 			var partes: PackedStringArray = String(k).split("|")
 			filas.append({"ind": partes[0], "delta": d, "causa": partes[1]})
+	var pf: Dictionary = leyes["piso_ideologico"]
+	if regiones.piso_frenado >= float(pf["motivo_minimo"]):  # el piso evitó una caída: se explica con la causa del núcleo duro
+		filas.append({"ind": "aprobacion", "delta": regiones.piso_frenado, "causa": String(pf["texto_motivo"])})
 	filas.sort_custom(func(a, b): return absf(a["delta"]) > absf(b["delta"]) or (absf(a["delta"]) == absf(b["delta"]) and a["ind"] + a["causa"] < b["ind"] + b["causa"]))
 	return filas.slice(0, 3)
 

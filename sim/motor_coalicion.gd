@@ -131,7 +131,8 @@ func cumplimiento(id: String) -> float:
 
 func objetivo(id: String) -> float:
 	## Satisfacción hacia la que tiende un aliado según se cumplan sus peticiones y su afinidad ideológica.
-	return 100.0 * cumplimiento(id) * (1.0 - float(_cfg()["peso_ideologia"]) * (1.0 - afinidad(id)))
+	var luna := LunaDeMiel.valor(m.catalogo_leyes, LunaDeMiel.intensidad(m.estado, m.catalogo_leyes), "bono_satisfaccion")  # luna de miel: los aliados parten más contentos
+	return minf(100.0, 100.0 * cumplimiento(id) * (1.0 - float(_cfg()["peso_ideologia"]) * (1.0 - afinidad(id))) + luna)
 
 
 func carta_jugada(carta: Dictionary) -> void:

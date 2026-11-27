@@ -212,14 +212,17 @@ func resolver_eleccion() -> Dictionary:
 	var efecto_rival := float(opo["peso_rival_voto"]) * (float(opo["rival_neutro"]) - _m.estado.ind("rival")) if _m.estado.ciclo > 1 else 0.0  # un rival débil te ayuda
 	var lim: Dictionary = _m.catalogo_leyes["limites_indicadores"]
 	var desplaza := _m.rng.randf_range(-ruido, ruido) - sin_prom + efecto_rival  # choque nacional (una sola tirada) − penalización + rival: igual en todas las regiones
-	var voto_final := clampf(_m.estado.ind("aprobacion") + desplaza, float(lim["min"]), float(lim["max"]))
+	var pisos: Dictionary = _m.piso.pisos()  # voto duro (D-BN): ninguna región vota por debajo de su piso ideológico
+	var voto_final := clampf(maxf(_m.estado.ind("aprobacion") + desplaza, _m.piso.nacional()), float(lim["min"]), float(lim["max"]))
 	var detalle := {}
 	if not _m.regiones.pesos.is_empty():  # desglose por región (peso = población); el voto nacional decide igual que antes: aprobación nacional + desplazamiento (= Σ peso · voto salvo topes por región)
 		var ajuste_nacional := _m.estado.ind("aprobacion") - _m.regiones.promedio(_m.estado)  # lo que la aprobación nacional se aparte del promedio regional (en juego normal es 0) se reparte por igual
-		detalle = VotoRegional.calcular(_m.regiones, _m.estado.aprobacion_regional, desplaza + ajuste_nacional, float(lim["min"]), float(lim["max"]), umbral)
+		detalle = VotoRegional.calcular(_m.regiones, _m.estado.aprobacion_regional, desplaza + ajuste_nacional, float(lim["min"]), float(lim["max"]), umbral, pisos)
 	var ronda := _m.estado.ronda_electoral
 	var electo := voto_final >= umbral
 	detalle["voto_final"] = voto_final
+	detalle["voto_duro_nacional"] = minf(_m.piso.nacional(), voto_final)  # núcleo duro: el piso nacional; el resto del voto es blando
+	detalle["voto_blando_nacional"] = voto_final - float(detalle["voto_duro_nacional"])
 	detalle["umbral"] = umbral
 	detalle["ronda"] = ronda
 	_m.estado.ultima_eleccion = detalle  # solo salida para la pantalla de la elección
