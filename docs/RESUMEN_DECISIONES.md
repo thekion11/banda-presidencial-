@@ -11,6 +11,9 @@ Nada de esto lo decidió un agente. Cada fila: qué hay hoy, la recomendación y
 | **Cohesión con desgaste** (D15) | −1,85 por semana: mediana 76 (antes pegada en 100); el codicioso cae en crisis 15 % (antes 4-7 %) | Mantener y revisar con la prueba; revertir es cambiar un número |
 | **Métricas locales con consentimiento** | Propuesta sin implementar (`PRUEBA_CERRADA.md` §6) | Autorizarla: sin ella la prueba solo tiene lo que los testers cuenten |
 
+| **Congelar `data/` durante la prueba** (D17) | Cualquier cambio de datos invalida las partidas guardadas de los testers | Sí: congelar `data/` y no regenerar `cartas_reales.json` (D18: 102 cartas cambiarían de evento y moverían los oros) hasta después de la prueba |
+| **Renderizador** (`RENDERIZADORES.md`) | Proyecto en «mobile» (Vulkan), pero todo lo medido es `gl_compatibility`; Vulkan no se pudo medir | Pasar a `gl_compatibility` antes de la prueba (2 líneas en `project.godot`) |
+
 ## Diseño pendiente de decisión
 | Decisión | Recomendación |
 |---|---|
@@ -33,6 +36,7 @@ Nada de esto lo decidió un agente. Cada fila: qué hay hoy, la recomendación y
 | **Revisión legal de alias y partidos** (U4); nombres oficiales que coinciden con apellidos (6 cartas) | Un abogado chileno antes de publicar |
 | **~600 cartas de proyectos reales sin verificar** (D12); **artículo 25** (D11) | Mantener el rótulo de cifras ilustrativas y verificar por lotes; aportar el texto del artículo 25 |
 | **`main` como rama por defecto** (U8) | Hacerlo (1 minuto en Settings) |
+| **Texto del Art. 25 y de los incisos del Art. 66** (`VERIFICACION_CONSTITUCIONAL.md`): `bcn.cl` está bloqueado desde el entorno | Aportar el PDF actualizado de la Constitución: desbloquea modelar la reelección y verificar 3 reglas de quórum |
 | **Riesgos de la ficha de Play** (`RIESGOS_PLAY_STORE.md`) | Leerlo antes de abrir la cuenta |
 
 Para decidir, di el número (por ejemplo «D2 b»): se aplica, se mide con los bots, se regeneran los oros y queda en `docs/DECISIONES.md` el mismo día.

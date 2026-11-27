@@ -42,6 +42,9 @@
 | `INFORME_BALANCE.md` | Mediciones de balance con bots, incluida la tabla de 200 partidas por política y dificultad con intervalos de confianza |
 | `INFORME_BOTS.md` | Qué hace cada bot y cómo se comparan |
 | `ANALISIS_PROFUNDIDAD.md` | Diagnóstico del 25-nov sobre profundidad de las mecánicas |
+| `PROPUESTA_EVENTOS_REGIONALES.md` | Propuesta (sin implementar) de 16 eventos regionales con el campo `region` |
+| `VERIFICACION_CONSTITUCIONAL.md` | Qué de lo constitucional, electoral y de las fichas se verificó contra fuentes oficiales y qué falta |
+| `CUMPLIMIENTO_UI.md` | Cumplimiento de las reglas de interfaz de CLAUDE.md §5 por pantalla (sesión visual) |
 | `EQUIDAD_REGIONAL.md` | Cartas, obras y eventos por región frente a su población |
 | `REVISION.md` | Auditorías del 23-nov (fotos fechadas) |
 | `AUDITORIA_VIDA_REAL.md` | Qué tan fiel es la estructura del juego a Chile real |
