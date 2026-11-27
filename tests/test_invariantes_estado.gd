@@ -36,7 +36,8 @@ func revisar(m: MotorTurno, ctx: String) -> void:
 		_check(e.dia_actual == 1 + (e.turno_actual - 1) * e.dias_por_turno, "%s: día %d no coincide con el turno %d" % [ctx, e.dia_actual, e.turno_actual])
 	_check(FINALES.has(e.etapa) == not e.resultado_final.is_empty(), "%s: resultado final y etapa incoherentes (%s)" % [ctx, e.etapa])
 	var bono := int(e.bono_mov.get("aprobacion", 0)) + int(e.bono_mov.get("asesores", 0))
-	_check(e.pa_actual <= e.pa_maximo + bono, "%s: movimientos %d sobre el máximo %d + bono %d" % [ctx, e.pa_actual, e.pa_maximo, bono])
+	var tope := maxi(int(L["mano"]["tope_ahorro"]), e.pa_maximo + bono)
+	_check(e.pa_actual >= 0 and e.pa_actual <= tope, "%s: movimientos %d fuera de 0..%d (tope de ahorro %d, ingreso %d)" % [ctx, e.pa_actual, tope, int(L["mano"]["tope_ahorro"]), e.pa_maximo + bono])
 	for c in e.mano:
 		_check(ids.has(String(c["id"])), "%s: carta de la mano fuera del catálogo" % ctx)
 	_check(_unicos(e.mano.map(func(c: Dictionary) -> String: return String(c["id"]))), "%s: carta repetida en la mano" % ctx)

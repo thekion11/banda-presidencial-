@@ -82,7 +82,7 @@ func configurar(p_semilla: int, p_dias_turno: int = 7, p_leyes: Dictionary = {})
 		semanas_balotaje = int(p_leyes["hemiciclo"].get("semanas_balotaje", 0))
 	if p_leyes.has("mano"):
 		pa_maximo = int(p_leyes["mano"].get("pa_por_turno", 16))
-	pa_actual = pa_maximo
+	pa_actual = 0  # sin ahorro al empezar: el primer amanecer suma el ingreso de la semana
 	gabinete.clear()
 	eventos_ocurridos.clear()
 	decisiones.clear()
