@@ -27,8 +27,8 @@
    "fuente_url": "https://www.minsal.cl/comision-de-salud-del-senado-en-los-rios-ministra-aguilera-confirma-que-hospital-de-panguipulli-y-valdivia-estan-en-la-cartera-de-inversion-del-2026/",
    "fuente": "fuentes.json#minsal_inversiones",
    "fecha_consulta": "2026-11-23",
-   "verificado": false,
-   "notas": "etapa exacta no publicada"
+   "verificado": true,
+   "notas": "Verificado el 27-nov-2026 leyendo la fuente primaria (Minsal, publicada el 16-10-2025): la ministra confirma ante la Comisión de Salud del Senado que el hospital está en la cartera de inversión 2026. Sin monto ni plazo en la fuente."
   },
   {
    "id": "minsal-hospital-valdivia",
@@ -51,8 +51,8 @@
    "fuente_url": "https://www.minsal.cl/comision-de-salud-del-senado-en-los-rios-ministra-aguilera-confirma-que-hospital-de-panguipulli-y-valdivia-estan-en-la-cartera-de-inversion-del-2026/",
    "fuente": "fuentes.json#minsal_inversiones",
    "fecha_consulta": "2026-11-23",
-   "verificado": false,
-   "notas": "el comunicado dice 'construcción'; etapa exacta no publicada"
+   "verificado": true,
+   "notas": "Verificado el 27-nov-2026 leyendo la fuente primaria (Minsal, publicada el 16-10-2025): la ministra confirma ante la Comisión de Salud del Senado que el hospital está en la cartera de inversión 2026. Sin monto ni plazo en la fuente."
   },
   {
    "id": "minsal-onco-antofagasta",
@@ -75,8 +75,8 @@
    "fuente_url": "https://www.minsal.cl/ministerio-de-salud-presenta-proyectos-de-inversion-2026-2030-para-fortalecer-la-atencion-oncologica-en-la-red-publica-del-pais/",
    "fuente": "fuentes.json#minsal_inversiones",
    "fecha_consulta": "2026-11-23",
-   "verificado": false,
-   "notas": "el MINSAL no publica estado ni monto por ciudad; estado estimado (habilitación posterior a la obra); monto agregado del plan: US$685 MM según Emol 31-08-2026"
+   "verificado": true,
+   "notas": "Verificado el 27-nov-2026 leyendo la fuente primaria (Minsal, publicada el 31-08-2026): la comuna figura en la lista de habilitación o modernización de equipamiento del Plan de Inversiones Oncológicas 2026-2030 (25 proyectos del Plan Nacional de Cáncer). Sin monto ni plazo por comuna en la fuente."
   },
   {
    "id": "minsal-onco-arica",
@@ -243,8 +243,8 @@
    "fuente_url": "https://www.minsal.cl/ministerio-de-salud-presenta-proyectos-de-inversion-2026-2030-para-fortalecer-la-atencion-oncologica-en-la-red-publica-del-pais/",
    "fuente": "fuentes.json#minsal_inversiones",
    "fecha_consulta": "2026-11-23",
-   "verificado": false,
-   "notas": "el MINSAL no publica estado ni monto por ciudad; estado estimado (habilitación posterior a la obra); monto agregado del plan: US$685 MM según Emol 31-08-2026"
+   "verificado": true,
+   "notas": "Verificado el 27-nov-2026 leyendo la fuente primaria (Minsal, publicada el 31-08-2026): la comuna figura en la lista de habilitación o modernización de equipamiento del Plan de Inversiones Oncológicas 2026-2030 (25 proyectos del Plan Nacional de Cáncer). Sin monto ni plazo por comuna en la fuente."
   },
   {
    "id": "minsal-onco-iquique",
@@ -291,8 +291,8 @@
    "fuente_url": "https://www.minsal.cl/ministerio-de-salud-presenta-proyectos-de-inversion-2026-2030-para-fortalecer-la-atencion-oncologica-en-la-red-publica-del-pais/",
    "fuente": "fuentes.json#minsal_inversiones",
    "fecha_consulta": "2026-11-23",
-   "verificado": false,
-   "notas": "el MINSAL no publica estado ni monto por ciudad; estado estimado (habilitación posterior a la obra); monto agregado del plan: US$685 MM según Emol 31-08-2026"
+   "verificado": true,
+   "notas": "Verificado el 27-nov-2026 leyendo la fuente primaria (Minsal, publicada el 31-08-2026): la comuna figura en la lista de habilitación o modernización de equipamiento del Plan de Inversiones Oncológicas 2026-2030 (25 proyectos del Plan Nacional de Cáncer). Sin monto ni plazo por comuna en la fuente."
   },
   {
    "id": "minsal-onco-los-angeles",
@@ -315,8 +315,8 @@
    "fuente_url": "https://www.minsal.cl/ministerio-de-salud-presenta-proyectos-de-inversion-2026-2030-para-fortalecer-la-atencion-oncologica-en-la-red-publica-del-pais/",
    "fuente": "fuentes.json#minsal_inversiones",
    "fecha_consulta": "2026-11-23",
-   "verificado": false,
-   "notas": "el MINSAL no publica estado ni monto por ciudad; estado estimado (habilitación posterior a la obra); monto agregado del plan: US$685 MM según Emol 31-08-2026"
+   "verificado": true,
+   "notas": "Verificado el 27-nov-2026 leyendo la fuente primaria (Minsal, publicada el 31-08-2026): la comuna figura en la lista de habilitación o modernización de equipamiento del Plan de Inversiones Oncológicas 2026-2030 (25 proyectos del Plan Nacional de Cáncer). Sin monto ni plazo por comuna en la fuente."
   },
   {
    "id": "minsal-onco-penalolen",
@@ -411,8 +411,8 @@
    "fuente_url": "https://www.minsal.cl/ministerio-de-salud-presenta-proyectos-de-inversion-2026-2030-para-fortalecer-la-atencion-oncologica-en-la-red-publica-del-pais/",
    "fuente": "fuentes.json#minsal_inversiones",
    "fecha_consulta": "2026-11-23",
-   "verificado": false,
-   "notas": "el MINSAL no publica estado ni monto por ciudad; estado estimado (habilitación posterior a la obra); monto agregado del plan: US$685 MM según Emol 31-08-2026"
+   "verificado": true,
+   "notas": "Verificado el 27-nov-2026 leyendo la fuente primaria (Minsal, publicada el 31-08-2026): la comuna figura en la lista de habilitación o modernización de equipamiento del Plan de Inversiones Oncológicas 2026-2030 (25 proyectos del Plan Nacional de Cáncer). Sin monto ni plazo por comuna en la fuente."
   },
   {
    "id": "minsal-onco-rancagua",
@@ -435,8 +435,8 @@
    "fuente_url": "https://www.minsal.cl/ministerio-de-salud-presenta-proyectos-de-inversion-2026-2030-para-fortalecer-la-atencion-oncologica-en-la-red-publica-del-pais/",
    "fuente": "fuentes.json#minsal_inversiones",
    "fecha_consulta": "2026-11-23",
-   "verificado": false,
-   "notas": "el MINSAL no publica estado ni monto por ciudad; estado estimado (habilitación posterior a la obra); monto agregado del plan: US$685 MM según Emol 31-08-2026"
+   "verificado": true,
+   "notas": "Verificado el 27-nov-2026 leyendo la fuente primaria (Minsal, publicada el 31-08-2026): la comuna figura en la lista de habilitación o modernización de equipamiento del Plan de Inversiones Oncológicas 2026-2030 (25 proyectos del Plan Nacional de Cáncer). Sin monto ni plazo por comuna en la fuente."
   },
   {
    "id": "minsal-onco-san-felipe",
@@ -459,8 +459,8 @@
    "fuente_url": "https://www.minsal.cl/ministerio-de-salud-presenta-proyectos-de-inversion-2026-2030-para-fortalecer-la-atencion-oncologica-en-la-red-publica-del-pais/",
    "fuente": "fuentes.json#minsal_inversiones",
    "fecha_consulta": "2026-11-23",
-   "verificado": false,
-   "notas": "el MINSAL no publica estado ni monto por ciudad; estado estimado (habilitación posterior a la obra); monto agregado del plan: US$685 MM según Emol 31-08-2026"
+   "verificado": true,
+   "notas": "Verificado el 27-nov-2026 leyendo la fuente primaria (Minsal, publicada el 31-08-2026): la comuna figura en la lista de habilitación o modernización de equipamiento del Plan de Inversiones Oncológicas 2026-2030 (25 proyectos del Plan Nacional de Cáncer). Sin monto ni plazo por comuna en la fuente."
   },
   {
    "id": "minsal-onco-santiago",
@@ -483,8 +483,8 @@
    "fuente_url": "https://www.minsal.cl/ministerio-de-salud-presenta-proyectos-de-inversion-2026-2030-para-fortalecer-la-atencion-oncologica-en-la-red-publica-del-pais/",
    "fuente": "fuentes.json#minsal_inversiones",
    "fecha_consulta": "2026-11-23",
-   "verificado": false,
-   "notas": "el MINSAL no publica estado ni monto por ciudad; estado estimado (habilitación posterior a la obra); monto agregado del plan: US$685 MM según Emol 31-08-2026"
+   "verificado": true,
+   "notas": "Verificado el 27-nov-2026 leyendo la fuente primaria (Minsal, publicada el 31-08-2026): la comuna figura en la lista de habilitación o modernización de equipamiento del Plan de Inversiones Oncológicas 2026-2030 (25 proyectos del Plan Nacional de Cáncer). Sin monto ni plazo por comuna en la fuente."
   },
   {
    "id": "minsal-onco-talca",

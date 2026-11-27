@@ -398,3 +398,6 @@ Lección de proceso: `test_sectra` armaba el guardado a mano sin `version` y dej
 
 ## BG. Revisión cruzada del PR #8 (26-nov-2026, cola 13)
 `docs/REVISION_PR8.md`: los 12 fuzz del CI pasan en ≈ 90 s en total; ninguna depende de tiempo, red, orden ni azar global; `user://` se aísla por prueba en `run_all_tests.sh` pero **no en los pasos del `ci.yml`** (recomendado igualar). No hay duplicados reales y no hace falta recortar: el único candidato (≈ 7 s) es `fuzz_propiedades`.
+
+## BH. Verificación constitucional y de fichas (27-nov-2026, cola 14)
+`docs/VERIFICACION_CONSTITUCIONAL.md`: `bcn.cl` y `leychile.cl` bloquean (401) el acceso desde el entorno; se verificó con Servel, Senado, Gob.cl y Minsal lo que esas fuentes permiten. Marcados: calendario (16-nov y 14-dic de 2025, regla de mayoría absoluta, asunción del 11-mar-2026), `reforma_constitucional` (`verificado: true`; cita literal de Art. 127) y 10 fichas del Minsal. Sin verificar: Art. 25, incisos de Art. 66, 229 proyectos. Nueva fuente `servel_segunda_votacion_2025`. Los cambios de `data/` cambian la huella de datos (invalidan guardados anteriores; no hay testers aún); las pruebas de oro no cambian.
