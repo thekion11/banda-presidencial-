@@ -15,7 +15,7 @@
 | 7 Soberanía hídrica | `plan_desaladoras`, `plan_carretera_hidrica`, `plan_exportar_agua` | ley simple | fiscal −5 | 50 % la exportación de agua dulce no se concreta (aprobación −2); | 52: aprobación +3 |
 | 8 Transporte | `plan_red_ferroviaria`, `plan_megapuertos`, `plan_metro_regiones` | ley simple | fiscal −4 | 40 %: retrasos de obra | 52: aprobación +3 |
 
-Total previsto: unas 18 cartas, categorías existentes (hacienda, economia, estado, energia, medioambiente, transportes, politica); ninguna categoría ni color nuevo.
+**Implementado (commit de esta fecha): 16 cartas `plan_*`** generadas con `tools/generar_plan.py` (sin obras con fases: el beneficio se modela con `diferido`). Total previsto original: unas 18 cartas, categorías existentes (hacienda, economia, estado, energia, medioambiente, transportes, politica); ninguna categoría ni color nuevo.
 
 **Supuestos y límites.** (1) Las afirmaciones optimistas del plan («sin alzas de impuestos», seguro contra pérdidas, 0,1 % de comisión, exportación de agua) se modelan como incertidumbre: el beneficio fuerte solo llega en `diferido` y con `riesgo` explícito; ninguna carta da efectos grandes a la vez. (2) Cifras ilustrativas rotuladas. (3) Qué exige reforma constitucional se toma de la regla ya verificada (4/7, `VERIFICACION_CONSTITUCIONAL.md`); esas cartas son difíciles a propósito. (4) Los efectos respetan los techos de balance existentes (cada carta suma |efecto| similar a sus vecinas del mismo costo).
 

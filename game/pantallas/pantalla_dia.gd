@@ -292,6 +292,17 @@ func _siguiente_evento() -> void:
 				_refrescar()))
 
 
+func retomar_decisiones() -> void:
+	## Si Android cerró la app con un evento con decisión en pantalla, el motor lo deja pendiente (ocurrió, sin decisión):
+	## al continuar se vuelve a mostrar, para que el jugador elija y lleguen sus consecuencias.
+	var ahora := motor.eventos.semana_abs()
+	for evt in motor.catalogo_eventos:
+		var id := String(evt["id"])
+		if evt.has("opciones") and int(motor.estado.eventos_ocurridos.get(id, -1)) == ahora and not motor.estado.decisiones.has(id):
+			_cola_eventos.append({"id": id, "titulo": evt["titulo"], "descripcion": evt["descripcion"], "hora": evt["hora_etiqueta"], "votacion": null, "efectos": [], "opciones": evt["opciones"]})
+	_siguiente_evento()
+
+
 func _poner_nav(nacion: bool, activo: String = "mapa") -> void:
 	var nuevo := Barras.nav(_abrir_panel, nacion, "Día %d" % (motor.estado.dia_actual + motor.estado.dias_por_turno), func() -> void:
 		_abrir_panel("mapa")

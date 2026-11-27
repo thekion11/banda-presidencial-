@@ -9,6 +9,7 @@ Estado al volver: `main` y la rama de trabajo están al día; la suite completa 
 - **Coordinación:** colas de trabajo y revisión cruzada entre sesiones.
 
 ## Decisiones tuyas, en orden de impacto (recomendación)
+**Actualización 27-nov:** aceptaste las recomendaciones; aplicadas D19, D20, D17 y el renderizador `gl_compatibility`; bono 45–95 y umbral 52 se quedan (DECISIONES §BJ). Lo que sigue es la lista original; lo no cerrado: Art. 25 y 66, keystore y licencias, métricas con consentimiento (falta diseño).
 1. **D1 Duración** de la partida (hoy unas 6 sesiones de 20 min por mandato): mantener 208 semanas y medirlo en la prueba cerrada.
 2. **D2 / D4 / D16 Dificultad y umbral 51 vs 52:** esperar datos de personas; dejar 52.
 3. **D17 Congelar `data/` durante la prueba:** sí (cualquier cambio de datos descarta los guardados de los testers).
@@ -23,6 +24,9 @@ Estado al volver: `main` y la rama de trabajo están al día; la suite completa 
 12. **Firma y publicación:** keystore, licencias del arte con IA, Google Play en pausa.
 13. **PR #8:** pasar a Ready y fusionar; **`main` como rama por defecto** en GitHub.
 
+## Cartas del Plan Estratégico (nuevo, 27-nov)
+16 cartas `plan_*` (AFP estatal, fondo soberano, industrialización, empresas estatales, COEVA, agua, transporte) hechas con el esquema actual, con riesgo y beneficio diferido (`PLAN_ESTRATEGICO_CARTAS.md`). **D20:** falta tu confirmación aquí para anotarlo en CLAUDE.md §2; mientras tanto se revierte con un commit. Entra antes de congelar `data/`.
+
 ## Qué probar en un teléfono (`MEDICION_TELEFONO.md`)
 30 fps estables en la escena urbana, RAM por pantalla (límite 800 MB), tiempo de carga de un mandato, y que la huella del guardado coincida entre dispositivos; probar también el cambio de apariencia con letra grande y la barra de gestos.
 
@@ -31,4 +35,5 @@ Estado al volver: `main` y la rama de trabajo están al día; la suite completa 
 - En Normal los bots que juegan bien ganan alrededor de 94 %: puede ser fácil.
 - 229 proyectos reales siguen sin verificar contra su fuente; la ficha dice «ilustrativo».
 - Aprendizaje grave de interfaz (corregido en main ee78972): en un teléfono 16:9 (360×640) el juego se veía al 82 % con bandas laterales y letra bajo 10 pt, y las pruebas headless no lo veían porque simulaban el alto. Ahora la base es 390 × alto de pantalla (`Main.base_para`, con prueba en `test_claridad`). Moraleja: las pruebas headless simulaban lo que no veían; hay que mirar en ventana real y en un teléfono.
+- Hallazgos graves de dispositivo real de la sesión visual (todos corregidos en `game/`): un toque elegía y jugaba la carta en Android (contradecía CLAUDE.md §4; ahora `test_toque_real`), el 16:9 se achicaba, en 360×640 con letra ×1,5 se salían el pie del menú y el botón de votación, el Comité 3D salía casi blanco con «Mobile» (lavapipe) y había animaciones con «Animaciones» apagado. Esto refuerza `gl_compatibility` (decidido el 27-nov). Tema común: las pruebas headless simulaban lo que no veían.
 - Con `data/` modificado a mano y sin pasar por `validate_data.py`, algunos valores extremos pueden colgar el motor.
