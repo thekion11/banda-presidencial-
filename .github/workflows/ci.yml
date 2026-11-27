@@ -92,6 +92,7 @@ jobs:
           fz tests/fuzz_ahorro.gd -- 8 7700 60
           fz tests/fuzz_tablero_gabinete.gd -- 2 30 3300
           fz tests/fuzz_agenda.gd -- 9 5500 60
+          fz tests/fuzz_congreso_ui.gd -- 3 40 2600
       - name: "Regresión visual con ventana real (no bloqueante; guía en docs/CONTRIBUIR.md)"
         continue-on-error: true
         run: |
