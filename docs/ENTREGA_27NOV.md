@@ -30,4 +30,5 @@ Estado al volver: `main` y la rama de trabajo están al día; la suite completa 
 - Nada se midió en un teléfono real ni con Vulkan: los números de rendimiento son de un PC.
 - En Normal los bots que juegan bien ganan alrededor de 94 %: puede ser fácil.
 - 229 proyectos reales siguen sin verificar contra su fuente; la ficha dice «ilustrativo».
+- Aprendizaje grave de interfaz (corregido en main ee78972): en un teléfono 16:9 (360×640) el juego se veía al 82 % con bandas laterales y letra bajo 10 pt, y las pruebas headless no lo veían porque simulaban el alto. Ahora la base es 390 × alto de pantalla (`Main.base_para`, con prueba en `test_claridad`). Moraleja: las pruebas headless simulaban lo que no veían; hay que mirar en ventana real y en un teléfono.
 - Con `data/` modificado a mano y sin pasar por `validate_data.py`, algunos valores extremos pueden colgar el motor.
