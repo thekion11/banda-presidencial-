@@ -240,6 +240,24 @@ func presentar(carta_id: String, urgencia_id: String = "simple", ministro_id: St
 	return res
 
 
+func poner_en_discusion_inmediata(carta_id: String) -> Dictionary:
+	## Sube un proyecto en trámite a discusión inmediata sin cobrar capital ni movimientos (lo cobra quien lo llama, p. ej. una bala): acorta el plazo de la etapa
+	## en curso y respeta la etapa; no cuenta contra el máximo de proyectos. Devuelve {ok, razon, dia_etapa_fin}.
+	var _m := m
+	for p in _m.estado.agenda:
+		if String(p["carta_id"]) != carta_id:
+			continue
+		if p["urgencia"] == "inmediata":
+			return {"ok": false, "razon": "ya_inmediata"}
+		if not ETAPAS_VOTO.has(p["etapa"]) and p["etapa"] != "comision_mixta":
+			return {"ok": false, "razon": "etapa_sin_urgencia"}
+		p["urgencia"] = "inmediata"
+		p["dia_etapa_fin"] = mini(int(p["dia_etapa_fin"]), _m.estado.dia_actual + int(urgencia("inmediata")["dias"]))
+		_m.estado.registrar_accion("urgencia", {"carta": carta_id, "dia_etapa_fin": p["dia_etapa_fin"]})
+		return {"ok": true, "dia_etapa_fin": p["dia_etapa_fin"]}
+	return {"ok": false, "razon": "proyecto_no_en_tramite"}
+
+
 func avanzar() -> Array[Dictionary]:
 	## Cierre de semana: resuelve las etapas cuyo plazo venció (puede ser más de una por semana con urgencia alta) y devuelve los resultados finales.
 	var _m := m

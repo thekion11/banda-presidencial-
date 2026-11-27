@@ -150,6 +150,16 @@ func _init() -> void:
 		if est.agenda.is_empty():
 			break
 	_check(int(fin.get(j[0], 99)) <= 6 and int(fin.get(j[1], 0)) >= 8 and int(fin.get(j[0], 99)) < int(fin.get(j[1], 0)), "inmediata en %s semanas y simple en %s (real: 6 y 30 días por cámara)" % [fin.get(j[0]), fin.get(j[1])])
+	# --- discusión inmediata sobre un proyecto en trámite (para las balas) y salida del ahorro
+	est.pa_actual = 10
+	var k := _distintas(m, 1)
+	if not k.is_empty() and bool(ag.presentar(k[0], "simple")["ok"]):
+		var fin0 := int(est.agenda[0]["dia_etapa_fin"])
+		var di := ag.poner_en_discusion_inmediata(k[0])
+		_check(bool(di["ok"]) and int(est.agenda[0]["dia_etapa_fin"]) < fin0 and est.agenda[0]["urgencia"] == "inmediata", "discusión inmediata acorta la etapa")
+		_check(String(ag.poner_en_discusion_inmediata(k[0])["razon"]) == "ya_inmediata" and String(ag.poner_en_discusion_inmediata("xx")["razon"]) == "proyecto_no_en_tramite", "razones de la discusión inmediata")
+	var ah := m.movimientos.ahorro_movimientos()
+	_check(int(ah["disponibles"]) == est.pa_actual and int(ah["tope"]) == 10 and int(ah["se_guardan"]) + int(ah["se_pierden"]) == est.pa_actual, "ahorro_movimientos coherente")
 	# --- determinismo y guardado a mitad de trámite (solo juego legítimo, sin tocar el estado a mano)
 	var m2 := _gobierno(datos, int(est.semilla))
 	_check(m2 != null, "segunda partida para el replay")
