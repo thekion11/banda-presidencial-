@@ -55,7 +55,7 @@ func _bloqueo_carta(carta: Dictionary) -> String:
 
 
 func _lleno() -> bool:
-	return m.estado.agenda.size() + m.estado.proyectos_ley.size() >= int(_cfg()["max_simultaneos"])
+	return m.estado.agenda.size() >= int(_cfg()["max_simultaneos"])  # solo la agenda cuenta: las leyes de la mano tienen su régimen y no deben anular el pedido «presentar leyes desde mi gobierno»
 
 
 func estado_agenda() -> Dictionary:
@@ -66,7 +66,7 @@ func estado_agenda() -> Dictionary:
 		razon = "solo_en_gobierno"
 	elif _lleno():
 		razon = "agenda_llena"
-	return {"en_tramite": _m.estado.agenda.size() + _m.estado.proyectos_ley.size(), "maximo": int(_cfg()["max_simultaneos"]), "puede_presentar": razon == "", "razon": razon}
+	return {"en_tramite": _m.estado.agenda.size(), "maximo": int(_cfg()["max_simultaneos"]), "puede_presentar": razon == "", "razon": razon}
 
 
 func _recargo(urg: Dictionary) -> float:

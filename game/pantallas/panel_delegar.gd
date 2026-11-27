@@ -33,7 +33,7 @@ static func crear(motor: MotorTurno, idx: int, region: String, al_terminar: Call
 	hoja.add_child(v)
 	v.add_child(Tema.etiqueta("DELEGAR EN UN MINISTRO · %d de %d hoy" % [est.delegadas_turno, maximo], 10, Tema.ORO, true))
 	v.add_child(Tema.etiqueta(String(carta["titulo"]), 16, Tema.TEXTO, true))
-	v.add_child(Tema.etiqueta("No gasta movimientos, pero puede salir mal: si falla, el efecto se reduce a la mitad y puede haber escándalo.", 11, Tema.TEXTO_SUAVE))
+	v.add_child(Tema.etiqueta("No gasta movimientos, pero puede salir mal: si falla, el efecto se reduce a la mitad y puede haber polémica.", 11, Tema.TEXTO_SUAVE))
 	var cerrar := func() -> void:
 		raiz.queue_free()
 		if al_cerrar.is_valid():

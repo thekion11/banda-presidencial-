@@ -66,6 +66,13 @@ func _ready() -> void:
 		tut.leyes = motor.catalogo_leyes
 		tut.objetivos = [_mano, _r["pa"], _btn_deleg, _nav, _btn_jugar]
 		_capa.add_child(tut)
+	elif Tutorial.debe_mostrar("ayuda_gobierno") and motor.estado.etapa == "gobierno" and motor.estado.turno_actual == 1 and motor.estado.ciclo == 1:
+		var ayuda := Tutorial.new()  # primer día de gobierno: delegar, agenda legislativa y ahorro (una sola vez)
+		ayuda.pasos = Tutorial.PASOS_GOBIERNO
+		ayuda.clave = "ayuda_gobierno"
+		ayuda.leyes = motor.catalogo_leyes
+		ayuda.objetivos = [_btn_deleg, _nav, _r["pa"]]
+		_capa.add_child(ayuda)
 
 
 # ------------------------------------------------------------------ estado -> UI
@@ -206,7 +213,7 @@ func _jugar() -> void:
 				donde = "en " + String(rg["nombre"])
 		msg = "Promesa %s: +%s de aprobación%s" % [donde, Tema.dec(float(r["delta_aprobacion"])), ". Toca el mapa para dirigir la próxima" if donde == "nacional" else ""]
 	elif r.get("escandalo", false):
-		msg = "Escándalo ministerial: pierdes aprobación y capital."
+		msg = "Polémica ministerial: pierdes aprobación y capital."
 	elif r.get("propuesta") != null:
 		msg = "Propuesta abierta en el Comité de Planificación."
 		_abrir_panel("comite")
@@ -241,7 +248,7 @@ func _delegar() -> void:
 			_avisar(Razones.texto(r))
 			return
 		_leer_reposicion(n_reg)
-		_avisar("Escándalo ministerial: pierdes aprobación y capital." if r["escandalo"] else ("El ministro falló: efecto reducido." if r["fallo"] else "Delegada: el ministro la ejecutó sin gastar movimientos."))
+		_avisar("Polémica ministerial: pierdes aprobación y capital." if r["escandalo"] else ("El ministro falló: efecto reducido." if r["fallo"] else "Delegada: el ministro la ejecutó sin gastar movimientos."))
 		accion_hecha.emit()
 		_refrescar()))
 

@@ -34,6 +34,7 @@ func _init() -> void:
 	_vp = SubViewport.new()
 	_vp.msaa_3d = Viewport.MSAA_2X
 	add_child(_vp)
+	VigiaCalidad.poner(self, _vp)  # bajo 45 fps sostenidos apaga el MSAA (teléfonos lentos)
 	_raiz = Node3D.new()
 	_vp.add_child(_raiz)
 	_cam = Camera3D.new()

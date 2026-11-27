@@ -39,12 +39,12 @@ static func mostrar(capa: Control, ministro: Dictionary, chips: Array) -> void:
 	hoja.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	var v := VBoxContainer.new()
 	v.add_theme_constant_override("separation", 4)
-	var cinta := Tema.etiqueta_corta("ÚLTIMA HORA · ESCÁNDALO", 11, Tema.ROJO, true)
+	var cinta := Tema.etiqueta_corta("ÚLTIMA HORA · POLÉMICA", 11, Tema.ROJO, true)
 	v.add_child(cinta)
 	var cartera := String(ministro.get("cartera", "el gabinete"))
-	v.add_child(Tema.etiqueta("Estalla escándalo: %s" % cartera, 20, Tema.TINTA, true))
+	v.add_child(Tema.etiqueta("Estalla una polémica en %s%s" % ["el " if cartera.begins_with("Ministerio") else "", cartera], 20, Tema.TINTA, true))
 	if ministro.has("alias"):
-		v.add_child(Tema.etiqueta("Apuntan a %s. El gobierno pierde aprobación y capital político." % String(ministro["alias"]), 12, Tema.GRIS_CLARO, false, 600))
+		v.add_child(Tema.etiqueta("La prensa cuestiona a %s (personaje ficticio). El gobierno pierde aprobación y capital político." % String(ministro["alias"]), 12, Tema.GRIS_CLARO, false, 600))
 	hoja.add_child(v)
 	var marco := Control.new()  # soporte de tamaño fijo fuera de contenedores: gira y escala sin que nadie lo reacomode
 	marco.mouse_filter = Control.MOUSE_FILTER_IGNORE
