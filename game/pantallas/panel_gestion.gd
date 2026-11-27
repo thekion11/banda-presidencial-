@@ -3,7 +3,7 @@ extends VBoxContainer
 ## Panel "Gabinete" de la barra inferior: pestañas Gabinete, Equipo (asesores), Coalición e Internos (movimientos internos).
 ## Solo llama al facade MotorTurno; cada acción queda en el guardado por eventos.
 
-const TABS := [["gabinete", "Gabinete"], ["equipo", "Equipo"], ["coalicion", "Coalición"], ["internos", "Internos"]]
+const TABS := [["gabinete", "Gabinete"], ["equipo", "Equipo"], ["coalicion", "Coalición"], ["internos", "Internos"], ["fondos", "Fondos"]]
 static var pestana: String = "gabinete"
 
 var motor: MotorTurno
@@ -29,9 +29,20 @@ func construir() -> void:
 	if motor.estado.etapa == "oposicion":  # sin gabinete ni movimientos internos: solo alianzas
 		tabs = [["coalicion", "Coalición"]]
 		pestana = "coalicion"
+	elif motor.estado.etapa != "gobierno":  # el presupuesto extra a ministerios solo existe gobernando
+		tabs = TABS.filter(func(t: Array) -> bool: return t[0] != "fondos")
+		if pestana == "fondos":
+			pestana = "gabinete"
 	for t in tabs:
 		var b := Tema.boton(t[1], Tema.ORO if pestana == t[0] else Tema.PANEL, Tema.TINTA if pestana == t[0] else Tema.TEXTO, 12, 44)
 		b.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		b.custom_minimum_size.x = 0.0
+		for st in ["normal", "hover", "pressed", "focus", "disabled"]:  # cinco pestañas en 358 px: relleno lateral mínimo
+			if b.has_theme_stylebox_override(st):
+				var sb := b.get_theme_stylebox(st).duplicate() as StyleBox
+				sb.content_margin_left = 3.0
+				sb.content_margin_right = 3.0
+				b.add_theme_stylebox_override(st, sb)
 		b.pressed.connect(func() -> void:
 			pestana = t[0]
 			reconstruir())
@@ -63,6 +74,8 @@ func _pintar() -> void:
 			c = PanelCoalicion.crear(motor, avisar, _accion)
 		"internos":
 			c = PanelInternos.crear(motor, avisar, _accion)
+		"fondos":
+			c = PanelPresupuesto.crear(motor, avisar, _accion)
 		_:
 			c = _gabinete()
 	c.set_anchors_preset(Control.PRESET_FULL_RECT)
