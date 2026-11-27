@@ -66,5 +66,7 @@ func _init() -> void:
 	_check(not m.gabinete.pendiente_confirmar(), "en el turno 2 no hay transición")
 	var c := Partida.crear(datos, semilla, GeneradorPartido.construir_partido("P", "PP", "metropolitana", [], datos["ideologia"]))
 	_check(not c.gabinete.pendiente_confirmar(), "en campaña no hay transición")
+	var directo := AyudaV2.gobierno(datos, 77, [])
+	_check(not directo.gabinete.pendiente_confirmar(), "una partida creada directamente en gobierno (sin votación) no tiene transición")
 	print("test_transicion_gabinete: ", "OK" if _fallos == 0 else "FALLOS %d" % _fallos)
 	quit(1 if _fallos > 0 else 0)

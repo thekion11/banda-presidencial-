@@ -330,7 +330,7 @@ func pendiente_confirmar() -> bool:
 			return false
 		if tipo == "eleccion":
 			return true
-	return true
+	return false  # sin votación en el historial (partida creada directamente en gobierno) no hay nada que confirmar
 
 
 func efecto_semanal_de(ids: Array) -> Dictionary:
