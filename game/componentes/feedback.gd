@@ -30,7 +30,7 @@ static func vibrar(ms: int = 30) -> void:
 
 static func flotante(padre: Control, texto: String, pos: Vector2, color: Color = Tema.CREMA) -> void:
 	## Texto que sube y se desvanece (lo que cambió una carta). Sin animaciones activadas, no se muestra.
-	if not Ajustes.animaciones or texto == "":
+	if not Movimiento.activo() or texto == "":  # mismo criterio que el resto (Ajustes, headless y pruebas forzadas)
 		return
 	var l := Tema.etiqueta(texto, 14, color, true)
 	l.position = pos

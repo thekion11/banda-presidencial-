@@ -65,7 +65,10 @@ func _vista_toque(pos: Vector2) -> void:
 func cargar(_p_datos: Dictionary = {}) -> void:
 	datos = UrbanoBase.datos()
 	trazo = 0.0
-	create_tween().tween_property(self, "trazo", 1.0, 1.0).set_trans(Tween.TRANS_SINE)
+	if Movimiento.activo():  # las líneas se dibujan de punta a punta; sin animaciones aparecen enteras
+		create_tween().tween_property(self, "trazo", 1.0, 1.0).set_trans(Tween.TRANS_SINE)
+	else:
+		trazo = 1.0
 
 
 func _draw() -> void:

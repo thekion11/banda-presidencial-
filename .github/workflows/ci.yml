@@ -10,7 +10,7 @@ concurrency:
 jobs:
   pruebas:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 30  # 20 + la regresión visual (3 tamaños de ventana, unos 4 min)
     env:
       GODOT_VERSION: "4.7.2-stable"
     steps:
@@ -67,3 +67,18 @@ jobs:
           path: docs/ESTADO_ACTUAL.md
       - name: Fuzzing del núcleo (acciones aleatorias e inválidas, replay idéntico)
         run: godot --headless --path . -s tests/fuzz_acciones.gd -- 60 7000
+      - name: "Regresión visual con ventana real (no bloqueante; guía en docs/CONTRIBUIR.md)"
+        continue-on-error: true
+        run: |
+          pip install pillow > /dev/null
+          command -v xvfb-run > /dev/null || sudo apt-get install -y xvfb > /dev/null
+          python3 tools/regresion_visual.py | tee regresion_visual.md
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: regresion-visual
+          retention-days: 14
+          if-no-files-found: ignore
+          path: |
+            regresion_visual.md
+            /tmp/regresion_visual/diferencias

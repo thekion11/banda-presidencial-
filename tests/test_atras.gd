@@ -107,6 +107,25 @@ func _correr() -> void:
 	await _cuadros(2)
 	_check(main._pantalla is PantallaDia and main._aviso_atras != null and main._aviso_atras.is_inside_tree() and main._aviso_atras.visible, "la notificación de Atrás de Android llega a Main, muestra el aviso y no cierra el juego")
 	_check(main.motor.estado.entradas.size() == entradas, "Atrás no registra entradas en el historial de la partida")
+	# la app se cerró con un evento con decisión en pantalla: al continuar, la decisión vuelve a aparecer y se puede responder
+	var evd: Dictionary = {}
+	for e in main.motor.catalogo_eventos:
+		if e.has("opciones") and not main.motor.estado.decisiones.has(String(e["id"])):
+			evd = e
+			break
+	main.motor.estado.eventos_ocurridos[String(evd["id"])] = main.motor.eventos.semana_abs()
+	main.mostrar_dia()
+	await _cuadros(2)
+	var dr: PantallaDia = main._pantalla
+	dr.retomar_decisiones()
+	await _cuadros(2)
+	var tit: Array = dr._capa.find_children("*", "Label", true, false).filter(func(l: Label) -> bool: return l.text == String(evd["titulo"]))
+	_check(not tit.is_empty(), "una decisión que quedó abierta vuelve a mostrarse al continuar («%s»)" % String(evd["titulo"]))
+	var ops: Array = dr._capa.find_children("*", "Button", true, false).filter(func(b: Button) -> bool: return b.is_visible_in_tree() and b.text.begins_with(String(evd["opciones"][0]["texto"])))
+	if not ops.is_empty():
+		(ops[0] as Button).pressed.emit()
+		await _cuadros(2)
+	_check(main.motor.estado.decisiones.has(String(evd["id"])), "la decisión retomada queda registrada en el motor")
 	DirAccess.remove_absolute(ProjectSettings.globalize_path(Tutorial.ruta))
 	DirAccess.remove_absolute(ProjectSettings.globalize_path(main.RUTA_GUARDADO))
 	if _fallos == 0:

@@ -101,6 +101,9 @@ func _aplicar() -> void:
 
 
 func ir_a(f: int) -> void:
+	if not Movimiento.activo():  # sin animaciones, salta directo a la fase
+		fase = float(f)
+		return
 	create_tween().tween_property(self, "fase", float(f), 0.5).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
 
 
