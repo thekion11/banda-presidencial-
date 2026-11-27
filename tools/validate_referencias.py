@@ -112,8 +112,80 @@ def validar_referencias(d: dict) -> None:
         raise ValueError("coalición: los escaños de los 15 partidos ficticios superan el doble del Senado (revisa las cifras)")
     if len(ministros) != len(d["ministros"]):
         raise ValueError("ministros: ids repetidos")
+    validar_balas(d, eventos)
+    validar_presupuesto(d)
     validar_numeros(d)
     print(f"[INFO] Referencias cruzadas: {len(cartas)} cartas, {len(eventos)} eventos, {len(metas)} metas, {len(ministros)} ministros, {len(asesores)} asesores")
+
+
+def validar_balas(d: dict, eventos: set) -> None:
+    """leyes.json › balas_plata (PR-17): ids únicos, condiciones y acciones conocidas, eventos y tipos de ley existentes, probabilidades y costos válidos."""
+    b = d["leyes"]["balas_plata"]
+    if not (1 <= b["usos_iniciales"] <= b["usos_max"] <= len(b["catalogo"])):
+        raise ValueError("balas_plata: usos_iniciales/usos_max inválidos para el catálogo")
+    if not 0 < b["ratio_reducida_min"] <= 1:
+        raise ValueError("balas_plata: ratio_reducida_min debe estar entre 0 y 1")
+    tipos_ley = {t["id"] for t in d["leyes"]["tipos_ley"]}
+    ids = set()
+    for x in b["catalogo"]:
+        ctx = f"balas_plata[{x['id']}]"
+        if x["id"] in ids:
+            raise ValueError(f"{ctx}: id repetido")
+        ids.add(x["id"])
+        if x["accion"] not in ("nada", "adelantar_votacion", "saltar_congreso", "anular_pendiente_negativo"):
+            raise ValueError(f"{ctx}: acción desconocida '{x['accion']}'")
+        if x["costo_capital"] <= 0:
+            raise ValueError(f"{ctx}: costo_capital debe ser positivo")
+        for t in x.get("tipos_vedados", []):
+            if t not in tipos_ley:
+                raise ValueError(f"{ctx}: tipo de ley vedado desconocido '{t}'")
+        r = x["riesgo"]
+        if not (0 < r["min"] <= r["max"] < 1) or not 0 < r["prob_base"] < 1:
+            raise ValueError(f"{ctx}: probabilidades de riesgo fuera de (0, 1)")
+        for ef in x["efectos"] + r["efectos"]:
+            if ef["ind"] not in ("aprobacion", "capital", "cohesion", "fiscal", "riesgo_ejecucion", "viviendas_anio"):
+                raise ValueError(f"{ctx}: indicador desconocido '{ef['ind']}'")
+
+        def revisar(cond: dict) -> None:
+            if cond["tipo"] not in ("proyecto_en_tramite", "anio_min", "indicador_min", "indicador_max", "evento_reciente", "oposicion_mayoritaria", "ministros_firman", "alguna"):
+                raise ValueError(f"{ctx}: condición desconocida '{cond['tipo']}'")
+            for e in cond.get("ids", []):
+                if e not in eventos:
+                    raise ValueError(f"{ctx}: evento inexistente '{e}'")
+            for c2 in cond.get("condiciones", []):
+                revisar(c2)
+        for cond in x["requiere"]:
+            revisar(cond)
+            if not cond.get("falla") or not cond.get("alternativa"):
+                raise ValueError(f"{ctx}: toda condición debe explicar la falla y ofrecer una alternativa (nunca un «no» seco)")
+
+
+def validar_presupuesto(d: dict) -> None:
+    """leyes.json › presupuesto_ministerial: niveles con costos positivos, pesos de autonomía que suman 1, fracciones y probabilidades válidas, incidentes con efectos conocidos."""
+    p = d["leyes"]["presupuesto_ministerial"]
+    for k in ("duracion_semanas", "enfriamiento_semanas", "max_simultaneos", "max_prioridades"):
+        if int(p[k]) < 1:
+            raise ValueError(f"presupuesto_ministerial.{k} debe ser al menos 1")
+    if p["tope_anual_fiscal"] <= 0 or not 0 <= p["piso_fiscal"] <= 100:
+        raise ValueError("presupuesto_ministerial: tope_anual_fiscal/piso_fiscal inválidos")
+    for nid, n in p["niveles"].items():
+        if n["fiscal"] <= 0 or n["capital"] < 0 or n["intensidad"] <= 0:
+            raise ValueError(f"presupuesto_ministerial.niveles.{nid}: costos o intensidad inválidos")
+        if n["fiscal"] > p["tope_anual_fiscal"]:
+            raise ValueError(f"presupuesto_ministerial.niveles.{nid}: cuesta más que el tope anual (nunca se podría asignar)")
+    a = p["autonomia"]
+    if abs(a["peso_lealtad"] + a["peso_afinidad"] + a["peso_competencia"] - 1.0) > 1e-9:
+        raise ValueError("presupuesto_ministerial.autonomia: los pesos de lealtad, afinidad y competencia deben sumar 1")
+    if not 0 < a["fraccion_min"] <= a["fraccion_max"] <= 1 or a["competencia_ref"] <= 0:
+        raise ValueError("presupuesto_ministerial.autonomia: fracciones o competencia_ref inválidas")
+    if not 0 < p["desvio"]["prob_base"] < 1:
+        raise ValueError("presupuesto_ministerial.desvio.prob_base debe estar entre 0 y 1")
+    for x in p["desvio"]["eventos"]:
+        if x["peso"] <= 0:
+            raise ValueError(f"presupuesto_ministerial.desvio.{x['id']}: peso no positivo")
+        for ef in x["efectos"]:
+            if ef["ind"] not in ("aprobacion", "capital", "cohesion", "fiscal", "riesgo_ejecucion", "viviendas_anio"):
+                raise ValueError(f"presupuesto_ministerial.desvio.{x['id']}: indicador desconocido '{ef['ind']}'")
 
 
 def validar_numeros(d: dict) -> None:

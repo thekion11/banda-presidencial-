@@ -5,14 +5,14 @@ El juego guarda **solo lo que el jugador decidió**; todo lo demás se reconstru
 ## Archivo `user://guardado.json`
 | Clave | Tipo | Qué es |
 |---|---|---|
-| `version` | entero | Versión del formato (`ValidarGuardado.VERSION`, hoy 3). Un guardado con versión mayor que la del juego se rechaza. |
+| `version` | entero | Versión del formato (`ValidarGuardado.VERSION`, hoy 4). Un guardado con versión mayor que la del juego se rechaza. |
 | `huella_datos` | texto | Huella de los datos (`Datos.huella_rapida`) con que se jugó. Si no coincide con la del juego, el guardado se descarta. |
 | `semilla` | entero | Semilla de la partida (todo el azar sale de ella). |
 | `partido` | diccionario | El partido creado o elegido (nombre, sigla, ejes, escaños, `indicadores_iniciales`, afiliación, dificultad, habilidad…). Los decimales se redondean a 6 cifras para que JSON los reproduzca exactos. |
 | `entradas` | lista | Historial de decisiones, en orden. Cada una lleva `tipo` y las claves de su tipo. |
 
 ### Tipos de entrada (tabla `ENTRADAS` en `sim/validar_guardado.gd`)
-`jugar` (idx, ministro, region, delegada), `gabinete` (ids), `asesor` (accion, id), `coalicion` (accion, id), `cuota` (id, clase, valor, quitar), `meta`, `sector` (sector, dir), `errores`, `acelerar` (idx), `aprobar_propuesta` (prop, variante, region, custom, nombres), `sectra` (pid), `presentar` (carta, urgencia, ministro, region, delegar: agenda legislativa, BM), `continuar`, `decision` (evento, idx), `cerrar`, `eleccion`. Las tres últimas sin datos propios marcan el paso del tiempo: `cerrar` termina la semana, `eleccion` vota, `continuar` abre el periodo siguiente de la carrera.
+`jugar` (idx, ministro, region, delegada), `gabinete` (ids), `asesor` (accion, id), `coalicion` (accion, id), `cuota` (id, clase, valor, quitar), `meta`, `sector` (sector, dir), `errores`, `acelerar` (idx), `aprobar_propuesta` (prop, variante, region, custom, nombres), `sectra` (pid), `presentar` (carta, urgencia, ministro, region, delegar: agenda legislativa, BM), `continuar`, `decision` (evento, idx), `bala` (id, objetivo, reducida), `presupuesto` (accion, slot, nivel, prio), `cerrar`, `eleccion`. Las tres últimas sin datos propios marcan el paso del tiempo: `cerrar` termina la semana, `eleccion` vota, `continuar` abre el periodo siguiente de la carrera.
 
 ## Cómo se carga (`Partida.cargar`)
 1. `Main.continuar_guardado` descarta (renombra a `guardado_descartado.json` y vuelve al menú con aviso) un archivo ilegible, sin semilla o entradas, o de otra huella de datos.

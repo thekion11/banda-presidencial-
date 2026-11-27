@@ -134,6 +134,9 @@ func _ready() -> void:
 			v2.add_child(Tema.etiqueta("%s · %s" % [ln["id"], String(ln["nombre"])], 12, Tema.TEXTO, false, 600))
 			v2.add_child(Tema.etiqueta("%d estaciones · %s" % [(ln["nombres_estaciones"] as Array).size(), "operativa" if ln["estado"] == "operativa" else "en construcción al terminar el mandato"], 10, Tema.TEXTO_SUAVE))
 			lista.add_child(FilasUI.tarjeta(v2, Tema.PANEL))
+	lista.add_child(FilasUI.titulo("Tu aprobación, semana a semana"))
+	lista.add_child(GraficoMandato.crear(motor))
+	lista.add_child(Tema.etiqueta("Línea dorada: umbral de la elección. Puntos dorados: hitos de tu mandato.", 10, Tema.TEXTO_SUAVE))
 	var hitos := motor.mandato.hitos()
 	if not hitos.is_empty():
 		lista.add_child(FilasUI.titulo("Hitos de tu mandato"))
