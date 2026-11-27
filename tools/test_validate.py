@@ -146,7 +146,10 @@ def rangos_leyes() -> int:
     import json
     leyes = json.loads((Path(__file__).resolve().parents[1] / "data" / "leyes.json").read_text(encoding="utf-8"))
     fuentes = {x["id"] for x in json.loads((Path(__file__).resolve().parents[1] / "data" / "fuentes.json").read_text(encoding="utf-8"))}
-    casos = [("encuestas.historial_max = -1", lambda l: l["encuestas"].__setitem__("historial_max", -1), "historial_max"),
+    casos = [("mano.reales_en_mazo = 0", lambda l: l["mano"].__setitem__("reales_en_mazo", 0), "reales_en_mazo"),
+             ("encuestas.margen_final = 0", lambda l: l["encuestas"].__setitem__("margen_final", 0), "margen_final"),
+             ("bono tramo desde = 0", lambda l: l["bono_movimientos"]["tramos"][0].__setitem__("desde", 0), "bono_movimientos"),
+             ("encuestas.historial_max = -1", lambda l: l["encuestas"].__setitem__("historial_max", -1), "historial_max"),
              ("encuestas.historial_max = 0", lambda l: l["encuestas"].__setitem__("historial_max", 0), "historial_max"),
              ("gabinete.anios_mandato = 0", lambda l: l["gabinete"].__setitem__("anios_mandato", 0), "anios_mandato"),
              ("hemiciclo.dias_por_turno = 0", lambda l: l["hemiciclo"].update({"dias_por_turno": 0, "duracion_mandato_dias": 0}), "dias_por_turno"),

@@ -119,6 +119,12 @@ def validar_leyes(leyes: dict, ids_fuentes: set) -> set:
         raise ValueError("gabinete: anios_mandato debe ser ≥ 1")
     if leyes["encuestas"]["historial_max"] < 1 or leyes["encuestas"]["regiones_mostradas"] < 0:
         raise ValueError("encuestas: historial_max debe ser ≥ 1 y regiones_mostradas ≥ 0")
+    if leyes["mano"]["reales_en_mazo"] < 1:
+        raise ValueError("mano: reales_en_mazo debe ser ≥ 1 (sin cartas reales el mazo se queda sin jugadas)")
+    if leyes["encuestas"]["margen_final"] <= 0 or leyes["encuestas"]["margen_inicial"] < leyes["encuestas"]["margen_final"]:
+        raise ValueError("encuestas: margen_final debe ser > 0 y no mayor que margen_inicial")
+    if any(t["desde"] < 1 for t in leyes["bono_movimientos"]["tramos"]):
+        raise ValueError("bono_movimientos: cada tramo debe empezar en una aprobación ≥ 1")
     lim = leyes["limites_indicadores"]
     if not 0 <= lim["min"] < lim["max"] <= 100:
         raise ValueError("limites_indicadores: debe cumplirse 0 ≤ min < max ≤ 100")
