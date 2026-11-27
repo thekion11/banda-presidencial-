@@ -408,3 +408,12 @@ Lección de proceso: `test_sectra` armaba el guardado a mano sin `version` y dej
 - **Qué se hizo:** 16 cartas `plan_*` en `data/cartas_curadas.json` generadas con `tools/generar_plan.py` (esquema actual: efectos, requisitos de ley, riesgo, diferido). Sin mecánicas, campos, categorías ni pantallas nuevas. Fuente `plan_usuario_2026` (cifras ilustrativas, sin verificar). Diseño y supuestos: `docs/PLAN_ESTRATEGICO_CARTAS.md`.
 - **Efecto en pruebas:** cambia `data/`, así que cambian la huella, los tres oros (4 semanas, 30 días, completa) y `tests/oro/huellas.json`: regenerados por este motivo.
 - **Revertir:** `git revert` del commit; el generador es idempotente.
+
+
+## BJ. Decisiones del usuario del 27-nov-2026 (mensaje directo al núcleo)
+- **Plan Estratégico (D20):** confirma que se convierta en cartas, con cifras ilustrativas rotuladas; se anotó como ampliación autorizada en CLAUDE.md §2 (commit 27ced2a, diseño 71f00f6) y se mantiene el diseño de `PLAN_ESTRATEGICO_CARTAS.md` (riesgo, diferido, reforma 4/7).
+- **Aceptadas las recomendaciones** de `RESUMEN_DECISIONES.md` y `DECISIONES_PENDIENTES.md` en todo lo no marcado distinto: D1 (mantener 208 semanas y medirlo en la prueba cerrada), D2/D16 (esperar datos de personas), D3 (bono por aprobación 45–95 como está), D4 (umbral 52 como está), D14 y D6/D7 (esperar la prueba), D15 (cohesión con desgaste), D18 (no regenerar `cartas_reales.json`), PR #8 (pasar a Ready y fusionar), `main` por defecto, métricas locales con consentimiento (**pendiente de implementar: es una función nueva, no se empieza sin diseño aprobado**).
+- **D19:** el test rápido de 3 preguntas queda por defecto para fundadores e independientes; CLAUDE.md §2 enmendado.
+- **D17:** `data/` se congela durante la prueba cerrada, después de entrar las cartas del plan (ya están); CLAUDE.md §2 lo anota.
+- **Renderizador:** `project.godot` pasa de «mobile» a `gl_compatibility` (`renderer/rendering_method` y `.mobile`); CLAUDE.md §5 lo anota.
+- **Sin cambios de balance** fuera de lo anterior (ni D5 opción 2 ni otros).
