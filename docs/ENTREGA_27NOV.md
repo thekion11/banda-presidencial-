@@ -27,6 +27,9 @@ Estado al volver: `main` y la rama de trabajo están al día; la suite completa 
 ## Cartas del Plan Estratégico (nuevo, 27-nov)
 16 cartas `plan_*` (AFP estatal, fondo soberano, industrialización, empresas estatales, COEVA, agua, transporte) hechas con el esquema actual, con riesgo y beneficio diferido (`PLAN_ESTRATEGICO_CARTAS.md`). **D20:** falta tu confirmación aquí para anotarlo en CLAUDE.md §2; mientras tanto se revierte con un commit. Entra antes de congelar `data/`.
 
+## Tu petición del 27-nov: mapa con zoom y gabinete más atractivo
+Texto literal: «El mapa del país debe agrandarse un poco para ver todas las regiones, además de poder hacerle zoom, la elección del personal del gabinete no es tan entretenida además de qué es solo un formulario, es poco atractivo». Visual lo implementa en `game/`; el núcleo ya expone las fichas y el efecto de nombrar a cada candidato (`DECISIONES.md` §BK). **D22 (tuya):** frases, biografías y retratos para los 75 candidatos exigirían descongelar `data/`.
+
 ## Qué probar en un teléfono (`MEDICION_TELEFONO.md`)
 30 fps estables en la escena urbana, RAM por pantalla (límite 800 MB), tiempo de carga de un mandato, y que la huella del guardado coincida entre dispositivos; probar también el cambio de apariencia con letra grande y la barra de gestos.
 
