@@ -50,8 +50,9 @@ static func tramite(motor: MotorTurno) -> VBoxContainer:
 	return col
 
 
-static func presentar(motor: MotorTurno, al_presentar: Callable) -> VBoxContainer:
+static func presentar(motor: MotorTurno, al_presentar: Callable, abierto_inicial: String = "") -> VBoxContainer:
 	## «Presentar un proyecto»: categorías, catálogo y, al tocar uno, sus urgencias, la delegación y el Corrector.
+	## Atajo: el chip «En tu mano» reúne las leyes de tu mano, y la carta elegida en la mano llega ya desplegada.
 	var col := FilasUI.col(8)
 	col.add_child(Tema.etiqueta("Presentar un proyecto", 15, Tema.TEXTO, true))
 	var ea := motor.agenda.estado_agenda()
@@ -62,11 +63,16 @@ static func presentar(motor: MotorTurno, al_presentar: Callable) -> VBoxContaine
 	if catalogo.is_empty():
 		col.add_child(Tema.etiqueta("Con tu gabinete y esta etapa no hay proyectos de ley presentables. Revisa el gabinete o espera la próxima ventana.", 12, Tema.TEXTO_SUAVE))
 		return col
-	var cats: Array[String] = [""]
+	var en_mano := {}
+	for c in motor.estado.mano:
+		en_mano[String(c["id"])] = true
+	var hay_mano := catalogo.any(func(e: Dictionary) -> bool: return en_mano.has(String(e["carta_id"])))
+	var cats: Array[String] = (["mano", ""] as Array[String]) if hay_mano else ([""] as Array[String])
 	for e in catalogo:
 		if not cats.has(String(e["categoria"])):
 			cats.append(String(e["categoria"]))
-	var estado := {"cat": "", "abierto": "", "max": POR_PAGINA}
+	var inicial_en := catalogo.any(func(e: Dictionary) -> bool: return String(e["carta_id"]) == abierto_inicial)
+	var estado := {"cat": "mano" if hay_mano else "", "abierto": abierto_inicial if inicial_en else "", "max": POR_PAGINA}
 	var chips := HBoxContainer.new()
 	chips.add_theme_constant_override("separation", 6)
 	var sc := ScrollContainer.new()
@@ -87,7 +93,9 @@ static func presentar(motor: MotorTurno, al_presentar: Callable) -> VBoxContaine
 			h.queue_free()
 		var vistos := 0
 		for e in catalogo:
-			if estado["cat"] != "" and String(e["categoria"]) != estado["cat"]:
+			if estado["cat"] == "mano" and not en_mano.has(String(e["carta_id"])):
+				continue
+			if estado["cat"] != "" and estado["cat"] != "mano" and String(e["categoria"]) != estado["cat"]:
 				continue
 			vistos += 1
 			if vistos > int(estado["max"]):
@@ -101,7 +109,7 @@ static func presentar(motor: MotorTurno, al_presentar: Callable) -> VBoxContaine
 				estado["abierto"] = "" if estado["abierto"] == e["carta_id"] else String(e["carta_id"])
 				acc["pintar"].call(), al_presentar))
 	for cat in cats:
-		var b := Tema.boton("Todas" if cat == "" else _area(cat), Tema.PANEL, Tema.TEXTO, 12, Tema.TACTIL)
+		var b := Tema.boton("Todas" if cat == "" else ("En tu mano" if cat == "mano" else _area(cat)), Tema.PANEL, Tema.TEXTO, 12, Tema.TACTIL)
 		b.set_meta("cat", cat)
 		b.pressed.connect(func() -> void:
 			estado["cat"] = cat

@@ -1,7 +1,8 @@
 class_name Tutorial
 extends Control
 ## Tutorial de la primera partida: 5 pasos sobre mano, movimientos, delegación, gabinete y turno. Saltable.
-## Solo se guarda una preferencia local (user://preferencias.json) para no repetirlo.
+## Y una ayuda breve el primer día de gobierno (delegar, agenda legislativa y ahorro de movimientos).
+## Solo se guarda una preferencia local (user://preferencias.json) para no repetirlos.
 
 static var ruta: String = "user://preferencias.json"
 
@@ -12,9 +13,16 @@ const PASOS := [
 	["Gabinete", "Tu gabinete de {gab} ministerios se puede rellenar solo. Ahí cambias también asesores, coalición y movimientos internos."],
 	["Tu turno", "Cuando termines tus jugadas, toca el botón del centro para cerrar la semana. Eso es todo: ¡a campaña!"],
 ]
+const PASOS_GOBIERNO := [
+	["Ya gobiernas", "Ahora puedes delegar: suelta una carta sobre el ícono izquierdo y un ministro la ejecuta sin gastar movimientos (puede fallar)."],
+	["Agenda legislativa", "En Congreso presentas proyectos de ley con urgencia simple, suma o discusión inmediata, y sigues los que van en trámite."],
+	["Ahorro", "Lo que no gastes se guarda para la semana siguiente, hasta {tope}. El número junto al rayo es lo que tienes hoy."],
+]
 
 signal cerrado
 
+var pasos: Array = PASOS  # PASOS o PASOS_GOBIERNO
+var clave := "tutorial_visto"  # preferencia que lo marca como visto
 var leyes: Dictionary = {}  # data/leyes.json: las cifras del texto salen de ahí (nunca fijas)
 var objetivos: Array = []  # un Control por paso, en el mismo orden que PASOS
 var _paso: int = 0
@@ -26,17 +34,25 @@ var _siguiente: Button
 var _velo: Control  # P9: oscurece todo salvo el elemento explicado (foco con hueco)
 
 
-static func debe_mostrar() -> bool:
+static func _prefs() -> Dictionary:
 	if not FileAccess.file_exists(ruta):
-		return true
+		return {}
 	var d: Variant = JSON.parse_string(FileAccess.get_file_as_string(ruta))
-	return not (d is Dictionary and bool(d.get("tutorial_visto", false)))
+	return d if d is Dictionary else {}
 
 
-static func marcar_visto() -> void:
+static func debe_mostrar(p_clave: String = "tutorial_visto") -> bool:
+	return not bool(_prefs().get(p_clave, false))
+
+
+static func marcar_visto(p_clave: String = "") -> void:
+	## Sin clave marca todas las ayudas (saltarlas en pruebas o en «Partida rápida»); con clave, solo esa.
+	var d := _prefs()
+	for k in (["tutorial_visto", "ayuda_gobierno"] if p_clave == "" else [p_clave]):
+		d[k] = true
 	var f := FileAccess.open(ruta, FileAccess.WRITE)
 	if f != null:
-		f.store_string(JSON.stringify({"tutorial_visto": true}))
+		f.store_string(JSON.stringify(d))
 
 
 func _ready() -> void:
@@ -68,7 +84,7 @@ func _ready() -> void:
 	v.add_child(_texto)
 	var fila := HBoxContainer.new()
 	fila.add_theme_constant_override("separation", 8)
-	var saltar := Tema.boton("Saltar tutorial", Tema.PANEL, Tema.TEXTO, 13, 48)
+	var saltar := Tema.boton("Saltar tutorial" if clave == "tutorial_visto" else "Saltar ayuda", Tema.PANEL, Tema.TEXTO, 13, 48)
 	saltar.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	saltar.pressed.connect(_cerrar)
 	_siguiente = Barras.boton_jugar()
@@ -84,11 +100,11 @@ func _ready() -> void:
 
 
 func _mostrar() -> void:
-	var p: Array = PASOS[_paso]
-	_contador.text = "PASO %d DE %d" % [_paso + 1, PASOS.size()]
+	var p: Array = pasos[_paso]
+	_contador.text = "PASO %d DE %d" % [_paso + 1, pasos.size()]
 	_titulo.text = String(p[0])
 	_texto.text = String(p[1]).format({"pa": int(leyes.get("mano", {}).get("pa_por_turno", 5)), "deleg": int(leyes.get("delegacion", {}).get("max_por_turno", 2)), "gab": int(leyes.get("gabinete", {}).get("tamano", 8)), "tope": int(leyes.get("mano", {}).get("tope_ahorro", 10))})
-	_siguiente.text = "Siguiente" if _paso < PASOS.size() - 1 else "Entendido"
+	_siguiente.text = "Siguiente" if _paso < pasos.size() - 1 else "Entendido"
 	if _paso < objetivos.size() and objetivos[_paso] is Control and is_instance_valid(objetivos[_paso]):
 		var r: Rect2 = (objetivos[_paso] as Control).get_global_rect().grow(6.0)
 		if Movimiento.activo() and _marco.visible and _marco.size.x > 0.0:  # el foco viaja al siguiente elemento
@@ -104,7 +120,7 @@ func _mostrar() -> void:
 
 
 func _avanzar() -> void:
-	if _paso >= PASOS.size() - 1:
+	if _paso >= pasos.size() - 1:
 		_cerrar()
 		return
 	_paso += 1
@@ -112,7 +128,7 @@ func _avanzar() -> void:
 
 
 func _cerrar() -> void:
-	marcar_visto()
+	marcar_visto(clave)
 	cerrado.emit()
 	queue_free()
 
