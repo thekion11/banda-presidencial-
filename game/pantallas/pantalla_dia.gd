@@ -14,6 +14,7 @@ var _raiz: VBoxContainer
 var _nav: Control
 var _nuevas: Array = []  # ids de cartas que entraron por reposición (se animan al pintar la mano)
 var _lbl_mov: Label
+var _riel: RielRegiones
 var _badge: Label
 var _region: String = ""
 var _r: Dictionary = {}  # referencias de Barras
@@ -37,6 +38,9 @@ func _ready() -> void:
 	add_child(raiz)
 	raiz.add_child(Barras.cabecera(_r))
 	raiz.add_child(CuerpoDia.construir(self))  # mapa, mano, Corrector, botones y zona de paneles (cuerpo_dia.gd)
+	(_r["ev_cab"] as Control).gui_input.connect(func(ev: InputEvent) -> void:  # el evento del día, completo
+		if ev is InputEventMouseButton and ev.pressed and ev.button_index == MOUSE_BUTTON_LEFT and String(_r["ev_cab"].text) != "":
+			_avisar("%s · %s. %s" % [String(_r["ev_hora"].text).replace("• ", ""), _r["ev_titulo"].text, _r["ev_sub"].text]))
 	var pastilla := (_r["pa"] as Control).get_parent().get_parent() as Control  # tocar el rayo explica qué es
 	pastilla.mouse_filter = Control.MOUSE_FILTER_STOP
 	pastilla.tooltip_text = ManoUI.AYUDA_MOVIMIENTOS
@@ -91,13 +95,16 @@ func _refrescar() -> void:
 		props[String(motor.catalogo_propuestas[pid].get("region", ""))] = true
 	_mapa.actualizar(est.aprobacion_regional, obras, props)
 	Barras.actualizar_evento(_r, motor)
+	_r["ev_cab"].text = "" if String(_r["ev_hora"].text).contains("SIN EVENTOS") else "· " + String(_r["ev_titulo"].text)  # tocarlo muestra el evento completo
 	_actualizar_region()
 	_pintar_mano()
 	_actualizar_botones()
 
 
 func _actualizar_region() -> void:
-	PanelesDia.pintar_region(_r, motor, datos, _region); _mapa.seleccion = _region  # contorno y línea siguen a la tarjeta
+	PanelesDia.pintar_region(_r, motor, datos, _region); _mapa.seleccion = _region  # contorno y línea siguen a la región elegida
+	_riel.pintar(motor.estado.aprobacion_regional, _region)
+	_mapa.enlace = _riel.boton(_region)  # línea punteada región → su fila del riel
 
 
 func _pintar_mano() -> void:

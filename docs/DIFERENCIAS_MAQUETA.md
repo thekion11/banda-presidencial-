@@ -269,3 +269,8 @@ Cita literal (27-nov ~03:10 UTC): «Los movimientos deben poder guardar si no lo
 - «Terminar semana» ya no lleva el número; la ficha de la carta muestra el rayo y el costo; el Corrector, el Comité y SECTRA dicen «cuesta N»; la mano dice «5 por semana».
 - El símbolo alternativo (ficha de acción) está en el lienzo, página «Propuesta 27-nov», para que el usuario elija.
 - Falta, cuando el motor guarde los movimientos: que «Terminar semana» deje de pedir confirmación si sobran y avise «Se guardan N», y actualizar el tutorial.
+
+
+## Riel de regiones en el mapa del día (elección del usuario, 27-nov-2026)
+
+El usuario eligió «Mapa A + riel de regiones (Recomendado)» en la página «Propuesta 27-nov» del lienzo. A la derecha del mapa, donde la maqueta pone las tarjetas de evento y de región, va un riel deslizable con las 16 regiones de norte a sur y su aprobación en color (`game/componentes/riel_regiones.gd`). Tocar una región la elige y acerca el mapa sobre ella; tocarla otra vez abre su detalle (Nación, o el mapa urbano para la Metropolitana). La línea punteada une la región con su fila. El evento del día pasa a la cabecera, junto a la fecha, y tocarlo lo muestra completo. La leyenda de colores del mapa sale: el riel ya muestra el porcentaje. Diferencia con la maqueta en el día: 39,4 → 39,8 %. Prueba: `tests/test_mapa_zoom.gd` (16 regiones en orden, porcentajes del motor, elegir, acercar y abrir el detalle).
