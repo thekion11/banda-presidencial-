@@ -353,7 +353,7 @@ func efecto_de_nombrar(id: String) -> Dictionary:
 	var dif := {}
 	for k in despues.keys() + antes.keys():
 		var d := float(despues.get(k, 0.0)) - float(antes.get(k, 0.0))
-		if absf(d) > 1e-9:
+		if not is_zero_approx(d):
 			dif[k] = d
 	return dif
 
