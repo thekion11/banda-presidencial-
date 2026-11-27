@@ -20,6 +20,17 @@ godot --headless --path . -s tests/test_xxx.gd
 ```
 Una prueba que no compila **no falla sola**: el CI y `run_all_tests.sh` buscan «SCRIPT ERROR» y aplican 300 s de límite. Antes de subir: fetch, merge de `origin/main`, suite en verde. Las pruebas de oro (`test_prueba_oro_*`, `tests/oro/huellas.json`) se regeneran solo si el cambio de resultado es intencional, **con el motivo explicado en el commit y tras correr `test_mutantes*` y `test_invariantes_estado`**: `test_determinismo` mata la mitad de los mutantes de `sim/`, y si se regenera sin mirar, esa red queda ciega. Al tocar `ValidarGuardado` o el formato del guardado, corre TODOS los `test_*.gd` (`tools/run_all_tests.sh`), no una lista corta.
 
+### Regresión visual (capturas de referencia)
+`tests/golden/<tamaño>/<pantalla>.png` guarda 11 pantallas clave (menú, afiliación, test, gabinete, día, Congreso, Nación, mapa urbano, votación, elección y fin), capturadas con **ventana real** (1×) en 360×640, 390×844 y 412×915, en 256 colores para que pesen poco (≈ 1,6 MB en total).
+```
+python3 tools/regresion_visual.py               # captura de nuevo y compara; tabla y diferencias en /tmp/regresion_visual/diferencias
+python3 tools/regresion_visual.py --generar     # regenera tests/golden
+```
+- Necesita `xvfb-run` y Pillow. En el CI es un paso **no bloqueante**: la tabla y las imágenes de diferencias (referencia | nueva | píxeles distintos en rojo) quedan en el artefacto `regresion-visual`.
+- Tolerancia: un píxel cuenta como distinto si algún canal difiere en más de 24, tras llevar la captura nueva a la paleta de la referencia. Una pantalla falla si más del 1,5 % de sus píxeles cambia. Un margen así absorbe el antialias de otra versión de Mesa, no un cambio de diseño.
+- **Regenera las referencias solo cuando el cambio visual es a propósito.** Primero mira las diferencias, después corre `--generar` y explica en el commit qué cambió y por qué (por ejemplo: «hemiciclo: la marca del mínimo ya no tapa el texto»). Si una pantalla cambia sin que la hayas tocado, es una regresión: no la regeneres.
+- Las capturas tienen que ser deterministas: `tests/golden_capturar.gd` borra el guardado antes de empezar (el menú cambia si hay partida), esconde los avisos que se van solos y corre sin animaciones. Si agregas algo que se mueve aunque «Animaciones» esté apagado, la comparación lo marcará. Eso pasó con la mano, que volaba igual: ahora `tests/test_reglas_ui.gd` lo prueba.
+
 ## Convenciones
 - Identificadores en español sin tildes (`snake_case`); comentarios y textos en español con tildes; sin emojis.
 - Guardado por eventos: solo semilla, partido e historial. Si cambias las claves del guardado, sube `ValidarGuardado.VERSION` (`tests/test_formato_guardado.gd` lo exige) y mira `docs/FORMATO_GUARDADO.md`.

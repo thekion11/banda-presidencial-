@@ -133,6 +133,11 @@ func pintar(motor: MotorTurno, sel: int, ministro: String = "", nuevas: Array = 
 		_pos_prev[id] = destino
 		c.tocada.connect(func(_c: CartaUI) -> void: tocada.emit(i))
 		add_child(c)
+		if not Movimiento.activo():  # «Animaciones» apagado (o headless): cada carta queda en su lugar, sin vuelo ni rebote
+			c.position = destino
+			c.rotation_degrees = rot
+			c.scale = esc
+			continue
 		var tw := c.create_tween().set_parallel(true).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
 		if not previas.has(id):  # carta nueva: entra desde abajo (o con giro dorado si vino por reposición)
 			var rep := nuevas.has(id)

@@ -54,6 +54,19 @@ func _correr() -> void:
 		main.queue_free()
 		await _cuadros(2)
 	root.content_scale_size = Vector2i(390, 844)
+	# con «Animaciones» apagado nada se mueve: la mano queda en su lugar al instante y el trazado urbano aparece entero
+	var mq: Node = await _dia(844)
+	var dq: PantallaDia = mq._pantalla
+	var pos0: Array = dq.find_children("*", "CartaUI", true, false).map(func(c: CartaUI) -> Vector2: return c.position)
+	await create_timer(0.8).timeout
+	var pos1: Array = dq.find_children("*", "CartaUI", true, false).map(func(c: CartaUI) -> Vector2: return c.position)
+	_check(not pos0.is_empty() and pos0 == pos1, "sin animaciones las cartas de la mano no vuelan (%s → %s)" % [str(pos0.slice(0, 2)), str(pos1.slice(0, 2))])
+	dq._abrir_urbano()
+	await _cuadros(2)
+	var um: Array = dq._capa.find_children("*", "UrbanoMapa", true, false)
+	_check(not um.is_empty() and is_equal_approx((um[0] as UrbanoMapa).trazo, 1.0), "sin animaciones el trazado del Metro aparece entero")
+	mq.queue_free()
+	await _cuadros(2)
 	# «Reducir movimiento» con animaciones: ninguna partícula visible ni procesando en menú, día, elección ganada y fin
 	Movimiento.forzado = 1
 	var main2: Node = await _dia(844)

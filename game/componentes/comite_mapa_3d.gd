@@ -250,9 +250,12 @@ func poner_trazado(trazado: Array, elevada: bool) -> void:
 			var p := _pos(trazado[k], 0.0)
 			pil.append(Transform3D(Basis().scaled(Vector3(0.3, extra, 0.3)), p + Vector3(0, extra * 0.5, 0)))
 		_trazado_nodo.add_child(_multi(pil, _material(Color("#8C99A6"))))
-	_trazado_nodo.scale = Vector3(1, 0.01, 1)
 	_trazado_nodo.position = Vector3.ZERO
-	create_tween().tween_property(_trazado_nodo, "scale", Vector3.ONE, 0.6).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	if Movimiento.activo():  # el trazado crece desde el suelo; sin animaciones aparece entero
+		_trazado_nodo.scale = Vector3(1, 0.01, 1)
+		create_tween().tween_property(_trazado_nodo, "scale", Vector3.ONE, 0.6).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	else:
+		_trazado_nodo.scale = Vector3.ONE
 
 
 func _actualizar_camara() -> void:
