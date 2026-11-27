@@ -3,7 +3,7 @@ extends RefCounted
 ## Validación estructural previa a reproducir un guardado por eventos (GDScript no captura errores en ejecución): semilla, partido y entradas con las claves y tipos
 ## que usa Partida.reproducir. La tabla ENTRADAS documenta además el formato del guardado. Un guardado que no pasa se descarta antes de tocar el motor.
 
-const VERSION := 2  # versión del formato del guardado: subirla al cambiar claves del archivo o de las entradas (tests/test_formato_guardado.gd lo exige)
+const VERSION := 3  # versión del formato del guardado: subirla al cambiar claves del archivo o de las entradas (tests/test_formato_guardado.gd lo exige)
 const INDICADORES := ["aprobacion", "capital", "cohesion", "fiscal", "riesgo_ejecucion", "viviendas_anio"]
 const S := TYPE_STRING
 const I := TYPE_INT
@@ -14,7 +14,7 @@ const A := TYPE_ARRAY
 const ENTRADAS := {
 	"jugar": {"idx": I, "ministro": S, "region": S}, "gabinete": {"ids": A}, "asesor": {"accion": S, "id": S}, "coalicion": {"accion": S, "id": S},
 	"cuota": {"id": S, "clase": S, "valor": S, "quitar": B}, "meta": {"meta": S}, "sector": {"sector": S, "dir": I}, "errores": {}, "acelerar": {"idx": I},
-	"aprobar_propuesta": {"prop": S, "variante": S, "region": S}, "sectra": {"pid": S}, "continuar": {}, "decision": {"evento": S, "idx": I}, "cerrar": {}, "eleccion": {},
+	"aprobar_propuesta": {"prop": S, "variante": S, "region": S}, "sectra": {"pid": S}, "presentar": {"carta": S, "urgencia": S, "ministro": S, "region": S, "delegar": B}, "continuar": {}, "decision": {"evento": S, "idx": I}, "cerrar": {}, "eleccion": {},
 }
 
 

@@ -39,6 +39,9 @@ func _init() -> void:
 	var aho := _tasas(datos, "ahorrador", 40)  # BL: ahorrar (jugar solo semanas alternas y gastar todo de golpe) no debe ser mejor que gastar cada semana
 	print("ahorrador=%s" % [aho])
 	_check(aho["electos"] <= cod["electos"] + 0.10, "ahorrar movimientos no debe dominar en campaña")
+	var leg := _tasas(datos, "legislador", 40)  # BM: presentar leyes por la agenda (extra a las cartas de la mano) no debe volver trivial el gobierno
+	print("legislador=%s" % [leg])
+	_check(leg["crisis"] < 0.26 and leg["electos"] <= cod["electos"] + 0.10, "legislar por la agenda no debe dominar ni hundir al gobierno")
 	# matriz por dificultad (n=40: error típico ≈ 8 puntos, por eso las bandas son anchas): un cambio de datos que rompa la escalera falla aquí
 	var f := _tasas(datos, "codicioso", 40, "facil")
 	var nor := _tasas(datos, "codicioso", 40, "normal")

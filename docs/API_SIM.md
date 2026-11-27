@@ -79,6 +79,17 @@
 - `static vale_para(d: Dictionary, huella_datos: String, sha_guardado: String) -> bool` — true si la instantánea es completa y coincide con la huella de datos y el SHA del guardado actuales.
 - `static restaurar(datos: Dictionary, semilla: int, d: Dictionary) -> MotorTurno` — Mismo motor que daría reproducir el historial, sin simularlo.
 
+## `MotorAgenda` (`sim/motor_agenda.gd`)
+
+- `urgencia(id: String) -> Dictionary` — Definición de una urgencia (simple, suma, inmediata); {} si no existe.
+- `estado_agenda() -> Dictionary` — Salida para la UI: {en_tramite, maximo, puede_presentar, razon}.
+- `prob_estimada(tipo_id: String, urg: Dictionary, desde: String = "primer_tramite") -> float` — Probabilidad estimada de aprobación (0 a 1) desde una etapa, con el apoyo de hoy (sin usar el azar). Salida de solo lectura para la UI.
+- `abrir(carta: Dictionary, escala: float, region_id: String, urgencia_id: String, delegada: bool) -> Dictionary` — Ingresa el proyecto a la agenda (lo llama MotorCartas al ejecutar una presentación) y lo deja en su primera etapa.
+- `agenda_catalogo(categoria: String = "") -> Array[Dictionary]` — Catálogo de proyectos que el gobierno puede presentar ahora (gabinete, ventana, etapa y quórum), aunque no estén en la mano.
+- `en_tramite() -> Array[Dictionary]` — Proyectos de la agenda en trámite: {carta_id, titulo, tipo_ley, urgencia, etapa, etapa_nombre, camara, semanas_restantes, prob_aprobacion, delegada}. Solo lectura.
+- `presentar(carta_id: String, urgencia_id: String = "simple", ministro_id: String = "", delegar: bool = false, region_id: String = "") -> Dictionary` — Mensaje del Ejecutivo: presenta una ley del catálogo (aunque no esté en la mano) con una urgencia. Cuesta los movimientos de la carta
+- `avanzar() -> Array[Dictionary]` — Cierre de semana: resuelve las etapas cuyo plazo venció (puede ser más de una por semana con urgencia alta) y devuelve los resultados finales.
+
 ## `MotorCartas` (`sim/motor_cartas.gd`)
 
 - `costo_carta(carta: Dictionary, ministro_id: String = "") -> int` — Costo en movimientos de una carta, con el descuento del ministro y los bonos del gabinete y los asesores.
@@ -171,7 +182,8 @@
 - `configurar(p_leyes: Dictionary, p_rng: RandomNumberGenerator) -> void` — Enlaza las leyes y el generador de azar de la partida.
 - `umbral(t: Dictionary, total: int) -> int` — Votos mínimos en una cámara de `total` miembros: base "en_ejercicio" (todos) o "presentes" (asistencia supuesta);
 - `tipo(id: String) -> Dictionary` — Definición de un tipo de ley (quórum, trámite, TC); {} si no existe.
-- `votar(estado: EstadoSimulacion, tipo_id: String, votos_firmes_senado: int = -1) -> Dictionary` — Simula la votación de un tipo de ley en el Senado y la Cámara; devuelve votos, quórums y si fue aprobada (usa el azar).
+- `prob_aprobacion(estado: EstadoSimulacion, tipo_id: String, recargo: float = 0.0) -> Dictionary` — Probabilidad (0 a 1) de que cada cámara alcance el quórum del tipo de ley con el apoyo de hoy, sin usar el azar: {senado, camara}. Solo lectura.
+- `votar(estado: EstadoSimulacion, tipo_id: String, votos_firmes_senado: int = -1, recargo: float = 0.0) -> Dictionary` — Simula la votación de un tipo de ley en el Senado y la Cámara; devuelve votos, quórums y si fue aprobada (usa el azar).
 - `composicion(estado: EstadoSimulacion, camara: bool) -> Dictionary` — Bloques esperados de una cámara: bancada propia, aliados que suelen apoyar y oposición.
 - `resolver_tc(tipo_id: String, prob_exito_override: float = -1.0) -> Dictionary` — recurso: la oposición acude al TC. cae: el TC declara inconstitucional (el gobierno pierde).
 - `static fmt_cifra(n: float, unidad: String) -> String` — Formatea una cifra para los mensajes del corrector («12 mil km»).

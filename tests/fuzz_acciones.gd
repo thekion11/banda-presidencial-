@@ -23,6 +23,9 @@ func _invariantes(m: MotorTurno, ctx: String) -> void:
 	_check(e.pa_actual >= 0, "%s: PA negativos (%d)" % [ctx, e.pa_actual])
 	var ingreso_max: int = e.pa_maximo + int(e.bono_mov.get("aprobacion", 0)) + int(e.bono_mov.get("asesores", 0))
 	_check(e.pa_actual <= maxi(int(m.catalogo_leyes["mano"]["tope_ahorro"]), ingreso_max), "%s: movimientos %d sobre el tope de ahorro (BL)" % [ctx, e.pa_actual])
+	_check(e.agenda.size() <= int(m.catalogo_leyes["agenda"]["max_simultaneos"]), "%s: más proyectos en la agenda (%d) que el máximo" % [ctx, e.agenda.size()])
+	for p in e.agenda:
+		_check(["primer_tramite", "segundo_tramite", "comision_mixta", "tc", "promulgacion"].has(String(p["etapa"])) and int(p["dia_etapa_fin"]) >= int(p["dia_ingreso"]), "%s: proyecto de la agenda con etapa o plazo inválido" % ctx)
 	_check(e.delegadas_turno >= 0 and e.internos_actual >= 0, "%s: contadores negativos" % ctx)
 	for r in e.aprobacion_regional:
 		var v := float(e.aprobacion_regional[r])
@@ -34,7 +37,7 @@ func _invariantes(m: MotorTurno, ctx: String) -> void:
 func _accion_aleatoria(m: MotorTurno, rng: RandomNumberGenerator, datos: Dictionary) -> void:
 	var e := m.estado
 	var basura := ["", "xx", "no_existe", "-1", " "]
-	match rng.randi_range(0, 13):
+	match rng.randi_range(0, 14):
 		0, 1, 2:
 			m.jugar_carta(rng.randi_range(-2, 7), "", "")
 		3:
@@ -91,6 +94,12 @@ func _accion_aleatoria(m: MotorTurno, rng: RandomNumberGenerator, datos: Diction
 				m.aprobar_propuesta("no_existe", "A")
 		13:
 			m.impulsar_proyecto(String(basura[rng.randi_range(0, 4)]))
+		14:  # agenda legislativa (BM): presentar leyes del catálogo o basura, con cualquier urgencia, ministro y delegación
+			var cat := m.agenda.agenda_catalogo() if rng.randf() < 0.8 else []
+			var cid := String(cat[rng.randi_range(0, cat.size() - 1)]["carta_id"]) if not cat.is_empty() else String(basura[rng.randi_range(0, 4)])
+			var urgs := ["simple", "suma", "inmediata", "xx"]
+			var mins2: Array = e.gabinete + basura
+			m.agenda.presentar(cid, String(urgs[rng.randi_range(0, 3)]), String(mins2[rng.randi_range(0, mins2.size() - 1)]) if rng.randf() < 0.4 else "", rng.randf() < 0.3)
 
 
 func _init() -> void:

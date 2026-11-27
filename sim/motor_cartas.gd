@@ -191,7 +191,7 @@ func _jugar_en_campana(carta: Dictionary, region_id: String) -> Dictionary:
 	return {"promesa": true, "delta_aprobacion": delta, "repetida": ya}
 
 
-func _jugar_en_gobierno(carta: Dictionary, ministro_id: String, region_id: String, delegada: bool = false) -> Dictionary:
+func _jugar_en_gobierno(carta: Dictionary, ministro_id: String, region_id: String, delegada: bool = false, urgencia_id: String = "") -> Dictionary:
 	var _m := m  # una sola resolución de la referencia débil por llamada (cada acceso a `m` cuesta ~0,5 us)
 	var res := {"escandalo": false, "fallo": false, "corrector": {}, "proyecto": null, "propuesta": null}
 	var corr := _m.legal.corregir(carta, _m.estado)
@@ -226,7 +226,9 @@ func _jugar_en_gobierno(carta: Dictionary, ministro_id: String, region_id: Strin
 		_m.estado.cartas_ejecutadas[String(carta["id"])] = true
 	var ley: Variant = carta["requisitos"]["ley"]
 	var prop: Variant = carta.get("abre_propuesta_comite", null)
-	if ley != null:
+	if ley != null and urgencia_id != "":  # agenda legislativa (BM): presentada por el gobierno, se tramita por etapas
+		res["proyecto"] = _m.agenda.abrir(carta, escala, region_id, urgencia_id, delegada)
+	elif ley != null:
 		var t := _m.legal.tipo(String(ley))
 		var proy := {"carta_id": carta["id"], "tipo_ley": ley, "escala": escala, "region": region_id,
 				"origen": String(carta.get("camara_origen", "camara")), "dia_ingreso": _m.estado.dia_actual,
