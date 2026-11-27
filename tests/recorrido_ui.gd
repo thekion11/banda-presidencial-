@@ -52,6 +52,10 @@ static func recorrer(arbol: SceneTree, visitar: Callable, alto: int = 844) -> vo
 	main.motor.estado.turno_actual = 1
 	main.mostrar_gabinete()
 	await paso.call("gabinete (configuración)")
+	var puesto: Array = main._pantalla.find_children("*", "Button", true, false).filter(func(b: Button) -> bool: return b is TableroGabinete.Puesto)
+	if not puesto.is_empty():  # la ficha de contratación del puesto, abierta encima del tablero
+		(puesto[0] as Button).pressed.emit()
+		await paso.call("gabinete › ficha del puesto")
 	main.motor.estado.etapa = "campana"
 	main.motor.estado.turno_actual = 1
 	main.mostrar_dia()
@@ -64,6 +68,27 @@ static func recorrer(arbol: SceneTree, visitar: Callable, alto: int = 844) -> vo
 	if not cont.is_empty():  # Nación › Continente: mapa de Sudamérica con las relaciones (PR-06c)
 		(cont[0] as Button).pressed.emit()
 		await paso.call("panel nación › continente")
+	main.motor.estado.etapa = "gobierno"  # lo que solo existe gobernando: agenda legislativa y ayuda del primer día
+	dia._abrir_panel("congreso")
+	await paso.call("congreso en gobierno (agenda)")
+	var cat := main.motor.agenda.agenda_catalogo()
+	if not cat.is_empty():
+		var tit: Array = dia._zona_panel.find_children("*", "Label", true, false).filter(func(l: Label) -> bool: return l.text == String(cat[0]["titulo"]))
+		if not tit.is_empty():
+			var cab: Node = tit[0]
+			while cab != null and not (cab is Button):
+				cab = cab.get_parent()
+			if cab != null:
+				(cab as Button).pressed.emit()
+				await paso.call("agenda › urgencias y Corrector")
+	var ayuda := Tutorial.new()
+	ayuda.pasos = Tutorial.PASOS_GOBIERNO
+	ayuda.clave = "ayuda_gobierno"
+	ayuda.leyes = main.motor.catalogo_leyes
+	dia._capa.add_child(ayuda)
+	await paso.call("ayuda del primer día de gobierno")
+	ayuda.queue_free()
+	main.motor.estado.etapa = "campana"
 	dia._abrir_panel("mapa")
 	dia._abrir_urbano()  # mapa urbano de Gran Santiago (vista a pantalla completa)
 	await paso.call("mapa urbano")
