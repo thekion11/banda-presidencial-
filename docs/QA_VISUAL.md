@@ -75,3 +75,15 @@ Al pasar a segundo plano o cerrarse, `Main` guarda la partida y la instantánea 
 | Test ideológico o fundación a medias | Menú (no hay partida todavía) | Las respuestas: son 3 preguntas y no hay nada guardado que perder. Si había una partida anterior, «Continuar» la ofrece |
 | Tutorial a medias | Vuelve a aparecer en la primera semana de campaña, porque solo se marca visto al terminarlo o saltarlo | Nada |
 | Fin del mandato | Pantalla de fin | Nada |
+
+## Teclado y cambio de tamaño con campos de texto (cola 8)
+
+El teclado de Android se superpone a la ventana sin achicarla y ocupa cerca del 45 % de abajo. Con letra ×1,5 en 390×693, **la sigla del partido quedaba tapada mientras se escribía**: terminaba en y=409 y el teclado empieza en y≈381. **Corregido:** `Tema.subir_al_enfocar` sube el campo enfocado al tope de sus listas desplazables. Lo usan el nombre y la sigla del partido y todos los `Tema.campo`: la búsqueda de la cartera y los nombres de línea y estación del Comité. La orientación está bloqueada en vertical, así que no hay giro. Si la ventana cambia de alto (pantalla dividida, plegable) con el formulario abierto, lo escrito se conserva: solo el día se rearma, y solo si no hay nada encima. Prueba: `tests/test_teclado.gd`, en 693 y 844 con letra ×1 y ×1,5. Mejora posible: usar la altura real del teclado (`DisplayServer.virtual_keyboard_get_height()`) en lugar de subir siempre al tope.
+
+## Interrupciones: llamada o notificación en pleno gesto (cola 8)
+
+Cuando entra una llamada o el sistema roba el gesto, Android cancela el toque y Godot lo entrega como un «soltar» con `canceled = true`, tanto el toque como su clic emulado. Lo prueba `tests/test_toque_real.gd`.
+
+- **Corregido: un deslizamiento cancelado jugaba la carta.** `ManoUI` trataba el soltar cancelado como un deslizamiento terminado. Ahora un gesto cancelado no cuenta, y tampoco el toque cancelado sobre la carta elegida (`CartaUI`) ni sobre el mapa urbano o el del Comité (`UrbanoVista`). El arrastre de una estación del Comité se cierra igual, para no dejarla a medias.
+- **Corregido: con el dedo puesto y la app perdiendo el foco, la ficha ampliada se abría igual medio segundo después y quedaba abierta.** `ManoUI` anula el gesto pendiente y cierra la ficha con `NOTIFICATION_APPLICATION_FOCUS_OUT` o `PAUSED`.
+- Después de una cancelación, el toque siguiente llega normal: no queda nada trabado.
