@@ -18,6 +18,7 @@ var encuesta_previa: Dictionary = {}
 var nombres_region: Dictionary = {}
 var ultima_de_campana: bool = false  # la encuesta extra al cerrar la última semana de campaña (sim/encuestas.gd)
 var al_terminar: Callable
+var ahorro: String = ""  # «Guardaste 2 movimientos: esta semana tienes 7» (pedido del usuario: los movimientos se guardan)
 var motivos: Array = []  # motor.motivos_semana(): hasta 3 cambios con su causa
 var _panel: Control
 var _saliendo: bool = false
@@ -34,7 +35,7 @@ static func lineas_motivos(lista: Array) -> Array[String]:
 
 
 static func mostrar(capa: Control, p_antes: Array, p_despues: Array, ind_antes: Dictionary, ind_despues: Dictionary, p_oposicion: bool, fin: Callable,
-		encuestas: Array = [], regiones: Array = [], semanas_campana: int = 0, p_motivos: Array = []) -> void:
+		encuestas: Array = [], regiones: Array = [], semanas_campana: int = 0, p_motivos: Array = [], p_ahorro: String = "") -> void:
 	## p_antes / p_despues: [título, subtítulo] de la cabecera antes y después de avanzar.
 	if not Movimiento.activo():
 		fin.call()
@@ -48,6 +49,7 @@ static func mostrar(capa: Control, p_antes: Array, p_despues: Array, ind_antes: 
 	t.oposicion = p_oposicion
 	t.al_terminar = fin
 	t.motivos = p_motivos
+	t.ahorro = p_ahorro
 	if not encuestas.is_empty():  # solo hay encuestas en campaña y oposición
 		t.encuesta = encuestas.back()
 		t.encuesta_previa = encuestas[encuestas.size() - 2] if encuestas.size() > 1 else {}
@@ -100,6 +102,8 @@ func _ready() -> void:
 	var tit := Tema.etiqueta(titulo_antes, 22, Tema.TEXTO_SUAVE, true)  # con texto grande (+15 %) cabe en una línea
 	col.add_child(tit)
 	col.add_child(Tema.etiqueta(subtitulo, 13, Tema.TEXTO_SUAVE))
+	if ahorro != "":
+		col.add_child(Tema.etiqueta(ahorro, 12, Tema.ORO, false, 600))
 	var sep := ColorRect.new()
 	sep.color = Color(Tema.ORO, 0.5)
 	sep.custom_minimum_size = Vector2(0, 2)

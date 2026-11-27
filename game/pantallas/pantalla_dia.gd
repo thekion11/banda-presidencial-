@@ -66,6 +66,13 @@ func _ready() -> void:
 		tut.leyes = motor.catalogo_leyes
 		tut.objetivos = [_mano, _r["pa"], _btn_deleg, _nav, _btn_jugar]
 		_capa.add_child(tut)
+	elif Tutorial.debe_mostrar("ayuda_gobierno") and motor.estado.etapa == "gobierno" and motor.estado.turno_actual == 1 and motor.estado.ciclo == 1:
+		var ayuda := Tutorial.new()  # primer día de gobierno: delegar, agenda legislativa y ahorro (una sola vez)
+		ayuda.pasos = Tutorial.PASOS_GOBIERNO
+		ayuda.clave = "ayuda_gobierno"
+		ayuda.leyes = motor.catalogo_leyes
+		ayuda.objetivos = [_btn_deleg, _nav, _r["pa"]]
+		_capa.add_child(ayuda)
 
 
 # ------------------------------------------------------------------ estado -> UI
@@ -167,7 +174,7 @@ func _avanzar() -> void:
 		return
 	_confirmar_fin = false
 	_terminar_turno()
-	if not urnas and int(ah["se_guardan"]) > 0:
+	if not urnas and int(ah["se_guardan"]) > 0 and not Movimiento.activo():  # con animaciones lo dice el telón
 		_avisar("Se guardan %d %s para la próxima semana." % [int(ah["se_guardan"]), "movimiento" if int(ah["se_guardan"]) == 1 else "movimientos"])
 
 
@@ -259,6 +266,7 @@ func _terminar_turno() -> void:
 		return
 	var antes := [String(_r["dia"].text), String(_r["fecha"].text)]
 	var ind_antes := est.indicadores.duplicate()
+	var guardados := int(motor.movimientos.ahorro_movimientos()["se_guardan"])
 	var nuevos := motor.terminar_turno()
 	accion_hecha.emit()
 	if _panel_actual != "mapa":
@@ -277,7 +285,8 @@ func _terminar_turno() -> void:
 		_avisar(String(corte["texto"]))
 	_cola_eventos.append_array(nuevos)
 	_refrescar()
-	TelonSemana.mostrar(_capa, antes, [String(_r["dia"].text), String(_r["fecha"].text)], ind_antes, est.indicadores, est.etapa == "oposicion", _siguiente_evento, est.encuestas if est.etapa in ["campana", "oposicion"] else [], datos["regiones"], sem, motor.motivos_semana())
+	TelonSemana.mostrar(_capa, antes, [String(_r["dia"].text), String(_r["fecha"].text)], ind_antes, est.indicadores, est.etapa == "oposicion", _siguiente_evento, est.encuestas if est.etapa in ["campana", "oposicion"] else [], datos["regiones"], sem, motor.motivos_semana(),
+			"Guardaste %d %s: esta semana tienes %d." % [guardados, "movimiento" if guardados == 1 else "movimientos", est.pa_actual] if guardados > 0 else "")
 
 
 func _resolver_eleccion() -> void:
@@ -367,7 +376,7 @@ func _abrir_panel(cual: String) -> void:
 					_avisar(msg)
 					accion_hecha.emit()
 					_refrescar()
-					_abrir_panel("congreso"))
+					_abrir_panel("congreso"), String(motor.estado.mano[_sel]["id"]) if _mano_tocada and _sel < motor.estado.mano.size() else "")
 		_:
 			contenido = PanelGestion.crear(motor, _avisar, func() -> void:
 					accion_hecha.emit()
