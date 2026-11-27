@@ -9,6 +9,7 @@ Estado al volver: `main` y la rama de trabajo están al día; la suite completa 
 - **Coordinación:** colas de trabajo y revisión cruzada entre sesiones.
 
 ## Decisiones tuyas, en orden de impacto (recomendación)
+**Actualización 27-nov:** aceptaste las recomendaciones; aplicadas D19, D20, D17 y el renderizador `gl_compatibility`; bono 45–95 y umbral 52 se quedan (DECISIONES §BJ). Lo que sigue es la lista original; lo no cerrado: Art. 25 y 66, keystore y licencias, métricas con consentimiento (falta diseño).
 1. **D1 Duración** de la partida (hoy unas 6 sesiones de 20 min por mandato): mantener 208 semanas y medirlo en la prueba cerrada.
 2. **D2 / D4 / D16 Dificultad y umbral 51 vs 52:** esperar datos de personas; dejar 52.
 3. **D17 Congelar `data/` durante la prueba:** sí (cualquier cambio de datos descarta los guardados de los testers).

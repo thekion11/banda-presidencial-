@@ -1,5 +1,7 @@
 # Decisiones que esperan al usuario (26-nov-2026)
 
+> **Actualización del 27-nov-2026: el usuario aceptó las recomendaciones de este documento y de `RESUMEN_DECISIONES.md` en todo lo que no marcó distinto** (`DECISIONES.md` §BJ). Cerradas: D19, D20, D17 (congelar `data/` tras las cartas del plan), renderizador `gl_compatibility`, bono por aprobación 45–95 (D3) y umbral 52 (D4) como están. Sin cambios de balance fuera de eso.
+
 Una sola tabla con lo que **no** puede decidir ningún agente: cada fila trae la recomendación y el costo de cada opción. El detalle y la evidencia están en `docs/DECISIONES.md` (sección entre paréntesis) y en `docs/PENDIENTES_USUARIO.md` (U1 a U10). Lo que dependa de personas reales se resuelve con la prueba cerrada (`docs/PRUEBA_CERRADA.md`).
 
 ## Las 5 decisiones clave (por impacto, con mi recomendación)
@@ -59,12 +61,12 @@ Una sola tabla con lo que **no** puede decidir ningún agente: cada fila trae la
 ## Cómo se usa esta tabla
 Cuando decidas algo, dímelo con el número (p. ej. «D2 b») y se aplica, se mide con los bots, se regeneran los oros y queda en `docs/DECISIONES.md` el mismo día.
 
-## D19. Test ideológico rápido (3 preguntas) por defecto para fundadores e independientes
+## D19. CERRADA el 27-nov-2026 (el usuario: dejar el test rápido y enmendar CLAUDE.md; hecho). Test ideológico rápido (3 preguntas) por defecto para fundadores e independientes
 - Qué hay: commit 1619c07 (25-nov-2026, DECISIONES.md §S) lo introdujo para cumplir la meta de ≤ 3 toques antes del primer turno; un botón cambia al test completo de 8 preguntas. Los deltas rápidos (×1,8) están en `data/ideologia.json › rapido`.
 - Discrepancia: CLAUDE.md §2 (PR-01) dice test completo de 8 preguntas para fundadores e independientes. En los documentos no hay una autorización explícita del usuario para el test rápido por defecto; figuraba como «pendiente» en DECISIONES.md §Q.
 - Opciones: (a) dejarlo por defecto y enmendar CLAUDE.md; (b) por defecto el de 8 preguntas, con el rápido como opción. Recomendación: (a), por la sesión de ~20 min, pero la decide el usuario.
 
-## D20. Cartas del Plan Estratégico (27-nov-2026): confirmación del usuario
+## D20. Cartas del Plan Estratégico (27-nov-2026): CERRADA el 27-nov-2026 (el usuario confirmó; CLAUDE.md §2, commit 27ced2a)
 - Qué hay: 16 cartas `plan_*` (DECISIONES §BI, `docs/PLAN_ESTRATEGICO_CARTAS.md`) hechas por encargo de la coordinadora, que dice que el usuario las pidió hoy («Cartas del juego»).
 - Cita de la coordinadora (27-nov-2026, ~02:00 UTC, su conversación): el usuario pegó el «Plan Estratégico de Desarrollo, Soberanía Financiera e Industrialización de Chile (Visión Integral)» sin más texto; ante la pregunta «¿Qué quieres que hagan las sesiones?» (opciones: Cartas del juego (Recomendado) / Revisión crítica / Perfeccionar el documento / Solo guardarlo) respondió «Cartas del juego (Recomendado)» (descripción: «Convertir las 8 propuestas en cartas/proyectos jugables con costos, efectos, plazos y su validación legal, rotuladas como cifras ilustrativas. Es contenido nuevo: lo autorizas tú, y quedaría registrado en docs con fecha y fuente.»).
 - Falta: que el usuario lo confirme en esta sesión (o pegue su texto) para anotarlo como ampliación autorizada en CLAUDE.md §2. Mientras tanto son reversibles con un commit.
