@@ -92,3 +92,8 @@ Cuando decidas algo, dímelo con el número (p. ej. «D2 b») y se aplica, se mi
 ## D25. Proyectos de transporte de la RM y Aysén en el panel SECTRA (27-nov-2026)
 - Investigación y propuesta en `docs/PROPUESTA_SECTRA_RM_AYSEN.md` (no se tocó `data/`). Resumen: Aysén sí tiene 7 proyectos en la página de SECTRA (hueco de la descarga); la RM no publica y habría que usar EFE/MTT/MOP/Metro (Metro da 403).
 - Decisión del usuario: autorizar o no descongelar `data/sectra_planes.json`. Recomendación: cargar solo lo leído en fuente oficial con unidad explícita, antes de la prueba cerrada; si no, dejar el mensaje «sin proyectos publicados».
+
+## D26. Ritmo de la partida: ≈ 4 veces más lento que lo estimado (27-nov-2026)
+- Dato real del teléfono del usuario: 9 semanas en 20 minutos; un mandato de 208 semanas serían ≈ 7,6 h ≈ 23 sesiones (`DURACION_SESION.md`, `PRUEBA_CERRADA_INFORMES.md`). Una sola partida, la primera.
+- Opciones sin mecánica nueva (ahorro estimado): a) avisos informativos que se cierran solos (≈ 11 %); b) saltar solas las semanas sin decisiones ni cartas (≈ 15 %); c) ambas (≈ 25–30 %). Con mecánica o escala nueva: d) auto-jugar las cartas obvias (necesita tu autorización), e) 1 turno = 2 semanas o 1 mes (D1 b; cambia `dias_por_turno` y rebalancea eventos, oros y cartas: costo alto, mejor opción para acercar un mandato a 4 h o 2 h).
+- Recomendación: a) y b) ahora (solo interfaz, sin tocar balance), y decidir e) con 2 o 3 partidas más de testers antes de repartir la prueba.
