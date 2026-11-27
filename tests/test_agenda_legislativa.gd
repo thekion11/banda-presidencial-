@@ -96,6 +96,8 @@ func _init() -> void:
 	var rd := ag.presentar(ids[1], "simple", String(mins[0]), true)
 	_check(bool(rd["ok"]) and est.pa_actual == pa and est.delegadas_turno == 1, "delegar no gasta movimientos")
 	# --- límite de proyectos simultáneos
+	if est.agenda.size() == 1:  # la delegación puede fallar o anularse según el azar de la semilla: se presenta a mano para llegar a dos
+		ag.presentar(ids[1], "simple")
 	var rl := ag.presentar(ids[2], "simple")
 	_check(bool(rl["ok"]) and est.agenda.size() == 3, "tres proyectos simultáneos")
 	_check(String(ag.presentar(ids[3])["razon"]) == "agenda_llena" and not bool(ag.estado_agenda()["puede_presentar"]), "el cuarto choca con el máximo de la agenda")
