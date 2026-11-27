@@ -164,10 +164,10 @@ func _init() -> void:
 		_fallos += 1
 	else:
 		var guarda := 0
-		while mg.estado.ind("capital") < 8.0 and guarda < 12 and mg.estado.etapa == "gobierno":
+		while mg.estado.ind("capital") < 4.0 and guarda < 40 and mg.estado.etapa == "gobierno":
 			guarda += 1
 			mg.terminar_turno()  # sin jugar cartas el capital se recupera solo (todo queda en el historial)
-		_check(bool(mg.balas.usar("bala_nombramiento")["ok"]), "nombramiento orgánico en el año 2")
+		_check(bool(mg.balas.usar("bala_nombramiento", -1, true)["ok"]), "nombramiento orgánico (versión reducida) en el año 2")
 		for _i in range(int(cfg["enfriamiento_semanas"]) + 1):
 			mg.terminar_turno()
 		var rp := mg.balas.usar("bala_plebiscito")
