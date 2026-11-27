@@ -81,6 +81,19 @@ static func recorrer(arbol: SceneTree, visitar: Callable, alto: int = 844) -> vo
 			if cab != null:
 				(cab as Button).pressed.emit()
 				await paso.call("agenda › urgencias y Corrector")
+	for h in dia._capa.get_children():
+		if h is Control and h != dia._toast:
+			h.queue_free()
+	dia._refrescar()
+	dia._abrir_baul()  # baúl de balas de plata (solo en gobierno)
+	await paso.call("baúl de balas de plata")
+	for h in dia._capa.get_children():
+		if h is Control and h != dia._toast:
+			h.queue_free()
+	PanelGestion.pestana = "fondos"  # presupuesto extra a ministerios
+	dia._abrir_panel("gabinete")
+	await paso.call("gabinete › fondos")
+	PanelGestion.pestana = "gabinete"
 	var ayuda := Tutorial.new()
 	ayuda.pasos = Tutorial.PASOS_GOBIERNO
 	ayuda.clave = "ayuda_gobierno"
