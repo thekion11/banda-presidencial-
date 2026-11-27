@@ -36,6 +36,17 @@ func _dia(alto: int) -> Node:
 	return main
 
 
+static func _visible(c: Control) -> Rect2:
+	## La parte del control que se ve: recortada por las listas desplazables que lo contienen (el riel del mapa).
+	var r := c.get_global_rect()
+	var p := c.get_parent()
+	while p != null:
+		if p is ScrollContainer:
+			r = r.intersection((p as Control).get_global_rect())
+		p = p.get_parent()
+	return r
+
+
 func _correr() -> void:
 	Tutorial.ruta = "user://preferencias_reglas.json"
 	Tutorial.marcar_visto()
@@ -47,7 +58,7 @@ func _correr() -> void:
 		_check(dia._btn_jugar.text.begins_with("Terminar semana") or dia._btn_jugar.text.begins_with("Siguiente semana"), "[%d] el botón del medio termina la semana (%s)" % [alto, dia._btn_jugar.text])
 		_check(absf(b.get_center().x - Tema.ANCHO * 0.5) < 2.0, "[%d] el botón principal está centrado (%s)" % [alto, b])
 		var esquina := Rect2(Tema.ANCHO - 60.0, b.position.y, 60.0, b.size.y)  # esquina inferior derecha de la fila de botones
-		var ocupada := dia.find_children("*", "BaseButton", true, false).any(func(x: Node) -> bool: return (x as Control).is_visible_in_tree() and (x as Control).get_global_rect().intersects(esquina))
+		var ocupada := dia.find_children("*", "BaseButton", true, false).any(func(x: Node) -> bool: return (x as Control).is_visible_in_tree() and _visible(x as Control).intersects(esquina))
 		_check(not ocupada, "[%d] la esquina inferior derecha queda vacía (PR-02)" % alto)
 		var fr := float(dia._mapa.size.y) / root.get_visible_rect().size.y
 		_check(fr > 1.0 / 3.0, "[%d] el mapa ocupa más de un tercio (%.1f px de %d)" % [alto, dia._mapa.size.y, alto])
@@ -92,4 +103,4 @@ func _correr() -> void:
 
 
 func _eleccion_ganada(main: Node) -> Control:
-	return PantallaEleccion.crear(main.motor, main.datos["regiones"], main.motor.estado.aprobacion_regional.duplicate(), {"electo": true, "balotaje": false, "ronda": 1, "voto_final": 57.4, "umbral": 51.0}, func() -> void: pass)
+	return PantallaEleccion.crear(main.motor, main.datos["regiones"], main.motor.estado.aprobacion_regional.duplicate(), PantallaEleccion.con_poblacion(main.motor, {"electo": true, "balotaje": false, "ronda": 1, "voto_final": 57.4, "umbral": 51.0}), func() -> void: pass)

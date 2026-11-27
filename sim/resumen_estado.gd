@@ -5,7 +5,7 @@ extends RefCounted
 
 static func de(e: EstadoSimulacion) -> Dictionary:
 	## Diccionario resumen de un estado para informes y la interfaz.
-	return {
+	var r := {
 		"semilla": e.semilla,
 		"etapa": e.etapa,
 		"turno_actual": e.turno_actual,
@@ -45,3 +45,7 @@ static func de(e: EstadoSimulacion) -> Dictionary:
 		"registro": e.registro_acciones.duplicate(true),
 		"resultado_final": e.resultado_final.duplicate(true),
 	}
+	if not e.agenda.is_empty() or not e.agenda_rechazos.is_empty():  # solo si se usó la agenda legislativa: las huellas de partidas sin ella no cambian
+		r["agenda"] = e.agenda.duplicate(true)
+		r["agenda_rechazos"] = e.agenda_rechazos.duplicate()
+	return r

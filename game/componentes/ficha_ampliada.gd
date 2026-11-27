@@ -64,7 +64,8 @@ func _ready() -> void:
 		CartaUI.COLORES_CATEGORIA.get(carta.get("categoria", ""), Tema.PANEL).darkened(0.25), true)
 	cat.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	cab.add_child(cat)
-	cab.add_child(Tema.etiqueta_corta("%d mov" % costo, 14, Tema.TINTA, true))
+	cab.add_child(Icono.crear("bolt", Tema.TINTA, 16.0))  # el mismo símbolo de la cabecera: movimientos que cuesta
+	cab.add_child(Tema.etiqueta_corta(str(costo), 14, Tema.TINTA, true))
 	v.add_child(cab)
 	v.add_child(Tema.etiqueta(String(carta.get("titulo", "")), 22, Tema.TINTA, true))
 	if String(carta.get("sabor", "")) != "":  # texto propio de las cartas curadas (antes no se mostraba en ninguna parte)

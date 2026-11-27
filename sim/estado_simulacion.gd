@@ -47,6 +47,8 @@ var obras_en_curso: Array[Dictionary] = []
 var obras_terminadas: Array[Dictionary] = []
 var lineas_jugador: Array[Dictionary] = []  # líneas de Metro creadas por el jugador (se reconstruyen al reproducir el guardado)
 var proyectos_ley: Array[Dictionary] = []
+var agenda: Array[Dictionary] = []  # proyectos presentados por el gobierno (MotorAgenda), con su etapa y plazo
+var agenda_rechazos: Dictionary = {}  # carta -> semana absoluta hasta la que no puede volver a presentarse
 var propuestas_abiertas: Array[String] = []
 var sectra: Dictionary = {}  # proyectos del Plan Maestro de SECTRA: id -> {etapa, hasta}
 var cartas_ejecutadas: Dictionary = {}  # cartas únicas (ley/obra/propuesta) ya usadas
@@ -82,7 +84,7 @@ func configurar(p_semilla: int, p_dias_turno: int = 7, p_leyes: Dictionary = {})
 		semanas_balotaje = int(p_leyes["hemiciclo"].get("semanas_balotaje", 0))
 	if p_leyes.has("mano"):
 		pa_maximo = int(p_leyes["mano"].get("pa_por_turno", 16))
-	pa_actual = pa_maximo
+	pa_actual = 0  # sin ahorro al empezar: el primer amanecer suma el ingreso de la semana
 	gabinete.clear()
 	eventos_ocurridos.clear()
 	decisiones.clear()
@@ -105,6 +107,8 @@ func configurar(p_semilla: int, p_dias_turno: int = 7, p_leyes: Dictionary = {})
 	obras_terminadas.clear()
 	lineas_jugador.clear()
 	proyectos_ley.clear()
+	agenda.clear()
+	agenda_rechazos.clear()
 	propuestas_abiertas.clear()
 	sectra.clear()
 	cartas_ejecutadas.clear()

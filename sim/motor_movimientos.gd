@@ -48,15 +48,27 @@ func bono_aprobacion() -> int:
 
 func fijar_movimientos() -> void:
 	var _m := m  # una sola resolución de la referencia débil por llamada (cada acceso a `m` cuesta ~0,5 us)
-	## Fin del amanecer: movimientos del turno = base + bono por aprobación (solo gobierno) + asesores; y efectos de asesores.
+	## Fin del amanecer: movimientos del turno = ahorro anterior + (base + bono por aprobación (solo gobierno) + asesores), con tope mano.tope_ahorro; y efectos de asesores.
 	var e := _m.estado
 	e.bono_mov = {"aprobacion": bono_aprobacion() if e.etapa == "gobierno" else 0, "asesores": _m.equipo.movimientos_extra()}
-	e.pa_actual = e.pa_maximo + int(e.bono_mov["aprobacion"]) + int(e.bono_mov["asesores"])
+	var ingreso: int = e.pa_maximo + int(e.bono_mov["aprobacion"]) + int(e.bono_mov["asesores"])
+	# Ahorro (BL): lo que sobró de la semana anterior se suma al ingreso, con tope; el tope nunca baja del ingreso de la semana.
+	e.pa_actual = mini(maxi(int(_m.catalogo_leyes["mano"]["tope_ahorro"]), ingreso), maxi(0, e.pa_actual) + ingreso)
 	if e.etapa == "gobierno":
 		_m.equipo.efectos_amanecer()
 		_m.coalicion.amanecer()
 	else:
 		Encuestas.registrar(_m)  # campaña y oposición: encuesta de la semana
+
+
+func ahorro_movimientos() -> Dictionary:
+	## Salida para la UI (solo lectura): {disponibles, ingreso, tope, tope_efectivo, se_guardan, se_pierden}. `ingreso` = base + bono + asesores de esta semana;
+	## `tope` es el del ahorro (mano.tope_ahorro) y `tope_efectivo` = max(tope, ingreso); lo que sobra al cerrar la semana se guarda hasta ese tope.
+	var e := m.estado
+	var ingreso: int = e.pa_maximo + int(e.bono_mov["aprobacion"]) + int(e.bono_mov["asesores"])
+	var tope := int(m.catalogo_leyes["mano"]["tope_ahorro"])
+	var guardan := mini(e.pa_actual, maxi(0, maxi(tope, ingreso) - ingreso))
+	return {"disponibles": e.pa_actual, "ingreso": ingreso, "tope": tope, "tope_efectivo": maxi(tope, ingreso), "se_guardan": guardan, "se_pierden": e.pa_actual - guardan}
 
 
 func _cobrar(costo: int) -> Dictionary:

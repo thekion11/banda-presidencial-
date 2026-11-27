@@ -42,7 +42,7 @@ func _init() -> void:
 		Bots.jugar_turno(m, "codicioso", rng)
 		m.terminar_turno()
 	var g: Dictionary = JSON.parse_string(JSON.stringify(m.estado.exportar_guardado(h)))
-	_check(int(g["version"]) == 2 and g["huella_datos"] == h, "el guardado lleva versión y huella")
+	_check(int(g["version"]) == ValidarGuardado.VERSION and g["huella_datos"] == h, "el guardado lleva versión y huella")
 	_check(Partida.reproducir(datos, g).estado.calcular_huella() == m.estado.calcular_huella(), "replay idéntico")
 	# v2: gabinete elegido por el jugador + mano continua se reproducen idénticos
 	var m2 := Partida.crear(datos, 9, partido)

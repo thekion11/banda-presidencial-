@@ -70,7 +70,7 @@ static func pastilla_pa(refs: Dictionary) -> Control:
 	p.add_theme_stylebox_override("panel", Tema.caja_degradada(Color("#FFD76A"), Color("#E3A92A"), 16, Color("#FFE9A8"), 1))
 	var h := HBoxContainer.new()
 	h.add_theme_constant_override("separation", 4)
-	h.add_child(Icono.crear("bolt", Tema.TINTA, 16.0))
+	h.add_child(Icono.crear("bolt", Tema.TINTA, 18.0))  # el símbolo de los movimientos (sin la palabra, que se cortaba)
 	var l := Tema.etiqueta_corta("", 15, Tema.TINTA, true)
 	h.add_child(l)
 	p.add_child(h)
@@ -96,10 +96,19 @@ static func cabecera(refs: Dictionary) -> Control:
 	col.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	refs["dia"] = Tema.etiqueta_corta("", 18, Tema.TEXTO, true)
 	refs["fecha"] = Tema.etiqueta_corta("", 11, Tema.TEXTO_SUAVE)
-	for l: Label in [refs["dia"], refs["fecha"]]:  # recortan con «…» en vez de ensanchar la barra más allá de los 390 px
+	refs["ev_cab"] = Tema.etiqueta_corta("", 11, Tema.ORO, false, 600)  # el evento del día va en la cabecera (el riel ocupa su tarjeta)
+	refs["ev_cab"].size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	refs["ev_cab"].mouse_filter = Control.MOUSE_FILTER_STOP  # tocarlo muestra el evento completo
+	for l: Label in [refs["dia"], refs["fecha"], refs["ev_cab"]]:  # recortan con «…» en vez de ensanchar la barra más allá de los 390 px
 		l.clip_text = true
 		l.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
-		col.add_child(l)
+	refs["fecha"].clip_text = false  # la fecha es corta y va entera; el evento a su lado es el que se recorta
+	col.add_child(refs["dia"])
+	var linea := HBoxContainer.new()
+	linea.add_theme_constant_override("separation", 6)
+	linea.add_child(refs["fecha"])
+	linea.add_child(refs["ev_cab"])
+	col.add_child(linea)
 	fila.add_child(col)
 	fila.add_child(pastilla_pa(refs))
 	v.add_child(fila)

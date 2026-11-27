@@ -64,3 +64,16 @@ static func borde_este(piezas: Dictionary) -> PackedVector2Array:
 		if xmax[b] >= 0.0:
 			este.append(Vector2(xmax[b], (float(b) + 0.5) / float(bins)))
 	return este
+
+
+static func region_en(banda_y: Dictionary, yn: float) -> String:
+	## Región cuya franja de latitud contiene `yn` (0 arriba, 1 abajo); si ninguna, la más cercana (y la más angosta al empatar).
+	var mejor := ""
+	var mejor_d := 9.0
+	for id in banda_y.keys():
+		var b: Vector2 = banda_y[id]
+		var d := 0.0 if yn >= b.x and yn <= b.y else minf(absf(yn - b.x), absf(yn - b.y))
+		if d < mejor_d or (d == mejor_d and (b.y - b.x) < (banda_y[mejor].y - banda_y[mejor].x)):
+			mejor_d = d
+			mejor = id
+	return mejor

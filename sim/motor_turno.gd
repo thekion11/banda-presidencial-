@@ -24,6 +24,7 @@ var equipo := MotorEquipo.new(self)
 var coalicion := MotorCoalicion.new(self)
 var piso := PisoIdeologico.new(self)  # piso de aprobación y de voto (D-BN)
 var movimientos := MotorMovimientos.new(self)
+var agenda := MotorAgenda.new(self)
 var eventos := MotorEventos.new(self)
 var ultimos_eventos: Array[Dictionary] = []
 var votaciones_semana: Array[Dictionary] = []  # votaciones de leyes resueltas al cerrar el turno (para la UI)
@@ -108,8 +109,7 @@ func terminar_turno() -> Array[Dictionary]:
 
 # ---------------------------------------------------------------- Paso 1
 func ejecutar_amanecer() -> void:  # Paso 1: regenera movimientos y aplica la dinámica semanal de los indicadores (ancla de aprobación, desgaste, regeneraciones).
-	estado.pa_actual = estado.pa_maximo
-	movimientos.amanecer()
+	movimientos.amanecer()  # el ahorro de la semana anterior queda en pa_actual; fijar_movimientos le suma el ingreso
 	if estado.etapa == "campana":
 		regiones.revertir_a_base(estado, float(catalogo_leyes["campana"]["reversion_semanal"]))
 	if estado.etapa != "gobierno":
@@ -154,7 +154,7 @@ func cerrar_turno() -> void:  # Pasos 7 y 8: votaciones, obras, crisis y avance 
 	fx.reiniciar_motivos()
 	votaciones_semana = []
 	if estado.etapa == "gobierno":
-		votaciones_semana = cartas.resolver_proyectos()
+		votaciones_semana = cartas.resolver_proyectos() + agenda.avanzar()  # leyes de la mano y de la agenda legislativa
 		sectra.avanzar()
 		resumen["leyes"] = votaciones_semana
 		resumen["obras_terminadas"] = obras.avanzar(estado, estado.dias_por_turno, fx.aplicar_efecto, fx.marcar_cumplida).size()

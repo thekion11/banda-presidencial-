@@ -20,6 +20,7 @@ func _init() -> void:
 		est.indicadores["aprobacion"] = apr
 		_check(m.movimientos.bono_aprobacion() == int(esperado[apr]), "bono a %.1f%% = %d (da %d)" % [apr, esperado[apr], m.movimientos.bono_aprobacion()])
 	est.indicadores["aprobacion"] = 70.0
+	est.pa_actual = 0  # sin ahorro: se mide solo el ingreso de la semana
 	m.ejecutar_amanecer()
 	_check(est.pa_actual == est.pa_maximo + int(est.bono_mov["aprobacion"]) + int(est.bono_mov["asesores"]), "el amanecer fija los movimientos (base + bono + asesores)")
 	_check(int(est.bono_mov["aprobacion"]) > 0, "con aprobación alta hay bono de movimientos")
@@ -35,6 +36,7 @@ func _init() -> void:
 	_check(String(m.despedir_asesor(ids[2])["razon"]) == "no_contratado", "despedir a quien no está")
 	var antes := est.pa_actual
 	est.indicadores["aprobacion"] = 50.0
+	est.pa_actual = 0
 	m.ejecutar_amanecer()
 	_check(int(est.bono_mov["asesores"]) == 2 and est.pa_actual == est.pa_maximo + 2 + int(est.bono_mov["aprobacion"]), "cada asesor da +1 movimiento por turno (%d -> %d)" % [antes, est.pa_actual])
 	# efectos: multiplicador de categoría (asesor economista -> hacienda) e indicadores por turno

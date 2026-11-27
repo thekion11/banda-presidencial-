@@ -89,6 +89,18 @@
 - `static vista(estado: EstadoSimulacion, leyes: Dictionary) -> Dictionary` — Solo lectura para la interfaz: {activa, semana, semanas_restantes, intensidad, termina_ahora}. termina_ahora = es la primera semana sin luna de miel («Se acabó la luna de miel»).
 - `static amanecer(estado: EstadoSimulacion, leyes: Dictionary) -> void` — Deja constancia en el registro de acciones del inicio y del fin de la luna de miel (solo gobierno).
 
+## `MotorAgenda` (`sim/motor_agenda.gd`)
+
+- `urgencia(id: String) -> Dictionary` — Definición de una urgencia (simple, suma, inmediata); {} si no existe.
+- `estado_agenda() -> Dictionary` — Salida para la UI: {en_tramite, maximo, puede_presentar, razon}.
+- `prob_estimada(tipo_id: String, urg: Dictionary, desde: String = "primer_tramite") -> float` — Probabilidad estimada de aprobación (0 a 1) desde una etapa, con el apoyo de hoy (sin usar el azar). Salida de solo lectura para la UI.
+- `abrir(carta: Dictionary, escala: float, region_id: String, urgencia_id: String, delegada: bool) -> Dictionary` — Ingresa el proyecto a la agenda (lo llama MotorCartas al ejecutar una presentación) y lo deja en su primera etapa.
+- `agenda_catalogo(categoria: String = "") -> Array[Dictionary]` — Catálogo de proyectos que el gobierno puede presentar ahora (gabinete, ventana, etapa y quórum), aunque no estén en la mano.
+- `en_tramite() -> Array[Dictionary]` — Proyectos de la agenda en trámite: {carta_id, titulo, tipo_ley, urgencia, etapa, etapa_nombre, camara, semanas_restantes, prob_aprobacion, delegada}. Solo lectura.
+- `presentar(carta_id: String, urgencia_id: String = "simple", ministro_id: String = "", delegar: bool = false, region_id: String = "") -> Dictionary` — Mensaje del Ejecutivo: presenta una ley del catálogo (aunque no esté en la mano) con una urgencia. Cuesta los movimientos de la carta
+- `poner_en_discusion_inmediata(carta_id: String) -> Dictionary` — Sube un proyecto en trámite a discusión inmediata sin cobrar capital ni movimientos (lo cobra quien lo llama, p. ej. una bala): acorta el plazo de la etapa
+- `avanzar() -> Array[Dictionary]` — Cierre de semana: resuelve las etapas cuyo plazo venció (puede ser más de una por semana con urgencia alta) y devuelve los resultados finales.
+
 ## `MotorCartas` (`sim/motor_cartas.gd`)
 
 - `costo_carta(carta: Dictionary, ministro_id: String = "") -> int` — Costo en movimientos de una carta, con el descuento del ministro y los bonos del gabinete y los asesores.
@@ -183,7 +195,8 @@
 - `umbral(t: Dictionary, total: int) -> int` — Votos mínimos en una cámara de `total` miembros: base "en_ejercicio" (todos) o "presentes" (asistencia supuesta);
 - `tipo(id: String) -> Dictionary` — Definición de un tipo de ley (quórum, trámite, TC); {} si no existe.
 - `apoyo_base(estado: EstadoSimulacion) -> float` — Apoyo 0..1 de los parlamentarios que no son de tu bancada: base + capital + cohesión + el impulso de la luna de miel (D-BN, solo en las primeras semanas de gobierno).
-- `votar(estado: EstadoSimulacion, tipo_id: String, votos_firmes_senado: int = -1) -> Dictionary` — Simula la votación de un tipo de ley en el Senado y la Cámara; devuelve votos, quórums y si fue aprobada (usa el azar).
+- `prob_aprobacion(estado: EstadoSimulacion, tipo_id: String, recargo: float = 0.0) -> Dictionary` — Probabilidad (0 a 1) de que cada cámara alcance el quórum del tipo de ley con el apoyo de hoy, sin usar el azar: {senado, camara}. Solo lectura.
+- `votar(estado: EstadoSimulacion, tipo_id: String, votos_firmes_senado: int = -1, recargo: float = 0.0) -> Dictionary` — Simula la votación de un tipo de ley en el Senado y la Cámara; devuelve votos, quórums y si fue aprobada (usa el azar).
 - `composicion(estado: EstadoSimulacion, camara: bool) -> Dictionary` — Bloques esperados de una cámara: bancada propia, aliados que suelen apoyar y oposición.
 - `resolver_tc(tipo_id: String, prob_exito_override: float = -1.0) -> Dictionary` — recurso: la oposición acude al TC. cae: el TC declara inconstitucional (el gobierno pierde).
 - `static fmt_cifra(n: float, unidad: String) -> String` — Formatea una cifra para los mensajes del corrector («12 mil km»).
@@ -219,7 +232,8 @@
 - `cargar(lista: Array) -> void` — Carga el catálogo de metas y movimientos internos.
 - `amanecer() -> void` — Paso 1 del turno: renueva delegaciones y movimientos internos, y abre las cartas cuya ventana de año comienza.
 - `bono_aprobacion() -> int` — DISENO_V2 §11: movimientos extra por cada umbral de aprobación superado (tramos en leyes.json › bono_movimientos).
-- `fijar_movimientos() -> void` — Fin del amanecer: movimientos del turno = base + bono por aprobación (solo gobierno) + asesores; y efectos de asesores.
+- `fijar_movimientos() -> void` — Fin del amanecer: movimientos del turno = ahorro anterior + (base + bono por aprobación (solo gobierno) + asesores), con tope mano.tope_ahorro; y efectos de asesores.
+- `ahorro_movimientos() -> Dictionary` — Salida para la UI (solo lectura): {disponibles, ingreso, tope, tope_efectivo, se_guardan, se_pierden}. `ingreso` = base + bono + asesores de esta semana;
 - `metas_disponibles() -> Array[Dictionary]` — Metas que el jugador puede intentar ahora (sector con ministro, requisito previo cumplido, sin cumplir).
 - `buscar_meta(meta_id: String) -> Dictionary` — Movimiento interno: cumple una meta (aplica sus efectos y desbloquea cartas); devuelve {ok, razon}.
 - `ajustar_sector(sector: String, direccion: int) -> Dictionary` — Movimiento interno: sube o baja el énfasis de un sector (dirección ±1); devuelve {ok, razon}.
@@ -292,7 +306,7 @@
 
 - `inclinacion(id: String) -> float` — Inclinación ilustrativa de la región en el eje económico (-1 izquierda … 1 derecha), determinista por semilla. No representa datos reales.
 - `afinidad(id: String) -> float` — 0..1: qué tan cerca está la inclinación de la región del eje económico del partido (1 = misma posición).
-- `pisos() -> Dictionary` — Piso de aprobación y de voto por región (id -> puntos 0..100); sin partido o sin regiones, todos 0.
+- `pisos() -> Dictionary` — Piso de aprobación y de voto por región (id -> puntos 0..100); sin partido o sin regiones, todos 0. El diccionario es de solo lectura (se reutiliza mientras no cambien sus entradas).
 - `nacional() -> float` — Piso nacional: promedio de los pisos regionales ponderado por población.
 - `resumen() -> Dictionary` — Solo lectura para la interfaz: {nacional, voto_duro (= nacional), por_region: [{id, piso, afinidad}], frenado} (frenado = puntos de aprobación nacional que el piso evitó perder esta semana).
 
