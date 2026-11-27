@@ -95,14 +95,9 @@ func _init() -> void:
 	_check(con.estado.ind("aprobacion") > sin.estado.ind("aprobacion"), "la luna de miel sube la aprobación del amanecer (%.2f > %.2f)" % [con.estado.ind("aprobacion"), sin.estado.ind("aprobacion")])
 	var aj14 := LunaDeMiel.ajustes(leyes, 0.0)
 	_check(aj14["ancla"] == 0.0 and aj14["desgaste"] == 1.0, "con intensidad 0 no hay ningún ajuste")
-	var motivo := false
-	for fila in con.motivos_semana():
-		motivo = motivo or String(fila["causa"]) == String(cfg["texto_motivo"])
-	_check(motivo, "motivos_semana explica la luna de miel")
-	var sin_motivo := false
-	for fila in sin.motivos_semana():
-		sin_motivo = sin_motivo or String(fila["causa"]) == String(cfg["texto_motivo"])
-	_check(not sin_motivo, "después de la luna de miel no hay motivo")
+	var clave := "aprobacion|" + String(cfg["texto_motivo"])  # motivos_semana muestra solo los 3 mayores; aquí se mira el registro completo
+	_check(float(con.fx._motivos.get(clave, 0.0)) > 0.0, "la luna de miel queda anotada como motivo positivo de la semana")
+	_check(float(sin.fx._motivos.get(clave, 0.0)) == 0.0, "después de la luna de miel no hay motivo")
 	_check(con.estado.registro_acciones.any(func(a): return String(a["tipo"]) == "luna_de_miel_inicio"), "se registra el inicio")
 	_check(not con.estado.registro_acciones.any(func(a): return String(a["tipo"]) == "luna_de_miel_fin"), "el fin no se registra en la semana 1")
 	var fin := _gobierno(datos, 9, 14)
