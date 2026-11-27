@@ -2,9 +2,39 @@ extends SceneTree
 ## Partida de punta a punta por la interfaz (informe de la cola 9, no prueba del CI): campaña, urnas, cambio de mando,
 ## transición del gabinete y semanas de gobierno, todo con los mismos botones que toca un jugador. Mide por semana
 ## los nodos vivos, la memoria estática y el tiempo de la semana, y avisa si los nodos crecen semana a semana (fuga).
-## Uso: godot --headless --path . -s tests/e2e_ui.gd -- [semilla] [semanas_de_gobierno]
+## Uso: godot --headless --path . -s tests/e2e_ui.gd -- [semilla] [semanas_de_gobierno] [letra] [alto]
+## Con letra y alto (p. ej. 1.5 693 = 360×640 con letra grande) audita cada pantalla nueva que aparece: textos dentro de
+## la pantalla (o en una zona desplazable) y toques de al menos 44 px.
 
 var _pantallas := {}  # clase de pantalla -> veces que apareció
+var _auditadas := {}
+var _fallos: Array[String] = []
+var _alto := 844
+
+
+func _en_scroll(n: Node) -> bool:
+	var p := n.get_parent()
+	while p != null:
+		if p is ScrollContainer:
+			return true
+		p = p.get_parent()
+	return false
+
+
+func _auditar(raiz: Node, donde: String) -> void:
+	## Una vez por clase de pantalla: nada se sale y los botones visibles miden al menos 44 px.
+	if _auditadas.has(donde):
+		return
+	_auditadas[donde] = true
+	for n in raiz.find_children("*", "Control", true, false):
+		var c := n as Control
+		if not c.is_visible_in_tree() or _en_scroll(c):
+			continue
+		var r := c.get_global_rect()
+		if (c is Label and String((c as Label).text).strip_edges() != "") and (r.end.y > _alto + 0.5 or r.end.x > Tema.ANCHO + 0.5 or r.position.x < -0.5):
+			_fallos.append("%s: «%s» se sale (%s)" % [donde, String((c as Label).text).left(30), r])
+		if c is Button and not (c as Button).disabled and (c as Button).text != "" and (r.size.x < Tema.TACTIL - 0.5 or r.size.y < Tema.TACTIL - 0.5):
+			_fallos.append("%s: botón «%s» chico (%s)" % [donde, (c as Button).text.left(20), r.size])
 
 
 func _init() -> void:
@@ -43,6 +73,9 @@ func _vaciar_capa(main: Node) -> void:
 			continue
 		var clase := String(abierto.get_script().get_global_name()) if abierto.get_script() != null else abierto.get_class()
 		_pantallas[clase] = int(_pantallas.get(clase, 0)) + 1
+		await _cuadros(2)
+		var textos: Array = abierto.find_children("*", "Label", true, false).filter(func(l: Label) -> bool: return l.is_visible_in_tree())
+		_auditar(abierto, "%s «%s»" % [clase, String(textos[0].text).left(24) if not textos.is_empty() else ""])
 		var botones: Array = abierto.find_children("*", "Button", true, false).filter(func(b: Button) -> bool: return b.is_visible_in_tree() and not b.disabled)
 		if botones.is_empty():
 			abierto.queue_free()
@@ -91,6 +124,10 @@ func _correr() -> void:
 	var args := OS.get_cmdline_user_args()
 	var semilla := int(args[0]) if args.size() > 0 else 7
 	var gobierno := int(args[1]) if args.size() > 1 else 26
+	if args.size() > 3:  # letra grande y teléfono bajo
+		Ajustes.escala_prueba = float(args[2])
+		_alto = int(args[3])
+		root.content_scale_size = Vector2i(390, _alto)
 	var main: Node = load("res://game/main.tscn").instantiate()
 	root.add_child(main)
 	await _cuadros(2)
@@ -112,6 +149,8 @@ func _correr() -> void:
 	for _w in range(int(main.datos["leyes"]["hemiciclo"]["semanas_campana"]) + 4 + gobierno):
 		if main._pantalla is PantallaGabinete:  # transición presidencial: confirmar el equipo preseleccionado
 			transicion = true
+			await _cuadros(2)
+			_auditar(main._pantalla, "transición del gabinete")
 			_pantallas["PantallaGabinete"] = int(_pantallas.get("PantallaGabinete", 0)) + 1
 			var conf := _boton(main._pantalla, "Confirmar gabinete y asumir")
 			if conf == null:
@@ -122,6 +161,7 @@ func _correr() -> void:
 		if not (main._pantalla is PantallaDia):
 			break
 		var est: EstadoSimulacion = main.motor.estado
+		_auditar(main._pantalla, "día de %s" % est.etapa)
 		var t0 := Time.get_ticks_usec()
 		await _semana(main)
 		var ms := float(Time.get_ticks_usec() - t0) / 1000.0
@@ -143,6 +183,9 @@ func _correr() -> void:
 	print("Tiempo por semana (con eventos y animaciones en headless): medio %.0f ms · máximo %.0f ms" % [t_suma / maxf(1.0, float(semanas)), t_max])
 	print("Nodos: semana 3 = %d · final = %d (%+d)" % [nodos0, nodos_fin, nodos_fin - nodos0])
 	print("Pantallas atendidas: ", _pantallas)
+	print("Pantallas auditadas (letra ×%s, alto %d): %d · problemas: %d" % [str(Ajustes.escala_prueba) if Ajustes.escala_prueba > 0.0 else "1", _alto, _auditadas.size(), _fallos.size()])
+	for f in _fallos:
+		print("FALLO: ", f)
 	if nodos0 > 0 and nodos_fin > nodos0 * 1.25:
 		_desglose(root, 0)  # dónde están los nodos de más (una pestaña abierta no es fuga: ver la columna «pestaña»)
 	if nodos0 > 0 and nodos_fin > nodos0 * 1.25:
