@@ -5,6 +5,8 @@ extends RefCounted
 
 
 static func dibujar(v: Control, fuegos: Array[Dictionary], t: float, centro: Callable) -> Array[Dictionary]:
+	if fuegos.is_empty():  # caso de casi todos los cuadros: sin arreglo nuevo
+		return fuegos
 	var vivos: Array[Dictionary] = []
 	for f in fuegos:
 		var l := t - float(f["inicio"])

@@ -138,6 +138,18 @@ func _correr() -> void:
 	if cm != null:
 		cm._gui_input(_clic(cm.size * 0.5, true))
 		cm._gui_input(_clic(cm.size * 0.5, false))
+	# Comité 3D: el botón «3D» cambia de vista y arrastrar gira la cámara
+	var b3d: Array = dia._zona_panel.find_children("*", "Button", true, false).filter(func(b: Button) -> bool: return b.text == "3D")
+	_check(not b3d.is_empty(), "el Comité tiene el botón 3D")
+	if not b3d.is_empty():
+		(b3d[0] as Button).pressed.emit()
+		await _cuadros(2)
+		var v3: Control = _buscar(dia._zona_panel, "ComiteMapa3D")
+		_check(v3 != null and v3.is_visible_in_tree(), "«3D» muestra el Comité en 3D")
+		if v3 != null:
+			v3._gui_input(_clic(v3.size * 0.5, true))
+			v3._gui_input(_mover(v3.size * 0.5 + Vector2(30, 0), Vector2(30, 0)))
+			v3._gui_input(_clic(v3.size * 0.5 + Vector2(30, 0), false))
 	# aprobar la propuesta desde el Comité: pasa a obra y avisa los días
 	dia._aprobar("prop_no_existe", "A")
 	_check(dia._toast.text == Razones.texto({"razon": "propuesta_no_disponible"}), "una propuesta que no se puede aprobar dice por qué (%s)" % dia._toast.text)
@@ -147,13 +159,6 @@ func _correr() -> void:
 	dia._aprobar("prop_metro_suroriente", "A")
 	await _cuadros(1)
 	_check(m.estado.obras_en_curso.size() == obras_antes + 1 and dia._toast.text.begins_with("Obra aprobada"), "aprobar la propuesta crea la obra y lo avisa (%s)" % dia._toast.text)
-	# Comité 3D: arrastrar gira la cámara
-	var c3: Array = dia._zona_panel.find_children("*", "ComiteMapa3D", true, false)
-	if not c3.is_empty():
-		var v3: Control = c3[0]
-		v3._gui_input(_clic(v3.size * 0.5, true))
-		v3._gui_input(_mover(v3.size * 0.5 + Vector2(30, 0), Vector2(30, 0)))
-		v3._gui_input(_clic(v3.size * 0.5 + Vector2(30, 0), false))
 	# mapa urbano: arrastrar desplaza; la leyenda oculta y muestra todas las líneas
 	dia._abrir_panel("mapa")
 	dia._abrir_urbano()
