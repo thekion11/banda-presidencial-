@@ -139,3 +139,11 @@ MUTANTES += [
  ("S04", "sim/motor_movimientos.gd", "maxi(0, e.pa_actual) + ingreso)", "maxi(0, e.pa_actual) + ingreso + 1)", "cada semana se crea un movimiento de la nada"),
  ("S05", "sim/motor_movimientos.gd", "e.pa_actual = mini(maxi(int(_m.catalogo_leyes[\"mano\"][\"tope_ahorro\"]), ingreso), maxi(0, e.pa_actual) + ingreso)", "e.pa_actual = mini(maxi(int(_m.catalogo_leyes[\"mano\"][\"tope_ahorro\"]) + 1, ingreso), maxi(0, e.pa_actual) + ingreso)", "el tope de ahorro es uno más alto que el configurado"),
 ]
+
+MUTANTES += [
+ ("G40", "game/componentes/tablero_gabinete.gd", "return data is Dictionary and String(data.get(\"slot\", \"\")) == slot and al_soltar.is_valid()", "return data is Dictionary and al_soltar.is_valid()", "un candidato se puede soltar en un puesto ajeno"),
+ ("G41", "game/pantallas/panel_gabinete.gd", "		if actual != \"\":\n			elegidos.erase(actual)\n		elegidos.append(id)", "		elegidos.append(id)", "nombrar a otro candidato del mismo puesto no saca al anterior (dos en un cargo)"),
+ ("G42", "game/pantallas/panel_gabinete.gd", "		boton.disabled = elegidos.size() != tam", "		boton.disabled = elegidos.size() < tam - 1", "se puede confirmar un gabinete incompleto"),
+ ("G43", "game/pantallas/panel_gabinete.gd", "			elegidos.assign(previo)\n			previo.clear()", "			elegidos.clear()\n			previo.clear()", "«Deshacer» vacía el gabinete en vez de devolver el anterior"),
+ ("G44", "game/pantallas/panel_gabinete.gd", "				auto[String(n[\"id\"])] = true  # en el tablero se ven punteados: los puso el relleno, no tú", "				pass", "el relleno automático no se distingue de lo elegido"),
+]
