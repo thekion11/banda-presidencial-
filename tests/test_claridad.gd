@@ -175,6 +175,24 @@ func _correr() -> void:
 		var aviso: String = dia_p._toast.text
 		_check(aviso.begins_with("Promesa nacional") and aviso.contains("Toca el mapa") if reg == "" else aviso.begins_with("Promesa en Atacama"), "el aviso de la promesa dice dónde quedó (%s)" % aviso)
 	_iconos()
+	# SECTRA (pedido del usuario «Faltan», 27-nov): las 16 regiones, de norte a sur, y una nota clara donde no hay cartera
+	if main.motor != null:
+		var ps := PanelSectra.crear(main.motor, "", func(_p: String) -> void: pass)
+		root.add_child(ps)
+		await process_frame
+		var chips: Array = (ps.find_children("*", "ScrollContainer", true, false)[0] as Node).get_child(0).get_children()  # la fila de regiones
+		var regs: Array = main.datos["regiones"]
+		_check(chips.size() == regs.size() and regs.size() == 16, "SECTRA ofrece las 16 regiones (%d)" % chips.size())
+		var orden_ok := chips.size() == regs.size()
+		for k in range(mini(chips.size(), regs.size())):
+			orden_ok = orden_ok and String(chips[k].text).begins_with(PanelSectra.nombre_corto(String(regs[k]["nombre"])))
+		_check(orden_ok, "SECTRA lista las regiones de norte a sur")
+		var rm: Array = chips.filter(func(b: Button) -> bool: return b.text.begins_with("Metropolitana"))
+		if not rm.is_empty():
+			(rm[0] as Button).pressed.emit()
+			await process_frame
+			_check(ps.find_children("*", "Label", true, false).any(func(l: Label) -> bool: return l.text.begins_with("SECTRA no publica") and l.text.contains("Metro")), "la Metropolitana explica que su transporte se trabaja en el Comité")
+		ps.free()
 	var plan: Array = Datos.cargar_todo()["cartas"].filter(func(c: Dictionary) -> bool: return String(c["id"]) == "plan_afp_estatal")
 	if not plan.is_empty():  # cartas del Plan Estratégico (27-nov): texto propio y cifras rotuladas como ilustrativas
 		var fp := FichaAmpliada.crear(plan[0], 3, main.motor.catalogo_leyes if main.motor != null else {})
