@@ -27,7 +27,8 @@ for f in tests/test_*.gd; do
   if [ "${PIPESTATUS[0]}" -ne 0 ] || grep -qE "SCRIPT ERROR|Parse Error|Could not find type" "/tmp/$t.log"; then fallos+=("$t"); fi
 done
 echo "== fuzz_acciones"
-"$GODOT" --headless --path . -s tests/fuzz_acciones.gd -- 60 7000 || fallos+=("fuzz_acciones")
+"$GODOT" --headless --path . -s tests/fuzz_acciones.gd -- 60 7000 2>&1 | tee /tmp/fuzz_acciones.log
+if [ "${PIPESTATUS[0]}" -ne 0 ] || grep -qE "SCRIPT ERROR|Parse Error" /tmp/fuzz_acciones.log; then fallos+=("fuzz_acciones"); fi  # un error de script aborta la acción en silencio: debe fallar
 if [ ${#fallos[@]} -gt 0 ]; then
   echo "FALLARON: ${fallos[*]}"
   exit 1

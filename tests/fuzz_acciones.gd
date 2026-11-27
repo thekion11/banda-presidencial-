@@ -94,7 +94,7 @@ func _accion_aleatoria(m: MotorTurno, rng: RandomNumberGenerator, datos: Diction
 		13:
 			m.impulsar_proyecto(String(basura[rng.randi_range(0, 4)]))
 		14:  # agenda legislativa (BM): presentar leyes del catálogo o basura, con cualquier urgencia, ministro y delegación
-			var cat := m.agenda.agenda_catalogo() if rng.randf() < 0.8 else []
+			var cat: Array = m.agenda.agenda_catalogo() if rng.randf() < 0.8 else []
 			var cid := String(cat[rng.randi_range(0, cat.size() - 1)]["carta_id"]) if not cat.is_empty() else String(basura[rng.randi_range(0, 4)])
 			var urgs := ["simple", "suma", "inmediata", "xx"]
 			var mins2: Array = e.gabinete + basura
@@ -107,6 +107,7 @@ func _init() -> void:
 	var s0 := int(args[1]) if args.size() > 1 else 1000
 	var datos := Datos.cargar_todo()
 	var h := Datos.huella(datos)
+	var presentadas := 0  # entradas «presentar» aceptadas por el motor: prueba de que la acción 14 (agenda) sí se ejercita
 	for i in range(n):
 		var semilla := s0 + i
 		var rng := RandomNumberGenerator.new()
@@ -134,8 +135,11 @@ func _init() -> void:
 			m.terminar_turno()
 			_invariantes(m, ctx + " t%d" % m.estado.turno_actual)
 		_check(guard < 400, ctx + ": la partida no termina (bucle)")
+		presentadas += m.estado.entradas.filter(func(x: Dictionary) -> bool: return x["tipo"] == "presentar").size()
 		var g: Dictionary = JSON.parse_string(JSON.stringify(m.estado.exportar_guardado(h)))
 		var r := Partida.reproducir(datos, g)
 		_check(r.estado.calcular_huella() == m.estado.calcular_huella(), ctx + ": el replay NO es idéntico (etapa %s, turno %d)" % [m.estado.etapa, m.estado.turno_actual])
+	_check(n < 20 or presentadas >= n, "la agenda legislativa no se ejercitó: %d presentaciones aceptadas en %d partidas (¿error de script en la acción 14?)" % [presentadas, n])
+	print("FUZZ presentaciones de la agenda aceptadas: %d" % presentadas)
 	print("FUZZ %s (%d partidas, %d fallos)" % ["OK" if _fallos == 0 else "CON FALLOS", n, _fallos])
 	quit(1 if _fallos > 0 else 0)
