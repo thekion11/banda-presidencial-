@@ -40,7 +40,7 @@ func _correr() -> void:
 	Tutorial.ruta = "user://preferencias_reglas.json"
 	Tutorial.marcar_visto()
 	Movimiento.forzado = 0
-	for alto in RecorridoUI.ALTURAS:
+	for alto in RecorridoUI.alturas():
 		var main: Node = await _dia(alto)
 		var dia: PantallaDia = main._pantalla
 		var b := dia._btn_jugar.get_global_rect()
@@ -49,7 +49,7 @@ func _correr() -> void:
 		var esquina := Rect2(Tema.ANCHO - 60.0, b.position.y, 60.0, b.size.y)  # esquina inferior derecha de la fila de botones
 		var ocupada := dia.find_children("*", "BaseButton", true, false).any(func(x: Node) -> bool: return (x as Control).is_visible_in_tree() and (x as Control).get_global_rect().intersects(esquina))
 		_check(not ocupada, "[%d] la esquina inferior derecha queda vacía (PR-02)" % alto)
-		var fr := float(dia._mapa.size.y) / float(alto)
+		var fr := float(dia._mapa.size.y) / root.get_visible_rect().size.y
 		_check(fr > 1.0 / 3.0, "[%d] el mapa ocupa más de un tercio (%.1f px de %d)" % [alto, dia._mapa.size.y, alto])
 		main.queue_free()
 		await _cuadros(2)

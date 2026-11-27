@@ -41,10 +41,10 @@ func _auditar(raiz: Node, donde: String) -> void:
 
 
 func _correr() -> void:
-	for alto in RecorridoUI.ALTURAS:  # 390×844 y otros teléfonos (360×640, 412×915, 480×1000)
+	for alto in RecorridoUI.alturas():  # 390×844 y otros teléfonos (360×640, 412×915, 480×1000)
 		_alto = alto
 		await RecorridoUI.recorrer(self, func(raiz: Node, donde: String) -> void: _auditar(raiz, "%s [alto %d]" % [donde, alto]), alto)
-	_check(_vistos > 60 * RecorridoUI.ALTURAS.size(), "la auditoría debe revisar muchos botones (revisó %d)" % _vistos)
+	_check(_vistos > 60 * RecorridoUI.alturas().size(), "la auditoría debe revisar muchos botones (revisó %d)" % _vistos)
 	if _fallos == 0:
 		print("TÁCTIL OK (%d botones)" % _vistos)
 	quit(1 if _fallos > 0 else 0)
