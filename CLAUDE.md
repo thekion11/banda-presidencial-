@@ -116,6 +116,7 @@ godot --headless --path . -s tests/test_fichas_largas.gd        # ficha de cada 
 godot --headless --path . -s tests/test_veracidad.gd           # la pantalla dice lo mismo que el motor (movimientos, semana, chips, riesgo, puntaje) y sin punto decimal
 godot --headless --path . -s tests/test_animaciones_completas.gd  # cambios rápidos de pantalla y pausa: ninguna animación queda a medias
 godot --headless --path . -s tests/test_gestos.gd              # toques y arrastres en mapas y obra 3D, escándalo, carta sin arte, música, aprobar propuesta
+godot --headless --path . -s tests/test_toque_real.gd          # toques por Input.parse_input_event (como Android): un toque elige, no juega
 godot --headless --path . -s tests/test_razones.gd             # toda razón de rechazo del motor tiene texto
 godot --headless --path . -s tests/test_sin_atascos.gd         # siempre hay mano y carta jugable (3 dificultades x 3 afiliaciones)
 godot --headless --path . -s tests/test_cobertura.gd           # cartas por área de ministerio y año
@@ -131,6 +132,7 @@ godot --headless --path . -s tests/test_rendimiento.gd         # turno < 1 ms y 
 godot --headless --path . -s tests/montecarlo.gd -- 200        # informe de balance
 xvfb-run -a godot --path . --rendering-method gl_compatibility --resolution 390x844 -s tests/medir_memoria.gd   # informe de RAM por pantalla
 xvfb-run -a godot --path . --rendering-method gl_compatibility --resolution 390x844 -s tests/medir_cuadros.gd   # llamadas de dibujo por escena
+xvfb-run -a -s "-screen 0 1400x1400x24" godot --path . --rendering-method gl_compatibility --resolution 360x640 -s tests/ventana_real.gd -- 360x640 1.5   # ventana real: lienzo, desbordes y botones (QA_VISUAL)
 xvfb-run -a godot --path . --rendering-method gl_compatibility --resolution 390x844 -s tests/medir_transiciones.gd   # costo por cuadro de cada animación
 godot --headless --path . -s tests/medir_toques.gd -- 3 30        # informe de toques por acción y por semana
 godot --headless --path . -s tools/informe_partida.gd -- 7 humano normal   # serie semanal de una partida en CSV (líneas «CSV,»)

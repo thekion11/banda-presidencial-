@@ -4,6 +4,7 @@ extends SubViewportContainer
 ## edificios de OpenStreetMap. Solo se construye la ventana que rodea al trazado (presupuesto móvil: MultiMesh, sin sombras).
 ## Exageraciones visuales (documentadas): relieve ×1.8; edificios ×1.6 en planta y ×1.8 en altura, y hasta ×2 más en ventanas grandes.
 
+const FACTOR_LUZ_MOBILE := 0.78  # medido con capturas de los dos renderizadores (docs/QA_VISUAL.md)
 const M_POR_U := 100.0  # 1 unidad 3D = 100 m
 const REAL_W_M := 26003.0
 const REAL_H_M := 21128.0
@@ -45,17 +46,24 @@ func _init() -> void:
 	env.background_color = Color("#0B2236")  # océano de la paleta del juego (antes celeste, fuera de paleta)
 	env.ambient_light_source = Environment.AMBIENT_SOURCE_COLOR
 	env.ambient_light_color = Color("#C9D6E4")
-	env.ambient_light_energy = 0.75
+	var k := luz_renderizador()
+	env.ambient_light_energy = 0.75 * k
 	var we := WorldEnvironment.new()
 	we.environment = env
 	_vp.add_child(we)
 	var sol := DirectionalLight3D.new()
 	sol.rotation_degrees = Vector3(-48.0, -35.0, 0.0)
-	sol.light_energy = 1.05
+	sol.light_energy = 1.05 * k
 	sol.light_color = Color("#FFE8C2")
 	_vp.add_child(sol)
 	_trazado_nodo = Node3D.new()
 	_raiz.add_child(_trazado_nodo)
+
+
+static func luz_renderizador() -> float:
+	## El teléfono usa el renderizador Mobile (Vulkan), que ilumina más fuerte que Compatibility (con el que se afinó la
+	## escena y se capturan las pruebas): con la misma luz el terreno crema quedaba casi blanco. Se compensa aquí.
+	return 1.0 if RenderingServer.get_current_rendering_method() == "gl_compatibility" else FACTOR_LUZ_MOBILE
 
 
 func _xz(p: Array) -> Vector2:
@@ -242,9 +250,12 @@ func poner_trazado(trazado: Array, elevada: bool) -> void:
 			var p := _pos(trazado[k], 0.0)
 			pil.append(Transform3D(Basis().scaled(Vector3(0.3, extra, 0.3)), p + Vector3(0, extra * 0.5, 0)))
 		_trazado_nodo.add_child(_multi(pil, _material(Color("#8C99A6"))))
-	_trazado_nodo.scale = Vector3(1, 0.01, 1)
 	_trazado_nodo.position = Vector3.ZERO
-	create_tween().tween_property(_trazado_nodo, "scale", Vector3.ONE, 0.6).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	if Movimiento.activo():  # el trazado crece desde el suelo; sin animaciones aparece entero
+		_trazado_nodo.scale = Vector3(1, 0.01, 1)
+		create_tween().tween_property(_trazado_nodo, "scale", Vector3.ONE, 0.6).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	else:
+		_trazado_nodo.scale = Vector3.ONE
 
 
 func _actualizar_camara() -> void:

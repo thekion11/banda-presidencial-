@@ -35,7 +35,10 @@ func poner_variante(p_trazado: Array, p_elevada: bool, p_estaciones: Array = [])
 	elevada = p_elevada
 	estaciones_pos = p_estaciones
 	trazo = 0.0
-	create_tween().tween_property(self, "trazo", 1.0, 0.9).set_trans(Tween.TRANS_SINE)
+	if Movimiento.activo():  # el trazado se dibuja de punta a punta; sin animaciones aparece entero
+		create_tween().tween_property(self, "trazo", 1.0, 0.9).set_trans(Tween.TRANS_SINE)
+	else:
+		trazo = 1.0
 
 
 func iniciar_edicion(p_grafo: GrafoTrazado, p_estaciones: Array) -> void:

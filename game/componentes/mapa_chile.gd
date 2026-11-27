@@ -47,6 +47,9 @@ var enlace: Control:  # tarjeta de la región elegida: la maqueta la une con una
 		enlace = v
 		if v != null:
 			v.item_rect_changed.connect(queue_redraw)
+var _segs_tendencia: Dictionary = {}  # signo -> segmentos de las regiones que suben o bajan (caché de la capa viva)
+var _segs_clave := Vector4(-2, -2, -2, -2)
+var _segs_de: Dictionary = {}  # la tendencia con que se armó la caché (se reasigna al cambiar)
 var _fuegos: Array[Dictionary] = []  # {pos, inicio, color}: obra terminada (dirección visual v4)
 
 
@@ -284,10 +287,14 @@ func _contornos(id: String) -> Array:
 
 
 static func _segmentos(pts: PackedVector2Array) -> PackedVector2Array:
-	## Polilínea como pares de puntos para draw_multiline.
+	## Polilínea como pares de puntos para draw_multiline (sin arreglos temporales por segmento).
 	var r := PackedVector2Array()
+	if pts.size() < 2:
+		return r
+	r.resize((pts.size() - 1) * 2)
 	for i in range(pts.size() - 1):
-		r.append_array([pts[i], pts[i + 1]])
+		r[i * 2] = pts[i]
+		r[i * 2 + 1] = pts[i + 1]
 	return r
 
 
@@ -314,9 +321,7 @@ func _centro_calculado(id: String) -> Vector2:
 
 func _gui_input(event: InputEvent) -> void:
 	var pos := Vector2.ZERO
-	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
-		pos = event.position
-	elif event is InputEventScreenTouch and event.pressed:
+	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:  # el toque llega también como clic
 		pos = event.position
 	else:
 		return
@@ -350,13 +355,20 @@ func _dibujar_vivo() -> void:
 	var v := _vivo
 	v.draw_set_transform_matrix(_camara)
 	var pulso := 0.5 + 0.5 * sin(_t * 3.2)
+	var clave := Vector4(size.x, size.y, x_centro_rel, estirar_x)
+	if clave != _segs_clave or not is_same(_segs_de, _tendencia):  # los segmentos solo cambian con el tamaño o la tendencia, no cada cuadro
+		_segs_clave = clave
+		_segs_de = _tendencia
+		for sg in [1, -1]:
+			var acum := PackedVector2Array()
+			for id in _tendencia.keys():
+				if int(_tendencia[id]) == sg:
+					for pts in _contornos(id):
+						if pts.size() >= 9:
+							acum.append_array(_segmentos(pts))
+			_segs_tendencia[sg] = acum
 	for signo in [1, -1]:  # regiones que suben y que bajan: una llamada de dibujo por color
-		var segs := PackedVector2Array()
-		for id in _tendencia.keys():
-			if int(_tendencia[id]) == signo:
-				for pts in _contornos(id):
-					if pts.size() >= 9:
-						segs.append_array(_segmentos(pts))
+		var segs: PackedVector2Array = _segs_tendencia.get(signo, PackedVector2Array())
 		if not segs.is_empty():
 			v.draw_multiline(segs, Color(Tema.bien() if signo > 0 else Tema.mal(), 0.25 + 0.55 * pulso), 2.0 + 1.5 * pulso, false)
 	if bastion != "" and _banda_y.has(bastion):

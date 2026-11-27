@@ -1,6 +1,22 @@
-# Cobertura de funciones de `game/` (26-nov-2026)
+# Cobertura de funciones de `game/` (27-nov-2026)
 
-Medida con `python3 tools/cobertura_funciones.py godot --game`: copia el proyecto, inserta un contador al inicio de cada función de `game/` y corre 14 pruebas de interfaz bajo `xvfb-run` (`test_ui_humo`, `test_textos`, `test_tactil`, `test_claridad`, `test_escenas`, `test_accesibilidad`, `test_movimiento`, `test_paleta`, `test_estados`, `test_tapa`, `test_mapa_entrada`, `test_metro_lineas`, `test_identidad`, `captura_comparar`). No cuenta las funciones de una sola línea.
+Medida con `python3 tools/cobertura_funciones.py godot --game`: copia el proyecto, inserta un contador al inicio de cada función de `game/` y corre bajo `xvfb-run` las pruebas de interfaz de la lista `UI` del script (23 pruebas más `captura_comparar`). No cuenta las funciones de una sola línea.
+
+**Resultado del 27-nov: 467 funciones, 463 ejecutadas (99,1 %), 4 sin ejecutar** (el 26-nov eran 420 de 451, 93,1 %).
+
+Qué se hizo con las 31 del 26-nov (cola 6 de la coordinadora):
+- **Código muerto, borrado:** `FilasUI.fila_h` y `UrbanoCache.invalidar`. Ninguna tenía usos.
+- **Caminos reales, ahora con prueba:** `tests/test_gestos.gd` cubre los toques y arrastres en los mapas de Chile, del continente, del Comité (2D y 3D) y urbano; la obra 3D (arrastre, fases y reproducir); «Ocultar todas» de la leyenda del Metro; los fuegos de obra terminada; el escándalo ministerial; la carta sin ilustración; la música apagada y encendida; aprobar una propuesta y el texto de una decisión. Las demás funciones de la lista ya las ejecutan las pruebas nuevas de la cola 5 (`test_zonas_seguras`, `test_veracidad`, `test_animaciones_completas`, `test_fichas_largas`, `test_reglas_ui`, `test_atras`, `test_estado_tardio`).
+- **Arreglo que salió de cubrirlas:** aprobar una propuesta que no se puede respondía «No se pudo aprobar la propuesta.» y ahora dice el motivo (`Razones`).
+
+Las 4 que quedan:
+
+| Función | Por qué no se ejecuta | Decisión |
+|---|---|---|
+| `urbano_vista.gd`: `_vista_mueve`, `_vista_suelta`, `_vista_toque` | Son ganchos virtuales vacíos. `ComiteMapa` los reemplaza todos y `UrbanoMapa` reemplaza `_vista_toque`. El arrastre de `UrbanoMapa` nunca se captura (`_vista_empieza` devuelve false), así que la versión base no se llama | Se quedan: `_gui_input` los llama y una subclase sin ellos fallaría |
+| `comite_mapa_3d.gd`: `_gui_input` | La cubre `test_gestos` con el botón «3D»; la medición se corrió antes de ese último ajuste | Cubierta |
+
+## Medición anterior (26-nov-2026)
 
 **Resultado: 451 funciones, 420 ejecutadas (93,1 %), 31 nunca ejercitadas.**
 

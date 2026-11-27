@@ -115,8 +115,9 @@ var _p0: Vector2 = Vector2.ZERO
 
 
 func _gui_input(event: InputEvent) -> void:
-	var boton: bool = event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT
-	if not (boton or event is InputEventScreenTouch):
+	## Solo el clic: en Android cada toque llega también como clic (emulate_mouse_from_touch, activo por defecto). Si se
+	## atendían los dos, un único toque elegía la carta y en seguida la jugaba (tests/test_toque_real.gd).
+	if not (event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT):
 		return
 	if event.pressed:
 		if not elegida:  # elegir otra carta: al presionar (el gesto de deslizar juega la que se presionó)

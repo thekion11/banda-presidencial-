@@ -20,7 +20,7 @@ static func recorrer(arbol: SceneTree, visitar: Callable, alto: int = 844) -> vo
 	var paso := func(nombre: String) -> void:
 		for i in range(3):
 			await arbol.process_frame
-		visitar.call(main, nombre)
+		await visitar.call(main, nombre)  # el visitante puede esperar cuadros (golden_capturar)
 	await paso.call("menú")
 	main._pantalla._mostrar_creditos()
 	await paso.call("créditos")

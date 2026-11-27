@@ -16,7 +16,7 @@ var _huella_datos: String = ""
 
 
 static func aspecto_para(ventana: Vector2i) -> Window.ContentScaleAspect:
-	## Teléfonos (hasta 16:9): ancho lógico 390 y el alto que dé el teléfono (keep_width; 360×640 -> 390×693, ya probado).
+	## Teléfonos (hasta 16:9): ancho lógico 390 y el alto que dé el teléfono (keep_width con la base de base_para: 360×640 -> 390×693).
 	## Más anchos (tablet 4:3, plegable abierto): con keep_width quedarían menos de 693 de alto y no cabe la pantalla del día,
 	## así que se muestra el 390×844 completo, centrado, con bandas de color océano a los lados (keep).
 	if ventana.x <= 0 or ventana.y <= 0:
@@ -24,8 +24,20 @@ static func aspecto_para(ventana: Vector2i) -> Window.ContentScaleAspect:
 	return Window.CONTENT_SCALE_ASPECT_KEEP if float(ventana.x) / float(ventana.y) > 0.565 else Window.CONTENT_SCALE_ASPECT_KEEP_WIDTH
 
 
+static func base_para(ventana: Vector2i) -> Vector2i:
+	## Tamaño lógico base. En un teléfono es 390 de ancho por el alto que dé su proporción (360×640 -> 390×693): con la
+	## base fija de 390×844, keep_width solo crece hacia abajo, y un 16:9 (más ancho que 390:844) quedaba en 390×844
+	## achicado al 82 % con bandas a los lados, con la letra bajo el mínimo. Tablet y plegable abierto: 390×844 (keep).
+	if ventana.x <= 0 or ventana.y <= 0 or float(ventana.x) / float(ventana.y) > 0.565:
+		return Vector2i(390, 844)
+	return Vector2i(390, roundi(390.0 * float(ventana.y) / float(ventana.x)))
+
+
 func _ajustar_aspecto() -> void:
-	get_tree().root.content_scale_aspect = aspecto_para(get_tree().root.size)
+	var r := get_tree().root
+	r.content_scale_aspect = aspecto_para(r.size)
+	if DisplayServer.get_name() != "headless":  # las pruebas headless simulan cada alto con content_scale_size
+		r.content_scale_size = base_para(r.size)
 
 
 func _ready() -> void:

@@ -164,37 +164,47 @@ static func evento(ev: Dictionary, al_continuar: Callable, nombres: Dictionary, 
 	estado["armar"] = func() -> void:
 		for h in col.get_children():
 			h.queue_free()
+		var sc := ScrollContainer.new()  # con letra grande en un teléfono bajo el contenido se desplaza y los botones quedan fijos abajo
+		sc.size_flags_vertical = Control.SIZE_EXPAND_FILL
+		sc.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+		var cuerpo := VBoxContainer.new()
+		cuerpo.add_theme_constant_override("separation", 10)
+		cuerpo.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		sc.add_child(cuerpo)
+		col.add_child(sc)
+		var recorte := func() -> void:  # el sello cae desde grande: solo se recorta si de verdad hay que desplazar
+			if is_instance_valid(sc) and is_instance_valid(cuerpo):
+				sc.clip_contents = cuerpo.get_combined_minimum_size().y > sc.size.y + 0.5
+		sc.resized.connect(recorte)
+		cuerpo.minimum_size_changed.connect(recorte)
 		var cab := ("EVENTO · %s" % String(ev["hora"]))
 		if ev.has("escena"):  # debate o entrevista: cabecera de escena con el avance de las rondas
 			cab = "%s · RONDA %d DE %d" % [String(ev["escena"]["nombre"]).to_upper(), int(ev["escena"]["ronda"]), int(ev["escena"]["rondas"])]
 		if dia > 0:
 			cab += " · DÍA %d" % dia
-		col.add_child(_centrada(cab, 11, Tema.ORO, true))
-		col.add_child(_centrada(String(ev["titulo"]), 24, Tema.TEXTO, true))
+		cuerpo.add_child(_centrada(cab, 11, Tema.ORO, true))
+		cuerpo.add_child(_centrada(String(ev["titulo"]), 24, Tema.TEXTO, true))
 		if v == null:  # P11: en un aviso el efecto va primero y la descripción no repite el título
 			var ef: Variant = ev.get("efectos", null)
 			var decide: bool = ev.get("opciones", null) != null
 			if ef != null and not ef.is_empty() and not decide:
-				col.add_child(_fila_efectos(ef))
-			col.add_child(_centrada(descripcion_limpia(String(ev["titulo"]), String(ev["descripcion"])), 13, Tema.TEXTO_SUAVE))
+				cuerpo.add_child(_fila_efectos(ef))
+			cuerpo.add_child(_centrada(descripcion_limpia(String(ev["titulo"]), String(ev["descripcion"])), 13, Tema.TEXTO_SUAVE))
 			if ef != null and not ef.is_empty() and decide:
-				col.add_child(_fila_efectos(ef))
+				cuerpo.add_child(_fila_efectos(ef))
 		else:
 			var i: int = estado["i"]
 			var voto: Dictionary = v["voto"]
 			var pag_ok := true
 			if i >= 0 and i < 2:
-				_pagina_votacion(col, String(paginas[i]), voto, nombres, "")
+				_pagina_votacion(cuerpo, String(paginas[i]), voto, nombres, "")
 				var fav: int = int(voto["camara"]) if paginas[i] == "camara" else int(voto["senado"])
 				var minimo: int = int(voto["min_camara"]) if paginas[i] == "camara" else int(voto["min_senado"])
 				pag_ok = fav >= minimo
 			if i == 0 and pag_ok:
-				_camino(col, paginas, 0, nombres)
+				_camino(cuerpo, paginas, 0, nombres)
 			if i == 1 or not pag_ok:
-				_consecuencias(col, ev, voto, v["tc"], nombres, paginas)
-		var esp := Control.new()
-		esp.size_flags_vertical = Control.SIZE_EXPAND_FILL
-		col.add_child(esp)
+				_consecuencias(cuerpo, ev, voto, v["tc"], nombres, paginas)
 		if ev.get("opciones", null) != null and al_decidir.is_valid():  # decisión del jugador: no gasta movimientos
 			var ops: Array = ev["opciones"]
 			for k in range(ops.size()):
