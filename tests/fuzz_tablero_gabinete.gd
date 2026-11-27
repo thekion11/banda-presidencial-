@@ -100,6 +100,13 @@ func _n(panel: Node) -> int:
 	return -1
 
 
+func _cerrar_ficha(panel: Node) -> void:
+	## Tocar un puesto abre su ficha de contratación como ventana encima del tablero (se cierra con «×» o al nombrar): para actuar sobre el tablero hay que cerrarla.
+	var x := _boton_texto(panel, "×")
+	if x != null:
+		await _tocar(x.get_global_rect().get_center())
+
+
 func _boton_texto(panel: Node, t: String) -> Button:
 	for b in panel.find_children("*", "Button", true, false):
 		if (b as Button).text == t and (b as Button).is_visible_in_tree():
@@ -143,8 +150,10 @@ func _partida(datos: Dictionary, semilla: int, nops: int) -> Array:
 	# prefacio determinista: nombrar 24 de 25 puestos con dos toques cada uno; con 24 el botón sigue apagado y con el 25.º se enciende
 	var bc0 := _boton_texto(panel, "Comenzar campaña")
 	_check(bc0 != null and bc0.disabled, ctx + ": con el tablero vacío el botón de confirmar debe estar apagado")
+	await _cerrar_ficha(panel)
 	var slots: Array = _puestos(panel).map(func(p: TableroGabinete.Puesto) -> String: return p.slot)
 	for idx in range(slots.size()):
+		await _cerrar_ficha(panel)
 		var pu: Array = _puestos(panel).filter(func(p: TableroGabinete.Puesto) -> bool: return p.slot == slots[idx])
 		await _tocar(_visible(pu[0]))
 		var cs := _candidatos(panel)
@@ -162,12 +171,15 @@ func _partida(datos: Dictionary, semilla: int, nops: int) -> Array:
 		if idx == 23:  # se deja de nombrar con 24 y se sigue con el resto en la fase aleatoria
 			break
 	for k in range(nops):
+		var op := rng.randi_range(0, 6)
+		if op >= 5 or op == 0 or op == 1 or rng.randf() < 0.3:  # rellenar, confirmar y tocar puestos se hacen sobre el tablero, con la ficha cerrada
+			await _cerrar_ficha(panel)
 		var puestos := _puestos(panel)
 		var cands := _candidatos(panel)
 		var antes := _estados(panel)
 		var n0 := _n(panel)
 		_ops += 1
-		match rng.randi_range(0, 6):
+		match op:
 			0, 1:  # tocar un puesto
 				if puestos.is_empty():
 					continue
