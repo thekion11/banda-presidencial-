@@ -330,7 +330,7 @@ func pendiente_confirmar() -> bool:
 			return false
 		if tipo == "eleccion":
 			return true
-	return true
+	return false  # sin elección en el historial (partida armada directamente en gobierno) no hay transición: igual que el respaldo de PanelGabinete.transicion_pendiente
 
 
 func efecto_semanal_de(ids: Array) -> Dictionary:
