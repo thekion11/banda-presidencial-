@@ -16,7 +16,7 @@
 | PR-14 movimientos internos | Sin cambios; los gestiona el panel Gabinete | vincular a personas con PR-24 |
 | PR-15 apariencia | Parcial (color del emblema) | retratos modulares (arte) |
 | PR-16 habilidades | Hecha (4) | — |
-| PR-17 balas de plata | Hecha (5 cartas) | reglas finas, mazo aparte |
+| PR-17 balas de plata | Hecha (reserva aparte, 7 tipos, §BO de DECISIONES) | pantalla del baúl (Visual) |
 | PR-18 a PR-23 presupuesto, elecciones, comisiones, Contraloría, autónomas, medios | Hecha como eventos con decisión (19) | pantallas propias, mini-juego de presupuesto |
 | PR-24 marco de actores | Primera versión | consecuencias |
 

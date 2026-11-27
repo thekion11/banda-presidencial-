@@ -39,6 +39,7 @@ func _ready() -> void:
 	raiz.add_theme_constant_override("separation", 0)
 	add_child(raiz)
 	raiz.add_child(Barras.cabecera(_r))
+	(_r["baul"] as Button).pressed.connect(_abrir_baul)
 	raiz.add_child(CuerpoDia.construir(self))  # mapa, mano, Corrector, botones y zona de paneles (cuerpo_dia.gd)
 	(_r["ev_cab"] as Control).gui_input.connect(func(ev: InputEvent) -> void:  # el evento del día, completo
 		if ev is InputEventMouseButton and ev.pressed and ev.button_index == MOUSE_BUTTON_LEFT and String(_r["ev_cab"].text) != "":
@@ -95,6 +96,9 @@ func _refrescar() -> void:
 	_r["pa"].text = pa_txt
 	_lbl_mov.text = ManoUI.texto_movimientos(est)
 	Barras.pintar_chips(_r, est)
+	_r["baul"].visible = est.etapa == "gobierno"  # las balas de plata solo existen en el gobierno
+	if est.etapa == "gobierno":
+		_r["baul_n"].text = str(motor.balas.usos_restantes())
 	var obras: Dictionary = {}
 	for o in est.obras_en_curso:
 		obras[o["region"]] = int(obras.get(o["region"], 0)) + 1
@@ -415,3 +419,11 @@ func _abrir_hito(obra: Dictionary) -> void:
 
 func _abrir_urbano() -> void:
 	_capa.add_child(PantallaUrbano.crear(motor, UrbanoBase.datos(), func() -> void: pass, _abrir_hito))
+
+
+func _abrir_baul() -> void:
+	Feedback.sonar("toque")
+	_capa.add_child(PanelBalas.crear(motor, func(msg: String) -> void:
+		_avisar(msg)
+		accion_hecha.emit()
+		_refrescar()))

@@ -75,6 +75,13 @@ static func reproducir(datos: Dictionary, guardado: Dictionary) -> MotorTurno:
 					motor.iniciar_turno()
 			"decision":
 				motor.eventos.decidir(String(e["evento"]), int(e["idx"]))
+			"bala":
+				motor.balas.usar(String(e["id"]), int(e["objetivo"]), bool(e["reducida"]))
+			"presupuesto":
+				if String(e["accion"]) == "asignar":
+					motor.presupuesto.asignar(String(e["slot"]), String(e["nivel"]), e["prio"])
+				else:
+					motor.presupuesto.fijar_prioridades(String(e["slot"]), e["prio"])
 			"cerrar":
 				motor.terminar_turno()
 			"eleccion":

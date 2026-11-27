@@ -1,0 +1,216 @@
+extends SceneTree
+## PR-17: balas de plata (reserva aparte de la mano): usos por mandato, costo en capital, condiciones por tipo, corrector, enfriamiento,
+## determinismo y guardado por eventos.
+
+var _fallos := 0
+
+
+func _check(c: bool, msg: String) -> void:
+	if not c:
+		print("FALLO: ", msg)
+		_fallos += 1
+
+
+func _proyecto(m: MotorTurno, tipo: String, dias: int) -> void:
+	## Agrega un proyecto de ley en trámite (de la primera carta con ley del catálogo) con esa distancia a su votación.
+	var carta: Dictionary = {}
+	for c in m.catalogo_cartas:
+		if c["requisitos"]["ley"] != null:
+			carta = c
+			break
+	m.estado.proyectos_ley.append({"carta_id": carta["id"], "tipo_ley": tipo, "escala": 1.0, "region": "", "origen": "camara",
+			"dia_ingreso": m.estado.dia_actual, "dia_votacion": m.estado.dia_actual + dias})
+
+
+func _gobierno(datos: Dictionary, semilla: int, turno: int = 1) -> MotorTurno:
+	var m := AyudaV2.gobierno(datos, semilla)
+	m.estado.turno_actual = turno
+	m.estado.dia_actual = 1 + (turno - 1) * m.estado.dias_por_turno
+	return m
+
+
+func _init() -> void:
+	var datos := Datos.cargar_todo()
+	var cfg: Dictionary = datos["leyes"]["balas_plata"]
+	_check((cfg["catalogo"] as Array).size() == 7, "el catálogo tiene 7 tipos de bala")
+	_check(not datos["cartas"].any(func(c: Dictionary) -> bool: return String(c["id"]).begins_with("bala_")), "las balas ya no circulan en el mazo general")
+	# reserva y baúl
+	var m := _gobierno(datos, 31)
+	var b := m.balas.baul()
+	_check((b["items"] as Array).size() == 7 and int(b["usos_max"]) == int(cfg["usos_max"]), "el baúl lista los 7 tipos y el máximo del mandato")
+	_check(int(b["usos_restantes"]) == int(cfg["usos_iniciales"]), "al empezar hay %d usos disponibles" % int(cfg["usos_iniciales"]))
+	for it in b["items"]:
+		_check(not bool(it["disponible"]) or String(it["razon"]) == "", "%s: disponible implica sin razón de rechazo" % it["id"])
+		_check(float(it["riesgo_estimado"]) > 0.0 and float(it["riesgo_estimado"]) < 1.0 and float(it["costo_capital"]) > 0.0, "%s: costo y riesgo informados" % it["id"])
+		_check(bool(it["disponible"]) or (String(it["mensaje"]) != "" and String(it["alternativa"]) != ""), "%s: si no se puede, dice por qué y qué hacer (nunca un no seco)" % it["id"])
+	_check(String(m.balas.usar("bala_inexistente")["razon"]) == "bala_desconocida", "bala desconocida")
+	var r0 := m.balas.usar("bala_urgencia")
+	_check(not bool(r0["ok"]) and String(r0["razon"]) == "condicion" and String(r0["alternativa"]) != "", "urgencia sin proyecto en trámite: corrector con alternativa")
+	# urgencia: adelanta la votación del proyecto más lejano y cuesta capital
+	_proyecto(m, "ley_simple", 14)
+	_proyecto(m, "ley_simple", 35)
+	var cap := m.estado.ind("capital")
+	var pa := m.estado.pa_actual
+	var u := m.balas.usar("bala_urgencia")
+	_check(bool(u["ok"]) and int(u["objetivo"]) == 1, "la urgencia elige por defecto el proyecto más lejano de votarse")
+	_check(int(m.estado.proyectos_ley[1]["dia_votacion"]) == m.estado.dia_actual, "se vota esta semana")
+	_check(m.estado.ind("capital") < cap - float(cfg["catalogo"][0]["costo_capital"]) + 1.0 and m.estado.pa_actual == pa, "cuesta capital y no movimientos")
+	_check(String(m.balas.usar("bala_urgencia")["razon"]) == "ya_usada", "una bala se usa una sola vez por mandato")
+	_check(m.estado.registro_acciones.any(func(a: Dictionary) -> bool: return a["tipo"] == "bala"), "queda en el registro de acciones")
+	# enfriamiento entre usos
+	_proyecto(m, "ley_simple", 40)
+	var ce := m.balas.usar("bala_dfl")
+	_check(String(ce["razon"]) == "enfriamiento" and int(ce["semanas"]) > 0 and String(ce["alternativa"]).contains("semana"), "enfriamiento: dice cuántas semanas esperar")
+	_check(int(m.balas.baul()["semanas_espera"]) == int(ce["semanas"]), "el baúl informa la espera")
+	# usos por mandato: en el año 1 solo los iniciales; en el año 3 se habilita el resto
+	var m2 := _gobierno(datos, 32)
+	var usadas := 0
+	for i in range(int(cfg["usos_iniciales"])):
+		m2.estado.turno_actual += int(cfg["enfriamiento_semanas"])  # se mantiene dentro del año 1
+		m2.estado.indicadores["cohesion"] = 90.0
+		m2.estado.indicadores["capital"] = 90.0
+		_proyecto(m2, "ley_simple", 30)
+		if bool(m2.balas.usar("bala_urgencia" if i == 0 else ("bala_dfl" if i == 1 else "bala_veto"))["ok"]):
+			usadas += 1
+		else:
+			m2.balas.usar("bala_nombramiento")
+	var antes_sin := m2.balas.usos_restantes()
+	_check(antes_sin <= int(cfg["usos_iniciales"]), "nunca se superan los usos habilitados")
+	var m3 := _gobierno(datos, 33, 3 * 52)
+	_check(m3.balas.usos_habilitados() == int(cfg["usos_max"]), "desde el año %d se habilita toda la reserva" % int(cfg["anio_uso_extra"]))
+	# DFL: no vale para materias vedadas
+	var m4 := _gobierno(datos, 34, 60)
+	m4.estado.indicadores["capital"] = 90.0
+	_proyecto(m4, "quorum_calificado", 30)
+	var d1 := m4.balas.usar("bala_dfl")
+	_check(not bool(d1["ok"]) and String(d1["razon"]) == "condicion" and String(d1["mensaje"]).contains("vedadas"), "DFL vedado para leyes de quórum especial")
+	_proyecto(m4, "ley_simple", 30)
+	var objs: Array = m4.balas.objetivos(m4.balas.definicion("bala_dfl"))
+	_check(objs.size() == 1 and String(objs[0]["tipo_ley"]) == "ley_simple", "el DFL solo ofrece los proyectos permitidos")
+	var antes_n := m4.estado.proyectos_ley.size()
+	var d2 := m4.balas.usar("bala_dfl")
+	_check(bool(d2["ok"]) and m4.estado.proyectos_ley.size() == antes_n - 1, "el DFL saca el proyecto del Congreso (se ejecuta o lo frena el control)")
+	# DFL en el primer año: no
+	var m5 := _gobierno(datos, 35)
+	_proyecto(m5, "ley_simple", 30)
+	_check(String(m5.balas.usar("bala_dfl")["razon"]) == "condicion", "el DFL exige haber avanzado el mandato")
+	# insistencia: evento de la Contraloría reciente + la firma de todos los ministros
+	var m6 := _gobierno(datos, 36)
+	m6.estado.indicadores["capital"] = 90.0
+	_check(String(m6.balas.usar("bala_insistencia")["razon"]) == "condicion", "insistencia sin objeción de la Contraloría")
+	m6.estado.eventos_ocurridos["evt_contraloria_objeta"] = m6.estado.turno_actual
+	_check(bool(m6.balas.baul()["items"][5]["disponible"]), "insistencia disponible con la Contraloría y ministros leales")
+	m6.estado.decisiones["evt_min_hacienda"] = 2  # ignorar la petición de Hacienda deja su relación en 40: bajo el mínimo para firmar
+	var sin_firma := m6.balas.usar("bala_insistencia")
+	_check(not bool(sin_firma["ok"]) and String(sin_firma["condicion"]) == "ministros_firman" and String(sin_firma["mensaje"]).contains("("), "un ministro sin lealtad no firma y se nombra a quién falta")
+	m6.estado.decisiones["evt_min_hacienda"] = 1  # negociar la deja en 50: firma
+	var con_firma := m6.balas.usar("bala_insistencia")
+	_check(bool(con_firma["ok"]), "con todos los ministros leales la insistencia se puede usar")
+	# veto: exige oposición mayoritaria en alguna cámara; excepción: catástrofe reciente o riesgo de ejecución alto
+	var m9 := _gobierno(datos, 39)
+	m9.estado.indicadores["capital"] = 90.0
+	_check(String(m9.balas.usar("bala_veto")["razon"]) == "condicion", "veto sin oposición mayoritaria")
+	m9.estado.partido["escanos_propios"] = 2
+	m9.estado.indicadores["cohesion"] = 5.0
+	m9.estado.indicadores["capital"] = 3.0
+	var veto_cond: Dictionary = m9.balas.baul()["items"][1]
+	_check(String(veto_cond["razon"]) != "condicion", "con la oposición mayoritaria el veto deja de fallar por su condición (%s)" % String(veto_cond["razon"]))
+	var m10 := _gobierno(datos, 40)
+	m10.estado.indicadores["capital"] = 90.0
+	_check(String(m10.balas.usar("bala_excepcion")["razon"]) == "condicion", "excepción sin catástrofe")
+	m10.estado.eventos_ocurridos["evt_ext_terremoto"] = m10.estado.turno_actual
+	_check(bool(m10.balas.baul()["items"][4]["disponible"]), "excepción disponible tras un terremoto reciente")
+	m10.estado.eventos_ocurridos["evt_ext_terremoto"] = m10.estado.turno_actual - int(cfg["semanas_reciente"]) - 1
+	_check(not bool(m10.balas.baul()["items"][4]["disponible"]), "la catástrofe deja de valer pasada la ventana")
+	m10.estado.indicadores["riesgo_ejecucion"] = 70.0
+	_check(bool(m10.balas.baul()["items"][4]["disponible"]), "excepción disponible con la ejecución en colapso")
+	# riesgo: sube cuando el indicador que lo gobierna empeora
+	var def_pleb: Dictionary = m10.balas.definicion("bala_plebiscito")
+	m10.estado.indicadores["aprobacion"] = 80.0
+	var r_alta := m10.balas.riesgo_estimado(def_pleb)
+	m10.estado.indicadores["aprobacion"] = 20.0
+	_check(m10.balas.riesgo_estimado(def_pleb) > r_alta, "el plebiscito es más arriesgado con poca aprobación")
+	# el resultado de una bala que sale mal sigue las reglas de su definición (DFL frenado: no se ejecuta ni se queda en el Congreso)
+	var perdidos := 0
+	for sd in range(200, 230):
+		var mm := _gobierno(datos, sd, 60)
+		mm.estado.indicadores["capital"] = 90.0
+		_proyecto(mm, "ley_simple", 30)
+		var rr := mm.balas.usar("bala_dfl")
+		if bool(rr["ok"]):
+			_check(mm.estado.proyectos_ley.is_empty(), "el DFL siempre saca el proyecto del Congreso")
+			perdidos += 1 if bool(rr["salio_mal"]) else 0
+	_check(perdidos > 0 and perdidos < 30, "el DFL sale mal a veces, no siempre (%d de 30)" % perdidos)
+	# agenda legislativa: la urgencia y el DFL también actúan sobre los proyectos presentados desde el gobierno
+	var m11 := _gobierno(datos, 41, 60)
+	m11.estado.indicadores["capital"] = 95.0
+	m11.estado.indicadores["cohesion"] = 90.0
+	var cat_ag := m11.agenda.agenda_catalogo()
+	var presentada := false
+	for ent in cat_ag:
+		if String(ent["tipo_ley"]) == "ley_simple":
+			presentada = bool(m11.agenda.presentar(String(ent["carta_id"]), "simple")["ok"])
+			if presentada:
+				break
+	_check(presentada and m11.estado.agenda.size() == 1, "se presentó una ley simple por la agenda legislativa")
+	if presentada:
+		var obj_ag := m11.balas.objetivos(m11.balas.definicion("bala_urgencia"))
+		_check(obj_ag.size() == 1 and String(obj_ag[0]["fuente"]) == "agenda", "la urgencia ofrece el proyecto de la agenda")
+		var ur := m11.balas.usar("bala_urgencia")
+		_check(bool(ur["ok"]) and String(m11.estado.agenda[0]["urgencia"]) == "inmediata", "la bala sube el proyecto de la agenda a discusión inmediata")
+		m11.estado.turno_actual += int(cfg["enfriamiento_semanas"])
+		var df := m11.balas.usar("bala_dfl")
+		_check(bool(df["ok"]) and m11.estado.agenda.is_empty(), "el DFL saca el proyecto de la agenda y lo ejecuta (o lo frena el control)")
+	# capital insuficiente: versión reducida (nunca un no seco)
+	var m7 := _gobierno(datos, 37, 60)
+	m7.estado.indicadores["cohesion"] = 80.0
+	var costo_pleb := float(m7.balas.definicion("bala_nombramiento")["costo_capital"])
+	m7.estado.indicadores["capital"] = costo_pleb * 0.75
+	var ci := m7.balas.usar("bala_nombramiento")
+	_check(not bool(ci["ok"]) and String(ci["razon"]) == "capital_insuficiente" and not (ci["viable"] as Dictionary).is_empty(), "sin capital completo ofrece versión reducida")
+	_check(bool(m7.balas.usar("bala_nombramiento", -1, true)["ok"]), "la versión reducida se puede usar")
+	var m8 := _gobierno(datos, 38, 60)
+	m8.estado.indicadores["capital"] = 1.0
+	var cm := m8.balas.usar("bala_nombramiento")
+	_check(String(cm["razon"]) == "capital_insuficiente" and (cm["viable"] as Dictionary).is_empty() and String(cm["alternativa"]) != "", "con muy poco capital explica cuánto falta")
+	# determinismo: misma semilla y mismas entradas = mismo resultado
+	var h1 := _secuencia(datos, 41)
+	var h2 := _secuencia(datos, 41)
+	_check(h1 == h2 and h1 != "", "misma semilla y mismas balas dan la misma huella")
+	# guardado por eventos y replay
+	var mg := AyudaTardio.crear(datos, 2026, 60, "completo", "facil")
+	if mg == null:
+		print("FALLO: no se pudo armar una partida de prueba")
+		_fallos += 1
+	else:
+		var guarda := 0
+		while mg.estado.ind("capital") < 4.0 and guarda < 40 and mg.estado.etapa == "gobierno":
+			guarda += 1
+			mg.terminar_turno()  # sin jugar cartas el capital se recupera solo (todo queda en el historial)
+		_check(bool(mg.balas.usar("bala_nombramiento", -1, true)["ok"]), "nombramiento orgánico (versión reducida) en el año 2")
+		for _i in range(int(cfg["enfriamiento_semanas"]) + 1):
+			mg.terminar_turno()
+		var rp := mg.balas.usar("bala_plebiscito")
+		_check(bool(rp["ok"]) or String(rp["mensaje"]) != "", "el plebiscito da un resultado o explica por qué no")
+		var g: Dictionary = JSON.parse_string(JSON.stringify(mg.estado.exportar_guardado(Datos.huella(datos))))
+		_check(g["entradas"].any(func(e: Dictionary) -> bool: return e["tipo"] == "bala"), "la bala queda en el guardado")
+		_check(ValidarGuardado.guardado_valido(g), "el guardado con balas es válido")
+		var bad: Dictionary = g.duplicate(true)
+		bad["entradas"].append({"tipo": "bala", "id": 5, "objetivo": 0, "reducida": false})
+		_check(not ValidarGuardado.guardado_valido(bad), "una entrada bala con tipos erróneos se descarta")
+		_check(mg.estado.balas.get("usadas", {}).has("bala_nombramiento"), "el estado guarda las balas usadas")
+		var mi := Partida.reproducir(datos, g)
+		_check(mi != null and mi.estado.balas == mg.estado.balas, "el replay reproduce las balas usadas")
+		_check(mi != null and mi.estado.calcular_huella() == mg.estado.calcular_huella(), "el replay da la misma huella")
+	print("BALAS DE PLATA OK" if _fallos == 0 else "BALAS DE PLATA FALLÓ")
+	quit(1 if _fallos > 0 else 0)
+
+
+func _secuencia(datos: Dictionary, semilla: int) -> String:
+	var m := _gobierno(datos, semilla, 60)
+	m.estado.indicadores["capital"] = 90.0
+	_proyecto(m, "ley_simple", 30)
+	m.balas.usar("bala_urgencia")
+	m.estado.turno_actual += 7
+	m.balas.usar("bala_nombramiento")
+	return m.estado.calcular_huella()

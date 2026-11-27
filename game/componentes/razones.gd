@@ -3,7 +3,23 @@ extends RefCounted
 ## Motivos de rechazo del motor (campo `razon`) en lenguaje claro para la interfaz.
 
 const TEXTOS := {
+	"nivel_desconocido": "Ese nivel de presupuesto no existe: elige pequeño, medio o grande.",
+	"ministerio_vacio": "Ese ministerio no tiene ministro: nombra uno en el gabinete primero.",
+	"ya_activo": "Ese ministerio ya tiene presupuesto extra en curso: espera a que termine la temporada.",
+	"enfriamiento_presupuesto": "Ese ministerio debe rendir cuentas antes de recibir otro extra: espera unas semanas.",
+	"max_simultaneos": "Ya hay demasiados ministerios con presupuesto extra: espera a que termine la temporada de alguno.",
+	"sin_proyectos": "Ese ministerio no tiene proyectos tuyos en marcha: lanza una obra o una ley de su sector y vuelve.",
+	"prioridad_invalida": "Solo puedes priorizar proyectos de ese sector, hasta el máximo: elige entre los de la ficha.",
+	"tope_anual": "La regla fiscal limita los extras de este año: espera al próximo año o elige un nivel menor.",
+	"piso_fiscal": "Las arcas no resisten ese gasto: recupera el fiscal o elige un nivel menor.",
+	"sin_extra_activo": "Ese ministerio no tiene presupuesto extra en curso: asígnale uno primero.",
 	"solo_en_gobierno": "Los movimientos internos solo existen en gobierno.",
+	"ya_usada": "Esa bala de plata ya se usó en este mandato: elige otra de la reserva.",
+	"sin_usos": "No te quedan balas de plata por ahora: espera al año 3 o guarda las que tengas para lo que importa.",
+	"enfriamiento": "Usaste una bala de plata hace poco: espera unas semanas antes de usar otra.",
+	"condicion": "Aún no se cumplen las condiciones de esa bala de plata: revisa qué falta y vuelve cuando se cumpla.",
+	"objetivo_invalido": "Ese proyecto no sirve para esta bala: elige otro de la lista.",
+	"bala_desconocida": "Esa bala no existe: elige una de la reserva.",
 	"movimientos_insuficientes": "No te quedan movimientos internos este turno; se renuevan al empezar la próxima semana.",
 	"sin_efecto": "Ese movimiento no cambiaría nada ahora.",
 	"sector_sin_ministro": "Necesitas un ministro de ese sector en tu gabinete.",

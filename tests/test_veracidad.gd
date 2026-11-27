@@ -124,6 +124,53 @@ func _correr() -> void:
 		dia._abrir_panel(panel)
 		await _cuadros(2)
 		_sin_punto_decimal(dia, "panel " + panel)
+	# baúl de balas de plata: el contador del ícono y la hoja dicen lo del motor; usar pide confirmar y gasta una
+	dia._refrescar()
+	_check(dia._r["baul"].visible and dia._r["baul_n"].text == str(motor.balas.usos_restantes()), "baúl: el ícono muestra las balas que quedan (%s)" % dia._r["baul_n"].text)
+	dia._abrir_baul()
+	await _cuadros(2)
+	var hoja_b: Array = dia._capa.get_children().filter(func(h: Node) -> bool: return h.has_meta("atras") and not h.find_children("*", "Label", true, false).filter(func(l: Label) -> bool: return l.text.begins_with("BALAS DE PLATA")).is_empty())
+	_check(hoja_b.size() == 1, "baúl: se abre la hoja de las balas")
+	if hoja_b.size() == 1:
+		var bb := motor.balas.baul()
+		var titulos: Array = bb["items"].map(func(it: Dictionary) -> String: return String(it["titulo"]))
+		_check(titulos.all(func(t: String) -> bool: return _hay(hoja_b[0], t)), "baúl: están las %d balas" % titulos.size())
+		var usar: Array = hoja_b[0].find_children("*", "Button", true, false).filter(func(b: Button) -> bool: return b.text == "Usar")
+		var n_disp: int = bb["items"].filter(func(it: Dictionary) -> bool: return bool(it["disponible"])).size()
+		_check(usar.size() == n_disp, "baúl: un botón «Usar» por bala disponible (%d de %d)" % [usar.size(), n_disp])
+		if not usar.is_empty():
+			var antes_b := motor.balas.usos_restantes()
+			(usar[0] as Button).pressed.emit()
+			_check(motor.balas.usos_restantes() == antes_b and (usar[0] as Button).text.begins_with("Confirmar · capital"), "baúl: el primer toque solo pide confirmar con costo y riesgo")
+			(usar[0] as Button).pressed.emit()
+			await _cuadros(2)
+			_check(motor.balas.usos_restantes() == antes_b - 1 and dia._r["baul_n"].text == str(antes_b - 1), "baúl: confirmar gasta una bala y el contador baja")
+		_sin_punto_decimal(dia, "baúl")
+		for h in dia._capa.get_children():
+			if h is Control and h != dia._toast:
+				h.queue_free()
+		await _cuadros(1)
+	# presupuesto extra a ministerios (Gabinete › Fondos): la cabecera dice lo del motor y asignar desde la pantalla lo activa
+	PanelGestion.pestana = "fondos"
+	dia._abrir_panel("gabinete")
+	await _cuadros(2)
+	var pp := motor.presupuesto.panel()
+	_check(_hay(dia._zona_panel, "Este año: %s de %s de fiscal usados · %d de %d ministerios con extra" % [Tema.dec(float(pp["gastado_anio"]), 0), Tema.dec(float(pp["tope_anual"]), 0), int(pp["simultaneos"]), int(pp["max_simultaneos"])]), "fondos: la cabecera coincide con el motor")
+	var libre: Array = (pp["ministerios"] as Array).filter(func(x: Dictionary) -> bool: return bool(x["puede_asignar"]) and (x["niveles_posibles"] as Array).has("pequeno"))
+	if not libre.is_empty():
+		PanelPresupuesto._abierto = String(libre[0]["slot"])
+		dia._abrir_panel("gabinete")
+		await _cuadros(2)
+		var nb: Array = dia._zona_panel.find_children("*", "Button", true, false).filter(func(b: Button) -> bool: return b.text.begins_with(String(pp["niveles"]["pequeno"]["nombre"])))
+		_check(nb.size() == 1, "fondos: la fila desplegada ofrece el refuerzo pequeño")
+		if nb.size() == 1:
+			(nb[0] as Button).pressed.emit()
+			await _cuadros(2)
+			var tras: Array = (motor.presupuesto.panel()["ministerios"] as Array).filter(func(x: Dictionary) -> bool: return String(x["slot"]) == String(libre[0]["slot"]))
+			_check(not tras.is_empty() and bool(tras[0]["activo"]) and String(tras[0]["nivel"]) == "pequeno", "fondos: asignar desde la pantalla deja el extra activo en el motor")
+		_sin_punto_decimal(dia, "fondos")
+	PanelGestion.pestana = "gabinete"
+	PanelPresupuesto._abierto = ""
 	# agenda legislativa (pestaña Congreso): el contador y la lista dicen lo del motor, y presentar desde la pantalla la agrega
 	dia._abrir_panel("congreso")
 	await _cuadros(2)
