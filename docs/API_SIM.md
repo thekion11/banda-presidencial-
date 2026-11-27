@@ -218,7 +218,7 @@
 - `cargar(lista: Array) -> void` — Carga el catálogo de metas y movimientos internos.
 - `amanecer() -> void` — Paso 1 del turno: renueva delegaciones y movimientos internos, y abre las cartas cuya ventana de año comienza.
 - `bono_aprobacion() -> int` — DISENO_V2 §11: movimientos extra por cada umbral de aprobación superado (tramos en leyes.json › bono_movimientos).
-- `fijar_movimientos() -> void` — Fin del amanecer: movimientos del turno = base + bono por aprobación (solo gobierno) + asesores; y efectos de asesores.
+- `fijar_movimientos() -> void` — Fin del amanecer: movimientos del turno = ahorro anterior + (base + bono por aprobación (solo gobierno) + asesores), con tope mano.tope_ahorro; y efectos de asesores.
 - `metas_disponibles() -> Array[Dictionary]` — Metas que el jugador puede intentar ahora (sector con ministro, requisito previo cumplido, sin cumplir).
 - `buscar_meta(meta_id: String) -> Dictionary` — Movimiento interno: cumple una meta (aplica sus efectos y desbloquea cartas); devuelve {ok, razon}.
 - `ajustar_sector(sector: String, direccion: int) -> Dictionary` — Movimiento interno: sube o baja el énfasis de un sector (dirección ±1); devuelve {ok, razon}.

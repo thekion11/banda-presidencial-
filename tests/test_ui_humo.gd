@@ -90,14 +90,29 @@ func _una(semilla: int, idx: int = 0) -> void:
 	_check(not conf.disabled, "el gabinete por defecto (los 25 ministerios) debe poder confirmarse")
 	var rel: Array = main._pantalla.find_children("*", "Button", true, false).filter(func(b: Button) -> bool: return b.text in ["Equilibrado", "Máxima eficacia"])
 	_check(rel.size() == 2, "PR-05: dos botones de relleno (equilibrado y máxima eficacia)")
-	var filas: Array = sel_g.filter(func(b: Button) -> bool: return b.text == "" and b.get_child_count() > 0)
-	_check(filas.size() == 75, "deben listarse los 75 candidatos (3 por ministerio), hay %d" % filas.size())
+	# tablero (opción A del usuario, 27-nov): 25 puestos; cada uno muestra sus 3 candidatos (75 en total)
+	var puestos: Array = main._pantalla.find_children("*", "Puesto", true, false)
+	puestos = main._pantalla.find_children("*", "Button", true, false).filter(func(b: Button) -> bool: return b is TableroGabinete.Puesto)
+	_check(puestos.size() == 25, "el tablero tiene los 25 ministerios, hay %d" % puestos.size())
+	var vistos := 0
+	for p in puestos:
+		(p as Button).pressed.emit()
+		await process_frame
+		vistos += main._pantalla.find_children("*", "Button", true, false).filter(func(b: Button) -> bool: return b is TableroGabinete.Candidato and not b.is_queued_for_deletion()).size()
+	_check(vistos == 75, "deben verse los 75 candidatos (3 por ministerio), se vieron %d" % vistos)
 	var tam: int = int(main.datos["leyes"]["gabinete"]["tamano"])
-	var alias_elegidos: Array = main.motor.estado.gabinete.map(func(i: String) -> String: return String(main.motor.catalogo_ministros[i]["alias"]))
-	var elegido: Button = filas.filter(func(b: Button) -> bool: return alias_elegidos.has(String((b.get_child(0).get_child(0) as Label).text)))[0]
-	elegido.pressed.emit()
-	_check(conf.disabled, "con menos de %d ministros no se puede confirmar" % tam)
-	elegido.pressed.emit()  # vuelve a elegirlo
+	(puestos[0] as Button).pressed.emit()
+	await process_frame
+	var otro: Array = main._pantalla.find_children("*", "Button", true, false).filter(func(b: Button) -> bool: return b is TableroGabinete.Candidato and not b.is_queued_for_deletion() and not main.motor.estado.gabinete.has(b.id))
+	if not otro.is_empty():
+		var oid: String = otro[0].id
+		(otro[0] as Button).pressed.emit()  # primer toque: anticipa el efecto
+		await process_frame
+		var c2: Array = main._pantalla.find_children("*", "Button", true, false).filter(func(b: Button) -> bool: return b is TableroGabinete.Candidato and not b.is_queued_for_deletion() and b.id == oid)
+		(c2[0] as Button).pressed.emit()  # segundo toque: nombra
+		await process_frame
+	var contador: Array = main._pantalla.find_children("*", "Label", true, false).filter(func(l: Label) -> bool: return l.text.begins_with("Gabinete: "))
+	_check(not contador.is_empty() and contador[0].text == "Gabinete: %d de %d ministros" % [tam, tam], "nombrar reemplaza al del puesto: siguen %d de %d" % [tam, tam])
 	_check(not conf.disabled, "con %d ministros se puede confirmar" % tam)
 	conf.pressed.emit()
 	await process_frame

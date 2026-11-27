@@ -167,6 +167,11 @@ static func jugar_turno(motor: MotorTurno, politica: String, rng: RandomNumberGe
 			return
 		politica = "codicioso"
 		max_jugadas = 3
+	elif politica == "ahorrador":  # BL: en gobierno juega solo las semanas pares (guarda los movimientos) y gasta todo de golpe
+		if est.etapa == "gobierno" and est.turno_actual % 2 == 1:
+			return
+		politica = "codicioso"
+		max_jugadas = 24
 	elif politica == "completo" or politica == "experto":
 		if politica == "experto" and est.etapa == "campana" and est.turno_actual == 1 and est.ciclo == 1:
 			motor.elegir_gabinete(Array(motor.gabinete.rellenar([], "eficaz").map(func(n: Dictionary) -> String: return String(n["id"]))))  # gabinete de máxima eficacia

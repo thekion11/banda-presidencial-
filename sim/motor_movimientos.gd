@@ -48,10 +48,12 @@ func bono_aprobacion() -> int:
 
 func fijar_movimientos() -> void:
 	var _m := m  # una sola resolución de la referencia débil por llamada (cada acceso a `m` cuesta ~0,5 us)
-	## Fin del amanecer: movimientos del turno = base + bono por aprobación (solo gobierno) + asesores; y efectos de asesores.
+	## Fin del amanecer: movimientos del turno = ahorro anterior + (base + bono por aprobación (solo gobierno) + asesores), con tope mano.tope_ahorro; y efectos de asesores.
 	var e := _m.estado
 	e.bono_mov = {"aprobacion": bono_aprobacion() if e.etapa == "gobierno" else 0, "asesores": _m.equipo.movimientos_extra()}
-	e.pa_actual = e.pa_maximo + int(e.bono_mov["aprobacion"]) + int(e.bono_mov["asesores"])
+	var ingreso: int = e.pa_maximo + int(e.bono_mov["aprobacion"]) + int(e.bono_mov["asesores"])
+	# Ahorro (BL): lo que sobró de la semana anterior se suma al ingreso, con tope; el tope nunca baja del ingreso de la semana.
+	e.pa_actual = mini(maxi(int(_m.catalogo_leyes["mano"]["tope_ahorro"]), ingreso), maxi(0, e.pa_actual) + ingreso)
 	if e.etapa == "gobierno":
 		_m.equipo.efectos_amanecer()
 		_m.coalicion.amanecer()

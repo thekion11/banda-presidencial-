@@ -706,6 +706,7 @@
 "/mano/reales_en_mazo": "num",
 "/mano/reposicion_cartas": "num",
 "/mano/tamano": "num",
+"/mano/tope_ahorro": "num",
 "/movimientos_internos": "dic",
 "/movimientos_internos/acelerar_proyecto": "dic",
 "/movimientos_internos/acelerar_proyecto/costo": "num",
