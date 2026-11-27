@@ -14,7 +14,7 @@ const A := TYPE_ARRAY
 const ENTRADAS := {
 	"jugar": {"idx": I, "ministro": S, "region": S}, "gabinete": {"ids": A}, "asesor": {"accion": S, "id": S}, "coalicion": {"accion": S, "id": S},
 	"cuota": {"id": S, "clase": S, "valor": S, "quitar": B}, "meta": {"meta": S}, "sector": {"sector": S, "dir": I}, "errores": {}, "acelerar": {"idx": I},
-	"aprobar_propuesta": {"prop": S, "variante": S, "region": S}, "sectra": {"pid": S}, "continuar": {}, "decision": {"evento": S, "idx": I}, "cerrar": {}, "eleccion": {}, "bala": {"id": S, "objetivo": I, "reducida": B}, "presupuesto": {"accion": S, "slot": S, "nivel": S, "prio": A},
+	"aprobar_propuesta": {"prop": S, "variante": S, "region": S}, "sectra": {"pid": S}, "continuar": {}, "decision": {"evento": S, "idx": I}, "presentar": {"carta": S, "urgencia": S, "ministro": S, "region": S, "delegar": B}, "cerrar": {}, "eleccion": {}, "bala": {"id": S, "objetivo": I, "reducida": B}, "presupuesto": {"accion": S, "slot": S, "nivel": S, "prio": A},
 }
 
 

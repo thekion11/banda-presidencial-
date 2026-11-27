@@ -1,7 +1,8 @@
 class_name PantallaEleccion
 extends RefCounted
-## Resultado de la elección presidencial (1ª y 2ª vuelta). Mide APROBACIÓN frente al umbral (no son votos),
-## con el desglose por región y el aviso de segunda vuelta. Solo lee: no cambia el estado de la partida.
+## Resultado de la elección presidencial (1ª y 2ª vuelta): voto nacional frente al umbral, con cada región pesada por su
+## población (pedido del usuario del 27-nov-2026: «Las elecciones deben tomar en cuenta la población»; salida del motor
+## en docs/ELECCION_POBLACION.md), mapa de quién gana cada región y aviso de segunda vuelta. Solo lee.
 
 
 static func _barra_umbral(valor: float, umbral: float, piso: float) -> Control:
@@ -39,7 +40,7 @@ static func veredicto(res: Dictionary) -> Array:
 	return ["No alcanzaste la presidencia", FilasUI.ROJO_TEXTO, "Ver resultado final"]
 
 
-static func crear(motor: MotorTurno, regiones: Array, regional: Dictionary, res: Dictionary, al_continuar: Callable) -> Control:
+static func crear(motor: MotorTurno, regiones: Array, regional: Dictionary, res: Dictionary, al_continuar: Callable, geo: Dictionary = {}) -> Control:
 	var h: Dictionary = motor.catalogo_leyes["hemiciclo"]
 	var ruido := float(motor.catalogo_leyes["campana"]["ruido_eleccion"])
 	var ronda := int(res["ronda"])
@@ -60,7 +61,8 @@ static func crear(motor: MotorTurno, regiones: Array, regional: Dictionary, res:
 	v.add_child(Tema.etiqueta("ELECCIÓN PRESIDENCIAL · %s" % ("PRIMERA VUELTA" if ronda == 1 else "SEGUNDA VUELTA"), 10, Tema.ORO, true))
 	v.add_child(Tema.etiqueta(String(ver[0]), 26, ver[1], true))
 	var tarjeta := FilasUI.col(4)
-	tarjeta.add_child(Tema.etiqueta("Aprobación el día de la elección", 12, Tema.TEXTO_SUAVE))
+	var por_region: Array = res.get("regiones", [])
+	tarjeta.add_child(Tema.etiqueta("Voto nacional el día de la elección" if not por_region.is_empty() else "Aprobación el día de la elección", 12, Tema.TEXTO_SUAVE))
 	var cifra := Tema.etiqueta("", 22, Tema.TEXTO, true)
 	Movimiento.contar(cifra, valor, func(x: float) -> String: return "%s %% · umbral %.0f %%" % [Tema.dec(x), umbral], 0.0, 1.1, 0.25)
 	tarjeta.add_child(cifra)
@@ -69,34 +71,31 @@ static func crear(motor: MotorTurno, regiones: Array, regional: Dictionary, res:
 	if ronda == 1:
 		leyenda += " Marca clara: piso para la segunda vuelta (%.0f %%)." % piso
 	tarjeta.add_child(Tema.etiqueta(leyenda, 11, Tema.TEXTO_SUAVE))
-	tarjeta.add_child(Tema.etiqueta("Se mide tu aprobación al cierre, con un margen de ±%.0f puntos propio de la jornada." % ruido, 11, Tema.TEXTO_SUAVE))
+	if por_region.is_empty():
+		tarjeta.add_child(Tema.etiqueta("Se mide tu aprobación al cierre, con un margen de ±%.0f puntos propio de la jornada." % ruido, 11, Tema.TEXTO_SUAVE))
+	else:
+		tarjeta.add_child(Tema.etiqueta(texto_poblacion(res, ruido), 11, Tema.TEXTO_SUAVE))
 	v.add_child(FilasUI.tarjeta(tarjeta))
 	if res["balotaje"]:
 		var av := Tema.etiqueta("Aviso: no llegaste al umbral, pero superaste el piso. Tienes %d semanas más de campaña para subir tu aprobación; en la segunda vuelta necesitas %.0f %%." % [int(h["semanas_balotaje"]), umbral], 12, Tema.TINTA, false, 600)
 		v.add_child(FilasUI.tarjeta(av, Tema.ORO))
 	elif not res["electo"]:
 		v.add_child(Tema.etiqueta("La aprobación quedó bajo %.0f %%%s." % [piso if ronda == 1 else umbral, " (piso de segunda vuelta)" if ronda == 1 else ""], 12, FilasUI.ROJO_TEXTO, false, 600))
-	v.add_child(FilasUI.titulo("Aprobación por región"))
 	var lista := FilasUI.col(5)
-	var filas: Array = []
-	for r in regiones:
-		filas.append([String(r["nombre"]).replace(" de Santiago", "").replace(" Chilena", ""), float(regional.get(r["id"], 0.0))])
-	filas.sort_custom(func(a: Array, b: Array) -> bool: return a[1] > b[1])
-	for f in filas:
+	if por_region.is_empty():
+		v.add_child(FilasUI.titulo("Aprobación por región"))
+		_lista_aprobacion(lista, regiones, regional)
+		v.add_child(FilasUI.scroll(lista))
+	else:
+		v.add_child(FilasUI.titulo("Voto por región, de la más poblada a la menos"))
+		_lista_poblacion(lista, regiones, por_region, umbral)
 		var fila := HBoxContainer.new()
-		fila.add_theme_constant_override("separation", 8)
-		var nombre := Tema.etiqueta_corta(String(f[0]), 11, Tema.TEXTO)
-		nombre.custom_minimum_size = Vector2(150, 0)
-		nombre.clip_text = true
-		fila.add_child(nombre)
-		var barra := FilasUI.chip_barra(float(f[1]), Tema.color_aprobacion(float(f[1]) + 12.0))
-		barra.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-		barra.size_flags_vertical = Control.SIZE_SHRINK_CENTER
-		fila.add_child(barra)
-		fila.add_child(Tema.etiqueta_corta(Tema.pct(float(f[1])), 11, Tema.TEXTO, false, 600))
-		lista.add_child(fila)
-	var sc := FilasUI.scroll(lista)
-	v.add_child(sc)
+		fila.add_theme_constant_override("separation", 10)
+		fila.size_flags_vertical = Control.SIZE_EXPAND_FILL
+		if not geo.is_empty():
+			fila.add_child(_mapa_ganador(geo, regiones, por_region))
+		fila.add_child(FilasUI.scroll(lista))
+		v.add_child(fila)
 	Movimiento.escalonar(v, 0.05, 0.05)
 	Movimiento.escalonar(lista, 0.45, 0.035, 18)
 	if res["electo"]:
@@ -112,3 +111,99 @@ static func crear(motor: MotorTurno, regiones: Array, regional: Dictionary, res:
 	raiz.add_child(b)
 	raiz.set_meta("atras", "Toca el botón de abajo para seguir.")  # Atrás no salta el resultado de la elección
 	return raiz
+
+
+static func texto_poblacion(res: Dictionary, ruido: float) -> String:
+	## «Cada región pesa según sus habitantes: ganas en 9 de 16 regiones, donde vive el 62 % del país. Votos estimados: 6,1 millones…»
+	var filas: Array = res.get("regiones", [])
+	var total := maxf(1.0, float(res.get("total_habitantes_miles", 0.0)))
+	var hab := 0.0
+	for r in filas:
+		if bool(r["gana_gobierno"]):
+			hab += float(r["habitantes_miles"])
+	return "Cada región pesa según sus habitantes: ganas en %d de %d regiones, donde vive el %d %% del país. Votos estimados: %s millones (cifras ilustrativas; margen de ±%.0f puntos propio de la jornada)." % [
+		int(res.get("regiones_ganadas", 0)), filas.size(), roundi(hab / total * 100.0), Tema.dec(float(res.get("votos_estimados_miles", 0.0)) / 1000.0), ruido]
+
+
+static func _nombre(regiones: Array, id: String) -> String:
+	for r in regiones:
+		if String(r["id"]) == id:
+			return String(r["nombre"]).replace(" de Santiago", "").replace(" y la Antártica Chilena", "").replace(" Chilena", "")
+	return id
+
+
+static func _lista_poblacion(lista: VBoxContainer, regiones: Array, por_region: Array, umbral: float) -> void:
+	## Una fila por región, de la más poblada a la menos: voto (con la marca del umbral), peso y habitantes.
+	var filas := por_region.duplicate()
+	filas.sort_custom(func(a: Dictionary, b: Dictionary) -> bool: return float(a["habitantes_miles"]) > float(b["habitantes_miles"]))
+	for r: Dictionary in filas:
+		var voto := float(r["voto"])
+		var gana := bool(r["gana_gobierno"])
+		var caja := FilasUI.col(2)
+		var arriba := HBoxContainer.new()
+		var nombre := Tema.etiqueta_corta(_nombre(regiones, String(r["id"])), 11, Tema.TEXTO, false, 600)
+		nombre.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		nombre.clip_text = true
+		nombre.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
+		arriba.add_child(nombre)
+		arriba.add_child(Tema.etiqueta_corta(Tema.pct(voto), 11, Tema.bien() if gana else FilasUI.ROJO_TEXTO, true))
+		caja.add_child(arriba)
+		var barra := FilasUI.chip_barra(voto, Tema.color_aprobacion(70.0 if gana else 25.0))
+		var marca := ColorRect.new()  # umbral de victoria sobre la barra
+		marca.color = Tema.ORO
+		marca.size = Vector2(2, 12)
+		marca.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		barra.add_child(marca)
+		barra.resized.connect(func() -> void: marca.position = Vector2(barra.size.x * umbral / 100.0 - 1.0, -2.0))
+		caja.add_child(barra)
+		caja.add_child(Tema.etiqueta_corta("pesa %d %% · %s mil hab." % [roundi(float(r["peso"]) * 100.0), Tema.miles(roundi(float(r["habitantes_miles"])))], 10, Tema.TEXTO_SUAVE))
+		lista.add_child(caja)
+
+
+static func _lista_aprobacion(lista: VBoxContainer, regiones: Array, regional: Dictionary) -> void:
+	## Respaldo sin desglose del motor: aprobación por región, de mayor a menor.
+	var filas: Array = []
+	for r in regiones:
+		filas.append([_nombre(regiones, String(r["id"])), float(regional.get(r["id"], 0.0))])
+	filas.sort_custom(func(a: Array, b: Array) -> bool: return a[1] > b[1])
+	for f in filas:
+		var fila := HBoxContainer.new()
+		fila.add_theme_constant_override("separation", 8)
+		var nombre := Tema.etiqueta_corta(String(f[0]), 11, Tema.TEXTO)
+		nombre.custom_minimum_size = Vector2(150, 0)
+		nombre.clip_text = true
+		fila.add_child(nombre)
+		var barra := FilasUI.chip_barra(float(f[1]), Tema.color_aprobacion(float(f[1]) + 12.0))
+		barra.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		barra.size_flags_vertical = Control.SIZE_SHRINK_CENTER
+		fila.add_child(barra)
+		fila.add_child(Tema.etiqueta_corta(Tema.pct(float(f[1])), 11, Tema.TEXTO, false, 600))
+		lista.add_child(fila)
+
+
+static func _mapa_ganador(geo: Dictionary, regiones: Array, por_region: Array) -> Control:
+	## Chile coloreado por quién gana cada región (verde: tú; rojo: el rival). Solo se mira: no recibe toques.
+	var mapa := MapaChile.new()
+	mapa.leyenda = false
+	mapa.ciudades_visibles = false
+	mapa.animar = false
+	mapa.estirar_x = 2.2
+	mapa.custom_minimum_size = Vector2(96, 0)
+	mapa.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	mapa.cargar_geo(geo)
+	var valores := {}
+	for r in por_region:
+		valores[String(r["id"])] = 70.0 if bool(r["gana_gobierno"]) else 25.0
+	for r in regiones:
+		valores.get_or_add(String(r["id"]), 25.0)
+	mapa.actualizar(valores)
+	return mapa
+
+
+static func con_poblacion(motor: MotorTurno, res: Dictionary) -> Dictionary:
+	## Para vistas previas y capturas: completa un resultado armado a mano con el desglose por región del motor (sin votar).
+	var lim: Dictionary = motor.catalogo_leyes["limites_indicadores"]
+	var desplaza := float(res["voto_final"]) - motor.estado.ind("aprobacion")
+	var r := res.duplicate()
+	r.merge(VotoRegional.calcular(motor.regiones, motor.estado.aprobacion_regional, desplaza, float(lim["min"]), float(lim["max"]), float(res["umbral"])))
+	return r

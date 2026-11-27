@@ -141,6 +141,26 @@ func _init() -> void:
 			_check(mm.estado.proyectos_ley.is_empty(), "el DFL siempre saca el proyecto del Congreso")
 			perdidos += 1 if bool(rr["salio_mal"]) else 0
 	_check(perdidos > 0 and perdidos < 30, "el DFL sale mal a veces, no siempre (%d de 30)" % perdidos)
+	# agenda legislativa: la urgencia y el DFL también actúan sobre los proyectos presentados desde el gobierno
+	var m11 := _gobierno(datos, 41, 60)
+	m11.estado.indicadores["capital"] = 95.0
+	m11.estado.indicadores["cohesion"] = 90.0
+	var cat_ag := m11.agenda.agenda_catalogo()
+	var presentada := false
+	for ent in cat_ag:
+		if String(ent["tipo_ley"]) == "ley_simple":
+			presentada = bool(m11.agenda.presentar(String(ent["carta_id"]), "simple")["ok"])
+			if presentada:
+				break
+	_check(presentada and m11.estado.agenda.size() == 1, "se presentó una ley simple por la agenda legislativa")
+	if presentada:
+		var obj_ag := m11.balas.objetivos(m11.balas.definicion("bala_urgencia"))
+		_check(obj_ag.size() == 1 and String(obj_ag[0]["fuente"]) == "agenda", "la urgencia ofrece el proyecto de la agenda")
+		var ur := m11.balas.usar("bala_urgencia")
+		_check(bool(ur["ok"]) and String(m11.estado.agenda[0]["urgencia"]) == "inmediata", "la bala sube el proyecto de la agenda a discusión inmediata")
+		m11.estado.turno_actual += int(cfg["enfriamiento_semanas"])
+		var df := m11.balas.usar("bala_dfl")
+		_check(bool(df["ok"]) and m11.estado.agenda.is_empty(), "el DFL saca el proyecto de la agenda y lo ejecuta (o lo frena el control)")
 	# capital insuficiente: versión reducida (nunca un no seco)
 	var m7 := _gobierno(datos, 37, 60)
 	m7.estado.indicadores["cohesion"] = 80.0

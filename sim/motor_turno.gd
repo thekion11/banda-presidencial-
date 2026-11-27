@@ -23,6 +23,7 @@ var mazo := MotorMazo.new(self)
 var equipo := MotorEquipo.new(self)
 var coalicion := MotorCoalicion.new(self)
 var movimientos := MotorMovimientos.new(self)
+var agenda := MotorAgenda.new(self)
 var balas := MotorBalas.new(self)
 var presupuesto := MotorPresupuesto.new(self)
 var eventos := MotorEventos.new(self)
@@ -147,7 +148,7 @@ func cerrar_turno() -> void:  # Pasos 7 y 8: votaciones, obras, crisis y avance 
 	fx.reiniciar_motivos()
 	votaciones_semana = []
 	if estado.etapa == "gobierno":
-		votaciones_semana = cartas.resolver_proyectos()
+		votaciones_semana = cartas.resolver_proyectos() + agenda.avanzar()  # leyes de la mano y de la agenda legislativa
 		sectra.avanzar()
 		resumen["leyes"] = votaciones_semana
 		resumen["obras_terminadas"] = obras.avanzar(estado, estado.dias_por_turno, fx.aplicar_efecto, fx.marcar_cumplida).size()

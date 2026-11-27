@@ -103,4 +103,4 @@ func _correr() -> void:
 
 
 func _eleccion_ganada(main: Node) -> Control:
-	return PantallaEleccion.crear(main.motor, main.datos["regiones"], main.motor.estado.aprobacion_regional.duplicate(), {"electo": true, "balotaje": false, "ronda": 1, "voto_final": 57.4, "umbral": 51.0}, func() -> void: pass)
+	return PantallaEleccion.crear(main.motor, main.datos["regiones"], main.motor.estado.aprobacion_regional.duplicate(), PantallaEleccion.con_poblacion(main.motor, {"electo": true, "balotaje": false, "ronda": 1, "voto_final": 57.4, "umbral": 51.0}), func() -> void: pass)

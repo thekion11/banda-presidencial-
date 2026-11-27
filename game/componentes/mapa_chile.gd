@@ -181,7 +181,8 @@ func _pintar_base(ci: CanvasItem, base: Transform2D, cam: Transform2D) -> void:
 				var a0 := PI * (0.15 + 0.14 * float(k))
 				olas.append_array([Vector2(gx, gy) + Vector2(cos(a0), sin(a0)) * 4.5, Vector2(gx, gy) + Vector2(cos(a0 + PI * 0.14), sin(a0 + PI * 0.14)) * 4.5])
 		fila += 1
-	ci.draw_multiline(olas, Color(0.55, 0.78, 1.0, 0.10), 1.2)
+	if not olas.is_empty():  # un mapa aún sin tamaño no tiene olas
+		ci.draw_multiline(olas, Color(0.55, 0.78, 1.0, 0.10), 1.2)
 	ci.draw_set_transform_matrix(base * cam)
 	for id in _piezas.keys():
 		var col := Tema.color_aprobacion(float(valores.get(id, 50.0)))

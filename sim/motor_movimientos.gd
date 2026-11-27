@@ -61,6 +61,16 @@ func fijar_movimientos() -> void:
 		Encuestas.registrar(_m)  # campaña y oposición: encuesta de la semana
 
 
+func ahorro_movimientos() -> Dictionary:
+	## Salida para la UI (solo lectura): {disponibles, ingreso, tope, tope_efectivo, se_guardan, se_pierden}. `ingreso` = base + bono + asesores de esta semana;
+	## `tope` es el del ahorro (mano.tope_ahorro) y `tope_efectivo` = max(tope, ingreso); lo que sobra al cerrar la semana se guarda hasta ese tope.
+	var e := m.estado
+	var ingreso: int = e.pa_maximo + int(e.bono_mov["aprobacion"]) + int(e.bono_mov["asesores"])
+	var tope := int(m.catalogo_leyes["mano"]["tope_ahorro"])
+	var guardan := mini(e.pa_actual, maxi(0, maxi(tope, ingreso) - ingreso))
+	return {"disponibles": e.pa_actual, "ingreso": ingreso, "tope": tope, "tope_efectivo": maxi(tope, ingreso), "se_guardan": guardan, "se_pierden": e.pa_actual - guardan}
+
+
 func _cobrar(costo: int) -> Dictionary:
 	if m.estado.etapa != "gobierno":
 		return {"ok": false, "razon": "solo_en_gobierno"}

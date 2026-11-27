@@ -57,23 +57,41 @@ func semanas_de_espera() -> int:
 	return maxi(0, ultimo + int(_cfg()["enfriamiento_semanas"]) - m.estado.turno_actual) if hay else 0
 
 
+func _proyectos() -> Array[Dictionary]:
+	## Proyectos de ley en trámite por las dos vías (cartas de la mano y agenda legislativa): {fuente, pos, p}. El índice de la lista es el `idx` de los objetivos.
+	var res: Array[Dictionary] = []
+	for i in range(m.estado.proyectos_ley.size()):
+		res.append({"fuente": "ley", "pos": i, "p": m.estado.proyectos_ley[i]})
+	for j in range(m.estado.agenda.size()):
+		res.append({"fuente": "agenda", "pos": j, "p": m.estado.agenda[j]})
+	return res
+
+
 func objetivos(def: Dictionary) -> Array[Dictionary]:
-	## Proyectos de ley en trámite sobre los que la bala puede actuar ({idx, carta_id, titulo, tipo_ley, dias}); vacío si la bala no necesita objetivo.
+	## Proyectos de ley en trámite sobre los que la bala puede actuar ({idx, carta_id, titulo, tipo_ley, dias, fuente}); vacío si la bala no necesita objetivo.
 	var res: Array[Dictionary] = []
 	var accion := String(def["accion"])
 	if accion != "adelantar_votacion" and accion != "saltar_congreso":
 		return res
 	var e := m.estado
 	var vedados: Array = def.get("tipos_vedados", [])
-	for i in range(e.proyectos_ley.size()):
-		var p: Dictionary = e.proyectos_ley[i]
+	var todos := _proyectos()
+	for i in range(todos.size()):
+		var p: Dictionary = todos[i]["p"]
 		if vedados.has(String(p["tipo_ley"])):
 			continue  # materia vedada por la Constitución para el DFL
-		if accion == "adelantar_votacion" and int(p["dia_votacion"]) < e.dia_actual + e.dias_por_turno:
-			continue  # ya se vota esta semana: la urgencia no cambia nada
+		var dias: int
+		if todos[i]["fuente"] == "ley":
+			dias = int(p["dia_votacion"]) - e.dia_actual
+			if accion == "adelantar_votacion" and int(p["dia_votacion"]) < e.dia_actual + e.dias_por_turno:
+				continue  # ya se vota esta semana: la urgencia no cambia nada
+		else:
+			dias = int(p["dia_etapa_fin"]) - e.dia_actual
+			if accion == "adelantar_votacion" and (p["urgencia"] == "inmediata" or not (MotorAgenda.ETAPAS_VOTO.has(p["etapa"]) or p["etapa"] == "comision_mixta")):
+				continue  # ya está en discusión inmediata o en una etapa sin votación que acelerar
 		var carta: Dictionary = m._cartas_por_id.get(String(p["carta_id"]), {})
 		res.append({"idx": i, "carta_id": String(p["carta_id"]), "titulo": String(carta.get("titulo", p["carta_id"])), "tipo_ley": String(p["tipo_ley"]),
-				"dias": maxi(0, int(p["dia_votacion"]) - e.dia_actual)})
+				"dias": maxi(0, dias), "fuente": String(todos[i]["fuente"])})
 	return res
 
 
@@ -204,10 +222,18 @@ func usar(id: String, objetivo: int = -1, reducida: bool = false) -> Dictionary:
 	var anula: bool = mal and bool(def["riesgo"]["anula_efectos"])
 	match String(def["accion"]):
 		"adelantar_votacion":
-			e.proyectos_ley[elegido]["dia_votacion"] = e.dia_actual
+			var t: Dictionary = _proyectos()[elegido]
+			if t["fuente"] == "ley":
+				e.proyectos_ley[int(t["pos"])]["dia_votacion"] = e.dia_actual
+			else:
+				m.agenda.poner_en_discusion_inmediata(String(t["p"]["carta_id"]))  # la agenda legislativa pone el plazo de la discusión inmediata
 		"saltar_congreso":
-			var p: Dictionary = e.proyectos_ley[elegido]
-			e.proyectos_ley.remove_at(elegido)
+			var t2: Dictionary = _proyectos()[elegido]
+			var p: Dictionary = t2["p"]
+			if t2["fuente"] == "ley":
+				e.proyectos_ley.remove_at(int(t2["pos"]))
+			else:
+				e.agenda.remove_at(int(t2["pos"]))
 			if not mal:
 				m.cartas._ejecutar_carta(m._cartas_por_id[String(p["carta_id"])], float(p["escala"]), String(p["region"]))
 		"anular_pendiente_negativo":
