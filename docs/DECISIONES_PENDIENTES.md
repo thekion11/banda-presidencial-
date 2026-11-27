@@ -58,3 +58,8 @@ Una sola tabla con lo que **no** puede decidir ningún agente: cada fila trae la
 
 ## Cómo se usa esta tabla
 Cuando decidas algo, dímelo con el número (p. ej. «D2 b») y se aplica, se mide con los bots, se regeneran los oros y queda en `docs/DECISIONES.md` el mismo día.
+
+## D19. Test ideológico rápido (3 preguntas) por defecto para fundadores e independientes
+- Qué hay: commit 1619c07 (25-nov-2026, DECISIONES.md §S) lo introdujo para cumplir la meta de ≤ 3 toques antes del primer turno; un botón cambia al test completo de 8 preguntas. Los deltas rápidos (×1,8) están en `data/ideologia.json › rapido`.
+- Discrepancia: CLAUDE.md §2 (PR-01) dice test completo de 8 preguntas para fundadores e independientes. En los documentos no hay una autorización explícita del usuario para el test rápido por defecto; figuraba como «pendiente» en DECISIONES.md §Q.
+- Opciones: (a) dejarlo por defecto y enmendar CLAUDE.md; (b) por defecto el de 8 preguntas, con el rápido como opción. Recomendación: (a), por la sesión de ~20 min, pero la decide el usuario.
