@@ -147,3 +147,16 @@ MUTANTES += [
  ("G43", "game/pantallas/panel_gabinete.gd", "			elegidos.assign(previo)\n			previo.clear()", "			elegidos.clear()\n			previo.clear()", "«Deshacer» vacía el gabinete en vez de devolver el anterior"),
  ("G44", "game/pantallas/panel_gabinete.gd", "				auto[String(n[\"id\"])] = true  # en el tablero se ven punteados: los puso el relleno, no tú", "				pass", "el relleno automático no se distingue de lo elegido"),
 ]
+
+MUTANTES += [
+ ("A01", "sim/motor_agenda.gd", "return m.estado.agenda.size() + m.estado.proyectos_ley.size() >= int(_cfg()[\"max_simultaneos\"])", "return m.estado.agenda.size() + m.estado.proyectos_ley.size() > int(_cfg()[\"max_simultaneos\"])", "la agenda admite un proyecto más que el máximo"),
+ ("A02", "sim/motor_agenda.gd", "	if _semana_rechazo(String(carta[\"id\"])) > _m.eventos.semana_abs():", "	if _semana_rechazo(String(carta[\"id\"])) > _m.eventos.semana_abs() + 1000:", "un proyecto rechazado se puede volver a presentar de inmediato (sin espera)"),
+ ("A03", "sim/motor_agenda.gd", "	if _en_agenda(String(carta[\"id\"])) or _m.estado.proyectos_ley.any(func(p: Dictionary) -> bool: return String(p[\"carta_id\"]) == String(carta[\"id\"])):", "	if _en_agenda(String(carta[\"id\"])):", "se puede presentar una ley que ya espera votación desde la mano"),
+ ("A04", "sim/motor_agenda.gd", "	var costo := 0 if delegar else _m.costo_carta(carta, ministro_id)", "	var costo := _m.costo_carta(carta, ministro_id)", "presentar delegado cuesta movimientos"),
+ ("A05", "sim/motor_agenda.gd", "	if _m.estado.ind(\"capital\") < float(urg[\"costo_capital\"]):\n		return {\"ok\": false, \"razon\": \"capital_insuficiente\"", "	if _m.estado.ind(\"capital\") <= float(urg[\"costo_capital\"]) - 100.0:\n		return {\"ok\": false, \"razon\": \"capital_insuficiente\"", "se puede presentar con urgencia sin tener el capital"),
+ ("A06", "sim/motor_agenda.gd", "		while final.is_empty() and int(p[\"dia_etapa_fin\"]) < limite:", "		while final.is_empty() and int(p[\"dia_etapa_fin\"]) <= limite:", "una etapa se resuelve un día antes de su plazo"),
+ ("A07", "sim/motor_agenda.gd", "				_entrar(p, \"tc\" if bool(tc[\"recurso\"]) else \"promulgacion\")", "				_entrar(p, \"promulgacion\")", "el Tribunal Constitucional nunca interviene en la agenda"),
+ ("A08", "sim/motor_agenda.gd", "	_m.estado.agenda_rechazos[String(p[\"carta_id\"])] = _m.eventos.semana_abs() + int(_cfg()[\"cooldown_rechazo_semanas\"])", "	_m.estado.agenda_rechazos[String(p[\"carta_id\"])] = _m.eventos.semana_abs()", "tras un rechazo no hay semanas de espera"),
+ ("A09", "sim/motor_agenda.gd", "return maxi(1, roundi(float(u[\"dias\"]) * float(_cfg()[\"dias_mixta_frac\"])))", "return maxi(1, roundi(float(u[\"dias\"]) * float(_cfg()[\"dias_mixta_frac\"]) * 2.0))", "la comisión mixta dura el doble"),
+ ("A10", "sim/motor_agenda.gd", "	_m.estado.delegadas_turno += 1 if delegar else 0", "	_m.estado.delegadas_turno += 0", "presentar delegado no cuenta como delegación del turno"),
+]
