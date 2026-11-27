@@ -259,3 +259,13 @@ Cita literal del usuario (27-nov-2026, ~03:00 UTC, transmitida por la coordinado
 - **Zoom** (`game/componentes/mapa_zoom.gd`, en el día y en Nación): doble toque para acercar ×2,5 sobre el punto o volver; pellizco (`InputEventMagnifyGesture`, también en Android) y rueda del ratón acercan sobre el dedo, hasta ×4; con el mapa acercado, arrastrar desplaza sin dejar ver fuera del mapa; el botón «Ver todo» (≥ 44 px) vuelve a la vista completa. Al acercar (≥ ×1,6) cada región lleva su nombre, sin que se encimen; tocar un nombre elige la región (área ≥ 44 px). La región elegida se elige al soltar, porque el arrastre desplaza. Con «Reducir movimiento» o sin animaciones el zoom no se anima.
 - **Rendimiento:** la capa base sigue en caché y se repinta solo al cambiar el zoom o el encuadre; mientras dura el gesto se dibuja en vivo, como durante la reacción a una carta. `medir_cuadros`: el día en reposo sigue en 201 llamadas.
 - **Pruebas:** `tests/test_mapa_zoom.gd` (doble toque, «Ver todo», pellizco, rueda, tope, arrastre con límites, toque y nombre que eligen, carta que vuela al punto visible, doble toque real por `Input.parse_input_event`), más `test_gestos`, `test_toque_real` y `test_reglas_ui` (mapa > 1/3).
+
+
+## Movimientos: solo los disponibles, con símbolo (pedido del usuario, 27-nov-2026)
+
+Cita literal (27-nov ~03:10 UTC): «Los movimientos deben poder guardar si no los use […] la parte de movimiento de arriba solo debe marcar los movimientos disponibles no lo de 5/5 ya qué se pueden acumular, por otro lado la palabra movimientos está cortada es mejor cambiarla por un símbolo que de a entender».
+
+- La pastilla de la cabecera muestra el rayo y el número disponible («7»), sin «/5». Con el tope de ahorro (10), cuando el motor lo publique, mostrará «10 · tope». Tocarla explica: «Movimientos disponibles (el rayo): cada carta cuesta de 1 a 3».
+- «Terminar semana» ya no lleva el número; la ficha de la carta muestra el rayo y el costo; el Corrector, el Comité y SECTRA dicen «cuesta N»; la mano dice «5 por semana».
+- El símbolo alternativo (ficha de acción) está en el lienzo, página «Propuesta 27-nov», para que el usuario elija.
+- Falta, cuando el motor guarde los movimientos: que «Terminar semana» deje de pedir confirmación si sobran y avise «Se guardan N», y actualizar el tutorial.

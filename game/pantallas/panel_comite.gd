@@ -236,7 +236,7 @@ static func _ficha(detalle: VBoxContainer, pid: String, v: Dictionary, prop: Dic
 		mod.pressed.connect(al_modificar)
 		fila.add_child(mod)
 	var ok := Barras.boton_jugar()
-	ok.text = "Aprobar · %d mov" % int(prop["costo_pa"])
+	ok.text = "Aprobar · cuesta %d" % int(prop["costo_pa"])
 	ok.add_theme_font_size_override("font_size", 14)
 	ok.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	ok.disabled = int(prop["costo_pa"]) > motor.estado.pa_actual
