@@ -2,7 +2,7 @@
   {
     "id": "min_interior",
     "cartera": "Ministerio del Interior",
-    "alias": "El Vigía del Pasillo",
+    "alias": "La Ex Alcaldesa de Santiago",
     "categoria_afin": "politica",
     "reduccion_costo_pa": 0,
     "bono_ejecucion": 0.1,
@@ -18,7 +18,7 @@
   {
     "id": "min_exteriores",
     "cartera": "Ministerio de Relaciones Exteriores",
-    "alias": "El Embajador de Bolsillo",
+    "alias": "La Comisionada Interamericana",
     "categoria_afin": "politica",
     "reduccion_costo_pa": 0,
     "bono_ejecucion": 0.11,
@@ -34,7 +34,7 @@
   {
     "id": "min_defensa",
     "cartera": "Ministerio de Defensa Nacional",
-    "alias": "La Guardiana del Sur",
+    "alias": "La Economista de los Cuarteles",
     "categoria_afin": "seguridad",
     "reduccion_costo_pa": 0,
     "bono_ejecucion": 0.12,
@@ -50,7 +50,7 @@
   {
     "id": "min_hacienda",
     "cartera": "Ministerio de Hacienda",
-    "alias": "El Guardián de la Billetera",
+    "alias": "El Profesor de Harvard",
     "categoria_afin": "hacienda",
     "reduccion_costo_pa": 1,
     "bono_ejecucion": 0.15,
@@ -66,7 +66,7 @@
   {
     "id": "min_segegob",
     "cartera": "Ministerio Secretaría General de Gobierno",
-    "alias": "La Voz Oficial",
+    "alias": "La Ex Dirigenta Estudiantil",
     "categoria_afin": "politica",
     "reduccion_costo_pa": 0,
     "bono_ejecucion": 0.14,
@@ -82,7 +82,7 @@
   {
     "id": "min_economia",
     "cartera": "Ministerio de Economía, Fomento y Turismo",
-    "alias": "El Aprendiz de Mercader",
+    "alias": "El Economista del Banco Central",
     "categoria_afin": "economia",
     "reduccion_costo_pa": 0,
     "bono_ejecucion": 0.1,
@@ -98,7 +98,7 @@
   {
     "id": "min_social",
     "cartera": "Ministerio de Desarrollo Social y Familia",
-    "alias": "La Tejedora de Redes",
+    "alias": "El Candidato de las Primarias",
     "categoria_afin": "social",
     "reduccion_costo_pa": 1,
     "bono_ejecucion": 0.11,
@@ -114,7 +114,7 @@
   {
     "id": "min_educacion",
     "cartera": "Ministerio de Educación",
-    "alias": "El Maestro Paciente",
+    "alias": "El Alcalde de la Playa en Santiago",
     "categoria_afin": "educacion",
     "reduccion_costo_pa": 1,
     "bono_ejecucion": 0.12,
@@ -125,12 +125,15 @@
     "perfil": {
       "eco": 0.6,
       "inst": 0.73
+    },
+    "retrato": {
+      "canas": true
     }
   },
   {
     "id": "min_justicia",
     "cartera": "Ministerio de Justicia y Derechos Humanos",
-    "alias": "La Balanza Inquieta",
+    "alias": "La Cientista Política de la Paridad",
     "categoria_afin": "seguridad",
     "reduccion_costo_pa": 0,
     "bono_ejecucion": 0.13,
@@ -146,7 +149,7 @@
   {
     "id": "min_trabajo",
     "cartera": "Ministerio del Trabajo y Previsión Social",
-    "alias": "El Gremialista Tranquilo",
+    "alias": "La Ministra de las Pensiones",
     "categoria_afin": "social",
     "reduccion_costo_pa": 0,
     "bono_ejecucion": 0.14,
@@ -162,7 +165,7 @@
   {
     "id": "min_obras",
     "cartera": "Ministerio de Obras Públicas",
-    "alias": "El Constructor de Puentes",
+    "alias": "El Empresario de las Carreteras",
     "categoria_afin": "obras",
     "reduccion_costo_pa": 0,
     "bono_ejecucion": 0.1,
@@ -173,12 +176,15 @@
     "perfil": {
       "eco": 0.17,
       "inst": 0.41
+    },
+    "retrato": {
+      "canas": true
     }
   },
   {
     "id": "min_salud",
     "cartera": "Ministerio de Salud",
-    "alias": "La Doctora de Urgencias",
+    "alias": "La Pediatra del Calvo Mackenna",
     "categoria_afin": "salud",
     "reduccion_costo_pa": 1,
     "bono_ejecucion": 0.11,
@@ -194,7 +200,7 @@
   {
     "id": "min_vivienda",
     "cartera": "Ministerio de Vivienda y Urbanismo",
-    "alias": "La Arquitecta del Déficit",
+    "alias": "El Hermano Mayor del Gabinete",
     "categoria_afin": "vivienda",
     "reduccion_costo_pa": 1,
     "bono_ejecucion": 0.2,
@@ -210,7 +216,7 @@
   {
     "id": "min_agricultura",
     "cartera": "Ministerio de Agricultura",
-    "alias": "El Sembrador del Valle",
+    "alias": "El Regionalista de Rancagua",
     "categoria_afin": "economia",
     "reduccion_costo_pa": 1,
     "bono_ejecucion": 0.13,
@@ -226,7 +232,7 @@
   {
     "id": "min_mineria",
     "cartera": "Ministerio de Minería",
-    "alias": "El Minero de Escritorio",
+    "alias": "La Ingeniera del Cobre",
     "categoria_afin": "economia",
     "reduccion_costo_pa": 0,
     "bono_ejecucion": 0.14,
@@ -242,7 +248,7 @@
   {
     "id": "min_transportes",
     "cartera": "Ministerio de Transportes y Telecomunicaciones",
-    "alias": "La Estratega de los Rieles",
+    "alias": "El Profesor de los Buses Rojos",
     "categoria_afin": "transportes",
     "reduccion_costo_pa": 0,
     "bono_ejecucion": 0.15,
@@ -258,7 +264,7 @@
   {
     "id": "min_bienes",
     "cartera": "Ministerio de Bienes Nacionales",
-    "alias": "El Cartógrafo del Fisco",
+    "alias": "La Militante de los Terrenos Fiscales",
     "categoria_afin": "obras",
     "reduccion_costo_pa": 0,
     "bono_ejecucion": 0.11,
@@ -274,7 +280,7 @@
   {
     "id": "min_energia",
     "cartera": "Ministerio de Energía",
-    "alias": "La Chispa del Norte",
+    "alias": "El Profesor de Regulación",
     "categoria_afin": "energia",
     "reduccion_costo_pa": 1,
     "bono_ejecucion": 0.12,
@@ -290,7 +296,7 @@
   {
     "id": "min_ambiente",
     "cartera": "Ministerio del Medio Ambiente",
-    "alias": "La Guardabosques",
+    "alias": "La Presidenta de la COP25",
     "categoria_afin": "medioambiente",
     "reduccion_costo_pa": 0,
     "bono_ejecucion": 0.13,
@@ -306,7 +312,7 @@
   {
     "id": "min_segpres",
     "cartera": "Ministerio Secretaría General de la Presidencia",
-    "alias": "El Contador de Votos",
+    "alias": "El Economista de Libertad",
     "categoria_afin": "politica",
     "reduccion_costo_pa": 0,
     "bono_ejecucion": 0.14,
@@ -317,12 +323,15 @@
     "perfil": {
       "eco": 0.91,
       "inst": 0.35
+    },
+    "retrato": {
+      "canas": true
     }
   },
   {
     "id": "min_deporte",
     "cartera": "Ministerio del Deporte",
-    "alias": "El Entrenador Cívico",
+    "alias": "La Ex Capitana de la Roja Femenina",
     "categoria_afin": "social",
     "reduccion_costo_pa": 0,
     "bono_ejecucion": 0.1,
@@ -338,7 +347,7 @@
   {
     "id": "min_mujer",
     "cartera": "Ministerio de la Mujer y la Equidad de Género",
-    "alias": "La Voz de las Mil",
+    "alias": "La Arquitecta del Ministerio Nuevo",
     "categoria_afin": "social",
     "reduccion_costo_pa": 0,
     "bono_ejecucion": 0.11,
@@ -354,7 +363,7 @@
   {
     "id": "min_cultura",
     "cartera": "Ministerio de las Culturas, las Artes y el Patrimonio",
-    "alias": "El Archivista del Alma",
+    "alias": "La Actriz de Teleserie",
     "categoria_afin": "social",
     "reduccion_costo_pa": 0,
     "bono_ejecucion": 0.12,
@@ -370,7 +379,7 @@
   {
     "id": "min_ciencia",
     "cartera": "Ministerio de Ciencia, Tecnología, Conocimiento e Innovación",
-    "alias": "La Curiosa de Laboratorio",
+    "alias": "El Inmunólogo de la Vacuna",
     "categoria_afin": "economia",
     "reduccion_costo_pa": 0,
     "bono_ejecucion": 0.13,
@@ -381,12 +390,15 @@
     "perfil": {
       "eco": -0.81,
       "inst": 0.44
+    },
+    "retrato": {
+      "canas": true
     }
   },
   {
     "id": "min_seguridad",
     "cartera": "Ministerio de Seguridad Pública",
-    "alias": "El Centinela de Barrio",
+    "alias": "El Profesor de Derecho Administrativo",
     "categoria_afin": "seguridad",
     "reduccion_costo_pa": 0,
     "bono_ejecucion": 0.14,
@@ -403,7 +415,7 @@
     "id": "min_interior_b",
     "ministerio": "min_interior",
     "cartera": "Ministerio del Interior",
-    "alias": "El Portero del Poder",
+    "alias": "La Doctora del Colegio Médico",
     "categoria_afin": "politica",
     "reduccion_costo_pa": 0,
     "bono_ejecucion": 0.24,
@@ -419,7 +431,7 @@
     "id": "min_interior_c",
     "ministerio": "min_interior",
     "cartera": "Ministerio del Interior",
-    "alias": "La Cerradura Cortés",
+    "alias": "El Ex Alcalde de Estación Central",
     "categoria_afin": "politica",
     "reduccion_costo_pa": 0,
     "bono_ejecucion": 0.12,
@@ -435,7 +447,7 @@
     "id": "min_exteriores_b",
     "ministerio": "min_exteriores",
     "cartera": "Ministerio de Relaciones Exteriores",
-    "alias": "El Mapamundi Ambulante",
+    "alias": "El Embajador de la ONU",
     "categoria_afin": "politica",
     "reduccion_costo_pa": 0,
     "bono_ejecucion": 0.22,
@@ -445,13 +457,16 @@
     "perfil": {
       "eco": 0.08,
       "inst": -0.37
+    },
+    "retrato": {
+      "canas": true
     }
   },
   {
     "id": "min_exteriores_c",
     "ministerio": "min_exteriores",
     "cartera": "Ministerio de Relaciones Exteriores",
-    "alias": "La Diplomática de Termo",
+    "alias": "El Viajero del Desierto",
     "categoria_afin": "politica",
     "reduccion_costo_pa": 0,
     "bono_ejecucion": 0.07,
@@ -461,13 +476,16 @@
     "perfil": {
       "eco": 0.23,
       "inst": -0.46
+    },
+    "retrato": {
+      "canas": true
     }
   },
   {
     "id": "min_defensa_b",
     "ministerio": "min_defensa",
     "cartera": "Ministerio de Defensa Nacional",
-    "alias": "El Brigadier de Escritorio",
+    "alias": "El Abogado de Falange",
     "categoria_afin": "seguridad",
     "reduccion_costo_pa": 1,
     "bono_ejecucion": 0.26,
@@ -477,13 +495,16 @@
     "perfil": {
       "eco": -0.9,
       "inst": 0.34
+    },
+    "retrato": {
+      "canas": true
     }
   },
   {
     "id": "min_defensa_c",
     "ministerio": "min_defensa",
     "cartera": "Ministerio de Defensa Nacional",
-    "alias": "La Almirante de Agua Dulce",
+    "alias": "El Teniente Reconvertido",
     "categoria_afin": "seguridad",
     "reduccion_costo_pa": 0,
     "bono_ejecucion": 0.09,
@@ -499,7 +520,7 @@
     "id": "min_hacienda_b",
     "ministerio": "min_hacienda",
     "cartera": "Ministerio de Hacienda",
-    "alias": "El Contador de Estrellas",
+    "alias": "El Ex Banquero Central",
     "categoria_afin": "hacienda",
     "reduccion_costo_pa": 0,
     "bono_ejecucion": 0.25,
@@ -509,13 +530,16 @@
     "perfil": {
       "eco": -0.62,
       "inst": 0.02
+    },
+    "retrato": {
+      "canas": true
     }
   },
   {
     "id": "min_hacienda_c",
     "ministerio": "min_hacienda",
     "cartera": "Ministerio de Hacienda",
-    "alias": "La Planilla Viviente",
+    "alias": "El Liberal de la Calculadora",
     "categoria_afin": "hacienda",
     "reduccion_costo_pa": 0,
     "bono_ejecucion": 0.07,
@@ -531,7 +555,7 @@
     "id": "min_segegob_b",
     "ministerio": "min_segegob",
     "cartera": "Ministerio Secretaría General de Gobierno",
-    "alias": "El Tuitero Mayor",
+    "alias": "El Vocero Eterno",
     "categoria_afin": "politica",
     "reduccion_costo_pa": 0,
     "bono_ejecucion": 0.21,
@@ -541,13 +565,16 @@
     "perfil": {
       "eco": -0.19,
       "inst": -0.37
+    },
+    "retrato": {
+      "canas": true
     }
   },
   {
     "id": "min_segegob_c",
     "ministerio": "min_segegob",
     "cartera": "Ministerio Secretaría General de Gobierno",
-    "alias": "La Vocera Sin Aliento",
+    "alias": "La Ex Intendenta Vocera",
     "categoria_afin": "politica",
     "reduccion_costo_pa": 0,
     "bono_ejecucion": 0.08,
@@ -563,7 +590,7 @@
     "id": "min_economia_b",
     "ministerio": "min_economia",
     "cartera": "Ministerio de Economía, Fomento y Turismo",
-    "alias": "El Emprendedor Itinerante",
+    "alias": "El Veterano de Tres Gobiernos",
     "categoria_afin": "economia",
     "reduccion_costo_pa": 1,
     "bono_ejecucion": 0.2,
@@ -573,13 +600,16 @@
     "perfil": {
       "eco": 0.61,
       "inst": 0.54
+    },
+    "retrato": {
+      "canas": true
     }
   },
   {
     "id": "min_economia_c",
     "ministerio": "min_economia",
     "cartera": "Ministerio de Economía, Fomento y Turismo",
-    "alias": "La Economista de Almacén",
+    "alias": "El Profesor de Beauchef",
     "categoria_afin": "economia",
     "reduccion_costo_pa": 0,
     "bono_ejecucion": 0.12,
@@ -595,7 +625,7 @@
     "id": "min_social_b",
     "ministerio": "min_social",
     "cartera": "Ministerio de Desarrollo Social y Familia",
-    "alias": "El Asistente de Esquina",
+    "alias": "El Ex Líder Estudiantil de la Católica",
     "categoria_afin": "social",
     "reduccion_costo_pa": 0,
     "bono_ejecucion": 0.22,
@@ -611,7 +641,7 @@
     "id": "min_social_c",
     "ministerio": "min_social",
     "cartera": "Ministerio de Desarrollo Social y Familia",
-    "alias": "La Gestora de Ventanilla",
+    "alias": "La Ex Intendenta de los Matinales",
     "categoria_afin": "social",
     "reduccion_costo_pa": 0,
     "bono_ejecucion": 0.07,
@@ -627,7 +657,7 @@
     "id": "min_educacion_b",
     "ministerio": "min_educacion",
     "cartera": "Ministerio de Educación",
-    "alias": "La Inspectora Generosa",
+    "alias": "El Abogado de la Calidad",
     "categoria_afin": "educacion",
     "reduccion_costo_pa": 0,
     "bono_ejecucion": 0.27,
@@ -643,7 +673,7 @@
     "id": "min_educacion_c",
     "ministerio": "min_educacion",
     "cartera": "Ministerio de Educación",
-    "alias": "El Rector de Pasillo",
+    "alias": "El Profe de Valparaíso",
     "categoria_afin": "educacion",
     "reduccion_costo_pa": 0,
     "bono_ejecucion": 0.1,
@@ -659,7 +689,7 @@
     "id": "min_justicia_b",
     "ministerio": "min_justicia",
     "cartera": "Ministerio de Justicia y Derechos Humanos",
-    "alias": "El Fiscal Reciclado",
+    "alias": "El Senador del Maule",
     "categoria_afin": "seguridad",
     "reduccion_costo_pa": 0,
     "bono_ejecucion": 0.24,
@@ -669,13 +699,16 @@
     "perfil": {
       "eco": -0.13,
       "inst": -0.16
+    },
+    "retrato": {
+      "canas": true
     }
   },
   {
     "id": "min_justicia_c",
     "ministerio": "min_justicia",
     "cartera": "Ministerio de Justicia y Derechos Humanos",
-    "alias": "La Jueza de Bolsillo",
+    "alias": "El Ex Decano de Derecho",
     "categoria_afin": "seguridad",
     "reduccion_costo_pa": 0,
     "bono_ejecucion": 0.12,
@@ -691,7 +724,7 @@
     "id": "min_trabajo_b",
     "ministerio": "min_trabajo",
     "cartera": "Ministerio del Trabajo y Previsión Social",
-    "alias": "La Sindicalista de Escritorio",
+    "alias": "El Hermano Menor del Gabinete",
     "categoria_afin": "social",
     "reduccion_costo_pa": 0,
     "bono_ejecucion": 0.26,
@@ -707,7 +740,7 @@
     "id": "min_trabajo_c",
     "ministerio": "min_trabajo",
     "cartera": "Ministerio del Trabajo y Previsión Social",
-    "alias": "El Actuario Gentil",
+    "alias": "El Laboralista de San Miguel",
     "categoria_afin": "social",
     "reduccion_costo_pa": 0,
     "bono_ejecucion": 0.1,
@@ -717,13 +750,16 @@
     "perfil": {
       "eco": -0.03,
       "inst": -0.68
+    },
+    "retrato": {
+      "canas": true
     }
   },
   {
     "id": "min_obras_b",
     "ministerio": "min_obras",
     "cartera": "Ministerio de Obras Públicas",
-    "alias": "El Capataz Ilustrado",
+    "alias": "La Ingeniera de los Embalses",
     "categoria_afin": "obras",
     "reduccion_costo_pa": 1,
     "bono_ejecucion": 0.22,
@@ -739,7 +775,7 @@
     "id": "min_obras_c",
     "ministerio": "min_obras",
     "cartera": "Ministerio de Obras Públicas",
-    "alias": "La Ingeniera de Cemento Fino",
+    "alias": "El Profesor de Pavimentos",
     "categoria_afin": "obras",
     "reduccion_costo_pa": 0,
     "bono_ejecucion": 0.07,
@@ -755,7 +791,7 @@
     "id": "min_salud_b",
     "ministerio": "min_salud",
     "cartera": "Ministerio de Salud",
-    "alias": "El Cirujano de Urgencia",
+    "alias": "El Doctor de los Puntos de Prensa",
     "categoria_afin": "salud",
     "reduccion_costo_pa": 0,
     "bono_ejecucion": 0.26,
@@ -765,13 +801,16 @@
     "perfil": {
       "eco": 0.43,
       "inst": -0.04
+    },
+    "retrato": {
+      "canas": true
     }
   },
   {
     "id": "min_salud_c",
     "ministerio": "min_salud",
     "cartera": "Ministerio de Salud",
-    "alias": "La Matrona de Barrio",
+    "alias": "La Salubrista de la Chile",
     "categoria_afin": "salud",
     "reduccion_costo_pa": 0,
     "bono_ejecucion": 0.07,
@@ -787,7 +826,7 @@
     "id": "min_vivienda_b",
     "ministerio": "min_vivienda",
     "cartera": "Ministerio de Vivienda y Urbanismo",
-    "alias": "El Maestro Constructor",
+    "alias": "El Veterano de La Florida",
     "categoria_afin": "vivienda",
     "reduccion_costo_pa": 1,
     "bono_ejecucion": 0.26,
@@ -797,13 +836,16 @@
     "perfil": {
       "eco": -0.85,
       "inst": -0.22
+    },
+    "retrato": {
+      "canas": true
     }
   },
   {
     "id": "min_vivienda_c",
     "ministerio": "min_vivienda",
     "cartera": "Ministerio de Vivienda y Urbanismo",
-    "alias": "La Urbanista de Plaza",
+    "alias": "El Ex Vocero de las Viviendas",
     "categoria_afin": "vivienda",
     "reduccion_costo_pa": 0,
     "bono_ejecucion": 0.1,
@@ -819,7 +861,7 @@
     "id": "min_agricultura_b",
     "ministerio": "min_agricultura",
     "cartera": "Ministerio de Agricultura",
-    "alias": "El Regador Veterano",
+    "alias": "La Ministra del Grano",
     "categoria_afin": "economia",
     "reduccion_costo_pa": 1,
     "bono_ejecucion": 0.25,
@@ -835,7 +877,7 @@
     "id": "min_agricultura_c",
     "ministerio": "min_agricultura",
     "cartera": "Ministerio de Agricultura",
-    "alias": "La Agrónoma de Frontera",
+    "alias": "El Diplomático del Agro",
     "categoria_afin": "economia",
     "reduccion_costo_pa": 0,
     "bono_ejecucion": 0.09,
@@ -845,13 +887,16 @@
     "perfil": {
       "eco": -0.32,
       "inst": 0.69
+    },
+    "retrato": {
+      "canas": true
     }
   },
   {
     "id": "min_mineria_b",
     "ministerio": "min_mineria",
     "cartera": "Ministerio de Minería",
-    "alias": "El Capataz de Tronadura",
+    "alias": "La Doctora de Antofagasta",
     "categoria_afin": "economia",
     "reduccion_costo_pa": 0,
     "bono_ejecucion": 0.26,
@@ -867,7 +912,7 @@
     "id": "min_mineria_c",
     "ministerio": "min_mineria",
     "cartera": "Ministerio de Minería",
-    "alias": "La Geóloga Cauta",
+    "alias": "El Gerente de los 33",
     "categoria_afin": "economia",
     "reduccion_costo_pa": 0,
     "bono_ejecucion": 0.11,
@@ -883,7 +928,7 @@
     "id": "min_transportes_b",
     "ministerio": "min_transportes",
     "cartera": "Ministerio de Transportes y Telecomunicaciones",
-    "alias": "El Conductor Estoico",
+    "alias": "La Ingeniera de las Ciclovías",
     "categoria_afin": "transportes",
     "reduccion_costo_pa": 0,
     "bono_ejecucion": 0.25,
@@ -899,7 +944,7 @@
     "id": "min_transportes_c",
     "ministerio": "min_transportes",
     "cartera": "Ministerio de Transportes y Telecomunicaciones",
-    "alias": "La Planificadora de Andenes",
+    "alias": "El Economista del Pasaje",
     "categoria_afin": "transportes",
     "reduccion_costo_pa": 0,
     "bono_ejecucion": 0.08,
@@ -915,7 +960,7 @@
     "id": "min_bienes_b",
     "ministerio": "min_bienes",
     "cartera": "Ministerio de Bienes Nacionales",
-    "alias": "El Catastro Andante",
+    "alias": "La Ex Subsecretaria de Bienes",
     "categoria_afin": "obras",
     "reduccion_costo_pa": 1,
     "bono_ejecucion": 0.23,
@@ -931,7 +976,7 @@
     "id": "min_bienes_c",
     "ministerio": "min_bienes",
     "cartera": "Ministerio de Bienes Nacionales",
-    "alias": "La Inspectora de Terrenos",
+    "alias": "El Comunicador de las Playas Libres",
     "categoria_afin": "obras",
     "reduccion_costo_pa": 0,
     "bono_ejecucion": 0.11,
@@ -941,13 +986,16 @@
     "perfil": {
       "eco": -0.86,
       "inst": 0.07
+    },
+    "retrato": {
+      "canas": true
     }
   },
   {
     "id": "min_energia_b",
     "ministerio": "min_energia",
     "cartera": "Ministerio de Energía",
-    "alias": "El Vigilante del Voltaje",
+    "alias": "El Ingeniero del Hidrógeno Verde",
     "categoria_afin": "energia",
     "reduccion_costo_pa": 0,
     "bono_ejecucion": 0.23,
@@ -963,7 +1011,7 @@
     "id": "min_energia_c",
     "ministerio": "min_energia",
     "cartera": "Ministerio de Energía",
-    "alias": "La Solar de Atacama",
+    "alias": "El Empresario Socialista",
     "categoria_afin": "energia",
     "reduccion_costo_pa": 0,
     "bono_ejecucion": 0.12,
@@ -973,13 +1021,16 @@
     "perfil": {
       "eco": 0.02,
       "inst": 0.38
+    },
+    "retrato": {
+      "canas": true
     }
   },
   {
     "id": "min_ambiente_b",
     "ministerio": "min_ambiente",
     "cartera": "Ministerio del Medio Ambiente",
-    "alias": "El Guardián de Humedales",
+    "alias": "El Académico Verde",
     "categoria_afin": "medioambiente",
     "reduccion_costo_pa": 0,
     "bono_ejecucion": 0.26,
@@ -995,7 +1046,7 @@
     "id": "min_ambiente_c",
     "ministerio": "min_ambiente",
     "cartera": "Ministerio del Medio Ambiente",
-    "alias": "La Negociadora Verde",
+    "alias": "La Climatóloga de la COP",
     "categoria_afin": "medioambiente",
     "reduccion_costo_pa": 0,
     "bono_ejecucion": 0.11,
@@ -1011,7 +1062,7 @@
     "id": "min_segpres_b",
     "ministerio": "min_segpres",
     "cartera": "Ministerio Secretaría General de la Presidencia",
-    "alias": "La Tejedora de Quórum",
+    "alias": "La Abogada del Rayado de Cancha",
     "categoria_afin": "politica",
     "reduccion_costo_pa": 0,
     "bono_ejecucion": 0.26,
@@ -1027,7 +1078,7 @@
     "id": "min_segpres_c",
     "ministerio": "min_segpres",
     "cartera": "Ministerio Secretaría General de la Presidencia",
-    "alias": "El Escribano del Congreso",
+    "alias": "El Ex Presidente del Senado",
     "categoria_afin": "politica",
     "reduccion_costo_pa": 0,
     "bono_ejecucion": 0.12,
@@ -1043,7 +1094,7 @@
     "id": "min_deporte_b",
     "ministerio": "min_deporte",
     "cartera": "Ministerio del Deporte",
-    "alias": "La Velocista Cívica",
+    "alias": "El Ex Capitán de Colo-Colo",
     "categoria_afin": "social",
     "reduccion_costo_pa": 0,
     "bono_ejecucion": 0.27,
@@ -1059,7 +1110,7 @@
     "id": "min_deporte_c",
     "ministerio": "min_deporte",
     "cartera": "Ministerio del Deporte",
-    "alias": "El Árbitro Sereno",
+    "alias": "La Ex Tenista de Gabinete",
     "categoria_afin": "social",
     "reduccion_costo_pa": 0,
     "bono_ejecucion": 0.08,
@@ -1075,7 +1126,7 @@
     "id": "min_mujer_b",
     "ministerio": "min_mujer",
     "cartera": "Ministerio de la Mujer y la Equidad de Género",
-    "alias": "La Constituyente de Plaza",
+    "alias": "La Periodista de la Igualdad",
     "categoria_afin": "social",
     "reduccion_costo_pa": 0,
     "bono_ejecucion": 0.24,
@@ -1091,7 +1142,7 @@
     "id": "min_mujer_c",
     "ministerio": "min_mujer",
     "cartera": "Ministerio de la Mujer y la Equidad de Género",
-    "alias": "La Gestora de Equidad",
+    "alias": "La Activista de Gabinete",
     "categoria_afin": "social",
     "reduccion_costo_pa": 0,
     "bono_ejecucion": 0.1,
@@ -1107,7 +1158,7 @@
     "id": "min_cultura_b",
     "ministerio": "min_cultura",
     "cartera": "Ministerio de las Culturas, las Artes y el Patrimonio",
-    "alias": "El Mecenas Austero",
+    "alias": "El Productor del Festival",
     "categoria_afin": "social",
     "reduccion_costo_pa": 1,
     "bono_ejecucion": 0.22,
@@ -1117,13 +1168,16 @@
     "perfil": {
       "eco": -0.12,
       "inst": 0.83
+    },
+    "retrato": {
+      "canas": true
     }
   },
   {
     "id": "min_cultura_c",
     "ministerio": "min_cultura",
     "cartera": "Ministerio de las Culturas, las Artes y el Patrimonio",
-    "alias": "La Gestora de Escenarios",
+    "alias": "La Directora del Museo Interactivo",
     "categoria_afin": "social",
     "reduccion_costo_pa": 0,
     "bono_ejecucion": 0.1,
@@ -1139,7 +1193,7 @@
     "id": "min_ciencia_b",
     "ministerio": "min_ciencia",
     "cartera": "Ministerio de Ciencia, Tecnología, Conocimiento e Innovación",
-    "alias": "El Doctor de Pizarrón",
+    "alias": "La Abogada de la Inteligencia Artificial",
     "categoria_afin": "economia",
     "reduccion_costo_pa": 0,
     "bono_ejecucion": 0.25,
@@ -1155,7 +1209,7 @@
     "id": "min_ciencia_c",
     "ministerio": "min_ciencia",
     "cartera": "Ministerio de Ciencia, Tecnología, Conocimiento e Innovación",
-    "alias": "La Innovadora de Garaje",
+    "alias": "El Neurobiólogo del Gabinete",
     "categoria_afin": "economia",
     "reduccion_costo_pa": 0,
     "bono_ejecucion": 0.08,
@@ -1171,7 +1225,7 @@
     "id": "min_seguridad_b",
     "ministerio": "min_seguridad",
     "cartera": "Ministerio de Seguridad Pública",
-    "alias": "El Comisario Ilustrado",
+    "alias": "El Senador de Los Ángeles",
     "categoria_afin": "seguridad",
     "reduccion_costo_pa": 0,
     "bono_ejecucion": 0.24,
@@ -1181,13 +1235,16 @@
     "perfil": {
       "eco": 0.57,
       "inst": 0.1
+    },
+    "retrato": {
+      "canas": true
     }
   },
   {
     "id": "min_seguridad_c",
     "ministerio": "min_seguridad",
     "cartera": "Ministerio de Seguridad Pública",
-    "alias": "La Estratega de Cuadrante",
+    "alias": "El Ingeniero de la Agenda Corta",
     "categoria_afin": "seguridad",
     "reduccion_costo_pa": 0,
     "bono_ejecucion": 0.11,

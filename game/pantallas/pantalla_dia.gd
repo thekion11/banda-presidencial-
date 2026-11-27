@@ -4,6 +4,7 @@ extends Control
 
 signal accion_hecha
 signal terminado
+signal transicion  # ganaste: falta nombrar el gabinete antes de la primera semana de gobierno
 
 var motor: MotorTurno
 var datos: Dictionary = {}
@@ -29,6 +30,7 @@ var _zona_panel: Control
 var _capa: Control
 var _toast: Toast
 var _cola_eventos: Array[Dictionary] = []
+var _panel_actual := "mapa"  # pestaña abierta: se reconstruye al terminar la semana para no mostrar datos viejos
 
 
 func _ready() -> void:
@@ -259,6 +261,8 @@ func _terminar_turno() -> void:
 	var ind_antes := est.indicadores.duplicate()
 	var nuevos := motor.terminar_turno()
 	accion_hecha.emit()
+	if _panel_actual != "mapa":
+		_abrir_panel(_panel_actual)  # la pestaña abierta (Congreso, Comité…) se rehace con el estado de la semana nueva
 	if est.eleccion_pendiente(sem):
 		_avisar("Termina la campaña: toca el botón de avanzar para ir a las urnas.")
 	elif not MotorTurno.ETAPAS_JUEGO.has(est.etapa):
@@ -287,7 +291,12 @@ func _resolver_eleccion() -> void:
 			_cola_eventos = motor.ultimos_eventos.duplicate()
 			_refrescar()
 			var e := motor.estado  # cambio de mando al ganar: banda presidencial antes del primer día
-			if res["electo"]: CambioMando.mostrar(_capa, Barras.fecha_texto(datos["leyes"], e.etapa, e.turno_actual, e.dia_actual, e.ciclo, e.dias_carrera).substr(4), String(e.partido.get("nombre", "")), _siguiente_evento)
+			var seguir := func() -> void:
+				if PanelGabinete.transicion_pendiente(motor):
+					transicion.emit()
+				else:
+					_siguiente_evento()
+			if res["electo"]: CambioMando.mostrar(_capa, Barras.fecha_texto(datos["leyes"], e.etapa, e.turno_actual, e.dia_actual, e.ciclo, e.dias_carrera).substr(4), String(e.partido.get("nombre", "")), seguir)
 			else: _siguiente_evento()
 		else:
 			terminado.emit(), geo))
@@ -332,6 +341,7 @@ func _poner_nav(nacion: bool, activo: String = "mapa") -> void:
 
 
 func _abrir_panel(cual: String) -> void:
+	_panel_actual = cual
 	_poner_nav(cual == "nacion", cual)
 	for h in _zona_panel.get_children():
 		h.queue_free()

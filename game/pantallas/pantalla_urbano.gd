@@ -89,8 +89,15 @@ static func crear(motor: MotorTurno, urbano: Dictionary, al_volver: Callable, al
 	sb.content_margin_bottom = 20
 	panel.add_theme_stylebox_override("panel", sb)
 	panel.size_flags_vertical = Control.SIZE_SHRINK_END
-	panel.add_child(hoja)
+	var sc_hoja := ScrollContainer.new()  # con letra grande o pantalla baja la lista se desplaza: el mapa conserva su alto y nada se sale
+	sc_hoja.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+	hoja.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	sc_hoja.add_child(hoja)
+	panel.add_child(sc_hoja)
 	col.add_child(panel)
+	var ajustar_alto := func() -> void:
+		sc_hoja.custom_minimum_size.y = minf(hoja.get_combined_minimum_size().y, Tema.alto_util() * 0.34)
+	hoja.minimum_size_changed.connect(ajustar_alto)
 	vista.pressed.connect(func() -> void:  # alterna entre el mapa de calles y el plano esquemático del Metro
 		mapa.modo_esquema = not mapa.modo_esquema
 		panel.visible = not mapa.modo_esquema  # el esquema usa todo el alto disponible

@@ -198,7 +198,8 @@ func _correr() -> void:
 		await create_timer(0.6).timeout
 		_check(iso.fase >= 1.0, "reproducir la obra avanza sus fases (%.2f)" % iso.fase)
 	# gabinete como tablero (opción A del usuario): arrastrar una carta a su puesto la nombra; a otro puesto, no
-	m.estado.etapa = "campana"
+	m.estado.etapa = "gobierno"  # el tablero se edita en la transición (primera semana de gobierno)
+	m.estado.turno_actual = 1
 	var tablero := PanelGabinete.crear(m, "Confirmar", func() -> void: pass)
 	root.add_child(tablero)
 	await _cuadros(2)

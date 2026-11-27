@@ -15,13 +15,21 @@ static var _actual: String = ""  # pista que suena
 static var _base: String = ""  # pista de la etapa (vuelve aquí al terminar la tensión)
 static var _tension: int = 0  # capas de tensión abiertas (votaciones encadenadas)
 static var _streams: Dictionary = {}
+static var atenuada := false  # foco perdido (llamada entrante, cortina de notificaciones): la música baja y vuelve al recuperarlo
+const BUS := "Musica"
+const ATENUACION := -14.0  # dB sobre el bus de la música mientras la app no tiene el foco
 
 
 static func iniciar(raiz: Node) -> void:
 	if DisplayServer.get_name() == "headless" or (_a != null and is_instance_valid(_a)):
 		return
+	if AudioServer.get_bus_index(BUS) < 0:  # bus propio: atenuar la música no toca los efectos de sonido
+		AudioServer.add_bus()
+		AudioServer.set_bus_name(AudioServer.bus_count - 1, BUS)
+		AudioServer.set_bus_send(AudioServer.bus_count - 1, "Master")
 	for i in range(2):
 		var p := AudioStreamPlayer.new()
+		p.bus = BUS
 		p.volume_db = -80.0
 		raiz.add_child(p)
 		if i == 0:
@@ -35,6 +43,15 @@ static func pausar(on: bool) -> void:
 	for p in [_a, _b]:
 		if p != null and is_instance_valid(p):
 			p.stream_paused = on
+
+
+static func atenuar(on: bool) -> void:
+	## Foco perdido sin pasar a segundo plano (una llamada que se superpone, la cortina de notificaciones, el asistente):
+	## la música baja 14 dB en su bus y vuelve al recuperar el foco. Los efectos no cambian.
+	atenuada = on
+	var i := AudioServer.get_bus_index(BUS)
+	if i >= 0:
+		AudioServer.set_bus_volume_db(i, ATENUACION if on else 0.0)
 
 
 static func _activa() -> bool:

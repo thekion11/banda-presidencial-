@@ -84,11 +84,14 @@ class Retrato extends Control:
 	var semilla := 0
 	var estilo := ""
 	var femenino := false
+	var canas := false
 
-	func _init(id: String, p_estilo: String, alias: String) -> void:
+	func _init(id: String, p_estilo: String, alias: String, rasgos: Dictionary = {}) -> void:
+		## `rasgos` (ministros.json › retrato, opcional): recreación ilustrada que evoca a la figura del alias; nunca una foto.
 		semilla = absi(hash(id))
 		estilo = p_estilo
 		femenino = alias.begins_with("La ")
+		canas = bool(rasgos.get("canas", false))
 		custom_minimum_size = Vector2(60, 64)
 		mouse_filter = Control.MOUSE_FILTER_IGNORE
 
@@ -97,7 +100,7 @@ class Retrato extends Control:
 		var h := size.y
 		draw_style_box(Tema.caja(Color("#0E2A42"), 8, Color("#2A6290"), 1), Rect2(Vector2.ZERO, size))
 		var piel: Color = PIELES[semilla % PIELES.size()]
-		var pelo: Color = PELOS[(semilla / 7) % PELOS.size()]
+		var pelo: Color = Color("#C9C9C9") if canas else PELOS[(semilla / 7) % PELOS.size()]
 		var traje: Color = TRAJES.get(estilo, Tema.PANEL)
 		var c := Vector2(w * 0.5, h * 0.40)
 		var r := w * 0.19
@@ -143,7 +146,7 @@ class Candidato extends Button:
 			(h as Control).mouse_filter = Control.MOUSE_FILTER_IGNORE
 		return f
 
-	func _init(ficha: Dictionary, nombrado: bool, previsto: bool) -> void:
+	func _init(ficha: Dictionary, nombrado: bool, previsto: bool, rasgos: Dictionary = {}) -> void:
 		id = String(ficha["id"])
 		slot = String(ficha["ministerio"])
 		alias = String(ficha["alias"])
@@ -160,7 +163,7 @@ class Candidato extends Button:
 		fila.offset_bottom = -7.0
 		fila.add_theme_constant_override("separation", 9)
 		fila.mouse_filter = Control.MOUSE_FILTER_IGNORE
-		fila.add_child(Retrato.new(id, String(ficha["estilo"]), alias))
+		fila.add_child(Retrato.new(id, String(ficha["estilo"]), alias, rasgos))
 		var v := VBoxContainer.new()
 		v.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		v.add_theme_constant_override("separation", 2)
@@ -187,7 +190,7 @@ class Candidato extends Button:
 		var ahorro := int(ficha["reduccion_costo_pa"])
 		var afin := float(ficha["afinidad"])
 		grilla.add_child(_atributo("building", "Ejecución", "+%d %%" % roundi(float(ficha["bono_ejecucion"]) * 100.0), Tema.bien()))
-		grilla.add_child(_atributo("down", "Escándalo", "%d %%" % roundi(float(ficha["riesgo_escandalo"]) * 100.0), FilasUI.ROJO_TEXTO))
+		grilla.add_child(_atributo("down", "Polémica", "%d %%" % roundi(float(ficha["riesgo_escandalo"]) * 100.0), FilasUI.ROJO_TEXTO))
 		grilla.add_child(_atributo("bolt", "Ahorro " + String(AREAS.get(ficha["categoria_afin"], ficha["categoria_afin"])) if ahorro > 0 else "Ahorro", ("−%d" % ahorro) if ahorro > 0 else "—", Tema.bien() if ahorro > 0 else Tema.TEXTO_SUAVE))
 		grilla.add_child(_atributo("people", "Afinidad", "%d %%" % roundi(afin * 100.0), Tema.color_aprobacion(30.0 + afin * 30.0)))
 		v.add_child(grilla)
