@@ -30,6 +30,7 @@ var _zona_panel: Control
 var _capa: Control
 var _toast: Toast
 var _cola_eventos: Array[Dictionary] = []
+var _panel_actual := "mapa"  # pestaña abierta: se reconstruye al terminar la semana para no mostrar datos viejos
 
 
 func _ready() -> void:
@@ -260,6 +261,8 @@ func _terminar_turno() -> void:
 	var ind_antes := est.indicadores.duplicate()
 	var nuevos := motor.terminar_turno()
 	accion_hecha.emit()
+	if _panel_actual != "mapa":
+		_abrir_panel(_panel_actual)  # la pestaña abierta (Congreso, Comité…) se rehace con el estado de la semana nueva
 	if est.eleccion_pendiente(sem):
 		_avisar("Termina la campaña: toca el botón de avanzar para ir a las urnas.")
 	elif not MotorTurno.ETAPAS_JUEGO.has(est.etapa):
@@ -338,6 +341,7 @@ func _poner_nav(nacion: bool, activo: String = "mapa") -> void:
 
 
 func _abrir_panel(cual: String) -> void:
+	_panel_actual = cual
 	_poner_nav(cual == "nacion", cual)
 	for h in _zona_panel.get_children():
 		h.queue_free()

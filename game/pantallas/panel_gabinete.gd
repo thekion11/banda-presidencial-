@@ -146,7 +146,7 @@ static func crear(motor: MotorTurno, texto_boton: String, al_confirmar: Callable
 		var s_slot := String(estado["slot"])
 		titulo_baraja.text = String(motor.catalogo_ministros[por_cargo[s_slot][0]]["cartera"]).replace("Ministerio de ", "").replace("Ministerio del ", "") if por_cargo.has(s_slot) else ""
 		for id in por_cargo.get(s_slot, []):
-			var c := TableroGabinete.Candidato.new(motor.gabinete.ficha_candidato(id), elegidos.has(id), estado["previsto"] == id)
+			var c := TableroGabinete.Candidato.new(motor.gabinete.ficha_candidato(id), elegidos.has(id), estado["previsto"] == id, motor.catalogo_ministros[id].get("retrato", {}))
 			c.pressed.connect(func() -> void:
 				if not editable:
 					return
