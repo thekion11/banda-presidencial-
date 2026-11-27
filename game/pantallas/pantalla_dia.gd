@@ -285,7 +285,7 @@ func _resolver_eleccion() -> void:
 			if res["electo"]: CambioMando.mostrar(_capa, Barras.fecha_texto(datos["leyes"], e.etapa, e.turno_actual, e.dia_actual, e.ciclo, e.dias_carrera).substr(4), String(e.partido.get("nombre", "")), _siguiente_evento)
 			else: _siguiente_evento()
 		else:
-			terminado.emit()))
+			terminado.emit(), geo))
 
 
 func _siguiente_evento() -> void:
