@@ -10,6 +10,7 @@ var datos: Dictionary = {}
 var geo: Dictionary = {}
 var motor: MotorTurno
 var _pantalla: Control
+var _baja_previa := false  # modo compacto con que se armó la pantalla actual (Tema.pantalla_baja)
 
 
 var _huella_datos: String = ""
@@ -38,6 +39,17 @@ func _ajustar_aspecto() -> void:
 	r.content_scale_aspect = aspecto_para(r.size)
 	if DisplayServer.get_name() != "headless":  # las pruebas headless simulan cada alto con content_scale_size
 		r.content_scale_size = base_para(r.size)
+		var baja := Tema.pantalla_baja()
+		if baja != _baja_previa:  # pantalla dividida o plegable: el día se armó para otro alto (mano, mapa, Corrector)
+			_baja_previa = baja
+			_rehacer_dia.call_deferred()
+
+
+func _rehacer_dia() -> void:
+	## Rearma el día con el alto nuevo, solo si no hay nada abierto encima (un evento o una votación no se pierden).
+	var dia := _pantalla as PantallaDia
+	if dia != null and motor != null and dia._capa.get_children().all(func(h: Node) -> bool: return h == dia._toast):
+		mostrar_dia()
 
 
 func _ready() -> void:

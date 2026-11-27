@@ -43,3 +43,14 @@ Las pruebas de interfaz emitían señales (`tocada`, `pressed`) o llamaban a `_g
 - La misma prueba cubre lo demás por ese camino: el segundo toque sobre la elegida la juega; deslizar hacia arriba la juega; mantener ≥ 450 ms abre la ficha y soltar la cierra sin jugar; tocar el mapa elige una región; «Terminar semana» con movimientos sin usar pide confirmar.
 - **Con clics reales de X11** (`xdotool`, ventana 360×640 escalada): un clic elige, el segundo sobre la elegida juega y un doble clic elige y juega, como está diseñado. Las coordenadas lógicas se convierten bien con `get_final_transform()`.
 - Lo que no se puede crear aquí: el multitoque y los gestos del sistema (atrás deslizando desde el borde) no existen en X11. El zoom con dos dedos (`InputEventMagnifyGesture`) solo está probado con eventos sintéticos.
+
+## Ventana del proyecto frente al export de Android (cola 7)
+
+| Ajuste | Proyecto (`project.godot`) | Export (`export_presets.cfg`) | Lectura |
+|---|---|---|---|
+| Orientación | `window/handheld/orientation=1` (vertical) | `screen/orientation=1`; el manifiesto queda con `screenOrientation=1`, que revisa `tools/auditar_apk.py` | Coinciden: vertical bloqueada |
+| Estiramiento | `canvas_items` + `keep_width`, base 390×844; en ejecución `Main.base_para` fija 390 × el alto real y `Main.aspecto_para` pasa a `keep` con bandas en pantallas anchas | — | Coincide con lo que suponen el diseño y las pruebas desde la cola 6 |
+| Barras del sistema | — | `screen/immersive_mode=true`: Android esconde la barra de estado y la de navegación, que vuelven un momento con un gesto | El inset de abajo suele ser 0 y el de arriba es la muesca. `Tema.margen_superior` y `margen_inferior` leen la zona segura en cada pantalla. Con targetSdk 35, Android 15 fuerza el modo de borde a borde: si alguna vez se apaga el inmersivo, las franjas ya están cubiertas (`test_zonas_seguras`) |
+| Muesca | — | Sin ajuste propio; el inmersivo dibuja también bajo la muesca | Cubierto por `margen_superior`. **Falta verlo en un teléfono con muesca** |
+| Renderizador | `renderer/rendering_method="mobile"` | El mismo; si el teléfono no tiene Vulkan, Godot cae a OpenGL (Compatibility) | Las dos rutas se capturaron aquí; la diferencia del Comité 3D se compensó |
+| Plegable y pantalla dividida | `size_changed` → `Main._ajustar_aspecto` | Se supone que Godot no reinicia la actividad al cambiar de tamaño (el manifiesto declara los cambios de tamaño como propios); hay que confirmarlo en un plegable | **Defecto corregido:** con un cambio en caliente de alto a bajo (pantalla dividida), el día se quedaba armado para el alto anterior y «Terminar semana» quedaba fuera. Ahora `Main` rearma el día cuando cambia `Tema.pantalla_baja()`, solo si no hay un evento o una votación abiertos encima. Verificado con `tests/ventana_cambio.gd`: 280×653 → 884×1104 → 280×653 → 360×640, siempre con el mapa > 1/3 y el botón dentro |
