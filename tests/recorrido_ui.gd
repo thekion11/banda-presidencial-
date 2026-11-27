@@ -71,7 +71,7 @@ static func recorrer(arbol: SceneTree, visitar: Callable, alto: int = 844) -> vo
 	main.motor.estado.etapa = "gobierno"  # lo que solo existe gobernando: agenda legislativa y ayuda del primer día
 	dia._abrir_panel("congreso")
 	await paso.call("congreso en gobierno (agenda)")
-	var cat := main.motor.agenda.agenda_catalogo()
+	var cat: Array = main.motor.agenda.agenda_catalogo()
 	if not cat.is_empty():
 		var tit: Array = dia._zona_panel.find_children("*", "Label", true, false).filter(func(l: Label) -> bool: return l.text == String(cat[0]["titulo"]))
 		if not tit.is_empty():
