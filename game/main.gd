@@ -347,6 +347,11 @@ func _avisar_atras(txt: String) -> void:
 	_aviso_atras.mostrar(txt)
 
 
+func _exit_tree() -> void:
+	get_tree().paused = false  # si Main se va estando en segundo plano (pruebas del ciclo de vida), el árbol no queda en pausa
+	Musica.pausar(false)
+
+
 func _notification(what: int) -> void:
 	if what == NOTIFICATION_WM_GO_BACK_REQUEST:
 		atras.call_deferred()  # fuera de la propagación de la notificación: durante ella Main no admite hijos nuevos (el aviso)
@@ -354,3 +359,7 @@ func _notification(what: int) -> void:
 	if (what == NOTIFICATION_APPLICATION_PAUSED or what == NOTIFICATION_WM_CLOSE_REQUEST) and motor != null:
 		guardar()  # al pasar a segundo plano (o salir) se deja también la instantánea al día
 		guardar_instantanea()
+	if what == NOTIFICATION_APPLICATION_PAUSED or what == NOTIFICATION_APPLICATION_RESUMED:  # en segundo plano no corre nada:
+		var fondo := what == NOTIFICATION_APPLICATION_PAUSED  # ni animaciones, ni _process, ni música (batería)
+		get_tree().paused = fondo
+		Musica.pausar(fondo)

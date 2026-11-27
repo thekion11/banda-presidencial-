@@ -87,3 +87,7 @@ Cuando entra una llamada o el sistema roba el gesto, Android cancela el toque y 
 - **Corregido: un deslizamiento cancelado jugaba la carta.** `ManoUI` trataba el soltar cancelado como un deslizamiento terminado. Ahora un gesto cancelado no cuenta, y tampoco el toque cancelado sobre la carta elegida (`CartaUI`) ni sobre el mapa urbano o el del Comité (`UrbanoVista`). El arrastre de una estación del Comité se cierra igual, para no dejarla a medias.
 - **Corregido: con el dedo puesto y la app perdiendo el foco, la ficha ampliada se abría igual medio segundo después y quedaba abierta.** `ManoUI` anula el gesto pendiente y cierra la ficha con `NOTIFICATION_APPLICATION_FOCUS_OUT` o `PAUSED`.
 - Después de una cancelación, el toque siguiente llega normal: no queda nada trabado.
+
+## Segundo plano y batería (cola 8)
+
+Al pasar a segundo plano (`NOTIFICATION_APPLICATION_PAUSED`), `Main` guarda, pone el árbol en pausa (`get_tree().paused`) y detiene la música en su lugar (`Musica.pausar`). Al volver (`RESUMED`) todo sigue desde donde estaba. Así no corren el mapa vivo, los tweens, las partículas, el debate ni la órbita 3D, aunque el sistema siga dándole cuadros a la app (en Android suele detener el bucle, pero no está garantizado en todos los equipos). Los temporizadores de una sola vez (`create_timer`: ocultar un aviso, la pulsación larga) no se pausan, pero son cortos y la pulsación larga ya se anula al perder el foco. Prueba: `tests/test_segundo_plano.gd`.
