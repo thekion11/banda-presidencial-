@@ -299,4 +299,5 @@
 
 ## `VotoRegional` (`sim/voto_regional.gd`)
 
-- `static calcular(regiones: Regiones, aprobacion_regional: Dictionary, desplazamiento: float, tope_min: float, tope_max: float, umbral: float) -> Dictionary` — `desplazamiento` = choque nacional − penalización + efecto rival (el mismo para todas las regiones). Devuelve el voto nacional ponderado y el detalle por región.
+- `static ruido(semilla: int, ciclo: int, ronda: int, id: String, r: float) -> float` — eps_i de una región: uniforme en [−r, r] y fijo para esa semilla, ciclo, vuelta y región.
+- `static calcular(regiones: Regiones, aprobacion_regional: Dictionary, desplazamiento: float, tope_min: float, tope_max: float, umbral: float, ruido_regional: float = 0.0, semilla: int = 0, ciclo: int = 1, ronda: int = 1) -> Dictionary` — `desplazamiento` = choque nacional − penalización + efecto rival (el mismo para todas las regiones). Devuelve el voto nacional ponderado y el detalle por región.
