@@ -10,7 +10,7 @@ static func puede_editar(motor: MotorTurno) -> bool:
 	return e.etapa == "campana" or (e.etapa == "gobierno" and e.turno_actual == 1)
 
 
-static func _agregar_relleno(raiz: VBoxContainer, motor: MotorTurno, elegidos: Array, refrescar: Callable) -> void:
+static func _agregar_relleno(raiz: VBoxContainer, motor: MotorTurno, elegidos: Array, refrescar: Callable, auto: Dictionary = {}) -> void:
 	## PR-05: «Rellenar» completa solo los vacíos (nunca pisa lo escogido), explica por qué y se puede deshacer.
 	var previo: Array = []
 	var motivos := Tema.etiqueta("", 11, Tema.TEXTO_SUAVE)
@@ -30,6 +30,7 @@ static func _agregar_relleno(raiz: VBoxContainer, motor: MotorTurno, elegidos: A
 			motivos.text = "\n".join(nuevos.map(func(n: Dictionary) -> String: return String(n["motivo"])))
 			for n in nuevos:
 				elegidos.append(String(n["id"]))
+				auto[String(n["id"])] = true  # en el tablero se ven punteados: los puso el relleno, no tú
 			refrescar.call())
 		fila.add_child(b)
 	var deshacer := Tema.boton("Deshacer", Tema.OCEANO.lightened(0.14), Tema.TEXTO, 12, 44)
@@ -48,65 +49,115 @@ static func _agregar_relleno(raiz: VBoxContainer, motor: MotorTurno, elegidos: A
 
 
 static func crear(motor: MotorTurno, texto_boton: String, al_confirmar: Callable, al_error: Callable = Callable(), con_bloqueadas: bool = false) -> Control:
+	## Tablero de los 25 ministerios y baraja de candidatos (opción A elegida por el usuario el 27-nov-2026). Tocar un
+	## puesto muestra sus 3 candidatos lado a lado; tocar una carta anticipa su efecto y tocarla otra vez (o arrastrarla
+	## al puesto) la nombra. El relleno automático completa los vacíos sin pisar lo elegido y se ve punteado.
 	var tam := int(motor.catalogo_leyes["gabinete"]["tamano"])
 	var editable := puede_editar(motor)
 	var elegidos: Array = motor.estado.gabinete.duplicate()
+	var auto := {}  # candidatos puestos por el relleno automático (el gabinete inicial lo arma el relleno)
+	if editable:
+		for id in elegidos:
+			auto[String(id)] = true
+	var estado := {"slot": "", "previsto": ""}
 	var raiz := VBoxContainer.new()
 	raiz.add_theme_constant_override("separation", 8)
-	var resumen := Tema.etiqueta("", 12, Tema.TEXTO_SUAVE)
 	var contador := Tema.etiqueta("", 15, Tema.ORO, true)
+	var barra := FilasUI.chip_barra(0.0, Tema.ORO)
+	var resumen := Tema.etiqueta("", 11, Tema.TEXTO_SUAVE)
+	var reaccion := Tema.etiqueta("", 12, Tema.TEXTO, false, 600)
 	var boton := Tema.boton(texto_boton, Tema.ROJO, Tema.TEXTO, 15, 52)
-	var lista := FilasUI.col(6)
-	var botones := {}
-	var refrescar := func() -> void:
-		contador.text = "Gabinete: %d de %d ministros" % [elegidos.size(), tam]
-		resumen.text = "Elige un candidato por ministerio. Su estilo, su ejecución, su riesgo de escándalo y su afinidad con tu partido cambian tus semanas."
-		boton.disabled = elegidos.size() != tam
-		boton.visible = editable
-		for id in botones.keys():
-			var b: Button = botones[id]
-			var on := elegidos.has(id)
-			var fondo := Tema.ORO if on else Tema.PANEL
-			for e in ["normal", "hover", "pressed", "focus"]:
-				b.add_theme_stylebox_override(e, Tema.caja(fondo if e != "hover" else fondo.lightened(0.08), 14))
-			var v: VBoxContainer = b.get_child(0)
-			(v.get_child(0) as Label).add_theme_color_override("font_color", Tema.TINTA if on else Tema.TEXTO)
-			(v.get_child(1) as Label).add_theme_color_override("font_color", Tema.TINTA if on else Tema.TEXTO_SUAVE)
-			(v.get_child(2) as Label).add_theme_color_override("font_color", Tema.TINTA if on else Tema.ORO)
 	var por_cargo := {}  # ministerio -> candidatos (en el orden del catálogo)
 	for id in motor.catalogo_ministros.keys():
 		var slot := motor.gabinete.slot_de(String(id))
 		if not por_cargo.has(slot):
 			por_cargo[slot] = []
 		por_cargo[slot].append(String(id))
-	for slot in por_cargo.keys():
-		lista.add_child(Tema.etiqueta(String(motor.catalogo_ministros[por_cargo[slot][0]]["cartera"]), 12, Tema.ORO, true))
-		for id in por_cargo[slot]:
-			var m: Dictionary = motor.catalogo_ministros[id]
-			var estilo: String = {"tecnico": "técnico", "politico": "político", "comunicador": "comunicador", "negociador": "negociador"}.get(String(m.get("estilo", "")), "")
-			var stats := "%s · Ejecución +%d %% · Riesgo %d %% · Afinidad %d %%" % [estilo.capitalize(), roundi(float(m["bono_ejecucion"]) * 100.0), roundi(float(m["riesgo_escandalo"]) * 100.0), roundi(motor.gabinete.afinidad(id) * 100.0)]
-			var b := FilasUI.fila_boton([[m["alias"], 13, Tema.TEXTO, true], [String(m.get("rasgo", "")), 11, Tema.TEXTO_SUAVE], [stats, 10, Tema.ORO]], Tema.PANEL, 70.0)
-			botones[id] = b
-			b.pressed.connect(func() -> void:
+	var del_cargo := func(slot: String) -> String:
+		for id in elegidos:
+			if motor.gabinete.slot_de(String(id)) == slot:
+				return String(id)
+		return ""
+	var grilla := GridContainer.new()
+	grilla.columns = 5
+	grilla.add_theme_constant_override("h_separation", 6)
+	grilla.add_theme_constant_override("v_separation", 6)
+	var titulo_baraja := Tema.etiqueta("", 14, Tema.TEXTO, true)
+	var baraja := HBoxContainer.new()
+	baraja.add_theme_constant_override("separation", 6)
+	var puestos := {}
+	var acciones := {}  # el diccionario se captura por referencia: las lambdas se llaman entre sí a través de él
+	acciones["nombrar"] = func(id: String) -> void:
+		if not editable:
+			return
+		var slot := motor.gabinete.slot_de(id)
+		var antes := motor.gabinete.efecto_semanal_de(elegidos)
+		var actual: String = del_cargo.call(slot)
+		if actual != "":
+			elegidos.erase(actual)
+		elegidos.append(id)
+		auto.erase(id)
+		var despues := motor.gabinete.efecto_semanal_de(elegidos)
+		var dif := {}
+		for k in despues.keys() + antes.keys():
+			dif[k] = float(despues.get(k, 0.0)) - float(antes.get(k, 0.0))
+		var ef := TableroGabinete.texto_efecto(dif)
+		reaccion.text = "Nombraste a %s. %s" % [motor.catalogo_ministros[id]["alias"], ef if ef != "" else "El efecto semanal no cambia."]
+		estado["previsto"] = ""
+		Feedback.sonar("decision")
+		if Movimiento.activo() and puestos.has(slot):
+			Movimiento.latido(puestos[slot])  # el puesto late al nombrar (sin movimiento: nada)
+		acciones["refrescar"].call()
+	acciones["refrescar"] = func() -> void:
+		contador.text = "Gabinete: %d de %d ministros" % [elegidos.size(), tam]
+		barra.value = 100.0 * float(elegidos.size()) / float(tam)
+		var ef := TableroGabinete.texto_efecto(motor.gabinete.efecto_semanal_de(elegidos))
+		resumen.text = "Efecto semanal del equipo: %s" % (ef if ef != "" else "neutro")
+		boton.disabled = elegidos.size() != tam
+		boton.visible = editable
+		for slot in puestos.keys():
+			var actual: String = del_cargo.call(slot)
+			(puestos[slot] as TableroGabinete.Puesto).pintar("vacio" if actual == "" else ("auto" if auto.has(actual) else "elegido"), slot == estado["slot"])
+		for h in baraja.get_children():
+			h.queue_free()
+		var s_slot := String(estado["slot"])
+		titulo_baraja.text = String(motor.catalogo_ministros[por_cargo[s_slot][0]]["cartera"]) if por_cargo.has(s_slot) else ""
+		for id in por_cargo.get(s_slot, []):
+			var c := TableroGabinete.Candidato.new(motor.gabinete.ficha_candidato(id), elegidos.has(id), estado["previsto"] == id)
+			c.pressed.connect(func() -> void:
 				if not editable:
 					return
-				if elegidos.has(id):
-					elegidos.erase(id)  # vaciar el cargo
-				else:
-					for otro in por_cargo[slot]:  # un candidato por ministerio: reemplaza al anterior
-						elegidos.erase(otro)
-					if elegidos.size() < tam:
-						elegidos.append(id)
-				refrescar.call())
-			lista.add_child(b)
-	if con_bloqueadas:
-		var bloq := BloqueoCarta.bloqueadas(motor)
-		lista.add_child(Tema.etiqueta("Cartas bloqueadas con tu gabinete actual", 14, Tema.TEXTO, true))
-		for e in bloq.slice(0, 30):
-			var v := FilasUI.col(0)
-			v.add_child(Tema.etiqueta(String(e["carta"]["titulo"]), 12, Tema.TEXTO, false, 600))
-			v.add_child(Tema.etiqueta("Bloqueada: " + String(e["motivo"]), 11, FilasUI.ROJO_TEXTO))
-			lista.add_child(FilasUI.tarjeta(v, Tema.OCEANO.lightened(0.06)))
+				if estado["previsto"] == id:
+					acciones["nombrar"].call(id)  # segundo toque: nombra
+					return
+				estado["previsto"] = id
+				var prueba: Array = elegidos.filter(func(x: String) -> bool: return motor.gabinete.slot_de(x) != s_slot)
+				prueba.append(id)
+				var a0 := motor.gabinete.efecto_semanal_de(elegidos)
+				var a1 := motor.gabinete.efecto_semanal_de(prueba)
+				var dif := {}
+				for k in a1.keys() + a0.keys():
+					dif[k] = float(a1.get(k, 0.0)) - float(a0.get(k, 0.0))
+				var ef2 := TableroGabinete.texto_efecto(dif)
+				reaccion.text = "Si nombras a %s: %s. Tócala otra vez o arrástrala a su puesto." % [motor.catalogo_ministros[id]["alias"], ef2 if ef2 != "" else "el efecto semanal no cambia"]
+				acciones["refrescar"].call())
+			baraja.add_child(c)
+	for slot in por_cargo.keys():
+		var p := TableroGabinete.Puesto.new(String(slot), TableroGabinete.corto(String(slot), String(motor.catalogo_ministros[por_cargo[slot][0]]["cartera"])))
+		p.al_soltar = acciones["nombrar"]
+		p.pressed.connect(func() -> void:
+			estado["slot"] = String(slot)
+			estado["previsto"] = ""
+			reaccion.text = ""
+			acciones["refrescar"].call())
+		grilla.add_child(p)
+		puestos[slot] = p
+	for slot in por_cargo.keys():  # abre en el primer puesto vacío (o el primero)
+		if del_cargo.call(slot) == "":
+			estado["slot"] = String(slot)
+			break
+	if estado["slot"] == "" and not por_cargo.is_empty():
+		estado["slot"] = String(por_cargo.keys()[0])
 	boton.pressed.connect(func() -> void:
 		var r := motor.elegir_gabinete(elegidos)
 		if bool(r["ok"]):
@@ -114,12 +165,27 @@ static func crear(motor: MotorTurno, texto_boton: String, al_confirmar: Callable
 		elif al_error.is_valid():
 			al_error.call(Razones.texto(r)))
 	raiz.add_child(contador)
+	raiz.add_child(barra)
 	raiz.add_child(resumen)
+	raiz.add_child(titulo_baraja)  # la baraja del puesto elegido queda fija arriba: los candidatos siempre a la vista
+	raiz.add_child(baraja)
+	raiz.add_child(reaccion)
+	var contenido := FilasUI.col(8)
+	contenido.add_child(grilla)
+	contenido.add_child(Tema.etiqueta("Dorado: lo elegiste tú · azul: relleno automático. Toca un puesto para ver sus 3 candidatos.", 11, Tema.TEXTO_SUAVE))
 	if editable:
-		_agregar_relleno(raiz, motor, elegidos, refrescar)
-	if not editable:
-		raiz.add_child(Tema.etiqueta("El gabinete quedó cerrado: solo se cambia en campaña o en la primera semana de gobierno.", 11, Tema.ORO))
-	raiz.add_child(FilasUI.scroll(lista))
+		_agregar_relleno(contenido, motor, elegidos, acciones["refrescar"], auto)
+	else:
+		contenido.add_child(Tema.etiqueta("El gabinete quedó cerrado: solo se cambia en campaña o en la primera semana de gobierno.", 11, Tema.ORO))
+	if con_bloqueadas:
+		var bloq := BloqueoCarta.bloqueadas(motor)
+		contenido.add_child(Tema.etiqueta("Cartas bloqueadas con tu gabinete actual", 14, Tema.TEXTO, true))
+		for e in bloq.slice(0, 30):
+			var v := FilasUI.col(0)
+			v.add_child(Tema.etiqueta(String(e["carta"]["titulo"]), 12, Tema.TEXTO, false, 600))
+			v.add_child(Tema.etiqueta("Bloqueada: " + String(e["motivo"]), 11, FilasUI.ROJO_TEXTO))
+			contenido.add_child(FilasUI.tarjeta(v, Tema.OCEANO.lightened(0.06)))
+	raiz.add_child(FilasUI.scroll(contenido))
 	raiz.add_child(boton)
-	refrescar.call()
+	acciones["refrescar"].call()
 	return raiz
