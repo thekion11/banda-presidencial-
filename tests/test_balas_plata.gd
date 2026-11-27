@@ -100,17 +100,47 @@ func _init() -> void:
 	_check(String(m6.balas.usar("bala_insistencia")["razon"]) == "condicion", "insistencia sin objeción de la Contraloría")
 	m6.estado.eventos_ocurridos["evt_contraloria_objeta"] = m6.estado.turno_actual
 	_check(bool(m6.balas.baul()["items"][5]["disponible"]), "insistencia disponible con la Contraloría y ministros leales")
-	var slot := m6.gabinete.slot_de(String(m6.estado.gabinete[0]))
-	m6.estado.decisiones["evt_pet_ignorada"] = 0
-	var rel_antes := m6.eventos.relacion_actor(slot)
-	for evt in m6.catalogo_eventos:  # ignorar dos veces las peticiones de ese ministerio le quita la firma
-		if evt.has("actor") and String(evt["actor"]["id"]) == slot and evt.has("opciones"):
-			for k in range((evt["opciones"] as Array).size()):
-				if int(evt["opciones"][k].get("relacion", 0)) < 0:
-					m6.estado.decisiones[String(evt["id"])] = k
+	m6.estado.decisiones["evt_min_hacienda"] = 2  # ignorar la petición de Hacienda deja su relación en 40: bajo el mínimo para firmar
 	var sin_firma := m6.balas.usar("bala_insistencia")
-	if m6.eventos.relacion_actor(slot) < rel_antes:
-		_check(not bool(sin_firma["ok"]) and String(sin_firma["condicion"]) == "ministros_firman", "un ministro sin lealtad no firma la insistencia")
+	_check(not bool(sin_firma["ok"]) and String(sin_firma["condicion"]) == "ministros_firman" and String(sin_firma["mensaje"]).contains("("), "un ministro sin lealtad no firma y se nombra a quién falta")
+	m6.estado.decisiones["evt_min_hacienda"] = 1  # negociar la deja en 50: firma
+	var con_firma := m6.balas.usar("bala_insistencia")
+	_check(bool(con_firma["ok"]), "con todos los ministros leales la insistencia se puede usar")
+	# veto: exige oposición mayoritaria en alguna cámara; excepción: catástrofe reciente o riesgo de ejecución alto
+	var m9 := _gobierno(datos, 39)
+	m9.estado.indicadores["capital"] = 90.0
+	_check(String(m9.balas.usar("bala_veto")["razon"]) == "condicion", "veto sin oposición mayoritaria")
+	m9.estado.partido["escanos_propios"] = 2
+	m9.estado.indicadores["cohesion"] = 5.0
+	m9.estado.indicadores["capital"] = 3.0
+	var veto_cond: Dictionary = m9.balas.baul()["items"][1]
+	_check(String(veto_cond["razon"]) != "condicion", "con la oposición mayoritaria el veto deja de fallar por su condición (%s)" % String(veto_cond["razon"]))
+	var m10 := _gobierno(datos, 40)
+	m10.estado.indicadores["capital"] = 90.0
+	_check(String(m10.balas.usar("bala_excepcion")["razon"]) == "condicion", "excepción sin catástrofe")
+	m10.estado.eventos_ocurridos["evt_ext_terremoto"] = m10.estado.turno_actual
+	_check(bool(m10.balas.baul()["items"][4]["disponible"]), "excepción disponible tras un terremoto reciente")
+	m10.estado.eventos_ocurridos["evt_ext_terremoto"] = m10.estado.turno_actual - int(cfg["semanas_reciente"]) - 1
+	_check(not bool(m10.balas.baul()["items"][4]["disponible"]), "la catástrofe deja de valer pasada la ventana")
+	m10.estado.indicadores["riesgo_ejecucion"] = 70.0
+	_check(bool(m10.balas.baul()["items"][4]["disponible"]), "excepción disponible con la ejecución en colapso")
+	# riesgo: sube cuando el indicador que lo gobierna empeora
+	var def_pleb: Dictionary = m10.balas.definicion("bala_plebiscito")
+	m10.estado.indicadores["aprobacion"] = 80.0
+	var r_alta := m10.balas.riesgo_estimado(def_pleb)
+	m10.estado.indicadores["aprobacion"] = 20.0
+	_check(m10.balas.riesgo_estimado(def_pleb) > r_alta, "el plebiscito es más arriesgado con poca aprobación")
+	# el resultado de una bala que sale mal sigue las reglas de su definición (DFL frenado: no se ejecuta ni se queda en el Congreso)
+	var perdidos := 0
+	for sd in range(200, 230):
+		var mm := _gobierno(datos, sd, 60)
+		mm.estado.indicadores["capital"] = 90.0
+		_proyecto(mm, "ley_simple", 30)
+		var rr := mm.balas.usar("bala_dfl")
+		if bool(rr["ok"]):
+			_check(mm.estado.proyectos_ley.is_empty(), "el DFL siempre saca el proyecto del Congreso")
+			perdidos += 1 if bool(rr["salio_mal"]) else 0
+	_check(perdidos > 0 and perdidos < 30, "el DFL sale mal a veces, no siempre (%d de 30)" % perdidos)
 	# capital insuficiente: versión reducida (nunca un no seco)
 	var m7 := _gobierno(datos, 37, 60)
 	m7.estado.indicadores["cohesion"] = 80.0

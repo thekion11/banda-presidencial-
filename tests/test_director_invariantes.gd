@@ -52,6 +52,8 @@ func _init() -> void:
 			var alea := 0
 			for ev in m.ultimos_eventos:
 				var def: Dictionary = tipo.get(String(ev["id"]), {})
+				if not def.is_empty() and String(def["tipo"]) == "programado":
+					ult_alea = ahora  # un evento programado también rompe el silencio (el director lo registra y el jugador lo ve)
 				if def.is_empty() or String(def["tipo"]) != "aleatorio_semilla" or cadena.has(String(ev["id"])):
 					continue
 				alea += 1

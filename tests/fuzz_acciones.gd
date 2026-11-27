@@ -31,7 +31,7 @@ func _invariantes(m: MotorTurno, ctx: String) -> void:
 func _accion_aleatoria(m: MotorTurno, rng: RandomNumberGenerator, datos: Dictionary) -> void:
 	var e := m.estado
 	var basura := ["", "xx", "no_existe", "-1", " "]
-	match rng.randi_range(0, 13):
+	match rng.randi_range(0, 14):
 		0, 1, 2:
 			m.jugar_carta(rng.randi_range(-2, 7), "", "")
 		3:
@@ -88,6 +88,10 @@ func _accion_aleatoria(m: MotorTurno, rng: RandomNumberGenerator, datos: Diction
 				m.aprobar_propuesta("no_existe", "A")
 		13:
 			m.impulsar_proyecto(String(basura[rng.randi_range(0, 4)]))
+		14:  # balas de plata (PR-17): ids válidos y basura, objetivos fuera de rango, versión reducida al azar
+			var cat: Array = m.catalogo_leyes["balas_plata"]["catalogo"]
+			var bid := String(cat[rng.randi_range(0, cat.size() - 1)]["id"]) if rng.randf() < 0.85 else String(basura[rng.randi_range(0, 4)])
+			m.balas.usar(bid, rng.randi_range(-3, 4), rng.randf() < 0.5)
 
 
 func _init() -> void:
