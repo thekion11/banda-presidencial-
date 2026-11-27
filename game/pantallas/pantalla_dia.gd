@@ -30,6 +30,7 @@ var _zona_panel: Control
 var _capa: Control
 var _toast: Toast
 var _cola_eventos: Array[Dictionary] = []
+var _panel_actual := "mapa"  # pestaña abierta: se reconstruye al terminar la semana para no mostrar datos viejos
 
 
 func _ready() -> void:
@@ -166,7 +167,7 @@ func _avanzar() -> void:
 		return
 	_confirmar_fin = false
 	_terminar_turno()
-	if not urnas and int(ah["se_guardan"]) > 0:
+	if not urnas and int(ah["se_guardan"]) > 0 and not Movimiento.activo():  # con animaciones lo dice el telón
 		_avisar("Se guardan %d %s para la próxima semana." % [int(ah["se_guardan"]), "movimiento" if int(ah["se_guardan"]) == 1 else "movimientos"])
 
 
@@ -258,8 +259,11 @@ func _terminar_turno() -> void:
 		return
 	var antes := [String(_r["dia"].text), String(_r["fecha"].text)]
 	var ind_antes := est.indicadores.duplicate()
+	var guardados := int(motor.movimientos.ahorro_movimientos()["se_guardan"])
 	var nuevos := motor.terminar_turno()
 	accion_hecha.emit()
+	if _panel_actual != "mapa":
+		_abrir_panel(_panel_actual)  # la pestaña abierta (Congreso, Comité…) se rehace con el estado de la semana nueva
 	if est.eleccion_pendiente(sem):
 		_avisar("Termina la campaña: toca el botón de avanzar para ir a las urnas.")
 	elif not MotorTurno.ETAPAS_JUEGO.has(est.etapa):
@@ -274,7 +278,8 @@ func _terminar_turno() -> void:
 		_avisar(String(corte["texto"]))
 	_cola_eventos.append_array(nuevos)
 	_refrescar()
-	TelonSemana.mostrar(_capa, antes, [String(_r["dia"].text), String(_r["fecha"].text)], ind_antes, est.indicadores, est.etapa == "oposicion", _siguiente_evento, est.encuestas if est.etapa in ["campana", "oposicion"] else [], datos["regiones"], sem, motor.motivos_semana())
+	TelonSemana.mostrar(_capa, antes, [String(_r["dia"].text), String(_r["fecha"].text)], ind_antes, est.indicadores, est.etapa == "oposicion", _siguiente_evento, est.encuestas if est.etapa in ["campana", "oposicion"] else [], datos["regiones"], sem, motor.motivos_semana(),
+			"Guardaste %d %s: esta semana tienes %d." % [guardados, "movimiento" if guardados == 1 else "movimientos", est.pa_actual] if guardados > 0 else "")
 
 
 func _resolver_eleccion() -> void:
@@ -338,6 +343,7 @@ func _poner_nav(nacion: bool, activo: String = "mapa") -> void:
 
 
 func _abrir_panel(cual: String) -> void:
+	_panel_actual = cual
 	_poner_nav(cual == "nacion", cual)
 	for h in _zona_panel.get_children():
 		h.queue_free()
@@ -363,7 +369,7 @@ func _abrir_panel(cual: String) -> void:
 					_avisar(msg)
 					accion_hecha.emit()
 					_refrescar()
-					_abrir_panel("congreso"))
+					_abrir_panel("congreso"), String(motor.estado.mano[_sel]["id"]) if _mano_tocada and _sel < motor.estado.mano.size() else "")
 		_:
 			contenido = PanelGestion.crear(motor, _avisar, func() -> void:
 					accion_hecha.emit()

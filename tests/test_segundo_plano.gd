@@ -54,6 +54,11 @@ func _correr() -> void:
 	await create_timer(0.5).timeout
 	_check(not paused and mapa._t > t1 and valor[0] > 0.9, "al volver todo sigue (mapa %.3f, tween %.2f)" % [mapa._t, valor[0]])
 	_check(Musica._a == null or not Musica._a.stream_paused, "al volver la música sigue")
+	# foco perdido sin ir a segundo plano (llamada encima, cortina de notificaciones): la música se atenúa y vuelve
+	main.propagate_notification(Node.NOTIFICATION_APPLICATION_FOCUS_OUT)
+	_check(Musica.atenuada and not paused, "sin foco la música baja, pero el juego no se pausa")
+	main.propagate_notification(Node.NOTIFICATION_APPLICATION_FOCUS_IN)
+	_check(not Musica.atenuada, "al recuperar el foco la música vuelve a su volumen")
 	Movimiento.forzado = -1
 	main.queue_free()
 	for r in [Tutorial.ruta, "user://guardado.json", "user://guardado.bak", "user://guardado.cache"]:

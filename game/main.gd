@@ -368,3 +368,5 @@ func _notification(what: int) -> void:
 		var fondo := what == NOTIFICATION_APPLICATION_PAUSED  # ni animaciones, ni _process, ni música (batería)
 		get_tree().paused = fondo
 		Musica.pausar(fondo)
+	if what == NOTIFICATION_APPLICATION_FOCUS_OUT or what == NOTIFICATION_APPLICATION_FOCUS_IN:  # llamada o cortina encima: la música baja
+		Musica.atenuar(what == NOTIFICATION_APPLICATION_FOCUS_OUT)
