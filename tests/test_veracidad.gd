@@ -115,6 +115,10 @@ func _correr() -> void:
 	dia._abrir_panel("congreso")
 	await _cuadros(2)
 	var ea := motor.agenda.estado_agenda()
+	var ids_cat := motor.agenda.agenda_catalogo().map(func(e: Dictionary) -> String: return String(e["carta_id"]))
+	var ley_mano := motor.estado.mano.filter(func(c: Dictionary) -> bool: return ids_cat.has(String(c["id"])))
+	var chip_mano: Array = dia._zona_panel.find_children("*", "Button", true, false).filter(func(b: Button) -> bool: return b.text == "En tu mano")
+	_check(chip_mano.size() == (1 if bool(ea["puede_presentar"]) and not ley_mano.is_empty() else 0), "agenda: el chip «En tu mano» aparece solo si hay leyes presentables en la mano")
 	_check(_hay(dia._zona_panel, "Agenda del gobierno · %d de %d en trámite" % [int(ea["en_tramite"]), int(ea["maximo"])]), "agenda: el contador coincide con el motor")
 	var cat := motor.agenda.agenda_catalogo()
 	if bool(ea["puede_presentar"]) and not cat.is_empty():

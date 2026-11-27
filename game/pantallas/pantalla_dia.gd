@@ -369,7 +369,7 @@ func _abrir_panel(cual: String) -> void:
 					_avisar(msg)
 					accion_hecha.emit()
 					_refrescar()
-					_abrir_panel("congreso"))
+					_abrir_panel("congreso"), String(motor.estado.mano[_sel]["id"]) if _mano_tocada and _sel < motor.estado.mano.size() else "")
 		_:
 			contenido = PanelGestion.crear(motor, _avisar, func() -> void:
 					accion_hecha.emit()
