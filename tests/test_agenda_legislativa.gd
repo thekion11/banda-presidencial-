@@ -144,6 +144,7 @@ func _init() -> void:
 	var fin := {}
 	for i in range(40):
 		m.terminar_turno()
+		est.semanas_en_crisis = 0  # esta prueba mide los plazos de las urgencias, no la caída del gobierno (con el piso ideológico un gobierno pasivo cae antes de 30 semanas)
 		for f in m.votaciones_semana:
 			if bool(f.get("agenda", false)):
 				fin[String(f["carta_id"])] = i + 1
