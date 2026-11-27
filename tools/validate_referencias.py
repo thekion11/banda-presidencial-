@@ -112,8 +112,51 @@ def validar_referencias(d: dict) -> None:
         raise ValueError("coalición: los escaños de los 15 partidos ficticios superan el doble del Senado (revisa las cifras)")
     if len(ministros) != len(d["ministros"]):
         raise ValueError("ministros: ids repetidos")
+    validar_balas(d, eventos)
     validar_numeros(d)
     print(f"[INFO] Referencias cruzadas: {len(cartas)} cartas, {len(eventos)} eventos, {len(metas)} metas, {len(ministros)} ministros, {len(asesores)} asesores")
+
+
+def validar_balas(d: dict, eventos: set) -> None:
+    """leyes.json › balas_plata (PR-17): ids únicos, condiciones y acciones conocidas, eventos y tipos de ley existentes, probabilidades y costos válidos."""
+    b = d["leyes"]["balas_plata"]
+    if not (1 <= b["usos_iniciales"] <= b["usos_max"] <= len(b["catalogo"])):
+        raise ValueError("balas_plata: usos_iniciales/usos_max inválidos para el catálogo")
+    if not 0 < b["ratio_reducida_min"] <= 1:
+        raise ValueError("balas_plata: ratio_reducida_min debe estar entre 0 y 1")
+    tipos_ley = {t["id"] for t in d["leyes"]["tipos_ley"]}
+    ids = set()
+    for x in b["catalogo"]:
+        ctx = f"balas_plata[{x['id']}]"
+        if x["id"] in ids:
+            raise ValueError(f"{ctx}: id repetido")
+        ids.add(x["id"])
+        if x["accion"] not in ("nada", "adelantar_votacion", "saltar_congreso", "anular_pendiente_negativo"):
+            raise ValueError(f"{ctx}: acción desconocida '{x['accion']}'")
+        if x["costo_capital"] <= 0:
+            raise ValueError(f"{ctx}: costo_capital debe ser positivo")
+        for t in x.get("tipos_vedados", []):
+            if t not in tipos_ley:
+                raise ValueError(f"{ctx}: tipo de ley vedado desconocido '{t}'")
+        r = x["riesgo"]
+        if not (0 < r["min"] <= r["max"] < 1) or not 0 < r["prob_base"] < 1:
+            raise ValueError(f"{ctx}: probabilidades de riesgo fuera de (0, 1)")
+        for ef in x["efectos"] + r["efectos"]:
+            if ef["ind"] not in ("aprobacion", "capital", "cohesion", "fiscal", "riesgo_ejecucion", "viviendas_anio"):
+                raise ValueError(f"{ctx}: indicador desconocido '{ef['ind']}'")
+
+        def revisar(cond: dict) -> None:
+            if cond["tipo"] not in ("proyecto_en_tramite", "anio_min", "indicador_min", "indicador_max", "evento_reciente", "oposicion_mayoritaria", "ministros_firman", "alguna"):
+                raise ValueError(f"{ctx}: condición desconocida '{cond['tipo']}'")
+            for e in cond.get("ids", []):
+                if e not in eventos:
+                    raise ValueError(f"{ctx}: evento inexistente '{e}'")
+            for c2 in cond.get("condiciones", []):
+                revisar(c2)
+        for cond in x["requiere"]:
+            revisar(cond)
+            if not cond.get("falla") or not cond.get("alternativa"):
+                raise ValueError(f"{ctx}: toda condición debe explicar la falla y ofrecer una alternativa (nunca un «no» seco)")
 
 
 def validar_numeros(d: dict) -> None:

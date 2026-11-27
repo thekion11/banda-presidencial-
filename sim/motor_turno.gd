@@ -23,6 +23,7 @@ var mazo := MotorMazo.new(self)
 var equipo := MotorEquipo.new(self)
 var coalicion := MotorCoalicion.new(self)
 var movimientos := MotorMovimientos.new(self)
+var balas := MotorBalas.new(self)
 var eventos := MotorEventos.new(self)
 var ultimos_eventos: Array[Dictionary] = []
 var votaciones_semana: Array[Dictionary] = []  # votaciones de leyes resueltas al cerrar el turno (para la UI)

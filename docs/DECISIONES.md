@@ -42,7 +42,7 @@ Origen: **U** = idea u orden del usuario · **C** = propuesta o duda de Claude a
 | PR-14 | U + C | Movimientos internos más visibles. | Sin cambios (ya muestran aviso por acción); vincular a personas queda con PR-24 | — |
 | PR-15 | U + C | Apariencia del personaje. | Parcial: color del emblema. Falta: retratos modulares (arte, U7) | `0706883` |
 | PR-16 | U + C | Habilidades del personaje. | Hecho (4 habilidades) | `0706883` |
-| PR-17 | U + C | «Balas de plata»: recursos extraordinarios de un solo uso. | Hecho (5 cartas). Falta: reglas finas y mazo aparte | `6b22b5c` |
+| PR-17 | U + C | «Balas de plata»: recursos extraordinarios de un solo uso. | Hecho: reserva aparte de la mano (7 tipos, §BM) | §BM |
 | PR-18 a PR-23 | U + C | Presupuesto anual, elecciones, comisiones, Contraloría, instituciones autónomas y medios. | Hecho como eventos con decisión (19). Falta: pantallas propias y mini-juego de presupuesto | `0706883` |
 | PR-24 | C | Marco de actores único. | Primera versión: relación derivada de las decisiones. Falta: consecuencias | `d910fa8` |
 
@@ -427,3 +427,13 @@ Lección de proceso: `test_sectra` armaba el guardado a mano sin `version` y dej
 
 ## BL. La elección toma en cuenta la población (27-nov-2026, petición del usuario vía la coordinadora)
 - Texto: «Las elecciones deben tomar en cuenta la población». Implementado en `sim/` (`VotoRegional`, `estado.ultima_eleccion`, peso en las encuestas regionales); sin cambios de balance ni de oros (el voto nacional ya era el promedio ponderado por población). Detalle y propuestas D23/D24: `docs/ELECCION_POBLACION.md`.
+
+
+## BM. Balas de plata utilizables: reserva aparte de la mano (27-nov-2026, pedido del usuario tras jugar en su teléfono)
+- **Texto literal:** «falta poder usar las balas de plata, poder darle presupuesto extra a los ministros para qué hagan sus proyectos con prioridad en nuestras propuestas pero tienen autonomía». Autorizado por el usuario; la segunda mitad (presupuesto extra a ministros con autonomía) es el encargo B de la misma sesión y se anota en su propia sección.
+- **Por qué no se podían usar:** las 5 balas eran cartas de `cartas.json` barajadas con ~1.960 cartas, con mano de 5 y filtros de gabinete: casi nunca llegaban a la mano y la interfaz no tenía dónde ofrecerlas.
+- **Qué se hizo (`sim/motor_balas.gd`, `motor.balas`):** reserva aparte (7 tipos: urgencia, veto, DFL, plebiscito, excepción, insistencia ante la Contraloría y nombramiento de autoridad autónoma), usable a voluntad, sin movimientos y sin depender de la mano. Cada tipo se usa una vez por mandato; hay 4 usos por mandato (3 al empezar y el resto desde el año 3), con enfriamiento entre usos. Cuestan capital político, tienen condiciones por tipo (proyecto en trámite; el DFL excluye las materias vedadas y exige el año 2; el veto exige oposición mayoritaria; la insistencia exige un evento reciente de la Contraloría y la firma de todos los ministros; la excepción exige una catástrofe reciente o riesgo de ejecución alto; el plebiscito y el nombramiento exigen el año 2) y un riesgo propio (el plebiscito se puede perder). El corrector nunca dice «no» seco: toda negativa trae mensaje y alternativa; si falta capital ofrece una versión reducida.
+- **Datos que se descongelan (autorizados, justificados):** `data/leyes.json › balas_plata` (catálogo, topes, costos y riesgos: ningún número vive en el código) y la salida de `data/cartas.json` de las 5 cartas `bala_*` (ya no circulan en el mazo). Cambia la huella de datos: los guardados de los testers se descartan, como en todo cambio de `data/`.
+- **Guardado:** entrada nueva `bala` (id, objetivo, reducida); `ValidarGuardado.VERSION` 3; el estado `balas` entra a la huella. Salida de solo lectura para la interfaz: `motor.balas.baul()`.
+- **Pruebas:** `tests/test_balas_plata.gd`, validación en `tools/validate_referencias.py` con casos rotos en `tools/test_validate.py`, medición de dominancia en `tests/informe_balas.gd`.
+

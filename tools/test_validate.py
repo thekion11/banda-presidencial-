@@ -72,6 +72,18 @@ def rotos():
     @f("valor no finito", "no finito")
     def _(d): d["cartas"][0]["efectos"] = [{"ind": "fiscal", "delta": float("inf")}]
 
+    @f("bala de plata con evento inexistente", "evento inexistente")
+    def _(d): d["leyes"]["balas_plata"]["catalogo"][5]["requiere"][0]["ids"] = ["evt_fantasma"]
+
+    @f("bala de plata con tipo de ley vedado desconocido", "tipo de ley vedado desconocido")
+    def _(d): d["leyes"]["balas_plata"]["catalogo"][2]["tipos_vedados"] = ["ley_fantasma"]
+
+    @f("bala de plata sin alternativa", "alternativa")
+    def _(d): d["leyes"]["balas_plata"]["catalogo"][0]["requiere"][0]["alternativa"] = ""
+
+    @f("bala de plata con riesgo imposible", "probabilidades de riesgo")
+    def _(d): d["leyes"]["balas_plata"]["catalogo"][1]["riesgo"]["max"] = 1.0
+
     @f("población regional no positiva", "población no positiva")
     def _(d): d["regiones"][0]["poblacion_miles"] = 0
 

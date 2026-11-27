@@ -79,6 +79,17 @@
 - `static vale_para(d: Dictionary, huella_datos: String, sha_guardado: String) -> bool` — true si la instantánea es completa y coincide con la huella de datos y el SHA del guardado actuales.
 - `static restaurar(datos: Dictionary, semilla: int, d: Dictionary) -> MotorTurno` — Mismo motor que daría reproducir el historial, sin simularlo.
 
+## `MotorBalas` (`sim/motor_balas.gd`)
+
+- `definicion(id: String) -> Dictionary` — Definición de una bala del catálogo; {} si no existe.
+- `usos_habilitados() -> int` — Balas que se pueden haber usado hasta ahora: las iniciales, y todo el cupo desde el año `anio_uso_extra`.
+- `usos_restantes() -> int` — Balas que aún puedes usar ahora (habilitadas menos usadas).
+- `semanas_de_espera() -> int` — Semanas que faltan para poder usar otra bala (0 si no hay enfriamiento).
+- `objetivos(def: Dictionary) -> Array[Dictionary]` — Proyectos de ley en trámite sobre los que la bala puede actuar ({idx, carta_id, titulo, tipo_ley, dias}); vacío si la bala no necesita objetivo.
+- `riesgo_estimado(def: Dictionary) -> float` — Probabilidad (0 a 1) de que la bala salga mal ahora: base + peso x (centro - indicador), acotada.
+- `baul() -> Dictionary` — Solo lectura para la interfaz: reserva, usos, enfriamiento y, por bala, costo, riesgo, condición cumplida o no y por qué.
+- `usar(id: String, objetivo: int = -1, reducida: bool = false) -> Dictionary` — Usa una bala de la reserva. objetivo: índice en estado.proyectos_ley (-1 = el proyecto más lejano de votarse). reducida: acepta la versión con menos
+
 ## `MotorCartas` (`sim/motor_cartas.gd`)
 
 - `costo_carta(carta: Dictionary, ministro_id: String = "") -> int` — Costo en movimientos de una carta, con el descuento del ministro y los bonos del gabinete y los asesores.

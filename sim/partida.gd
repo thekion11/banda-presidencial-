@@ -73,6 +73,8 @@ static func reproducir(datos: Dictionary, guardado: Dictionary) -> MotorTurno:
 					motor.iniciar_turno()
 			"decision":
 				motor.eventos.decidir(String(e["evento"]), int(e["idx"]))
+			"bala":
+				motor.balas.usar(String(e["id"]), int(e["objetivo"]), bool(e["reducida"]))
 			"cerrar":
 				motor.terminar_turno()
 			"eleccion":

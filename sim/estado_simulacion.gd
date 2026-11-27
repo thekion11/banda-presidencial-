@@ -39,6 +39,7 @@ var encuestas: Array[Dictionary] = []  # encuestas semanales de campaña y oposi
 var apoyo_coalicion: Dictionary = {"senado": 0, "camara": 0}  # escaños aliados que votan con el gobierno
 var delegadas_turno: int = 0  # cartas delegadas en el turno (máximo en leyes.json › delegacion)
 var internos_actual: int = 0  # movimientos internos disponibles en el turno (solo gobierno)
+var balas: Dictionary = {}  # balas de plata usadas: {usadas: {id: [ciclo, turno]}} (sim/motor_balas.gd)
 
 var mazo: Array[String] = []
 var descarte: Array[String] = []
@@ -95,6 +96,7 @@ func configurar(p_semilla: int, p_dias_turno: int = 7, p_leyes: Dictionary = {})
 	encuestas.clear()
 	delegadas_turno = 0
 	internos_actual = 0
+	balas = {}
 	aprobacion_regional.clear()
 	aprobacion_base.clear()
 	promesas_campana.clear()

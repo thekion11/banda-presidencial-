@@ -4,6 +4,13 @@ extends RefCounted
 
 const TEXTOS := {
 	"solo_en_gobierno": "Los movimientos internos solo existen en gobierno.",
+	"ya_usada": "Esa bala de plata ya se usó en este mandato: elige otra de la reserva.",
+	"sin_usos": "No te quedan balas de plata por ahora: espera al año 3 o guarda las que tengas para lo que importa.",
+	"enfriamiento": "Usaste una bala de plata hace poco: espera unas semanas antes de usar otra.",
+	"condicion": "Aún no se cumplen las condiciones de esa bala de plata: revisa qué falta y vuelve cuando se cumpla.",
+	"objetivo_invalido": "Ese proyecto no sirve para esta bala: elige otro de la lista.",
+	"capital_insuficiente": "No tienes capital político suficiente: recupéralo o usa la versión reducida.",
+	"bala_desconocida": "Esa bala no existe: elige una de la reserva.",
 	"movimientos_insuficientes": "No te quedan movimientos internos este turno; se renuevan al empezar la próxima semana.",
 	"sin_efecto": "Ese movimiento no cambiaría nada ahora.",
 	"sector_sin_ministro": "Necesitas un ministro de ese sector en tu gabinete.",
