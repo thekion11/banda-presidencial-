@@ -8,6 +8,8 @@ var m: MotorTurno:
 	get:
 		return _ref.get_ref() as MotorTurno
 var _lean: Dictionary = {}  # id de región -> inclinación ilustrativa -1..1 (depende solo de la semilla)
+var _clave: Array = []  # entradas del último cálculo; si no cambian, se reutiliza el resultado (solo es una caché: no cambia ningún valor)
+var _cache: Dictionary = {}
 
 
 func _init(p_motor: MotorTurno) -> void:
@@ -39,7 +41,20 @@ func _fuerza_coalicion() -> float:
 
 
 func pisos() -> Dictionary:
-	## Piso de aprobación y de voto por región (id -> puntos 0..100); sin partido o sin regiones, todos 0.
+	## Piso de aprobación y de voto por región (id -> puntos 0..100); sin partido o sin regiones, todos 0. El diccionario es de solo lectura (se reutiliza mientras no cambien sus entradas).
+	var rg := m.regiones
+	var est := m.estado
+	var p0 := est.partido
+	var clave := [_fuerza_coalicion(), p0.get("eje_eco", 0.0), p0.get("eje_inst", 0.0), p0.get("escanos_propios", 0), p0.get("region_bastion", ""), rg.pesos.size(), est.semilla]
+	if clave == _clave:
+		return _cache
+	var res := _calcular()
+	_clave = clave
+	_cache = res
+	return res
+
+
+func _calcular() -> Dictionary:
 	var res := {}
 	var rg := m.regiones
 	var est := m.estado
