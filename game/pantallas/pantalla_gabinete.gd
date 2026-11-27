@@ -15,7 +15,7 @@ func _ready() -> void:
 	m.set_anchors_preset(Control.PRESET_FULL_RECT)
 	for lado in ["left", "right"]:
 		m.add_theme_constant_override("margin_" + lado, 16)
-	m.add_theme_constant_override("margin_top", 28)
+	m.add_theme_constant_override("margin_top", roundi(maxf(28.0, Tema.margen_superior())))  # muesca o cámara
 	m.add_theme_constant_override("margin_bottom", 53)  # el botón principal queda donde el de la fundación del partido
 	add_child(m)
 	var v := FilasUI.col(8)

@@ -26,6 +26,7 @@ const TAG_WGHT := 2003265652  # etiqueta OpenType "wght"
 static var _fuente_titulo: FontVariation
 static var _fuentes_texto: Dictionary = {}
 static var _shader_imagen: Shader
+static var inset_prueba := Vector2(-1.0, -1.0)  # pruebas: zona segura simulada (arriba, abajo) en unidades lógicas; < 0 = la real
 
 
 static func fuente_titulo() -> Font:
@@ -254,20 +255,46 @@ static func miles(n: int) -> String:
 static func margen_superior(minimo: float = 12.0) -> float:
 	## Aire arriba de la pantalla: lo que pida la zona segura del teléfono (cámara, muesca) más 4 px, o `minimo` si no hay
 	## nada que esquivar (modo inmersivo sin muesca, escritorio, pruebas). Antes era un margen fijo de 30 px.
+	if inset_prueba.x >= 0.0:
+		return maxf(minimo, inset_prueba.x + 4.0)
+	var r := _insets_reales()
+	return minimo if r.x < 0.0 else maxf(minimo, r.x + 4.0)
+
+
+static func margen_inferior(minimo: float = 0.0) -> float:
+	## Franja de abajo que tapa el sistema (barra de gestos o de navegación de Android, 24–48 px): Main sube el borde
+	## inferior de cada pantalla en esa medida, así «Terminar semana», el botón de votación y los chips nunca quedan debajo.
+	if inset_prueba.y >= 0.0:
+		return maxf(minimo, inset_prueba.y)
+	return maxf(minimo, _insets_reales().y)
+
+
+static func _insets_reales() -> Vector2:
+	## (arriba, abajo) de la zona segura del teléfono en unidades lógicas; (-1, -1) si no hay datos (escritorio, headless).
 	var arbol := Engine.get_main_loop() as SceneTree
 	var seguro := DisplayServer.get_display_safe_area()
 	var ventana := DisplayServer.window_get_size()
 	if arbol == null or seguro.size.y <= 0 or ventana.y <= 0:
-		return minimo
+		return Vector2(-1.0, -1.0)
 	var por_px := arbol.root.get_visible_rect().size.y / float(ventana.y)  # píxeles del teléfono -> unidades lógicas
-	return maxf(minimo, float(seguro.position.y) * por_px + 4.0)
+	var abajo := float(ventana.y - (seguro.position.y + seguro.size.y))
+	return Vector2(float(seguro.position.y) * por_px, maxf(0.0, abajo * por_px))
 
 
 static func pantalla_baja() -> bool:
 	## Teléfono bajo: con ancho lógico 390 (keep_width), un 360×640 queda en 390×693. Las pantallas compactan alturas
-	## fijas (mano, Corrector, hemiciclo, brújula) para que todo quepa y el botón principal quede en pantalla.
+	## fijas (mano, Corrector, hemiciclo, brújula) para que todo quepa y el botón principal quede en pantalla. Cuenta el
+	## alto útil (sin muesca ni barra de gestos), no el de la pantalla.
+	return alto_util() < 760.0
+
+
+static func alto_util() -> float:
+	## Alto lógico que de verdad queda para el juego: la pantalla menos la barra de gestos de abajo y lo que la muesca
+	## agrega arriba sobre el margen mínimo. Un 390×844 con muesca y barra de 48 px se compacta como un teléfono bajo.
 	var arbol := Engine.get_main_loop() as SceneTree
-	return arbol != null and arbol.root.get_visible_rect().size.y < 760.0
+	if arbol == null:
+		return ALTO
+	return arbol.root.get_visible_rect().size.y - margen_inferior() - maxf(0.0, margen_superior() - 12.0)
 
 
 static func caja(color: Color, radio: int = 14, borde: Color = Color(0, 0, 0, 0), grosor: int = 0) -> StyleBoxFlat:

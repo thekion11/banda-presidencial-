@@ -52,7 +52,7 @@ static func crear(motor: MotorTurno, regiones: Array, regional: Dictionary, res:
 	m.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	m.add_theme_constant_override("margin_left", 24)
 	m.add_theme_constant_override("margin_right", 24)
-	m.add_theme_constant_override("margin_top", 36)
+	m.add_theme_constant_override("margin_top", roundi(maxf(36.0, Tema.margen_superior())))  # muesca o cámara
 	m.add_theme_constant_override("margin_bottom", 113)  # deja libre el botón principal del pie
 	raiz.add_child(m)
 	var v := FilasUI.col(8)

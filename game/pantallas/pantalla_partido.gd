@@ -34,7 +34,7 @@ func _ready() -> void:
 	margen.add_theme_constant_override("margin_left", 20)
 	margen.add_theme_constant_override("margin_right", 20)
 	var baja := Tema.pantalla_baja()  # teléfono bajo: menos aire para que la franja del perfil y el botón queden en pantalla
-	margen.add_theme_constant_override("margin_top", 32 if baja else 44)
+	margen.add_theme_constant_override("margin_top", roundi(maxf(32.0 if baja else 44.0, Tema.margen_superior())))  # muesca o cámara
 	margen.add_child(cab)
 	raiz.add_child(margen)
 	_titulo = Tema.etiqueta("", 18, Tema.TEXTO, true)

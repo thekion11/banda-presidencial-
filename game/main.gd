@@ -71,6 +71,7 @@ func _cambiar(p: Control) -> void:
 		_pantalla.queue_free()
 	_pantalla = p
 	p.set_anchors_preset(Control.PRESET_FULL_RECT)
+	p.offset_bottom = -roundf(Tema.margen_inferior())  # barra de gestos de Android: ningún botón queda debajo
 	add_child(p)
 	Movimiento.entrar_pantalla(p)  # se funde y sube; el tween muere con la pantalla
 

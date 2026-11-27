@@ -111,6 +111,7 @@ godot --headless --path . -s tests/test_estados.gd
 godot --headless --path . -s tests/test_atras.gd
 godot --headless --path . -s tests/test_reglas_ui.gd
 godot --headless --path . -s tests/test_estado_tardio.gd
+godot --headless --path . -s tests/test_zonas_seguras.gd        # muesca y barra de gestos de 0, 24 y 48 px: nada queda tapado
 godot --headless --path . -s tests/test_razones.gd             # toda razón de rechazo del motor tiene texto
 godot --headless --path . -s tests/test_sin_atascos.gd         # siempre hay mano y carta jugable (3 dificultades x 3 afiliaciones)
 godot --headless --path . -s tests/test_cobertura.gd           # cartas por área de ministerio y año
