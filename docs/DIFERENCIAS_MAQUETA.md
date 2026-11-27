@@ -289,3 +289,12 @@ El usuario eligió «Mapa A + riel de regiones (Recomendado)» en la página «P
   - hasta 3 prioridades a marcar entre tus proyectos del sector;
   - los niveles con su costo en fiscal y capital.
   Si no se puede asignar, dice por qué y qué hacer. Las cinco pestañas caben en 358 px con un relleno lateral mínimo. Código: `game/pantallas/panel_presupuesto.gd`; prueba: `tests/test_veracidad.gd`.
+- **Animaciones elegidas por el usuario (27-nov-2026).** El usuario preguntó «Qué más se puede animar? O mejorar?», marcó todas las propuestas y agregó «Entrevistas, campaña, debates, campaña en TV». Nada agrega mecánicas ni pantallas; con «Animaciones» apagadas todo aparece quieto.
+  - **Recuento de la elección:** el mapa se pinta región por región, de la más poblada a la menos, mientras sube «Regiones ganadas: N de 16 · X % del país»; al final cae el sello «ELECTO», «SEGUNDA VUELTA» o «DERROTA».
+  - **Transición del gabinete:** al nombrar, una ficha dorada con el alias vuela de la carta al puesto, que late al recibirla. Al confirmar aparece la «foto de gabinete» (TU GABINETE JURA): los 25 retratos uno a uno, 2,6 s o un toque.
+  - **Pantalla de fin:** gráfico «Tu aprobación, semana a semana» con la curva trazada de izquierda a derecha, la línea dorada del umbral, la separación campaña/gobierno y los hitos (`GraficoMandato`, lee `cierre_turno` del registro).
+  - **Escenas de campaña:** en el debate, dos atriles (tú en dorado, el rival en rojo) y el medidor «Reacción del público»; en la entrevista, dos sillas y una cinta de titulares que corre al pie; en la franja electoral (los eventos de franja que ya existen), barras de color al entrar, la insignia «FRANJA ELECTORAL» y el reloj «Spot al aire».
+  - **Agenda:** el proyecto recién presentado llega destacado y late. Cada trámite muestra sus pasos (1.er trámite, 2.º trámite, Mixta, TC, Ley): los hechos en dorado y el actual con borde, que late cuando avanza.
+  - **Ahorro:** en el telón, un rayo por cada movimiento guardado, que aparecen de a uno.
+  - **Riel de regiones:** la cifra cuenta al cambiar y aparece una flecha hacia arriba o abajo.
+  - El baúl, la luna de miel y el piso se animan en sus ramas hasta que entren a main.
