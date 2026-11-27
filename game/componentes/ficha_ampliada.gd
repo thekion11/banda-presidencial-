@@ -76,6 +76,8 @@ func _ready() -> void:
 		var txt := "%s  %s" % [String(NOMBRES.get(ef["ind"], ef["ind"])), _cifra(d)]
 		efectos.add_child(Tema.etiqueta(txt, 14, Tema.bien_tinta() if bueno else Tema.mal_tinta(), false, 600))
 	v.add_child(efectos)
+	for extra in _lineas_extra(carta):  # efecto a futuro y riesgo: lo que la carta hará después, con cifras
+		v.add_child(Tema.etiqueta(extra, 12, Tema.GRIS_CLARO, false, 600))
 	v.add_child(Tema.etiqueta("Suelta para cerrar", 11, Tema.GRIS_CLARO))
 	_ajustar_alto.call_deferred(marco, hoja)
 	if Movimiento.activo():
@@ -101,6 +103,17 @@ func _ajustar_alto(marco: Control, hoja: Control) -> void:
 	marco.position.y = maxf(tope, base - alto)
 	marco.size.y = alto
 	marco.pivot_offset = Vector2(marco.size.x * 0.5, alto)
+
+
+static func _lineas_extra(c: Dictionary) -> Array[String]:
+	## «En 8 semanas: Cohesión +2 · Aprobación +1» y «Puede salir mal (30 %): Aprobación −1», desde los datos de la carta.
+	var res: Array[String] = []
+	var lista := func(efs: Array) -> String: return " · ".join(efs.map(func(ef: Dictionary) -> String: return "%s %s" % [String(NOMBRES.get(ef["ind"], ef["ind"])), _cifra(float(ef["delta"]))]))
+	if c.has("diferido"):
+		res.append("En %d semanas: %s" % [int(c["diferido"]["semanas"]), lista.call(c["diferido"]["efectos"])])
+	if c.has("riesgo"):
+		res.append("Puede salir mal (%d %%): %s" % [roundi(float(c["riesgo"]["prob"]) * 100.0), lista.call(c["riesgo"]["efectos"])])
+	return res
 
 
 static func _cifra(d: float) -> String:
