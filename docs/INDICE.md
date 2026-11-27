@@ -1,6 +1,7 @@
 # Índice de documentos y orden de lectura (26-nov-2026)
 
 ## Para el dueño del proyecto: léelo en este orden
+0. **`ENTREGA_27NOV.md`**: una página con lo hecho, tus decisiones en orden de impacto, qué probar en el teléfono y los riesgos.
 1. **`RESUMEN_DECISIONES.md`**: las decisiones que esperan tu respuesta, con la recomendación de cada una (una página).
 2. **`RESUMEN_EXPERIMENTO.md`**: qué hizo cada sesión, qué arregló y qué descubrió.
 3. **`PRUEBA_CERRADA.md`** y **`GUIA_PRUEBA.md`**: cómo probar el juego con personas y qué registrar (incluye la propuesta de métricas locales).
@@ -45,6 +46,7 @@
 | `PROPUESTA_EVENTOS_REGIONALES.md` | Propuesta (sin implementar) de 16 eventos regionales con el campo `region` |
 | `VERIFICACION_CONSTITUCIONAL.md` | Qué de lo constitucional, electoral y de las fichas se verificó contra fuentes oficiales y qué falta |
 | `CUMPLIMIENTO_UI.md` | Cumplimiento de las reglas de interfaz de CLAUDE.md §5 por pantalla (sesión visual) |
+| `ACCESIBILIDAD_LECTOR.md` | Lector de pantalla (TalkBack): qué trae Godot 4.7, por qué no funciona aún en Android, costo y propuesta (sesión visual) |
 | `GUIA_ESTILO.md` | Guía de estilo de la interfaz: tokens (color, tipografía, medidas, movimiento, íconos), catálogo de componentes y reglas de uso (sesión visual) |
 | `PRIMERA_EJECUCION.md` | Recorrido de una instalación limpia de menú a primera carta: toques, segundos y hallazgos (sesión visual) |
 | `EQUIDAD_REGIONAL.md` | Cartas, obras y eventos por región frente a su población |

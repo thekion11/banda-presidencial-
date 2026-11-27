@@ -60,9 +60,11 @@ func cargar_geo(geo: Dictionary) -> void:
 		_mallas = _cache["mallas"]
 		_banda_y = _cache["banda_y"]
 	else:
-		_triangular(geo)
-		_cache = {"piezas": _piezas, "mallas": _mallas, "banda_y": _banda_y}
-	_calcular_borde_este()
+		_cache = MapaGeometria.triangular(geo, _ancho_rel)
+		_piezas = _cache["piezas"]
+		_mallas = _cache["mallas"]
+		_banda_y = _cache["banda_y"]
+	_este = MapaGeometria.borde_este(_piezas)
 	if _vivo == null:
 		_vivo = Control.new()
 		_vivo.set_anchors_preset(Control.PRESET_FULL_RECT)
@@ -76,62 +78,6 @@ func cargar_geo(geo: Dictionary) -> void:
 		_decor.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		add_child(_decor)
 	queue_redraw()
-
-
-func _triangular(geo: Dictionary) -> void:
-	for id in geo["regiones"].keys():
-		var lista: Array[PackedVector2Array] = []
-		var vertices := PackedVector2Array()
-		var indices := PackedInt32Array()
-		var y0 := 9.0
-		var y1 := -9.0
-		for poly in geo["regiones"][id]:
-			var pv := PackedVector2Array()
-			for p in poly:
-				pv.append(Vector2(float(p[0]), float(p[1])))
-				y0 = minf(y0, float(p[1]))
-				y1 = maxf(y1, float(p[1]))
-			for limpio in Geometry2D.offset_polygon(pv, 0.0):
-				var tri := Geometry2D.triangulate_polygon(limpio)
-				lista.append(limpio)
-				if tri.is_empty():
-					continue
-				var base := vertices.size()
-				vertices.append_array(limpio)
-				for t in tri:
-					indices.append(base + t)
-		_piezas[id] = lista
-		if not indices.is_empty():
-			var arrays := []
-			arrays.resize(Mesh.ARRAY_MAX)
-			var v3 := PackedVector3Array()
-			var uvs := PackedVector2Array()
-			for v in vertices:
-				v3.append(Vector3(v.x, v.y, 0.0))
-				uvs.append(Vector2(v.x / _ancho_rel, v.y))
-			arrays[Mesh.ARRAY_TEX_UV] = uvs
-			arrays[Mesh.ARRAY_VERTEX] = v3
-			arrays[Mesh.ARRAY_INDEX] = indices
-			var malla := ArrayMesh.new()
-			malla.add_surface_from_arrays(Mesh.PRIMITIVE_TRIANGLES, arrays)
-			_mallas[id] = malla
-		_banda_y[id] = Vector2(y0, y1)
-
-
-func _calcular_borde_este() -> void:
-	var bins := 110
-	var xmax: Array[float] = []
-	xmax.resize(bins)
-	xmax.fill(-1.0)
-	for id in _piezas.keys():
-		for pieza in _piezas[id]:
-			for p in pieza:
-				var b := clampi(int(p.y * float(bins)), 0, bins - 1)
-				xmax[b] = maxf(xmax[b], p.x)
-	_este.clear()
-	for b in range(bins):
-		if xmax[b] >= 0.0:
-			_este.append(Vector2(xmax[b], (float(b) + 0.5) / float(bins)))
 
 
 func actualizar(p_valores: Dictionary, p_obras: Dictionary = {}, p_propuestas: Dictionary = {}) -> void:
