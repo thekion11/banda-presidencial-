@@ -9,7 +9,7 @@ var _fallos := 0
 var _ops := 0
 var _presentadas := 0
 var _cabeceras_viejas := 0
-const CABECERA_ESTRICTA := false  # hallazgo abierto: con el panel Congreso abierto, terminar la semana no lo reconstruye (la cabecera queda con el conteo de antes)
+const CABECERA_ESTRICTA := true  # corregido en main: PantallaDia reconstruye el panel abierto al terminar la semana
 
 
 func _check(c: bool, msg: String) -> void:
@@ -75,7 +75,7 @@ func _correr() -> void:
 	for i in range(n):
 		await _partida(d, s0 + i, nops)
 	DirAccess.remove_absolute(ProjectSettings.globalize_path(Tutorial.ruta))
-	print("FUZZ CONGRESO UI %s (%d partidas, %d operaciones, %d proyectos presentados por la interfaz, %d veces la cabecera quedó vieja tras terminar la semana (hallazgo abierto), %d fallos)" % ["OK" if _fallos == 0 else "CON FALLOS", n, _ops, _presentadas, _cabeceras_viejas, _fallos])
+	print("FUZZ CONGRESO UI %s (%d partidas, %d operaciones, %d proyectos presentados por la interfaz, %d veces la cabecera quedó vieja tras terminar la semana, %d fallos)" % ["OK" if _fallos == 0 else "CON FALLOS", n, _ops, _presentadas, _cabeceras_viejas, _fallos])
 	quit(1 if _fallos > 0 else 0)
 
 
@@ -88,6 +88,7 @@ func _partida(d: Dictionary, semilla: int, nops: int) -> void:
 		m.terminar_turno()
 	if not Bots.elegir(m, d, "codicioso", rng):
 		return
+	m.elegir_gabinete(m.estado.gabinete.duplicate())  # transición presidencial: el gabinete se confirma antes del día (si no, mostrar_dia abre la pantalla de transición)
 	var main: Node = load("res://game/main.tscn").instantiate()
 	root.add_child(main)
 	await _cuadros(2)
@@ -116,6 +117,8 @@ func _partida(d: Dictionary, semilla: int, nops: int) -> void:
 			e.proyectos_ley.clear()
 			e.indicadores["capital"] = 90.0
 			e.pa_actual = maxi(e.pa_actual, 6)
+			dia._abrir_panel("congreso")  # el estado cambió fuera de la interfaz: se reconstruye el panel (la interfaz solo se refresca por sus propias acciones)
+			await _cuadros(3)
 		var e0 := e.entradas.size()
 		var n_ag0 := e.agenda.size()
 		var bs := _botones(dia._zona_panel)

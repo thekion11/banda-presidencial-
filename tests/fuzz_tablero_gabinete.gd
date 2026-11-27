@@ -139,6 +139,11 @@ func _partida(datos: Dictionary, semilla: int, nops: int) -> Array:
 	for p in datos["ideologia"]["preguntas"]:
 		resp.append(p["opciones"][1])
 	var m := Partida.crear(datos, semilla, GeneradorPartido.construir_partido("Tab", "TAB", "metropolitana", resp, datos["ideologia"]))
+	for _s in range(int(datos["leyes"]["hemiciclo"]["semanas_campana"])):  # el gabinete se elige tras ganar la elección (transición): se llega al gobierno con el bot
+		Bots.jugar_turno(m, "codicioso", rng)
+		m.terminar_turno()
+	if not Bots.elegir(m, datos, "codicioso", rng):
+		return []
 	m.estado.gabinete.clear()  # parte con el tablero vacío: lo que haya lo pone el jugador o el relleno
 	var confirmado := [false]
 	var panel: Control = PanelGabinete.crear(m, "Comenzar campaña", func() -> void: confirmado[0] = true, func(_t: String) -> void: pass)
