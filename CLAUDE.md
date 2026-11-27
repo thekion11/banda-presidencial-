@@ -75,6 +75,7 @@ python3 tools/generar_api.py --verificar  # toda función pública de sim/ está
 python3 tools/estado_proyecto.py        # genera docs/ESTADO_ACTUAL.md (foto del proyecto; el CI lo ejecuta sin bloquear)
 python3 tools/textos_ui.py              # textos de la interfaz a un CSV (localización)
 godot --headless --path . -s tests/e2e_ui.gd -- 7 26   # partida completa por la interfaz: nodos, memoria y tiempo por semana
+xvfb-run -a godot --path . --rendering-method gl_compatibility --resolution 390x844 -s tests/medir_zoom.gd   # cuadro al pellizcar el mapa y con el Comité 3D (antes y después)
 python3 tools/mutar.py godot 24 1      # mutación acotada de sim/ (lista mutantes que ninguna prueba mata; ≈ 15 min)
 python3 tools/cobertura_funciones.py godot  # funciones de sim/ que ninguna prueba ejecuta (≈ 15 min)
 tools/run_all_tests.sh                 # TODO lo del CI en un solo comando (validadores, tests/test_*.gd y fuzz)
