@@ -12,6 +12,7 @@ const DOBLE_MS := 320
 
 var zoom := 1.0
 var pan := Vector2.ZERO  # desplazamiento de la vista, en píxeles del control
+var _serie := 0  # cuenta los eventos de un gesto continuo (el último cierra el gesto)
 var moviendo := false  # gesto o animación en curso: el mapa se dibuja en vivo (sin caché)
 var _tam := Vector2.ZERO
 var _pulsado := false
@@ -76,17 +77,31 @@ func ir_a(nuevo_zoom: float, punto: Vector2, tam: Vector2, nodo: Node, al_cambia
 		al_cambiar.call())
 
 
+func _gesto_continuo(nodo: Node, al_cambiar: Callable) -> void:
+	## Pellizco o arrastre con dos dedos: mientras llegan eventos el mapa mueve su caché (sin repintarla); 150 ms después
+	## del último, se da por terminado y la caché se repinta una vez, nítida (informe del teléfono: mínimo 34 fps).
+	moviendo = true
+	_serie += 1
+	var mia := _serie
+	al_cambiar.call()
+	if nodo != null and nodo.is_inside_tree():
+		nodo.get_tree().create_timer(0.15).timeout.connect(func() -> void:
+			if mia == _serie and moviendo and not _pulsado:
+				moviendo = false
+				al_cambiar.call())
+
+
 func gestionar(ev: InputEvent, tam: Vector2, nodo: Node, al_cambiar: Callable) -> Dictionary:
 	## Devuelve {"consumido": bool, "toque": Vector2 o null}. «toque» es un toque simple (soltar sin arrastre) que
 	## MapaChile convierte en elegir región.
 	if ev is InputEventMagnifyGesture:
 		acercar_en(ev.factor, ev.position, tam)
-		al_cambiar.call()
+		_gesto_continuo(nodo, al_cambiar)
 		return {"consumido": true}
 	if ev is InputEventPanGesture and acercado():
 		pan -= ev.delta * 8.0
 		limitar(tam)
-		al_cambiar.call()
+		_gesto_continuo(nodo, al_cambiar)
 		return {"consumido": true}
 	if ev is InputEventMouseButton:
 		if ev.button_index == MOUSE_BUTTON_WHEEL_UP and ev.pressed:
