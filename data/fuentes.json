@@ -1205,5 +1205,15 @@
     "fecha_corte": "2026-11-24",
     "vigencia_dias": 3650,
     "es_ilustrativa": false
+  },
+  {
+    "id": "servel_segunda_votacion_2025",
+    "institucion": "Servicio Electoral de Chile (Servel)",
+    "titulo": "Elecciones 2025 - Segunda Votación Presidencial (página oficial)",
+    "url": "https://www.servel.cl/elecciones-2025/",
+    "fecha_corte": "2026-11-27",
+    "vigencia_dias": 730,
+    "es_ilustrativa": false,
+    "verificado_contra_texto": true
   }
 ]

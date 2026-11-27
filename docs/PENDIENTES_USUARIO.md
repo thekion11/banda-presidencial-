@@ -114,3 +114,10 @@ En escritorio (render por software) el pico de memoria es de 578 MB y el costo d
 - **Qué hacer (10 minutos):** instalar el APK de depuración, jugar una semana, abrir el mapa urbano y el Comité 3D, y luego **Informe de prueba → Copiar informe** (trae el mínimo de cuadros por segundo, la memoria máxima, el modelo del teléfono y la versión). Meta: 30 fps estables y ≤ 800 MB.
 - **Comparación:** `tests/medir_transiciones.gd`, `medir_cuadros.gd` y `medir_memoria.gd` dan las cifras de escritorio contra las que comparar.
 - Pantallas bajas (360×640): el mapa del día queda en el 27 % de la pantalla (CLAUDE.md pide más de un tercio); decisión del usuario en `RESUMEN_DECISIONES.md`.
+
+## Actualización de la verificación constitucional y de fichas (27-nov-2026)
+Detalle en `docs/VERIFICACION_CONSTITUCIONAL.md`. **Verificado hoy:** primera vuelta 16-nov-2025, segunda votación 14-dic-2025 y regla de mayoría absoluta (página del Servel), asunción del 11-mar-2026 (Senado y Gob.cl), reforma constitucional 4/7 en ejercicio (cita literal de Art. 127) y 10 fichas del Minsal (hospitales de Panguipulli y Valdivia, 8 comunas del plan oncológico). **Sigue sin verificar y necesita al usuario:**
+1. Texto del **Art. 25** (reelección; D11) y de los **incisos 2, 3 y 4 del Art. 66** (LOC, quórum calificado y ley simple) y de su inciso de leyes interpretativas: `bcn.cl` y `leychile.cl` responden 401 desde el entorno de desarrollo; aportar el PDF actualizado o abrir el acceso.
+2. **229 de 639 proyectos públicos** sin verificar (lista por archivo en la verificación); cada lote de 10 exige leer su ficha primaria.
+3. El inicio de campaña del 21-sep-2025 es una convención del juego (8 semanas antes de la primera vuelta); el umbral de victoria 52 y el piso de balotaje 38 son decisiones de balance, no derecho.
+4. Decidir si se regenera `cartas_reales.json` (102 cartas con otra `disponibilidad` respecto del generador actual).
