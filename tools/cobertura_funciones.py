@@ -19,7 +19,8 @@ RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 GODOT = next((a for a in sys.argv[1:] if not a.startswith("--")), "godot")
 JUEGO = "--game" in sys.argv
 UI = ["test_ui_humo", "test_textos", "test_tactil", "test_claridad", "test_escenas", "test_accesibilidad", "test_movimiento", "test_paleta", "test_estados", "test_tapa",
-      "test_mapa_entrada", "test_metro_lineas", "test_identidad", "captura_comparar"]
+      "test_mapa_entrada", "test_metro_lineas", "test_identidad", "test_reglas_ui", "test_atras", "test_zonas_seguras", "test_veracidad",
+      "test_animaciones_completas", "test_estado_tardio", "test_fichas_largas", "test_cartera", "test_sectra", "test_gestos", "captura_comparar"]
 REGISTRO = os.path.join(tempfile.gettempdir(), "cobertura_funciones.log")
 CLASE = '''class_name Cobertura
 extends RefCounted

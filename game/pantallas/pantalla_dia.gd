@@ -350,7 +350,7 @@ func _aprobar(pid: String, variante: String, custom: Dictionary = {}, nombres: D
 		_refrescar()
 		_abrir_panel("congreso")
 	else:
-		_avisar("No se pudo aprobar la propuesta.")
+		_avisar(Razones.texto(r))  # el motivo y la salida, no un «no» seco (CLAUDE.md §4, Corrector)
 
 
 func _abrir_cartera() -> void:

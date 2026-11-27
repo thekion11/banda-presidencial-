@@ -64,15 +64,6 @@ static func chip_barra(valor: float, color: Color) -> ProgressBar:
 	return barra
 
 
-static func fila_h(izq: Control, der: Control) -> HBoxContainer:
-	var h := HBoxContainer.new()
-	h.add_theme_constant_override("separation", 8)
-	izq.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	h.add_child(izq)
-	h.add_child(der)
-	return h
-
-
 static func capa_opaca() -> Control:
 	## Raíz de pantalla completa con fondo océano (cubre la pantalla de día).
 	var raiz := Control.new()
