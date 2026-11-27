@@ -355,6 +355,12 @@ func _gui_input(event: InputEvent) -> void:
 		_elegir_en(_cam().affine_inverse() * Vector2(r["toque"]))
 
 
+func _notification(what: int) -> void:
+	if what == NOTIFICATION_RESIZED and _zoom.acercado():  # el control cambió de tamaño con zoom: la vista vuelve a sus límites
+		_zoom.limitar(size)
+		_al_cambiar_vista()
+
+
 func _al_cambiar_vista() -> void:
 	if _ver_todo == null:
 		_ver_todo = Tema.boton_secundario("Ver todo", Tema.CREMA, 44)
@@ -367,15 +373,7 @@ func _al_cambiar_vista() -> void:
 
 
 func _elegir_en(pos: Vector2) -> void:
-	var yn := (pos.y - 8.0) / maxf(1.0, size.y - 16.0)
-	var mejor := ""
-	var mejor_d := 9.0
-	for id in _banda_y.keys():
-		var b: Vector2 = _banda_y[id]
-		var d := 0.0 if yn >= b.x and yn <= b.y else minf(absf(yn - b.x), absf(yn - b.y))
-		if d < mejor_d or (d == mejor_d and (b.y - b.x) < (_banda_y[mejor].y - _banda_y[mejor].x)):
-			mejor_d = d
-			mejor = id
+	var mejor := MapaGeometria.region_en(_banda_y, (pos.y - 8.0) / maxf(1.0, size.y - 16.0))
 	if mejor != "":
 		seleccion = mejor
 		queue_redraw()
