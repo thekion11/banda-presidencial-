@@ -106,8 +106,7 @@ func terminar_turno() -> Array[Dictionary]:
 
 # ---------------------------------------------------------------- Paso 1
 func ejecutar_amanecer() -> void:  # Paso 1: regenera movimientos y aplica la dinámica semanal de los indicadores (ancla de aprobación, desgaste, regeneraciones).
-	estado.pa_actual = estado.pa_maximo
-	movimientos.amanecer()
+	movimientos.amanecer()  # el ahorro de la semana anterior queda en pa_actual; fijar_movimientos le suma el ingreso
 	if estado.etapa == "campana":
 		regiones.revertir_a_base(estado, float(catalogo_leyes["campana"]["reversion_semanal"]))
 	if estado.etapa != "gobierno":

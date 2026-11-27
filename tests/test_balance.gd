@@ -35,7 +35,10 @@ func _init() -> void:
 	_check(cod["electos"] > azar["electos"] + 0.15, "jugar bien debe pesar en la campaña")
 	_check(cod["electos"] > 0.70, "la campaña bien jugada debe ser ganable")
 	_check(cod_pasivo["crisis"] > 0.50, "gobernar sin hacer nada debe terminar en crisis")
-	_check(cod["crisis"] < 0.20, "gobernar activamente no debe colapsar")
+	_check(cod["crisis"] < 0.26, "gobernar activamente no debe colapsar")  # techo 0,20 -> 0,26 con el ahorro de movimientos (BL): ya no se pierden movimientos, el codicioso juega ~20 % más y la crisis medida subió de ≈ 11 a ≈ 20 % (n = 80)
+	var aho := _tasas(datos, "ahorrador", 40)  # BL: ahorrar (jugar solo semanas alternas y gastar todo de golpe) no debe ser mejor que gastar cada semana
+	print("ahorrador=%s" % [aho])
+	_check(aho["electos"] <= cod["electos"] + 0.10, "ahorrar movimientos no debe dominar en campaña")
 	# matriz por dificultad (n=40: error típico ≈ 8 puntos, por eso las bandas son anchas): un cambio de datos que rompa la escalera falla aquí
 	var f := _tasas(datos, "codicioso", 40, "facil")
 	var nor := _tasas(datos, "codicioso", 40, "normal")

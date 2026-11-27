@@ -83,5 +83,27 @@ func _init() -> void:
 	me.estado.mano.append(me._cartas_por_id["estado_priv_terrenos"])
 	_check(me.carta_disponible(me.estado.mano[0]), "las cartas estado están siempre disponibles")
 	_check(bool(me.jugar_carta(0)["ok"]) and me.estado.proyectos_ley.size() == 1, "una privatización entra a tramitación como ley")
+	_ahorro(datos)
 	print("MOVIMIENTOS OK" if _fallos == 0 else "MOVIMIENTOS FALLÓ")
 	quit(1 if _fallos > 0 else 0)
+
+
+func _ahorro(datos: Dictionary) -> void:
+	## BL: los movimientos que sobran se guardan hasta el tope de leyes.json › mano › tope_ahorro; nunca pasan del tope ni bajan de 0.
+	var tope := int(datos["leyes"]["mano"]["tope_ahorro"])
+	_check(tope == 10, "tope de ahorro 10 (decisión del usuario, 27-nov)")
+	var m := AyudaV2.gobierno(datos, 51)
+	var e := m.estado
+	var ingreso := e.pa_maximo + int(e.bono_mov["aprobacion"]) + int(e.bono_mov["asesores"])
+	_check(e.pa_actual == ingreso, "sin ahorro previo, la primera semana da solo el ingreso (%d)" % e.pa_actual)
+	var sobrante := e.pa_actual
+	m.terminar_turno()
+	var ing2 := e.pa_maximo + int(e.bono_mov["aprobacion"]) + int(e.bono_mov["asesores"])
+	_check(e.pa_actual == mini(maxi(tope, ing2), sobrante + ing2), "lo no gastado se suma al ingreso (%d + %d -> %d)" % [sobrante, ing2, e.pa_actual])
+	for i in range(12):  # sin gastar nada, el ahorro se detiene en el tope
+		m.terminar_turno()
+		_check(e.pa_actual >= 0 and e.pa_actual <= maxi(tope, e.pa_maximo + int(e.bono_mov["aprobacion"]) + int(e.bono_mov["asesores"])), "semana %d: %d dentro de 0..tope" % [i, e.pa_actual])
+	_check(e.pa_actual == maxi(tope, e.pa_maximo + int(e.bono_mov["aprobacion"]) + int(e.bono_mov["asesores"])), "ahorrar todo llega al tope y no pasa de él (%d)" % e.pa_actual)
+	e.pa_actual = 0  # gastar todo: la semana siguiente trae solo el ingreso
+	m.terminar_turno()
+	_check(e.pa_actual == e.pa_maximo + int(e.bono_mov["aprobacion"]) + int(e.bono_mov["asesores"]), "gastando todo no hay ahorro")
