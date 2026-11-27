@@ -8,6 +8,7 @@ var carta: Dictionary = {}
 var costo: int = 0
 var leyes: Dictionary = {}
 var _arte: Control
+var _sabor: Label
 
 const ALTO_ARTE := 150.0
 const ALTO_ARTE_MIN := 56.0  # con letra grande la ilustración cede alto antes que el texto
@@ -66,6 +67,9 @@ func _ready() -> void:
 	cab.add_child(Tema.etiqueta_corta("%d mov" % costo, 14, Tema.TINTA, true))
 	v.add_child(cab)
 	v.add_child(Tema.etiqueta(String(carta.get("titulo", "")), 22, Tema.TINTA, true))
+	if String(carta.get("sabor", "")) != "":  # texto propio de las cartas curadas (antes no se mostraba en ninguna parte)
+		_sabor = Tema.etiqueta(String(carta["sabor"]), 12, Tema.TINTA)
+		v.add_child(_sabor)
 	if not leyes.is_empty():
 		v.add_child(Tema.etiqueta(FichaCarta.linea(carta, leyes), 12, Tema.GRIS_CLARO, false, 600))
 	var efectos := VBoxContainer.new()
@@ -78,7 +82,7 @@ func _ready() -> void:
 	v.add_child(efectos)
 	for extra in _lineas_extra(carta):  # efecto a futuro y riesgo: lo que la carta hará después, con cifras
 		v.add_child(Tema.etiqueta(extra, 12, Tema.GRIS_CLARO, false, 600))
-	v.add_child(Tema.etiqueta("Suelta para cerrar", 11, Tema.GRIS_CLARO))
+	v.add_child(Tema.etiqueta(("Cifras ilustrativas · " if bool(carta.get("cifras_ilustrativas", false)) else "") + "Suelta para cerrar", 11, Tema.GRIS_CLARO))  # CLAUDE.md: cifras ilustrativas rotuladas
 	_ajustar_alto.call_deferred(marco, hoja)
 	if Movimiento.activo():
 		marco.scale = Vector2.ONE * 0.6
@@ -99,8 +103,15 @@ func _ajustar_alto(marco: Control, hoja: Control) -> void:
 	if necesita > base - tope and _arte != null:
 		_arte.custom_minimum_size.y = maxf(ALTO_ARTE_MIN, ALTO_ARTE - (necesita - (base - tope)))
 		necesita = hoja.get_combined_minimum_size().y
+	var piso := get_viewport_rect().size.y - 8.0  # la ficha puede bajar sobre la mano, nunca salir de la pantalla
+	if necesita > piso - tope and _arte != null:  # ni así cabe (texto propio largo con letra ×1,5 en un teléfono bajo): sin ilustración
+		_arte.visible = false
+		necesita = hoja.get_combined_minimum_size().y
+	if necesita > piso - tope and _sabor != null:  # último recurso: se va el texto de ambientación, nunca un efecto ni el riesgo
+		_sabor.visible = false
+		necesita = hoja.get_combined_minimum_size().y
 	var alto := maxf(necesita, 300.0)
-	marco.position.y = maxf(tope, base - alto)
+	marco.position.y = minf(maxf(tope, base - alto), maxf(tope, piso - alto))
 	marco.size.y = alto
 	marco.pivot_offset = Vector2(marco.size.x * 0.5, alto)
 

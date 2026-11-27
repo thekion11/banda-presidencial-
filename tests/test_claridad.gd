@@ -175,6 +175,16 @@ func _correr() -> void:
 		var aviso: String = dia_p._toast.text
 		_check(aviso.begins_with("Promesa nacional") and aviso.contains("Toca el mapa") if reg == "" else aviso.begins_with("Promesa en Atacama"), "el aviso de la promesa dice dónde quedó (%s)" % aviso)
 	_iconos()
+	var plan: Array = Datos.cargar_todo()["cartas"].filter(func(c: Dictionary) -> bool: return String(c["id"]) == "plan_afp_estatal")
+	if not plan.is_empty():  # cartas del Plan Estratégico (27-nov): texto propio y cifras rotuladas como ilustrativas
+		var fp := FichaAmpliada.crear(plan[0], 3, main.motor.catalogo_leyes if main.motor != null else {})
+		root.add_child(fp)
+		await process_frame
+		var tx: Array = fp.find_children("*", "Label", true, false).map(func(l: Label) -> String: return l.text)
+		_check(tx.has(String(plan[0]["sabor"])), "la ficha muestra el texto propio de la carta")
+		_check(tx.any(func(t: String) -> bool: return t.begins_with("Cifras ilustrativas")), "la ficha rotula las cifras ilustrativas")
+		_check(tx.any(func(t: String) -> bool: return t.begins_with("Puede salir mal (45 %)")), "la ficha dice el riesgo de la carta del plan")
+		fp.free()
 	_check(Razones.texto({"razon": "pa_insuficiente", "costo": 3}).begins_with("Esta carta cuesta 3 movimientos. No te alcanzan"), "el rechazo por movimientos dice cuánto cuesta la carta")
 	# votación rechazada en la primera cámara (la página más cargada) en el teléfono bajo con muesca y barra de 48 px
 	Tema.inset_prueba = Vector2(48, 48)
