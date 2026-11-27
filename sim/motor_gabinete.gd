@@ -318,6 +318,21 @@ func amanecer() -> void:
 	_m.fx.sumar_ind("cohesion", float(cfg["peso_afinidad"]) * (_ident_afin / float(_m.estado.gabinete.size()) - 0.5), "afinidad del gabinete con tu ideología")
 
 
+func pendiente_confirmar() -> bool:
+	## Solo salida: true en la transición, o sea recién ganada la elección (turno 1 de gobierno) y sin nombrar gabinete desde la votación. La pantalla del gabinete
+	## se muestra entonces; confirmar el que viene preseleccionado también cuenta (se llama a `elegir` con esos mismos ids y queda registrado). Se deduce del historial: sirve tras recargar.
+	var est := m.estado
+	if est.etapa != "gobierno" or est.turno_actual != 1:
+		return false
+	for i in range(est.entradas.size() - 1, -1, -1):
+		var tipo := String(est.entradas[i]["tipo"])
+		if tipo == "gabinete":
+			return false
+		if tipo == "eleccion":
+			return true
+	return true
+
+
 func efecto_semanal_de(ids: Array) -> Dictionary:
 	## Solo salida (no cambia el estado): efecto semanal que daría este gabinete por estilos y afinidad, {indicador: delta}; lo mismo que aplica `amanecer`.
 	var cfg: Dictionary = _cfg()["identidad"]
