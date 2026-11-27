@@ -62,7 +62,25 @@ static func crear(motor: MotorTurno, al_usar: Callable, al_cerrar: Callable = Ca
 	for it: Dictionary in b["items"]:
 		lista.add_child(_tarjeta(motor, it, confirmar, al_usar, cerrar))
 	v.add_child(FilasUI.scroll(lista))
+	if Movimiento.activo():  # el baúl se abre: la hoja sube desde abajo y las balas entran de a una
+		Movimiento.aparecer(hoja, 0.0, Movimiento.BASE)
+		Movimiento.escalonar(lista, 0.12, 0.05, 7)
 	return raiz
+
+
+static func destello(capa: Node, mal: bool) -> void:
+	## Al usar una bala: destello plateado sobre la pantalla; si salió mal, rojo y una vibración.
+	if not Movimiento.activo() or capa == null or not capa.is_inside_tree():
+		return
+	var f := ColorRect.new()
+	f.color = Color(Tema.ROJO, 0.45) if mal else Color(Tema.CREMA, 0.55)
+	f.set_anchors_preset(Control.PRESET_FULL_RECT)
+	f.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	capa.add_child(f)
+	var tw := f.create_tween()
+	tw.tween_property(f, "color:a", 0.0, 0.6).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+	tw.tween_callback(f.queue_free)
+	Feedback.vibrar(40 if mal else 20)
 
 
 static func _tarjeta(motor: MotorTurno, it: Dictionary, confirmar: Dictionary, al_usar: Callable, cerrar: Callable) -> Control:
@@ -108,7 +126,9 @@ static func _tarjeta(motor: MotorTurno, it: Dictionary, confirmar: Dictionary, a
 				respuesta.text = "%s %s" % [String(r.get("mensaje", Razones.texto(r))), String(r.get("alternativa", ""))]
 				return
 			Feedback.sonar("decision")
+			var capa_dia: Node = hoja_raiz(usar)
 			cerrar.call()
+			destello(capa_dia, bool(r.get("salio_mal", false)))
 			al_usar.call("Salió mal: %s" % String(r.get("texto_riesgo", "")) if bool(r.get("salio_mal", false)) else "Usaste «%s»." % String(it["titulo"])))
 		t.add_child(usar)
 		t.add_child(respuesta)
@@ -116,3 +136,12 @@ static func _tarjeta(motor: MotorTurno, it: Dictionary, confirmar: Dictionary, a
 	if usada:
 		tarjeta.modulate.a = 0.75
 	return tarjeta
+
+
+static func hoja_raiz(n: Node) -> Node:
+	## La capa del día que contiene la hoja del baúl (para el destello, que sigue después de cerrarla).
+	var p := n
+	while p != null and not p.has_meta("atras"):
+		p = p.get_parent()
+	return p.get_parent() if p != null else null
+

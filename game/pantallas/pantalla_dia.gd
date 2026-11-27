@@ -423,6 +423,8 @@ func _abrir_urbano() -> void:
 
 func _abrir_baul() -> void:
 	Feedback.sonar("toque")
+	if Movimiento.activo():
+		Movimiento.latido(_r["baul"], 1.18)  # el baúl se abre
 	_capa.add_child(PanelBalas.crear(motor, func(msg: String) -> void:
 		_avisar(msg)
 		accion_hecha.emit()
