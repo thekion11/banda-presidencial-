@@ -30,9 +30,9 @@ func _cuadros(n: int) -> void:
 		await process_frame
 
 
-func _toque(pos: Vector2, pulsado: bool) -> void:
+func _toque(pos: Vector2, pulsado: bool, dedo: int = 0) -> void:
 	var e := InputEventScreenTouch.new()
-	e.index = 0
+	e.index = dedo
 	e.pressed = pulsado
 	e.position = root.get_final_transform() * pos
 	Input.parse_input_event(e)
@@ -67,6 +67,14 @@ func _carta_en(dia: PantallaDia, p: Vector2) -> CartaUI:
 		if not c.is_queued_for_deletion() and (c as CartaUI).get_global_rect().has_point(p):
 			return c
 	return null
+
+
+func _modal(dia: PantallaDia) -> bool:
+	## Hay un overlay visible (evento del día, hoja de delegación, ficha) además del aviso: tapa la mano y los toques caen sobre él.
+	for h in dia._capa.get_children():
+		if h.visible and not (h is Label) and not h.is_queued_for_deletion():
+			return true
+	return false
 
 
 func _punto(c: CartaUI) -> Vector2:
@@ -116,7 +124,7 @@ func _modo(emulacion: bool, n: int, semilla: int) -> void:
 		var e0 := est.entradas.size()
 		var pa0 := est.pa_actual
 		var t0 := est.turno_actual
-		var op := rng.randi_range(0, 7)
+		var op := rng.randi_range(0, 11)
 		var otras := _cartas(dia, false)
 		var elegidas := _cartas(dia, true)
 		_ops += 1
@@ -132,7 +140,7 @@ func _modo(emulacion: bool, n: int, semilla: int) -> void:
 				await _tocar(_punto(c))
 				if id_encima == id_c or not emulacion:  # si la elegida (más grande) tapa el punto, el toque cae sobre ella y la juega: es lo esperado
 					_check(est.entradas.size() == e0 and est.pa_actual == pa0, "%s op %d: un toque sobre una carta no elegida jugó o gastó movimientos (entradas +%d, pa %d->%d; encima %s, carta %s)" % [ctx, i, est.entradas.size() - e0, pa0, est.pa_actual, id_encima, id_c])
-				if emulacion and id_encima == id_c and sel0 == dia._sel and not dia._zona_panel.visible:  # con un panel abierto la mano queda tapada
+				if emulacion and id_encima == id_c and sel0 == dia._sel and not dia._zona_panel.visible and not _modal(dia):  # con un panel u overlay (evento, ficha) abierto la mano queda tapada
 					_check(false, "%s op %d: el toque no eligió la carta %s (sel %d->%d, mano %d)" % [ctx, i, id_c, sel0, dia._sel, est.mano.size()])
 			2:  # tocar la elegida: la juega como mucho una vez
 				if elegidas.is_empty():
@@ -188,6 +196,74 @@ func _modo(emulacion: bool, n: int, semilla: int) -> void:
 					u.queue_free()
 				await _cuadros(1)
 				_check(est.entradas.size() == e0 and est.pa_actual == pa0, "%s op %d: tocar la tarjeta de la región jugó o gastó movimientos" % [ctx, i])
+			8:  # toque rapidísimo: presionar y soltar en el mismo cuadro, sobre cualquier carta: a lo sumo una jugada
+				var cs8 := otras + elegidas
+				if cs8.is_empty():
+					continue
+				var p8 := _punto(cs8[rng.randi_range(0, cs8.size() - 1)])
+				_toque(p8, true)
+				_toque(p8, false)
+				await _cuadros(5)
+				_check(est.entradas.size() - e0 <= 1, "%s op %d: un toque instantáneo generó %d entradas" % [ctx, i, est.entradas.size() - e0])
+				if not emulacion:
+					_check(est.entradas.size() == e0 and est.pa_actual == pa0, "%s op %d: sin emulación de clic el toque instantáneo gastó movimientos" % [ctx, i])
+			9:  # dos dedos a la vez sobre dos cartas: a lo sumo una jugada (la de la carta ya elegida)
+				var cs9 := otras + elegidas
+				if cs9.size() < 2:
+					continue
+				var pa9 := _punto(cs9[rng.randi_range(0, cs9.size() - 1)])
+				var pb9 := _punto(cs9[rng.randi_range(0, cs9.size() - 1)])
+				_toque(pa9, true, 0)
+				_toque(pb9, true, 1)
+				await _cuadros(2)
+				_toque(pb9, false, 1)
+				_toque(pa9, false, 0)
+				await _cuadros(5)
+				_check(est.entradas.size() - e0 <= 1, "%s op %d: dos dedos generaron %d entradas" % [ctx, i, est.entradas.size() - e0])
+				if not emulacion:
+					_check(est.entradas.size() == e0 and est.pa_actual == pa0, "%s op %d: sin emulación de clic dos dedos gastaron movimientos" % [ctx, i])
+			10:  # Atrás de Android en medio de un arrastre (propagado desde la raíz, como lo manda el motor) y luego soltar
+				var cs10 := otras + elegidas
+				if cs10.is_empty():
+					continue
+				var p10 := _punto(cs10[rng.randi_range(0, cs10.size() - 1)])
+				_toque(p10, true)
+				await _cuadros(1)
+				_arrastre(p10, p10 + Vector2(0, -50.0))
+				await _cuadros(1)
+				root.propagate_notification(Node.NOTIFICATION_WM_GO_BACK_REQUEST)
+				await _cuadros(2)
+				if rng.randf() < 0.5:
+					root.propagate_notification(Node.NOTIFICATION_WM_GO_BACK_REQUEST)  # segundo Atrás: vuelve al menú guardando
+					await _cuadros(3)
+				_toque(p10 + Vector2(0, -50.0), false)
+				await _cuadros(4)
+				_check(is_instance_valid(main._pantalla), "%s op %d: sin pantalla tras Atrás a mitad de un arrastre" % [ctx, i])
+				_check(est.entradas.size() - e0 <= 1, "%s op %d: Atrás a mitad de un arrastre generó %d entradas" % [ctx, i, est.entradas.size() - e0])
+				if not (main._pantalla is PantallaDia):  # volvió al menú: la partida sigue en el motor; se retoma el día
+					var g10: Variant = Datos.leer_json("user://guardado.json")
+					_check(g10 is Dictionary and ValidarGuardado.guardado_valido(g10), "%s op %d: tras Atrás al menú el guardado no es válido" % [ctx, i])
+					main.mostrar_dia()
+					await _cuadros(3)
+					capa0 = (main._pantalla as PantallaDia)._capa.get_child_count()
+			11:  # pausa de la aplicación en medio de un toque o arrastre: el guardado en disco es válido y reproduce el motor en vivo
+				var cs11 := otras + elegidas
+				if cs11.is_empty():
+					continue
+				var p11 := _punto(cs11[rng.randi_range(0, cs11.size() - 1)])
+				_toque(p11, true)
+				await _cuadros(1)
+				main._notification(Node.NOTIFICATION_APPLICATION_PAUSED)
+				var g11: Variant = Datos.leer_json("user://guardado.json")
+				_check(g11 is Dictionary and ValidarGuardado.guardado_valido(g11), "%s op %d: tras la pausa el guardado no es válido" % [ctx, i])
+				if g11 is Dictionary and ValidarGuardado.guardado_valido(g11):
+					var rep := Partida.reproducir(d, g11)
+					_check(rep != null and rep.estado.calcular_huella() == est.calcular_huella(), "%s op %d: el guardado tras la pausa no reproduce el motor en vivo" % [ctx, i])
+				main._notification(Node.NOTIFICATION_APPLICATION_RESUMED)
+				await _cuadros(2)
+				_toque(p11, false)
+				await _cuadros(4)
+				_check(est.entradas.size() - e0 <= 1, "%s op %d: pausa a mitad de un toque generó %d entradas" % [ctx, i, est.entradas.size() - e0])
 			6:  # tocar el mapa o «Terminar semana»
 				if rng.randf() < 0.7 or est.pa_actual > 0:
 					await _tocar(dia._mapa.get_global_rect().get_center())
