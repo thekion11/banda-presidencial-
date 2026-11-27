@@ -213,7 +213,7 @@ func _jugar() -> void:
 				donde = "en " + String(rg["nombre"])
 		msg = "Promesa %s: +%s de aprobación%s" % [donde, Tema.dec(float(r["delta_aprobacion"])), ". Toca el mapa para dirigir la próxima" if donde == "nacional" else ""]
 	elif r.get("escandalo", false):
-		msg = "Escándalo ministerial: pierdes aprobación y capital."
+		msg = "Polémica ministerial: pierdes aprobación y capital."
 	elif r.get("propuesta") != null:
 		msg = "Propuesta abierta en el Comité de Planificación."
 		_abrir_panel("comite")
@@ -248,7 +248,7 @@ func _delegar() -> void:
 			_avisar(Razones.texto(r))
 			return
 		_leer_reposicion(n_reg)
-		_avisar("Escándalo ministerial: pierdes aprobación y capital." if r["escandalo"] else ("El ministro falló: efecto reducido." if r["fallo"] else "Delegada: el ministro la ejecutó sin gastar movimientos."))
+		_avisar("Polémica ministerial: pierdes aprobación y capital." if r["escandalo"] else ("El ministro falló: efecto reducido." if r["fallo"] else "Delegada: el ministro la ejecutó sin gastar movimientos."))
 		accion_hecha.emit()
 		_refrescar()))
 

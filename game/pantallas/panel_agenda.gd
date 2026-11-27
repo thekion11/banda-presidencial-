@@ -82,6 +82,7 @@ static func presentar(motor: MotorTurno, al_presentar: Callable, abierto_inicial
 	col.add_child(sc)
 	var lista := FilasUI.col(6)
 	col.add_child(lista)
+	col.add_child(Tema.etiqueta("Probabilidades estimadas con el Congreso de hoy (cifras ilustrativas): cambian con tu capital, tu cohesión y la coalición.", 11, Tema.TEXTO_SUAVE))
 	var acc := {}
 	acc["pintar"] = func() -> void:
 		for c in chips.get_children():
@@ -176,6 +177,8 @@ static func _detalle(motor: MotorTurno, e: Dictionary, al_presentar: Callable) -
 		var b := Tema.boton("%s · %d días · capital %s · aprobación %s" % [u["nombre"], int(u["dias"]), Tema.dec(float(u["costo_capital"]), 0), Tema.pct(float(u["prob"]) * 100.0)], Tema.ROJO if String(u["id"]) == "simple" else Tema.OCEANO.lightened(0.14), Tema.TEXTO, 12, Tema.TACTIL)
 		b.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 		b.disabled = not bool(u["alcanza"])
+		if b.disabled:  # apagada, pero dice por qué (nunca un «no» seco)
+			b.text += " · falta capital (tienes %s)" % Tema.dec(motor.estado.ind("capital"), 0)
 		b.pressed.connect(func() -> void: _enviar(motor, id, String(u["id"]), ministro, delegar.button_pressed, respuesta, al_presentar))
 		v.add_child(b)
 	v.add_child(delegar)
