@@ -66,7 +66,10 @@ jobs:
           if-no-files-found: ignore
           path: docs/ESTADO_ACTUAL.md
       - name: Fuzzing del núcleo (acciones aleatorias e inválidas, replay idéntico)
-        run: godot --headless --path . -s tests/fuzz_acciones.gd -- 60 7000
+        run: |
+          set -o pipefail
+          godot --headless --path . -s tests/fuzz_acciones.gd -- 60 7000 2>&1 | tee /tmp/fuzz_acciones.log
+          if grep -qE "SCRIPT ERROR|Parse Error|Could not find type" /tmp/fuzz_acciones.log; then echo "errores de script en el fuzz"; exit 1; fi
       - name: "Regresión visual con ventana real (no bloqueante; guía en docs/CONTRIBUIR.md)"
         continue-on-error: true
         run: |

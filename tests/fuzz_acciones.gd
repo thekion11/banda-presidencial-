@@ -94,7 +94,7 @@ func _accion_aleatoria(m: MotorTurno, rng: RandomNumberGenerator, datos: Diction
 		13:
 			m.impulsar_proyecto(String(basura[rng.randi_range(0, 4)]))
 		14:  # agenda legislativa (BM): presentar leyes del catálogo o basura, con cualquier urgencia, ministro y delegación
-			var cat := m.agenda.agenda_catalogo() if rng.randf() < 0.8 else []
+			var cat: Array = m.agenda.agenda_catalogo() if rng.randf() < 0.8 else []
 			var cid := String(cat[rng.randi_range(0, cat.size() - 1)]["carta_id"]) if not cat.is_empty() else String(basura[rng.randi_range(0, 4)])
 			var urgs := ["simple", "suma", "inmediata", "xx"]
 			var mins2: Array = e.gabinete + basura
