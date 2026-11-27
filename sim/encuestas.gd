@@ -31,7 +31,7 @@ static func registrar(m: MotorTurno) -> void:
 	var u := float(Huella.fnv32("%d:%d:%s" % [e.semilla, semana, e.etapa]) % 10001) / 10000.0 * 2.0 - 1.0
 	var regs: Array[Dictionary] = []
 	for id in e.aprobacion_regional.keys():
-		regs.append({"id": String(id), "valor": snappedf(float(e.aprobacion_regional[id]), 0.1)})
+		regs.append({"id": String(id), "valor": snappedf(float(e.aprobacion_regional[id]), 0.1), "peso": float(m.regiones.pesos.get(String(id), 0.0))})  # peso = población relativa (salida para la pantalla)
 	regs.sort_custom(func(a: Dictionary, b: Dictionary) -> bool: return float(a["valor"]) < float(b["valor"]) or (float(a["valor"]) == float(b["valor"]) and String(a["id"]) < String(b["id"])))
 	if not e.encuestas.is_empty() and int(e.encuestas.back()["semana"]) == semana and String(e.encuestas.back()["etapa"]) == e.etapa:
 		e.encuestas.pop_back()  # una encuesta por semana: la del amanecer de la 2ª vuelta reemplaza a la de «antes de votar» de esa misma semana
