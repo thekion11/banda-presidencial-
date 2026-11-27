@@ -925,5 +925,113 @@
         "fuente": "fuentes.json#ficticio_2026"
       }
     ]
+  },
+  "presupuesto_ministerial": {
+    "nota": "PR-18 mínimo / D22 (27-nov-2026, pedido literal del usuario: «darle presupuesto extra a los ministros para qué hagan sus proyectos con prioridad en nuestras propuestas pero tienen autonomía»). El jugador asigna fiscal (y algo de capital) a un ministerio por una temporada (duracion_semanas): ese ministerio acelera las obras y leyes de su sector y baja el riesgo de ejecución. AUTONOMÍA: la fracción del extra que va a TUS prioridades = peso_lealtad x lealtad (relación con el ministro, 0..1) + peso_afinidad x afinidad ideológica + peso_competencia x (bono_ejecucion / competencia_ref), acotada entre fraccion_min y fraccion_max; el resto va a su agenda propia (acelera sus otros proyectos del sector, menos) y cada semana hay un incidente con probabilidad desvio.prob_base x (1 - fracción alineada). Topes: tope_anual_fiscal por año de gobierno (regla fiscal), piso_fiscal que el fiscal no puede cruzar al gastar, max_simultaneos ministerios con extra, max_prioridades proyectos marcados por ministerio, enfriamiento_semanas antes de repetir el mismo ministerio. efecto_semanal (por intensidad del nivel): dias_obra y dias_ley adicionales de avance y baja de riesgo_ejecucion. Cifras ilustrativas de balance.",
+    "niveles": {
+      "pequeno": {
+        "nombre": "Refuerzo pequeño",
+        "fiscal": 3.0,
+        "capital": 0.0,
+        "intensidad": 0.6
+      },
+      "medio": {
+        "nombre": "Refuerzo medio",
+        "fiscal": 6.0,
+        "capital": 1.0,
+        "intensidad": 1.0
+      },
+      "grande": {
+        "nombre": "Refuerzo grande",
+        "fiscal": 10.0,
+        "capital": 2.0,
+        "intensidad": 1.5
+      }
+    },
+    "duracion_semanas": 13,
+    "enfriamiento_semanas": 13,
+    "max_simultaneos": 3,
+    "max_prioridades": 3,
+    "tope_anual_fiscal": 15.0,
+    "piso_fiscal": 32.0,
+    "autonomia": {
+      "peso_lealtad": 0.45,
+      "peso_afinidad": 0.3,
+      "peso_competencia": 0.25,
+      "competencia_ref": 0.27,
+      "fraccion_min": 0.25,
+      "fraccion_max": 0.95
+    },
+    "efecto_semanal": {
+      "dias_obra": 3.0,
+      "dias_ley": 3.0,
+      "riesgo_ejecucion": 0.5
+    },
+    "desvio": {
+      "prob_base": 0.3,
+      "eventos": [
+        {
+          "id": "pide_mas",
+          "peso": 3.0,
+          "texto": "El ministro pide más presupuesto y presiona en privado.",
+          "efectos": [
+            {
+              "ind": "capital",
+              "delta": -1.5
+            }
+          ]
+        },
+        {
+          "id": "discrepa",
+          "peso": 3.0,
+          "texto": "El ministro discrepa en público de tus prioridades.",
+          "efectos": [
+            {
+              "ind": "cohesion",
+              "delta": -2.0
+            }
+          ]
+        },
+        {
+          "id": "filtra",
+          "peso": 2.0,
+          "texto": "El ministro filtra a la prensa que le imponen proyectos.",
+          "efectos": [
+            {
+              "ind": "aprobacion",
+              "delta": -1.5
+            }
+          ]
+        },
+        {
+          "id": "desvia",
+          "peso": 2.0,
+          "texto": "Parte del dinero se pierde en gastos que no pediste.",
+          "efectos": [
+            {
+              "ind": "fiscal",
+              "delta": -1.5
+            }
+          ]
+        },
+        {
+          "id": "renuncia",
+          "peso": 1.0,
+          "fraccion_max": 0.4,
+          "renuncia": true,
+          "texto": "El ministro renuncia ofendido y asume otro.",
+          "efectos": [
+            {
+              "ind": "cohesion",
+              "delta": -3.0
+            },
+            {
+              "ind": "capital",
+              "delta": -2.0
+            }
+          ]
+        }
+      ]
+    }
   }
 }

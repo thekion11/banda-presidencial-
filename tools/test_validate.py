@@ -84,6 +84,18 @@ def rotos():
     @f("bala de plata con riesgo imposible", "probabilidades de riesgo")
     def _(d): d["leyes"]["balas_plata"]["catalogo"][1]["riesgo"]["max"] = 1.0
 
+    @f("presupuesto con pesos de autonomía que no suman 1", "deben sumar 1")
+    def _(d): d["leyes"]["presupuesto_ministerial"]["autonomia"]["peso_lealtad"] = 0.9
+
+    @f("presupuesto con un nivel más caro que el tope anual", "nunca se podría asignar")
+    def _(d): d["leyes"]["presupuesto_ministerial"]["niveles"]["grande"]["fiscal"] = 500.0
+
+    @f("presupuesto con incidente de peso cero", "peso no positivo")
+    def _(d): d["leyes"]["presupuesto_ministerial"]["desvio"]["eventos"][0]["peso"] = 0
+
+    @f("presupuesto con incidente que usa un indicador inventado", "indicador desconocido")
+    def _(d): d["leyes"]["presupuesto_ministerial"]["desvio"]["eventos"][1]["efectos"] = [{"ind": "fama", "delta": -1}]
+
     @f("población regional no positiva", "población no positiva")
     def _(d): d["regiones"][0]["poblacion_miles"] = 0
 

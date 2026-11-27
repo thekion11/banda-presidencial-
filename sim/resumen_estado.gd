@@ -23,6 +23,7 @@ static func de(e: EstadoSimulacion) -> Dictionary:
 		"delegadas_turno": e.delegadas_turno,
 		"internos_actual": e.internos_actual,
 		"balas": e.balas.duplicate(true),
+		"presupuesto": e.presupuesto.duplicate(true),
 		"indicadores": e.indicadores.duplicate(true),
 		"aprobacion_regional": e.aprobacion_regional.duplicate(true),
 		"partido": e.partido.duplicate(true),

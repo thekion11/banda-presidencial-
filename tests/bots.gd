@@ -2,6 +2,7 @@ class_name Bots
 extends RefCounted
 ## Políticas automáticas para balancear con Monte Carlo. Usan solo la API pública del motor.
 
+static var usar_presupuesto: bool = false  # solo la medición (tests/informe_balas.gd): asigna el mayor extra posible a cada ministerio con proyectos
 static var usar_balas: bool = false  # solo la medición de balance (tests/informe_balas.gd): el bot usa las balas de plata «siempre que puede»
 const PESOS := {"aprobacion": 1.0, "capital": 0.5, "cohesion": 0.4, "fiscal": 0.6, "riesgo_ejecucion": -0.5, "viviendas_anio": 0.0002}
 
@@ -120,11 +121,19 @@ static func _balas(motor: MotorTurno) -> void:
 			return
 
 
+static func _presupuesto(motor: MotorTurno) -> void:
+	for f in motor.presupuesto.panel()["ministerios"]:
+		if not bool(f["activo"]) and not (f["niveles_posibles"] as Array).is_empty():
+			motor.presupuesto.asignar(String(f["slot"]), String((f["niveles_posibles"] as Array).back()))
+
+
 static func _extras(motor: MotorTurno) -> void:
 	## Política "completo": además de jugar cartas como el codicioso usa asesores, coalición, delegación y movimientos internos.
 	var est := motor.estado
 	if usar_balas:
 		_balas(motor)
+	if usar_presupuesto and est.etapa == "gobierno":
+		_presupuesto(motor)
 	if est.turno_actual == 1:
 		var ids: Array = motor.equipo.asesores.keys()
 		ids.sort()
