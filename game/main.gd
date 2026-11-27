@@ -228,6 +228,8 @@ func continuar_guardado() -> void:
 		guardar_instantanea()  # el próximo arranque ya no tendrá que simular el historial
 	UrbanoBase.reiniciar()
 	mostrar_dia()
+	if _pantalla is PantallaDia:
+		(_pantalla as PantallaDia).retomar_decisiones()  # una decisión que quedó abierta al cerrarse la app
 	if recuperado and _pantalla is PantallaDia:
 		(_pantalla as PantallaDia)._avisar("Recuperamos tu partida de hace un momento: el último guardado estaba dañado.")
 
