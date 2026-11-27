@@ -62,6 +62,7 @@ func _correr() -> void:
 	var mapa: MapaChile = dia._mapa
 	dia._region = ""
 	mapa._gui_input(_clic(mapa.size * 0.5, true))
+	mapa._gui_input(_clic(mapa.size * 0.5, false))  # se elige al soltar (si no hubo arrastre: el arrastre desplaza el mapa acercado)
 	await _cuadros(1)
 	_check(dia._region != "" and mapa.seleccion == dia._region, "tocar el mapa de Chile elige una región (%s)" % dia._region)
 	# fuegos de obra terminada: el mapa los encola y los dibuja
