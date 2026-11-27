@@ -73,6 +73,29 @@ static func _legislar(motor: MotorTurno) -> void:
 		motor.agenda.presentar(mejor, "suma")
 
 
+static func _estrat_presupuesto(motor: MotorTurno) -> void:
+	## Presupuesto extra: si el fiscal está sano y hay cupo, al ministerio con más proyectos de su sector, con el nivel más barato posible.
+	var pan := motor.presupuesto.panel()
+	if motor.estado.ind("fiscal") < 55.0 or int(pan["simultaneos"]) >= int(pan["max_simultaneos"]):
+		return
+	var mejor: Dictionary = {}
+	for f in pan["ministerios"]:
+		if bool(f["puede_asignar"]) and not bool(f["activo"]) and (mejor.is_empty() or (f["candidatos"] as Array).size() > (mejor["candidatos"] as Array).size()):
+			mejor = f
+	if not mejor.is_empty() and not (mejor["candidatos"] as Array).is_empty():
+		motor.presupuesto.asignar(String(mejor["slot"]), String(mejor["niveles_posibles"][0]))
+
+
+static func _estrat_balas(motor: MotorTurno) -> void:
+	## Balas de plata: usa la primera disponible (versión completa) cuando quedan usos y no hay enfriamiento.
+	if motor.balas.usos_restantes() <= 0 or motor.balas.semanas_de_espera() > 0:
+		return
+	for it in motor.balas.baul()["items"]:
+		if bool(it["disponible"]) and not bool(it["usada"]):
+			motor.balas.usar(String(it["id"]))
+			return
+
+
 static func _delegar(motor: MotorTurno) -> void:
 	## Delega las mejores cartas en el ministro afín del gabinete (sin gastar movimientos; puede salir mal).
 	var est := motor.estado
@@ -197,6 +220,18 @@ static func jugar_turno(motor: MotorTurno, politica: String, rng: RandomNumberGe
 		politica = "codicioso"
 		if est.etapa == "gobierno":
 			_legislar(motor)
+	elif politica == "estratega":  # BM + balas + presupuesto: usa a la vez la agenda legislativa, las balas de plata y el presupuesto extra a ministerios
+		politica = "codicioso"
+		if est.etapa == "gobierno":
+			_legislar(motor)
+			_estrat_presupuesto(motor)
+			_estrat_balas(motor)
+	elif politica == "estratega_max":  # peor caso: agenda + todas las balas apenas se puede + el mayor extra a todos los ministerios
+		politica = "codicioso"
+		if est.etapa == "gobierno":
+			_legislar(motor)
+			_presupuesto(motor)
+			_balas(motor)
 	elif politica == "completo" or politica == "experto":
 		if politica == "experto" and est.etapa == "campana" and est.turno_actual == 1 and est.ciclo == 1:
 			motor.elegir_gabinete(Array(motor.gabinete.rellenar([], "eficaz").map(func(n: Dictionary) -> String: return String(n["id"]))))  # gabinete de máxima eficacia
