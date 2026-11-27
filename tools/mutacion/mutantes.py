@@ -131,3 +131,11 @@ MUTANTES += [
  ("V05", "sim/voto_regional.gd", "		ganadas += 1 if gana else 0", "		ganadas += 1", "se cuentan todas las regiones como ganadas"),
  ("V06", "sim/voto_regional.gd", '"voto_nacional": clampf(nacional, tope_min, tope_max)', '"voto_nacional": nacional + 1.0', "el voto nacional se desvía de la suma ponderada"),
 ]
+
+MUTANTES += [
+ ("S01", "sim/motor_movimientos.gd", "e.pa_actual = mini(maxi(int(_m.catalogo_leyes[\"mano\"][\"tope_ahorro\"]), ingreso), maxi(0, e.pa_actual) + ingreso)", "e.pa_actual = maxi(maxi(int(_m.catalogo_leyes[\"mano\"][\"tope_ahorro\"]), ingreso), maxi(0, e.pa_actual) + ingreso)", "el ahorro de movimientos no tiene tope (se acumula sin límite)"),
+ ("S02", "sim/motor_movimientos.gd", "e.pa_actual = mini(maxi(int(_m.catalogo_leyes[\"mano\"][\"tope_ahorro\"]), ingreso), maxi(0, e.pa_actual) + ingreso)", "e.pa_actual = mini(mini(int(_m.catalogo_leyes[\"mano\"][\"tope_ahorro\"]), ingreso), maxi(0, e.pa_actual) + ingreso)", "el tope de ahorro puede quedar bajo el ingreso de la semana"),
+ ("S03", "sim/motor_movimientos.gd", "maxi(0, e.pa_actual) + ingreso)", "ingreso)", "no se ahorra nada: lo que sobra se pierde"),
+ ("S04", "sim/motor_movimientos.gd", "maxi(0, e.pa_actual) + ingreso)", "maxi(0, e.pa_actual) + ingreso + 1)", "cada semana se crea un movimiento de la nada"),
+ ("S05", "sim/motor_movimientos.gd", "e.pa_actual = mini(maxi(int(_m.catalogo_leyes[\"mano\"][\"tope_ahorro\"]), ingreso), maxi(0, e.pa_actual) + ingreso)", "e.pa_actual = mini(maxi(int(_m.catalogo_leyes[\"mano\"][\"tope_ahorro\"]) + 1, ingreso), maxi(0, e.pa_actual) + ingreso)", "el tope de ahorro es uno más alto que el configurado"),
+]
