@@ -12,6 +12,8 @@ const CORTOS := {"min_interior": "Interior", "min_exteriores": "Exteriores", "mi
 	"min_segpres": "Segpres", "min_deporte": "Deporte", "min_mujer": "Mujer", "min_cultura": "Culturas", "min_ciencia": "Ciencia",
 	"min_seguridad": "Seguridad"}
 const ESTILOS := {"tecnico": "Técnico", "politico": "Político", "comunicador": "Comunicador", "negociador": "Negociador"}
+const AREAS := {"economia": "Economía", "educacion": "Educación", "energia": "Energía", "hacienda": "Hacienda", "medioambiente": "Ambiente",
+	"obras": "Obras", "politica": "Política", "salud": "Salud", "seguridad": "Seguridad", "social": "Social", "transportes": "Transportes", "vivienda": "Vivienda"}
 const NOMBRES_IND := {"aprobacion": "Aprob.", "capital": "Capital", "cohesion": "Cohes.", "fiscal": "Fiscal", "riesgo_ejecucion": "Riesgo"}
 
 
@@ -74,44 +76,129 @@ class Puesto extends Button:
 		al_soltar.call(String(data["id"]))
 
 
+class Retrato extends Control:
+	## Retrato ilustrado del candidato (personaje ficticio): busto dibujado, tono y peinado fijos según su id; traje por estilo.
+	const PIELES := [Color("#F1C9A5"), Color("#D9A77E"), Color("#B57E57"), Color("#8A5A3C")]
+	const PELOS := [Color("#2B1B12"), Color("#5A3A22"), Color("#8C8C8C"), Color("#1A1A1A"), Color("#7A4A1E")]
+	const TRAJES := {"tecnico": Color("#1F5C46"), "politico": Color("#7A2A22"), "comunicador": Color("#2A6290"), "negociador": Color("#8A5A12")}  # negociador: oro oscuro
+	var semilla := 0
+	var estilo := ""
+	var femenino := false
+
+	func _init(id: String, p_estilo: String, alias: String) -> void:
+		semilla = absi(hash(id))
+		estilo = p_estilo
+		femenino = alias.begins_with("La ")
+		custom_minimum_size = Vector2(60, 64)
+		mouse_filter = Control.MOUSE_FILTER_IGNORE
+
+	func _draw() -> void:
+		var w := size.x
+		var h := size.y
+		draw_style_box(Tema.caja(Color("#0E2A42"), 8, Color("#2A6290"), 1), Rect2(Vector2.ZERO, size))
+		var piel: Color = PIELES[semilla % PIELES.size()]
+		var pelo: Color = PELOS[(semilla / 7) % PELOS.size()]
+		var traje: Color = TRAJES.get(estilo, Tema.PANEL)
+		var c := Vector2(w * 0.5, h * 0.40)
+		var r := w * 0.19
+		if femenino:  # melena detrás de la cara
+			draw_circle(c + Vector2(0, r * 0.1), r * 1.22, pelo)
+			draw_rect(Rect2(c.x - r * 1.22, c.y + r * 0.1, r * 2.44, r * 1.3), pelo)
+		draw_colored_polygon(PackedVector2Array([Vector2(w * 0.08, h), Vector2(w * 0.16, h * 0.74), Vector2(w * 0.5, h * 0.64), Vector2(w * 0.84, h * 0.74), Vector2(w * 0.92, h)]), traje)
+		draw_colored_polygon(PackedVector2Array([Vector2(w * 0.42, h * 0.66), Vector2(w * 0.58, h * 0.66), Vector2(w * 0.5, h * 0.86)]), Tema.CREMA)
+		draw_rect(Rect2(c.x - r * 0.35, c.y + r * 0.7, r * 0.7, r * 0.8), piel)
+		draw_circle(c, r, piel)
+		draw_arc(c, r, PI * 1.05, PI * 1.95, 12, pelo, r * 0.7)  # pelo sobre la frente
+		draw_circle(c + Vector2(-r * 0.38, r * 0.05), r * 0.09, Tema.TINTA)
+		draw_circle(c + Vector2(r * 0.38, r * 0.05), r * 0.09, Tema.TINTA)
+		if semilla % 3 == 0:
+			draw_line(c + Vector2(-r * 0.35, r * 0.5), c + Vector2(r * 0.35, r * 0.5), Tema.TINTA, 1.4, true)
+		else:
+			draw_arc(c + Vector2(0, r * 0.25), r * 0.35, PI * 0.2, PI * 0.8, 8, Tema.TINTA, 1.4, true)
+		if (semilla / 3) % 4 == 0:  # corbata o pañuelo dorado en algunos
+			draw_colored_polygon(PackedVector2Array([Vector2(w * 0.47, h * 0.68), Vector2(w * 0.53, h * 0.68), Vector2(w * 0.5, h * 0.82)]), Tema.ORO)
+
+
 class Candidato extends Button:
-	## Carta de un candidato: estilo, rasgo, ahorro de movimientos, ejecución, riesgo de escándalo y afinidad con tu
-	## partido. Se arrastra a su puesto para nombrarlo.
+	## Fila de un candidato (como una ficha de contratación): retrato, nombre y estilo, y sus atributos con ícono y cifra a
+	## la derecha (ahorro de movimientos, ejecución, escándalo y afinidad). Se toca dos veces o se arrastra a su puesto.
 	var id := ""
 	var slot := ""
+	var alias := ""
+
+	static func _atributo(icono: String, nombre: String, valor: String, color: Color) -> HBoxContainer:
+		var f := HBoxContainer.new()
+		f.add_theme_constant_override("separation", 4)
+		f.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		f.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		var ic := Icono.crear(icono, Tema.TEXTO_SUAVE, 12.0)
+		ic.size_flags_vertical = Control.SIZE_SHRINK_CENTER
+		f.add_child(ic)
+		var n := Tema.etiqueta_corta(nombre, 10, Tema.TEXTO_SUAVE)
+		n.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		n.clip_text = true
+		f.add_child(n)
+		f.add_child(Tema.etiqueta_corta(valor, 11, color, false, 700))
+		for h in f.get_children():
+			(h as Control).mouse_filter = Control.MOUSE_FILTER_IGNORE
+		return f
 
 	func _init(ficha: Dictionary, nombrado: bool, previsto: bool) -> void:
 		id = String(ficha["id"])
 		slot = String(ficha["ministerio"])
-		custom_minimum_size = Vector2(Tema.TACTIL, 176)
+		alias = String(ficha["alias"])
+		custom_minimum_size = Vector2(Tema.TACTIL, 78)
 		size_flags_horizontal = Control.SIZE_EXPAND_FILL
-		var caja := Tema.caja(Tema.CREMA, 12, Tema.ORO if (previsto or nombrado) else Color("#D9D2C2"), 3 if previsto else (2 if nombrado else 1))
+		var caja := Tema.caja(Color("#123552") if not previsto else Tema.PANEL, 10, Tema.ORO if (previsto or nombrado) else Color("#2A6290"), 2 if previsto else 1)
 		for e in ["normal", "hover", "pressed", "focus"]:
 			add_theme_stylebox_override(e, caja)
+		var fila := HBoxContainer.new()
+		fila.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+		fila.offset_left = 7.0
+		fila.offset_right = -8.0
+		fila.offset_top = 7.0
+		fila.offset_bottom = -7.0
+		fila.add_theme_constant_override("separation", 9)
+		fila.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		fila.add_child(Retrato.new(id, String(ficha["estilo"]), alias))
 		var v := VBoxContainer.new()
-		v.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
-		v.offset_left = 7.0
-		v.offset_right = -7.0
-		v.offset_top = 6.0
-		v.add_theme_constant_override("separation", 3)
+		v.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		v.add_theme_constant_override("separation", 2)
 		v.mouse_filter = Control.MOUSE_FILTER_IGNORE
-		v.add_child(Tema.etiqueta(String(ficha["alias"]), 12, Tema.TINTA, true))
-		var estilo := Tema.etiqueta_corta(String(ESTILOS.get(ficha["estilo"], ficha["estilo"])), 10, Color("#1F5C46"), false, 700)
-		v.add_child(estilo)
-		v.add_child(Tema.etiqueta(String(ficha["rasgo"]), 10, Tema.GRIS_CLARO))
+		var arriba := HBoxContainer.new()
+		arriba.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		var nombre := Tema.etiqueta_corta(alias, 12, Tema.TEXTO, true)
+		nombre.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		nombre.clip_text = true
+		nombre.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
+		nombre.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		arriba.add_child(nombre)
+		var etiqueta_estilo := String(ESTILOS.get(ficha["estilo"], ficha["estilo"])) + (" · en el cargo" if nombrado else "")
+		var est := Tema.etiqueta_corta(etiqueta_estilo, 10, Tema.ORO, false, 600)
+		est.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		arriba.add_child(est)
+		v.add_child(arriba)
+		var grilla := GridContainer.new()
+		grilla.columns = 2
+		grilla.add_theme_constant_override("h_separation", 12)
+		grilla.add_theme_constant_override("v_separation", 1)
+		grilla.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		grilla.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		var ahorro := int(ficha["reduccion_costo_pa"])
-		v.add_child(Tema.etiqueta("−%d en %s" % [ahorro, String(ficha["categoria_afin"]).capitalize()] if ahorro > 0 else "Sin ahorro", 10, Tema.bien_tinta() if ahorro > 0 else Tema.GRIS_CLARO, false, 600))
-		v.add_child(Tema.etiqueta_corta("Ejecución +%d %%" % roundi(float(ficha["bono_ejecucion"]) * 100.0), 10, Tema.TINTA))
-		v.add_child(Tema.etiqueta_corta("Escándalo %d %%" % roundi(float(ficha["riesgo_escandalo"]) * 100.0), 10, Tema.mal_tinta()))
-		v.add_child(Tema.etiqueta_corta("Afinidad %d %%" % roundi(float(ficha["afinidad"]) * 100.0), 10, Tema.TINTA))
-		for l in v.get_children():
-			(l as Control).mouse_filter = Control.MOUSE_FILTER_IGNORE
-		add_child(v)
+		var afin := float(ficha["afinidad"])
+		grilla.add_child(_atributo("building", "Ejecución", "+%d %%" % roundi(float(ficha["bono_ejecucion"]) * 100.0), Tema.bien()))
+		grilla.add_child(_atributo("down", "Escándalo", "%d %%" % roundi(float(ficha["riesgo_escandalo"]) * 100.0), FilasUI.ROJO_TEXTO))
+		grilla.add_child(_atributo("bolt", "Ahorro " + String(AREAS.get(ficha["categoria_afin"], ficha["categoria_afin"])) if ahorro > 0 else "Ahorro", ("−%d" % ahorro) if ahorro > 0 else "—", Tema.bien() if ahorro > 0 else Tema.TEXTO_SUAVE))
+		grilla.add_child(_atributo("people", "Afinidad", "%d %%" % roundi(afin * 100.0), Tema.color_aprobacion(30.0 + afin * 30.0)))
+		v.add_child(grilla)
+		fila.add_child(v)
+		add_child(fila)
+		tooltip_text = String(ficha["rasgo"])
 
 	func _get_drag_data(_pos: Vector2) -> Variant:
 		if get_viewport().gui_is_dragging():
 			var pc := PanelContainer.new()
 			pc.add_theme_stylebox_override("panel", Tema.caja(Tema.ORO, 10))
-			pc.add_child(Tema.etiqueta_corta((get_child(0).get_child(0) as Label).text, 12, Tema.TINTA, true))
+			pc.add_child(Tema.etiqueta_corta(alias, 12, Tema.TINTA, true))
 			set_drag_preview(pc)
 		return {"id": id, "slot": slot}
