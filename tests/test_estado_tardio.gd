@@ -109,6 +109,20 @@ func _correr() -> void:
 		_auditar(main, "urbano " + tag, alto)
 		main.queue_free()
 		await _cuadros(2)
+	# pantalla de fin con el mandato completo: puntaje, hitos, leyes («y N más») y epílogo, en el teléfono bajo y letra ×1,5
+	motor.mandato.finalizar("fin_mandato")
+	for caso in [[693, 0.0], [693, 1.5]]:
+		Ajustes.escala_prueba = caso[1]
+		root.content_scale_size = Vector2i(390, int(caso[0]))
+		var mf: Node = load("res://game/main.tscn").instantiate()
+		root.add_child(mf)
+		await process_frame
+		mf.motor = motor
+		mf.mostrar_fin()
+		await _cuadros(3)
+		_auditar(mf, "fin [%d, letra ×%s]" % [caso[0], str(caso[1])], int(caso[0]))
+		mf.queue_free()
+		await _cuadros(2)
 	Ajustes.escala_prueba = 0.0
 	root.content_scale_size = Vector2i(390, 844)
 	DirAccess.remove_absolute(ProjectSettings.globalize_path(Tutorial.ruta))
