@@ -97,10 +97,8 @@ def validar_leyes_v2(leyes: dict) -> None:
         raise ValueError("gabinete: tamano fuera de 1..25")
     if not 0 <= dele["prob_fallo_min"] <= dele["prob_fallo_max"] <= 1:
         raise ValueError("delegacion: probabilidades de fallo inválidas")
-    if leyes["asesores"]["max"] < 1 or leyes["mano"]["reposicion_cartas"] < 1:
-        raise ValueError("asesores/reposición inválidos")
-    if not 0 <= leyes["mano"]["tope_ahorro"] <= 100:
-        raise ValueError("mano: tope_ahorro fuera de 0..100")
+    if leyes["asesores"]["max"] < 1 or leyes["mano"]["reposicion_cartas"] < 1 or not 0 <= leyes["mano"]["tope_ahorro"] <= 100:
+        raise ValueError("asesores/reposición/tope_ahorro inválidos")
     for t in leyes["bono_movimientos"]["tramos"]:
         if t["paso"] <= 0 or t["hasta"] < t["desde"] or t["mov"] < 0:
             raise ValueError("bono_movimientos: tramo inválido")
